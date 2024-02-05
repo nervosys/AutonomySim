@@ -10,26 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_setup.html">
       
       
+        <link rel="prev" href="px4_multi_vehicle.html">
       
-        <link rel="next" href="_posts/2015-04-12-test-post-last-year.html">
+      
+        <link rel="next" href="px4_sitl.html">
       
       
-      <link rel="icon" href="images/rune.svg">
+      <link rel="icon" href="../../images/rune.svg">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
     
     
       
-        <title>Welcome to the AutonomySim! - AutonomySim</title>
+        <title>PX4 Setup for AutonomySim - AutonomySim</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.f2e4d321.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial" class="md-skip">
+        <a href="#px4-setup-for-autonomysim" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +110,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="../../index.html" title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome to the AutonomySim!
+              PX4 Setup for AutonomySim
             
           </span>
         </div>
@@ -251,7 +253,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="../../index.html" title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -278,28 +280,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Welcome to the AutonomySim!
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -308,51 +292,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features &amp; Releases
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -401,7 +340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="_posts/2015-04-12-test-post-last-year.html" class="md-nav__link">
+      <a href="../../_posts/2015-04-12-test-post-last-year.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -422,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="_posts/2016-02-24-first-post.html" class="md-nav__link">
+      <a href="../../_posts/2016-02-24-first-post.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="_posts/2016-02-26-sample-post-jekyll.html" class="md-nav__link">
+      <a href="../../_posts/2016-02-26-sample-post-jekyll.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -468,19 +407,21 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -494,7 +435,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Pages
@@ -505,19 +446,21 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -531,7 +474,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             Autonomysim
@@ -545,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/CHANGELOG.html" class="md-nav__link">
+      <a href="CHANGELOG.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/CONTRIBUTING.html" class="md-nav__link">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -587,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/InfraredCamera.html" class="md-nav__link">
+      <a href="InfraredCamera.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -608,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/SUPPORT.html" class="md-nav__link">
+      <a href="SUPPORT.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -629,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/Unity.html" class="md-nav__link">
+      <a href="Unity.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -650,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/adding_new_apis.html" class="md-nav__link">
+      <a href="adding_new_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -671,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/apis_cpp.html" class="md-nav__link">
+      <a href="apis_cpp.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -692,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_apis.html" class="md-nav__link">
+      <a href="autonomysim_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -713,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_getting_started.html" class="md-nav__link">
+      <a href="autonomysim_getting_started.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -734,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_ros_pkgs.html" class="md-nav__link">
+      <a href="autonomysim_ros_pkgs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -755,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_tutorial_pkgs.html" class="md-nav__link">
+      <a href="autonomysim_tutorial_pkgs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -776,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/azure.html" class="md-nav__link">
+      <a href="azure.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -797,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_docs.html" class="md-nav__link">
+      <a href="build_docs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -818,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_faq.html" class="md-nav__link">
+      <a href="build_faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -839,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_linux.html" class="md-nav__link">
+      <a href="build_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -860,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_macos.html" class="md-nav__link">
+      <a href="build_macos.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -881,7 +824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_windows.html" class="md-nav__link">
+      <a href="build_windows.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -902,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/camera_views.html" class="md-nav__link">
+      <a href="camera_views.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -923,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/cmake_linux.html" class="md-nav__link">
+      <a href="cmake_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -944,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/code_structure.html" class="md-nav__link">
+      <a href="code_structure.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -965,7 +908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/coding_guidelines.html" class="md-nav__link">
+      <a href="coding_guidelines.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -986,7 +929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/create_issue.html" class="md-nav__link">
+      <a href="create_issue.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1007,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/custom_drone.html" class="md-nav__link">
+      <a href="custom_drone.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1028,7 +971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/custom_unity_environments.html" class="md-nav__link">
+      <a href="custom_unity_environments.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1049,7 +992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/design.html" class="md-nav__link">
+      <a href="design.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1070,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/dev_workflow.html" class="md-nav__link">
+      <a href="dev_workflow.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1091,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/distance_sensor.html" class="md-nav__link">
+      <a href="distance_sensor.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1112,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/docker_ubuntu.html" class="md-nav__link">
+      <a href="docker_ubuntu.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1133,7 +1076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/drone_survey.html" class="md-nav__link">
+      <a href="drone_survey.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1154,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/event_sim.html" class="md-nav__link">
+      <a href="event_sim.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1175,7 +1118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/faq.html" class="md-nav__link">
+      <a href="faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1196,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/gazebo_drone.html" class="md-nav__link">
+      <a href="gazebo_drone.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1217,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/hard_drive.html" class="md-nav__link">
+      <a href="hard_drive.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1238,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/hello_drone.html" class="md-nav__link">
+      <a href="hello_drone.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1259,7 +1202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/image_apis.html" class="md-nav__link">
+      <a href="image_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1280,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/lidar.html" class="md-nav__link">
+      <a href="lidar.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1301,7 +1244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/log_viewer.html" class="md-nav__link">
+      <a href="log_viewer.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1322,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/mavlinkcom.html" class="md-nav__link">
+      <a href="mavlinkcom.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1343,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/mavlinkcom_mocap.html" class="md-nav__link">
+      <a href="mavlinkcom_mocap.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1364,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/meshes.html" class="md-nav__link">
+      <a href="meshes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1385,7 +1328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/modify_recording_data.html" class="md-nav__link">
+      <a href="modify_recording_data.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1406,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/multi_vehicle.html" class="md-nav__link">
+      <a href="multi_vehicle.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1427,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/object_detection.html" class="md-nav__link">
+      <a href="object_detection.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1448,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/orbit.html" class="md-nav__link">
+      <a href="orbit.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1469,7 +1412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/pfm.html" class="md-nav__link">
+      <a href="pfm.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1490,7 +1433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/playback.html" class="md-nav__link">
+      <a href="playback.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1511,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/point_clouds.html" class="md-nav__link">
+      <a href="point_clouds.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1532,7 +1475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_build.html" class="md-nav__link">
+      <a href="px4_build.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1553,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_lockstep.html" class="md-nav__link">
+      <a href="px4_lockstep.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1574,7 +1517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_logging.html" class="md-nav__link">
+      <a href="px4_logging.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1595,7 +1538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_multi_vehicle.html" class="md-nav__link">
+      <a href="px4_multi_vehicle.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1613,10 +1556,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_setup.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    PX4 Setup for AutonomySim
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="px4_setup.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1625,6 +1588,122 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-px4-hardware-in-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up PX4 Hardware-in-Loop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-px4-software-in-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up PX4 Software-in-Loop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drone-doesnt-fly-properly-it-just-goes-crazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drone doesn't fly properly, it just goes "crazy".
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-arducopter-or-other-mavlink-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use Arducopter or other MavLink implementations?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#it-is-not-finding-my-pixhawk-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      It is not finding my Pixhawk hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warn-commander-takeoff-denied-disarm-and-re-try" class="md-nav__link">
+    <span class="md-ellipsis">
+      WARN  [commander] Takeoff denied, disarm and re-try
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-tell-the-drone-to-do-something-it-always-lands" class="md-nav__link">
+    <span class="md-ellipsis">
+      When I tell the drone to do something it always lands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-get-message-length-mismatches-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      I get message length mismatches errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1637,7 +1716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_sitl.html" class="md-nav__link">
+      <a href="px4_sitl.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1658,7 +1737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_sitl_wsl2.html" class="md-nav__link">
+      <a href="px4_sitl_wsl2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1679,7 +1758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/reinforcement_learning.html" class="md-nav__link">
+      <a href="reinforcement_learning.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1700,7 +1779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/remote_control.html" class="md-nav__link">
+      <a href="remote_control.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1721,7 +1800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/retexturing.html" class="md-nav__link">
+      <a href="retexturing.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1742,7 +1821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/robot_controller.html" class="md-nav__link">
+      <a href="robot_controller.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1763,7 +1842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/sensors.html" class="md-nav__link">
+      <a href="sensors.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1784,7 +1863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/settings.html" class="md-nav__link">
+      <a href="settings.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1805,7 +1884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/simple_flight.html" class="md-nav__link">
+      <a href="simple_flight.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1826,7 +1905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/steering_wheel_installation.html" class="md-nav__link">
+      <a href="steering_wheel_installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1847,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unity_api_support.html" class="md-nav__link">
+      <a href="unity_api_support.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1868,7 +1947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_blocks.html" class="md-nav__link">
+      <a href="unreal_blocks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1889,7 +1968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_custenv.html" class="md-nav__link">
+      <a href="unreal_custenv.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1910,7 +1989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_proj.html" class="md-nav__link">
+      <a href="unreal_proj.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1931,7 +2010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_upgrade.html" class="md-nav__link">
+      <a href="unreal_upgrade.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1952,7 +2031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/upgrade_apis.html" class="md-nav__link">
+      <a href="upgrade_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1973,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/upgrade_settings.html" class="md-nav__link">
+      <a href="upgrade_settings.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1994,7 +2073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/use_precompiled.html" class="md-nav__link">
+      <a href="use_precompiled.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2015,7 +2094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/using_car.html" class="md-nav__link">
+      <a href="using_car.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2036,7 +2115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/voxel_grid.html" class="md-nav__link">
+      <a href="voxel_grid.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2057,7 +2136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/who_is_using.html" class="md-nav__link">
+      <a href="who_is_using.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2078,7 +2157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/working_with_plugin_contents.html" class="md-nav__link">
+      <a href="working_with_plugin_contents.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2099,7 +2178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/xbox_controller.html" class="md-nav__link">
+      <a href="xbox_controller.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2145,6 +2224,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2153,29 +2234,98 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
+  <a href="#supported-hardware" class="md-nav__link">
     <span class="md-ellipsis">
-      Tutorial
+      Supported Hardware
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
+  <a href="#setting-up-px4-hardware-in-loop" class="md-nav__link">
     <span class="md-ellipsis">
-      Infrastructure
+      Setting up PX4 Hardware-in-Loop
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#features-releases" class="md-nav__link">
+  <a href="#setting-up-px4-software-in-loop" class="md-nav__link">
     <span class="md-ellipsis">
-      Features &amp; Releases
+      Setting up PX4 Software-in-Loop
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drone-doesnt-fly-properly-it-just-goes-crazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drone doesn't fly properly, it just goes "crazy".
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-arducopter-or-other-mavlink-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use Arducopter or other MavLink implementations?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#it-is-not-finding-my-pixhawk-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      It is not finding my Pixhawk hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warn-commander-takeoff-denied-disarm-and-re-try" class="md-nav__link">
+    <span class="md-ellipsis">
+      WARN  [commander] Takeoff denied, disarm and re-try
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-i-tell-the-drone-to-do-something-it-always-lands" class="md-nav__link">
+    <span class="md-ellipsis">
+      When I tell the drone to do something it always lands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-get-message-length-mismatches-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      I get message length mismatches errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2197,27 +2347,100 @@
   
 
 
-  <h1>Welcome to the AutonomySim!</h1>
+<h1 id="px4-setup-for-autonomysim">PX4 Setup for AutonomySim<a class="headerlink" href="#px4-setup-for-autonomysim" title="Permanent link">#</a></h1>
+<p>The <a href="http://github.com/px4/firmware">PX4 software stack</a> is an open source very popular flight controller with support for wide variety of boards and sensors as well as built-in capability for higher level tasks such as mission planning. Please visit <a href="http://px4.io">px4.io</a> for more information.</p>
+<p><strong>Warning</strong>: While all releases of AutonomySim are always tested with PX4 to ensure the support, setting up PX4 is not a trivial task. Unless you have at least intermediate level of experience with PX4 stack, we recommend you use <a href="simple_flight.html">simple_flight</a>, which is now a default in AutonomySim.</p>
+<h2 id="supported-hardware">Supported Hardware<a class="headerlink" href="#supported-hardware" title="Permanent link">#</a></h2>
+<p>The following Pixhawk hardware has been tested with AutonomySim:</p>
+<ul>
+<li><a href="http://www.banggood.com/Pixhawk-PX4-2_4_8-Flight-Controller-32-Bit-ARM-PX4FMU-PX4IO-Combo-for-Multicopters-p-1040416.html">Pixhawk PX4 2.4.8</a></li>
+<li><a href="https://hobbyking.com/en_us/pixfalcon-micro-px4-autopilot.html?___store=en_us">PixFalcon</a></li>
+<li><a href="https://www.banggood.com/Pixracer-Autopilot-Xracer-V1_0-Flight-Controller-Mini-PX4-Built-in-Wifi-For-FPV-Racing-RC-Multirotor-p-1056428.html?utm_source=google&amp;utm_medium=cpc_ods&amp;utm_content=starr&amp;utm_campaign=Smlrfpv-ds-FPVracer&amp;gclid=CjwKEAjw9MrIBRCr2LPek5-h8U0SJAD3jfhtbEfqhX4Lu94kPe88Zrr62A5qVgx-wRDBuUulGzHELRoCRVTw_wcB">PixRacer</a></li>
+<li><a href="http://www.proficnc.com/">Pixhawk 2.1</a></li>
+<li><a href="https://shop.holybro.com/pixhawk4-mini_p1120.html">Pixhawk 4 mini from Holybro</a></li>
+<li><a href="https://shop.holybro.com/pixhawk-4beta-launch_p1089.html">Pixhawk 4 from Holybro</a></li>
+</ul>
+<p>Version 1.11.2 of the PX4 firmware also works on the Pixhawk 4 devices.</p>
+<h2 id="setting-up-px4-hardware-in-loop">Setting up PX4 Hardware-in-Loop<a class="headerlink" href="#setting-up-px4-hardware-in-loop" title="Permanent link">#</a></h2>
+<p>For this you will need one of the supported device listed above. For manual flight you will also need RC + transmitter.</p>
+<ol>
+<li>Make sure your RC receiver is bound with its RC transmitter. Connect the RC transmitter to the flight controller's RC port. Refer to your RC manual and <a href="https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html">PX4 docs</a> for more information.</li>
+<li>Download <a href="http://qgroundcontrol.com/">QGroundControl</a>, launch it and connect your flight controller to the USB port.</li>
+<li>Use QGroundControl to flash the latest PX4 Flight Stack.
+See also <a href="https://docs.px4.io/master/en/config/">initial firmware setup video</a>.</li>
+<li>In QGroundControl, configure your Pixhawk for HIL simulation by selecting the HIL Quadrocopter X airframe.  After PX4 reboots, check that "HIL Quadrocopter X" is indeed selected.</li>
+<li>In QGroundControl, go to Radio tab and calibrate (make sure the remote control is on and the receiver is showing the indicator for the binding).</li>
+<li>Go to the Flight Mode tab and chose one of the remote control switches as "Mode Channel". Then set (for example) Stabilized and Attitude flight modes for two positions of the switch.</li>
+<li>Go to the Tuning section of QGroundControl and set appropriate values. For example, for Fly Sky's FS-TH9X remote control, the following settings give a more realistic feel: Hover Throttle = mid+1 mark, Roll and pitch sensitivity = mid-3 mark, Altitude and position control sensitivity = mid-2 mark.</li>
+<li>In <a href="settings.html">AutonomySim settings</a> file, specify PX4 for your vehicle config like this:</li>
+</ol>
+<pre><code class="language-json">    {
+        &quot;SettingsVersion&quot;: 1.2,
+        &quot;SimMode&quot;: &quot;Multirotor&quot;,
+        &quot;ClockType&quot;: &quot;SteppableClock&quot;,
+        &quot;Vehicles&quot;: {
+            &quot;PX4&quot;: {
+                &quot;VehicleType&quot;: &quot;PX4Multirotor&quot;,
+                &quot;UseSerial&quot;: true,
+                &quot;LockStep&quot;: true,
+                &quot;Sensors&quot;:{
+                    &quot;Barometer&quot;:{
+                        &quot;SensorType&quot;: 1,
+                        &quot;Enabled&quot;: true,
+                        &quot;PressureFactorSigma&quot;: 0.0001825
+                    }
+                },
+                &quot;Parameters&quot;: {
+                    &quot;NAV_RCL_ACT&quot;: 0,
+                    &quot;NAV_DLL_ACT&quot;: 0,
+                    &quot;COM_OBL_ACT&quot;: 1,
+                    &quot;LPE_LAT&quot;: 47.641468,
+                    &quot;LPE_LON&quot;: -122.140165
+                }
+            }
+        }
+    }
+</code></pre>
+<p>Notice the PX4 <code>[simulator]</code> is using TCP, which is why we need to add: <code>"UseTcp": true,</code>. Notice we
+are also enabling <code>LockStep</code>, see <a href="px4_lockstep.html">PX4 LockStep</a> for more information. The
+<code>Barometer</code> setting keeps PX4 happy because the default AutonomySim barometer has a bit too much noise
+generation.  This setting clamps that down a bit which allows PX4 to achieve GPS lock more quickly.</p>
+<p>After above setup you should be able to use a remote control (RC) to fly with AutonomySim. You can usually arm the vehicle by lowering and bringing two sticks of RC together down and in-wards. You don't need QGroundControl after the initial setup. Typically the Stabilized (instead of Manual) mode gives better experience for beginners.  See <a href="https://docs.px4.io/master/en/flying/basic_flying.html">PX4 Basic Flying Guide</a>.</p>
+<p>You can also control the drone from <a href="apis.md">Python APIs</a>.</p>
+<p>See <a href="https://youtu.be/HNWdYrtw3f0">Walkthrough Demo Video</a> and  <a href="https://youtu.be/1oY8Qu5maQQ">Unreal AutonomySim Setup  Video</a> that shows you all the setup steps in this document.</p>
+<h2 id="setting-up-px4-software-in-loop">Setting up PX4 Software-in-Loop<a class="headerlink" href="#setting-up-px4-software-in-loop" title="Permanent link">#</a></h2>
+<p>The PX4 SITL mode doesn't require you to have separate device such as a Pixhawk or Pixracer. This is in fact the recommended way to use PX4 with simulators by PX4 team. However, this is indeed harder to set up. Please see <a href="px4_sitl.html">this dedicated page</a> for setting up PX4 in SITL mode.</p>
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">#</a></h2>
+<h4 id="drone-doesnt-fly-properly-it-just-goes-crazy">Drone doesn't fly properly, it just goes "crazy".<a class="headerlink" href="#drone-doesnt-fly-properly-it-just-goes-crazy" title="Permanent link">#</a></h4>
+<p>There are a few reasons that can cause this. First, make sure your drone doesn't fall down large distance when starting the simulator. This might happen if you have created a custom Unreal environment and Player Start is placed too high above the ground. It seems that when this happens internal calibration in PX4 gets confused.</p>
+<p>You should <a href="#setting-up-px4-hardware-in-loop">also use QGroundControl</a> and make sure you can arm and takeoff in QGroundControl properly.</p>
+<p>Finally, this also can be a machine performance issue in some rare cases, check your <a href="hard_drive.html">hard drive performance</a>.</p>
+<h4 id="can-i-use-arducopter-or-other-mavlink-implementations">Can I use Arducopter or other MavLink implementations?<a class="headerlink" href="#can-i-use-arducopter-or-other-mavlink-implementations" title="Permanent link">#</a></h4>
+<p>Our code is tested with the <a href="https://dev.px4.io/">PX4 firmware</a>. We have not tested Arducopter or other mavlink implementations. Some of the flight API's do use the PX4 custom modes in the MAV_CMD_DO_SET_MODE messages (like PX4_CUSTOM_MAIN_MODE_AUTO)</p>
+<h4 id="it-is-not-finding-my-pixhawk-hardware">It is not finding my Pixhawk hardware<a class="headerlink" href="#it-is-not-finding-my-pixhawk-hardware" title="Permanent link">#</a></h4>
+<p>Check your settings.json file for this line "SerialPort":"*,115200".  The asterisk here means "find any serial port that looks like a Pixhawk device, but this doesn't always work for all types of Pixhawk hardware. So on Windows you can find the actual COM port using Device Manager, look under "Ports (COM &amp; LPT), plug the device in and see what new COM port shows up.  Let's say you see a new port named "USB Serial Port (COM5)". Well, then change the SerialPort setting to this: "SerialPort":"COM5,115200".</p>
+<p>On Linux, the device can be found by running "ls /dev/serial/by-id" if you see a device name listed that looks like this <code>usb-3D_Robotics_PX4_FMU_v2.x_0-if00</code> then you can use that name to connect, like this: <code>"SerialPort":"/dev/serial/by-id/usb-3D_Robotics_PX4_FMU_v2.x_0-if00"</code>. Note that this long name is actually a symbolic link to the real name, if you use <code>"ls -l ..."</code> you can find that symbolic link, it is usually something like <code>"/dev/ttyACM0"</code>, so this will also work <code>"SerialPort":"/dev/ttyACM0,115200"</code>.  But that mapping is similar to windows, it is automatically assigned and can change, whereas the long name will work even if the actual TTY serial device mapping changes.</p>
+<h4 id="warn-commander-takeoff-denied-disarm-and-re-try">WARN  [commander] Takeoff denied, disarm and re-try<a class="headerlink" href="#warn-commander-takeoff-denied-disarm-and-re-try" title="Permanent link">#</a></h4>
+<p>This happens if you try and take off when  PX4 still has not computed the home position.  PX4 will report the home
+position once it is happy with the GPS signal, and you will see these messages:</p>
+<pre><code class="language-shell">INFO  [commander] home: 47.6414680, -122.1401672, 119.99
+INFO  [tone_alarm] home_set
+</code></pre>
+<p>Up until this point in time, however, the PX4 will reject takeoff commands.</p>
+<h4 id="when-i-tell-the-drone-to-do-something-it-always-lands">When I tell the drone to do something it always lands<a class="headerlink" href="#when-i-tell-the-drone-to-do-something-it-always-lands" title="Permanent link">#</a></h4>
+<p>For example, you use DroneShell <code>moveToPosition -z -20 -x 50 -y 0</code> which it does, but when it gets to the target location the
+drone starts to land.  This is the default behavior of PX4 when offboard mode completes.  To set the drone to hover instead
+set this PX4 parameter:</p>
+<pre><code class="language-shell">param set COM_OBL_ACT 1
+</code></pre>
+<h4 id="i-get-message-length-mismatches-errors">I get message length mismatches errors<a class="headerlink" href="#i-get-message-length-mismatches-errors" title="Permanent link">#</a></h4>
+<p>You might need to set MAV_PROTO_VER parameter in QGC to "Always use version 1". Please see <a href="https://github.com/nervosys/AutonomySim/issues/546">this issue</a> more details.</p>
 
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit [Getting Started][autonomysim_getting_started] to view a short tutorial on getting
-started with the platform and submitting your first simulation.  </p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit [Infrastructure][autonomysim_infrastructure] to learn more about how the AutonomySim system 
-runs your algorithm in the cloud.  </p>
-<h2 id="features-releases">Features &amp; Releases<a class="headerlink" href="#features-releases" title="Permanent link">#</a></h2>
-<p>Visit [Features &amp; Releases][autonomysim_features] to view the features and release notes for 
-this platform.</p>
-<p>{% include links.html %}</p>
 
 
 
 
 
-
-
-  
-  
 
 
 
@@ -2242,15 +2465,31 @@ this platform.</p>
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="px4_multi_vehicle.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setting up multi-vehicle PX4 simulation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Setting up multi-vehicle PX4 simulation
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="_posts/2015-04-12-test-post-last-year.html" class="md-footer__link md-footer__link--next" aria-label="Next: Test post from last year">
+          <a href="px4_sitl.html" class="md-footer__link md-footer__link--next" aria-label="Next: Setting up PX4 Software-in-Loop">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Test post from last year
+                Setting up PX4 Software-in-Loop
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2320,12 +2559,12 @@ this platform.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.path", "navigation.footer"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.path", "navigation.footer"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
     
     
-      <script src="assets/javascripts/bundle.caa56a14.min.js"></script>
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
       
-        <script src="javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

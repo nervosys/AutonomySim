@@ -1,0 +1,3090 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An open-source automous systems simulator based on Unreal Engine">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/pages/autonomysim/autonomysim_ros_pkgs.html">
+      
+      
+        <link rel="prev" href="autonomysim_getting_started.html">
+      
+      
+        <link rel="next" href="autonomysim_tutorial_pkgs.html">
+      
+      
+      <link rel="icon" href="../../images/rune.svg">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+    
+    
+      
+        <title>AutonomySim_ros_pkgs - AutonomySim</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-QQF2PS4P1M"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-QQF2PS4P1M",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-QQF2PS4P1M",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#autonomysim_ros_pkgs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AutonomySim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AutonomySim_ros_pkgs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="nervosys" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nervosys/AutonomySim" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nervosys/AutonomySim
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    AutonomySim
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nervosys/AutonomySim" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nervosys/AutonomySim
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to the AutonomySim!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+     posts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+             posts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../_posts/2015-04-12-test-post-last-year.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test post from last year
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../_posts/2016-02-24-first-post.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to Jekyll!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../_posts/2016-02-26-sample-post-jekyll.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample post
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pages
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Pages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Autonomysim
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Autonomysim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CHANGELOG.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What's new
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="InfraredCamera.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    InfraredCamera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SUPPORT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Unity.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim on Unity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="adding_new_apis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding New APIs to AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis_cpp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using C++ APIs for AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="autonomysim_apis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="autonomysim_getting_started.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autonomysim getting started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    AutonomySim_ros_pkgs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="autonomysim_ros_pkgs.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim_ros_pkgs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-autonomysim-ros-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using AutonomySim ROS wrapper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using AutonomySim ROS wrapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autonomysim-ros-wrapper-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      AutonomySim ROS Wrapper Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AutonomySim ROS Wrapper Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-pid-position-controller-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple PID Position Controller Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple PID Position Controller Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publishers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-params" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global params
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up the Build Environment on Windows10 using WSL1 or WSL2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up the Build Environment on Windows10 using WSL1 or WSL2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl1-vs-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL1 vs WSL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-setup-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL Setup steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-system-access-between-wsl-and-windows10" class="md-nav__link">
+    <span class="md-ellipsis">
+      File System Access between WSL and Windows10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to run AutonomySim on Windows and ROS wrapper on WSL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-docker-for-ros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Docker for ROS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="autonomysim_tutorial_pkgs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim ROS Tutorials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="azure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim Development Environment on Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build_docs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build the Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build_faq.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build_linux.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build AutonomySim on Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build_macos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build AutonomySim on macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build_windows.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build AutonomySim on Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="camera_views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Camera Views
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cmake_linux.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing cmake on Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code_structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="coding_guidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modern C++ Coding Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create_issue.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Create Issue or Ask Question Effectively
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="custom_drone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomyLib on a Real Drone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="custom_unity_environments.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding AutonomySim to Custom Unity Projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="design.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dev_workflow.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distance_sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distance Sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docker_ubuntu.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim on Docker in Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="drone_survey.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing a Drone Survey script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event_sim.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Event sim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="faq.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gazebo_drone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to GazeboDrone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hard_drive.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Busy Hard Drive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hello_drone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hello Drone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="image_apis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lidar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Use Lidar in AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="log_viewer.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log Viewer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mavlinkcom.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to MavLinkCom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mavlinkcom_mocap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to MavLinkMoCap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="meshes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Access Meshes in AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="modify_recording_data.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modifying Recording Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="multi_vehicle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Vehicles in AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="object_detection.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Detection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orbit.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    An Orbit Trajectory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pfm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pfm Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playback.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playback
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="point_clouds.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Point Clouds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_build.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building PX4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_lockstep.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LockStep
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4/MavLink Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_multi_vehicle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setting up multi-vehicle PX4 simulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_setup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 Setup for AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_sitl.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setting up PX4 Software-in-Loop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_sitl_wsl2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 Software-in-Loop with WSL 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reinforcement_learning.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reinforcement Learning in AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="remote_control.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="retexturing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime Texture Swapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="robot_controller.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Robot Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sensors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sensors in AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="settings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="simple_flight.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    simple_flight
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="steering_wheel_installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logitech G920 Steering Wheel Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="unity_api_support.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unity api support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="unreal_blocks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Blocks Environment for AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="unreal_custenv.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating and Setting Up Unreal Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="unreal_proj.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unreal Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="unreal_upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading to Unreal Engine 4.27
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade_apis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading API Client Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade_settings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="use_precompiled.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Download Binaries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="using_car.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Use Car in AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="voxel_grid.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Voxel Grid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="who_is_using.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Who is Using AutonomySim?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="working_with_plugin_contents.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to use plugin contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbox_controller.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XBox Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-autonomysim-ros-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using AutonomySim ROS wrapper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using AutonomySim ROS wrapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autonomysim-ros-wrapper-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      AutonomySim ROS Wrapper Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AutonomySim ROS Wrapper Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-pid-position-controller-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple PID Position Controller Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple PID Position Controller Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publishers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-params" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global params
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up the Build Environment on Windows10 using WSL1 or WSL2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up the Build Environment on Windows10 using WSL1 or WSL2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl1-vs-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL1 vs WSL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-setup-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL Setup steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-system-access-between-wsl-and-windows10" class="md-nav__link">
+    <span class="md-ellipsis">
+      File System Access between WSL and Windows10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to run AutonomySim on Windows and ROS wrapper on WSL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-docker-for-ros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Docker for ROS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="autonomysim_ros_pkgs">AutonomySim_ros_pkgs<a class="headerlink" href="#autonomysim_ros_pkgs" title="Permanent link">#</a></h1>
+<p>A ROS wrapper over the AutonomySim C++ client library.</p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">#</a></h2>
+<p>The below steps are meant for Linux. If you're running AutonomySim on Windows, you can use Windows Subsystem for Linux (WSL) to run the ROS wrapper, see the instructions <a href="#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2">below</a>. If you're unable or don't prefer to install ROS and related tools on your host Linux due to some issues, you can also try it using Docker, see the steps in <a href="#using-docker-for-ros">Using Docker for ROS wrapper</a></p>
+<ul>
+<li>
+<p>If your default GCC version is not 8 or above (check using <code>gcc --version</code>)</p>
+<ul>
+<li>Install gcc &gt;= 8.0.0: <code>sudo apt-get install gcc-8 g++-8</code></li>
+<li>Verify installation by <code>gcc-8 --version</code></li>
+</ul>
+</li>
+<li>
+<p>Ubuntu 16.04</p>
+<ul>
+<li>Install <a href="https://wiki.ros.org/kinetic/Installation/Ubuntu">ROS kinetic</a></li>
+<li>Install tf2 sensor and mavros packages: <code>sudo apt-get install ros-kinetic-tf2-sensor-msgs ros-kinetic-tf2-geometry-msgs ros-kinetic-mavros*</code></li>
+</ul>
+</li>
+<li>
+<p>Ubuntu 18.04</p>
+<ul>
+<li>Install <a href="https://wiki.ros.org/melodic/Installation/Ubuntu">ROS melodic</a></li>
+<li>Install tf2 sensor and mavros packages: <code>sudo apt-get install ros-melodic-tf2-sensor-msgs ros-melodic-tf2-geometry-msgs ros-melodic-mavros*</code></li>
+</ul>
+</li>
+<li>
+<p>Ubuntu 20.04</p>
+<ul>
+<li>Install <a href="https://wiki.ros.org/noetic/Installation/Ubuntu">ROS noetic</a></li>
+<li>Install tf2 sensor and mavros packages: <code>sudo apt-get install ros-noetic-tf2-sensor-msgs ros-noetic-tf2-geometry-msgs ros-noetic-mavros*</code></li>
+</ul>
+</li>
+<li>
+<p>Install <a href="https://catkin-tools.readthedocs.io/en/latest/installing.html">catkin_tools</a>
+    <code>sudo apt-get install python-catkin-tools</code> or
+    <code>pip install catkin_tools</code>. If using Ubuntu 20.04 use <code>pip install "git+https://github.com/catkin/catkin_tools.git#egg=catkin_tools"</code></p>
+</li>
+</ul>
+<h2 id="build">Build<a class="headerlink" href="#build" title="Permanent link">#</a></h2>
+<ul>
+<li>Build AutonomySim</li>
+</ul>
+<pre><code class="language-shell">git clone https://github.com/nervosys/AutonomySim.git;
+cd AutonomySim;
+./setup.sh;
+./build.sh;
+</code></pre>
+<ul>
+<li>Make sure that you have setup the environment variables for ROS as mentioned in the installation pages above. Add the <code>source</code> command to your <code>.bashrc</code> for convenience (replace <code>melodic</code> with specfic version name) -</li>
+</ul>
+<pre><code class="language-shell">echo &quot;source /opt/ros/melodic/setup.bash&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<ul>
+<li>Build ROS package</li>
+</ul>
+<pre><code class="language-shell">cd ros;
+catkin build; # or catkin_make
+</code></pre>
+<p>If your default GCC isn't 8 or greater (check using <code>gcc --version</code>), then compilation will fail. In that case, use <code>gcc-8</code> explicitly as follows-</p>
+<pre><code class="language-shell">catkin build -DCMAKE_C_COMPILER=gcc-8 -DCMAKE_CXX_COMPILER=g++-8
+</code></pre>
+<h2 id="running">Running<a class="headerlink" href="#running" title="Permanent link">#</a></h2>
+<pre><code class="language-shell">source devel/setup.bash;
+roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch;
+roslaunch AutonomySim_ros_pkgs rviz.launch;
+</code></pre>
+<p><strong>Note</strong>: If you get an error running <code>roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch</code>, run <code>catkin clean</code> and try again</p>
+<h2 id="using-autonomysim-ros-wrapper">Using AutonomySim ROS wrapper<a class="headerlink" href="#using-autonomysim-ros-wrapper" title="Permanent link">#</a></h2>
+<p>The ROS wrapper is composed of two ROS nodes - the first is a wrapper over AutonomySim's multirotor C++ client library, and the second is a simple PD position controller.
+Let's look at the ROS API for both nodes:</p>
+<h3 id="autonomysim-ros-wrapper-node">AutonomySim ROS Wrapper Node<a class="headerlink" href="#autonomysim-ros-wrapper-node" title="Permanent link">#</a></h3>
+<h4 id="publishers">Publishers:<a class="headerlink" href="#publishers" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p><code>/AutonomySim_node/origin_geo_point</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GPSYaw.msg">AutonomySim_ros_pkgs/GPSYaw</a>
+GPS coordinates corresponding to global NED frame. This is set in the AutonomySim's <a href="https://microsoft.github.io/AutonomySim/settings/">settings.json</a> file under the <code>OriginGeopoint</code> key.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/global_gps</code> <a href="https://docs.ros.org/api/sensor_msgs/html/msg/NavSatFix.html">sensor_msgs/NavSatFix</a>
+This the current GPS coordinates of the drone in AutonomySim.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/odom_local_ned</code> <a href="https://docs.ros.org/api/nav_msgs/html/msg/Odometry.html">nav_msgs/Odometry</a>
+Odometry in NED frame (default name: odom_local_ned, launch name and frame type are configurable) wrt take-off point.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/CAMERA_NAME/IMAGE_TYPE/camera_info</code> <a href="https://docs.ros.org/api/sensor_msgs/html/msg/CameraInfo.html">sensor_msgs/CameraInfo</a></p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/CAMERA_NAME/IMAGE_TYPE</code> <a href="https://docs.ros.org/api/sensor_msgs/html/msg/Image.html">sensor_msgs/Image</a>
+  RGB or float image depending on image type requested in settings.json.</p>
+</li>
+<li>
+<p><code>/tf</code> <a href="https://docs.ros.org/api/tf2_msgs/html/msg/TFMessage.html">tf2_msgs/TFMessage</a></p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/altimeter/SENSOR_NAME</code> <a href="https://github.com/nervosys/AutonomySim/blob/main/ros/src/AutonomySim_ros_pkgs/msg/Altimeter.msg">AutonomySim_ros_pkgs/Altimeter</a>
+This the current altimeter reading for altitude, pressure, and <a href="https://en.wikipedia.org/wiki/QNH">QNH</a></p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/imu/SENSOR_NAME</code> <a href="http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html">sensor_msgs::Imu</a>
+IMU sensor data</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/magnetometer/SENSOR_NAME</code> <a href="http://docs.ros.org/api/sensor_msgs/html/msg/MagneticField.html">sensor_msgs::MagneticField</a>
+  Meausrement of magnetic field vector/compass</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/distance/SENSOR_NAME</code> <a href="http://docs.ros.org/api/sensor_msgs/html/msg/Range.html">sensor_msgs::Range</a>
+  Meausrement of distance from an active ranger, such as infrared or IR</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/lidar/SENSOR_NAME</code> <a href="http://docs.ros.org/api/sensor_msgs/html/msg/PointCloud2.html">sensor_msgs::PointCloud2</a>
+  LIDAR pointcloud</p>
+</li>
+</ul>
+<h4 id="subscribers">Subscribers:<a class="headerlink" href="#subscribers" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p><code>/AutonomySim_node/vel_cmd_body_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
+  Ignore <code>vehicle_name</code> field, leave it to blank. We will use <code>vehicle_name</code> in future for multiple drones.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/vel_cmd_world_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
+  Ignore <code>vehicle_name</code> field, leave it to blank. We will use <code>vehicle_name</code> in future for multiple drones.</p>
+</li>
+<li>
+<p><code>/gimbal_angle_euler_cmd</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GimbalAngleEulerCmd.msg">AutonomySim_ros_pkgs/GimbalAngleEulerCmd</a>
+  Gimbal set point in euler angles.</p>
+</li>
+<li>
+<p><code>/gimbal_angle_quat_cmd</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GimbalAngleQuatCmd.msg">AutonomySim_ros_pkgs/GimbalAngleQuatCmd</a>
+  Gimbal set point in quaternion.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/car_cmd</code> <a href="https://github.com/nervosys/AutonomySim/blob/main/ros/src/AutonomySim_ros_pkgs/msg/CarControls.msg">AutonomySim_ros_pkgs/CarControls</a>
+Throttle, brake, steering and gear selections for control. Both automatic and manual transmission control possible, see the <a href="https://github.com/nervosys/AutonomySim/blob/main/ros/src/AutonomySim_ros_pkgs/scripts/car_joy"><code>car_joy.py</code></a> script for use.</p>
+</li>
+</ul>
+<h4 id="services">Services:<a class="headerlink" href="#services" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/land</code> <a href="https://docs.ros.org/api/std_srvs/html/srv/Empty.html">AutonomySim_ros_pkgs/Takeoff</a></p>
+</li>
+<li>
+<p><code>/AutonomySim_node/takeoff</code> <a href="https://docs.ros.org/api/std_srvs/html/srv/Empty.html">AutonomySim_ros_pkgs/Takeoff</a></p>
+</li>
+<li>
+<p><code>/AutonomySim_node/reset</code> <a href="https://docs.ros.org/api/std_srvs/html/srv/Empty.html">AutonomySim_ros_pkgs/Reset</a>
+ Resets <em>all</em> drones</p>
+</li>
+</ul>
+<h4 id="parameters">Parameters:<a class="headerlink" href="#parameters" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p><code>/AutonomySim_node/world_frame_id</code> [string]
+  Set in: <code>$(AutonomySim_ros_pkgs)/launch/AutonomySim_node.launch</code>
+  Default: world_ned
+  Set to "world_enu" to switch to ENU frames automatically</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/odom_frame_id</code> [string]
+  Set in: <code>$(AutonomySim_ros_pkgs)/launch/AutonomySim_node.launch</code>
+  Default: odom_local_ned
+  If you set world_frame_id to "world_enu", the default odom name will instead default to "odom_local_enu"</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/coordinate_system_enu</code> [boolean]
+  Set in: <code>$(AutonomySim_ros_pkgs)/launch/AutonomySim_node.launch</code>
+  Default: false
+  If you set world_frame_id to "world_enu", this setting will instead default to true</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/update_AutonomySim_control_every_n_sec</code> [double]
+  Set in: <code>$(AutonomySim_ros_pkgs)/launch/AutonomySim_node.launch</code>
+  Default: 0.01 seconds.
+  Timer callback frequency for updating drone odom and state from AutonomySim, and sending in control commands.
+  The current RPClib interface to unreal engine maxes out at 50 Hz.
+  Timer callbacks in ROS run at maximum rate possible, so it's best to not touch this parameter.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/update_AutonomySim_img_response_every_n_sec</code> [double]
+  Set in: <code>$(AutonomySim_ros_pkgs)/launch/AutonomySim_node.launch</code>
+  Default: 0.01 seconds.
+  Timer callback frequency for receiving images from all cameras in AutonomySim.
+  The speed will depend on number of images requested and their resolution.
+  Timer callbacks in ROS run at maximum rate possible, so it's best to not touch this parameter.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/publish_clock</code> [double]
+  Set in: <code>$(AutonomySim_ros_pkgs)/launch/AutonomySim_node.launch</code>
+  Default: false
+  Will publish the ros /clock topic if set to true.</p>
+</li>
+</ul>
+<h3 id="simple-pid-position-controller-node">Simple PID Position Controller Node<a class="headerlink" href="#simple-pid-position-controller-node" title="Permanent link">#</a></h3>
+<h4 id="parameters_1">Parameters:<a class="headerlink" href="#parameters_1" title="Permanent link">#</a></h4>
+<ul>
+<li>PD controller parameters:</li>
+<li>
+<p><code>/pd_position_node/kd_x</code> [double],
+    <code>/pd_position_node/kp_y</code> [double],
+    <code>/pd_position_node/kp_z</code> [double],
+    <code>/pd_position_node/kp_yaw</code> [double]
+    Proportional gains</p>
+</li>
+<li>
+<p><code>/pd_position_node/kd_x</code> [double],
+    <code>/pd_position_node/kd_y</code> [double],
+    <code>/pd_position_node/kd_z</code> [double],
+    <code>/pd_position_node/kd_yaw</code> [double]
+    Derivative gains</p>
+</li>
+<li>
+<p><code>/pd_position_node/reached_thresh_xyz</code> [double]
+    Threshold euler distance (meters) from current position to setpoint position</p>
+</li>
+<li>
+<p><code>/pd_position_node/reached_yaw_degrees</code> [double]
+    Threshold yaw distance (degrees) from current position to setpoint position</p>
+</li>
+<li>
+<p><code>/pd_position_node/update_control_every_n_sec</code> [double]
+  Default: 0.01 seconds</p>
+</li>
+</ul>
+<h4 id="services_1">Services:<a class="headerlink" href="#services_1" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/gps_goal</code> [Request: <a href="https://github.com/nervosys/AutonomySim/blob/main/ros/src/AutonomySim_ros_pkgs/srv/SetGPSPosition.srv">srv/SetGPSPosition</a>]
+  Target gps position + yaw.
+  In <strong>absolute</strong> altitude.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/local_position_goal</code> [Request: <a href="https://github.com/nervosys/AutonomySim/blob/main/ros/src/AutonomySim_ros_pkgs/srv/SetLocalPosition.srv">srv/SetLocalPosition</a>]
+  Target local position + yaw in global NED frame.</p>
+</li>
+</ul>
+<h4 id="subscribers_1">Subscribers:<a class="headerlink" href="#subscribers_1" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p><code>/AutonomySim_node/origin_geo_point</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GPSYaw.msg">AutonomySim_ros_pkgs/GPSYaw</a>
+  Listens to home geo coordinates published by <code>AutonomySim_node</code>.</p>
+</li>
+<li>
+<p><code>/AutonomySim_node/VEHICLE_NAME/odom_local_ned</code> <a href="https://docs.ros.org/api/nav_msgs/html/msg/Odometry.html">nav_msgs/Odometry</a>
+  Listens to odometry published by <code>AutonomySim_node</code></p>
+</li>
+</ul>
+<h4 id="publishers_1">Publishers:<a class="headerlink" href="#publishers_1" title="Permanent link">#</a></h4>
+<ul>
+<li><code>/vel_cmd_world_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
+  Sends velocity command to <code>AutonomySim_node</code></li>
+</ul>
+<h4 id="global-params">Global params<a class="headerlink" href="#global-params" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p>Dynamic constraints. These can be changed in <code>dynamic_constraints.launch</code>:</p>
+<ul>
+<li>
+<p><code>/max_vel_horz_abs</code> [double]
+  Maximum horizontal velocity of the drone (meters/second)</p>
+</li>
+<li>
+<p><code>/max_vel_vert_abs</code> [double]
+  Maximum vertical velocity of the drone (meters/second)</p>
+</li>
+<li>
+<p><code>/max_yaw_rate_degree</code> [double]
+  Maximum yaw rate (degrees/second)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">#</a></h2>
+<h3 id="setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2">Setting up the Build Environment on Windows10 using WSL1 or WSL2<a class="headerlink" href="#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2" title="Permanent link">#</a></h3>
+<p>These setup instructions describe how to setup "Bash on Ubuntu on Windows" (aka "Windows Subsystem for Linux").</p>
+<p>It involves enabling the built-in Windows Linux environment (WSL) in Windows10, installing a compatible Linux OS image, and finally installing the build environment as if it were a normal Linux system.</p>
+<p>Upon completion, you will be able to build and run the ros wrapper as in a native linux machine.</p>
+<h5 id="wsl1-vs-wsl2">WSL1 vs WSL2<a class="headerlink" href="#wsl1-vs-wsl2" title="Permanent link">#</a></h5>
+<p>WSL2 is the latest version of the Windows10 Subsystem for Linux. It is many times faster than WSL1 (if you use the native file system in <code>/home/...</code> rather
+than Windows mounted folders under <code>/mnt/...</code>) and is therefore much preferred for building the code in terms of speed.</p>
+<p>Once installed, you can switch between WSL1 or WSL2 versions as you prefer.</p>
+<h5 id="wsl-setup-steps">WSL Setup steps<a class="headerlink" href="#wsl-setup-steps" title="Permanent link">#</a></h5>
+<ol>
+<li>
+<p>Follow the instructions <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">here</a>. Check that the ROS version you want to use is supported by the Ubuntu version you want to install.</p>
+</li>
+<li>
+<p>Congratulations, you now have a working Ubuntu subsystem under Windows, you can now go to <a href="#setup">Ubuntu 16 / 18 instructions</a> and then <a href="#how-to-run-AutonomySim-on-windows-and-ros-wrapper-on-wsl">How to run AutonomySim on Windows and ROS wrapper on WSL</a>!</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can run XWindows applications (including SITL) by installing <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>  on Windows.
+To use it find and run <code>XLaunch</code> from the Windows start menu.
+Select <code>Multiple Windows</code> in first popup, <code>Start no client</code> in second popup, <strong>only</strong> <code>Clipboard</code> in third popup. Do <strong>not</strong> select <code>Native Opengl</code> (and if you are not able to connect select <code>Disable access control</code>).
+You will need to set the DISPLAY variable to point to your display: in WSL it is <code>127.0.0.1:0</code>, in WSL2 it will be the ip address of the PC's network port and can be set by using the code below. Also in WSL2 you may have to disable the firewall for public networks, or create an exception in order for VcXsrv to communicate with WSL2:</p>
+<p><code>export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0</code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>If you add this line to your ~/.bashrc file you won't need to run this command again</li>
+<li>For code editing you can install VSCode inside WSL.</li>
+<li>Windows 10 includes "Windows Defender" virus scanner. It will slow down WSL quite a bit. Disabling it greatly improves disk performance but increases your risk to viruses so disable at your own risk. Here is one of many resources/videos that show you how to disable it: <a href="https://youtu.be/FmjblGay3AM">How to Disable or Enable Windows Defender on Windows 10</a></li>
+</ul>
+</div>
+<h5 id="file-system-access-between-wsl-and-windows10">File System Access between WSL and Windows10<a class="headerlink" href="#file-system-access-between-wsl-and-windows10" title="Permanent link">#</a></h5>
+<p>From within WSL, the Windows drives are referenced in the /mnt directory. For example, in order to list documents within your (<username>) documents folder:</p>
+<pre><code>`ls /mnt/c/'Documents and Settings'/&lt;username&gt;/Documents`
+or
+`ls /mnt/c/Users/&lt;username&gt;/Documents`
+</code></pre>
+<p>From within Windows, the WSL distribution's files are located at (type in windows Explorer address bar):</p>
+<p><code>\\wsl$\&lt;distribution name&gt;</code>
+   e.g.
+   <code>\\wsl$\Ubuntu-18.04</code></p>
+<h5 id="how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl">How to run AutonomySim on Windows and ROS wrapper on WSL<a class="headerlink" href="#how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl" title="Permanent link">#</a></h5>
+<p>For WSL 1 execute:
+<code>export WSL_HOST_IP=127.0.0.1</code>
+and for WSL 2:
+<code>export WSL_HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')</code>
+Now, as in the <a href="#running">running section for linux</a>, execute the following:</p>
+<pre><code class="language-shell">source devel/setup.bash
+roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch output:=screen host:=$WSL_HOST_IP
+roslaunch AutonomySim_ros_pkgs rviz.launch
+</code></pre>
+<h3 id="using-docker-for-ros">Using Docker for ROS<a class="headerlink" href="#using-docker-for-ros" title="Permanent link">#</a></h3>
+<p>A Dockerfile is present in the <a href="https://github.com/nervosys/AutonomySim/tree/main/tools/Dockerfile-ROS"><code>tools</code></a> directory. To build the <code>AutonomySim-ros</code> image -</p>
+<pre><code class="language-shell">cd tools
+docker build -t AutonomySim-ros -f Dockerfile-ROS .
+</code></pre>
+<p>To run, replace the path of the AutonomySim folder below -</p>
+<pre><code class="language-shell">docker run --rm -it --net=host -v &lt;your-AutonomySim-folder-path&gt;:/home/testuser/AutonomySim AutonomySim-ros:latest bash
+</code></pre>
+<p>The above command mounts the AutonomySim directory to the home directory inside the container. Any changes you make in the source files from your host will be visible inside the container, which is useful for development and testing. Now follow the steps from <a href="#build">Build</a> to compile and run the ROS wrapper.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="autonomysim_getting_started.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Autonomysim getting started">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Autonomysim getting started
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="autonomysim_tutorial_pkgs.html" class="md-footer__link md-footer__link--next" aria-label="Next: AutonomySim ROS Tutorials">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                AutonomySim ROS Tutorials
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Nervosys, LLC
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/nervosys/AutonomySim" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/x84JXYje" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/nervosys" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.path", "navigation.footer"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

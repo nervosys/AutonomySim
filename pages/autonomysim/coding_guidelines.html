@@ -10,26 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/pages/autonomysim/coding_guidelines.html">
       
       
+        <link rel="prev" href="code_structure.html">
       
-        <link rel="next" href="_posts/2015-04-12-test-post-last-year.html">
+      
+        <link rel="next" href="create_issue.html">
       
       
-      <link rel="icon" href="images/rune.svg">
+      <link rel="icon" href="../../images/rune.svg">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
     
     
       
-        <title>Welcome to the AutonomySim! - AutonomySim</title>
+        <title>Modern C++ Coding Guidelines - AutonomySim</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.f2e4d321.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial" class="md-skip">
+        <a href="#modern-c-coding-guidelines" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +110,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="../../index.html" title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome to the AutonomySim!
+              Modern C++ Coding Guidelines
             
           </span>
         </div>
@@ -251,7 +253,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="../../index.html" title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -278,28 +280,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Welcome to the AutonomySim!
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -308,51 +292,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features &amp; Releases
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -401,7 +340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="_posts/2015-04-12-test-post-last-year.html" class="md-nav__link">
+      <a href="../../_posts/2015-04-12-test-post-last-year.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -422,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="_posts/2016-02-24-first-post.html" class="md-nav__link">
+      <a href="../../_posts/2016-02-24-first-post.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="_posts/2016-02-26-sample-post-jekyll.html" class="md-nav__link">
+      <a href="../../_posts/2016-02-26-sample-post-jekyll.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -468,19 +407,21 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -494,7 +435,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Pages
@@ -505,19 +446,21 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -531,7 +474,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             Autonomysim
@@ -545,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/CHANGELOG.html" class="md-nav__link">
+      <a href="CHANGELOG.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/CONTRIBUTING.html" class="md-nav__link">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -587,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/InfraredCamera.html" class="md-nav__link">
+      <a href="InfraredCamera.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -608,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/SUPPORT.html" class="md-nav__link">
+      <a href="SUPPORT.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -629,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/Unity.html" class="md-nav__link">
+      <a href="Unity.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -650,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/adding_new_apis.html" class="md-nav__link">
+      <a href="adding_new_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -671,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/apis_cpp.html" class="md-nav__link">
+      <a href="apis_cpp.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -692,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_apis.html" class="md-nav__link">
+      <a href="autonomysim_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -713,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_getting_started.html" class="md-nav__link">
+      <a href="autonomysim_getting_started.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -734,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_ros_pkgs.html" class="md-nav__link">
+      <a href="autonomysim_ros_pkgs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -755,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/autonomysim_tutorial_pkgs.html" class="md-nav__link">
+      <a href="autonomysim_tutorial_pkgs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -776,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/azure.html" class="md-nav__link">
+      <a href="azure.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -797,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_docs.html" class="md-nav__link">
+      <a href="build_docs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -818,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_faq.html" class="md-nav__link">
+      <a href="build_faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -839,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_linux.html" class="md-nav__link">
+      <a href="build_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -860,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_macos.html" class="md-nav__link">
+      <a href="build_macos.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -881,7 +824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/build_windows.html" class="md-nav__link">
+      <a href="build_windows.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -902,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/camera_views.html" class="md-nav__link">
+      <a href="camera_views.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -923,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/cmake_linux.html" class="md-nav__link">
+      <a href="cmake_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -944,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/code_structure.html" class="md-nav__link">
+      <a href="code_structure.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -962,10 +905,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="pages/autonomysim/coding_guidelines.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Modern C++ Coding Guidelines
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="coding_guidelines.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -974,6 +937,134 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Note
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clang-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      clang-format
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming Conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#header-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bracketing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bracketing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const-and-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      Const and References
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overriding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pointers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#null-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Null Checking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#line-breaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Line Breaks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#this-is-too-short-ye" class="md-nav__link">
+    <span class="md-ellipsis">
+      This is Too Short, ye?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -986,7 +1077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/create_issue.html" class="md-nav__link">
+      <a href="create_issue.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1007,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/custom_drone.html" class="md-nav__link">
+      <a href="custom_drone.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1028,7 +1119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/custom_unity_environments.html" class="md-nav__link">
+      <a href="custom_unity_environments.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1049,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/design.html" class="md-nav__link">
+      <a href="design.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1070,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/dev_workflow.html" class="md-nav__link">
+      <a href="dev_workflow.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1091,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/distance_sensor.html" class="md-nav__link">
+      <a href="distance_sensor.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1112,7 +1203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/docker_ubuntu.html" class="md-nav__link">
+      <a href="docker_ubuntu.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1133,7 +1224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/drone_survey.html" class="md-nav__link">
+      <a href="drone_survey.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1154,7 +1245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/event_sim.html" class="md-nav__link">
+      <a href="event_sim.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1175,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/faq.html" class="md-nav__link">
+      <a href="faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1196,7 +1287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/gazebo_drone.html" class="md-nav__link">
+      <a href="gazebo_drone.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1217,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/hard_drive.html" class="md-nav__link">
+      <a href="hard_drive.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1238,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/hello_drone.html" class="md-nav__link">
+      <a href="hello_drone.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1259,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/image_apis.html" class="md-nav__link">
+      <a href="image_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1280,7 +1371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/lidar.html" class="md-nav__link">
+      <a href="lidar.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1301,7 +1392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/log_viewer.html" class="md-nav__link">
+      <a href="log_viewer.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1322,7 +1413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/mavlinkcom.html" class="md-nav__link">
+      <a href="mavlinkcom.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1343,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/mavlinkcom_mocap.html" class="md-nav__link">
+      <a href="mavlinkcom_mocap.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1364,7 +1455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/meshes.html" class="md-nav__link">
+      <a href="meshes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1385,7 +1476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/modify_recording_data.html" class="md-nav__link">
+      <a href="modify_recording_data.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1406,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/multi_vehicle.html" class="md-nav__link">
+      <a href="multi_vehicle.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1427,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/object_detection.html" class="md-nav__link">
+      <a href="object_detection.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1448,7 +1539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/orbit.html" class="md-nav__link">
+      <a href="orbit.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1469,7 +1560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/pfm.html" class="md-nav__link">
+      <a href="pfm.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1490,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/playback.html" class="md-nav__link">
+      <a href="playback.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1511,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/point_clouds.html" class="md-nav__link">
+      <a href="point_clouds.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1532,7 +1623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_build.html" class="md-nav__link">
+      <a href="px4_build.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1553,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_lockstep.html" class="md-nav__link">
+      <a href="px4_lockstep.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1574,7 +1665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_logging.html" class="md-nav__link">
+      <a href="px4_logging.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1595,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_multi_vehicle.html" class="md-nav__link">
+      <a href="px4_multi_vehicle.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1616,7 +1707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_setup.html" class="md-nav__link">
+      <a href="px4_setup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1637,7 +1728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_sitl.html" class="md-nav__link">
+      <a href="px4_sitl.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1658,7 +1749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/px4_sitl_wsl2.html" class="md-nav__link">
+      <a href="px4_sitl_wsl2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1679,7 +1770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/reinforcement_learning.html" class="md-nav__link">
+      <a href="reinforcement_learning.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1700,7 +1791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/remote_control.html" class="md-nav__link">
+      <a href="remote_control.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1721,7 +1812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/retexturing.html" class="md-nav__link">
+      <a href="retexturing.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1742,7 +1833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/robot_controller.html" class="md-nav__link">
+      <a href="robot_controller.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1763,7 +1854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/sensors.html" class="md-nav__link">
+      <a href="sensors.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1784,7 +1875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/settings.html" class="md-nav__link">
+      <a href="settings.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1805,7 +1896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/simple_flight.html" class="md-nav__link">
+      <a href="simple_flight.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1826,7 +1917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/steering_wheel_installation.html" class="md-nav__link">
+      <a href="steering_wheel_installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1847,7 +1938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unity_api_support.html" class="md-nav__link">
+      <a href="unity_api_support.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1868,7 +1959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_blocks.html" class="md-nav__link">
+      <a href="unreal_blocks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1889,7 +1980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_custenv.html" class="md-nav__link">
+      <a href="unreal_custenv.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1910,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_proj.html" class="md-nav__link">
+      <a href="unreal_proj.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1931,7 +2022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/unreal_upgrade.html" class="md-nav__link">
+      <a href="unreal_upgrade.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1952,7 +2043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/upgrade_apis.html" class="md-nav__link">
+      <a href="upgrade_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1973,7 +2064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/upgrade_settings.html" class="md-nav__link">
+      <a href="upgrade_settings.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1994,7 +2085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/use_precompiled.html" class="md-nav__link">
+      <a href="use_precompiled.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2015,7 +2106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/using_car.html" class="md-nav__link">
+      <a href="using_car.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2036,7 +2127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/voxel_grid.html" class="md-nav__link">
+      <a href="voxel_grid.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2057,7 +2148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/who_is_using.html" class="md-nav__link">
+      <a href="who_is_using.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2078,7 +2169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/working_with_plugin_contents.html" class="md-nav__link">
+      <a href="working_with_plugin_contents.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2099,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pages/autonomysim/xbox_controller.html" class="md-nav__link">
+      <a href="xbox_controller.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2145,6 +2236,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2153,27 +2246,108 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
+  <a href="#quick-note" class="md-nav__link">
     <span class="md-ellipsis">
-      Tutorial
+      Quick Note
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
+  <a href="#clang-format" class="md-nav__link">
     <span class="md-ellipsis">
-      Infrastructure
+      clang-format
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#features-releases" class="md-nav__link">
+  <a href="#naming-conventions" class="md-nav__link">
     <span class="md-ellipsis">
-      Features &amp; Releases
+      Naming Conventions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#header-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header Files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bracketing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bracketing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const-and-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      Const and References
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overriding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pointers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#null-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Null Checking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#line-breaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Line Breaks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#this-is-too-short-ye" class="md-nav__link">
+    <span class="md-ellipsis">
+      This is Too Short, ye?
     </span>
   </a>
   
@@ -2197,27 +2371,130 @@
   
 
 
-  <h1>Welcome to the AutonomySim!</h1>
+<h1 id="modern-c-coding-guidelines">Modern C++ Coding Guidelines<a class="headerlink" href="#modern-c-coding-guidelines" title="Permanent link">#</a></h1>
+<p>We are using Modern C++11. Smart pointers, Lambdas, and C++11 multithreading primitives are your friend.</p>
+<h2 id="quick-note">Quick Note<a class="headerlink" href="#quick-note" title="Permanent link">#</a></h2>
+<p>The great thing about "standards" is that there are many to chose from: <a href="https://isocpp.org/wiki/faq/coding-standards">ISO</a>, <a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md">Sutter &amp; Stroustrup</a>, <a href="http://wiki.ros.org/CppStyleGuide">ROS</a>, <a href="https://www.kernel.org/doc/Documentation/process/coding-style.rst">LINUX</a>, <a href="https://google.github.io/styleguide/cppguide.html">Google's</a>, <a href="https://msdn.microsoft.com/en-us/library/888a6zcz.aspx">Microsoft's</a>, <a href="http://atlas-computing.web.cern.ch/atlas-computing/projects/qa/draft_guidelines.html">CERN's</a>, <a href="https://gcc.gnu.org/wiki/CppConventions">GCC's</a>, <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0475c/CJAJAJCJ.html">ARM's</a>, <a href="http://llvm.org/docs/CodingStandards.html">LLVM's</a> and probably 
+thousands of others. Unfortunately most of these can't even agree on something as basic as how to name a class or a constant. This is probably due to the fact that these standards often carry lots of  legacy issues due to supporting existing code bases. The intention behind this document is to create guidance that remains as close to ISO, Sutter &amp; Stroustrup and ROS while resolving as many conflicts, disadvantages and inconsistencies as possible among them.</p>
+<h2 id="clang-format">clang-format<a class="headerlink" href="#clang-format" title="Permanent link">#</a></h2>
+<p>Formatting the syntax of C++ is normalized by the clang-format tool which has settings checked into this project in the file <code>.clang-format</code>. These settings are set to match the formatting guidelines listed below.  You can "format" a file using clang-format command line or by enabling Visual Studio automatic-clang formatting either during every edit or when you save the file.  All files have been formatted this way and the github workflow called <code>clang-format</code> will also ensure all pull requests are correctly formatted so it should stay clean.  Obviously this does not include external code like <code>Eigen</code> or <code>rpclib</code>.  </p>
+<p>If you find a bug in clang-format you can disable clang formatting of a specific block of code by using the following comments pair:</p>
+<pre><code class="language-cpp">// clang-format off
+...
+// clang-format on
+</code></pre>
+<h2 id="naming-conventions">Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permanent link">#</a></h2>
+<p>Avoid using any sort of Hungarian notation on names and "_ptr" on pointers.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Code Element</strong></th>
+<th><strong>Style</strong></th>
+<th><strong>Comment</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>under_scored</td>
+<td>Differentiate from class names</td>
+</tr>
+<tr>
+<td>Class name</td>
+<td>CamelCase</td>
+<td>To differentiate from STL types which ISO recommends (do not use "C" or "T" prefixes)</td>
+</tr>
+<tr>
+<td>Function name</td>
+<td>camelCase</td>
+<td>Lower case start is almost universal except for .Net world</td>
+</tr>
+<tr>
+<td>Parameters/Locals</td>
+<td>under_scored</td>
+<td>Vast majority of standards recommends this because _ is more readable to C++ crowd (although not much to Java/.Net crowd)</td>
+</tr>
+<tr>
+<td>Member variables</td>
+<td>under_scored_with_</td>
+<td>The prefix _ is heavily discouraged as ISO has rules around reserving _identifiers, so we recommend suffix instead</td>
+</tr>
+<tr>
+<td>Enums and its members</td>
+<td>CamelCase</td>
+<td>Most except very old standards agree with this one</td>
+</tr>
+<tr>
+<td>Globals</td>
+<td>g_under_scored</td>
+<td>You shouldn't have these in first place!</td>
+</tr>
+<tr>
+<td>Constants</td>
+<td>UPPER_CASE</td>
+<td>Very contentious and we just have to pick one here, unless if is a private constant in class or method, then use naming for Members or Locals</td>
+</tr>
+<tr>
+<td>File names</td>
+<td>Match case of class name in file</td>
+<td>Lot of pro and cons either way but this removes inconsistency in auto generated code (important for ROS)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="header-files">Header Files<a class="headerlink" href="#header-files" title="Permanent link">#</a></h2>
+<p>Use a namespace qualified #ifdef to protect against multiple inclusion:</p>
+<pre><code class="language-cpp">#ifndef msr_AutonomySim_MyHeader_hpp
+#define msr_AutonomySim_MyHeader_hpp
 
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit [Getting Started][autonomysim_getting_started] to view a short tutorial on getting
-started with the platform and submitting your first simulation.  </p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit [Infrastructure][autonomysim_infrastructure] to learn more about how the AutonomySim system 
-runs your algorithm in the cloud.  </p>
-<h2 id="features-releases">Features &amp; Releases<a class="headerlink" href="#features-releases" title="Permanent link">#</a></h2>
-<p>Visit [Features &amp; Releases][autonomysim_features] to view the features and release notes for 
-this platform.</p>
-<p>{% include links.html %}</p>
+//--your code
+
+#endif
+</code></pre>
+<p>The reason we don't use #pragma once is because it's not supported if same header file exists at multiple places (which might be possible under ROS build system!).</p>
+<h2 id="bracketing">Bracketing<a class="headerlink" href="#bracketing" title="Permanent link">#</a></h2>
+<p>Inside function or method body place curly bracket on same line. Outside that the Namespace, Class and methods levels use separate line.This is called <a href="https://en.wikipedia.org/wiki/Indent_style#K.26R_style">K&amp;R style</a> and its variants are widely used in C++ vs other styles which are more popular in other languages. Notice that curlies are not required if you have single statement, but complex statements are easier to keep correct with the braces.</p>
+<pre><code class="language-cpp">int main(int argc, char* argv[])
+{
+     while (x == y) {
+        f0();
+        if (cont()) {
+            f1();
+        } else {
+            f2();
+            f3();
+        }
+        if (x &gt; 100)
+            break;
+    }
+}
+</code></pre>
+<h2 id="const-and-references">Const and References<a class="headerlink" href="#const-and-references" title="Permanent link">#</a></h2>
+<p>Religiously review all non-scalar parameters you declare to be candidate for const and references. If you are coming from languages such as C#/Java/Python, the most often mistake you would make is to pass parameters by value instead of <code>const T&amp;;</code> Especially most of the strings, vectors and maps you want to pass as <code>const T&amp;;</code> (if they are readonly) or <code>T&amp;</code> (if they are writable). Also add <code>const</code> suffix to methods as much as possible.</p>
+<h2 id="overriding">Overriding<a class="headerlink" href="#overriding" title="Permanent link">#</a></h2>
+<p>When overriding virtual method, use override suffix.</p>
+<h2 id="pointers">Pointers<a class="headerlink" href="#pointers" title="Permanent link">#</a></h2>
+<p>This is really about memory management.  A simulator has much performance critical code, so we try and avoid overloading the memory manager with lots of calls to new/delete.  We also want to avoid too much copying of things on the stack, so we pass things by reference when ever possible. But, when the object really needs to live longer than the call stack you often need to allocate that object on the heap, and so you have a pointer.  Now, if management of the lifetime of that object is going to be tricky we recommend using <a href="https://cppstyle.wordpress.com/c11-smart-pointers/">C++ 11 smart pointers</a>.  But smart pointers do have a cost, so don’t use them blindly everywhere.  For private code where performance is paramount, raw pointers can be used.  Raw pointers are also often needed when interfacing with legacy systems that only accept pointer types, for example, sockets API.  But we try to wrap those legacy interfaces as much as possible and avoid that style of programming from leaking into the larger code base.  </p>
+<p>Religiously check if you can use const everywhere, for example, <code>const float * const xP</code>. Avoid using prefix or suffix to indicate pointer types in variable names, i.e. use <code>my_obj</code> instead of <code>myobj_ptr</code> except in cases where it might make sense to differentiate variables better, for example, <code>int mynum = 5; int* mynum_ptr = mynum;</code></p>
+<h2 id="null-checking">Null Checking<a class="headerlink" href="#null-checking" title="Permanent link">#</a></h2>
+<p>In Unreal C++ code, when checking if a pointer is null, it is preferable to use <code>IsValid(ptr)</code>. In addition to checking for a null pointer, this function will also return whether a UObject is properly initialized. This is useful in situations where a UObject is in the process of being garbage collected but still set to a non-null value.</p>
+<h2 id="indentation">Indentation<a class="headerlink" href="#indentation" title="Permanent link">#</a></h2>
+<p>The C++ code base uses four spaces for indentation (not tabs).</p>
+<h2 id="line-breaks">Line Breaks<a class="headerlink" href="#line-breaks" title="Permanent link">#</a></h2>
+<p>Files should be committed with Unix line breaks. When working on Windows, git can be configured to checkout files with Windows line breaks and automatically convert from Windows to Unix line breaks when committing by running the following command:</p>
+<pre><code class="language-bash">git config --global core.autocrlf true
+</code></pre>
+<p>When working on Linux, it is preferable to configure git to checkout files with Unix line breaks by running the following command:</p>
+<pre><code class="language-bash">git config --global core.autocrlf input
+</code></pre>
+<p>For more details on this setting, see <a href="https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings">this documentation</a>.</p>
+<h2 id="this-is-too-short-ye">This is Too Short, ye?<a class="headerlink" href="#this-is-too-short-ye" title="Permanent link">#</a></h2>
+<p>Yes, and it's on purpose because no one likes to read 200 page coding guidelines. The goal here is to cover only most significant things which are  already not covered by <a href="http://shitalshah.com/p/how-to-enable-and-use-gcc-strict-mode-compilation/">strict mode compilation in GCC</a> and Level 4 warnings-as-errors in VC++. If you had like to know about how to write better code in C++, please see <a href="https://herbsutter.com/gotw/">GotW</a> and <a href="http://shop.oreilly.com/product/0636920033707.do">Effective Modern C++</a> book.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -2242,15 +2519,31 @@ this platform.</p>
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="code_structure.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Code Structure">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Code Structure
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="_posts/2015-04-12-test-post-last-year.html" class="md-footer__link md-footer__link--next" aria-label="Next: Test post from last year">
+          <a href="create_issue.html" class="md-footer__link md-footer__link--next" aria-label="Next: How to Create Issue or Ask Question Effectively">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Test post from last year
+                How to Create Issue or Ask Question Effectively
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2320,12 +2613,12 @@ this platform.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.path", "navigation.footer"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.path", "navigation.footer"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
     
     
-      <script src="assets/javascripts/bundle.caa56a14.min.js"></script>
+      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
       
-        <script src="javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
