@@ -1,0 +1,29 @@
+<#
+FILENAME:
+  build_docs.ps1
+DESCRIPTION:
+  PowerShell script to build documentation.
+AUTHOR:
+  Adam Erickson (Nervosys)
+DATE:
+  11-17-2023
+NOTES:
+  Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
+  Script is intended to run from AutonomySim base project directory.
+
+  Copyright © 2023 Nervosys, LLC
+#>
+
+###
+### Imports
+###
+
+Import-Module "$SCRIPT_DIR\build_docs.psm1"  # imports: Build-Documentation
+
+###
+### Main
+###
+
+Build-Documentation
+
+exit 0

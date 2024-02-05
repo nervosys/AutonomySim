@@ -1,0 +1,28 @@
+name: Linux/Ubuntu Build
+
+on: [push, pull_request, workflow_dispatch]  # controls when the action will run
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}  # ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        run: ./setup.sh
+
+      - name: Build AutonomyLib
+        run: ./build.sh
+      
+      - name: Build ROS2 wrapper
+        # if: matrix.os == 'ubuntu-20.04'
+        run: |
+          chmod +x ./tools/install_ros2_deps.sh
+          ./tools/install_ros2_deps.sh
+          source /opt/ros/*/setup.bash
+          cd ros2
+          colcon build --cmake-args -DCMAKE_C_COMPILER=gcc-8 --cmake-args -DCMAKE_CXX_COMPILER=g++-8

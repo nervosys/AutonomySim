@@ -1,0 +1,6 @@
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AutonomySimTargetPlatformVersion>$([System.String]::Copy('$(WindowsSDKVersion)').Replace('\',''))</AutonomySimTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>$(AutonomySimTargetPlatformVersion)</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+</Project>

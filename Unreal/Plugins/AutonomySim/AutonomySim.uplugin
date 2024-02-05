@@ -1,0 +1,30 @@
+{
+  "FileVersion" : 3,
+  "Version" : "1.8.1",
+  "VersionName": "1.8.1",
+  "FriendlyName": "AutonomySim",
+  "Description": "AutonomySim - Autonomous Vehicles Simulator Plugin",
+  "Category" : "Science",
+  "CreatedBy": "Adam Erickson",
+  "CreatedByURL": "http://github.com/nervosys/AutonomySim",
+  "DocsURL" : "https://github.com/nervosys/AutonomySim/blob/master/README.md",
+  "MarketplaceURL" : "",
+  "SupportURL" : "https://github.com/nervosys/AutonomySim/issues",
+  "EnabledByDefault" : true,
+  "CanContainContent": true,
+  "IsBetaVersion" : true,
+  "Installed": true,
+  "Modules": [
+    {
+      "Name": "AutonomySim",
+      "Type": "Runtime",
+      "LoadingPhase": "PreDefault"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "ChaosVehiclesPlugin",
+      "Enabled": true
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomyBlueprintLib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomySimGameMode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\CameraDirector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\ManualPoseController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\NedTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\PIPCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\RenderRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\VehicleCameraConnector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\CarPawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelFront.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelRear.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\SimModeCar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Multirotor\FlyingPawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUDWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\DirectInputJoyStick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\SimJoyStick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeWorldBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealImageCapture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\VehicleSimApi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\WorldSimApi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealDistanceSensor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealSensorFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Multirotor\MultirotorSimApi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Multirotor\SimModeWorldMultirotor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Weather\WeatherLib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealLidarSensor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\TextureShuffleActor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomyBlueprintLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomySimGameMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\CameraDirector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\ManualPoseController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\NedTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\PIPCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\RenderRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\VehicleCameraConnector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\VehiclePawnWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\CarPawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelFront.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelRear.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\SimModeCar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\FlyingPawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\MultirotorConnector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\SimModeWorldMultirotor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUDWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\DirectInputJoystick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\SimJoyStick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeWorldBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealImageCapture.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\VehicleSimApi.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\WorldSimApi.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealDistanceSensor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealSensorFactory.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\MultirotorSimApi.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Weather\WeatherLib.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealLidarSensor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.Build.4.15.cs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.Build.cs">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

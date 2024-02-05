@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{39683523-C864-4D47-8350-33FC3EC0F00F}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomyBlueprintLib.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AirSim.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AirSimGameMode.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\CameraDirector.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\CarPawn.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelFront.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelRear.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Car\SimModeCar.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\ManualPoseController.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Multirotor\FlyingPawn.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Multirotor\MultirotorSimApi.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Multirotor\SimModeWorldMultirotor.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\NedTransform.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\PIPCamera.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingFile.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingThread.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\RenderRequest.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUD.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUDWidget.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\DirectInputJoyStick.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\SimJoyStick.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeBase.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeWorldBase.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\TextureShuffleActor.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealImageCapture.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealDistanceSensor.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealLidarSensor.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealSensorFactory.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\VehicleCameraConnector.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\VehicleSimApi.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\Weather\WeatherLib.cpp" />
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\WorldSimApi.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomyBlueprintLib.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AirSim.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AirSimGameMode.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\CameraDirector.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\CarPawn.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelFront.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\CarWheelRear.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Car\SimModeCar.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\ManualPoseController.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\FlyingPawn.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\MultirotorConnector.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\MultirotorSimApi.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Multirotor\SimModeWorldMultirotor.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\NedTransform.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\PIPCamera.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingFile.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Recording\RecordingThread.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\RenderRequest.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUD.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimHud\SimHUDWidget.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\DirectInputJoystick.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimJoystick\SimJoyStick.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeBase.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\SimMode\SimModeWorldBase.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealImageCapture.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealDistanceSensor.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealLidarSensor.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealSensorFactory.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\VehicleCameraConnector.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\VehiclePawnWrapper.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\VehicleSimApi.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\Weather\WeatherLib.h" />
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\WorldSimApi.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Unreal\Plugins\AutonomySim\Source\AirSim.Build.4.15.cs" />
+    <None Include="Unreal\Plugins\AutonomySim\Source\AirSim.Build.cs" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

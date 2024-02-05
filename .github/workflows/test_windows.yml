@@ -1,0 +1,21 @@
+name: Windows Build
+
+on: [push, pull_request, workflow_dispatch]  # controls when the action will run
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}  # windows-latest
+    strategy:
+      matrix:
+        os: [windows-2019, windows-2022]  # windows-2022 is untested
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+      
+      - name: Build AutonomyLib
+        shell: cmd
+        run: build.cmd
