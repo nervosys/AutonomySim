@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/voxel_grid.html">
       
       
+        <link rel="prev" href="using_car.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="who_is_using.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Voxel Grid - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#voxel-grid" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Voxel Grid
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1698,10 +1624,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="voxel_grid.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Voxel Grid
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="voxel_grid.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1710,6 +1656,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-voxel-grid-in-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example voxel grid in Blocks:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocks-voxel-grid-converted-to-octomap-format-visualized-in-rviz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocks voxel grid converted to Octomap format (visualized in rviz):
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1776,44 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="voxel-grid">Voxel Grid<a class="headerlink" href="#voxel-grid" title="Permanent link">#</a></h1>
+<p>AutonomySim provides a feature that constructs ground truth voxel grids of the world directly from Unreal Engine. A voxel grid is a representation of the occupancy of a given world/map, by discretizing into cells of a certain size; and recording a voxel if that particular location is occupied. </p>
+<p>The logic for constructing the voxel grid is in WorldSimApi.cpp-&gt;createVoxelGrid(). For now, the assumption is that the voxel grid is a cube - and the API call from Python is of the structure:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">simCreateVoxelGrid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">of</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">position</span> <span class="p">(</span><span class="n">Vector3r</span><span class="p">):</span> <span class="n">Global</span> <span class="n">position</span> <span class="n">around</span> <span class="n">which</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="ow">is</span> <span class="n">centered</span> <span class="ow">in</span> <span class="n">m</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Size</span> <span class="n">of</span> <span class="n">each</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="n">dimension</span> <span class="ow">in</span> <span class="n">m</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">res</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Resolution</span> <span class="n">of</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">m</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">of</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">output</span> <span class="n">file</span> <span class="n">to</span> <span class="n">save</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="k">as</span>
+</span></code></pre></div>
+<p>Within <code>createVoxelGrid()</code>, the main Unreal Engine function that returns occupancy is <a href="https://docs.unrealengine.com/en-US/API/Runtime/Engine/Engine/UWorld/OverlapBlockingTestByChannel/index.html">OverlapBlockingTestByChannel</a>.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">OverlapBlockingTestByChannel</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="p">,</span><span class="w"> </span><span class="n">ECollisionChannel</span><span class="p">,</span><span class="w"> </span><span class="n">FCollisionShape</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">);</span>
+</span></code></pre></div>
+<p>This function is called on the positions of all the 'cells' we wish to discretize the map into, and the returned occupancy result is collected into an array <code>voxel_grid_</code>. The indexing of the cell occupancy values follows the convention of the <a href="https://www.patrickmin.com/binvox/binvox.html">binvox</a> format. </p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ncells_x</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ncells_z</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ncells_y</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ncells_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ncells_z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">            </span><span class="n">FVector</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ncells_x</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale_cm</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ncells_y</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale_cm</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ncells_z</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale_cm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">position_in_UE_frame</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">            </span><span class="n">voxel_grid_</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simmode_</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">OverlapBlockingTestByChannel</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">FQuat</span><span class="o">::</span><span class="n">Identity</span><span class="p">,</span><span class="w"> </span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_Pawn</span><span class="p">,</span><span class="w"> </span><span class="n">FCollisionShape</span><span class="o">::</span><span class="n">MakeBox</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="n">scale_cm</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">params</span><span class="p">);</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The occupancy of the map is calculated iteratively over all discretized cells, which can make it an intensive operation depending on the resolution of the cells, and the total size of the area being measured. If the user's map of interest does not change much, it is possible to run the voxel grid operation once on this map, and save the voxel grid and reuse it. For performance, or with dynamic environments, we recommend running the voxel grid generation for a small area around the robot; and subsequently use it for local planning purposes.</p>
+<p>The voxel grids are stored in the binvox format which can then be converted by the user into an octomap .bt or any other relevant, desired format. Subsequently, these voxel grids/octomaps can be used within mapping/planning. One nifty little utility to visualize a created binvox files is <a href="https://www.patrickmin.com/viewvox/">viewvox</a>. Similarly, <code>binvox2bt</code> can convert the binvox to an octomap file.</p>
+<h5 id="example-voxel-grid-in-blocks">Example voxel grid in Blocks:<a class="headerlink" href="#example-voxel-grid-in-blocks" title="Permanent link">#</a></h5>
+<p><img alt="image" src="images/voxel_grid.png" /></p>
+<h5 id="blocks-voxel-grid-converted-to-octomap-format-visualized-in-rviz">Blocks voxel grid converted to Octomap format (visualized in rviz):<a class="headerlink" href="#blocks-voxel-grid-converted-to-octomap-format-visualized-in-rviz" title="Permanent link">#</a></h5>
+<p><img alt="image" src="images/octomap.png" /></p>
+<p>As an example, a voxel grid can be constructed as follows, once the Blocks environment is up and running:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">AutonomySim</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">c</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">VehicleClient</span><span class="p">()</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">center</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">Vector3r</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;map.binvox&quot;</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">c</span><span class="o">.</span><span class="n">simCreateVoxelGrid</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+</span></code></pre></div>
+<p>And visualized through <code>viewvox map.binvox</code>.</p>
 
 
 
@@ -1849,15 +1852,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="using_car.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: How to Use Car in AutonomySim">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                How to Use Car in AutonomySim
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="who_is_using.html" class="md-footer__link md-footer__link--next" aria-label="Next: Who is Using AutonomySim?">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Who is Using AutonomySim?
               </div>
             </div>
             <div class="md-footer__button md-icon">

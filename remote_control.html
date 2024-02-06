@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/remote_control.html">
       
       
+        <link rel="prev" href="reinforcement_learning.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="retexturing.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Remote Control - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#remote-control" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Remote Control
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1398,10 +1324,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="remote_control.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Remote Control
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="remote_control.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1410,6 +1356,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#default-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controller-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controller Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frsky-taranis-x9d-plus" class="md-nav__link">
+    <span class="md-ellipsis">
+      FrSky Taranis X9D Plus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controller-configuration-for-px4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller Configuration for PX4
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controller Configuration for PX4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xbox-360-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      XBox 360 Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playstation-3-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Playstation 3 Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dji-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      DJI Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1851,67 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="remote-control">Remote Control<a class="headerlink" href="#remote-control" title="Permanent link">#</a></h1>
+<p>To fly drones manually, a physical (or software-emulated) controller is required. Alternatively, you may (a) wrap <a href="apis.md">application programming interfaces (APIs)</a> calls for software control or (b) use the <a href="image_apis.html">computer vision mode</a> for manual keyboard control.</p>
+<h2 id="default-configuration">Default Configuration<a class="headerlink" href="#default-configuration" title="Permanent link">#</a></h2>
+<p>By default, AutonomySim uses the <a href="simple_flight.html">simple flight controller</a>, which connects your computer to a physical controller via USB port.</p>
+<h2 id="controller-notes">Controller Notes<a class="headerlink" href="#controller-notes" title="Permanent link">#</a></h2>
+<p>To date, XBox and <a href="https://hobbyking.com/en_us/frsky-2-4ghz-accst-taranis-x9d-plus-and-x8r-combo-digital-telemetry-radio-system-mode-2.html">FrSky Taranis X9D Plus</a> controllers have been verified as supported. Other controllers from Microsoft, Sony, Logitech, FrSky/Turnigy, Spektrum, Futaba, and TBS may also work. If you have a remote control (RC) or radio-frequency (RF) controller that lacks USB support, you will need to convert the signal to USB. Such converters are often called trainer cables or dongles. Learn how to make your own <a href="https://github.com/patolin/rc-receiver-joystick">here</a>. If you have a <a href="https://www.steamdeck.com/">Steam Deck</a>, which runs a flavor of Arch Linux (SteamOS), you may be able to run AutonomySim directly on your controller.</p>
+<p>AutonomySim can detect large variety of devices. However, devices other than those listed above may require extra configuration. In the future, we may add relared configuration options in the <code>settings.json</code> file. If your controller does not work, we recommend trying workarounds such as <a href="http://www.x360ce.com/">x360ce</a> or modifying the <a href="https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/SimJoyStick/SimJoyStick.cpp#L50">SimJoystick.cpp file</a>.</p>
+<p>NOTE: If a realistic experience is desired, the XBox 360 controller is not recommended as it has insufficient potentiometer encoding precision. For more information, see the FAQ below.</p>
+<h3 id="frsky-taranis-x9d-plus">FrSky Taranis X9D Plus<a class="headerlink" href="#frsky-taranis-x9d-plus" title="Permanent link">#</a></h3>
+<p>The <a href="https://hobbyking.com/en_us/frsky-2-4ghz-accst-taranis-x9d-plus-and-x8r-combo-digital-telemetry-radio-system-mode-2.html">FrSky Taranis X9D Plus</a> is a modern RC controller with a USB port so that it can directly connect to PCs. <a href="misc/AutonomySim_FrSkyTaranis.bin">Download the AutonomySim config file</a> and <a href="https://www.youtube.com/watch?v=qe-13Gyb0sw">follow this tutorial</a> to import it into your RC. You should then see <code>sim</code> model in the RC controller with all channels properly configured. As this controller runs the open-source OpenTX transmitter software, it may be adapted to other controllers as well.</p>
+<h3 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">#</a></h3>
+<p>The current default configuation on Linux uses an Xbox controller. Other controllers may not properly function. In the future, we may add the ability to configure RC controllers in the <code>settings.json</code> file. For now, you may have to modify the <a href="https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/SimJoyStick/SimJoyStick.cpp#L340">SimJoystick.cpp file</a> to support other devices.</p>
+<h2 id="controller-configuration-for-px4">Controller Configuration for PX4<a class="headerlink" href="#controller-configuration-for-px4" title="Permanent link">#</a></h2>
+<p>AutonomySim supports the <a href="https://px4.io/">PX4</a> flight control system (FCS), typically run on a Pixhawk flight control unit (FCU). However, PX4 requires additional setup. There are many remote control options available for multi-rotor aircraft. We have successfully used the FrSky Taranis X9D Plus, FlySky FS-TH9X, and Futaba 14SG RC controllers with AutonomySim. The steps to configure your RC controller are as follows:</p>
+<ol>
+<li>If you are going to use hardware-in-the-loop (HITL) mode, as opposed to software-in-the-loop (SITL) mode, you need a compatible receiver to bind to your RC transmitter. For more information, see the manual for your RC controller.</li>
+<li>For hardware-in-the-loop (HITL) mode, connect the transmitter directly to Pixhawk. View the online documentation and/or YouTube tutorials on how to do so.</li>
+<li><a href="https://docs.qgroundcontrol.com/en/SetupView/Radio.html">Calibrate your controller in QGroundControl</a>.</li>
+</ol>
+<p>Please see the <a href="https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html">PX4 controller configuration</a> and <a href="https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html#px4-compatible-receivers">this guide</a> for more information. </p>
+<h3 id="xbox-360-controller">XBox 360 Controller<a class="headerlink" href="#xbox-360-controller" title="Permanent link">#</a></h3>
+<p>You can also use an xbox controller in SITL mode, it just won't be as precise as a real RC controller.
+See <a href="xbox_controller.html">xbox controller</a> for details on how to set that up.</p>
+<h3 id="playstation-3-controller">Playstation 3 Controller<a class="headerlink" href="#playstation-3-controller" title="Permanent link">#</a></h3>
+<p>A Playstation 3 controller is confirmed to work as an AutonomySim controller. On Windows, an emulator to make it look like an Xbox 360 controller, is required however. Many different solutions are available online, for example <a href="https://github.com/x360ce/x360ce">x360ce Xbox 360 Controller Emulator</a>.</p>
+<h3 id="dji-controller">DJI Controller<a class="headerlink" href="#dji-controller" title="Permanent link">#</a></h3>
+<p>Nils Tijtgat wrote an excellent blog on how to get the <a href="https://timebutt.github.io/static/using-a-phantom-dji-controller-in-AutonomySim/">DJI controller working with AutonomySim</a>.</p>
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">#</a></h2>
+<ol>
+<li><strong>AutonomySim says my USB controller is not detected.</strong></li>
+</ol>
+<p>This typically happens if you have multiple RCs and or XBox/Playstation gamepads etc connected. In Windows, hit Windows+S key and search for "Set up USB Game controllers" (in older versions of Windows try "joystick"). This will show you all game controllers connected to your PC. If you don't see yours than Windows haven't detected it and so you need to first solve that issue. If you do see yours but not at the top of the list (i.e. index 0) than you need to tell AutonomySim because AutonomySim by default tries to use RC at index 0. To do this, navigate to your <code>~/Documents/AutonomySim</code> folder, open up <code>settings.json</code> and add/modify following setting. Below tells AutonomySim to use RC at <code>index = 2</code>.</p>
+<div class="language-text highlight"><pre><span></span><code>```json
+{
+    &quot;SettingsVersion&quot;: 1.2,
+    &quot;SimMode&quot;: &quot;Multirotor&quot;,
+    &quot;Vehicles&quot;: {
+        &quot;SimpleFlight&quot;: {
+            &quot;VehicleType&quot;: &quot;SimpleFlight&quot;,
+            &quot;RC&quot;: {
+              &quot;RemoteControlID&quot;: 2
+            }
+        }
+    }
+}
+```
+</code></pre></div>
+<ol>
+<li>
+<p><strong>The vehicle is unstable when using XBox/PS3 controller</strong></p>
+<p>Regular gamepads are not very precise and have lot of random noise. Most of the times you may see significant offsets as well (i.e. output is not zero when sticks are at zero). So this behavior is expected.</p>
+</li>
+<li>
+<p><strong>Where is the RC controller calibration utility in AutonomySim?</strong></p>
+<p>We haven't implemented it yet. This means your RC firmware will need to have a capability to do calibration for now.</p>
+</li>
+<li>
+<p><strong>The RC controller is not working with PX4</strong></p>
+<p>First, ensure your RC controller is working in <a href="https://docs.qgroundcontrol.com/en/SetupView/Radio.html">QGroundControl</a>. If it doesn't then it will sure not work in AutonomySim. The PX4 mode is suitable for folks who have at least intermediate level of experience to deal with various issues related to PX4 and we would generally refer you to get help from PX4 forums.</p>
+</li>
+</ol>
 
 
 
@@ -1849,15 +1950,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="reinforcement_learning.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Reinforcement Learning in AutonomySim">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Reinforcement Learning in AutonomySim
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="retexturing.html" class="md-footer__link md-footer__link--next" aria-label="Next: Runtime Texture Swapping">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Runtime Texture Swapping
               </div>
             </div>
             <div class="md-footer__button md-icon">

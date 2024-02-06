@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/unreal_upgrade.html">
       
       
+        <link rel="prev" href="unreal_proj.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="upgrade_apis.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Upgrading to Unreal Engine 4.27 - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#upgrading-to-unreal-engine-427" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Upgrading to Unreal Engine 4.27
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1598,10 +1524,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="unreal_upgrade.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Upgrading to Unreal Engine 4.27
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="unreal_upgrade.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1610,6 +1556,149 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#do-this-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do this first
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Do this first">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-windows-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Windows Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-linux-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Linux Users
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrading-your-custom-unreal-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrading Your Custom Unreal Project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-have-an-unreal-project-that-is-older-than-416-how-do-i-upgrade-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      I have an Unreal project that is older than 4.16. How do I upgrade it?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I have an Unreal project that is older than 4.16. How do I upgrade it?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-just-recreate-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Just Recreate Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-modify-few-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Modify Few Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Option 2: Modify Few Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-your-projects-targetcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      In your project's *.Target.cs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-your-projects-buildcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      In your project's *.Build.cs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      And finally...
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1881,53 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="upgrading-to-unreal-engine-427">Upgrading to Unreal Engine 4.27<a class="headerlink" href="#upgrading-to-unreal-engine-427" title="Permanent link">#</a></h1>
+<p>These instructions apply if you are already using AutonomySim on Unreal Engine 4.25. If you have never installed AutonomySim, please see <a href="https://github.com/nervosys/AutonomySim#how-to-get-it">How to get it</a>.</p>
+<p><strong>Caution:</strong> The below steps will delete any of your unsaved work in AutonomySim or Unreal folder.</p>
+<h2 id="do-this-first">Do this first<a class="headerlink" href="#do-this-first" title="Permanent link">#</a></h2>
+<h3 id="for-windows-users">For Windows Users<a class="headerlink" href="#for-windows-users" title="Permanent link">#</a></h3>
+<ol>
+<li>Install Visual Studio 2022 with VC++, Python and C#.</li>
+<li>Install UE 4.27 through Epic Games Launcher.</li>
+<li>Start <code>x64 Native Tools Command Prompt for VS 2022</code> and navigate to AutonomySim repo.</li>
+<li>Run <code>clean_rebuild.cmd</code> to remove all unchecked/extra stuff and rebuild everything.</li>
+<li>See also <a href="build_windows.html">Build AutonomySim on Windows</a> for more information.</li>
+</ol>
+<h3 id="for-linux-users">For Linux Users<a class="headerlink" href="#for-linux-users" title="Permanent link">#</a></h3>
+<ol>
+<li>From your AutonomySim repo folder, run 'clean_rebuild.sh`.</li>
+<li>Rename or delete your existing folder for Unreal Engine.</li>
+<li>Follow step 1 and 2 to <a href="build_linux.html">install Unreal Engine 4.27</a>.</li>
+<li>See also <a href="build_linux.html">Build AutonomySim on Linux</a> for more information.</li>
+</ol>
+<h2 id="upgrading-your-custom-unreal-project">Upgrading Your Custom Unreal Project<a class="headerlink" href="#upgrading-your-custom-unreal-project" title="Permanent link">#</a></h2>
+<p>If you have your own Unreal project created in an older version of Unreal Engine then you need to upgrade your project to Unreal 4.27. To do this,</p>
+<ol>
+<li>Open .uproject file and look for the line <code>"EngineAssociation"</code> and make sure it reads like <code>"EngineAssociation": "4.27"</code>.</li>
+<li>Delete <code>Plugins/AutonomySim</code> folder in your Unreal project's folder.</li>
+<li>Go to your AutonomySim repo folder and copy <code>Unreal\Plugins</code> folder to your Unreal project's folder.</li>
+<li>Copy <em>.cmd (or </em>.sh for Linux) from <code>Unreal\Environments\Blocks</code> to your project's folder.</li>
+<li>Run <code>clean.cmd</code> (or <code>clean.sh</code> for Linux) followed by <code>GenerateProjectFiles.cmd</code> (only for Windows).</li>
+</ol>
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">#</a></h2>
+<h3 id="i-have-an-unreal-project-that-is-older-than-416-how-do-i-upgrade-it">I have an Unreal project that is older than 4.16. How do I upgrade it?<a class="headerlink" href="#i-have-an-unreal-project-that-is-older-than-416-how-do-i-upgrade-it" title="Permanent link">#</a></h3>
+<h4 id="option-1-just-recreate-project">Option 1: Just Recreate Project<a class="headerlink" href="#option-1-just-recreate-project" title="Permanent link">#</a></h4>
+<p>If your project doesn't have any code or assets other than environment you downloaded then you can also simply <a href="unreal_custenv.html">recreate the project in Unreal 4.27 Editor</a> and then copy Plugins folder from <code>AutonomySim/Unreal/Plugins</code>.</p>
+<h4 id="option-2-modify-few-files">Option 2: Modify Few Files<a class="headerlink" href="#option-2-modify-few-files" title="Permanent link">#</a></h4>
+<p>Unreal versions newer than Unreal 4.15 has breaking changes. So you need to modify your <em>.Build.cs and </em>.Target.cs which you can find in the <code>Source</code> folder of your Unreal project. So what are those changes? Below is the gist of it but you should really refer to <a href="https://forums.unrealengine.com/showthread.php?145757-C-4-16-Transition-Guide">Unreal's official 4.16 transition post</a>.</p>
+<h5 id="in-your-projects-targetcs">In your project's *.Target.cs<a class="headerlink" href="#in-your-projects-targetcs" title="Permanent link">#</a></h5>
+<ol>
+<li>
+<p>Change the contructor from, <code>public MyProjectTarget(TargetInfo Target)</code> to <code>public MyProjectTarget(TargetInfo Target) : base(Target)</code></p>
+</li>
+<li>
+<p>Remove <code>SetupBinaries</code> method if you have one and instead add following line in contructor above: <code>ExtraModuleNames.AddRange(new string[] { "MyProject" });</code></p>
+</li>
+</ol>
+<h5 id="in-your-projects-buildcs">In your project's *.Build.cs<a class="headerlink" href="#in-your-projects-buildcs" title="Permanent link">#</a></h5>
+<p>Change the constructor from <code>public MyProject(TargetInfo Target)</code> to <code>public MyProject(ReadOnlyTargetRules Target) : base(Target)</code>.</p>
+<h5 id="and-finally">And finally...<a class="headerlink" href="#and-finally" title="Permanent link">#</a></h5>
+<p>Follow above steps to continue the upgrade. The warning box might show only "Open Copy" button. Don't click that. Instead, click on More Options which will reveal more buttons. Choose <code>Convert-In-Place option</code>. <em>Caution:</em> Always keep backup of your project first! If you don't have anything nasty, in place conversion should go through and you are now on the new version of Unreal.</p>
 
 
 
@@ -1849,15 +1966,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="unreal_proj.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Unreal Environment">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Unreal Environment
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="upgrade_apis.html" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrading API Client Code">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Upgrading API Client Code
               </div>
             </div>
             <div class="md-footer__button md-icon">

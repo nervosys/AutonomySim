@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/adding_new_apis.html">
       
       
+        <link rel="prev" href="SUPPORT.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="apis_cpp.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Adding New APIs - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#adding-new-apis" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Adding New APIs
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -438,10 +364,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="adding_new_apis.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Adding New APIs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="adding_new_apis.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -450,6 +396,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-the-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing the API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing the API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vehicle-based-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vehicle-based APIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-related-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment-related APIs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#physics-related-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Physics-related APIs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rpc-wrappers" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPC Wrappers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1818,54 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="adding-new-apis">Adding New APIs<a class="headerlink" href="#adding-new-apis" title="Permanent link">#</a></h1>
+<p>Adding new APIs requires modifying the source code. Much of the changes are mechanical and required for various levels of abstractions that AutonomySim supports. The main files required to be modified are described below along with some commits and PRs for demonstration. Specific sections of the PRs or commits might be linked in some places, but it'll be helpful to have a look at the entire diff to get a better sense of the workflow. Also, don't hesitate in opening an issue or a draft PR also if unsure about how to go about making changes or to get feedback.</p>
+<h2 id="implementing-the-api">Implementing the API<a class="headerlink" href="#implementing-the-api" title="Permanent link">#</a></h2>
+<p>Before adding the wrapper code to call and handle the API, it needs to be implemented first. The exact files where this will occur varies depending on what it does. Few examples are given below which might help you in getting started.</p>
+<h3 id="vehicle-based-apis">Vehicle-based APIs<a class="headerlink" href="#vehicle-based-apis" title="Permanent link">#</a></h3>
+<p><code>moveByVelocityBodyFrameAsync</code> API for velocity-based movement in the multirotor's X-Y frame.</p>
+<p>The main implementation is done in <a href="https://github.com/nervosys/AutonomySim/pull/3169/files#diff-29ac01a05077b6e8e1f09221a113f779c952a80dc8823725eb451a9fc5d7de5f">MultirotorBaseApi.cpp</a>, where most of the multirotor APIs are implemented.</p>
+<p>In some cases, additional structures might be needed for storing data, <a href="https://github.com/nervosys/AutonomySim/pull/3242"><code>getRotorStates</code> API</a> is a good example for this, here the <code>RotorStates</code> struct is defined in 2 places for conversion from RPC to internal code. It also requires modifications in AutonomyLib as well as Unreal/Plugins for the implementation.</p>
+<h3 id="environment-related-apis">Environment-related APIs<a class="headerlink" href="#environment-related-apis" title="Permanent link">#</a></h3>
+<p>These APIs need to interact with the simulation environment itself, hence it's likely that it'll be implemented inside the <code>Unreal/Plugins</code> folder.</p>
+<ul>
+<li>
+<p><code>simCreateVoxelGrid</code> API to generate and save a binvox-formatted grid of the environment - <a href="https://github.com/nervosys/AutonomySim/pull/3209/files#diff-89d4ec9b62486b1322e5ba2dd9936b13962f9ed113ec5e35a0678846889c7e2d">WorldSimApi.cpp</a></p>
+</li>
+<li>
+<p><code>simAddVehicle</code> API to create vehicles at runtime - <a href="https://github.com/nervosys/AutonomySim/pull/2390/files#diff-fcc0aa1fbc74a924fccd12589295aceeea59074c94256eccba7df3ce85d3a26c">SimMode*, WorldSimApi files</a></p>
+</li>
+</ul>
+<h3 id="physics-related-apis">Physics-related APIs<a class="headerlink" href="#physics-related-apis" title="Permanent link">#</a></h3>
+<p><code>simSetWind</code> API shows an example of modifying the physics behaviour and adding an API + settings field for the same. See <a href="https://github.com/nervosys/AutonomySim/pull/2867">the PR</a> for details about the code.</p>
+<h2 id="rpc-wrappers">RPC Wrappers<a class="headerlink" href="#rpc-wrappers" title="Permanent link">#</a></h2>
+<p>The APIs use <a href="https://github.com/msgpack-rpc/msgpack-rpc">msgpack-rpc protocol</a> over TCP/IP through <a href="http://rpclib.net/">rpclib</a> developed by <a href="https://github.com/sztomi">TamÃ¡s Szelei</a> which allows you to use variety of programming languages including C++, C#, Python, Java etc. When AutonomySim starts, it opens port 41451 (this can be changed via <a href="settings.html">settings</a>) and listens for incoming request. The Python or C++ client code connects to this port and sends RPC calls using <a href="https://msgpack.org">msgpack serialization format</a>.</p>
+<p>To add the RPC code to call the new API, follow the steps below. Follow the implementation of other APIs defined in the files.</p>
+<ol>
+<li>
+<p>Add an RPC handler in the server which calls your implemented method in <a href="https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/src/api/RpcLibServerBase.cpp">RpcLibServerBase.cpp</a>. Vehicle-specific APIs are in their respective vehicle subfolder.</p>
+</li>
+<li>
+<p>Add the C++ client API method in <a href="https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/src/api/RpcLibClientBase.cpp">RpcClientBase.cpp</a></p>
+</li>
+<li>
+<p>Add the Python client API method in <a href="https://github.com/nervosys/AutonomySim/blob/main/PythonClient/AutonomySim/client.py">client.py</a>. If needed, add or modify a structure definition in <a href="https://github.com/nervosys/AutonomySim/blob/main/PythonClient/AutonomySim/types.py">types.py</a></p>
+</li>
+</ol>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">#</a></h2>
+<p>Testing is required to ensure that the API is working as expected. For this, as expected, you'll have to use the source-built AutonomySim and Blocks environment. Apart from this, if using the Python APIs, you'll have to use the <code>AutonomySim</code> package from source rather than the PyPI package. Below are 2 ways described to go about using the package from source -</p>
+<ol>
+<li>
+<p>Use <a href="https://github.com/nervosys/AutonomySim/blob/main/PythonClient/multirotor/setup_path.py">setup_path.py</a>. It will setup the path such that the local AutonomySim module is used instead of the pip installed package. This is the method used in many of the scripts since the user doesn't need to do anything other than run the script.
+    Place your example script in one of the folders inside <code>PythonClient</code> like <code>multirotor</code>, <code>car</code>, etc. You can also create one to keep things separate, and copy the <code>setup_path.py</code> file from another folder.
+    Add <code>import setup_path</code> before <code>import AutonomySim</code> in your files. Now the latest main API (or any branch currently checked out) will be used.</p>
+</li>
+<li>
+<p>Use a <a href="https://pip.pypa.io/en/stable/cli/pip_install/#local-project-installs">local project pip install</a>. Regular install would create a copy of the current source and use it, whereas Editable install (<code>pip install -e .</code> from inside the <code>PythonClient</code> folder) would change the package whenever the Python API files are changed. Editable install has the benefit when working on several branches or API is not finalized.</p>
+</li>
+</ol>
+<p>It is recommended to use a virtual environment for dealing with Python packaging so as to not break any existing setup.</p>
+<p>When opening a PR, make sure to follow the <a href="coding_guidelines.html">coding guidelines</a>. Also add a docstring for the API in the Python files, and please include any example scripts and settings required in the script as well.</p>
 
 
 
@@ -1849,15 +1904,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="SUPPORT.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Support">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Support
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="apis_cpp.html" class="md-footer__link md-footer__link--next" aria-label="Next: Using the C++ APIs">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Using the C++ APIs
               </div>
             </div>
             <div class="md-footer__button md-icon">

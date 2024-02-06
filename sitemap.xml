@@ -6,367 +6,352 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/_posts/2015-04-12-test-post-last-year.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/CHANGELOG.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/_posts/2016-02-24-first-post.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/CONTRIBUTING.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/_posts/2016-02-26-sample-post-jekyll.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/SUPPORT.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/CHANGELOG.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/adding_new_apis.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/CONTRIBUTING.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/apis_cpp.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/SUPPORT.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/autonomysim_apis.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/adding_new_apis.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/autonomysim_getting_started.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/apis_cpp.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/autonomysim_ros_pkgs.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/autonomysim_apis.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/autonomysim_tutorial_pkgs.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/autonomysim_getting_started.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/azure.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/autonomysim_ros_pkgs.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/build_docs.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/autonomysim_tutorial_pkgs.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/build_faq.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/azure.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/build_linux.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/build_docs.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/build_macos.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/build_faq.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/build_windows.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/build_linux.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/camera_views.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/build_macos.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/cmake_linux.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/build_windows.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/code_structure.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/camera_views.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/coding_guidelines.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/cmake_linux.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/create_issue.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/code_structure.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/custom_drone.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/coding_guidelines.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/design.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/create_issue.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/dev_workflow.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/custom_drone.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/distance_sensor.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/design.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/docker_ubuntu.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/dev_workflow.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/drone_survey.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/distance_sensor.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/faq.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/docker_ubuntu.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/hard_drive.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/drone_survey.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/hello_drone.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/faq.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/image_apis.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/hard_drive.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/image_sensors.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/hello_drone.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/lidar.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/image_apis.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/log_viewer.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/image_sensors.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/mavlinkcom.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/lidar.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/mavlinkcom_mocap.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/log_viewer.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/meshes.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/mavlinkcom.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/modify_recording_data.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/mavlinkcom_mocap.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/multi_vehicle.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/meshes.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/object_detection.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/modify_recording_data.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/orbit.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/multi_vehicle.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/pfm.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/object_detection.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/playback.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/orbit.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/point_clouds.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/pfm.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/px4_build.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/playback.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/px4_lockstep.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/point_clouds.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/px4_logging.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_build.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/px4_multi_vehicle.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_lockstep.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/px4_setup.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_logging.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/px4_sitl.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_multi_vehicle.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/px4_sitl_wsl2.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_setup.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/reinforcement_learning.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_sitl.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/remote_control.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/px4_sitl_wsl2.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/retexturing.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/reinforcement_learning.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/robot_controller.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/remote_control.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/sensors.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/retexturing.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/settings.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/robot_controller.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/simple_flight.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/sensors.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/steering_wheel_installation.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/settings.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/unreal_blocks.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/simple_flight.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/unreal_custenv.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/steering_wheel_installation.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/unreal_proj.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/unreal_blocks.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/unreal_upgrade.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/unreal_custenv.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/upgrade_apis.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/unreal_proj.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/upgrade_settings.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/unreal_upgrade.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/use_precompiled.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/upgrade_apis.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/using_car.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/upgrade_settings.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/voxel_grid.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/use_precompiled.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/who_is_using.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/using_car.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/working_with_plugin_contents.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/voxel_grid.html</loc>
-         <lastmod>2024-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/who_is_using.html</loc>
-         <lastmod>2024-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/working_with_plugin_contents.html</loc>
-         <lastmod>2024-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/nervosys/AutonomySim/pages/autonomysim/xbox_controller.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/xbox_controller.html</loc>
          <lastmod>2024-02-06</lastmod>
          <changefreq>daily</changefreq>
     </url>

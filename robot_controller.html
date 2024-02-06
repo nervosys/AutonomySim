@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/robot_controller.html">
       
       
+        <link rel="prev" href="retexturing.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="sensors.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Robot Controller - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#robot-controller" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Robot Controller
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1438,10 +1364,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="robot_controller.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Robot Controller
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="robot_controller.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1450,6 +1396,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-robot-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is a Robot Controller?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-flight-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is a Flight Controller?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-other-domains-exist-for-robot-controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Which Other Domains Exist for Robot Controllers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-do-i-need-a-robot-controller-for-a-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Do I Need a Robot Controller for a Simulator?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-robot-controllers-communicate-with-the-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Do Robot Controllers Communicate with the Simulator?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-hardware-in-the-loop-and-software-in-the-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Hardware-in-the-loop and Software-in-the-loop?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-flight-controllers-are-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      Which Flight Controllers are Supported?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-autonomysim-without-flight-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using AutonomySim Without Flight Controller
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1830,117 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="robot-controller">Robot Controller<a class="headerlink" href="#robot-controller" title="Permanent link">#</a></h1>
+<p><img alt="UVX Micronav" src="images\micronav_gcs.png" title="UVX Micronav" /></p>
+<h2 id="what-is-a-robot-controller">What is a Robot Controller?<a class="headerlink" href="#what-is-a-robot-controller" title="Permanent link">#</a></h2>
+<p>A robot controller is any device or computer program used to control a robot. Robot controllers generally take one of five forms:</p>
+<ol>
+<li><strong>Human wetware controller</strong></li>
+<li>Handheld remote control (RC) or radio frequency (RF) controller<ul>
+<li>ACSST/FASST/DSM2/ELRS/Crossfire/Tracer, ZigBee, LoRaWAN, WiFi HaLow, or 5G/6G handheld controller</li>
+<li>Protocol-agnostic software-defined radio (SDR) handheld controller</li>
+</ul>
+</li>
+<li>Handheld hard-wired controller<ul>
+<li>Serial/USB game-pad, flight-stick, or keyboard controller</li>
+<li>Ethernet pendant controller (common for industrial robotic arms, where the pendant also performs computation)</li>
+</ul>
+</li>
+<li><strong>Computer software controller</strong></li>
+<li>A software architecture or control system</li>
+<li>ArduPilot, PX4, BetaPilot, OpenPilot, dRehmFlight, etc.</li>
+<li><strong>Computer hardware controller</strong></li>
+<li>Runs a computer software control system</li>
+<li>ArduPilot Mega (APM) 2.6, Pixhawk V6X, VOXL 2, SpeedyBee F405, Blade F722, GOKU GN745, RUSH Core 7, Naze32, DJI Naza, etc.</li>
+<li><strong>Mechanical hardware controller</strong></li>
+<li>The earliest autopilot systems were purely mechanical</li>
+<li>Many assembly lines or continuous-flow production machines still use mechanical controllers</li>
+<li><strong>Hybrid controller</strong></li>
+<li>Most controllers today are human-assisted computer controllers</li>
+<li>Examples include the DJI RC Pro Remote Controller and Skydio Controller, which are handheld computers, as well as traditional fly-by-wire and stabilization modes</li>
+<li>Human-in-the-loop (HITL) or human-computer interaction (HCI) for semi-autonomous systems</li>
+<li>Robots are fundamentally cyberphysical systems</li>
+<li><strong>Remote Controller</strong></li>
+<li>Any controller operated <em>ex situ</em> rather than <em>in situ</em></li>
+</ol>
+<p>While (1) involves manual control, (2-4) involve automatic control, (5) involves a semi-automatic control, and (6) involves a variety of control approaches.</p>
+<p>Other types of controllers, such as electrochemical controllers (as in the nervous system) and chemosensory controllers (as in pheromone signaling), remain theoretical. We do, however, use magnetic fields for navigation and thus control, similar to <a href="https://doi.org/10.1007%2Fs00359-021-01507-0">a wide variety of animal species</a>.</p>
+<h2 id="what-is-a-flight-controller">What is a Flight Controller?<a class="headerlink" href="#what-is-a-flight-controller" title="Permanent link">#</a></h2>
+<p>A flight controller is simply a robot controller for the airborne or atmospheric domain. Colloquially, the term 'flight controller' commonly refers to a flight control unit (FCU) or computer, such as a microcontroller, running flight control software on a real-time operating system (RTOS). The flight control hardware and software together comprise a flight control system (FCS). Alternatively, the term 'flight controller' may also refer to a handheld RC transmitter, used to control aircraft for over a century (Tesla demonstrated radio control in 1898, following the 1870 wired demonstration by Siemens).</p>
+<h2 id="which-other-domains-exist-for-robot-controllers">Which Other Domains Exist for Robot Controllers?<a class="headerlink" href="#which-other-domains-exist-for-robot-controllers" title="Permanent link">#</a></h2>
+<p>There are robot controllers for every domain on Earth and beyond:</p>
+<ul>
+<li>Air</li>
+<li>Ground</li>
+<li>Surface (water)</li>
+<li>Subsurface (water)</li>
+<li>Space</li>
+<li>Other Worlds</li>
+</ul>
+<p>These domains can be found in common robotic system classifications:</p>
+<ul>
+<li>Unmanned Aerial Vehicle (UAV)</li>
+<li>Unmanned Ground Vehicle (UGV)</li>
+<li>Unmanned Surface Vehicle (USV)</li>
+<li>Unmanned Underwater Vehicle (UUV)</li>
+<li>Unmanned Spacecraft (US)</li>
+</ul>
+<h2 id="why-do-i-need-a-robot-controller-for-a-simulator">Why Do I Need a Robot Controller for a Simulator?<a class="headerlink" href="#why-do-i-need-a-robot-controller-for-a-simulator" title="Permanent link">#</a></h2>
+<p>Robots are empty vassels without a sense of agency or goal-directed behaviour. Breaking these <em>plans</em> down into a series of <em>actions</em> further necessitates a <em>control system</em> to translate the human and/or computer inputs into desired outputs or behaviour. The primary job of the <em>control system</em> is to estimate the <em>current state</em> from sensor data, determine the desired <em>future state</em> and required <em>control inputs</em> to optimally converge toward this state, and translate <em>control inputs</em> into <em>actuator and robot motion</em>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>%%{init: {&quot;graph&quot;: {&quot;htmlLabels&quot;: false}}}%%
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>graph LR;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   S_previous[&quot;` $State_{t-1}$ `&quot;];
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   A[State Previous (t-1)];
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   B[State Physical (t0)];
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   C[Sensor Noise];
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   D[Sensors Current (t0)];
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   E[State Estimator];
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   F[State Current (t0)];
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>   G[Path Planner];
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>   H[State Future (t+1)];
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>   I[Actuator Commands];
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>   J[Actuator Noise];
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>   K[Actuator Future];
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>   State Previous (t_-1);
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>   State Physical + Encoder Noise --&gt; Sensors Current;
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>   State Previous + Sensors Current + State Estimator --&gt; State Current (t_0);
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>   State Current + Path Planner --&gt; State Desired (t_+1);
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>   State Current + Actuator Commands --&gt; State Future;
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    A --&gt; B;
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    B --&gt; C;
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    C --&gt; D;
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    D --&gt; E;
+</span></code></pre></div>
+<p>Where sensors noise is related to resolution, precision, latency, hysteresis, thermal, optical, electromagnetic, and model error.</p>
+<p><code>$S_{t-1}$</code></p>
+<p>The state estimator is commonly a form of <a href="https://arxiv.org/abs/1910.03558/">Kálmán filter</a> (not to be confused with his contemporary campatriot, <a href="https://en.wikipedia.org/wiki/Theodore_von_K%C3%A1rm%C3%A1n">von Kármán</a>):</p>
+<div class="language-latex highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">\mathrm</span><span class="nb">{</span>Initial State<span class="nb">}</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">\mathbf</span><span class="nb">{</span>x<span class="nb">}_</span>0 P<span class="nb">_</span>0
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">\mathrm</span><span class="nb">{</span>Prediction<span class="nb">}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">\mathbf</span><span class="nb">{</span>x<span class="nb">}_{</span>k+1<span class="nb">}^{</span>(P)<span class="nb">}</span> <span class="nb">&amp;</span>= A <span class="k">\mathbf</span><span class="nb">{</span>x<span class="nb">}_</span>k + B <span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>orange<span class="nb">}</span> a<span class="nb">_</span>k<span class="nb">}</span> P<span class="nb">_{</span>k+1<span class="nb">}^{</span>(P)<span class="nb">}</span> <span class="nb">&amp;</span>= A P<span class="nb">_</span>k A<span class="nb">^</span><span class="k">\tran</span> + C<span class="nb">_</span>k<span class="nb">^{</span>(r<span class="nb">_</span>s)<span class="nb">}</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">\mathrm</span><span class="nb">{</span>Update<span class="nb">}</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>k <span class="k">\leftarrow</span> k + 1
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">\mathrm</span><span class="nb">{</span>Innovation<span class="nb">}</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>K<span class="nb">_</span>k <span class="nb">&amp;</span>= P<span class="nb">_</span>k<span class="nb">^{</span>(P)<span class="nb">}</span> H<span class="nb">^</span><span class="k">\tran</span> <span class="nb">{</span><span class="k">\left</span> (H P<span class="nb">_</span>k<span class="nb">^{</span>(P)<span class="nb">}</span> H<span class="nb">^</span><span class="k">\tran</span> + C<span class="nb">_</span>k<span class="nb">^{</span>(r<span class="nb">_</span>m)<span class="nb">}</span> <span class="k">\right</span>)<span class="nb">}^{</span>-1<span class="nb">}</span> <span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>blue<span class="nb">}</span> <span class="k">\mathbf</span><span class="nb">{</span>x<span class="nb">}_</span>k<span class="nb">}</span> <span class="nb">&amp;</span>= (I - K<span class="nb">_</span>k H) <span class="k">\mathbf</span><span class="nb">{</span>x<span class="nb">}_</span>k<span class="nb">^{</span>(P)<span class="nb">}</span> + K<span class="nb">_</span>k <span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>orange<span class="nb">}</span> z<span class="nb">_</span>k<span class="nb">}{</span><span class="k">\color</span><span class="nb">{</span>blue<span class="nb">}</span> P<span class="nb">_</span>k<span class="nb">}</span> <span class="nb">&amp;</span>= (I - K<span class="nb">_</span>k H) P<span class="nb">_</span>k<span class="nb">^{</span>(P)<span class="nb">}</span>
+</span></code></pre></div>
+<p>For quadrotors, desired state can be specified as roll, pitch and yaw, for example. It then estimates actual roll, pitch and yaw using gyroscope and accelerometer. Then it generates appropriate motor signals so actual state becomes desired state. You can find more in-depth in <a href="paper/main.pdf">our paper</a>.</p>
+<h2 id="how-do-robot-controllers-communicate-with-the-simulator">How Do Robot Controllers Communicate with the Simulator?<a class="headerlink" href="#how-do-robot-controllers-communicate-with-the-simulator" title="Permanent link">#</a></h2>
+<p>Simulator consumes the motor signals generated by flight controller to figure out force and thrust generated by each actuator (i.e. propellers in case of quadrotor). This is then used by the physics engine to compute the kinetic properties of the vehicle. This in turn generates simulated sensor data and feed it back to the flight controller. You can find more in-depth in <a href="paper/main.pdf">our paper</a>.</p>
+<h2 id="what-is-hardware-in-the-loop-and-software-in-the-loop">What is Hardware-in-the-loop and Software-in-the-loop?<a class="headerlink" href="#what-is-hardware-in-the-loop-and-software-in-the-loop" title="Permanent link">#</a></h2>
+<p>Hardware-in-the-loop (HITL) means that the flight controller runs on physical hardware, such as an APM, Pixhawk, or Naze32 flight control unit (FCU). While some FCUs use real-time (<code>RT_PREEMPT</code>) Linux operating systems (OSes), typically running on a 64-bit ARM system-on-chip (SoC), most FCUs use hard real-time OSes running on microcontrollers.</p>
+<p>You then connect this hardware to PC using USB port. Simulator talks to the device to retrieve actuator signals and send it simulated sensor data. This is obviously as close as you can get to real thing. However, it typically requires more steps to set up and usually hard to debug. One big issue is that simulator clock and device clock runs on their own speed and accuracy. Also, USB connection (which is usually only USB 2.0) may not be enough for real-time communication.</p>
+<p>Software-in-the-loop (SITL) means that the flight controller software runs on your computer as opposed to separate board. This is generally fine except that now you are not touching any code paths that are specific to your device. Also, none of your code now runs with real-time clock usually provided by specialized hardware board. For well-designed flight controllers with software clock, these are usually not concerning issues.</p>
+<h2 id="which-flight-controllers-are-supported">Which Flight Controllers are Supported?<a class="headerlink" href="#which-flight-controllers-are-supported" title="Permanent link">#</a></h2>
+<p>AutonomySim has built-in flight controller called <a href="simple_flight.html">simple_flight</a> and it is used by default. You don't need to do anything to use or configure it. AutonomySim also supports <a href="px4_setup.html">PX4</a> &amp; <a href="https://ardupilot.org/dev/docs/sitl-with-AutonomySim.html">ArduPilot</a> as external flight controllers for advanced users.</p>
+<h2 id="using-autonomysim-without-flight-controller">Using AutonomySim Without Flight Controller<a class="headerlink" href="#using-autonomysim-without-flight-controller" title="Permanent link">#</a></h2>
+<p>Yes, now it's possible to use AutonomySim without flight controller. Please see the <a href="image_apis.html">instructions here</a> for how to use so-called "Computer Vision" mode. If you don't need vehicle dynamics, we highly recommend using this mode.</p>
 
 
 
@@ -1849,15 +1979,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="retexturing.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Runtime Texture Swapping">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Runtime Texture Swapping
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="sensors.html" class="md-footer__link md-footer__link--next" aria-label="Next: Sensors">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Sensors
               </div>
             </div>
             <div class="md-footer__button md-icon">

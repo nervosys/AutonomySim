@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/dev_workflow.html">
       
       
+        <link rel="prev" href="design.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="distance_sensor.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Development Workflow - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#development-workflow" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Development Workflow
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -818,10 +744,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="dev_workflow.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Development Workflow
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="dev_workflow.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -830,6 +776,170 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os" class="md-nav__link">
+    <span class="md-ellipsis">
+      OS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-and-changing-autonomysim-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating and Changing AutonomySim Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Updating and Changing AutonomySim Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#take-away" class="md-nav__link">
+    <span class="md-ellipsis">
+      Take Away
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-made-changes-in-code-in-blocks-project-but-its-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      I made changes in code in Blocks project but its not working.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-made-changes-in-the-code-outside-of-visual-studio-but-its-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      I made changes in the code outside of Visual Studio but its not working.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#im-trying-to-add-new-file-in-the-unreal-project-and-its-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      I'm trying to add new file in the Unreal Project and its not working.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-copied-unrealplugins-folder-but-nothing-happens-in-unreal-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      I copied Unreal\Plugins folder but nothing happens in Unreal Project.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-have-multiple-unreal-projects-with-autonomysim-plugin-how-do-i-update-them-easily" class="md-nav__link">
+    <span class="md-ellipsis">
+      I have multiple Unreal projects with AutonomySim plugin. How do I update them easily?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-contribute-back-to-autonomysim" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I contribute back to AutonomySim?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1902,52 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="development-workflow">Development Workflow<a class="headerlink" href="#development-workflow" title="Permanent link">#</a></h1>
+<p>Below is the guide on how to perform different development activities while working with AutonomySim. If you are new to Unreal Engine based projects and want to contribute to AutonomySim or make your own forks for your custom requirements, this might save you some time.</p>
+<h2 id="development-environment">Development Environment<a class="headerlink" href="#development-environment" title="Permanent link">#</a></h2>
+<h3 id="os">OS<a class="headerlink" href="#os" title="Permanent link">#</a></h3>
+<p>We highly recommend Windows 10 and Visual Studio 2019 as your development environment. The support for other OSes and IDE is unfortunately not as mature on the Unreal Engine side and you may risk severe loss of productivity trying to do workarounds and jumping through the hoops.</p>
+<h3 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">#</a></h3>
+<p>We recommend GPUs such as NVidia 1080 or NVidia Titan series with powerful desktop such as one with 64GB RAM, 6+ cores, SSDs and 2-3 displays (ideally 4K). We have found HP Z840 work quite well for our needs. The development experience on high-end laptops is generally sub-par compared to powerful desktops however they might be useful in a pinch. You generally want laptops with discrete NVidia GPU (at least M2000 or better) with 64GB RAM, SSDs and hopefully 4K display. We have found models such as Lenovo P50 work well for our needs. Laptops with only integrated graphics might not work well.</p>
+<h2 id="updating-and-changing-autonomysim-code">Updating and Changing AutonomySim Code<a class="headerlink" href="#updating-and-changing-autonomysim-code" title="Permanent link">#</a></h2>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">#</a></h3>
+<p>AutonomySim is designed as plugin. This means it can't run by itself, you need to put it in an Unreal project (we call it "environment"). So building and testing AutonomySim has two steps: (1) build the plugin (2) deploy plugin in Unreal project and run the project. </p>
+<p>The first step is accomplished by build.cmd available in AutonomySim root. This command will update everything you need for the plugin in the <code>Unreal\Plugins</code> folder. So to deploy the plugin, you just need to copy <code>Unreal\Plugins</code> folder in to your Unreal project folder. Next you should remove all  intermediate files in your Unreal project and then regenerate .sln file for your Unreal project. To do this, we have two handy .cmd files in <code>Unreal\Environments\Blocks</code> folder: <code>clean.cmd</code> and <code>GenerateProjectFiles.cmd</code>. So just run these bat files in sequence from root of your Unreal project. Now you are ready to open new .sln in Visual Studio and press F5 to run it.</p>
+<h3 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">#</a></h3>
+<p>Below are the steps we use to make changes in AutonomySim and test them out. The best way to do development in AutonomySim code is to use <a href="unreal_blocks.html">Blocks project</a>. This is the light weight project so compile time is relatively faster. Generally the workflow is,</p>
+<div class="language-batch highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">REM //Use x64 Native Tools Command Prompt for VS 2019</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">REM //Navigate to AutonomySim repo folder</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>git pull                          
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>build.cmd                        
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">cd</span> Unreal\Environments\Blocks         
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>update_from_git.cmd
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">start</span> Blocks.sln
+</span></code></pre></div>
+<p>Above commands first builds the AutonomySim plugin and then deploys it to Blocks project using handy <code>update_from_git.cmd</code>. Now you can work inside Visual Studio solution, make changes to the code and just run F5 to build, run and test your changes. The debugging, break points etc should work as usual. </p>
+<p>After you are done with you code changes, you might want to push your changes back to AutonomySim repo or your own fork or you may deploy the new plugin to your custom Unreal project. To do this, go back to command prompt and first update the AutonomySim repo folder:</p>
+<div class="language-batch highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">REM //Use x64 Native Tools Command Prompt for VS 2019</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">REM //run this from Unreal\Environments\Blocks </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>update_to_git.cmd
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>build.cmd
+</span></code></pre></div>
+<p>Above command will transfer your code changes from Unreal project folder back to <code>Unreal\Plugins</code> folder. Now your changes are ready to be pushed to AutonomySim repo or your own fork. You can also copy <code>Unreal\Plugins</code> to your custom Unreal engine project and see if everything works in your custom project as well.</p>
+<h3 id="take-away">Take Away<a class="headerlink" href="#take-away" title="Permanent link">#</a></h3>
+<p>Once you understand how Unreal Build system and plugin model works as well as why we are doing above steps, you should feel quite comfortable in following this workflow. Don't be afraid of opening up .cmd files to peek inside and see what its doing. They are quite minimal and straightforward (except, of course, build.cmd - don't look in to that one).</p>
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">#</a></h2>
+<h4 id="i-made-changes-in-code-in-blocks-project-but-its-not-working">I made changes in code in Blocks project but its not working.<a class="headerlink" href="#i-made-changes-in-code-in-blocks-project-but-its-not-working" title="Permanent link">#</a></h4>
+<p>When you press F5 or F6 in Visual Studio to start build, the Unreal Build system kicks in and it tries to find out if any files are dirty and what it needs to build. Unfortunately, it often fails to recognize dirty files that is not the code that uses Unreal headers and object hierarchy. So, the trick is to just make some file dirty that Unreal Build system always recognizes. My favorite one is AutonomySimGameMode.cpp. Just insert a line, delete it and save the file.</p>
+<h4 id="i-made-changes-in-the-code-outside-of-visual-studio-but-its-not-working">I made changes in the code outside of Visual Studio but its not working.<a class="headerlink" href="#i-made-changes-in-the-code-outside-of-visual-studio-but-its-not-working" title="Permanent link">#</a></h4>
+<p>Don't do that! Unreal Build system <em>assumes</em> that you are using Visual Studio and it does bunch of things to integrate with Visual Studio. If you do insist on using other editors then look up how to do command line builds in Unreal projects OR see docs on your editor on how it can integrate with Unreal build system OR run <code>clean.cmd</code> + <code>GenerateProjectFiles.cmd</code> to make sure VS solution is in sync.</p>
+<h4 id="im-trying-to-add-new-file-in-the-unreal-project-and-its-not-working">I'm trying to add new file in the Unreal Project and its not working.<a class="headerlink" href="#im-trying-to-add-new-file-in-the-unreal-project-and-its-not-working" title="Permanent link">#</a></h4>
+<p>It won't! While you are indeed using Visual Studio solution, remember that this solution was actually generated by Unreal Build system. If you want to add new files in your project, first shut down Visual Studio, add an empty file at desired location and then run <code>GenerateProjectFiles.cmd</code> which will scan all files in your project and then re-create the .sln file. Now open this new .sln file and you are in business.</p>
+<h4 id="i-copied-unrealplugins-folder-but-nothing-happens-in-unreal-project">I copied Unreal\Plugins folder but nothing happens in Unreal Project.<a class="headerlink" href="#i-copied-unrealplugins-folder-but-nothing-happens-in-unreal-project" title="Permanent link">#</a></h4>
+<p>First make sure your project's .uproject file is referencing the plugin. Then make sure you have run <code>clean.cmd</code> and then <code>GenerateProjectFiles.cmd</code> as described in Overview above.</p>
+<h4 id="i-have-multiple-unreal-projects-with-autonomysim-plugin-how-do-i-update-them-easily">I have multiple Unreal projects with AutonomySim plugin. How do I update them easily?<a class="headerlink" href="#i-have-multiple-unreal-projects-with-autonomysim-plugin-how-do-i-update-them-easily" title="Permanent link">#</a></h4>
+<p>You are in luck! We have <code>build_all_ue_projects.cmd</code> which exactly does that. Don't treat it as black box (at least not yet), open it up and see what it does.  It has 4 variables that are being set from command line args. If these args is not supplied they are set to default values in next set of statements. You might want to change default values for the paths. This batch file builds AutonomySim plugin, deploys it to all listed projects (see CALL statements later in the batch file), runs packaging for those projects and puts final binaries in specified folder - all in one step! This is what we use to create our own binary releases.</p>
+<h4 id="how-do-i-contribute-back-to-autonomysim">How do I contribute back to AutonomySim?<a class="headerlink" href="#how-do-i-contribute-back-to-autonomysim" title="Permanent link">#</a></h4>
+<p>Before making any changes make sure you have created your feature branch. After you test your code changes in Blocks environment, follow the <a href="https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/">usual steps</a> to make contributions just like any other GitHub projects. Please use rebase and squash merge, for more information see <a href="https://www.freecodecamp.org/news/an-introduction-to-git-merge-and-rebase-what-they-are-and-how-to-use-them-131b863785f/">An introduction to Git merge and rebase: what they are, and how to use them</a>.</p>
 
 
 
@@ -1849,15 +1986,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="design.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Manuscripts">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Manuscripts
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="distance_sensor.html" class="md-footer__link md-footer__link--next" aria-label="Next: Distance Sensor">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Distance Sensor
               </div>
             </div>
             <div class="md-footer__button md-icon">

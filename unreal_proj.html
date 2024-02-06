@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/unreal_proj.html">
       
       
+        <link rel="prev" href="unreal_custenv.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="unreal_upgrade.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Unreal Environment - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#unreal-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Unreal Environment
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1578,10 +1504,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="unreal_proj.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Unreal Environment
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="unreal_proj.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1590,6 +1536,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-the-unreal-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up the Unreal Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up the Unreal Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-built-in-blocks-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Built-in Blocks Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-create-your-own-unreal-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Create Your Own Unreal Environment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-code-and-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changing Code and Development Workflow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1800,16 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="unreal-environment">Unreal Environment<a class="headerlink" href="#unreal-environment" title="Permanent link">#</a></h1>
+<h2 id="setting-up-the-unreal-project">Setting Up the Unreal Project<a class="headerlink" href="#setting-up-the-unreal-project" title="Permanent link">#</a></h2>
+<h3 id="option-1-built-in-blocks-environment">Option 1: Built-in Blocks Environment<a class="headerlink" href="#option-1-built-in-blocks-environment" title="Permanent link">#</a></h3>
+<p>To get up and running fast, you can use the Blocks project that already comes with AutonomySim. This is not very highly detailed environment to keep the repo size reasonable but we use it for various testing all the times and it is the easiest way to get your feet wet in this strange land. </p>
+<p>Follow these <a href="unreal_blocks.html">quick steps</a>.</p>
+<h3 id="option-2-create-your-own-unreal-environment">Option 2: Create Your Own Unreal Environment<a class="headerlink" href="#option-2-create-your-own-unreal-environment" title="Permanent link">#</a></h3>
+<p>If you want to setup photo-realistic high quality environments, then you will need to create your own Unreal project. This is little bit more involved but worthwhile! </p>
+<p>Follow this <a href="unreal_custenv.html">step-by-step guide</a>. </p>
+<h2 id="changing-code-and-development-workflow">Changing Code and Development Workflow<a class="headerlink" href="#changing-code-and-development-workflow" title="Permanent link">#</a></h2>
+<p>To see how you can change and test AutonomySim code, please read our <a href="dev_workflow.html">recommended development workflow</a>.</p>
 
 
 
@@ -1849,15 +1848,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="unreal_custenv.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Creating and Setting Up Unreal Environment">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Creating and Setting Up Unreal Environment
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="unreal_upgrade.html" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrading to Unreal Engine 4.27">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Upgrading to Unreal Engine 4.27
               </div>
             </div>
             <div class="md-footer__button md-icon">

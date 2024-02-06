@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/code_structure.html">
       
       
+        <link rel="prev" href="cmake_linux.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="coding_guidelines.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>Code Structure - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#code-structure" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Code Structure
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -718,10 +644,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="code_structure.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Code Structure
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="code_structure.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -730,6 +676,89 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#autonomylib" class="md-nav__link">
+    <span class="md-ellipsis">
+      AutonomyLib
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unrealpluginsautonomysim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unreal/Plugins/AutonomySim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mavlinkcom" class="md-nav__link">
+    <span class="md-ellipsis">
+      MavLinkCom
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sample Programs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pythonclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      PythonClient
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unreal-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unreal Framework
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1821,41 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="code-structure">Code Structure<a class="headerlink" href="#code-structure" title="Permanent link">#</a></h1>
+<h2 id="autonomylib">AutonomyLib<a class="headerlink" href="#autonomylib" title="Permanent link">#</a></h2>
+<p>Majority of the code is located in AutonomyLib. This is a self-contained library that you should be able to compile with any C++11 compiler.</p>
+<p>AutonomyLib consists of the following components:</p>
+<ol>
+<li><a href="https://github.com/nervosys/AutonomySim/tree/main/AutonomyLib/include/physics"><em>Physics engine:</em></a> This is header-only physics engine. It is designed to be fast and extensible to implement different vehicles.</li>
+<li><a href="https://github.com/nervosys/AutonomySim/tree/main/AutonomyLib/include/sensors"><em>Sensor models:</em></a> This is header-only models for Barometer, IMU, GPS and Magnetometer.</li>
+<li><a href="https://github.com/nervosys/AutonomySim/tree/main/AutonomyLib/include/vehiclesr"><em>Vehicle models:</em></a> This is header-only models for vehicle configurations and models. Currently we have implemented model for a Multirotor and a configuration for PX4 QuadRotor in the X config. There are several different Multirotor models defined in MultirotorParams.hpp including a hexacopter as well.</li>
+<li><a href="https://github.com/nervosys/AutonomySim/tree/main/AutonomyLib/include/api"><em>API-related files:</em></a> This part of AutonomyLib provides abstract base class for our APIs and concrete implementation for specific vehicle platforms such as MavLink. It also has classes for the RPC client and server.</li>
+</ol>
+<p>Apart from these, all common utilities are defined in <a href="https://github.com/nervosys/AutonomySim/tree/main/AutonomyLib/include/common"><code>common/</code></a> subfolder. One important file here is <a href="https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/include/common/AutonomySimSettings.hpp">AutonomySimSettings.hpp</a> which should be modified if any new fields are to be added in <code>settings.json</code>.</p>
+<p>AutonomySim supports different firmwares for Multirotor such as its own SimpleFlight, PX4 and ArduPilot, files for communicating with each firmware are placed in their respective subfolders in <a href="https://github.com/nervosys/AutonomySim/tree/main/AutonomyLib/include/vehicles/multirotor/firmwares"><code>multirotor/firmwares</code></a>.</p>
+<p>The vehicle-specific APIs are defined in the <code>api/</code> subfolder, along-with required structs. The <a href="https://github.com/nervosys/AutonomySim/tree/main/AutonomyLib/src"><code>AutonomyLib/src/</code></a> contains .cpp files with implementations of various mehtods defined in the .hpp files. For e.g. <a href="https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/src/vehicles/multirotor/api/MultirotorApiBase.cpp">MultirotorApiBase.cpp</a> contains the base implementation of the multirotor APIs, which can also be overridden in the specific firmware files if required.</p>
+<h2 id="unrealpluginsautonomysim">Unreal/Plugins/AutonomySim<a class="headerlink" href="#unrealpluginsautonomysim" title="Permanent link">#</a></h2>
+<p>This is the only portion of project which is dependent on Unreal engine. We have kept it isolated so we can implement simulator for other platforms as well, as has been done for <a href="https://microsoft.github.io/AutonomySim/Unity.html">Unity</a>. The Unreal code takes advantage of its UObject based classes including Blueprints. The <code>Source/</code> folder contains the C++ files, while the <code>Content/</code> folder has the blueprints and assets. Some main components are described below:</p>
+<ol>
+<li><em>SimMode_ classes</em>: The SimMode classes help implement many different modes, such as pure Computer Vision mode, where there is no vehicle or simulation for a specific vehicle (currently car and multirotor). The vehicle classes are located in <a href="https://github.com/nervosys/AutonomySim/tree/main/Unreal/Plugins/AutonomySim/Source/Vehicles"><code>Vehicles/</code></a></li>
+<li><em>PawnSimApi</em>: This is the <a href="https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/PawnSimApi.cpp">base class</a> for all vehicle pawn visualizations. Each vehicle has their own child (Multirotor|Car|ComputerVision)Pawn class.</li>
+<li><a href="https://github.com/nervosys/AutonomySim/tree/main/Unreal/Plugins/AutonomySim/Source/UnrealSensors">UnrealSensors</a>: Contains implementation of Distance and Lidar sensors.</li>
+<li><em>WorldSimApi</em>: Implements most of the environment and vehicle-agnostic APIs</li>
+</ol>
+<p>Apart from these, <a href="https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/PIPCamera.cpp"><code>PIPCamera</code></a> contains the camera initialization, and <a href="https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/UnrealImageCapture.cpp"><code>UnrealImageCapture</code></a> &amp; <a href="https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/RenderRequest.cpp"><code>RenderRequest</code></a> the image rendering code. <a href="https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/AutonomyBlueprintLib.cpp"><code>AutonomyBlueprintLib</code></a> has a lot of utility and wrapper methods used to interface with the UE4 engine.</p>
+<h2 id="mavlinkcom">MavLinkCom<a class="headerlink" href="#mavlinkcom" title="Permanent link">#</a></h2>
+<p>This is the library developed by our own team member <a href="https://github.com/lovettchris">Chris Lovett</a> that provides C++ classes to talk to the MavLink devices. This library is stand alone and can be used in any project.
+See <a href="mavlinkcom.html">MavLinkCom</a> for more info.</p>
+<h2 id="sample-programs">Sample Programs<a class="headerlink" href="#sample-programs" title="Permanent link">#</a></h2>
+<p>We have created a few sample programs to demonstrate how to use the API. See HelloDrone and DroneShell.
+DroneShell demonstrates how to connect to the simulator using UDP.  The simulator is running a server (similar to DroneServer).</p>
+<h2 id="pythonclient">PythonClient<a class="headerlink" href="#pythonclient" title="Permanent link">#</a></h2>
+<p><a href="https://github.com/nervosys/AutonomySim/tree/main/PythonClient">PythonClient</a> contains Python API wrapper files and sample programs demonstrating their uses.</p>
+<h2 id="unreal-framework">Unreal Framework<a class="headerlink" href="#unreal-framework" title="Permanent link">#</a></h2>
+<p>The following picture illustrates how AutonomySim is loaded and invoked by the Unreal Game Engine:</p>
+<p><img alt="AutonomySimConstruction" src="images/AutonomySim_startup.png" /></p>
+<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">#</a></h2>
+<p>See <a href="CONTRIBUTING.html">Contribution Guidelines</a></p>
 
 
 
@@ -1849,15 +1894,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="cmake_linux.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installing CMake on Linux">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installing CMake on Linux
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="coding_guidelines.html" class="md-footer__link md-footer__link--next" aria-label="Next: C++ Coding Guidelines">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                C++ Coding Guidelines
               </div>
             </div>
             <div class="md-footer__button md-icon">

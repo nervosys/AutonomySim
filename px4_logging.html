@@ -10,11 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/index.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/px4_logging.html">
       
       
+        <link rel="prev" href="px4_lockstep.html">
       
-        <link rel="next" href="CHANGELOG.html">
+      
+        <link rel="next" href="px4_multi_vehicle.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -22,7 +24,7 @@
     
     
       
-        <title>AutonomySim</title>
+        <title>PX4/MavLink Logging - AutonomySim</title>
       
     
     
@@ -88,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-simulation-engine-for-autonomous-systems" class="md-skip">
+        <a href="#px4mavlink-logging" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              PX4/MavLink Logging
             
           </span>
         </div>
@@ -282,30 +284,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,62 +296,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infrastructure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features-and-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features and Releases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repository
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1278,10 +1204,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="px4_logging.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    PX4/MavLink Logging
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="px4_logging.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1290,6 +1236,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logging-mavlink-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging MavLink Messages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mavlink-logviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      MavLink LogViewer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#px4-log-in-sitl-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4 Log in SITL Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#px4-log-in-hitl-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4 Log in HITL Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-a-bad-flight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging a bad flight
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1792,25 +1803,51 @@
   
 
 
-<p align="center">
-  <img src="media/images/autonomysim_simple_bw_1000w.png" width="100%" alt="AutonomySim logo">
-</p>
-
-<h1 id="the-simulation-engine-for-autonomous-systems">The simulation engine for autonomous systems<a class="headerlink" href="#the-simulation-engine-for-autonomous-systems" title="Permanent link">#</a></h1>
-<h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_getting_started.html">Getting Started</a> to view a short tutorial on getting started with the platform and submitting your first simulation.</p>
-<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_infrastructure.md">Infrastructure</a> to learn more about how the AutonomySim system runs your algorithm in the cloud.</p>
-<h2 id="features-and-releases">Features and Releases<a class="headerlink" href="#features-and-releases" title="Permanent link">#</a></h2>
-<p>Visit <a href="autonomysim_features.md">Features and Releases</a> to view the features and release notes for this platform.</p>
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">#</a></h2>
-<p><a class="md-button" href="https://github.com/nervosys/AutonomySim">AutonomySim on GitHub</a></p>
-<p align="center">
-  <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
-  <br>
-  TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
-</p>
+<h1 id="px4mavlink-logging">PX4/MavLink Logging<a class="headerlink" href="#px4mavlink-logging" title="Permanent link">#</a></h1>
+<p>Thanks to <a href="https://github.com/clovett">Chris Lovett</a> for developing various tools for PX4/MavLink logging mentioned on this page!</p>
+<h2 id="logging-mavlink-messages">Logging MavLink Messages<a class="headerlink" href="#logging-mavlink-messages" title="Permanent link">#</a></h2>
+<p>AutonomySim can capture mavlink log files if you add the following to the PX4 section of your <code>settings.json</code> file:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;SettingsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;SimMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Multirotor&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;Vehicles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">&quot;PX4&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="err">...</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="nt">&quot;Logs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c:/temp/mavlink&quot;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>AutonomySim will create a timestamped log file in this folder for each "armed/disarmed" flight session.</p>
+<p>You will then see log files organized by date in d:\temp\logs, specifically <em>input.mavlink and </em>output.mavlink files.</p>
+<h2 id="mavlink-logviewer">MavLink LogViewer<a class="headerlink" href="#mavlink-logviewer" title="Permanent link">#</a></h2>
+<p>For MavLink enabled drones, you can also use our <a href="log_viewer.html">Log Viewer</a> to visualize the streams of data. If you enable this form of realtime logging you should not use the "Logs" setting above, these two forms of logging are mutually exclusive.</p>
+<h2 id="px4-log-in-sitl-mode">PX4 Log in SITL Mode<a class="headerlink" href="#px4-log-in-sitl-mode" title="Permanent link">#</a></h2>
+<p>In SITL mode, please a log file is produced when drone is armed. The SITL terminal will contain the path to the log file, it should look something like this</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>INFO<span class="w">  </span><span class="o">[</span>logger<span class="o">]</span><span class="w"> </span>Opened<span class="w"> </span>log<span class="w"> </span>file:<span class="w"> </span>rootfs/fs/microsd/log/2017-03-27/20_02_49.ulg
+</span></code></pre></div>
+<h2 id="px4-log-in-hitl-mode">PX4 Log in HITL Mode<a class="headerlink" href="#px4-log-in-hitl-mode" title="Permanent link">#</a></h2>
+<p>If you are using Pixhawk hardware in HIL mode, then set parameter <code>SYS_LOGGER=1</code>
+using QGroundControl. PX4 will write log file on device which you can download at later date using QGroundControl.</p>
+<h2 id="debugging-a-bad-flight">Debugging a bad flight<a class="headerlink" href="#debugging-a-bad-flight" title="Permanent link">#</a></h2>
+<p>You can use these *.mavlink log files to debug a bad flight using the <a href="log_viewer.html">LogViewer</a>. For example, AutonomySim/PX4 flight may misbehave if you run it on an under powered computer. The following shows what might happen in that situation.</p>
+<p><img alt="screenshot" src="images/px4_debugging.png" /></p>
+<p>In this flight we ran a simple <code>commander takeoff</code> test as performed by <code>PythonClient/multirotor/stability_test.py</code> and the flight started off fine, but then went crazy at the end and the drone crashed. So why is that?  What can the log file show?</p>
+<p>Here we've plotted the following 5 metrics:</p>
+<ul>
+<li><code>hil_gps.alt</code> - the simulated altitude sent from AutonomySim to PX4</li>
+<li><code>telemetry.update_rate</code> - the rate AutonomySim is performing the critical drone update loop in updates per second.</li>
+<li><code>telemetry.update_time</code> - the average time taken inside AutonomySim performing the critical drone update loop.</li>
+<li><code>telemetry.actuation_delay</code> - this is a very interesting metric measuring how long it takes PX4 to send back updated actuator controls message (motor power)</li>
+<li><code>actuator_controls.0</code> - the actuator controls signal from PX4 for the first rotor.</li>
+</ul>
+<p>What we see then with these metrics is that things started off nicely, with nice flat altitude, high update rate in the 275 to 300 fps range, and a nice low update time inside AutonomySim around 113 microseconds, and a nice low actuation delay in the round trip from PX4.  The actuator controls also stabilize quickly to a nice flat line.</p>
+<p>But then the update_time starts to climb, at the same time the actuation_delay climbs and we see a little tip in actuator_controls. This dip should not happen, the PX4 is panicking over loss of update rate but it recovers.</p>
+<p>But then we see actuator controls go crazy, a huge spike in actuation delay, and around this time we see a message from AutonomySim saying <code>lockstep disabled</code>.  A delay over 100 millisecond triggers AutonomySim into jumping out of lockstep mode and the PX4 goes nuts and the drone crashes.</p>
+<p>The button line is that if a simple <code>takeoff</code> cannot maintain steady smooth flight and you see these kinds of spikes and uneven update rates then it means you are running AutonomySim on a computer that does not have enough horsepower.</p>
+<p>This is what a simple takeoff and hover and land should look like:</p>
+<p><img alt="nice" src="images/px4_nice.png" /></p>
+<p>Here you see the <code>update_rate</code> sticking the target of 333 updates per second. You also see the <code>update_time</code> a nice flat 39 microseconds and the <code>actuator_delay</code> somewhere between 1.1 and 1.7 milliseconds, and the resulting <code>actuator_controls</code> a lovely flat line.</p>
 
 
 
@@ -1849,15 +1886,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="px4_lockstep.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: LockStep">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                LockStep
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="CHANGELOG.html" class="md-footer__link md-footer__link--next" aria-label="Next: What&#39;s new">
+          <a href="px4_multi_vehicle.html" class="md-footer__link md-footer__link--next" aria-label="Next: Setting up multi-vehicle PX4 simulation">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What's new
+                Setting up multi-vehicle PX4 simulation
               </div>
             </div>
             <div class="md-footer__button md-icon">
