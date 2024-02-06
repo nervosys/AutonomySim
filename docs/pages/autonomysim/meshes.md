@@ -1,16 +1,14 @@
 # How to Access Meshes in AutonomySim
 
-AutonomySim supports the ability to access the static meshes that make up the scene.
+`AutonomySim` supports the ability to access the static meshes that make up the scene.
 
 ## Mesh structure
 Each mesh is represented with the below struct.
 
 ```cpp
 struct MeshPositionVertexBuffersResponse {
-
 	Vector3r position;
 	Quaternionr orientation;
-
 	std::vector<float> vertices;
 	std::vector<uint32_t> indices;
 	std::string name;

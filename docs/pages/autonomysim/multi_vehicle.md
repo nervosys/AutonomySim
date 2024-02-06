@@ -1,6 +1,6 @@
-# Multiple Vehicles in AutonomySim
+# Multiple Vehicles
 
-Since release 1.2, AutonomySim is fully enabled for multiple vehicles. This capability allows you to create multiple vehicles easily and use APIs to control them.
+Since release 1.2, `AutonomySim` is fully enabled for multiple vehicles. This capability allows you to create multiple vehicles easily and use APIs to control them.
 
 ## Creating Multiple Vehicles
 

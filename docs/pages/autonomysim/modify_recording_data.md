@@ -1,6 +1,6 @@
 # Modifying Recording Data
 
-AutonomySim has a [Recording feature](settings.md#recording) to easily collect data and images. The [Recording APIs](apis.md#recording-apis) also allows starting and stopping the recording using API.
+`AutonomySim` has a [Recording feature](settings.md#recording) to easily collect data and images. The [Recording APIs](apis.md#recording-apis) also allows starting and stopping the recording using API.
 
 However, the data recorded by default might not be sufficient for your use cases, and it might be preferable to record additional data such as IMU, GPS sensors, Rotor speed for copters, etc. You can use the existing Python and C++ APIs to get the information and store it as required, especially for Lidar. Another option for adding small fields such as GPS or internal data such as Unreal position or something else is possible through modifying the recording methods inside AutonomySim. This page describes the specific methods which you might need to change.
 
@@ -30,8 +30,8 @@ E.g. recording GPS, IMU and Barometer data also for multirotor -
 
 ```cpp
 // MultirotorPawnSimApi.cpp
-std::string MultirotorPawnSimApi::getRecordFileLine(bool is_header_line) const
-{
+std::string MultirotorPawnSimApi::getRecordFileLine(bool is_header_line) const {
+
     std::string common_line = PawnSimApi::getRecordFileLine(is_header_line);
     if (is_header_line) {
         return common_line +
