@@ -16,7 +16,7 @@
         <link rel="prev" href="docker_ubuntu.html">
       
       
-        <link rel="next" href="event_sim.html">
+        <link rel="next" href="faq.html">
       
       
       <link rel="icon" href="../../images/rune.svg">
@@ -530,27 +530,6 @@
   
   
     <li class="md-nav__item">
-      <a href="InfraredCamera.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    InfraredCamera
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="SUPPORT.html" class="md-nav__link">
         
   
@@ -572,32 +551,11 @@
   
   
     <li class="md-nav__item">
-      <a href="Unity.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AutonomySim on Unity
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="adding_new_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Adding New APIs to AutonomySim
+    Adding New APIs
   </span>
   
 
@@ -618,7 +576,7 @@
         
   
   <span class="md-ellipsis">
-    Using C++ APIs for AutonomySim
+    Using the C++ APIs
   </span>
   
 
@@ -681,7 +639,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim_ros_pkgs
+    AutonomySim ROS Packages
   </span>
   
 
@@ -723,7 +681,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim Development Environment on Azure
+    Azure Development Environment
   </span>
   
 
@@ -744,7 +702,7 @@
         
   
   <span class="md-ellipsis">
-    Build the Documentation
+    Generating the Documentation
   </span>
   
 
@@ -870,7 +828,7 @@
         
   
   <span class="md-ellipsis">
-    Installing cmake on Linux
+    Installing CMake on Linux
   </span>
   
 
@@ -912,7 +870,7 @@
         
   
   <span class="md-ellipsis">
-    Modern C++ Coding Guidelines
+    C++ Coding Guidelines
   </span>
   
 
@@ -933,7 +891,7 @@
         
   
   <span class="md-ellipsis">
-    How to Create Issue or Ask Question Effectively
+    How to Create Issue or Ask Questions Effectively
   </span>
   
 
@@ -954,28 +912,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomyLib on a Real Drone
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="custom_unity_environments.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Adding AutonomySim to Custom Unity Projects
+    Running AutonomyLib on Real-world Autonomous Systems
   </span>
   
 
@@ -996,7 +933,7 @@
         
   
   <span class="md-ellipsis">
-    Paper
+    Manuscripts
   </span>
   
 
@@ -1107,53 +1044,11 @@
   
   
     <li class="md-nav__item">
-      <a href="event_sim.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Event sim
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     FAQ
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="gazebo_drone.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Welcome to GazeboDrone
   </span>
   
 
@@ -1233,11 +1128,32 @@
   
   
     <li class="md-nav__item">
+      <a href="image_sensors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Sensors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="lidar.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    How to Use Lidar in AutonomySim
+    LiDAR Sensor
   </span>
   
 
@@ -1720,7 +1636,7 @@
         
   
   <span class="md-ellipsis">
-    Sensors in AutonomySim
+    Sensors
   </span>
   
 
@@ -1784,27 +1700,6 @@
   
   <span class="md-ellipsis">
     Logitech G920 Steering Wheel Installation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="unity_api_support.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Unity api support
   </span>
   
 
@@ -2149,30 +2044,30 @@
 </tbody>
 </table>
 <p>So with these we can compute a square path box using this code:</p>
-<pre><code class="language-python">        path = []
-        distance = 0
-        while x &lt; self.boxsize:
-            distance += self.boxsize
-            path.append(Vector3r(x, self.boxsize, z))
-            x += self.stripewidth
-            distance += self.stripewidth
-            path.append(Vector3r(x, self.boxsize, z))
-            distance += self.boxsize
-            path.append(Vector3r(x, -self.boxsize, z))
-            x += self.stripewidth
-            distance += self.stripewidth
-            path.append(Vector3r(x, -self.boxsize, z))
-            distance += self.boxsize
+<pre><code class="language-python">path = []
+distance = 0
+while x &lt; self.boxsize:
+    distance += self.boxsize
+    path.append(Vector3r(x, self.boxsize, z))
+    x += self.stripewidth
+    distance += self.stripewidth
+    path.append(Vector3r(x, self.boxsize, z))
+    distance += self.boxsize
+    path.append(Vector3r(x, -self.boxsize, z))
+    x += self.stripewidth
+    distance += self.stripewidth
+    path.append(Vector3r(x, -self.boxsize, z))
+    distance += self.boxsize
 </code></pre>
 <p>Assuming we start in the corner of the box, increment x by the stripe width, then fly the full y-dimension of <code>-boxsize</code> to <code>+boxsize</code>, so in this case, <code>boxsize</code> is half the size of the actual box we will be covering.</p>
 <p>Once we have this list of Vector3r objects, we can fly this path very simply with the following call:</p>
-<pre><code class="language-python">result = self.client.moveOnPath(path, self.velocity, trip_time, DrivetrainType.ForwardOnly,
-                                YawMode(False,0), lookahead, 1)
+<pre><code class="language-python">result = self.client.moveOnPath(
+    path, self.velocity, trip_time, DrivetrainType.ForwardOnly, YawMode(False,0), lookahead, 1)
 </code></pre>
 <p>We can compute an appropriate <code>trip_time</code> timeout by dividing the distance of the path and the speed we are flying.</p>
 <p>The <code>lookahead</code> needed here for smooth path interpolation can be computed from the velocity using <code>self.velocity + (self.velocity/2)</code>.  The more lookahead, the smoother the turns.  This is why you see in the screenshot that the ends of each swimland are smooth turns rather than a square box pattern.  This can result in a smoother video from your camera also.</p>
 <p>That's it, pretty simple, eh?</p>
-<p>Now of course you can add a lot more intelligence to this, make it avoid known obstacles on your map, make it climb up and down a hillside so you can survey a slope, etc.  Lots of fun to be had.</p>
+<p>Now, of course you can add a lot more intelligence to this, make it avoid known obstacles on your map, make it climb up and down a hillside so you can survey a slope, etc.  Lots of fun to be had.</p>
 
 
 
@@ -2221,13 +2116,13 @@
         
         
           
-          <a href="event_sim.html" class="md-footer__link md-footer__link--next" aria-label="Next: Event sim">
+          <a href="faq.html" class="md-footer__link md-footer__link--next" aria-label="Next: FAQ">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Event sim
+                FAQ
               </div>
             </div>
             <div class="md-footer__button md-icon">

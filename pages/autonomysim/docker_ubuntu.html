@@ -530,27 +530,6 @@
   
   
     <li class="md-nav__item">
-      <a href="InfraredCamera.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    InfraredCamera
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="SUPPORT.html" class="md-nav__link">
         
   
@@ -572,32 +551,11 @@
   
   
     <li class="md-nav__item">
-      <a href="Unity.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AutonomySim on Unity
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="adding_new_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Adding New APIs to AutonomySim
+    Adding New APIs
   </span>
   
 
@@ -618,7 +576,7 @@
         
   
   <span class="md-ellipsis">
-    Using C++ APIs for AutonomySim
+    Using the C++ APIs
   </span>
   
 
@@ -681,7 +639,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim_ros_pkgs
+    AutonomySim ROS Packages
   </span>
   
 
@@ -723,7 +681,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim Development Environment on Azure
+    Azure Development Environment
   </span>
   
 
@@ -744,7 +702,7 @@
         
   
   <span class="md-ellipsis">
-    Build the Documentation
+    Generating the Documentation
   </span>
   
 
@@ -870,7 +828,7 @@
         
   
   <span class="md-ellipsis">
-    Installing cmake on Linux
+    Installing CMake on Linux
   </span>
   
 
@@ -912,7 +870,7 @@
         
   
   <span class="md-ellipsis">
-    Modern C++ Coding Guidelines
+    C++ Coding Guidelines
   </span>
   
 
@@ -933,7 +891,7 @@
         
   
   <span class="md-ellipsis">
-    How to Create Issue or Ask Question Effectively
+    How to Create Issue or Ask Questions Effectively
   </span>
   
 
@@ -954,28 +912,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomyLib on a Real Drone
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="custom_unity_environments.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Adding AutonomySim to Custom Unity Projects
+    Running AutonomyLib on Real-world Autonomous Systems
   </span>
   
 
@@ -996,7 +933,7 @@
         
   
   <span class="md-ellipsis">
-    Paper
+    Manuscripts
   </span>
   
 
@@ -1272,53 +1209,11 @@
   
   
     <li class="md-nav__item">
-      <a href="event_sim.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Event sim
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     FAQ
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="gazebo_drone.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Welcome to GazeboDrone
   </span>
   
 
@@ -1398,11 +1293,32 @@
   
   
     <li class="md-nav__item">
+      <a href="image_sensors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Sensors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="lidar.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    How to Use Lidar in AutonomySim
+    LiDAR Sensor
   </span>
   
 
@@ -1885,7 +1801,7 @@
         
   
   <span class="md-ellipsis">
-    Sensors in AutonomySim
+    Sensors
   </span>
   
 
@@ -1949,27 +1865,6 @@
   
   <span class="md-ellipsis">
     Logitech G920 Steering Wheel Installation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="unity_api_support.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Unity api support
   </span>
   
 
@@ -2440,30 +2335,26 @@
    <code>--target_image</code> is the desired name of your docker image.
    Defaults to <code>AutonomySim_binary</code> with same tag as the base image</li>
 </ul>
-<pre><code class="language-bash">$ cd AutonomySim/docker;
-$ python build_AutonomySim_image.py \
-   --base_image=nvidia/cudagl:10.0-devel-ubuntu18.04 \
-   --target_image=AutonomySim_binary:10.0-devel-ubuntu18.04
+<pre><code class="language-bash">   cd AutonomySim/docker
+   python build_AutonomySim_image.py \
+      --base_image=nvidia/cudagl:10.0-devel-ubuntu18.04 \
+      --target_image=AutonomySim_binary:10.0-devel-ubuntu18.04
 </code></pre>
 <ul>
-<li>Verify you have an image by:
- <code>$ docker images | grep AutonomySim</code></li>
+<li>Verify you have an image by: <code>$ docker images | grep AutonomySim</code></li>
 </ul>
 <h4 id="running-an-unreal-binary-inside-a-docker-container">Running an unreal binary inside a docker container<a class="headerlink" href="#running-an-unreal-binary-inside-a-docker-container" title="Permanent link">#</a></h4>
 <ul>
-<li>Get <a href="https://github.com/nervosys/AutonomySim/releases">a Linux binary</a> or package your own project in Ubuntu.
-Let's take the Blocks binary as an example.
-You can download it by running</li>
+<li>Get <a href="https://github.com/nervosys/AutonomySim/releases">a Linux binary</a> or package your own project in Ubuntu. Let's take the Blocks binary as an example. You can download it by running the folowing:</li>
 </ul>
-<pre><code class="language-bash">   $ cd AutonomySim/docker;
-   $ ./download_blocks_env_binary.sh
+<pre><code class="language-bash">   cd AutonomySim/docker
+   ./download_blocks_env_binary.sh
 </code></pre>
 <p>Modify it to fetch the specific binary required.</p>
 <ul>
-<li>Running an unreal binary inside a docker container
-   The syntax is:</li>
+<li>Running an unreal binary inside a docker container, the syntax is:</li>
 </ul>
-<pre><code class="language-bash">   $ ./run_AutonomySim_image_binary.sh DOCKER_IMAGE_NAME UNREAL_BINARY_SHELL_SCRIPT UNREAL_BINARY_ARGUMENTS -- headless
+<pre><code class="language-bash">   ./run_AutonomySim_image_binary.sh DOCKER_IMAGE_NAME UNREAL_BINARY_SHELL_SCRIPT UNREAL_BINARY_ARGUMENTS -- headless
 </code></pre>
 <ul>
 <li>
@@ -2473,16 +2364,13 @@ You can download it by running</li>
 <p><code>DOCKER_IMAGE_NAME</code>: Same as <code>target_image</code> parameter in previous step. By default, enter <code>AutonomySim_binary:10.0-devel-ubuntu18.04</code></p>
 </li>
 <li><code>UNREAL_BINARY_SHELL_SCRIPT</code>: for Blocks enviroment, it will be <code>Blocks/Blocks.sh</code></li>
-<li>
-<p><a href="https://docs.unrealengine.com/en-us/Programming/Basics/CommandLineArguments"><code>UNREAL_BINARY_ARGUMENTS</code></a>:
-      For AutonomySim, most relevant would be <code>-windowed</code>, <code>-ResX</code>, <code>-ResY</code>. Click on link to see all options.</p>
-</li>
-<li>
-<p>Running in Headless mode:
-      Suffix <code>-- headless</code> at the end:</p>
-</li>
+<li><a href="https://docs.unrealengine.com/en-us/Programming/Basics/CommandLineArguments"><code>UNREAL_BINARY_ARGUMENTS</code></a>:</li>
 </ul>
-<pre><code class="language-bash">$ ./run_AutonomySim_image_binary.sh Blocks/Blocks.sh -- headless
+<p>For AutonomySim, most relevant would be <code>-windowed</code>, <code>-ResX</code>, <code>-ResY</code>. Click on link to see all options.</p>
+<ul>
+<li>Running in Headless mode: suffix <code>-- headless</code> at the end:</li>
+</ul>
+<pre><code class="language-bash">./run_AutonomySim_image_binary.sh Blocks/Blocks.sh -- headless
 </code></pre>
 <ul>
 <li><a href="#specifying-settingsjson">Specifying a <code>settings.json</code></a></li>
@@ -2501,16 +2389,16 @@ You can download it by running</li>
 </li>
 <li>
 <p>Build unreal engine 4.19.2 docker image. We're going to use CUDA 10.0 in our example.
-    <code>$ ue4-docker build 4.19.2 --cuda=10.0 --no-full</code></p>
-<ul>
+   <code>$ ue4-docker build 4.19.2 --cuda=10.0 --no-full</code></p>
+</li>
 <li>[optional] <code>$ ue4-docker clean</code> to free up some space. <a href="https://docs.adamrehn.com/ue4-docker/commands/clean">Details here</a></li>
 <li><code>ue4-docker</code> supports all CUDA version listed on NVIDIA's cudagl dockerhub <a href="https://hub.docker.com/r/nvidia/cudagl/">here</a>.</li>
-<li>Please see <a href="https://docs.adamrehn.com/ue4-docker/building-images/advanced-build-options">this page</a> for advanced configurations using <code>ue4-docker</code></li>
-</ul>
+<li>
+<p>Please see <a href="https://docs.adamrehn.com/ue4-docker/building-images/advanced-build-options">this page</a> for advanced configurations using <code>ue4-docker</code></p>
 </li>
 <li>
 <p>Disk space:</p>
-<ul>
+</li>
 <li>The unreal images and containers can take up a lot of space, especially if you try more than one version.</li>
 <li>Here's a list of useful links to monitor space used by docker and clean up intermediate builds:<ul>
 <li><a href="https://docs.adamrehn.com/ue4-docker/read-these-first/large-container-images-primer">Large container images primer</a></li>
@@ -2521,20 +2409,16 @@ You can download it by running</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <h4 id="building-autonomysim-inside-ue4-docker-container">Building AutonomySim inside UE4 docker container<a class="headerlink" href="#building-autonomysim-inside-ue4-docker-container" title="Permanent link">#</a></h4>
 <ul>
 <li>Build AutonomySim docker image (which lays over the unreal image we just built)
-  Below are the default arguments.<ul>
+  Below are the default arguments.</li>
 <li><code>--base_image</code>: This is image over which we'll install AutonomySim. We've tested on <code>adamrehn/ue4-engine:4.19.2-cudagl10.0</code>. See <a href="https://docs.adamrehn.com/ue4-docker/building-images/available-container-images">ue4-docker</a> for other versions.</li>
-<li><code>--target_image</code> is the desired name of your docker image.
-   Defaults to <code>AutonomySim_source</code> with same tag as the base image</li>
+<li><code>--target_image</code> is the desired name of your docker image.</li>
 </ul>
-</li>
-</ul>
-<pre><code class="language-bash">$ cd AutonomySim/docker;
-$ python build_AutonomySim_image.py \
+<p>Defaults to <code>AutonomySim_source</code> with same tag as the base image</p>
+<pre><code class="language-bash">cd AutonomySim/docker;
+python build_AutonomySim_image.py \
    --source \
    ----base_image adamrehn/ue4-engine:4.19.2-cudagl10.0 \
    --target_image=AutonomySim_source:4.19.2-cudagl10.0
@@ -2560,15 +2444,15 @@ $ python build_AutonomySim_image.py \
 </ul>
 <h4 id="misc-packaging-unreal-environments-in-autonomysim_source-containers">[Misc] Packaging Unreal Environments in <code>AutonomySim_source</code> containers<a class="headerlink" href="#misc-packaging-unreal-environments-in-autonomysim_source-containers" title="Permanent link">#</a></h4>
 <ul>
-<li>Let's take the Blocks environment as an example.
-    In the following script, specify the full path to your unreal uproject file by <code>project</code> and the directory where you want the binaries to be placed by <code>archivedirectory</code></li>
+<li>Let's take the Blocks environment as an example. In the following script, specify the full path to your unreal uproject file by <code>project</code> and the directory where you want the binaries to be placed by <code>archivedirectory</code></li>
 </ul>
-<pre><code class="language-bash">$ /home/ue4/UnrealEngine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun -platform=Linux -clientconfig=Shipping -serverconfig=Shipping -noP4 -cook -allmaps -build -stage -prereqs -pak -archive \
--archivedirectory=/home/ue4/Binaries/Blocks/ \
--project=/home/ue4/AutonomySim/Unreal/Environments/Blocks/Blocks.uproject
+<pre><code class="language-bash">/home/ue4/UnrealEngine/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
+   -platform=Linux -clientconfig=Shipping -serverconfig=Shipping -noP4 \
+   -cook -allmaps -build -stage -prereqs -pak -archive \
+   -archivedirectory=/home/ue4/Binaries/Blocks/ \
+   -project=/home/ue4/AutonomySim/Unreal/Environments/Blocks/Blocks.uproject
 </code></pre>
-<p>This would create a Blocks binary in <code>/home/ue4/Binaries/Blocks/</code>.
-You can test it by running <code>/home/ue4/Binaries/Blocks/LinuxNoEditor/Blocks.sh -windowed</code></p>
+<p>This would create a Blocks binary in <code>/home/ue4/Binaries/Blocks/</code>. You can test it by running <code>/home/ue4/Binaries/Blocks/LinuxNoEditor/Blocks.sh -windowed</code></p>
 <h3 id="specifying-settingsjson">Specifying settings.json<a class="headerlink" href="#specifying-settingsjson" title="Permanent link">#</a></h3>
 <h4 id="autonomysim_binary-docker-image"><code>AutonomySim_binary</code> docker image<a class="headerlink" href="#autonomysim_binary-docker-image" title="Permanent link">#</a></h4>
 <ul>
@@ -2576,23 +2460,24 @@ You can test it by running <code>/home/ue4/Binaries/Blocks/LinuxNoEditor/Blocks.
 <li>Hence, we can load any settings file by simply modifying <code>PATH_TO_YOUR/settings.json</code> by modifying the following snippets in <a href="https://github.com/nervosys/AutonomySim/blob/main/docker/run_AutonomySim_image_binary.sh"><code>run_AutonomySim_image_binary.sh</code></a></li>
 </ul>
 <pre><code class="language-bash">nvidia-docker run --runtime=nvidia -it \
-      -v $PATH_TO_YOUR/settings.json:/home/AutonomySim_user/Documents/AutonomySim/settings.json \
-      -v $UNREAL_BINARY_PATH:$UNREAL_BINARY_PATH \
-      -e SDL_VIDEODRIVER=$SDL_VIDEODRIVER_VALUE \
-      -e SDL_HINT_CUDA_DEVICE='0' \
-      --net=host \
-      --env=&quot;DISPLAY=$DISPLAY&quot; \
-      --env=&quot;QT_X11_NO_MITSHM=1&quot; \
-      --volume=&quot;/tmp/.X11-unix:/tmp/.X11-unix:rw&quot; \
-      -env=&quot;XAUTHORITY=$XAUTH&quot; \
-      --volume=&quot;$XAUTH:$XAUTH&quot; \
-      --rm \
-      $DOCKER_IMAGE_NAME \
-      /bin/bash -c &quot;$UNREAL_BINARY_COMMAND&quot;
+   -v $PATH_TO_YOUR/settings.json:/home/AutonomySim_user/Documents/AutonomySim/settings.json \
+   -v $UNREAL_BINARY_PATH:$UNREAL_BINARY_PATH \
+   -e SDL_VIDEODRIVER=$SDL_VIDEODRIVER_VALUE \
+   -e SDL_HINT_CUDA_DEVICE='0' \
+   --net=host \
+   --env=&quot;DISPLAY=$DISPLAY&quot; \
+   --env=&quot;QT_X11_NO_MITSHM=1&quot; \
+   --volume=&quot;/tmp/.X11-unix:/tmp/.X11-unix:rw&quot; \
+   -env=&quot;XAUTHORITY=$XAUTH&quot; \
+   --volume=&quot;$XAUTH:$XAUTH&quot; \
+   --rm $DOCKER_IMAGE_NAME \
+   /bin/bash -c &quot;$UNREAL_BINARY_COMMAND&quot;
 </code></pre>
-<p><strong>Note:</strong> Docker version &gt;=19.03 (check using <code>docker -v</code>), natively supports Nvidia GPUs, so run using <code>--gpus all</code> flag as given -</p>
-<pre><code class="language-bash">docker run --gpus all -it \
-    ...
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Docker version &gt;=19.03 (check using <code>docker -v</code>), natively supports Nvidia GPUs, so run using <code>--gpus all</code> flag as given -</p>
+<pre><code class="language-bash">docker run --gpus all -it ...
 </code></pre>
 <h4 id="autonomysim_source-docker-image"><code>AutonomySim_source</code> docker image<a class="headerlink" href="#autonomysim_source-docker-image" title="Permanent link">#</a></h4>
 <ul>
@@ -2609,8 +2494,7 @@ You can test it by running <code>/home/ue4/Binaries/Blocks/LinuxNoEditor/Blocks.
       --volume=&quot;/tmp/.X11-unix:/tmp/.X11-unix:rw&quot; \
       -env=&quot;XAUTHORITY=$XAUTH&quot; \
       --volume=&quot;$XAUTH:$XAUTH&quot; \
-      --rm \
-   $DOCKER_IMAGE_NAME
+      --rm $DOCKER_IMAGE_NAME
 </code></pre>
 
 
