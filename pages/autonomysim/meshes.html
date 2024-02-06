@@ -1327,7 +1327,7 @@
         
   
   <span class="md-ellipsis">
-    Multiple Vehicles in AutonomySim
+    Multiple Vehicles
   </span>
   
 
@@ -2087,14 +2087,12 @@
 
 
 <h1 id="how-to-access-meshes-in-autonomysim">How to Access Meshes in AutonomySim<a class="headerlink" href="#how-to-access-meshes-in-autonomysim" title="Permanent link">#</a></h1>
-<p>AutonomySim supports the ability to access the static meshes that make up the scene.</p>
+<p><code>AutonomySim</code> supports the ability to access the static meshes that make up the scene.</p>
 <h2 id="mesh-structure">Mesh structure<a class="headerlink" href="#mesh-structure" title="Permanent link">#</a></h2>
 <p>Each mesh is represented with the below struct.</p>
 <pre><code class="language-cpp">struct MeshPositionVertexBuffersResponse {
-
     Vector3r position;
     Quaternionr orientation;
-
     std::vector&lt;float&gt; vertices;
     std::vector&lt;uint32_t&gt; indices;
     std::string name;

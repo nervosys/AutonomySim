@@ -1318,7 +1318,7 @@
         
   
   <span class="md-ellipsis">
-    Multiple Vehicles in AutonomySim
+    Multiple Vehicles
   </span>
   
 
@@ -2069,7 +2069,7 @@
 
 
 <h1 id="modifying-recording-data">Modifying Recording Data<a class="headerlink" href="#modifying-recording-data" title="Permanent link">#</a></h1>
-<p>AutonomySim has a <a href="settings.html#recording">Recording feature</a> to easily collect data and images. The <a href="apis.md#recording-apis">Recording APIs</a> also allows starting and stopping the recording using API.</p>
+<p><code>AutonomySim</code> has a <a href="settings.html#recording">Recording feature</a> to easily collect data and images. The <a href="apis.md#recording-apis">Recording APIs</a> also allows starting and stopping the recording using API.</p>
 <p>However, the data recorded by default might not be sufficient for your use cases, and it might be preferable to record additional data such as IMU, GPS sensors, Rotor speed for copters, etc. You can use the existing Python and C++ APIs to get the information and store it as required, especially for Lidar. Another option for adding small fields such as GPS or internal data such as Unreal position or something else is possible through modifying the recording methods inside AutonomySim. This page describes the specific methods which you might need to change.</p>
 <p>The recorded data is written in a <code>AutonomySim_rec.txt</code> file in a tab-separated format, with images in an <code>images/</code> folder. The entire folder is by default present in the <code>Documents</code> folder (or specified in settings) with the timestamp of when the recording started in <code>%Y-%M-%D-%H-%M-%S</code> format.</p>
 <p>Car vehicle records the following fields:</p>
@@ -2084,8 +2084,8 @@
 <p>To record additional data for multirotor, you can add a similar method in <a href="https://github.com/nervosys/AutonomySim/tree/main/Unreal/Plugins/AutonomySim/Source/Vehicles/Multirotor">MultirotorPawnSimApi.cpp/h</a> files which overrides the base class implementation and append other data. The currently logged data can also be modified and removed as needed.</p>
 <p>E.g. recording GPS, IMU and Barometer data also for multirotor -</p>
 <pre><code class="language-cpp">// MultirotorPawnSimApi.cpp
-std::string MultirotorPawnSimApi::getRecordFileLine(bool is_header_line) const
-{
+std::string MultirotorPawnSimApi::getRecordFileLine(bool is_header_line) const {
+
     std::string common_line = PawnSimApi::getRecordFileLine(is_header_line);
     if (is_header_line) {
         return common_line +
@@ -2160,13 +2160,13 @@ virtual std::string getRecordFileLine(bool is_header_line) const override;
         
         
           
-          <a href="multi_vehicle.html" class="md-footer__link md-footer__link--next" aria-label="Next: Multiple Vehicles in AutonomySim">
+          <a href="multi_vehicle.html" class="md-footer__link md-footer__link--next" aria-label="Next: Multiple Vehicles">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Multiple Vehicles in AutonomySim
+                Multiple Vehicles
               </div>
             </div>
             <div class="md-footer__button md-icon">
