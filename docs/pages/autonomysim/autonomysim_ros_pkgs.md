@@ -1,6 +1,6 @@
-# AutonomySim_ros_pkgs
+# AutonomySim ROS Packages
 
-A ROS wrapper over the AutonomySim C++ client library.
+`AutonomySim_ros_pkgs`: a `ROS` wrapper over the `AutonomySim` C++ client library.
 
 ## Setup
 
@@ -48,7 +48,7 @@ source ~/.bashrc
 
 ```shell
 cd ros;
-catkin build; # or catkin_make
+catkin build;  # or catkin_make
 ```
 
 If your default GCC isn't 8 or greater (check using `gcc --version`), then compilation will fail. In that case, use `gcc-8` explicitly as follows-
@@ -65,7 +65,7 @@ roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch;
 roslaunch AutonomySim_ros_pkgs rviz.launch;
 ```
 
-   **Note**: If you get an error running `roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch`, run `catkin clean` and try again
+  **Note**: If you get an error running `roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch`, run `catkin clean` and try again
 
 ## Using AutonomySim ROS wrapper
 
@@ -220,29 +220,28 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
 #### Global params
 
 - Dynamic constraints. These can be changed in `dynamic_constraints.launch`:
-    * `/max_vel_horz_abs` [double]
+  * `/max_vel_horz_abs` [double]
   Maximum horizontal velocity of the drone (meters/second)
 
-    * `/max_vel_vert_abs` [double]
+  * `/max_vel_vert_abs` [double]
   Maximum vertical velocity of the drone (meters/second)
 
-    * `/max_yaw_rate_degree` [double]
+  * `/max_yaw_rate_degree` [double]
   Maximum yaw rate (degrees/second)
 
-## Misc
+## Miscellaneous
 
-### Setting up the Build Environment on Windows10 using WSL1 or WSL2
+### Setting up the Build Environment on Windows 10/11 using WSL1 or WSL2
 
 These setup instructions describe how to setup "Bash on Ubuntu on Windows" (aka "Windows Subsystem for Linux").
 
-It involves enabling the built-in Windows Linux environment (WSL) in Windows10, installing a compatible Linux OS image, and finally installing the build environment as if it were a normal Linux system.
+It involves enabling the built-in Windows Linux environment (WSL) in Windows, installing a compatible Linux OS image, and finally installing the build environment as if it were a normal Linux system.
 
-Upon completion, you will be able to build and run the ros wrapper as in a native linux machine.
+Upon completion, you will be able to build and run the ros wrapper as in a native Linux machine.
 
-##### WSL1 vs WSL2
+##### WSL1 versus WSL2
 
-WSL2 is the latest version of the Windows10 Subsystem for Linux. It is many times faster than WSL1 (if you use the native file system in `/home/...` rather
-than Windows mounted folders under `/mnt/...`) and is therefore much preferred for building the code in terms of speed.
+WSL2 is the latest version of the Windows Subsystem for Linux (WSL). It is many times faster than WSL1 (if you use the native file system in `/home/...` rather than Windows mounted folders under `/mnt/...`) and is therefore preferred for building the code in terms of speed.
 
 Once installed, you can switch between WSL1 or WSL2 versions as you prefer.
 
@@ -267,20 +266,20 @@ Once installed, you can switch between WSL1 or WSL2 versions as you prefer.
     - For code editing you can install VSCode inside WSL.
     - Windows 10 includes "Windows Defender" virus scanner. It will slow down WSL quite a bit. Disabling it greatly improves disk performance but increases your risk to viruses so disable at your own risk. Here is one of many resources/videos that show you how to disable it: [How to Disable or Enable Windows Defender on Windows 10](https://youtu.be/FmjblGay3AM)
 
-##### File System Access between WSL and Windows10
+##### File System Access between WSL and Windows 10/11
 
-From within WSL, the Windows drives are referenced in the /mnt directory. For example, in order to list documents within your (<username>) documents folder:
+Within WSL, the Windows drives are referenced in the `/mnt` directory. For example, in order to list documents within your (<username>) documents folder:
 
-    `ls /mnt/c/'Documents and Settings'/<username>/Documents`
-    or
-    `ls /mnt/c/Users/<username>/Documents`
+`ls /mnt/c/'Documents and Settings'/<username>/Documents`
+or
+`ls /mnt/c/Users/<username>/Documents`
 
 
 From within Windows, the WSL distribution's files are located at (type in windows Explorer address bar):
 
-   `\\wsl$\<distribution name>`
-   e.g.
-   `\\wsl$\Ubuntu-18.04`
+`\\wsl$\<distribution name>`
+e.g.,
+`\\wsl$\Ubuntu-18.04`
 
 ##### How to run AutonomySim on Windows and ROS wrapper on WSL
 
@@ -305,7 +304,7 @@ cd tools
 docker build -t AutonomySim-ros -f Dockerfile-ROS .
 ```
 
-To run, replace the path of the AutonomySim folder below -
+To run, replace the path of the AutonomySim folder below:
 
 ```shell
 docker run --rm -it --net=host -v <your-AutonomySim-folder-path>:/home/testuser/AutonomySim AutonomySim-ros:latest bash

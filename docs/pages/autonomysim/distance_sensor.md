@@ -18,8 +18,12 @@ For example, to make the sensor point towards the ground (for altitude measureme
 "Distance": {
     "SensorType": 5,
     "Enabled" : true,
-    "Yaw": 0, "Pitch": -90, "Roll": 0
+    "Yaw": 0,
+    "Pitch": -90,
+    "Roll": 0
 }
 ```
 
-**Note:** For Cars, the sensor is placed 1 meter above the vehicle center by default. This is required since otherwise the sensor gives strange data due it being inside the vehicle. This doesn't affect the sensor values say when measuring the distance between 2 cars. See [`PythonClient/car/distance_sensor_multi.py`](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/car/distance_sensor_multi.py) for an example usage.
+!!! note
+
+    For Cars, the sensor is placed 1 meter above the vehicle center by default. This is required since otherwise the sensor gives strange data due it being inside the vehicle. This doesn't affect the sensor values say when measuring the distance between 2 cars. See [`PythonClient/car/distance_sensor_multi.py`](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/car/distance_sensor_multi.py) for an example usage.

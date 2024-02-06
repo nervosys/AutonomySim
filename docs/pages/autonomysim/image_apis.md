@@ -23,8 +23,7 @@ png_image = client.simGetImage("0", AutonomySim.ImageType.Scene)
 ```cpp
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
 
-int getOneImage() 
-{
+int getOneImage() {
     using namespace nervosys::autonomylib;
     
     // for car use CarRpcLibClient
@@ -94,8 +93,7 @@ AutonomySim.write_png(os.path.normpath(filename + '.png'), img_rgb)
 ### C++
 
 ```cpp
-int getStereoAndDepthImages() 
-{
+int getStereoAndDepthImages() {
     using namespace nervosys::autonomylib;
     
     typedef VehicleCameraBase::ImageRequest ImageRequest;

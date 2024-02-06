@@ -1,11 +1,14 @@
-# Modern C++ Coding Guidelines
+# C++ Coding Guidelines
 
-We are using Modern C++11. Smart pointers, Lambdas, and C++11 multithreading primitives are your friend.
+We adopt the modern C++[11..23] standards. Smart pointers, lambdas, and multithreading primitives are your friend.
 
 ## Quick Note
 
-The great thing about "standards" is that there are many to chose from: [ISO](https://isocpp.org/wiki/faq/coding-standards), [Sutter &amp; Stroustrup](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md), [ROS](http://wiki.ros.org/CppStyleGuide), [LINUX](https://www.kernel.org/doc/Documentation/process/coding-style.rst), [Google's](https://google.github.io/styleguide/cppguide.html), [Microsoft's](https://msdn.microsoft.com/en-us/library/888a6zcz.aspx), [CERN's](http://atlas-computing.web.cern.ch/atlas-computing/projects/qa/draft_guidelines.html), [GCC's](https://gcc.gnu.org/wiki/CppConventions), [ARM's](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0475c/CJAJAJCJ.html), [LLVM's](http://llvm.org/docs/CodingStandards.html) and probably 
-thousands of others. Unfortunately most of these can't even agree on something as basic as how to name a class or a constant. This is probably due to the fact that these standards often carry lots of  legacy issues due to supporting existing code bases. The intention behind this document is to create guidance that remains as close to ISO, Sutter &amp; Stroustrup and ROS while resolving as many conflicts, disadvantages and inconsistencies as possible among them.
+The great thing about 'standards' is that there are many to chose from: [ISO](https://isocpp.org/wiki/faq/coding-standards), [Sutter &amp; Stroustrup](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md), [ROS](http://wiki.ros.org/CppStyleGuide), [Linux](https://www.kernel.org/doc/Documentation/process/coding-style.rst), [Google](https://google.github.io/styleguide/cppguide.html), [Microsoft](https://msdn.microsoft.com/en-us/library/888a6zcz.aspx), [CERN](http://atlas-computing.web.cern.ch/atlas-computing/projects/qa/draft_guidelines.html), [GCC](https://gcc.gnu.org/wiki/CppConventions), [ARM](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0475c/CJAJAJCJ.html), [LLVM](http://llvm.org/docs/CodingStandards.html), [Epic Games](https://docs.unrealengine.com/5.3/en-US/epic-cplusplus-coding-standard-for-unreal-engine/) and probably thousands of others. Unfortunately, most of these disagree about basic things, such as how to name a class or a constant. This is due to the fact that the standards often inherit legacy issues in order to support existing codebases. The intention behind this document is to provide guidance that remains as close to ISO, Sutter &amp; Stroustrup and ROS while resolving as many conflicts, disadvantages and inconsistencies as possible among them.
+
+!!! note
+
+    Since we have dropped support for all other game engines, we will be refactoring our C++ code to better comply with the Epic Games standard for Unreal Engine version 5.3 or greater.
 
 ## clang-format
 

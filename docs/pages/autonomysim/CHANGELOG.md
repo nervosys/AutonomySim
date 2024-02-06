@@ -2,6 +2,10 @@
 
 Below is summarized list of important changes. This does not include minor/less important changes or bug fixes or documentation update. This list updated every few months. For complete detailed changes, please review [commit history](https://github.com/nervosys/AutonomySim/commits/main).
 
+### February 2024
+* AutonomySim relaunched as clean-slate repository.
+* Major documentation update.
+
 ### October 2023
 * AutonomySim fork created.
 * Migration from Batch/Command to PowerShell.

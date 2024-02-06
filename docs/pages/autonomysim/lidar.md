@@ -1,13 +1,12 @@
-# How to Use Lidar in AutonomySim
+# LiDAR Sensor
 
-AutonomySim supports Lidar for multirotors and cars.
+`AutonomySim` supports light detection-and-ranging (LiDAR) sensors.
 
-The enablement of lidar and the other lidar settings can be configured via AutonomySimSettings json.
-Please see [general sensors](sensors.md) for information on configruation of general/shared sensor settings.
+The enablement of lidar and the other lidar settings can be configured via `AutonomySimSettings.json`. Please see [general sensors](sensors.md) for information on configruation of general/shared sensor settings.
 
-## Enabling lidar on a vehicle
+## Enabling LiDAR on a Vehicle
 
-* By default, lidars are not enabled. To enable lidar, set the SensorType and Enabled attributes in settings json.
+* By default, LiDAR is disabled. To enable it, set the SensorType and Enabled attributes in settings json:
 
 ```json
     "Lidar1": {
@@ -18,7 +17,7 @@ Please see [general sensors](sensors.md) for information on configruation of gen
 
 * Multiple lidars can be enabled on a vehicle.
 
-## Lidar configuration
+## LiDAR configuration
 
 The following parameters can be configured right now via settings json.
 
@@ -87,7 +86,7 @@ For example:
 
 ## Server side visualization for debugging
 
-By default, the lidar points are not drawn on the viewport. To enable the drawing of hit laser points on the viewport, please enable setting `DrawDebugPoints` via settings json.
+By default, the LiDAR points are not drawn on the viewport. To enable the drawing of hit laser points on the viewport, please enable setting `DrawDebugPoints` via settings json.
 
 ```json
     "Lidar1": {
@@ -96,7 +95,9 @@ By default, the lidar points are not drawn on the viewport. To enable the drawin
     },
 ```
 
-**Note:** Enabling `DrawDebugPoints` can cause excessive memory usage and crash in releases `v1.3.1`, `v1.3.0`. This has been fixed in the main branch and should work in later releases
+!!! note
+
+	Enabling `DrawDebugPoints` can cause excessive memory usage and crash in releases `v1.3.1`, `v1.3.0`. This has been fixed in the main branch and should work in later releases
 
 ## Client API
 
@@ -108,7 +109,7 @@ Use `getLidarData()` API to retrieve the Lidar data.
     * The frame for the points in the output is configurable using "DataFrame" attribute -
         * "" or `VehicleInertialFrame` -- default; returned points are in vehicle inertial frame (in NED, in meters)
         * `SensorLocalFrame` -- returned points are in lidar local frame (in NED, in meters)
-* Lidar Pose:
+* LiDAR Pose:
     * Lidar pose in the vehicle inertial frame (in NED, in meters)
     * Can be used to transform points to other frames.
 * Segmentation: The segmentation of each lidar point's collided object
@@ -122,4 +123,4 @@ Use `getLidarData()` API to retrieve the Lidar data.
 
 ## Coming soon
 
-* Visualization of lidar data on client side.
+* Visualization of LiDAR data on client side.

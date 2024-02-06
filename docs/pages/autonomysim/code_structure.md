@@ -42,12 +42,12 @@ DroneShell demonstrates how to connect to the simulator using UDP.  The simulato
 
 [PythonClient](https://github.com/nervosys/AutonomySim/tree/main/PythonClient) contains Python API wrapper files and sample programs demonstrating their uses.
 
-## Contributing
-
-See [Contribution Guidelines](CONTRIBUTING.md)
-
 ## Unreal Framework
 
 The following picture illustrates how AutonomySim is loaded and invoked by the Unreal Game Engine:
 
 ![AutonomySimConstruction](images/AutonomySim_startup.png)
+
+## Contributing
+
+See [Contribution Guidelines](CONTRIBUTING.md)

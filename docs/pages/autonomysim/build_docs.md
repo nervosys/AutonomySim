@@ -1,4 +1,4 @@
-# Build the Documentation
+# Generating the Documentation
 
 > [!NOTE]
 > This is only useful if you want to host your own `AutonomySim` documentation site (e.g., in a secure enclave).
@@ -26,6 +26,12 @@ micromamba create -n mkdocs python=3.11 pip
 micromamba activate mkdocs
 pip install mkdocs mkdocs-material pymdown-extensions essentials-openapi
 mkdocs --version
+```
+
+## Edit the Build Configuration File
+
+```bash
+code mkdocs.yaml
 ```
 
 ## Build and Deploy Documentation

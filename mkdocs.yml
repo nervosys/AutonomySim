@@ -1,34 +1,73 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 site_name: AutonomySim
 site_description: "An open-source automous systems simulator based on Unreal Engine"
 site_url: https://github.com/nervosys/AutonomySim
 site_dir: build_docs
 
+repo_name: nervosys/AutonomySim
 repo_url: https://github.com/nervosys/AutonomySim
 remote_branch: gh-pages
 remote_name: origin
+edit_uri: edit/master/docs/
 
 copyright: Copyright &copy; 2024 Nervosys, LLC
 
 theme:
-        name: readthedocs # material mkdocs
-
-icon:
-        logo: ""
+        name: material # readthedocs mkdocs
+        features:
+                - navigation.instant
+                - navigation.path
+                - navigation.footer
+        font:
+                text: Roboto
+                code: Roboto Mono
+        palette:
+                - media: "(prefers-color-scheme)"
+                  toggle:
+                          icon: material/brightness-auto
+                          name: Switch to light mode
+                - media: "(prefers-color-scheme: light)"
+                  scheme: nervosys # default
+                  toggle:
+                          icon: material/brightness-7
+                          name: Switch to dark mode
+                - media: "(prefers-color-scheme: dark)"
+                  scheme: slate
+                  toggle:
+                          icon: material/brightness-4
+                          name: Switch to system preference
+        favicon: images/rune.svg
+        icon:
+                logo: material/library
+                repo: fontawesome/brands/git-alt
+                edit: material/pencil
+                view: material/eye
 
 plugins:
         - search
+        - offline
+        #- social
+        #- optimize
 
 markdown_extensions:
+        - admonition
         - toc:
                   permalink: "#"
         - pymdownx.arithmatex:
                   generic: true
-        - pymdownx.extra:
-        - admonition
+
+extra_css:
+        - stylesheets/extra.css
+
+extra_javascript:
+        - javascripts/extra.js
+        - https://polyfill.io/v3/polyfill.min.js?features=es6
+        - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra:
         highlightjs: true
-        version: master
+        version:
+                default: latest
         feature:
                 tabs: true
         palette:
@@ -38,111 +77,112 @@ extra:
         social:
                 - icon: fontawesome/brands/github-alt
                   link: https://github.com/nervosys/AutonomySim
-
-extra_javascript:
-        - https://polyfill.io/v3/polyfill.min.js?features=es6
-        - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-nav:
-        - "Home":
-                  - "Home": "README.md"
-        - "Changelog": "CHANGELOG.md"
-        - "Building AutonomySim":
-                  - "Download Binaries": "use_precompiled.md"
-                  - "Build on Windows": "build_windows.md"
-                  - "Build on Linux": "build_linux.md"
-                  - "Build on macOS": "build_macos.md"
-                  - "Docker on Linux": "docker_ubuntu.md"
-                  - "AutonomySim on Azure": "azure.md"
-                  - "Custom Unreal Environment": "unreal_custenv.md"
-                  - "AutonomySim with Unity": "Unity.md"
-                  - "Custom Unity Environment": "custom_unity_environments.md"
-                  - "Unity APIs": "unity_api_support.md"
-                  - "FAQ": "build_faq.md"
-        - "Using AutonomySim":
-                  - "Core APIs": "apis.md"
-                  - "Image APIs": "image_apis.md"
-                  - "C++ APIs": "apis_cpp.md"
-                  - "API Reference Docs": "api_docs/html/index.html"
-                  - "Development Workflow": "dev_workflow.md"
-                  - "Settings": "settings.md"
-                  - "Camera Views": "camera_views.md"
-                  - "Car Mode": "using_car.md"
-                  - "Remote Control": "remote_control.md"
-                  - "XBox Controller": "xbox_controller.md"
-                  - "Steering Wheel": "steering_wheel_installation.md"
-                  - "Multiple Vehicles": "multi_vehicle.md"
-                  - "Sensors":
-                            - "Sensors": "sensors.md"
-                            - "LIDAR": "lidar.md"
-                            - "Distance Sensor": "distance_sensor.md"
-                            - "Infrared Camera": "InfraredCamera.md"
-                  - "ROS: AutonomySim ROS Wrapper": "AutonomySim_ros_pkgs.md"
-                  - "ROS: AutonomySim Tutorial Packages": "AutonomySim_tutorial_pkgs.md"
-                  - "Import Gazebo models": "gazebo_drone.md"
-                  - "Domain Randomization": "retexturing.md"
-                  - "Mesh Vertex Buffers": "meshes.md"
-                  - "Playing Logs": "playback.md"
-                  - "Voxel Grid Generator": "voxel_grid.md"
-                  - "Event camera": "event_sim.md"
-        - "Design":
-                  - "Architecture": "design.md"
-                  - "Code Structure": "code_structure.md"
-                  - "Adding new APIs": "adding_new_apis.md"
-                  - "Modifying Recording Data": "modify_recording_data.md"
-                  - "Coding Guidelines": "coding_guidelines.md"
-                  - "Flight Controller": "robot_controller.md"
-                  - "Simple Flight": "simple_flight.md"
-                  - "Hello Drone": "hello_drone.md"
-        - "External Flight Controllers":
-                  - "MavLink and PX4":
-                            - "PX4 Setup for AutonomySim": "px4_setup.md"
-                            - "PX4 in SITL": "px4_sitl.md"
-                            - "PX4 SITL with WSL 2": "px4_sitl_wsl2.md"
-                            - "PX4 Lockstep": "px4_lockstep.md"
-                            - "PX4 Multi-vehicle in SITL": "px4_multi_vehicle.md"
-                            - "AutonomySim with Pixhawk": "https://youtu.be/1oY8Qu5maQQ"
-                            - "PX4 Setup with AutonomySim": "https://youtu.be/HNWdYrtw3f0"
-                            - "Debugging Attitude Estimation": "https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be"
-                            - "Intercepting MavLink Messages": "https://github.com/nervosys/AutonomySim/wiki/Intercepting-MavLink-messages"
-                            - "Rapid Descent on PX4 Drones": "https://github.com/nervosys/AutonomySim/wiki/Rapid-Descent-on-PX4-drones"
-                            - "Building PX4": "px4_build.md"
-                            - "PX4/MavLink Logging": "px4_logging.md"
-                            - "MavLink LogViewer": "log_viewer.md"
-                            - "MavLinkCom": "mavlinkcom.md"
-                            - "MavLink MoCap": "mavlinkcom_mocap.md"
-                  - "ArduPilot":
-                            - "ArduPilot SITL Setup": "https://ardupilot.org/dev/docs/building-the-code.html"
-                            - "AutonomySim & ArduPilot": "https://ardupilot.org/dev/docs/sitl-with-AirSim.html"
-        - "Upgrading":
-                  - "Upgrading Unreal": "unreal_upgrade.md"
-                  - "Upgrading APIs": "upgrade_apis.md"
-                  - "Upgrading Settings": "upgrade_settings.md"
-        - "Contributed Tutorials":
-                  - "Reinforcement Learning": "reinforcement_learning.md"
-                  - "Using Environments from Marketplace": "https://www.youtube.com/watch?v=y09VbdQWvQY"
-                  - "Simple Collision Avoidance": "https://github.com/simondlevy/AirSimTensorFlow"
-                  - "Autonomous Driving on Azure": "https://aka.ms/AutonomousDrivingCookbook"
-                  - "Building Hexacopter": "https://github.com/nervosys/AutonomySim/wiki/hexacopter"
-                  - "Moving on Path Demo": "https://github.com/nervosys/AutonomySim/wiki/moveOnPath-demo"
-                  - "Building Point Clouds": "point_clouds.md"
-                  - "Surveying Using Drone": "drone_survey.md"
-                  - "Orbit Trajectory": "orbit.md"
-                  - "Importing a custom multirotor mesh": "https://youtu.be/Bp86WiLUC80"
-                  - "Object Detection": "object_detection.md"
-                  - "AutonomySim with MAVROS and PX4": "https://youtu.be/ZonkdMcwXH4"
-        - "Misc":
-                  - "AutonomySim on Real Drones": "custom_drone.md"
-                  - "Installing cmake on Linux": "cmake_linux.md"
-                  - "Tips for Busy HDD": "hard_drive.md"
-                  - "pfm format": "pfm.md"
-                  - "Setting up Unreal Environment": "unreal_proj.md"
-                  - "Blocks Environment": "unreal_blocks.md"
-                  - "Who is Using AutonomySim": "who_is_using.md"
-                  - "Working with UE Plugin Contents": "working_with_plugin_contents.md"
-                  - "Formula Student Technion Self-drive": "https://github.com/nervosys/AutonomySim/wiki/technion"
-        - "Support":
-                  - "FAQ": "faq.md"
-                  - "Support": "SUPPORT.md"
-                  - "Create Issue": "create_issue.md"
-                  - "Contribute": "CONTRIBUTING.md"
+                - icon: fontawesome/brands/discord
+                  link: https://discord.gg/x84JXYje
+                - icon: fontawesome/brands/x-twitter
+                  link: https://x.com/nervosys
+        generator: false
+#nav:
+#        - "Home":
+#                  - "Home": "../README.md"
+#        - "Changelog": "CHANGELOG.md"
+#        - "Building AutonomySim":
+#                  - "Download Binaries": "use_precompiled.md"
+#                  - "Build on Windows": "build_windows.md"
+#                  - "Build on Linux": "build_linux.md"
+#                  - "Build on macOS": "build_macos.md"
+#                  - "Docker on Linux": "docker_ubuntu.md"
+#                  - "AutonomySim on Azure": "azure.md"
+#                  - "Custom Unreal Environment": "unreal_custenv.md"
+#                  - "AutonomySim with Unity": "Unity.md"
+#                  - "Custom Unity Environment": "custom_unity_environments.md"
+#                  - "Unity APIs": "unity_api_support.md"
+#                  - "FAQ": "build_faq.md"
+#        - "Using AutonomySim":
+#                  - "Core APIs": "apis.md"
+#                  - "Image APIs": "image_apis.md"
+#                  - "C++ APIs": "apis_cpp.md"
+#                  - "API Reference Docs": "api_docs/html/index.html"
+#                  - "Development Workflow": "dev_workflow.md"
+#                  - "Settings": "settings.md"
+#                  - "Camera Views": "camera_views.md"
+#                  - "Car Mode": "using_car.md"
+#                  - "Remote Control": "remote_control.md"
+#                  - "XBox Controller": "xbox_controller.md"
+#                  - "Steering Wheel": "steering_wheel_installation.md"
+#                  - "Multiple Vehicles": "multi_vehicle.md"
+#                  - "Sensors":
+#                            - "Sensors": "sensors.md"
+#                            - "LIDAR": "lidar.md"
+#                            - "Distance Sensor": "distance_sensor.md"
+#                            - "Infrared Camera": "InfraredCamera.md"
+#                  - "ROS: AutonomySim ROS Wrapper": "AutonomySim_ros_pkgs.md"
+#                  - "ROS: AutonomySim Tutorial Packages": "AutonomySim_tutorial_pkgs.md"
+#                  - "Import Gazebo models": "gazebo_drone.md"
+#                  - "Domain Randomization": "retexturing.md"
+#                  - "Mesh Vertex Buffers": "meshes.md"
+#                  - "Playing Logs": "playback.md"
+#                  - "Voxel Grid Generator": "voxel_grid.md"
+#                  - "Event camera": "event_sim.md"
+#        - "Design":
+#                  - "Architecture": "design.md"
+#                  - "Code Structure": "code_structure.md"
+#                  - "Adding new APIs": "adding_new_apis.md"
+#                  - "Modifying Recording Data": "modify_recording_data.md"
+#                  - "Coding Guidelines": "coding_guidelines.md"
+#                  - "Flight Controller": "robot_controller.md"
+#                  - "Simple Flight": "simple_flight.md"
+#                  - "Hello Drone": "hello_drone.md"
+#        - "External Flight Controllers":
+#                  - "MavLink and PX4":
+#                            - "PX4 Setup for AutonomySim": "px4_setup.md"
+#                            - "PX4 in SITL": "px4_sitl.md"
+#                            - "PX4 SITL with WSL 2": "px4_sitl_wsl2.md"
+#                            - "PX4 Lockstep": "px4_lockstep.md"
+#                            - "PX4 Multi-vehicle in SITL": "px4_multi_vehicle.md"
+#                            - "AutonomySim with Pixhawk": "https://youtu.be/1oY8Qu5maQQ"
+#                            - "PX4 Setup with AutonomySim": "https://youtu.be/HNWdYrtw3f0"
+#                            - "Debugging Attitude Estimation": "https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be"
+#                            - "Intercepting MavLink Messages": "https://github.com/nervosys/AutonomySim/wiki/Intercepting-MavLink-messages"
+#                            - "Rapid Descent on PX4 Drones": "https://github.com/nervosys/AutonomySim/wiki/Rapid-Descent-on-PX4-drones"
+#                            - "Building PX4": "px4_build.md"
+#                            - "PX4/MavLink Logging": "px4_logging.md"
+#                            - "MavLink LogViewer": "log_viewer.md"
+#                            - "MavLinkCom": "mavlinkcom.md"
+#                            - "MavLink MoCap": "mavlinkcom_mocap.md"
+#                  - "ArduPilot":
+#                            - "ArduPilot SITL Setup": "https://ardupilot.org/dev/docs/building-the-code.html"
+#                            - "AutonomySim & ArduPilot": "https://ardupilot.org/dev/docs/sitl-with-AirSim.html"
+#        - "Upgrading":
+#                  - "Upgrading Unreal": "unreal_upgrade.md"
+#                  - "Upgrading APIs": "upgrade_apis.md"
+#                  - "Upgrading Settings": "upgrade_settings.md"
+#        - "Contributed Tutorials":
+#                  - "Reinforcement Learning": "reinforcement_learning.md"
+#                  - "Using Environments from Marketplace": "https://www.youtube.com/watch?v=y09VbdQWvQY"
+#                  - "Simple Collision Avoidance": "https://github.com/simondlevy/AirSimTensorFlow"
+#                  - "Autonomous Driving on Azure": "https://aka.ms/AutonomousDrivingCookbook"
+#                  - "Building Hexacopter": "https://github.com/nervosys/AutonomySim/wiki/hexacopter"
+#                  - "Moving on Path Demo": "https://github.com/nervosys/AutonomySim/wiki/moveOnPath-demo"
+#                  - "Building Point Clouds": "point_clouds.md"
+#                  - "Surveying Using Drone": "drone_survey.md"
+#                  - "Orbit Trajectory": "orbit.md"
+#                  - "Importing a custom multirotor mesh": "https://youtu.be/Bp86WiLUC80"
+#                  - "Object Detection": "object_detection.md"
+#                  - "AutonomySim with MAVROS and PX4": "https://youtu.be/ZonkdMcwXH4"
+#        - "Misc":
+#                  - "AutonomySim on Real Drones": "custom_drone.md"
+#                  - "Installing cmake on Linux": "cmake_linux.md"
+#                  - "Tips for Busy HDD": "hard_drive.md"
+#                  - "pfm format": "pfm.md"
+#                  - "Setting up Unreal Environment": "unreal_proj.md"
+#                  - "Blocks Environment": "unreal_blocks.md"
+#                  - "Who is Using AutonomySim": "who_is_using.md"
+#                  - "Working with UE Plugin Contents": "working_with_plugin_contents.md"
+#                  - "Formula Student Technion Self-drive": "https://github.com/nervosys/AutonomySim/wiki/technion"
+#        - "Support":
+#                  - "FAQ": "faq.md"
+#                  - "Support": "SUPPORT.md"
+#                  - "Create Issue": "create_issue.md"
+#                  - "Contribute": "CONTRIBUTING.md"
+#

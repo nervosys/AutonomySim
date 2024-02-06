@@ -1,4 +1,4 @@
-# Using C++ APIs for AutonomySim
+# Using the C++ APIs
 
 Please read [general API doc](apis.md) first if you haven't already. This document describes C++ examples and other C++ specific details.
 

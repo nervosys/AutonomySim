@@ -18,20 +18,20 @@ Let's assume we want the following variables:
 So with these we can compute a square path box using this code:
 
 ```python
-        path = []
-        distance = 0
-        while x < self.boxsize:
-            distance += self.boxsize
-            path.append(Vector3r(x, self.boxsize, z))
-            x += self.stripewidth
-            distance += self.stripewidth
-            path.append(Vector3r(x, self.boxsize, z))
-            distance += self.boxsize
-            path.append(Vector3r(x, -self.boxsize, z))
-            x += self.stripewidth
-            distance += self.stripewidth
-            path.append(Vector3r(x, -self.boxsize, z))
-            distance += self.boxsize
+path = []
+distance = 0
+while x < self.boxsize:
+    distance += self.boxsize
+    path.append(Vector3r(x, self.boxsize, z))
+    x += self.stripewidth
+    distance += self.stripewidth
+    path.append(Vector3r(x, self.boxsize, z))
+    distance += self.boxsize
+    path.append(Vector3r(x, -self.boxsize, z))
+    x += self.stripewidth
+    distance += self.stripewidth
+    path.append(Vector3r(x, -self.boxsize, z))
+    distance += self.boxsize
 ```
 
 Assuming we start in the corner of the box, increment x by the stripe width, then fly the full y-dimension of `-boxsize` to `+boxsize`, so in this case, `boxsize` is half the size of the actual box we will be covering.
@@ -39,8 +39,8 @@ Assuming we start in the corner of the box, increment x by the stripe width, the
 Once we have this list of Vector3r objects, we can fly this path very simply with the following call:
 
 ```python
-result = self.client.moveOnPath(path, self.velocity, trip_time, DrivetrainType.ForwardOnly,
-                                YawMode(False,0), lookahead, 1)
+result = self.client.moveOnPath(
+    path, self.velocity, trip_time, DrivetrainType.ForwardOnly, YawMode(False,0), lookahead, 1)
 ```
 
 We can compute an appropriate `trip_time` timeout by dividing the distance of the path and the speed we are flying.
@@ -49,4 +49,4 @@ The `lookahead` needed here for smooth path interpolation can be computed from t
 
 That's it, pretty simple, eh?
 
-Now of course you can add a lot more intelligence to this, make it avoid known obstacles on your map, make it climb up and down a hillside so you can survey a slope, etc.  Lots of fun to be had.
+Now, of course you can add a lot more intelligence to this, make it avoid known obstacles on your map, make it climb up and down a hillside so you can survey a slope, etc.  Lots of fun to be had.

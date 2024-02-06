@@ -1,4 +1,4 @@
-# Adding New APIs to AutonomySim
+# Adding New APIs
 
 Adding new APIs requires modifying the source code. Much of the changes are mechanical and required for various levels of abstractions that AutonomySim supports. The main files required to be modified are described below along with some commits and PRs for demonstration. Specific sections of the PRs or commits might be linked in some places, but it'll be helpful to have a look at the entire diff to get a better sense of the workflow. Also, don't hesitate in opening an issue or a draft PR also if unsure about how to go about making changes or to get feedback.
 

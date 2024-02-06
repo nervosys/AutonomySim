@@ -1,8 +1,8 @@
-# AutonomySim Development Environment on Azure
+# Azure Development Environment
 
 This document explains how to automate the creation of a development environment on Azure and code and debug a Python application connected to AutonomySim using Visual Studio Code
 
-## Automatically Deploy Your Azure VM
+## Automatically Deploy the Azure VM
 
 Click the blue button to start the Azure deployment (The template is pre-filled with the recommended virtual machine size for the use cases of the following two tutorials)
 

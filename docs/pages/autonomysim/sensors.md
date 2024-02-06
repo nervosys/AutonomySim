@@ -1,7 +1,6 @@
-# Sensors in AutonomySim
+# Sensors
 
-AutonomySim currently supports the following sensors.
-Each sensor is associated with a integer enum specifying its sensor type.
+`AutonomySim` currently supports the following sensors. Each sensor is associated with a integer enum specifying its sensor type.
 
 * Camera
 * Barometer = 1
@@ -11,7 +10,9 @@ Each sensor is associated with a integer enum specifying its sensor type.
 * Distance Sensor = 5
 * Lidar = 6
 
-**Note** :  Cameras are configured differently than the other sensors and do not have an enum associated with them.    Look at [general settings](settings.md) and [image API](image_apis.md) for camera config and API.
+!!! note
+
+    Cameras are configured differently than the other sensors and do not have an enum associated with them. Look at [general settings](settings.md) and [image API](image_apis.md) for camera config and API.
 
 ## Default sensors
 
@@ -28,7 +29,7 @@ If no sensors are specified in the `settings.json`, then the following sensors a
 
 * Gps
 
-### ComputerVision
+### Computer Vision
 
 * None
 
@@ -115,14 +116,10 @@ The default sensor list can be configured in settings json:
 
 ## Configuring vehicle-specific sensor list
 
-A vehicle can override a subset of the default sensors listed above. A Lidar and Distance sensor are
-not added to a vehicle by default, so those you need to add this way. Each sensor must have a valid
-"SensorType" and a subset of the properties can be defined that override the default values shown
-above and you can set Enabled to false to disable a specific type of sensor.
+A vehicle can override a subset of the default sensors listed above. A Lidar and Distance sensor are not added to a vehicle by default, so those you need to add this way. Each sensor must have a valid "SensorType" and a subset of the properties can be defined that override the default values shown above and you can set Enabled to false to disable a specific type of sensor.
 
 ```json
 "Vehicles": {
-
     "Drone1": {
         "VehicleType": "SimpleFlight",
         "AutoCreate": true,
@@ -154,13 +151,13 @@ above and you can set Enabled to false to disable a specific type of sensor.
 }
 ```
 
-### Sensor specific settings
+### Sensor-specific settings
 
 For detailed information on the meaning of these sensor settings
 see the following pages:
 
-- [Lidar sensor settings](lidar.md)
-- [Distance sensor settings](distance_sensor.md)
+* [Lidar sensor settings](lidar.md)
+* [Distance sensor settings](distance_sensor.md)
 
 ##### Server side visualization for debugging
 

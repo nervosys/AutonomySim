@@ -1,8 +1,8 @@
-# How to Create Issue or Ask Question Effectively
+# How to Create Issue or Ask Questions Effectively
 
 AutonomySim is open source project and contributors like you keeps it going. It is important to respect contributors time and effort when you are asking a question or filing an issue. Your chances of receiving helpful response would increase if you follow below guidelines:
 
-## DOs
+## Good Practices
 
 * [Search issues](https://github.com/nervosys/AutonomySim/issues?utf8=%E2%9C%93&q=is%3Aissue) to see if someone already has asked it.
 * Chose title that is short and summarizes well. 
@@ -13,7 +13,7 @@ AutonomySim is open source project and contributors like you keeps it going. It 
 * Tell us what the goal you want to achieve or expected output.
 * Tell us what you did so far to debug this issue.
 
-## DONT'S
+## Bad Practices
 
 * Do not use "Please help" etc in the title. See above.
 * Do not copy and paste screen shot of error message. Copy and paste text.

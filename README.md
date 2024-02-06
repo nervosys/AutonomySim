@@ -363,6 +363,26 @@ Compared to other simulation engines for robotic systems, `AutonomySim` is open-
 For technical aspects on the design of `AutonomySim`, refer to the original `AirSim` manuscripts and subsequent works:
 
 ```bibtex
+@techreport{shah2017,
+  author = {Shital Shah and Debadeepta Dey and Chris Lovett and Ashish Kapoor},
+  year = 2017,
+  title = {{Aerial Informatics and Robotics Platform}},
+  number = {MSR-TR-2017-9},
+  institution = {Microsoft Research},
+  url = {https://www.microsoft.com/en-us/research/project/aerial-informatics-robotics-platform/},
+  eprint = {https://www.microsoft.com/en-us/research/wp-content/uploads/2017/02/aerial-informatics-robotics.pdf},
+  note = {AirSim draft manuscript}
+}
+
+@inproceedings{dey2017,
+  author = {Dey, Debadeepta and Ranade, Gireeja and Kapoor, Ashish},
+  year = 2017,
+  title = {Learning to Gather Information via Imitation},
+  journal = {International Conference on Robotics and Automation},
+  month = 05,
+  url = {https://www.microsoft.com/en-us/research/publication/learning-gather-information-via-imitation-2/}
+}
+
 @inproceedings{shah2018,
   author = {Shah, Shital and Dey, Debadeepta and Lovett, Chris and Kapoor, Ashish},
   year = 2018,
