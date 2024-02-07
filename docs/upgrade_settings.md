@@ -1,6 +1,6 @@
-# Upgrading Settings
+# Upgrading the Settings
 
-The settings schema in AutonomySim 1.2 is changed for more flexibility and cleaner interface. If you have older [settings.json](settings.md) file then you can either delete it and restart AutonomySim or use this guide to make manual upgrade.
+The settings schema in `AutonomySim` 1.2 is changed for more flexibility and cleaner interface. If you have older [settings.json](settings.md) file then you can either delete it and restart AutonomySim or use this guide to make manual upgrade.
 
 ## Quicker Way
 

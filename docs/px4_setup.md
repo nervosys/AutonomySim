@@ -1,8 +1,9 @@
-# PX4 Setup for AutonomySim
+# PX4 Setup
 
-The [PX4 software stack](http://github.com/px4/firmware) is an open source very popular flight controller with support for wide variety of boards and sensors as well as built-in capability for higher level tasks such as mission planning. Please visit [px4.io](http://px4.io) for more information.
+The [PX4 software stack](http://github.com/px4/firmware) is an open-source popular flight controller with support for wide variety of boards and sensors as well as built-in capability for higher level tasks such as mission planning. Please visit [px4.io](http://px4.io) for more information.
 
-**Warning**: While all releases of AutonomySim are always tested with PX4 to ensure the support, setting up PX4 is not a trivial task. Unless you have at least intermediate level of experience with PX4 stack, we recommend you use [simple_flight](simple_flight.md), which is now a default in AutonomySim.
+!!! warning
+    While all releases of AutonomySim are always tested with PX4 to ensure the support, setting up PX4 is not a trivial task. Unless you have at least intermediate level of experience with PX4 stack, we recommend you use [simple_flight](simple_flight.md), which is now a default in AutonomySim.
 
 ## Supported Hardware
 
@@ -60,10 +61,7 @@ See also [initial firmware setup video](https://docs.px4.io/master/en/config/).
     }
 ```
 
-Notice the PX4 `[simulator]` is using TCP, which is why we need to add: `"UseTcp": true,`. Notice we
-are also enabling `LockStep`, see [PX4 LockStep](px4_lockstep.md) for more information. The
-`Barometer` setting keeps PX4 happy because the default AutonomySim barometer has a bit too much noise
-generation.  This setting clamps that down a bit which allows PX4 to achieve GPS lock more quickly.
+Notice the PX4 `[simulator]` is using TCP, which is why we need to add: `"UseTcp": true,`. Notice we are also enabling `LockStep`, see [PX4 LockStep](px4_lockstep.md) for more information. The `Barometer` setting keeps PX4 happy because the default AutonomySim barometer has a bit too much noise generation. This setting clamps that down a bit which allows PX4 to achieve GPS lock more quickly.
 
 After above setup you should be able to use a remote control (RC) to fly with AutonomySim. You can usually arm the vehicle by lowering and bringing two sticks of RC together down and in-wards. You don't need QGroundControl after the initial setup. Typically the Stabilized (instead of Manual) mode gives better experience for beginners.  See [PX4 Basic Flying Guide](https://docs.px4.io/master/en/flying/basic_flying.html).
 
@@ -77,7 +75,7 @@ The PX4 SITL mode doesn't require you to have separate device such as a Pixhawk 
 
 ## FAQ
 
-#### Drone doesn't fly properly, it just goes "crazy".
+### Drone doesn't fly properly, it just goes "crazy".
 
 There are a few reasons that can cause this. First, make sure your drone doesn't fall down large distance when starting the simulator. This might happen if you have created a custom Unreal environment and Player Start is placed too high above the ground. It seems that when this happens internal calibration in PX4 gets confused.
 
@@ -85,20 +83,19 @@ You should [also use QGroundControl](#setting-up-px4-hardware-in-loop) and make 
 
 Finally, this also can be a machine performance issue in some rare cases, check your [hard drive performance](hard_drive.md).
 
-#### Can I use Arducopter or other MavLink implementations?
+### Can I use Arducopter or other MavLink implementations?
 
 Our code is tested with the [PX4 firmware](https://dev.px4.io/). We have not tested Arducopter or other mavlink implementations. Some of the flight API's do use the PX4 custom modes in the MAV_CMD_DO_SET_MODE messages (like PX4_CUSTOM_MAIN_MODE_AUTO)
 
-#### It is not finding my Pixhawk hardware
+### It is not finding my Pixhawk hardware
 
 Check your settings.json file for this line "SerialPort":"*,115200".  The asterisk here means "find any serial port that looks like a Pixhawk device, but this doesn't always work for all types of Pixhawk hardware. So on Windows you can find the actual COM port using Device Manager, look under "Ports (COM & LPT), plug the device in and see what new COM port shows up.  Let's say you see a new port named "USB Serial Port (COM5)". Well, then change the SerialPort setting to this: "SerialPort":"COM5,115200".
 
 On Linux, the device can be found by running "ls /dev/serial/by-id" if you see a device name listed that looks like this `usb-3D_Robotics_PX4_FMU_v2.x_0-if00` then you can use that name to connect, like this: `"SerialPort":"/dev/serial/by-id/usb-3D_Robotics_PX4_FMU_v2.x_0-if00"`. Note that this long name is actually a symbolic link to the real name, if you use `"ls -l ..."` you can find that symbolic link, it is usually something like `"/dev/ttyACM0"`, so this will also work `"SerialPort":"/dev/ttyACM0,115200"`.  But that mapping is similar to windows, it is automatically assigned and can change, whereas the long name will work even if the actual TTY serial device mapping changes.
 
-#### WARN  [commander] Takeoff denied, disarm and re-try
+### WARN [commander] Takeoff denied, disarm and re-try
 
-This happens if you try and take off when  PX4 still has not computed the home position.  PX4 will report the home
-position once it is happy with the GPS signal, and you will see these messages:
+This happens if you try and take off when PX4 still has not computed the home position. PX4 will report the home position once it is happy with the GPS signal, and you will see these messages:
 
 ```shell
 INFO  [commander] home: 47.6414680, -122.1401672, 119.99
@@ -107,16 +104,14 @@ INFO  [tone_alarm] home_set
 
 Up until this point in time, however, the PX4 will reject takeoff commands.
 
-#### When I tell the drone to do something it always lands
+### When I tell the drone to do something it always lands
 
-For example, you use DroneShell `moveToPosition -z -20 -x 50 -y 0` which it does, but when it gets to the target location the
-drone starts to land.  This is the default behavior of PX4 when offboard mode completes.  To set the drone to hover instead
-set this PX4 parameter:
+For example, you use DroneShell `moveToPosition -z -20 -x 50 -y 0` which it does, but when it gets to the target location the drone starts to land. This is the default behavior of PX4 when offboard mode completes. To set the drone to hover instead set this PX4 parameter:
 
 ```shell
 param set COM_OBL_ACT 1
 ```
 
-#### I get message length mismatches errors
+### I get message length mismatches errors
 
 You might need to set MAV_PROTO_VER parameter in QGC to "Always use version 1". Please see [this issue](https://github.com/nervosys/AutonomySim/issues/546) more details.

@@ -1,4 +1,4 @@
-# Running AutonomyLib on Real-world Autonomous Systems
+# Running AutonomyLib on Real-world Vehicles
 
 The `AutonomyLib` library can be compiled and deployed on the companion computer on a real robotic system. For our testing, we connected a `Gigabyte Brix BXi7-5500` companion computer to a Pixhawk/PX4 flight controller over USB on a drone. The Gigabyte PC runs Ubuntu, so we are able to SSH into it over Wi-Fi:
 
@@ -6,11 +6,11 @@ The `AutonomyLib` library can be compiled and deployed on the companion computer
 
 Once connected, you can run `MavLinkTest` with this command line:
 
-```bash
+```shell
 MavLinkTest -serial:/dev/ttyACM0,115200 -logdir:. 
 ```
 
-And this will produce a log file of the flight which can then be used for [playback in the simulator](playback.md).
+This will produce a log file of the flight which can then be used for [playback in the simulator](playback.md).
 
 You can also add `-proxy:192.168.1.100:14550` to connect `MavLinkTest` to a remote computer where you can run QGroundControl or our [PX4 Log Viewer](log_viewer.md), which is another handy way to see what is going on with your drone.
 
@@ -68,4 +68,4 @@ You can run the `MavlinkCom` library and MavLinkTest app to test the connection 
 
 If you want to use QGC and AutonomySim together than you will need QGC to let own the serial port. QGC opens up TCP connection that acts as a proxy so any other component can connect to QGC and send `MavLinkMessage` to QGC and then QGC forwards that message to PX4. So you tell AutonomySim to connect to QGC and let QGC own serial port.
 
-For companion board, the way we did it earlier was to have Gigabyte Brix on the drone. This x86 full-fledged computer that will connect to PX4 through USB. We had Ubuntu on Brix and ran [DroneServer](https://github.com/nervosys/AutonomySim/tree/main/DroneServer). The `DroneServer` created an API endpoint that we can talk to via C++ client code (or Python code) and it translated API calls to MavLink messages. That way you can write your code against the same API, test it in the simulator and then run the same code on an actual vehicle. So the companion computer has DroneServer running along with client code. 
+For companion board, the way we did it earlier was to have Gigabyte Brix on the drone. This x86 full-fledged computer that will connect to PX4 through USB. We had Ubuntu on Brix and ran [DroneServer](https://github.com/nervosys/AutonomySim/tree/master/DroneServer). The `DroneServer` created an API endpoint that we can talk to via C++ client code (or Python code) and it translated API calls to MavLink messages. That way you can write your code against the same API, test it in the simulator and then run the same code on an actual vehicle. So the companion computer has DroneServer running along with client code. 

@@ -1,13 +1,10 @@
+# Blocks Environment
 
-# Setup Blocks Environment for AutonomySim
-
-Blocks environment is available in repo in folder `Unreal/Environments/Blocks` and is designed to be lightweight in size. That means its very basic but fast.
-
-Here are quick steps to get Blocks environment up and running:
+The `Blocks` environment is available in the folder `Unreal/Environments/Blocks` and is designed to be lightweight in size. That means its very basic but fast. Below are quick steps to get Blocks environment up and running.
 
 ## Windows
 
-1. Make sure you have [installed Unreal and built AutonomySim](build_windows.md).
+1. Ensure you have [installed Unreal and built AutonomySim](build_windows.md).
 2. Navigate to folder `AutonomySim\Unreal\Environments\Blocks`, double click on Blocks.sln file to open in Visual Studio. By default, this project is configured for Visual Studio 2019. However, if you want to generate this project for Visual Studio 2022, go to 'Edit->Editor Preferences->Source Code' inside the Unreal Editor and select 'Visual Studio 2022' for the 'Source Code Editor' setting.
 3. Make sure `Blocks` project is the startup project, build configuration is set to `DebugGame_Editor` and `Win64`. Hit F5 to run.
 4. Press the Play button in Unreal Editor and you will see something like in below video. Also see [how to use AutonomySim](https://github.com/nervosys/AutonomySim/#how-to-use-it).
@@ -37,6 +34,6 @@ By default AutonomySim spawns multirotor. You can easily change this to car and 
 
 ## FAQ
 
-#### I see warnings about like "_BuitData" file is missing
+#### I see warnings about like `_BuitData` file is missing
 
 These are intermediate files and you can safely ignore it.

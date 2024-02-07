@@ -1,14 +1,16 @@
-# What's new
+# Change Log
 
-Below is summarized list of important changes. This does not include minor/less important changes or bug fixes or documentation update. This list updated every few months. For complete detailed changes, please review [commit history](https://github.com/nervosys/AutonomySim/commits/main).
+Below is summarized list of important changes. This does not include minor/less important changes or bug fixes or documentation update. This list updated every few months. For complete detailed changes, please review the project [commit history](https://github.com/nervosys/AutonomySim/commits/main).
 
 ### February 2024
 * AutonomySim relaunched as clean-slate repository.
 * Major documentation update.
+* Trimmed the fat to go light and fast.
 
 ### October 2023
 * AutonomySim fork created.
 * Migration from Batch/Command to PowerShell.
+* Support dropped for Unity, Gazebo, and ROS1 to better focus on Unreal Engine 5.
 * Major project reorganization begun.
 
 ### Jan 2022
@@ -188,7 +190,7 @@ Below is summarized list of important changes. This does not include minor/less 
 ### November, 2018
 * Added Weather Effects and [APIs](apis.md#weather-apis)
 * Added [Time of Day API](apis.md#time-of-day-api)
-* An experimental integration of [AutonomySim on Unity](https://github.com/nervosys/AutonomySim/tree/main/Unity) is now available. Learn more in [Unity blog post](https://blogs.unity3d.com/2018/11/14/AutonomySim-on-unity-experiment-with-autonomous-vehicle-simulation). 
+* An experimental integration of [AutonomySim on Unity](https://github.com/nervosys/AutonomySim/tree/master/Unity) is now available. Learn more in [Unity blog post](https://blogs.unity3d.com/2018/11/14/AutonomySim-on-unity-experiment-with-autonomous-vehicle-simulation). 
 * [New environments](https://github.com/nervosys/AutonomySim/releases/tag/v1.2.1): Forest, Plains (windmill farm), TalkingHeads (human head simulation), TrapCam (animal detection via camera)
 * Highly efficient [NoDisplay view mode](settings.md#viewmode) to turn off main screen rendering so you can capture images at high rate
 * [Enable/disable sensors](https://github.com/nervosys/AutonomySim/pull/1479) via settings

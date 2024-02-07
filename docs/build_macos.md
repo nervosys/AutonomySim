@@ -2,7 +2,10 @@
 
 Only macOS **Catalina (10.15)** has currently been tested. Theoretically, AutonomySim should work on higher macOS versions and Apple Silicon hardware, but this path is not offically supported.
 
-We've two options - you can either build inside docker containers or your host machine.
+There are two options:
+
+1. Build inside Docker containers
+2. Build on your host machine
 
 ## Docker
 
@@ -23,7 +26,7 @@ Please see instructions [here](docker_ubuntu.md)
 
 ### Build AutonomySim
 
-- Clone AutonomySim and build it:
+* Clone AutonomySim and build it:
 
 ```bash
 # go to the folder where you clone GitHub projects
@@ -31,9 +34,9 @@ git clone https://github.com/nervosys/AutonomySim.git
 cd AutonomySim
 ```
 
-By default AutonomySim uses clang 8 to build for compatibility with UE 4.25. The setup script will install the right version of cmake, llvm, and eigen.
+By default AutonomySim uses `clang-8` to build for compatibility with UE 4.25. The setup script will install the right version of `cmake`, `llvm`, and `eigen`.
 
-CMake 3.19.2 is required for building on Apple Silicon.
+CMake 3.19.2 is required for building on Apple silicon.
 
 ```bash
 ./setup.sh
@@ -47,15 +50,15 @@ Finally, you will need an Unreal project that hosts the environment for your veh
 
 ## How to Use AutonomySim
 
-- Browse to `AutonomySim/Unreal/Environments/Blocks`.
-- Run `./GenerateProjectFiles.sh <UE_PATH>` from the terminal, where `UE_PATH` is the path to the Unreal installation folder. (By default, this is `/Users/Shared/Epic\ Games/UE_4.27/`) The script creates an XCode workspace by the name Blocks.xcworkspace.
-- Open the XCode workspace, and press the Build and run button in the top left.
-- After Unreal Editor loads, press Play button.
+* Browse to `AutonomySim/Unreal/Environments/Blocks`.
+* Run `./GenerateProjectFiles.sh <UE_PATH>` from the terminal, where `UE_PATH` is the path to the Unreal installation folder. (By default, this is `/Users/Shared/Epic\ Games/UE_4.27/`) The script creates an XCode workspace by the name Blocks.xcworkspace.
+* Open the XCode workspace, and press the Build and run button in the top left.
+* After Unreal Editor loads, press Play button.
 
 See [Using APIs](apis.md) and [settings.json](settings.md) for various options available for AutonomySim usage.
 
 !!! tip
-Go to 'Edit->Editor Preferences', in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked.
+   Go to 'Edit->Editor Preferences', in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked.
 
 ### [Optional] Setup Remote Control (Multirotor Only)
 

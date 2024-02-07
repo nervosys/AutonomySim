@@ -63,7 +63,7 @@ You should also be able to use QGroundControl with SITL mode. Make sure there is
 
 ## Starting SITL instances with PX4 console
 
-If you want to start your SITL instances while being able to view the PX4 console, you will need to run the shell scripts found [here](https://github.com/nervosys/AutonomySim/tree/main/PX4Scripts) rather than `sitl_multiple_run.sh`.
+If you want to start your SITL instances while being able to view the PX4 console, you will need to run the shell scripts found [here](https://github.com/nervosys/AutonomySim/tree/master/PX4Scripts) rather than `sitl_multiple_run.sh`.
 
 Here is how you would do so:
 

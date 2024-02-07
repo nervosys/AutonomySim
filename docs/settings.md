@@ -1,8 +1,8 @@
-# AutonomySim Settings
+# Settings
 
 ## Where are Settings Stored?
 
-AutonomySim is searching for the settings definition in the following order. The first match will be used:
+`AutonomySim` searches for the settings definition in the following order. The first match will be used:
 
 1. Looking at the (absolute) path specified by the `-settings` command line argument.
 For example, in Windows: `AutonomySim.exe -settings="C:\path\to\settings.json"`
@@ -215,10 +215,10 @@ Below are complete list of settings available along with their default values. I
 ## SimMode
 
 SimMode determines which simulation mode will be used. Below are currently supported values:
-- `""`: prompt user to select vehicle type multirotor or car
-- `"Multirotor"`: Use multirotor simulation
-- `"Car"`: Use car simulation
-- `"ComputerVision"`: Use only camera, no vehicle or physics
+* `""`: prompt user to select vehicle type multirotor or car
+* `"Multirotor"`: Use multirotor simulation
+* `"Car"`: Use car simulation
+* `"ComputerVision"`: Use only camera, no vehicle or physics
 
 ## ViewMode
 
@@ -392,8 +392,8 @@ Each simulation mode will go through the list of vehicles specified in this sett
 
 ### Common Vehicle Setting
 
-- `VehicleType`: This could be any one of the following - `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, `ComputerVision`, `ArduCopter` & `ArduRover`. There is no default value therefore this element must be specified.
-- `PawnPath`: This allows to override the pawn blueprint to use for the vehicle. For example, you may create new pawn blueprint derived from ACarPawn for a warehouse robot in your own project outside the AutonomySim code and then specify its path here. See also [PawnPaths](settings.md#PawnPaths). Note that you have to specify your custom pawn blueprint class path inside the global `PawnPaths` object using your proprietarily defined object name, and quote that name inside the `Vehicles` setting. For example,
+* `VehicleType`: This could be any one of the following - `PhysXCar`, `SimpleFlight`, `PX4Multirotor`, `ComputerVision`, `ArduCopter` & `ArduRover`. There is no default value therefore this element must be specified.
+* `PawnPath`: This allows to override the pawn blueprint to use for the vehicle. For example, you may create new pawn blueprint derived from ACarPawn for a warehouse robot in your own project outside the AutonomySim code and then specify its path here. See also [PawnPaths](settings.md#PawnPaths). Note that you have to specify your custom pawn blueprint class path inside the global `PawnPaths` object using your proprietarily defined object name, and quote that name inside the `Vehicles` setting. For example,
 
 ```json
     {
@@ -411,13 +411,13 @@ Each simulation mode will go through the list of vehicles specified in this sett
     }
 ```
 
-- `DefaultVehicleState`: Possible value for multirotors is `Armed` or `Disarmed`.
-- `AutoCreate`: If true then this vehicle would be spawned (if supported by selected sim mode).
-- `RC`: This sub-element allows to specify which remote controller to use for vehicle using `RemoteControlID`. The value of -1 means use keyboard (not supported yet for multirotors). The value >= 0 specifies one of many remote controllers connected to the system. The list of available RCs can be seen in Game Controllers panel in Windows, for example.
-- `X, Y, Z, Yaw, Roll, Pitch`: These elements allows you to specify the initial position and orientation of the vehicle. Position is in NED coordinates in SI units with origin set to Player Start location in Unreal environment. The orientation is specified in degrees.
-- `IsFpvVehicle`: This setting allows to specify which vehicle camera will follow and the view that will be shown when ViewMode is set to Fpv. By default, AutonomySim selects the first vehicle in settings as FPV vehicle.
-- `Sensors`: This element specifies the sensors associated with the vehicle, see [Sensors page](sensors.md) for details.
-- `Cameras`: This element specifies camera settings for vehicle. The key in this element is name of the [available camera](image_apis.md#available_cameras) and the value is same as `CameraDefaults` as described above. For example, to change FOV for the front center camera to 120 degrees, you can use this for `Vehicles` setting:
+* `DefaultVehicleState`: Possible value for multirotors is `Armed` or `Disarmed`.
+* `AutoCreate`: If true then this vehicle would be spawned (if supported by selected sim mode).
+* `RC`: This sub-element allows to specify which remote controller to use for vehicle using `RemoteControlID`. The value of -1 means use keyboard (not supported yet for multirotors). The value >= 0 specifies one of many remote controllers connected to the system. The list of available RCs can be seen in Game Controllers panel in Windows, for example.
+* `X, Y, Z, Yaw, Roll, Pitch`: These elements allows you to specify the initial position and orientation of the vehicle. Position is in NED coordinates in SI units with origin set to Player Start location in Unreal environment. The orientation is specified in degrees.
+* `IsFpvVehicle`: This setting allows to specify which vehicle camera will follow and the view that will be shown when ViewMode is set to Fpv. By default, AutonomySim selects the first vehicle in settings as FPV vehicle.
+* `Sensors`: This element specifies the sensors associated with the vehicle, see [Sensors page](sensors.md) for details.
+* `Cameras`: This element specifies camera settings for vehicle. The key in this element is name of the [available camera](image_apis.md#available_cameras) and the value is same as `CameraDefaults` as described above. For example, to change FOV for the front center camera to 120 degrees, you can use this for `Vehicles` setting:
 
 ```json
 "Vehicles": {

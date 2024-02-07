@@ -2,12 +2,11 @@
 
 We adopt the modern C++[11..23] standards. Smart pointers, lambdas, and multithreading primitives are your friend.
 
-## Quick Note
+## A Note on Standards
 
 The great thing about 'standards' is that there are many to chose from: [ISO](https://isocpp.org/wiki/faq/coding-standards), [Sutter &amp; Stroustrup](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md), [ROS](http://wiki.ros.org/CppStyleGuide), [Linux](https://www.kernel.org/doc/Documentation/process/coding-style.rst), [Google](https://google.github.io/styleguide/cppguide.html), [Microsoft](https://msdn.microsoft.com/en-us/library/888a6zcz.aspx), [CERN](http://atlas-computing.web.cern.ch/atlas-computing/projects/qa/draft_guidelines.html), [GCC](https://gcc.gnu.org/wiki/CppConventions), [ARM](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0475c/CJAJAJCJ.html), [LLVM](http://llvm.org/docs/CodingStandards.html), [Epic Games](https://docs.unrealengine.com/5.3/en-US/epic-cplusplus-coding-standard-for-unreal-engine/) and probably thousands of others. Unfortunately, most of these disagree about basic things, such as how to name a class or a constant. This is due to the fact that the standards often inherit legacy issues in order to support existing codebases. The intention behind this document is to provide guidance that remains as close to ISO, Sutter &amp; Stroustrup and ROS while resolving as many conflicts, disadvantages and inconsistencies as possible among them.
 
 !!! note
-
     Since we have dropped support for all other game engines, we will be refactoring our C++ code to better comply with the Epic Games standard for Unreal Engine version 5.3 or greater.
 
 ## clang-format
@@ -24,7 +23,7 @@ If you find a bug in clang-format you can disable clang formatting of a specific
 
 ## Naming Conventions
 
-Avoid using any sort of Hungarian notation on names and "_ptr" on pointers.
+Avoid using any sort of Hungarian notation on names and `_ptr` on pointers.
 
 | **Code Element**      | **Style**                        | **Comment**                                                                                                                                   |
 | --------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -58,8 +57,7 @@ The reason we don't use #pragma once is because it's not supported if same heade
 Inside function or method body place curly bracket on same line. Outside that the Namespace, Class and methods levels use separate line.This is called [K&amp;R style](https://en.wikipedia.org/wiki/Indent_style#K.26R_style) and its variants are widely used in C++ vs other styles which are more popular in other languages. Notice that curlies are not required if you have single statement, but complex statements are easier to keep correct with the braces.
 
 ```cpp
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
      while (x == y) {
         f0();
         if (cont()) {
@@ -79,17 +77,18 @@ int main(int argc, char* argv[])
 Religiously review all non-scalar parameters you declare to be candidate for const and references. If you are coming from languages such as C#/Java/Python, the most often mistake you would make is to pass parameters by value instead of `const T&;` Especially most of the strings, vectors and maps you want to pass as `const T&;` (if they are readonly) or `T&` (if they are writable). Also add `const` suffix to methods as much as possible.
 
 ## Overriding
+
 When overriding virtual method, use override suffix.
 
 ## Pointers
 
-This is really about memory management.  A simulator has much performance critical code, so we try and avoid overloading the memory manager with lots of calls to new/delete.  We also want to avoid too much copying of things on the stack, so we pass things by reference when ever possible. But, when the object really needs to live longer than the call stack you often need to allocate that object on the heap, and so you have a pointer.  Now, if management of the lifetime of that object is going to be tricky we recommend using [C++ 11 smart pointers](https://cppstyle.wordpress.com/c11-smart-pointers/).  But smart pointers do have a cost, so don’t use them blindly everywhere.  For private code where performance is paramount, raw pointers can be used.  Raw pointers are also often needed when interfacing with legacy systems that only accept pointer types, for example, sockets API.  But we try to wrap those legacy interfaces as much as possible and avoid that style of programming from leaking into the larger code base.  
+This is really about memory management. A simulator has much performance critical code, so we try and avoid overloading the memory manager with lots of calls to new/delete. We also want to avoid too much copying of things on the stack, so we pass things by reference when ever possible. But, when the object really needs to live longer than the call stack you often need to allocate that object on the heap, and so you have a pointer.  Now, if management of the lifetime of that object is going to be tricky we recommend using [C++ 11 smart pointers](https://cppstyle.wordpress.com/c11-smart-pointers/). But smart pointers do have a cost, so don’t use them blindly everywhere.  For private code where performance is paramount, raw pointers can be used. Raw pointers are also often needed when interfacing with legacy systems that only accept pointer types, for example, sockets API. But we try to wrap those legacy interfaces as much as possible and avoid that style of programming from leaking into the larger code base.
 
-Religiously check if you can use const everywhere, for example, `const float * const xP`. Avoid using prefix or suffix to indicate pointer types in variable names, i.e. use `my_obj` instead of `myobj_ptr` except in cases where it might make sense to differentiate variables better, for example, `int mynum = 5; int* mynum_ptr = mynum;`
+Religiously check if you can use const everywhere, for example, `const float * const xP`. Avoid using prefix or suffix to indicate pointer types in variable names, i.e., use `my_obj` instead of `myobj_ptr` except in cases where it might make sense to differentiate variables better, for example, `int mynum = 5; int* mynum_ptr = mynum;`
 
 ## Null Checking
 
-In Unreal C++ code, when checking if a pointer is null, it is preferable to use `IsValid(ptr)`. In addition to checking for a null pointer, this function will also return whether a UObject is properly initialized. This is useful in situations where a UObject is in the process of being garbage collected but still set to a non-null value.
+In Unreal C++ code, when checking if a pointer is null, it is preferable to use `IsValid(ptr)`. In addition to checking for a null pointer, this function will also return whether a UObject is properly initialized. This is useful in situations where a `UObject` is in the process of being garbage collected but still set to a non-null value.
 
 ## Indentation
 
@@ -111,6 +110,6 @@ git config --global core.autocrlf input
 
 For more details on this setting, see [this documentation](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings).
 
-## This is Too Short, ye?
+## On Brevity
 
-Yes, and it's on purpose because no one likes to read 200 page coding guidelines. The goal here is to cover only most significant things which are  already not covered by [strict mode compilation in GCC](http://shitalshah.com/p/how-to-enable-and-use-gcc-strict-mode-compilation/) and Level 4 warnings-as-errors in VC++. If you had like to know about how to write better code in C++, please see [GotW](https://herbsutter.com/gotw/) and [Effective Modern C++](http://shop.oreilly.com/product/0636920033707.do) book.
+This document is intentionally brief, as nobody likes to read a 200-page set of code guidelines. The goal here is to cover only the most significant items that are already not covered by [strict mode compilation in GCC](http://shitalshah.com/p/how-to-enable-and-use-gcc-strict-mode-compilation/) and Level 4 warnings-as-errors in Visual C++. If you would like to learn how to write better C++ code, please read the [GotW](https://herbsutter.com/gotw/) and [Effective Modern C++](http://shop.oreilly.com/product/0636920033707.do) books.

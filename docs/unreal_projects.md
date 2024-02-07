@@ -1,10 +1,10 @@
-# Unreal Environment
+# Unreal Projects
 
 ## Setting Up the Unreal Project
 
 ### Option 1: Built-in Blocks Environment
 
-To get up and running fast, you can use the Blocks project that already comes with AutonomySim. This is not very highly detailed environment to keep the repo size reasonable but we use it for various testing all the times and it is the easiest way to get your feet wet in this strange land. 
+To get up and running fast, you can use the `Blocks` project that already comes with `AutonomySim`. This is not very highly detailed environment to keep the repo size reasonable but we use it for various testing all the times and it is the easiest way to get your feet wet in this strange land. 
 
 Follow these [quick steps](unreal_blocks.md).
 
@@ -16,6 +16,4 @@ Follow this [step-by-step guide](unreal_custenv.md).
 
 ## Changing Code and Development Workflow
 
-To see how you can change and test AutonomySim code, please read our [recommended development workflow](dev_workflow.md).
-
-
+To see how you can change and test `AutonomySim` code, please read our [recommended development workflow](dev_workflow.md).

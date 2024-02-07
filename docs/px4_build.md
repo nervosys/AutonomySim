@@ -11,28 +11,23 @@ bash ./PX4-Autopilot/Tools/setup/ubuntu.sh --no-sim-tools
 cd PX4-Autopilot
 ```
 
-Now to build it you will need the right tools.
+To build it, you will need the right tools.
 
 ## PX4 Build tools
 
-The full instructions are available on the [dev.px4.io](https://docs.px4.io/master/en/dev_setup/building_px4.html) website,
-but we've copied the relevant subset of those instructions here for your convenience.
+The full instructions are available on the [dev.px4.io](https://docs.px4.io/master/en/dev_setup/building_px4.html) website, but we've copied the relevant subset of those instructions here for your convenience.
 
-(Note that [BashOnWindows](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)) can be used to build
-the PX4 firmware, just follow the BashOnWindows instructions at the bottom of this page) then proceed with the 
-Ubuntu setup for PX4.
+(Note that [BashOnWindows](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)) can be used to build the PX4 firmware, just follow the BashOnWindows instructions at the bottom of this page) then proceed with the Ubuntu setup for PX4.
 
 ## Build SITL version
 
-Now you can make the SITL version that runs in posix, from the Firmware folder you created above:
+Now, you can make the SITL version that runs in POSIX from the Firmware folder you created above:
 
 ```shell
 make px4_sitl_default none_iris
 ```
 
-Note: this build system is quite special, it knows how to update git submodules (and there's a lot
-of them), then it runs cmake (if necessary), then it runs the build itself. So in a way the root
-Makefile is a meta-meta makefile :-)   You might see prompts like this:
+This build system is quite special, it knows how to update git submodules (and there's a lot of them), then it runs cmake (if necessary), then it runs the build itself. So in a way the root Makefile is a meta-meta makefile. You might see prompts like this:
 
 ```shell
  *******************************************************************************
@@ -42,16 +37,14 @@ Makefile is a meta-meta makefile :-)   You might see prompts like this:
  *    and git submodule update --init --recursive )                            *
  *******************************************************************************
 ```
-Every time you see this prompt type 'u' on your keyboard.
 
-It shouldn't take long, about 2 minutes. If all succeeds, the last line will link the `px4` app,
-which you can then run using the following:
+Every time you see this prompt, press `u` on your keyboard. It should take about 2 minutes. If everything succeeds, the last line will link the `px4` application, which you can then run using the following command:
 
 ```shell
 make px4_sitl_default none_iris
 ```
 
-And you should see output that looks like this:
+Now, you should see output that looks like this:
 
 ```shell
 creating new parameters file
@@ -79,16 +72,11 @@ INFO  [dataman] Unkown restart, data manager file 'rootfs/fs/microsd/dataman' si
   CAL_MAG0_ID: curr: 0 -> new: 196616
 ```
 
-so this is good, first run sets up the px4 parameters for SITL mode. Second run has less output.
-This app is also an interactive console where you can type commands. Type 'help' to see what they
-are and just type ctrl-C to kill it. You can do that and restart it any time, that's a great way to
-reset any wonky state if you need to (it's equivalent to a Pixhawk hardware reboot).
+The first run sets up the PX4 parameters for SITL mode. The second run has less output. This app is also an interactive console where you can type commands. Type 'help' to see what they are and just type ctrl-C to kill it. You can do that and restart it any time, that's a great way to reset any wonky state if you need to (it's equivalent to a Pixhawk hardware reboot).
 
 ## ARM embedded tools
 
-If you plan to build the PX4 firmware for real Pixhawk hardware then you will need the gcc
-cross-compiler for ARM Cortex-M4 chipset. You can get this compiler by PX4 DevGuide, specifically
-this is in their `ubuntu_sim_nuttx.sh` setup script.
+If you plan to build the PX4 firmware for real Pixhawk hardware then you will need the `gcc` cross-compiler for ARM Cortex-M4 chipset. You can get this compiler by PX4 DevGuide, specifically this is in their `ubuntu_sim_nuttx.sh` setup script.
 
 After following those setup instructions you can verify the install by entering this command `arm-none-eabi-gcc --version`.  You should see the following output:
 
@@ -101,23 +89,19 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 ## Build PX4 for ARM hardware
 
-Now  you  can build the PX4 firmware for running on real pixhawk hardware:
+Now, you can build the PX4 firmware and run it on real Pixhawk hardware:
 
 ```shell
 make px4_fmu-v4
 ```
 
-This build will take a little longer because it is building a lot more including the NuttX real time OS,
-all the drivers for the sensors in the Pixhawk flight controller, and more.  It is also running the compiler
-in super size-squeezing mode so it can fit all that in a 1 megabyte ROM !!
+This build will take a little longer because it is building a lot more including the NuttX real time OS, all the drivers for the sensors in the Pixhawk flight controller, and more.  It is also running the compiler in super size-squeezing mode so it can fit all that in a 1 megabyte ROM!
 
-One nice tid bit is you can plug in your pixhawk USB, and type `make px4fmu-v2_default upload` to flash the
-hardware with these brand new bits, so you don't need to use QGroundControl for that.
+One nice tid bit is you can plug in your pixhawk USB, and type `make px4fmu-v2_default upload` to flash the hardware with these brand new bits, so you don't need to use QGroundControl for that.
 
 ## Some Useful Parameters
 
-PX4 has many customizable parameters (over 700 of them, in fact) and to get best results with AutonomySim we have
-found the following parameters are handy:
+PX4 has many customizable parameters (over 700 of them, in fact) and to get best results with AutonomySim we have found the following parameters are handy:
 
 ```cpp
 // be sure to enable the new position estimator module:

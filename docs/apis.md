@@ -1,15 +1,8 @@
-﻿---
-title: "AutonomySim APIs"
-keywords: introduction faq
-tags: [getting_started, introduction]
-sidebar: autonomysim_sidebar
-permalink: autonomysim_getting_started.html
-summary: These brief instructions will help you get started with the simulator. The other topics in this help provide additional information and detail about working with other aspects of this platform.
----
+﻿# APIs
 
 ## Introduction
 
-AutonomySim exposes APIs so you can interact with vehicle in the simulation programmatically. You can use these APIs to retrieve images, get state, control the vehicle and so on.
+`AutonomySim` exposes application programming interfaces (APIs) that enable you to interact with vehicle in the simulation programmatically. You can use these APIs to retrieve images, get state, control the vehicle, and so on.
 
 ## Python Quickstart
 
@@ -17,13 +10,13 @@ If you want to use Python to call AutonomySim APIs, we recommend using Anaconda 
 
 First install this package:
 
-```
+```shell
 pip install msgpack-rpc-python
 ```
 
 You can either get AutonomySim binaries from [releases](https://github.com/nervosys/AutonomySim/releases) or compile from the source ([Windows](build_windows.md), [Linux](build_linux.md)). Once you can run AutonomySim, choose Car as vehicle and then navigate to `PythonClient\car\` folder and run:
 
-```
+```shell
 python hello_car.py
 ```
 
@@ -33,7 +26,7 @@ If you are using Visual Studio 2019 then just open AutonomySim.sln, set PythonCl
 
 You can also install `AutonomySim` package simply by,
 
-```
+```shell
 pip install AutonomySim
 ```
 
@@ -137,29 +130,28 @@ for response in responses:
 * `simPrintLogMessage`: Prints the specified message in the simulator's window. If message_param is also supplied then its printed next to the message and in that case if this API is called with same message value but different message_param again then previous line is overwritten with new line (instead of API creating new line on display). For example, `simPrintLogMessage("Iteration: ", to_string(i))` keeps updating same line on display when API is called with different values of i. The valid values of severity parameter is 0 to 3 inclusive that corresponds to different colors.
 * `simGetObjectPose`, `simSetObjectPose`: Gets and sets the pose of specified object in Unreal environment. Here the object means "actor" in Unreal terminology. They are searched by tag as well as name. Please note that the names shown in UE Editor are *auto-generated* in each run and are not permanent. So if you want to refer to actor by name, you must change its auto-generated name in UE Editor. Alternatively you can add a tag to actor which can be done by clicking on that actor in Unreal Editor and then going to [Tags property](https://answers.unrealengine.com/questions/543807/whats-the-difference-between-tag-and-tag.html), click "+" sign and add some string value. If multiple actors have same tag then the first match is returned. If no matches are found then NaN pose is returned. The returned pose is in NED coordinates in SI units in the world frame. For `simSetObjectPose`, the specified actor must have [Mobility](https://docs.unrealengine.com/en-us/Engine/Actors/Mobility) set to Movable or otherwise you will get undefined behavior. The `simSetObjectPose` has parameter `teleport` which means object is [moved through other objects](https://www.unrealengine.com/en-US/blog/moving-physical-objects) in its way and it returns true if move was successful
 
-### Image / Computer Vision APIs
+### Image/Computer Vision APIs
 
-AutonomySim offers comprehensive images APIs to retrieve synchronized images from multiple cameras along with ground truth including depth, disparity, surface normals and vision. You can set the resolution, FOV, motion blur etc parameters in [settings.json](settings.md). There is also API for detecting collision state. See also [complete code](https://github.com/nervosys/AutonomySim/tree/main/Examples/DataCollection/StereoImageGenerator.hpp) that generates specified number of stereo images and ground truth depth with normalization to camera plane, computation of disparity image and saving it to [pfm format](pfm.md).
+AutonomySim offers comprehensive images APIs to retrieve synchronized images from multiple cameras along with ground truth including depth, disparity, surface normals and vision. You can set the resolution, FOV, motion blur etc parameters in [settings.json](settings.md). There is also API for detecting collision state. See also [complete code](https://github.com/nervosys/AutonomySim/tree/master/Examples/DataCollection/StereoImageGenerator.hpp) that generates specified number of stereo images and ground truth depth with normalization to camera plane, computation of disparity image and saving it to [pfm format](pfm.md).
 
 More on [image APIs and Computer Vision mode](image_apis.md).
 For vision problems that can benefit from domain randomization, there is also an [object retexturing API](retexturing.md), which can be used in supported scenes.
 
 ### Pause and Continue APIs
 
-AutonomySim allows to pause and continue the simulation through `pause(is_paused)` API. To pause the simulation call `pause(True)` and to continue the simulation call `pause(False)`. You may have scenario, especially while using reinforcement learning, to run the simulation for specified amount of time and then automatically pause. While simulation is paused, you may then do some expensive computation, send a new command and then again run the simulation for specified amount of time. This can be achieved by API `continueForTime(seconds)`. This API runs the simulation for the specified number of seconds and then pauses the simulation. For example usage, please see [pause_continue_car.py](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//car/pause_continue_car.py) and [pause_continue_drone.py](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//multirotor/pause_continue_drone.py).
-
+AutonomySim allows to pause and continue the simulation through `pause(is_paused)` API. To pause the simulation call `pause(True)` and to continue the simulation call `pause(False)`. You may have scenario, especially while using reinforcement learning, to run the simulation for specified amount of time and then automatically pause. While simulation is paused, you may then do some expensive computation, send a new command and then again run the simulation for specified amount of time. This can be achieved by API `continueForTime(seconds)`. This API runs the simulation for the specified number of seconds and then pauses the simulation. For example usage, please see [pause_continue_car.py](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//car/pause_continue_car.py) and [pause_continue_drone.py](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//multirotor/pause_continue_drone.py).
 
 ### Collision API
 
 The collision information can be obtained using `simGetCollisionInfo` API. This call returns a struct that has information not only whether collision occurred but also collision position, surface normal, penetration depth and so on.
 
-### Time of Day API
+### Time-of-day API
 
 AutonomySim assumes there exist sky sphere of class `EngineSky/BP_Sky_Sphere` in your environment with [ADirectionalLight actor](https://github.com/nervosys/AutonomySim/blob/v1.4.0-linux/Unreal/Plugins/AutonomySim/Source/SimMode/SimModeBase.cpp#L224). By default, the position of the sun in the scene doesn't move with time. You can use [settings](settings.md#timeofday) to set up latitude, longitude, date and time which AutonomySim uses to compute the position of sun in the scene.
 
 You can also use following API call to set the sun position according to given date time:
 
-```
+```python
 simSetTimeOfDay(self, is_enabled, start_datetime = "", is_start_datetime_dst = False, celestial_clock_speed = 1, update_interval_secs = 60, move_sun = True)
 ```
 
@@ -176,18 +168,18 @@ Sim world extent, in the form of a vector of two GeoPoints, can be retrieved usi
 
 By default all weather effects are disabled. To enable weather effect, first call:
 
-```
+```python
 simEnableWeather(True)
 ```
 
 Various weather effects can be enabled by using `simSetWeatherParameter` method which takes `WeatherParameter`, for example,
 
-```
+```python
 client.simSetWeatherParameter(AutonomySim.WeatherParameter.Rain, 0.25);
 ```
 The second parameter value is from 0 to 1. The first parameter provides following options:
 
-```
+```python
 class WeatherParameter:
     Rain = 0
     Roadwetness = 1
@@ -199,7 +191,7 @@ class WeatherParameter:
     Fog = 7
 ```
 
-Please note that `Roadwetness`, `RoadSnow` and `RoadLeaf` effects requires adding [materials](https://github.com/nervosys/AutonomySim/tree/main/Unreal/Plugins/AutonomySim/Content/Weather/WeatherFX) to your scene.
+Please note that `Roadwetness`, `RoadSnow` and `RoadLeaf` effects requires adding [materials](https://github.com/nervosys/AutonomySim/tree/master/Unreal/Plugins/AutonomySim/Content/Weather/WeatherFX) to your scene.
 
 Please see [example code](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/environment/weather.py) for more details.
 
@@ -207,7 +199,7 @@ Please see [example code](https://github.com/nervosys/AutonomySim/blob/main/Pyth
 
 Recording APIs can be used to start recording data through APIs. Data to be recorded can be specified using [settings](settings.md#recording). To start recording, use -
 
-```
+```python
 client.startRecording()
 ```
 
@@ -221,7 +213,7 @@ Note that this will only save the data as specfied in the settings. For full fre
 
 Wind can be changed during simulation using `simSetWind()`. Wind is specified in World frame, NED direction and m/s values
 
-E.g. To set 20m/s wind in North (forward) direction -
+For example, to set 20m/s wind in north (forward) direction:
 
 ```python
 # Set wind to (20,0,0) in NED (forward direction)
@@ -325,9 +317,9 @@ See the [Adding New APIs](adding_new_apis.md) page
 ## References and Examples
 
 * [C++ API Examples](apis_cpp.md)
-* [Car Examples](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//car)
-* [Multirotor Examples](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//multirotor)
-* [Computer Vision Examples](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//computer_vision)
+* [Car Examples](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//car)
+* [Multirotor Examples](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//multirotor)
+* [Computer Vision Examples](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//computer_vision)
 * [Move on Path](https://github.com/nervosys/AutonomySim/wiki/moveOnPath-demo) demo showing video of fast multirotor flight through Modular Neighborhood environment
 * [Building a Hexacopter](https://github.com/nervosys/AutonomySim/wiki/hexacopter)
 * [Building Point Clouds](https://github.com/nervosys/AutonomySim/wiki/Point-Clouds)
@@ -350,7 +342,7 @@ We recommend [Anaconda](https://www.anaconda.com/download/) to get Python tools 
 
 You can install OpenCV using:
 
-```
+```shell
 conda install opencv
 pip install opencv-python
 ```

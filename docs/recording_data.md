@@ -1,4 +1,4 @@
-# Modifying Recording Data
+# Recording Data
 
 `AutonomySim` has a [Recording feature](settings.md#recording) to easily collect data and images. The [Recording APIs](apis.md#recording-apis) also allows starting and stopping the recording using API.
 
@@ -6,13 +6,13 @@ However, the data recorded by default might not be sufficient for your use cases
 
 The recorded data is written in a `AutonomySim_rec.txt` file in a tab-separated format, with images in an `images/` folder. The entire folder is by default present in the `Documents` folder (or specified in settings) with the timestamp of when the recording started in `%Y-%M-%D-%H-%M-%S` format.
 
-Car vehicle records the following fields:
+The `Car` vehicle records the following fields:
 
 ```text
 VehicleName TimeStamp   POS_X   POS_Y   POS_Z   Q_W Q_X Q_Y Q_Z Throttle    Steering    Brake   Gear    Handbrake   RPM Speed   ImageFile
 ```
 
-For Multirotor:
+The `Multirotor` fields:
 
 ```text
 VehicleName TimeStamp   POS_X   POS_Y   POS_Z   Q_W Q_X Q_Y Q_Z ImageFile
@@ -24,18 +24,17 @@ Note that this requires building and using AutonomySim from source. You can comp
 
 The primary method which fills the data to be stored is [`PawnSimApi::getRecordFileLine`](https://github.com/nervosys/AutonomySim/blob/880c5541fd4824ee2cd9bb82ca5f611eb1ab236a/Unreal/Plugins/AutonomySim/Source/PawnSimApi.cpp#L544), it's the base method for all the vehicles, and Car overrides it to log additional data, as can be seen in [`CarPawnSimApi::getRecordFileLine`](https://github.com/nervosys/AutonomySim/blob/880c5541fd4824ee2cd9bb82ca5f611eb1ab236a/Unreal/Plugins/AutonomySim/Source/Vehicles/Car/CarPawnSimApi.cpp#L34).
 
-To record additional data for multirotor, you can add a similar method in [MultirotorPawnSimApi.cpp/h](https://github.com/nervosys/AutonomySim/tree/main/Unreal/Plugins/AutonomySim/Source/Vehicles/Multirotor) files which overrides the base class implementation and append other data. The currently logged data can also be modified and removed as needed.
+To record additional data for multirotor, you can add a similar method in [MultirotorPawnSimApi.cpp/h](https://github.com/nervosys/AutonomySim/tree/master/Unreal/Plugins/AutonomySim/Source/Vehicles/Multirotor) files which overrides the base class implementation and append other data. The currently logged data can also be modified and removed as needed.
 
-E.g. recording GPS, IMU and Barometer data also for multirotor -
+For example, recording GPS, IMU, and Barometer data for multirotor:
 
 ```cpp
 // MultirotorPawnSimApi.cpp
 std::string MultirotorPawnSimApi::getRecordFileLine(bool is_header_line) const {
-
     std::string common_line = PawnSimApi::getRecordFileLine(is_header_line);
+    
     if (is_header_line) {
-        return common_line +
-               "Latitude\tLongitude\tAltitude\tPressure\tAccX\tAccY\tAccZ\t";
+        return common_line + "Latitude\tLongitude\tAltitude\tPressure\tAccX\tAccY\tAccZ\t";
     }
 
     const auto& state = vehicle_api_->getMultirotorState();

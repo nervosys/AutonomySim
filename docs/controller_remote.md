@@ -12,7 +12,8 @@ To date, XBox and [FrSky Taranis X9D Plus](https://hobbyking.com/en_us/frsky-2-4
 
 AutonomySim can detect large variety of devices. However, devices other than those listed above may require extra configuration. In the future, we may add relared configuration options in the `settings.json` file. If your controller does not work, we recommend trying workarounds such as [x360ce](http://www.x360ce.com/) or modifying the [SimJoystick.cpp file](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/SimJoyStick/SimJoyStick.cpp#L50).
 
-NOTE: If a realistic experience is desired, the XBox 360 controller is not recommended as it has insufficient potentiometer encoding precision. For more information, see the FAQ below.
+!!! note
+    If a realistic experience is desired, the XBox 360 controller is not recommended as it has insufficient potentiometer encoding precision. For more information, see the FAQ below.
 
 ### FrSky Taranis X9D Plus
 
@@ -34,8 +35,7 @@ Please see the [PX4 controller configuration](https://docs.px4.io/en/getting_sta
 
 ### XBox 360 Controller
 
-You can also use an xbox controller in SITL mode, it just won't be as precise as a real RC controller.
-See [xbox controller](xbox_controller.md) for details on how to set that up.
+You can also use an xbox controller in SITL mode, it just won't be as precise as a real RC controller. See [xbox controller](xbox_controller.md) for details on how to set that up.
 
 ### Playstation 3 Controller
 
@@ -47,33 +47,33 @@ Nils Tijtgat wrote an excellent blog on how to get the [DJI controller working w
 
 ## FAQ
 
-1. **AutonomySim says my USB controller is not detected.**
+### AutonomySim says my USB controller is not detected
    
-   This typically happens if you have multiple RCs and or XBox/Playstation gamepads etc connected. In Windows, hit Windows+S key and search for "Set up USB Game controllers" (in older versions of Windows try "joystick"). This will show you all game controllers connected to your PC. If you don't see yours than Windows haven't detected it and so you need to first solve that issue. If you do see yours but not at the top of the list (i.e. index 0) than you need to tell AutonomySim because AutonomySim by default tries to use RC at index 0. To do this, navigate to your `~/Documents/AutonomySim` folder, open up `settings.json` and add/modify following setting. Below tells AutonomySim to use RC at `index = 2`.
+This typically happens if you have multiple RCs and or XBox/Playstation gamepads etc connected. In Windows, hit Windows+S key and search for "Set up USB Game controllers" (in older versions of Windows try "joystick"). This will show you all game controllers connected to your PC. If you don't see yours than Windows haven't detected it and so you need to first solve that issue. If you do see yours but not at the top of the list (i.e. index 0) than you need to tell AutonomySim because AutonomySim by default tries to use RC at index 0. To do this, navigate to your `~/Documents/AutonomySim` folder, open up `settings.json` and add/modify following setting. Below tells AutonomySim to use RC at `index = 2`.
 
-    ```json
-    {
-        "SettingsVersion": 1.2,
-        "SimMode": "Multirotor",
-        "Vehicles": {
-            "SimpleFlight": {
-                "VehicleType": "SimpleFlight",
-                "RC": {
-                  "RemoteControlID": 2
-                }
+```json
+{
+    "SettingsVersion": 1.2,
+    "SimMode": "Multirotor",
+    "Vehicles": {
+        "SimpleFlight": {
+            "VehicleType": "SimpleFlight",
+            "RC": {
+              "RemoteControlID": 2
             }
         }
     }
-    ```
+}
+```
 
-2. **The vehicle is unstable when using XBox/PS3 controller**
+### The vehicle is unstable when using XBox/PS3 controller
 
-    Regular gamepads are not very precise and have lot of random noise. Most of the times you may see significant offsets as well (i.e. output is not zero when sticks are at zero). So this behavior is expected.
+Regular gamepads are not very precise and have lot of random noise. Most of the times you may see significant offsets as well (i.e. output is not zero when sticks are at zero). So this behavior is expected.
 
-3. **Where is the RC controller calibration utility in AutonomySim?**
+### Where is the RC controller calibration utility in AutonomySim?
 
-    We haven't implemented it yet. This means your RC firmware will need to have a capability to do calibration for now.
+We haven't implemented it yet. This means your RC firmware will need to have a capability to do calibration for now.
 
-4. **The RC controller is not working with PX4**
+### The RC controller is not working with PX4
 
-    First, ensure your RC controller is working in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Radio.html). If it doesn't then it will sure not work in AutonomySim. The PX4 mode is suitable for folks who have at least intermediate level of experience to deal with various issues related to PX4 and we would generally refer you to get help from PX4 forums.
+First, ensure your RC controller is working in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Radio.html). If it doesn't then it will sure not work in AutonomySim. The PX4 mode is suitable for folks who have at least intermediate level of experience to deal with various issues related to PX4 and we would generally refer you to get help from PX4 forums.

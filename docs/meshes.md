@@ -1,9 +1,10 @@
-# How to Access Meshes in AutonomySim
+# Accessing Meshes
 
 `AutonomySim` supports the ability to access the static meshes that make up the scene.
 
-## Mesh structure
-Each mesh is represented with the below struct.
+## Mesh Data Structure
+
+Each mesh is represented with the below struct:
 
 ```cpp
 struct MeshPositionVertexBuffersResponse {
@@ -21,7 +22,7 @@ struct MeshPositionVertexBuffersResponse {
   * The x,y,z coordinates of the vertices are all stored in a single vector. This means the vertices vector is Nx3 where N is number of vertices. 
   * The position of the vertices are the global positions in the Unreal coordinate system. This means they have already been transformed by the position and orientation.
 
-## How to use
+## Methods
 
 The API to get the meshes in the scene is quite simple. However, one should note that the function call is very expensive and should very rarely be called. In general this is ok because this function only accesses the static meshes which for most applications are not changing during the duration of your program.
 

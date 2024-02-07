@@ -22,7 +22,8 @@ Starting with this [PX4 Change Request](https://github.com/PX4/PX4-Autopilot/com
 export PX4_SIM_HOST_ADDR=172.31.64.1
 ```
 
-**Note:** Be sure to update the above address `172.31.64.1` to match what you see from your `ipconfig` command.
+!!! note
+    Be sure to update the above address `172.31.64.1` to match what you see from your `ipconfig` command.
 
 Open incoming TCP port 4560 and incoming UDP port 14540 using your firewall configuration.
 
@@ -80,9 +81,10 @@ else
 fi
 ```
 
-**Note**: this code might already be there depending on the version of PX4 you are using.
+!!! note
+    This code might already be there depending on the version of PX4 you are using.
 
-**Note**: please be patient when waiting for the message:
+Please be patient when waiting for the message:
 
 ```text
 INFO  [simulator] Simulator connected on TCP port 4560.

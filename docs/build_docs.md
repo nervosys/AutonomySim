@@ -1,9 +1,11 @@
 # Generating the Documentation
 
-> [!NOTE]
-> This is only useful if you want to host your own `AutonomySim` documentation site (e.g., in a secure enclave).
+!!! note
+    This is only useful if you want to host your own `AutonomySim` documentation site (e.g., in a secure enclave).
 
 The `AutonomySim` documentation [website](https://nervosys.github.io/AutonomySim/) HTML and CSS files are automatically generated from Markdown files and deployed to GitHub Pages using the `mkdocs` package for Python. You can also self-host the documentation or redirect GitHub Pages to your own domain. The choice is yours.
+
+Compared to `AirSim` and its forks, we offer simpler and cleaner documentation in a modern style.
 
 ## Configure GitHub Repository
 

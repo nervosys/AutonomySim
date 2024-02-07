@@ -34,7 +34,7 @@ int getOneImage() {
 }
 ```
 
-## Getting Images with More Flexibility
+## Getting Images with Greater Flexibility
 
 The `simGetImages` API which is slightly more complex to use than `simGetImage` API, for example, you can get left camera view, right camera view and depth image from left camera in a single API call. The `simGetImages` API also allows you to get uncompressed images as well as floating point single channel images (instead of 3 channel (RGB), each 8 bit).
 
@@ -78,17 +78,19 @@ img_rgb = np.flipud(img_rgb)
 AutonomySim.write_png(os.path.normpath(filename + '.png'), img_rgb) 
 ```
 
-#### Quick Tips
+#### Tips
 
-- The API `simGetImage` returns `binary string literal` which means you can simply dump it in binary file to create a .png file. However if you want to process it in any other way than you can handy function `AutonomySim.string_to_uint8_array`. This converts binary string literal to NumPy uint8 array.
+* The API `simGetImage` returns `binary string literal` which means you can simply dump it in binary file to create a .png file. However if you want to process it in any other way than you can handy function `AutonomySim.string_to_uint8_array`. This converts binary string literal to NumPy uint8 array.
 
-- The API `simGetImages` can accept request for multiple image types from any cameras in single call. You can specify if image is png compressed, RGB uncompressed or float array. For png compressed images, you get `binary string literal`. For float array you get Python list of float64. You can convert this float array to NumPy 2D array using
+* The API `simGetImages` can accept request for multiple image types from any cameras in single call. You can specify if image is png compressed, RGB uncompressed or float array. For png compressed images, you get `binary string literal`. For float array you get Python list of float64. You can convert this float array to NumPy 2D array using:
+
     ```
     AutonomySim.list_to_2d_float_array(response.image_data_float, response.width, response.height)
     ```
+
     You can also save float array to .pfm file (Portable Float Map format) using `AutonomySim.write_pfm()` function.
 
-- If you are looking to query position and orientation information in sync with a call to one of the image APIs, you can use `client.simPause(True)` and `client.simPause(False)` to pause the simulation while calling the image API and querying the desired physics state, ensuring that the physics state remains the same immediately after the image API call.
+* If you are looking to query position and orientation information in sync with a call to one of the image APIs, you can use `client.simPause(True)` and `client.simPause(False)` to pause the simulation while calling the image API and querying the desired physics state, ensuring that the physics state remains the same immediately after the image API call.
 
 ### C++
 
@@ -119,17 +121,17 @@ int getStereoAndDepthImages() {
 }
 ```
 
-## Ready to Run Complete Examples
+## Complete Examples
 
 ### Python
 
-For a more complete ready to run sample code please see [sample code in AutonomySimClient project](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//multirotor/hello_drone.py) for multirotors or [HelloCar sample](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//car/hello_car.py). This code also demonstrates simple activities such as saving images in files or using `numpy` to manipulate images.
+For a more complete ready to run sample code please see [sample code in AutonomySimClient project](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//multirotor/hello_drone.py) for multirotors or [HelloCar sample](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//car/hello_car.py). This code also demonstrates simple activities such as saving images in files or using `numpy` to manipulate images.
 
 ### C++
 
-For a more complete ready to run sample code please see [sample code in HelloDrone project](https://github.com/nervosys/AutonomySim/tree/main/HelloDrone//main.cpp) for multirotors or [HelloCar project](https://github.com/nervosys/AutonomySim/tree/main/HelloCar//main.cpp). 
+For a more complete ready to run sample code please see [sample code in HelloDrone project](https://github.com/nervosys/AutonomySim/tree/master/HelloDrone//main.cpp) for multirotors or [HelloCar project](https://github.com/nervosys/AutonomySim/tree/master/HelloCar//main.cpp). 
 
-See also [other example code](https://github.com/nervosys/AutonomySim/tree/main/Examples/DataCollection/StereoImageGenerator.hpp) that generates specified number of stereo images along with ground truth depth and disparity and saving it to [pfm format](pfm.md).
+See also [other example code](https://github.com/nervosys/AutonomySim/tree/master/Examples/DataCollection/StereoImageGenerator.hpp) that generates specified number of stereo images along with ground truth depth and disparity and saving it to [pfm format](pfm.md).
 
 ## Available Cameras
 
@@ -138,6 +140,7 @@ These are the default cameras already available in each vehicle. Apart from thes
 ### Car
 
 The cameras on car can be accessed by following names in API calls: `front_center`, `front_right`, `front_left`, `fpv` and `back_center`. Here FPV camera is driver's head position in the car.
+
 ### Multirotor
 
 The cameras on the drone can be accessed by following names in API calls: `front_center`, `front_right`, `front_left`, `bottom_center` and `back_center`. 
@@ -163,7 +166,7 @@ To active this mode, edit [settings.json](settings.md) that you can find in your
 }
 ```
 
-[Here's the Python code example](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//computer_vision/cv_mode.py) to move camera around and capture images.
+[Here's the Python code example](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//computer_vision/cv_mode.py) to move camera around and capture images.
 
 This mode was inspired from [UnrealCV project](http://unrealcv.org/).
 
@@ -173,7 +176,7 @@ To move around the environment using APIs you can use `simSetVehiclePose` API. T
 
 ## Camera APIs
 
-The `simGetCameraInfo` returns the pose (in world frame, NED coordinates, SI units) and FOV (in degrees) for the specified camera. Please see [example usage](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//computer_vision/cv_mode.py).
+The `simGetCameraInfo` returns the pose (in world frame, NED coordinates, SI units) and FOV (in degrees) for the specified camera. Please see [example usage](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//computer_vision/cv_mode.py).
 
 The `simSetCameraPose` sets the pose for the specified camera while taking an input pose as a combination of relative position and a quaternion in NED frame. The handy `AutonomySim.to_quaternion()` function allows to convert pitch, roll, yaw to quaternion. For example, to set camera-0 to 15-degree pitch while maintaining the same position, you can use:
 
@@ -191,9 +194,9 @@ All Camera APIs take in 3 common parameters apart from the API-specific ones, `c
 
 You can set stabilization for pitch, roll or yaw for any camera [using settings](settings.md#gimbal).
 
-Please see [example usage](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//computer_vision/cv_mode.py).
+Please see [example usage](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//computer_vision/cv_mode.py).
 
-## Changing Resolution and Camera Parameters
+## Changing Camera Resolution and Parameters
 
 To change resolution, FOV etc, you can use [settings.json](settings.md). For example, below addition in settings.json sets parameters for scene capture and uses "Computer Vision" mode described above. If you omit any setting then below default values will be used. For more information see [settings doc](settings.md). If you are using stereo camera, currently the distance between left and right is fixed at 25 cm.
 
@@ -216,7 +219,7 @@ To change resolution, FOV etc, you can use [settings.json](settings.md). For exa
 }
 ```
 
-## What Does Pixel Values Mean in Different Image Types?
+## What Pixel Values Mean in Different Image Types
 
 ### Available ImageType Values
 
@@ -279,9 +282,9 @@ print(np.unique(img_rgb[:,:,1], return_counts=True)) #green
 print(np.unique(img_rgb[:,:,2], return_counts=True)) #blue  
 ```
 
-A complete ready-to-run example can be found in [segmentation.py](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//computer_vision/segmentation.py).
+A complete ready-to-run example can be found in [segmentation.py](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//computer_vision/segmentation.py).
 
-#### Unsetting object ID
+#### Unsetting an Object ID
 
 An object's ID can be set to -1 to make it not show up on the segmentation image.
 
@@ -299,7 +302,7 @@ Once you decide on the meshes you are interested, note down their names and use 
 
 At present the color for each object ID is fixed as in [this pallet](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Content/HUDAssets/seg_color_palette.png). We will be adding ability to change colors for object IDs to desired values shortly. In the meantime you can open the segmentation image in your favorite image editor and get the RGB values you are interested in.
 
-#### Startup Object IDs
+#### Initial Object IDs
 
 At the start, AutonomySim assigns object ID to each object found in environment of type `UStaticMeshComponent` or `ALandscapeProxy`. It then either uses mesh name or owner name (depending on settings), lower cases it, removes any chars below ASCII 97 to remove numbers and some punctuations, sums int value of all chars and modulo 255 to generate the object ID. In other words, all object with same alphabet chars would get same object ID. This heuristic is simple and effective for many Unreal environments but may not be what you want. In that case, please use above APIs to change object IDs to your desired values. There are [few settings](settings.md#segmentation-settings) available to change this behavior.
 
@@ -317,4 +320,4 @@ These image types return information about motion perceived by the point of view
 
 ## Example Code
 
-A complete example of setting vehicle positions at random locations and orientations and then taking images can be found in [GenerateImageGenerator.hpp](https://github.com/nervosys/AutonomySim/tree/main/Examples/DataCollection/StereoImageGenerator.hpp). This example generates specified number of stereo images and ground truth disparity image and saving it to [pfm format](pfm.md).
+A complete example of setting vehicle positions at random locations and orientations and then taking images can be found in [GenerateImageGenerator.hpp](https://github.com/nervosys/AutonomySim/tree/master/Examples/DataCollection/StereoImageGenerator.hpp). This example generates specified number of stereo images and ground truth disparity image and saving it to [pfm format](pfm.md).

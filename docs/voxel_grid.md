@@ -1,8 +1,10 @@
 # Voxel Grid
 
-AutonomySim provides a feature that constructs ground truth voxel grids of the world directly from Unreal Engine. A voxel grid is a representation of the occupancy of a given world/map, by discretizing into cells of a certain size; and recording a voxel if that particular location is occupied. 
+`AutonomySim` provides a feature that constructs ground truth voxel grids of the world directly from `Unreal Engine`. A voxel grid is a representation of the occupancy of a given world/map, by discretizing into cells of a certain size; and recording a voxel if that particular location is occupied. 
 
-The logic for constructing the voxel grid is in WorldSimApi.cpp->createVoxelGrid(). For now, the assumption is that the voxel grid is a cube - and the API call from Python is of the structure:
+## Algorithm and Usage
+
+The logic for constructing the voxel grid is in `WorldSimApi.cpp->createVoxelGrid()`. For now, the assumption is that the voxel grid is a cube - and the API call from Python is of the structure:
 
 ```python
 simCreateVoxelGrid(self, position, x, y, z, res, of)
@@ -37,11 +39,11 @@ The occupancy of the map is calculated iteratively over all discretized cells, w
 
 The voxel grids are stored in the binvox format which can then be converted by the user into an octomap .bt or any other relevant, desired format. Subsequently, these voxel grids/octomaps can be used within mapping/planning. One nifty little utility to visualize a created binvox files is [viewvox](https://www.patrickmin.com/viewvox/). Similarly, `binvox2bt` can convert the binvox to an octomap file.
 
-##### Example voxel grid in Blocks:
+## Example in Blocks
 
 ![image](images/voxel_grid.png)
 
-##### Blocks voxel grid converted to Octomap format (visualized in rviz):
+## Converion to Octomap format (visualized in rviz)
 
 ![image](images/octomap.png)
 

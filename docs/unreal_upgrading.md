@@ -1,12 +1,13 @@
-# Upgrading to Unreal Engine 4.27
+# Upgrading Unreal Engine
 
-These instructions apply if you are already using AutonomySim on Unreal Engine 4.25. If you have never installed AutonomySim, please see [How to get it](https://github.com/nervosys/AutonomySim#how-to-get-it).
+These instructions apply if you are already using `AutonomySim` on `Unreal Engine` 4.25. If you have never installed `AutonomySim`, please see [How to get it](https://github.com/nervosys/AutonomySim#how-to-get-it).
 
-**Caution:** The below steps will delete any of your unsaved work in AutonomySim or Unreal folder.
+!!! caution
+    The below steps will delete any of your unsaved work in AutonomySim or Unreal folder.
 
-## Do this first
+## First Steps
 
-### For Windows Users
+### Windows
 
 1. Install Visual Studio 2022 with VC++, Python and C#.
 2. Install UE 4.27 through Epic Games Launcher.
@@ -14,7 +15,7 @@ These instructions apply if you are already using AutonomySim on Unreal Engine 4
 4. Run `clean_rebuild.cmd` to remove all unchecked/extra stuff and rebuild everything.
 5. See also [Build AutonomySim on Windows](build_windows.md) for more information.
 
-### For Linux Users
+### Linux
 
 1. From your AutonomySim repo folder, run 'clean_rebuild.sh`.
 2. Rename or delete your existing folder for Unreal Engine.
@@ -33,26 +34,29 @@ If you have your own Unreal project created in an older version of Unreal Engine
 
 ## FAQ
 
-### I have an Unreal project that is older than 4.16. How do I upgrade it?
+### I have an `Unreal` project that is older than 4.16. How do I upgrade it?
 
-#### Option 1: Just Recreate Project
+#### Option 1: Recreate the Project
 
 If your project doesn't have any code or assets other than environment you downloaded then you can also simply [recreate the project in Unreal 4.27 Editor](unreal_custenv.md) and then copy Plugins folder from `AutonomySim/Unreal/Plugins`.
 
-#### Option 2: Modify Few Files
+#### Option 2: Modify the Files
 
 Unreal versions newer than Unreal 4.15 has breaking changes. So you need to modify your *.Build.cs and *.Target.cs which you can find in the `Source` folder of your Unreal project. So what are those changes? Below is the gist of it but you should really refer to [Unreal's official 4.16 transition post](https://forums.unrealengine.com/showthread.php?145757-C-4-16-Transition-Guide).
 
-##### In your project's *.Target.cs
+##### Update the project `*.Target.cs` file
 
 1. Change the contructor from, `public MyProjectTarget(TargetInfo Target)` to `public MyProjectTarget(TargetInfo Target) : base(Target)`
 
 2. Remove `SetupBinaries` method if you have one and instead add following line in contructor above: `ExtraModuleNames.AddRange(new string[] { "MyProject" });`
 
-##### In your project's *.Build.cs
+##### Update the project `*.Build.cs` file
 
 Change the constructor from `public MyProject(TargetInfo Target)` to `public MyProject(ReadOnlyTargetRules Target) : base(Target)`.
 
-##### And finally...
+##### Last
 
-Follow above steps to continue the upgrade. The warning box might show only "Open Copy" button. Don't click that. Instead, click on More Options which will reveal more buttons. Choose `Convert-In-Place option`. *Caution:* Always keep backup of your project first! If you don't have anything nasty, in place conversion should go through and you are now on the new version of Unreal.
+Follow above steps to continue the upgrade. The warning box might show only "Open Copy" button. Don't click that. Instead, click on More Options which will reveal more buttons. Choose `Convert-In-Place option`.
+
+!!! caution
+    Always keep backup of your project first! If you don't have anything nasty, in place conversion should go through and you are now on the new version of Unreal.

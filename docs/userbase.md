@@ -1,6 +1,6 @@
-# Who is Using AutonomySim?
+# Past and Current Users
 
-#### Would you like to see your own group or project here? 
+## Would you like to see your own group or project here? 
 
 Just add a [GitHub issue](https://github.com/nervosys/AutonomySim/issues) with quick details and link to your website. 
 

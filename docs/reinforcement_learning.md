@@ -1,18 +1,17 @@
-# Reinforcement Learning in AutonomySim
+# Reinforcement Learning
 
 We below describe how we can implement DQN in AutonomySim using an OpenAI gym wrapper around AutonomySim API, and using stable baselines implementations of standard RL algorithms. We recommend installing stable-baselines3 in order to run these examples (please see https://github.com/DLR-RM/stable-baselines3)
 
-#### Disclaimer
+!!! warning
+    This is still in active development. What we share below is a framework that can be extended and tweaked to obtain better performance.
 
-This is still in active development. What we share below is a framework that can be extended and tweaked to obtain better performance.
-
-#### Gym wrapper
+## Gym Wrapper
 
 In order to use AutonomySim as a gym environment, we extend and reimplement the base methods such as `step`, `_get_obs`, `_compute_reward` and `reset` specific to AutonomySim and the task of interest. The sample environments used in these examples for car and drone can be seen in `PythonClient/reinforcement_learning/*_env.py`
 
-## RL with Car
+## Car RL
 
-[Source code](https://github.com/nervosys/AutonomySim/tree/main/PythonClient/reinforcement_learning)
+[Source code](https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning)
 
 This example works with AutonomySimNeighborhood environment available in [releases](https://github.com/nervosys/AutonomySim/releases).
 
@@ -97,7 +96,7 @@ client.setCarControls(car_control)
 time.sleep(1)
 ```
 
-Once the gym-styled environment wrapper is defined as in `car_env.py`, we then make use of stable-baselines3 to run a DQN training loop. The DQN training can be configured as follows, seen in `dqn_car.py`.
+Once the gym-styled environment wrapper is defined as in `car_env.py`, we then make use of `stable-baselines3` to run a DQN training loop. The DQN training can be configured as follows, seen in `dqn_car.py`.
 
 ```python
 model = DQN(
@@ -126,7 +125,7 @@ Note that the simulation needs to be up and running before you execute `dqn_car.
 
 ## RL with Quadrotor
 
-[Source code](https://github.com/nervosys/AutonomySim/tree/main/PythonClient/reinforcement_learning)
+[Source code](https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning)
 
 This example works with AutonomySimMountainLandscape environment available in [releases](https://github.com/nervosys/AutonomySim/releases).
 

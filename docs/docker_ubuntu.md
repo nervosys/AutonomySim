@@ -1,14 +1,17 @@
-# AutonomySim on Docker in Linux
+# Docker on Linux
 
-We've two options for docker. You can either build an image for running [AutonomySim linux binaries](#binaries), or for compiling Unreal Engine + AutonomySim [from source](#source)
+There are two options for Docker:
+
+1. Build an image for running [AutonomySim linux binaries](#binaries)
+2. Build an image for compiling Unreal Engine and AutonomySim [from source](#source)
 
 ## Binaries
 
-#### Requirements
+### Requirements
 
 * Install [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker#quickstart)
 
-#### Build the docker image
+### Build the docker image
 
 * Below are the default arguments.
   `--base_image`: This is image over which we'll install AutonomySim. We've tested on Ubuntu 18.04 with CUDA 10.0.
@@ -25,7 +28,7 @@ We've two options for docker. You can either build an image for running [Autonom
 
 * Verify you have an image by: `$ docker images | grep AutonomySim`
 
-#### Running an unreal binary inside a docker container
+### Running an unreal binary inside a docker container
 
 * Get [a Linux binary](https://github.com/nervosys/AutonomySim/releases) or package your own project in Ubuntu. Let's take the Blocks binary as an example. You can download it by running the folowing:
 
@@ -60,12 +63,12 @@ For AutonomySim, most relevant would be `-windowed`, `-ResX`, `-ResY`. Click on 
 
 ## Source
 
-#### Requirements
+### Requirements
 
 * Install [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
 * Install [ue4-docker](https://docs.adamrehn.com/ue4-docker/configuration/configuring-linux)
 
-#### Build Unreal Engine inside docker
+### Build Unreal Engine inside docker
 
 * To get access to Unreal Engine's source code, register on Epic Games' website and link it to your github account, as explained in the `Required Steps` section [here](https://docs.unrealengine.com/en-us/Platforms/Linux/BeginnerLinuxDeveloper/SettingUpAnUnrealWorkflow).
 
@@ -86,7 +89,7 @@ For AutonomySim, most relevant would be `-windowed`, `-ResX`, `-ResY`. Click on 
       * [`docker image prune`](https://docs.docker.com/engine/reference/commandline/image_prune/)
       * [`docker system prune`](https://docs.docker.com/engine/reference/commandline/system_prune/)
 
-#### Building AutonomySim inside UE4 docker container
+### Building AutonomySim inside UE4 docker container
 
 * Build AutonomySim docker image (which lays over the unreal image we just built)
   Below are the default arguments.
@@ -103,7 +106,7 @@ python build_AutonomySim_image.py \
    --target_image=AutonomySim_source:4.19.2-cudagl10.0
 ```
 
-#### Running AutonomySim container
+### Running AutonomySim container
 
 * Run the AutonomySim source image we built by:
 
@@ -120,7 +123,7 @@ python build_AutonomySim_image.py \
 * [Specifying an AutonomySim settings.json](#specifying-settingsjson)
 * Continue with [AutonomySim's Linux docs](build_linux.md#build-unreal-environment).
 
-#### [Misc] Packaging Unreal Environments in `AutonomySim_source` containers
+### [Misc] Packaging Unreal Environments in `AutonomySim_source` containers
 
 * Let's take the Blocks environment as an example. In the following script, specify the full path to your unreal uproject file by `project` and the directory where you want the binaries to be placed by `archivedirectory`
 
@@ -136,7 +139,7 @@ This would create a Blocks binary in `/home/ue4/Binaries/Blocks/`. You can test 
 
 ### Specifying settings.json
 
-#### `AutonomySim_binary` docker image
+#### `AutonomySim_binary` Docker image
 
 * We're mapping the host machine's `PATH/TO/AutonomySim/docker/settings.json` to the docker container's `/home/AutonomySim_user/Documents/AutonomySim/settings.json`.
 * Hence, we can load any settings file by simply modifying `PATH_TO_YOUR/settings.json` by modifying the following snippets in [`run_AutonomySim_image_binary.sh`](https://github.com/nervosys/AutonomySim/blob/main/docker/run_AutonomySim_image_binary.sh)
@@ -158,7 +161,6 @@ nvidia-docker run --runtime=nvidia -it \
 ```
 
 !!! note
-
    Docker version >=19.03 (check using `docker -v`), natively supports Nvidia GPUs, so run using `--gpus all` flag as given -
 
 ```bash

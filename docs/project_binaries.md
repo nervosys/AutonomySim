@@ -1,8 +1,8 @@
-# Download Binaries
+# Project Binaries
 
 You can simply download precompiled binaries and run to get started immediately. If you want to set up your own Unreal environment then please see [these instructions](https://github.com/nervosys/AutonomySim/#how-to-get-it).
 
-### Unreal Engine
+## Unreal Engine
 
 **Windows, Linux**: Download the binaries for the environment of your choice from the [latest release](https://github.com/nervosys/AutonomySim/releases).
 
@@ -11,7 +11,7 @@ Use [7zip](https://www.7-zip.org/download.html) to unzip these files. On Linux, 
 
 **macOS**:  You will need to [build it yourself](build_linux.md)
 
-### Unity (Experimental)
+## Unity (Experimental)
 
 A free environment called Windridge City is available at [Unity Asset Store](https://assetstore.unity.com/) as an experimental release of AutonomySim on Unity. **Note**: This is an old release, and many of the features and APIs might not work.
 

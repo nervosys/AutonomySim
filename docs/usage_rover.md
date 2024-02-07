@@ -1,6 +1,6 @@
-# How to Use Car in AutonomySim
+# Rover Usage
 
-By default AutonomySim prompts user for which vehicle to use. You can easily change this by setting [SimMode](settings.md#SimMode). For example, if you want to use car instead then just set the SimMode in your [settings.json](settings.md) which you can find in your `~/Documents/AutonomySim` folder, like this:
+By default, `AutonomySim` prompts the user for the vehicle to use. You can easily change this by setting [SimMode](settings.md#SimMode). For example, if you want to use car instead then just set the SimMode in your [settings.json](settings.md) which you can find in your `~/Documents/AutonomySim` folder, like this:
 
 ```json
 {

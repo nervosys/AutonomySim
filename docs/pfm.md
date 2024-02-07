@@ -1,7 +1,7 @@
-# pfm Format
+# PFM Image File Format
 
-Pfm (or Portable FloatMap) image format stores image as floating point pixels and hence are not restricted to usual 0-255 pixel value range. This is useful for HDR images or images that describes something other than colors like depth. 
+The Portable FloatMap (PFM) file format stores images with floating-point pixels and hence is not restricted to the 8-bit unsigned integer value range of 0-255. This is useful for HDR images or images that describes something other than colors, such as depth.
 
-One of the good viewer to view this file format is [PfmPad](https://sourceforge.net/projects/pfmpad/). We don't recommend Maverick photo viewer because it doesn't seem to show depth images properly.
+A good viewer for this file format is [PfmPad](https://sourceforge.net/projects/pfmpad/). We do not recommend the `Maverick` photo viewer because it doesn't display depth images properly.
 
-AutonomySim has code to write pfm file for [C++](https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/include/common/common_utils/Utils.hpp#L637) and read as well as write for [Python](https://github.com/nervosys/AutonomySim/tree/main/PythonClient//AutonomySim/utils.py#L122).
+`AutonomySim` provides code to write `pfm` files in [C++](https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/include/common/common_utils/Utils.hpp#L637) and, to read and write `pfm` files in [Python](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//AutonomySim/utils.py#L122).

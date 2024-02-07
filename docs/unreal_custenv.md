@@ -1,6 +1,6 @@
-# Creating and Setting Up Unreal Environment
+# Unreal Environments
 
-This page contains the complete instructions start to finish for setting up Unreal environment with AutonomySim. The Unreal Marketplace has [several environment](https://www.unrealengine.com/marketplace/content-cat/assets/environments) available that you can start using in just few minutes. It is also possible to use environments available on websites such as [turbosquid.com](https://www.turbosquid.com/) or [cgitrader.com](https://www.cgtrader.com/) with bit more effort (here's [tutorial video](https://www.youtube.com/watch?v=y09VbdQWvQY&feature)). In addition there also several [free environments](https://github.com/nervosys/AutonomySim/issues/424) available.
+This page contains the complete instructions start to finish for setting up Unreal environment with `AutonomySim`. The `Unreal Marketplace` has [several environments](https://www.unrealengine.com/marketplace/content-cat/assets/environments) available that you can start using in just few minutes. It is also possible to use environments available on websites such as [turbosquid.com](https://www.turbosquid.com/) or [cgitrader.com](https://www.cgtrader.com/) with bit more effort (here's [tutorial video](https://www.youtube.com/watch?v=y09VbdQWvQY&feature)). In addition there also several [free environments](https://github.com/nervosys/AutonomySim/issues/424) available.
 
 Below we will use a freely downloadable environment from Unreal Marketplace called Landscape Mountain but the steps are same for any other environments.
 
@@ -10,7 +10,7 @@ There is no `Epic Games Launcher` for Linux which means that if you need to crea
 
 ## Step by Step Instructions
 
-1. Make sure AutonomySim is built and Unreal 4.27 is installed as described in [build instructions](build_windows.md).
+1. Ensure `AutonomySim` is built and Unreal 4.27 is installed as described in [build instructions](build_windows.md).
 2. In `Epic Games Launcher` click the Learn tab then scroll down and find `Landscape Mountains`. Click the `Create Project` and download this content (~2GB download).
 
     ![current version](images/landscape_mountains.png)
@@ -20,7 +20,6 @@ There is no `Epic Games Launcher` for Linux which means that if you need to crea
     ![unreal editor](images/unreal_editor.png)
     
     !!!note
-
         The Landscape Mountains project is supported up to Unreal Engine version 4.24. If you do not have 4.24 installed, you should see a dialog titled `Select Unreal Engine Version` with a dropdown to select from installed versions. Select 4.27 or greater to migrate the project to a supported engine version. If you have 4.24 installed, you can manually migrate the project by navigating to the corresponding .uproject file in Windows Explorer, right-clicking it, and selecting the `Switch Unreal Engine version...` option. 
 
 4. From the `File menu` select `New C++ class`, leave default `None` on the type of class, click `Next`, leave default name `MyClass`, and click `Create Class`. We need to do this because Unreal requires at least one source file in project. It should trigger compile and open up Visual Studio solution `LandscapeMountains.sln`.
@@ -28,7 +27,6 @@ There is no `Epic Games Launcher` for Linux which means that if you need to crea
 5. Go to your folder for AutonomySim repo and copy `Unreal\Plugins` folder in to your `LandscapeMountains` folder. This way now your own Unreal project has AutonomySim plugin.
 
     !!!note
-
         If the AutonomySim installation is fresh, i.e, hasn't been built before, make sure that you run `build.cmd` from the root directory once before copying `Unreal\Plugins` folder so that `AutonomyLib` files are also included. If you have made some changes in the Blocks environment, make sure to run `update_to_git.cmd` from `Unreal\Environments\Blocks` to update the files in `Unreal\Plugins`.
 
 6. Edit the `LandscapeMountains.uproject` so that it looks like this
@@ -75,7 +73,6 @@ There is no `Epic Games Launcher` for Linux which means that if you need to crea
     ![regen](images/regen_sln.png)
 
     !!!tip
-
         If the `Generate Visual Studio Project Files` option is missing you may need to reboot your machine for the Unreal Shell extensions to take effect.  If it is still missing then open the LandscapeMountains.uproject in the Unreal Editor and select `Refresh Visual Studio Project` from the `File` menu.
 
 9. Reopen `LandscapeMountains.sln` in Visual Studio, and make sure "DebugGame Editor" and "Win64" build configuration is the active build configuration.
@@ -111,28 +108,28 @@ Once you have your environment using above instructions, you should frequently u
 
 ## FAQ
 
-#### What are other cool environments?
+### What are other cool environments?
 
 [Unreal Marketplace](https://www.unrealengine.com/marketplace) has dozens of prebuilt extra-ordinarily detailed [environments](https://www.unrealengine.com/marketplace/content-cat/assets/environments) ranging from Moon to Mars and everything in between. The one we have used for testing is called [Modular Neighborhood Pack](https://www.unrealengine.com/marketplace/modular-neighborhood-pack)
 but you can use any environment. Another free environment is [Infinity Blade series](https://www.unrealengine.com/marketplace/infinity-blade-plain-lands). Alternatively, if you look under the Learn tab in Epic Game Launcher, you will find many free samples that you can use. One of our favorites is "A Boy and His Kite" which is a 100 square miles of highly detailed environment (caution: you will need *very* beefy PC to run it!).
 
-#### When I press Play button some kind of video starts instead of my vehicle.
+### When I press Play button some kind of video starts instead of my vehicle.
 
 If the environment comes with MatineeActor, delete it to avoid any startup demo sequences. There might be other ways to remove it as well, for example, click on Blueprints button, then Level Blueprint and then look at Begin Play event in Event Graph. You might want to disconnect any connections that may be starting "matinee".
 
-#### Is there easy way to sync code in my Unreal project with code in AutonomySim repo?
+### Is there easy way to sync code in my Unreal project with code in AutonomySim repo?
 
 Sure, there is! You can find bunch of `.cmd` files (for linux, `.sh`) in `AutonomySim\Unreal\Environments\Blocks`. Just copy them over to your own Unreal project. Most of these are quite simple and self explanatory.
 
-#### I get some error about map.
+### I get some error about map.
 
 You might have to set default map for your project. For example, if you are using Modular Neighborhood Pack, set the Editor Starter Map as well as Game Default Map to Demo_Map in Project Settings > Maps & Modes.
 
-#### I see "Add to project" option for environment but not "Create project" option.
+### I see "Add to project" option for environment but not "Create project" option.
 
 In this case, create a new blank C++ project with no Starter Content and add your environment in to it.
 
-#### I already have my own Unreal project. How do I use AutonomySim with it?
+### I already have my own Unreal project. How do I use AutonomySim with it?
 
 Copy the `Unreal\Plugins` folder from the build you did in the above section into the root of your Unreal project's folder. In your Unreal project's .uproject file, add the key `AdditionalDependencies` to the "Modules" object
 as we showed in the `LandscapeMountains.uproject` above.

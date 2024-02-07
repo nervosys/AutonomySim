@@ -1,6 +1,6 @@
 # Multiple Vehicles
 
-Since release 1.2, `AutonomySim` is fully enabled for multiple vehicles. This capability allows you to create multiple vehicles easily and use APIs to control them.
+Since release 1.2, `AutonomySim` supports multiple vehicles. This capability allows you to create multiple vehicles easily and use APIs to control them.
 
 ## Creating Multiple Vehicles
 
@@ -74,11 +74,11 @@ In the latest main branch of AutonomySim, the `simAddVehicle` API can be used to
 
 `simAddVehicle` takes in the following arguments:
 
-- `vehicle_name`: Name of the vehicle to be created, this should be unique for each vehicle including any exisiting ones defined in the settings.json
-- `vehicle_type`: Type of vehicle, e.g. "simpleflight". Currently only SimpleFlight, PhysXCar, ComputerVision are supported, in their respective SimModes.
+* `vehicle_name`: Name of the vehicle to be created, this should be unique for each vehicle including any exisiting ones defined in the settings.json
+* `vehicle_type`: Type of vehicle, e.g. "simpleflight". Currently only SimpleFlight, PhysXCar, ComputerVision are supported, in their respective SimModes.
                   Other vehicle types including PX4 and ArduPilot-related aren't supported
-- `pose`: Initial pose of the vehicle
-- `pawn_path`: Vehicle blueprint path, default empty wbich uses the default blueprint for the vehicle type
+* `pose`: Initial pose of the vehicle
+* `pawn_path`: Vehicle blueprint path, default empty wbich uses the default blueprint for the vehicle type
 
 Returns: `bool` Whether vehicle was created
 
@@ -88,6 +88,6 @@ For some examples, check out [HelloSpawnedDrones.cpp](https://github.com/nervosy
 
 ![HelloSpawnedDrones](images/HelloSpawnedDrones.gif)
 
-And [runtime_car.py](https://github.com/nervosys/AutonomySim/tree/main/PythonClient/car/runtime_car.py) -
+And [runtime_car.py](https://github.com/nervosys/AutonomySim/tree/master/PythonClient/car/runtime_car.py) -
 
 ![runtime_car](images/simAddVehicle_Car.gif)

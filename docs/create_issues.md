@@ -1,6 +1,6 @@
 # How to Create Issue or Ask Questions Effectively
 
-AutonomySim is open source project and contributors like you keeps it going. It is important to respect contributors time and effort when you are asking a question or filing an issue. Your chances of receiving helpful response would increase if you follow below guidelines:
+`AutonomySim` is an open-source project. Contributors like you keep it going. It is important to respect contributors' time and effort when asking a question or filing an issue. Your chances of receiving helpful response will likely improve by following the below guidelines.
 
 ## Good Practices
 

@@ -1,10 +1,11 @@
 # Setting up PX4 Software-in-Loop
 
-The [PX4](http://dev.px4.io) software provides a "software-in-loop" simulation (SITL) version of their stack that runs in Linux. If you are on Windows then you can use the [Cygwin Toolchain](https://dev.px4.io/master/en/setup/dev_env_windows_cygwin.html) or you can use the [Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow the PX4 Linux toolchain setup.
+The [PX4](http://dev.px4.io) software provides a software-in-the-loop (SITL) simulation mode of their stack that runs on Linux. If you are on Windows, you can use the [Cygwin Toolchain](https://dev.px4.io/master/en/setup/dev_env_windows_cygwin.html) or you can use the [Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow the PX4 Linux toolchain setup.
 
-If you are using WSL2 please read these [additional instructions](px4_sitl_wsl2.md).
+If you are using WSL2, please read these [additional instructions](px4_sitl_wsl2.md).
 
-**Note** that every time you stop the unreal app you have to restart the `px4` app.
+!!! note
+    Every time you stop Unreal, you have to restart `px4`.
 
 1. From your bash terminal follow [these steps for Linux](https://docs.px4.io/master/en/dev_setup/dev_env_linux.html) and follow **all** the instructions under `NuttX based hardware` to install prerequisites. We've also included our own copy of the [PX4 build instructions](px4_build.md) which is a bit more concise about what we need exactly.
 
@@ -34,10 +35,9 @@ If you are using WSL2 please read these [additional instructions](px4_sitl_wsl2.
     INFO  [mavlink] mode: Normal, data rate: 4000000 B/s on udp port 14570 remote port 14550
     INFO  [mavlink] mode: Onboard, data rate: 4000000 B/s on udp port 14580 remote port 14540
     ```
+    This is an interactive PX4 console, type `help` to see the list of commands you can enter here. They are mostly low level PX4 commands, but some of them can be useful for debugging.
 
-    Note: this is also an interactive PX4 console, type `help` to see the list of commands you can enter here.  They are mostly low level PX4 commands, but some of them can be useful for debugging.
-
-5. Now edit [AutonomySim settings](settings.md) file to make sure you have matching UDP and TCP port settings:
+5. Edit the [AutonomySim settings](settings.md) file to make sure you have matching UDP and TCP port settings:
     ```json
     {
         "SettingsVersion": 1.2,
@@ -70,7 +70,7 @@ If you are using WSL2 please read these [additional instructions](px4_sitl_wsl2.
         }
     }
     ```
-    Notice the PX4 `[simulator]` is using TCP, which is why we need to add: `"UseTcp": true,`. Notice we are also enabling `LockStep`, see [PX4 LockStep](px4_lockstep.md) for more information. The `Barometer` setting keeps PX4 happy because the default AutonomySim barometer has a bit too much noise generation.  This setting clamps that down a bit which allows PX4 to achieve GPS lock more quickly.
+    Notice the PX4 `[simulator]` is using TCP, which is why we need to add: `"UseTcp": true,`. Notice we are also enabling `LockStep`, see [PX4 LockStep](px4_lockstep.md) for more information. The `Barometer` setting keeps PX4 happy because the default AutonomySim barometer has a bit too much noise generation. This setting clamps that down a bit which allows PX4 to achieve GPS lock more quickly.
 
 6. Open incoming TCP port 4560 and incoming UDP port 14540 using your firewall configuration.
 
@@ -95,9 +95,7 @@ Notice the above settings are provided in the `params` section of the `settings.
     "LPE_LON": -122.140165,
 ```
 
-PX4 SITL mode needs to be configured to get the home location correct. The home location needs to be set to the same coordinates defined in  [OriginGeopoint](settings.md#origingeopoint).
-
-You can also run the following in the SITL PX4 console window to check that these values are set correctly.
+PX4 SITL mode needs to be configured to get the home location correct. The home location needs to be set to the same coordinates defined in  [OriginGeopoint](settings.md#origingeopoint). You can also run the following in the SITL PX4 console window to check that these values are set correctly:
 
 ```shell
 param show LPE_LAT
@@ -109,7 +107,7 @@ param show LPE_LON
 Notice the above setting is provided in the `params` section of the `settings.json` file:
 
 ```json
-    "COM_OBL_ACT": 1
+"COM_OBL_ACT": 1
 ```
 
 This tells the drone automatically hover after each offboard control command finishes (the default setting is to land).  Hovering is a smoother transition between multiple offboard commands. You can check this setting by running the following PX4 console command:
@@ -141,17 +139,17 @@ Local position: x=-0.0326988, y=0.00656854, z=5.48506
 
 If the z coordinate is large like this then takeoff might not work as expected. Resetting the SITL and simulation should fix that problem.
 
-## WSL 2
+## WSL2
 
-Windows Subsystem for Linux version 2 operates in a Virtual Machine. This requires additional setup - see [additional instructions](px4_sitl_wsl2.md).
+Windows Subsystem for Linux (WSL) version 2 operates in a virtual machine. This requires additional setup - see [additional instructions](px4_sitl_wsl2.md).
 
 ## No Remote Control
 
 Notice the above setting is provided in the `params` section of the `settings.json` file:
 
 ```json
-    "NAV_RCL_ACT": 0,
-    "NAV_DLL_ACT": 0,
+"NAV_RCL_ACT": 0,
+"NAV_DLL_ACT": 0,
 ```
 
 This is required if you plan to fly the SITL mode PX4 with no remote control, just using python scripts, for example.  These parameters stop the PX4 from triggering "failsafe mode on" every time a move command is finished.  You can use the following PX4 command to check these values are set correctly:
@@ -161,7 +159,8 @@ param show NAV_RCL_ACT
 param show NAV_DLL_ACT
 ```
 
-NOTE: Do `NOT` do this on a real drone as it is too dangerous to fly without these failsafe measures.
+!!! note
+    Do not do this on a real drone as it is too dangerous to fly without these failsafe measures.
 
 ## Manually set parameters
 
@@ -182,4 +181,4 @@ If you want to run the above posix_sitl in a `VirtualBox Ubuntu` machine then it
 
 ## Remote Controller
 
-There are several options for flying the simulated drone using a remote control or joystick like xbox gamepad. See [remote controllers](remote_control.md#rc-setup-for-px4)
+There are several options for flying the simulated drone using a remote control or joystick like Xbox gamepad. See [remote controllers](remote_control.md#rc-setup-for-px4)

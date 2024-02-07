@@ -11,7 +11,6 @@
 * Lidar = 6
 
 !!! note
-
     Cameras are configured differently than the other sensors and do not have an enum associated with them. Look at [general settings](settings.md) and [image API](image_apis.md) for camera config and API.
 
 ## Default sensors
@@ -226,6 +225,6 @@ nervosys::autonomylib::DistanceSensorData getDistanceSensorData(const std::strin
 distance_sensor_data = client.getDistanceSensorData(distance_sensor_name = "", vehicle_name = "")
 ```
 
-### Lidar
+### LiDAR
 
-See the [lidar page](lidar.md) for Lidar API.
+See the [LiDAR page](lidar.md) for the LiDAR API.
