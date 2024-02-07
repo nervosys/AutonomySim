@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://github.com/nervosys/AutonomySim/azure.html">
       
       
-        <link rel="prev" href="autonomysim_tutorial_pkgs.html">
+        <link rel="prev" href="autonomylib_realworld.html">
       
       
         <link rel="next" href="build_docs.html">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Azure Development Environment - AutonomySim</title>
+        <title>Microsoft Azure Cloud Development Environment - AutonomySim</title>
       
     
     
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#azure-development-environment" class="md-skip">
+        <a href="#microsoft-azure-cloud-development-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Azure Development Environment
+              Microsoft Azure Cloud Development Environment
             
           </span>
         </div>
@@ -311,7 +311,7 @@
         
   
   <span class="md-ellipsis">
-    What's new
+    Change Log
   </span>
   
 
@@ -367,11 +367,31 @@
   
   
     <li class="md-nav__item">
-      <a href="adding_new_apis.html" class="md-nav__link">
+      <a href="adding_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Adding New APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIs
   </span>
   
 
@@ -407,11 +427,11 @@
   
   
     <li class="md-nav__item">
-      <a href="autonomysim_apis.html" class="md-nav__link">
+      <a href="apis_upgrading.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    AutonomySim APIs
+    Upgrading APIs
   </span>
   
 
@@ -427,51 +447,11 @@
   
   
     <li class="md-nav__item">
-      <a href="autonomysim_getting_started.html" class="md-nav__link">
+      <a href="autonomylib_realworld.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Autonomysim getting started
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="autonomysim_ros_pkgs.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AutonomySim ROS Packages
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="autonomysim_tutorial_pkgs.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AutonomySim ROS Tutorials
+    Running AutonomyLib on Real-world Vehicles
   </span>
   
 
@@ -500,7 +480,7 @@
           
   
   <span class="md-ellipsis">
-    Azure Development Environment
+    Microsoft Azure Cloud Development Environment
   </span>
   
 
@@ -511,7 +491,7 @@
         
   
   <span class="md-ellipsis">
-    Azure Development Environment
+    Microsoft Azure Cloud Development Environment
   </span>
   
 
@@ -557,15 +537,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-to-avoid-charges-for-the-virtual-machine-usage-while-not-in-use-remember-to-deallocate-its-resources-from-the-azure-portal-or-use-the-following-command-from-the-azure-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      - To avoid charges for the Virtual Machine usage while not in use, remember to deallocate its resources from the Azure Portal or use the following command from the Azure CLI:
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#code-and-debug-from-visual-studio-code-and-remote-ssh" class="md-nav__link">
     <span class="md-ellipsis">
       Code and debug from Visual Studio Code and Remote SSH
@@ -575,9 +546,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-and-debug-from-a-local-visual-studio-code-and-connect-to-autonomysim-via-forwarded-ports" class="md-nav__link">
+  <a href="#code-and-debug-on-local-and-connect-to-remote-via-forwarded-ports" class="md-nav__link">
     <span class="md-ellipsis">
-      Code and debug from a local Visual Studio Code and connect to AutonomySim via forwarded ports
+      Code and debug on local and connect to remote via forwarded ports
     </span>
   </a>
   
@@ -617,9 +588,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maintaining-this-development-environment" class="md-nav__link">
+  <a href="#maintaining-the-development-environment" class="md-nav__link">
     <span class="md-ellipsis">
-      Maintaining this development environment
+      Maintaining the development environment
     </span>
   </a>
   
@@ -664,7 +635,7 @@
         
   
   <span class="md-ellipsis">
-    FAQ
+    Build FAQ
   </span>
   
 
@@ -820,51 +791,71 @@
   
   
     <li class="md-nav__item">
-      <a href="create_issue.html" class="md-nav__link">
+      <a href="controller_remote.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controller_robot.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Robot Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controller_xbox.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XBox Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create_issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     How to Create Issue or Ask Questions Effectively
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="custom_drone.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Running AutonomyLib on Real-world Autonomous Systems
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="design.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Manuscripts
   </span>
   
 
@@ -924,27 +915,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim on Docker in Linux
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="drone_survey.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Implementing a Drone Survey script
+    Docker on Linux
   </span>
   
 
@@ -980,11 +951,31 @@
   
   
     <li class="md-nav__item">
+      <a href="getting_started.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="hard_drive.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Busy Hard Drive
+    Hard Drives
   </span>
   
 
@@ -1100,11 +1091,11 @@
   
   
     <li class="md-nav__item">
-      <a href="mavlinkcom.html" class="md-nav__link">
+      <a href="manuscripts.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Welcome to MavLinkCom
+    Manuscripts
   </span>
   
 
@@ -1120,11 +1111,31 @@
   
   
     <li class="md-nav__item">
-      <a href="mavlinkcom_mocap.html" class="md-nav__link">
+      <a href="mavlinkcom.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Welcome to MavLinkMoCap
+    MavLinkCom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mavlinkmocap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MavLinkMoCap
   </span>
   
 
@@ -1144,27 +1155,7 @@
         
   
   <span class="md-ellipsis">
-    How to Access Meshes in AutonomySim
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="modify_recording_data.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Modifying Recording Data
+    Accessing Meshes
   </span>
   
 
@@ -1224,7 +1215,7 @@
         
   
   <span class="md-ellipsis">
-    An Orbit Trajectory
+    Orbital Trajectories
   </span>
   
 
@@ -1244,7 +1235,7 @@
         
   
   <span class="md-ellipsis">
-    pfm Format
+    PFM Image File Format
   </span>
   
 
@@ -1280,11 +1271,51 @@
   
   
     <li class="md-nav__item">
+      <a href="plugin_contents.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plugin Contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="point_clouds.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Point Clouds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="project_binaries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Binaries
   </span>
   
 
@@ -1324,7 +1355,7 @@
         
   
   <span class="md-ellipsis">
-    LockStep
+    PX4 Lockstep
   </span>
   
 
@@ -1384,7 +1415,7 @@
         
   
   <span class="md-ellipsis">
-    PX4 Setup for AutonomySim
+    PX4 Setup
   </span>
   
 
@@ -1440,11 +1471,31 @@
   
   
     <li class="md-nav__item">
+      <a href="recording_data.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recording Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="reinforcement_learning.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Reinforcement Learning in AutonomySim
+    Reinforcement Learning
   </span>
   
 
@@ -1460,11 +1511,11 @@
   
   
     <li class="md-nav__item">
-      <a href="remote_control.html" class="md-nav__link">
+      <a href="ros_pkgs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Remote Control
+    ROS Packages
   </span>
   
 
@@ -1480,31 +1531,11 @@
   
   
     <li class="md-nav__item">
-      <a href="retexturing.html" class="md-nav__link">
+      <a href="ros_pkgs_tutorial.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Runtime Texture Swapping
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="robot_controller.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Robot Controller
+    ROS Tutorials
   </span>
   
 
@@ -1544,7 +1575,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim Settings
+    Settings
   </span>
   
 
@@ -1564,7 +1595,7 @@
         
   
   <span class="md-ellipsis">
-    simple_flight
+    Simple Flight Controller
   </span>
   
 
@@ -1580,11 +1611,51 @@
   
   
     <li class="md-nav__item">
-      <a href="steering_wheel_installation.html" class="md-nav__link">
+      <a href="steering_wheel.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logitech G920 Steering Wheel Installation
+    Steering Wheels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="surveying.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surveying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="texture_swapping.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime Texture Swapping
   </span>
   
 
@@ -1604,7 +1675,7 @@
         
   
   <span class="md-ellipsis">
-    Setup Blocks Environment for AutonomySim
+    Blocks Environment
   </span>
   
 
@@ -1624,7 +1695,7 @@
         
   
   <span class="md-ellipsis">
-    Creating and Setting Up Unreal Environment
+    Unreal Environments
   </span>
   
 
@@ -1640,11 +1711,11 @@
   
   
     <li class="md-nav__item">
-      <a href="unreal_proj.html" class="md-nav__link">
+      <a href="unreal_projects.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unreal Environment
+    Unreal Projects
   </span>
   
 
@@ -1660,31 +1731,11 @@
   
   
     <li class="md-nav__item">
-      <a href="unreal_upgrade.html" class="md-nav__link">
+      <a href="unreal_upgrading.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrading to Unreal Engine 4.27
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="upgrade_apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Upgrading API Client Code
+    Upgrading Unreal Engine
   </span>
   
 
@@ -1704,7 +1755,7 @@
         
   
   <span class="md-ellipsis">
-    Upgrading Settings
+    Upgrading the Settings
   </span>
   
 
@@ -1720,11 +1771,11 @@
   
   
     <li class="md-nav__item">
-      <a href="use_precompiled.html" class="md-nav__link">
+      <a href="usage_rover.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Binaries
+    Rover Usage
   </span>
   
 
@@ -1740,11 +1791,11 @@
   
   
     <li class="md-nav__item">
-      <a href="using_car.html" class="md-nav__link">
+      <a href="userbase.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    How to Use Car in AutonomySim
+    Past and Current Users
   </span>
   
 
@@ -1773,66 +1824,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="who_is_using.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Who is Using AutonomySim?
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="working_with_plugin_contents.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    How to use plugin contents
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xbox_controller.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    XBox Controller
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -1851,20 +1842,27 @@
   
 
 
-<h1 id="azure-development-environment">Azure Development Environment<a class="headerlink" href="#azure-development-environment" title="Permanent link">#</a></h1>
-<p>This document explains how to automate the creation of a development environment on Azure and code and debug a Python application connected to AutonomySim using Visual Studio Code</p>
+<h1 id="microsoft-azure-cloud-development-environment">Microsoft Azure Cloud Development Environment<a class="headerlink" href="#microsoft-azure-cloud-development-environment" title="Permanent link">#</a></h1>
+<p>This document explains how to automate the creation of an Azure cloud development environment to code and debug a Python application connected to <code>AutonomySim</code> using Visual Studio Code.</p>
 <h2 id="automatically-deploy-the-azure-vm">Automatically Deploy the Azure VM<a class="headerlink" href="#automatically-deploy-the-azure-vm" title="Permanent link">#</a></h2>
 <p>Click the blue button to start the Azure deployment (The template is pre-filled with the recommended virtual machine size for the use cases of the following two tutorials)</p>
 <p><a href="https://aka.ms/AA8umgt" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>  </p>
-<p><em>Note: the VM deployment and configuration process may take 20+ minutes to complete</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The VM deployment and configuration process may take 20+ minutes to complete*</p>
+</div>
 <h3 id="regarding-the-deployment-of-the-azure-vm">Regarding the deployment of the Azure VM<a class="headerlink" href="#regarding-the-deployment-of-the-azure-vm" title="Permanent link">#</a></h3>
 <ul>
-<li>When using an Azure Trial account, the default vCPU quota is not enough to allocate the required VM to run AutonomySim. If that's the case, you will see an error when trying to create the VM and will have to submit a request for Quota increase. <strong>Be sure to understand how and how much you are going to be charged for the use of the VM</strong></li>
+<li>
+<p>When using an Azure Trial account, the default vCPU quota is not enough to allocate the required VM to run AutonomySim. If that's the case, you will see an error when trying to create the VM and will have to submit a request for Quota increase. <strong>Be sure to understand how and how much you are going to be charged for the use of the VM</strong></p>
+</li>
+<li>
+<p>To avoid charges for the Virtual Machine usage while not in use, remember to deallocate its resources from the <a href="https://portal.azure.com">Azure Portal</a> or use the following command from the Azure CLI:</p>
+</li>
 </ul>
-<h2 id="-to-avoid-charges-for-the-virtual-machine-usage-while-not-in-use-remember-to-deallocate-its-resources-from-the-azure-portal-or-use-the-following-command-from-the-azure-cli">- To avoid charges for the Virtual Machine usage while not in use, remember to deallocate its resources from the <a href="https://portal.azure.com">Azure Portal</a> or use the following command from the Azure CLI:<a class="headerlink" href="#-to-avoid-charges-for-the-virtual-machine-usage-while-not-in-use-remember-to-deallocate-its-resources-from-the-azure-portal-or-use-the-following-command-from-the-azure-cli" title="Permanent link">#</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>az<span class="w"> </span>vm<span class="w"> </span>deallocate<span class="w"> </span>--resource-group<span class="w"> </span>MyResourceGroup<span class="w"> </span>--name<span class="w"> </span>MyVMName
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>az<span class="w"> </span>vm<span class="w"> </span>deallocate<span class="w"> </span>--resource-group<span class="w"> </span>MyResourceGroup<span class="w"> </span>--name<span class="w"> </span>MyVMName
 </span></code></pre></div>
 <h2 id="code-and-debug-from-visual-studio-code-and-remote-ssh">Code and debug from Visual Studio Code and Remote SSH<a class="headerlink" href="#code-and-debug-from-visual-studio-code-and-remote-ssh" title="Permanent link">#</a></h2>
 <ul>
@@ -1880,11 +1878,11 @@
 <li>Start debugging with Python</li>
 <li>When finished, remember to stop an deallocate the Azure VM to avoid extra charges</li>
 </ul>
-<h2 id="code-and-debug-from-a-local-visual-studio-code-and-connect-to-autonomysim-via-forwarded-ports">Code and debug from a local Visual Studio Code and connect to AutonomySim via forwarded ports<a class="headerlink" href="#code-and-debug-from-a-local-visual-studio-code-and-connect-to-autonomysim-via-forwarded-ports" title="Permanent link">#</a></h2>
-<p><em>Note: this scenario, will be using two Visual Studio Code instances. 
-The first one will be used as a bridge to forward ports via SSH to the Azure VM and execute remote processes, and the second one will 
-be used for local Python development.
-To be able to reach the VM from the local Python code, it is required to keep the <code>Remote - SSH</code> instance of Visual Studio Code opened, while working with the local Python environment on the second instance</em></p>
+<h2 id="code-and-debug-on-local-and-connect-to-remote-via-forwarded-ports">Code and debug on local and connect to remote via forwarded ports<a class="headerlink" href="#code-and-debug-on-local-and-connect-to-remote-via-forwarded-ports" title="Permanent link">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this scenario, we use two Visual Studio Code instances. The first will be used as a bridge to forward ports via SSH to the Azure VM and execute remote processes and the second will be used for local Python development. To be able to reach the VM from the local Python code, it is required to keep the <code>Remote - SSH</code> instance of Visual Studio Code opened while working with the local Python environment on the second instance.</p>
+</div>
 <ul>
 <li>Open the first Visual Studio Code instance</li>
 <li>Follow the steps in the previous section to connect via <code>Remote - SSH</code></li>
@@ -1904,21 +1902,21 @@ To be able to reach the VM from the local Python code, it is required to keep th
 <p>When using Azure Container Services to run this image, the only extra-requirement is to add GPU support to the Container Group where it will be deployed. </p>
 <p>It can use either public docker images from DockerHub or images deployed to a private Azure Container Registry</p>
 <h3 id="building-the-docker-image">Building the docker image<a class="headerlink" href="#building-the-docker-image" title="Permanent link">#</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;your-registry-url&gt;/&lt;your-image-name&gt;<span class="w"> </span>-f<span class="w"> </span>./docker/Dockerfile<span class="w"> </span>.<span class="sb">`</span>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;your-registry-url&gt;/&lt;your-image-name&gt;<span class="w"> </span>-f<span class="w"> </span>./docker/Dockerfile<span class="w"> </span>.<span class="sb">`</span>
 </span></code></pre></div>
 <h2 id="using-a-different-autonomysim-binary">Using a different AutonomySim binary<a class="headerlink" href="#using-a-different-autonomysim-binary" title="Permanent link">#</a></h2>
-<p>To use a different AutonomySim binary, first check the official documentation on <a href="build_windows.html">How to Build AutonomySim on Windows</a> and <a href="build_linux.html">How to Build AutonomySim on Linux</a> if you also want to run it with Docker</p>
+<p>To use a different <code>AutonomySim</code> binary, first check the official documentation on <a href="build_windows.html">How to Build AutonomySim on Windows</a> and <a href="build_linux.html">How to Build AutonomySim on Linux</a> if you also want to run it with Docker</p>
 <p>Once you have a zip file with the new AutonomySim environment (or prefer to use one from the <a href="https://github.com/nervosys/AutonomySim/releases">Official Releases</a>), you need to modify some of the scripts in the <code>azure</code> directory of the repository to point to the new environment:</p>
 <ul>
 <li>In <a href="https://github.com/nervosys/AutonomySim/blob/main/azure/azure-env-creation/configure-vm.ps1"><code>azure/azure-env-creation/configure-vm.ps1</code></a>, modify all the parameters starting with <code>$AutonomySimBinary</code> with the new values</li>
 <li>In <a href="https://github.com/nervosys/AutonomySim/blob/main/azure/start-AutonomySim.ps1"><code>azure/start-AutonomySim.ps1</code></a>, modify <code>$AutonomySimExecutable</code> and <code>$AutonomySimProcessName</code> with the new values</li>
 </ul>
-<p>If you are using the docker image, you also need a linux binary zip file and modify the following Docker-related files:</p>
+<p>If you are using the docker image, you also need a Linux binary zip file and modify the following Docker-related files:</p>
 <ul>
 <li>In <a href="https://github.com/nervosys/AutonomySim/blob/main/azure/docker/Dockerfile"><code>azure/docker/Dockerfile</code></a>, modify the <code>AutonomySim_BINARY_ZIP_URL</code> and <code>AutonomySim_BINARY_ZIP_FILENAME</code> ENV declarations with the new values</li>
 <li>In <a href="https://github.com/nervosys/AutonomySim/blob/main/azure/docker/docker-entrypoint.sh"><code>azure/docker/docker-entrypoint.sh</code></a>, modify <code>AutonomySim_EXECUTABLE</code> with the new value </li>
 </ul>
-<h2 id="maintaining-this-development-environment">Maintaining this development environment<a class="headerlink" href="#maintaining-this-development-environment" title="Permanent link">#</a></h2>
+<h2 id="maintaining-the-development-environment">Maintaining the development environment<a class="headerlink" href="#maintaining-the-development-environment" title="Permanent link">#</a></h2>
 <p>Several components of this development environment (ARM templates, initialization scripts and VSCode tasks) directly depend on the current directory structures file names and repository locations. When planning to modify/fork any of those, make sure to check every script and template to make any required adjustment.</p>
 
 
@@ -1959,7 +1957,7 @@ To be able to reach the VM from the local Python code, it is required to keep th
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="autonomysim_tutorial_pkgs.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: AutonomySim ROS Tutorials">
+          <a href="autonomylib_realworld.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Running AutonomyLib on Real-world Vehicles">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1969,7 +1967,7 @@ To be able to reach the VM from the local Python code, it is required to keep th
                 Previous
               </span>
               <div class="md-ellipsis">
-                AutonomySim ROS Tutorials
+                Running AutonomyLib on Real-world Vehicles
               </div>
             </div>
           </a>

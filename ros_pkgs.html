@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/autonomysim_ros_pkgs.html">
+        <link rel="canonical" href="https://github.com/nervosys/AutonomySim/ros_pkgs.html">
       
       
-        <link rel="prev" href="autonomysim_getting_started.html">
+        <link rel="prev" href="reinforcement_learning.html">
       
       
-        <link rel="next" href="autonomysim_tutorial_pkgs.html">
+        <link rel="next" href="ros_pkgs_tutorial.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>AutonomySim ROS Packages - AutonomySim</title>
+        <title>ROS Packages - AutonomySim</title>
       
     
     
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#autonomysim-ros-packages" class="md-skip">
+        <a href="#ros-packages" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AutonomySim ROS Packages
+              ROS Packages
             
           </span>
         </div>
@@ -311,7 +311,7 @@
         
   
   <span class="md-ellipsis">
-    What's new
+    Change Log
   </span>
   
 
@@ -367,11 +367,31 @@
   
   
     <li class="md-nav__item">
-      <a href="adding_new_apis.html" class="md-nav__link">
+      <a href="adding_apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Adding New APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIs
   </span>
   
 
@@ -407,11 +427,11 @@
   
   
     <li class="md-nav__item">
-      <a href="autonomysim_apis.html" class="md-nav__link">
+      <a href="apis_upgrading.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    AutonomySim APIs
+    Upgrading APIs
   </span>
   
 
@@ -427,319 +447,11 @@
   
   
     <li class="md-nav__item">
-      <a href="autonomysim_getting_started.html" class="md-nav__link">
+      <a href="autonomylib_realworld.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Autonomysim getting started
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    AutonomySim ROS Packages
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="autonomysim_ros_pkgs.html" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    AutonomySim ROS Packages
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running" class="md-nav__link">
-    <span class="md-ellipsis">
-      Running
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-autonomysim-ros-wrapper" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using AutonomySim ROS wrapper
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Using AutonomySim ROS wrapper">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#autonomysim-ros-wrapper-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      AutonomySim ROS Wrapper Node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AutonomySim ROS Wrapper Node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#publishers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Publishers:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subscribers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subscribers:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#services" class="md-nav__link">
-    <span class="md-ellipsis">
-      Services:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#simple-pid-position-controller-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Simple PID Position Controller Node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Simple PID Position Controller Node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parameters_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#services_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Services:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subscribers_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subscribers:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#publishers_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Publishers:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#global-params" class="md-nav__link">
-    <span class="md-ellipsis">
-      Global params
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#miscellaneous" class="md-nav__link">
-    <span class="md-ellipsis">
-      Miscellaneous
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Miscellaneous">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-the-build-environment-on-windows-1011-using-wsl1-or-wsl2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setting up the Build Environment on Windows 10/11 using WSL1 or WSL2
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setting up the Build Environment on Windows 10/11 using WSL1 or WSL2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#wsl1-versus-wsl2" class="md-nav__link">
-    <span class="md-ellipsis">
-      WSL1 versus WSL2
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wsl-setup-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      WSL Setup steps
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-system-access-between-wsl-and-windows-1011" class="md-nav__link">
-    <span class="md-ellipsis">
-      File System Access between WSL and Windows 10/11
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to run AutonomySim on Windows and ROS wrapper on WSL
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-docker-for-ros" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using Docker for ROS
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="autonomysim_tutorial_pkgs.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AutonomySim ROS Tutorials
+    Running AutonomyLib on Real-world Vehicles
   </span>
   
 
@@ -759,7 +471,7 @@
         
   
   <span class="md-ellipsis">
-    Azure Development Environment
+    Microsoft Azure Cloud Development Environment
   </span>
   
 
@@ -799,7 +511,7 @@
         
   
   <span class="md-ellipsis">
-    FAQ
+    Build FAQ
   </span>
   
 
@@ -955,51 +667,71 @@
   
   
     <li class="md-nav__item">
-      <a href="create_issue.html" class="md-nav__link">
+      <a href="controller_remote.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controller_robot.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Robot Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controller_xbox.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XBox Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create_issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     How to Create Issue or Ask Questions Effectively
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="custom_drone.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Running AutonomyLib on Real-world Autonomous Systems
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="design.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Manuscripts
   </span>
   
 
@@ -1059,27 +791,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim on Docker in Linux
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="drone_survey.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Implementing a Drone Survey script
+    Docker on Linux
   </span>
   
 
@@ -1115,11 +827,31 @@
   
   
     <li class="md-nav__item">
+      <a href="getting_started.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="hard_drive.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Busy Hard Drive
+    Hard Drives
   </span>
   
 
@@ -1235,11 +967,11 @@
   
   
     <li class="md-nav__item">
-      <a href="mavlinkcom.html" class="md-nav__link">
+      <a href="manuscripts.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Welcome to MavLinkCom
+    Manuscripts
   </span>
   
 
@@ -1255,11 +987,31 @@
   
   
     <li class="md-nav__item">
-      <a href="mavlinkcom_mocap.html" class="md-nav__link">
+      <a href="mavlinkcom.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Welcome to MavLinkMoCap
+    MavLinkCom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mavlinkmocap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MavLinkMoCap
   </span>
   
 
@@ -1279,27 +1031,7 @@
         
   
   <span class="md-ellipsis">
-    How to Access Meshes in AutonomySim
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="modify_recording_data.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Modifying Recording Data
+    Accessing Meshes
   </span>
   
 
@@ -1359,7 +1091,7 @@
         
   
   <span class="md-ellipsis">
-    An Orbit Trajectory
+    Orbital Trajectories
   </span>
   
 
@@ -1379,7 +1111,7 @@
         
   
   <span class="md-ellipsis">
-    pfm Format
+    PFM Image File Format
   </span>
   
 
@@ -1415,11 +1147,51 @@
   
   
     <li class="md-nav__item">
+      <a href="plugin_contents.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plugin Contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="point_clouds.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Point Clouds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="project_binaries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Binaries
   </span>
   
 
@@ -1459,7 +1231,7 @@
         
   
   <span class="md-ellipsis">
-    LockStep
+    PX4 Lockstep
   </span>
   
 
@@ -1519,7 +1291,7 @@
         
   
   <span class="md-ellipsis">
-    PX4 Setup for AutonomySim
+    PX4 Setup
   </span>
   
 
@@ -1575,11 +1347,31 @@
   
   
     <li class="md-nav__item">
+      <a href="recording_data.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recording Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="reinforcement_learning.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Reinforcement Learning in AutonomySim
+    Reinforcement Learning
   </span>
   
 
@@ -1592,18 +1384,286 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="remote_control.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ROS Packages
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ros_pkgs.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Remote Control
+    ROS Packages
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-autonomysim-ros-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using AutonomySim ROS wrapper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using AutonomySim ROS wrapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autonomysim-ros-wrapper-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      AutonomySim ROS Wrapper Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AutonomySim ROS Wrapper Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishers:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-pid-position-controller-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple PID Position Controller Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple PID Position Controller Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publishers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miscellaneous" class="md-nav__link">
+    <span class="md-ellipsis">
+      Miscellaneous
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Miscellaneous">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-build-environment-on-windows-1011-using-wsl1-or-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up the Build Environment on Windows 10/11 using WSL1 or WSL2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up the Build Environment on Windows 10/11 using WSL1 or WSL2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl1-versus-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL1 versus WSL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsl-setup-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL Setup steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-system-access-between-wsl-and-windows-1011" class="md-nav__link">
+    <span class="md-ellipsis">
+      File System Access between WSL and Windows 10/11
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to run AutonomySim on Windows and ROS wrapper on WSL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-docker-for-ros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Docker for ROS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1615,31 +1675,11 @@
   
   
     <li class="md-nav__item">
-      <a href="retexturing.html" class="md-nav__link">
+      <a href="ros_pkgs_tutorial.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Runtime Texture Swapping
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="robot_controller.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Robot Controller
+    ROS Tutorials
   </span>
   
 
@@ -1679,7 +1719,7 @@
         
   
   <span class="md-ellipsis">
-    AutonomySim Settings
+    Settings
   </span>
   
 
@@ -1699,7 +1739,7 @@
         
   
   <span class="md-ellipsis">
-    simple_flight
+    Simple Flight Controller
   </span>
   
 
@@ -1715,11 +1755,51 @@
   
   
     <li class="md-nav__item">
-      <a href="steering_wheel_installation.html" class="md-nav__link">
+      <a href="steering_wheel.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logitech G920 Steering Wheel Installation
+    Steering Wheels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="surveying.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surveying
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="texture_swapping.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime Texture Swapping
   </span>
   
 
@@ -1739,7 +1819,7 @@
         
   
   <span class="md-ellipsis">
-    Setup Blocks Environment for AutonomySim
+    Blocks Environment
   </span>
   
 
@@ -1759,7 +1839,7 @@
         
   
   <span class="md-ellipsis">
-    Creating and Setting Up Unreal Environment
+    Unreal Environments
   </span>
   
 
@@ -1775,11 +1855,11 @@
   
   
     <li class="md-nav__item">
-      <a href="unreal_proj.html" class="md-nav__link">
+      <a href="unreal_projects.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unreal Environment
+    Unreal Projects
   </span>
   
 
@@ -1795,31 +1875,11 @@
   
   
     <li class="md-nav__item">
-      <a href="unreal_upgrade.html" class="md-nav__link">
+      <a href="unreal_upgrading.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrading to Unreal Engine 4.27
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="upgrade_apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Upgrading API Client Code
+    Upgrading Unreal Engine
   </span>
   
 
@@ -1839,7 +1899,7 @@
         
   
   <span class="md-ellipsis">
-    Upgrading Settings
+    Upgrading the Settings
   </span>
   
 
@@ -1855,11 +1915,11 @@
   
   
     <li class="md-nav__item">
-      <a href="use_precompiled.html" class="md-nav__link">
+      <a href="usage_rover.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download Binaries
+    Rover Usage
   </span>
   
 
@@ -1875,11 +1935,11 @@
   
   
     <li class="md-nav__item">
-      <a href="using_car.html" class="md-nav__link">
+      <a href="userbase.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    How to Use Car in AutonomySim
+    Past and Current Users
   </span>
   
 
@@ -1908,66 +1968,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="who_is_using.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Who is Using AutonomySim?
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="working_with_plugin_contents.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    How to use plugin contents
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xbox_controller.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    XBox Controller
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -1986,28 +1986,20 @@
   
 
 
-<h1 id="autonomysim-ros-packages">AutonomySim ROS Packages<a class="headerlink" href="#autonomysim-ros-packages" title="Permanent link">#</a></h1>
+<h1 id="ros-packages">ROS Packages<a class="headerlink" href="#ros-packages" title="Permanent link">#</a></h1>
 <p><code>AutonomySim_ros_pkgs</code>: a <code>ROS</code> wrapper over the <code>AutonomySim</code> C++ client library.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">#</a></h2>
 <p>The below steps are meant for Linux. If you're running AutonomySim on Windows, you can use Windows Subsystem for Linux (WSL) to run the ROS wrapper, see the instructions <a href="#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2">below</a>. If you're unable or don't prefer to install ROS and related tools on your host Linux due to some issues, you can also try it using Docker, see the steps in <a href="#using-docker-for-ros">Using Docker for ROS wrapper</a></p>
 <ul>
-<li>
-<p>If your default GCC version is not 8 or above (check using <code>gcc --version</code>)</p>
-<ul>
+<li>If your default GCC version is not 8 or above (check using <code>gcc --version</code>)</li>
 <li>Install gcc &gt;= 8.0.0: <code>sudo apt-get install gcc-8 g++-8</code></li>
 <li>Verify installation by <code>gcc-8 --version</code></li>
-</ul>
-</li>
-<li>
-<p>Ubuntu 16.04</p>
-<ul>
+<li>Ubuntu 16.04<ul>
 <li>Install <a href="https://wiki.ros.org/kinetic/Installation/Ubuntu">ROS kinetic</a></li>
 <li>Install tf2 sensor and mavros packages: <code>sudo apt-get install ros-kinetic-tf2-sensor-msgs ros-kinetic-tf2-geometry-msgs ros-kinetic-mavros*</code></li>
 </ul>
 </li>
-<li>
-<p>Ubuntu 18.04</p>
-<ul>
+<li>Ubuntu 18.04<ul>
 <li>Install <a href="https://wiki.ros.org/melodic/Installation/Ubuntu">ROS melodic</a></li>
 <li>Install tf2 sensor and mavros packages: <code>sudo apt-get install ros-melodic-tf2-sensor-msgs ros-melodic-tf2-geometry-msgs ros-melodic-mavros*</code></li>
 </ul>
@@ -2021,13 +2013,12 @@
 </li>
 <li>
 <p>Install <a href="https://catkin-tools.readthedocs.io/en/latest/installing.html">catkin_tools</a>
-    <code>sudo apt-get install python-catkin-tools</code> or
-    <code>pip install catkin_tools</code>. If using Ubuntu 20.04 use <code>pip install "git+https://github.com/catkin/catkin_tools.git#egg=catkin_tools"</code></p>
+    <code>sudo apt-get install python-catkin-tools</code> or <code>pip install catkin_tools</code>. If using Ubuntu 20.04 use <code>pip install "git+https://github.com/catkin/catkin_tools.git#egg=catkin_tools"</code></p>
 </li>
 </ul>
 <h2 id="build">Build<a class="headerlink" href="#build" title="Permanent link">#</a></h2>
 <ul>
-<li>Build AutonomySim</li>
+<li>Build <code>AutonomySim</code>:</li>
 </ul>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nervosys/AutonomySim.git<span class="p">;</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>AutonomySim<span class="p">;</span>
@@ -2035,18 +2026,18 @@
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>./build.sh<span class="p">;</span>
 </span></code></pre></div>
 <ul>
-<li>Make sure that you have setup the environment variables for ROS as mentioned in the installation pages above. Add the <code>source</code> command to your <code>.bashrc</code> for convenience (replace <code>melodic</code> with specfic version name) -</li>
+<li>Ensure that you have setup the environment variables for ROS as mentioned in the installation pages above. Add the <code>source</code> command to your <code>.bashrc</code> for convenience (replace <code>melodic</code> with specfic version name):</li>
 </ul>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source /opt/ros/melodic/setup.bash&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </span></code></pre></div>
 <ul>
-<li>Build ROS package</li>
+<li>Build the ROS package:</li>
 </ul>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>ros<span class="p">;</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>catkin<span class="w"> </span>build<span class="p">;</span><span class="w">  </span><span class="c1"># or catkin_make</span>
 </span></code></pre></div>
-<p>If your default GCC isn't 8 or greater (check using <code>gcc --version</code>), then compilation will fail. In that case, use <code>gcc-8</code> explicitly as follows-</p>
+<p>If your default GCC isn't 8 or greater (check using <code>gcc --version</code>), then compilation will fail. In that case, use <code>gcc-8</code> explicitly as follows:</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>catkin<span class="w"> </span>build<span class="w"> </span>-DCMAKE_C_COMPILER<span class="o">=</span>gcc-8<span class="w"> </span>-DCMAKE_CXX_COMPILER<span class="o">=</span>g++-8
 </span></code></pre></div>
 <h2 id="running">Running<a class="headerlink" href="#running" title="Permanent link">#</a></h2>
@@ -2054,15 +2045,17 @@
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>roslaunch<span class="w"> </span>AutonomySim_ros_pkgs<span class="w"> </span>AutonomySim_node.launch<span class="p">;</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>roslaunch<span class="w"> </span>AutonomySim_ros_pkgs<span class="w"> </span>rviz.launch<span class="p">;</span>
 </span></code></pre></div>
-<p><strong>Note</strong>: If you get an error running <code>roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch</code>, run <code>catkin clean</code> and try again</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>If you get an error running <code>roslaunch AutonomySim_ros_pkgs AutonomySim_node.launch</code>, run <code>catkin clean</code> and try again</p>
 <h2 id="using-autonomysim-ros-wrapper">Using AutonomySim ROS wrapper<a class="headerlink" href="#using-autonomysim-ros-wrapper" title="Permanent link">#</a></h2>
-<p>The ROS wrapper is composed of two ROS nodes - the first is a wrapper over AutonomySim's multirotor C++ client library, and the second is a simple PD position controller.
-Let's look at the ROS API for both nodes:</p>
+<p>The ROS wrapper is composed of two ROS nodes - the first is a wrapper over AutonomySim's multirotor C++ client library, and the second is a simple PD position controller. Let's look at the ROS API for both nodes below.</p>
 <h3 id="autonomysim-ros-wrapper-node">AutonomySim ROS Wrapper Node<a class="headerlink" href="#autonomysim-ros-wrapper-node" title="Permanent link">#</a></h3>
 <h4 id="publishers">Publishers:<a class="headerlink" href="#publishers" title="Permanent link">#</a></h4>
 <ul>
 <li>
-<p><code>/AutonomySim_node/origin_geo_point</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GPSYaw.msg">AutonomySim_ros_pkgs/GPSYaw</a>
+<p><code>/AutonomySim_node/origin_geo_point</code> <a href="https://github.com/nervosys/AutonomySim/tree/master/ros/src/AutonomySim_ros_pkgs/msg/GPSYaw.msg">AutonomySim_ros_pkgs/GPSYaw</a>
 GPS coordinates corresponding to global NED frame. This is set in the AutonomySim's <a href="https://microsoft.github.io/AutonomySim/settings/">settings.json</a> file under the <code>OriginGeopoint</code> key.</p>
 </li>
 <li>
@@ -2104,22 +2097,22 @@ IMU sensor data</p>
   LIDAR pointcloud</p>
 </li>
 </ul>
-<h4 id="subscribers">Subscribers:<a class="headerlink" href="#subscribers" title="Permanent link">#</a></h4>
+<h4 id="subscribers">Subscribers<a class="headerlink" href="#subscribers" title="Permanent link">#</a></h4>
 <ul>
 <li>
-<p><code>/AutonomySim_node/vel_cmd_body_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
+<p><code>/AutonomySim_node/vel_cmd_body_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/master/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
   Ignore <code>vehicle_name</code> field, leave it to blank. We will use <code>vehicle_name</code> in future for multiple drones.</p>
 </li>
 <li>
-<p><code>/AutonomySim_node/vel_cmd_world_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
+<p><code>/AutonomySim_node/vel_cmd_world_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/master/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
   Ignore <code>vehicle_name</code> field, leave it to blank. We will use <code>vehicle_name</code> in future for multiple drones.</p>
 </li>
 <li>
-<p><code>/gimbal_angle_euler_cmd</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GimbalAngleEulerCmd.msg">AutonomySim_ros_pkgs/GimbalAngleEulerCmd</a>
+<p><code>/gimbal_angle_euler_cmd</code> <a href="https://github.com/nervosys/AutonomySim/tree/master/ros/src/AutonomySim_ros_pkgs/msg/GimbalAngleEulerCmd.msg">AutonomySim_ros_pkgs/GimbalAngleEulerCmd</a>
   Gimbal set point in euler angles.</p>
 </li>
 <li>
-<p><code>/gimbal_angle_quat_cmd</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GimbalAngleQuatCmd.msg">AutonomySim_ros_pkgs/GimbalAngleQuatCmd</a>
+<p><code>/gimbal_angle_quat_cmd</code> <a href="https://github.com/nervosys/AutonomySim/tree/master/ros/src/AutonomySim_ros_pkgs/msg/GimbalAngleQuatCmd.msg">AutonomySim_ros_pkgs/GimbalAngleQuatCmd</a>
   Gimbal set point in quaternion.</p>
 </li>
 <li>
@@ -2127,7 +2120,7 @@ IMU sensor data</p>
 Throttle, brake, steering and gear selections for control. Both automatic and manual transmission control possible, see the <a href="https://github.com/nervosys/AutonomySim/blob/main/ros/src/AutonomySim_ros_pkgs/scripts/car_joy"><code>car_joy.py</code></a> script for use.</p>
 </li>
 </ul>
-<h4 id="services">Services:<a class="headerlink" href="#services" title="Permanent link">#</a></h4>
+<h4 id="services">Services<a class="headerlink" href="#services" title="Permanent link">#</a></h4>
 <ul>
 <li>
 <p><code>/AutonomySim_node/VEHICLE_NAME/land</code> <a href="https://docs.ros.org/api/std_srvs/html/srv/Empty.html">AutonomySim_ros_pkgs/Takeoff</a></p>
@@ -2136,11 +2129,10 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
 <p><code>/AutonomySim_node/takeoff</code> <a href="https://docs.ros.org/api/std_srvs/html/srv/Empty.html">AutonomySim_ros_pkgs/Takeoff</a></p>
 </li>
 <li>
-<p><code>/AutonomySim_node/reset</code> <a href="https://docs.ros.org/api/std_srvs/html/srv/Empty.html">AutonomySim_ros_pkgs/Reset</a>
- Resets <em>all</em> drones</p>
+<p><code>/AutonomySim_node/reset</code> <a href="https://docs.ros.org/api/std_srvs/html/srv/Empty.html">AutonomySim_ros_pkgs/Reset</a> resets <em>all</em> drones</p>
 </li>
 </ul>
-<h4 id="parameters">Parameters:<a class="headerlink" href="#parameters" title="Permanent link">#</a></h4>
+<h4 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">#</a></h4>
 <ul>
 <li>
 <p><code>/AutonomySim_node/world_frame_id</code> [string]
@@ -2184,7 +2176,7 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
 </li>
 </ul>
 <h3 id="simple-pid-position-controller-node">Simple PID Position Controller Node<a class="headerlink" href="#simple-pid-position-controller-node" title="Permanent link">#</a></h3>
-<h4 id="parameters_1">Parameters:<a class="headerlink" href="#parameters_1" title="Permanent link">#</a></h4>
+<h4 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">#</a></h4>
 <ul>
 <li>PD controller parameters:</li>
 <li>
@@ -2214,7 +2206,7 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
   Default: 0.01 seconds</p>
 </li>
 </ul>
-<h4 id="services_1">Services:<a class="headerlink" href="#services_1" title="Permanent link">#</a></h4>
+<h4 id="services_1">Services<a class="headerlink" href="#services_1" title="Permanent link">#</a></h4>
 <ul>
 <li>
 <p><code>/AutonomySim_node/VEHICLE_NAME/gps_goal</code> [Request: <a href="https://github.com/nervosys/AutonomySim/blob/main/ros/src/AutonomySim_ros_pkgs/srv/SetGPSPosition.srv">srv/SetGPSPosition</a>]
@@ -2226,10 +2218,10 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
   Target local position + yaw in global NED frame.</p>
 </li>
 </ul>
-<h4 id="subscribers_1">Subscribers:<a class="headerlink" href="#subscribers_1" title="Permanent link">#</a></h4>
+<h4 id="subscribers_1">Subscribers<a class="headerlink" href="#subscribers_1" title="Permanent link">#</a></h4>
 <ul>
 <li>
-<p><code>/AutonomySim_node/origin_geo_point</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/GPSYaw.msg">AutonomySim_ros_pkgs/GPSYaw</a>
+<p><code>/AutonomySim_node/origin_geo_point</code> <a href="https://github.com/nervosys/AutonomySim/tree/master/ros/src/AutonomySim_ros_pkgs/msg/GPSYaw.msg">AutonomySim_ros_pkgs/GPSYaw</a>
   Listens to home geo coordinates published by <code>AutonomySim_node</code>.</p>
 </li>
 <li>
@@ -2237,12 +2229,12 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
   Listens to odometry published by <code>AutonomySim_node</code></p>
 </li>
 </ul>
-<h4 id="publishers_1">Publishers:<a class="headerlink" href="#publishers_1" title="Permanent link">#</a></h4>
+<h4 id="publishers_1">Publishers<a class="headerlink" href="#publishers_1" title="Permanent link">#</a></h4>
 <ul>
-<li><code>/vel_cmd_world_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/main/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
+<li><code>/vel_cmd_world_frame</code> <a href="https://github.com/nervosys/AutonomySim/tree/master/ros/src/AutonomySim_ros_pkgs/msg/VelCmd.msg">AutonomySim_ros_pkgs/VelCmd</a>
   Sends velocity command to <code>AutonomySim_node</code></li>
 </ul>
-<h4 id="global-params">Global params<a class="headerlink" href="#global-params" title="Permanent link">#</a></h4>
+<h4 id="global-parameters">Global parameters<a class="headerlink" href="#global-parameters" title="Permanent link">#</a></h4>
 <ul>
 <li>Dynamic constraints. These can be changed in <code>dynamic_constraints.launch</code>:</li>
 <li>
@@ -2263,10 +2255,10 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
 <p>These setup instructions describe how to setup "Bash on Ubuntu on Windows" (aka "Windows Subsystem for Linux").</p>
 <p>It involves enabling the built-in Windows Linux environment (WSL) in Windows, installing a compatible Linux OS image, and finally installing the build environment as if it were a normal Linux system.</p>
 <p>Upon completion, you will be able to build and run the ros wrapper as in a native Linux machine.</p>
-<h5 id="wsl1-versus-wsl2">WSL1 versus WSL2<a class="headerlink" href="#wsl1-versus-wsl2" title="Permanent link">#</a></h5>
+<h4 id="wsl1-versus-wsl2">WSL1 versus WSL2<a class="headerlink" href="#wsl1-versus-wsl2" title="Permanent link">#</a></h4>
 <p>WSL2 is the latest version of the Windows Subsystem for Linux (WSL). It is many times faster than WSL1 (if you use the native file system in <code>/home/...</code> rather than Windows mounted folders under <code>/mnt/...</code>) and is therefore preferred for building the code in terms of speed.</p>
 <p>Once installed, you can switch between WSL1 or WSL2 versions as you prefer.</p>
-<h5 id="wsl-setup-steps">WSL Setup steps<a class="headerlink" href="#wsl-setup-steps" title="Permanent link">#</a></h5>
+<h4 id="wsl-setup-steps">WSL Setup steps<a class="headerlink" href="#wsl-setup-steps" title="Permanent link">#</a></h4>
 <ol>
 <li>
 <p>Follow the instructions <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">here</a>. Check that the ROS version you want to use is supported by the Ubuntu version you want to install.</p>
@@ -2277,10 +2269,7 @@ Throttle, brake, steering and gear selections for control. Both automatic and ma
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can run XWindows applications (including SITL) by installing <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>  on Windows.
-To use it find and run <code>XLaunch</code> from the Windows start menu.
-Select <code>Multiple Windows</code> in first popup, <code>Start no client</code> in second popup, <strong>only</strong> <code>Clipboard</code> in third popup. Do <strong>not</strong> select <code>Native Opengl</code> (and if you are not able to connect select <code>Disable access control</code>).
-You will need to set the DISPLAY variable to point to your display: in WSL it is <code>127.0.0.1:0</code>, in WSL2 it will be the ip address of the PC's network port and can be set by using the code below. Also in WSL2 you may have to disable the firewall for public networks, or create an exception in order for VcXsrv to communicate with WSL2:</p>
+<p>You can run XWindows applications (including SITL) by installing <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>  on Windows. To use it find and run <code>XLaunch</code> from the Windows start menu. Select <code>Multiple Windows</code> in first popup, <code>Start no client</code> in second popup, <strong>only</strong> <code>Clipboard</code> in third popup. Do <strong>not</strong> select <code>Native Opengl</code> (and if you are not able to connect select <code>Disable access control</code>). You will need to set the DISPLAY variable to point to your display: in WSL it is <code>127.0.0.1:0</code>, in WSL2 it will be the ip address of the PC's network port and can be set by using the code below. Also in WSL2 you may have to disable the firewall for public networks, or create an exception in order for VcXsrv to communicate with WSL2:</p>
 <p><code>export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0</code></p>
 </div>
 <div class="admonition tip">
@@ -2291,16 +2280,14 @@ You will need to set the DISPLAY variable to point to your display: in WSL it is
 <li>Windows 10 includes "Windows Defender" virus scanner. It will slow down WSL quite a bit. Disabling it greatly improves disk performance but increases your risk to viruses so disable at your own risk. Here is one of many resources/videos that show you how to disable it: <a href="https://youtu.be/FmjblGay3AM">How to Disable or Enable Windows Defender on Windows 10</a></li>
 </ul>
 </div>
-<h5 id="file-system-access-between-wsl-and-windows-1011">File System Access between WSL and Windows 10/11<a class="headerlink" href="#file-system-access-between-wsl-and-windows-1011" title="Permanent link">#</a></h5>
+<h4 id="file-system-access-between-wsl-and-windows-1011">File System Access between WSL and Windows 10/11<a class="headerlink" href="#file-system-access-between-wsl-and-windows-1011" title="Permanent link">#</a></h4>
 <p>Within WSL, the Windows drives are referenced in the <code>/mnt</code> directory. For example, in order to list documents within your (<username>) documents folder:</p>
 <p><code>ls /mnt/c/'Documents and Settings'/&lt;username&gt;/Documents</code>
 or
 <code>ls /mnt/c/Users/&lt;username&gt;/Documents</code></p>
 <p>From within Windows, the WSL distribution's files are located at (type in windows Explorer address bar):</p>
-<p><code>\\wsl$\&lt;distribution name&gt;</code>
-e.g.,
-<code>\\wsl$\Ubuntu-18.04</code></p>
-<h5 id="how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl">How to run AutonomySim on Windows and ROS wrapper on WSL<a class="headerlink" href="#how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl" title="Permanent link">#</a></h5>
+<p><code>\\wsl$\&lt;distribution name&gt;</code> e.g., <code>\\wsl$\Ubuntu-18.04</code></p>
+<h4 id="how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl">How to run AutonomySim on Windows and ROS wrapper on WSL<a class="headerlink" href="#how-to-run-autonomysim-on-windows-and-ros-wrapper-on-wsl" title="Permanent link">#</a></h4>
 <p>For WSL 1 execute:
 <code>export WSL_HOST_IP=127.0.0.1</code>
 and for WSL 2:
@@ -2311,7 +2298,7 @@ Now, as in the <a href="#running">running section for linux</a>, execute the fol
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>roslaunch<span class="w"> </span>AutonomySim_ros_pkgs<span class="w"> </span>rviz.launch
 </span></code></pre></div>
 <h3 id="using-docker-for-ros">Using Docker for ROS<a class="headerlink" href="#using-docker-for-ros" title="Permanent link">#</a></h3>
-<p>A Dockerfile is present in the <a href="https://github.com/nervosys/AutonomySim/tree/main/tools/Dockerfile-ROS"><code>tools</code></a> directory. To build the <code>AutonomySim-ros</code> image -</p>
+<p>A Dockerfile is present in the <a href="https://github.com/nervosys/AutonomySim/tree/master/tools/Dockerfile-ROS"><code>tools</code></a> directory. To build the <code>AutonomySim-ros</code> image -</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>tools
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>AutonomySim-ros<span class="w"> </span>-f<span class="w"> </span>Dockerfile-ROS<span class="w"> </span>.
 </span></code></pre></div>
@@ -2358,7 +2345,7 @@ Now, as in the <a href="#running">running section for linux</a>, execute the fol
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="autonomysim_getting_started.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Autonomysim getting started">
+          <a href="reinforcement_learning.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Reinforcement Learning">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2368,20 +2355,20 @@ Now, as in the <a href="#running">running section for linux</a>, execute the fol
                 Previous
               </span>
               <div class="md-ellipsis">
-                Autonomysim getting started
+                Reinforcement Learning
               </div>
             </div>
           </a>
         
         
           
-          <a href="autonomysim_tutorial_pkgs.html" class="md-footer__link md-footer__link--next" aria-label="Next: AutonomySim ROS Tutorials">
+          <a href="ros_pkgs_tutorial.html" class="md-footer__link md-footer__link--next" aria-label="Next: ROS Tutorials">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                AutonomySim ROS Tutorials
+                ROS Tutorials
               </div>
             </div>
             <div class="md-footer__button md-icon">
