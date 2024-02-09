@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An open-source automous systems simulator based on Unreal Engine">
+        <meta name="description" content="The simulation engine for autonomous systems">
       
       
       
         <link rel="canonical" href="https://github.com/nervosys/AutonomySim/reinforcement_learning.html">
       
       
-        <link rel="prev" href="recording_data.html">
+        <link rel="prev" href="upgrade_settings.html">
       
       
-        <link rel="next" href="ros_pkgs.html">
+        <link rel="next" href="orbit.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reinforcement-learning" class="md-skip">
+        <a href="#reinforcement-learning-rl" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="." title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4m0 4.68c.5 0 .95.43.95.95v3.48L18 13.26v1.27l-5.05-1.58v3.47l1.26.95v.95L12 17.68l-2.21.64v-.95l1.26-.95v-3.47L6 14.53v-1.27l5.05-3.15V6.63c0-.52.45-.95.95-.95Z"/></svg>
@@ -195,6 +195,11 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
@@ -257,7 +262,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="." title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4m0 4.68c.5 0 .95.43.95.95v3.48L18 13.26v1.27l-5.05-1.58v3.47l1.26.95v.95L12 17.68l-2.21.64v-.95l1.26-.95v-3.47L6 14.53v-1.27l5.05-3.15V6.63c0-.52.45-.95.95-.95Z"/></svg>
@@ -287,7 +292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href="../README.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -311,7 +316,7 @@
         
   
   <span class="md-ellipsis">
-    Change Log
+    Changelog
   </span>
   
 
@@ -322,16 +327,55 @@
     
       
       
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Building AutonomySim
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Building AutonomySim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="CONTRIBUTING.html" class="md-nav__link">
+      <a href="use_precompiled.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Contributing
+    Download Binaries
   </span>
   
 
@@ -339,229 +383,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="SUPPORT.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Support
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="adding_apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Adding New APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="apis_cpp.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Using the C++ APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="apis_upgrading.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Upgrading APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="autonomylib_realworld.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Running AutonomyLib on Real-world Vehicles
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="azure.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Microsoft Azure Cloud Development Environment
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_docs.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Generating the Documentation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_faq.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build FAQ
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_linux.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build AutonomySim on Linux
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_macos.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build AutonomySim on macOS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -571,7 +396,7 @@
         
   
   <span class="md-ellipsis">
-    Build AutonomySim on Windows
+    Build on Windows
   </span>
   
 
@@ -579,19 +404,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="camera_views.html" class="md-nav__link">
+      <a href="build_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Camera Views
+    Build on Linux
   </span>
   
 
@@ -599,19 +425,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="cmake_linux.html" class="md-nav__link">
+      <a href="build_macos.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Installing CMake on Linux
+    Build on macOS
   </span>
   
 
@@ -619,169 +446,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="code_structure.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Code Structure
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="coding_guidelines.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    C++ Coding Guidelines
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="controller_remote.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Remote Control
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="controller_robot.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Robot Controller
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="controller_xbox.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    XBox Controller
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="create_issues.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    How to Create Issue or Ask Questions Effectively
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="dev_workflow.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Development Workflow
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="distance_sensor.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Distance Sensor
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -799,15 +467,58 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="faq.html" class="md-nav__link">
+      <a href="azure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim on Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="unreal_custenv.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Unreal Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build_faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -819,23 +530,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="getting_started.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Getting Started
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -846,12 +545,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Using AutonomySim
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Using AutonomySim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="hard_drive.html" class="md-nav__link">
+      <a href="apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Hard Drives
+    Core APIs
   </span>
   
 
@@ -859,9 +597,780 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis_image.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis_cpp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++ APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_docs/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Reference Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dev_workflow.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="settings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="camera_views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Camera Views
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="using_car.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Car Mode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="remote_control.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbox_controller.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XBox Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="steering_wheel_installation.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Steering Wheel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="multi_vehicle.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Vehicles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sensors
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            Sensors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sensors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sensors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lidar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LIDAR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distance_sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distance Sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="InfraredCamera.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrared Camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ROS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            ROS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ros_pkgs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim ROS Wrapper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ros_pkgs_tutorial.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim Tutorial Packages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gazebo_drone.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Import Gazebo models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="retexturing.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain Randomization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="meshes.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Vertex Buffers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playback.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playing Logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="voxel_grid.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Voxel Grid Generator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event_sim.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Event camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Design
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="design.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="project_structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis_new.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding new APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_capture.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modifying Recording Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="coding_guidelines.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="robot_controller.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flight Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="simple_flight.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Flight
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
   
@@ -879,23 +1388,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="image_apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Image APIs
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -906,12 +1403,90 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    External Flight Controllers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            External Flight Controllers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    MavLink and PX4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            MavLink and PX4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="image_sensors.html" class="md-nav__link">
+      <a href="px4_setup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Image Sensors
+    PX4 Setup for AutonomySim
   </span>
   
 
@@ -919,19 +1494,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="lidar.html" class="md-nav__link">
+      <a href="px4_sitl.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    LiDAR Sensor
+    PX4 in SITL
   </span>
   
 
@@ -939,19 +1515,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="log_viewer.html" class="md-nav__link">
+      <a href="px4_sitl_wsl2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Log Viewer
+    PX4 SITL with WSL 2
   </span>
   
 
@@ -959,269 +1536,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="manuscripts.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Manuscripts
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="mavlinkcom.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    MavLinkCom
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="mavlinkmocap.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    MavLinkMoCap
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="meshes.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Accessing Meshes
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="multi_vehicle.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Multiple Vehicles
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="object_detection.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Object Detection
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="orbit.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Orbital Trajectories
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="pfm.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PFM Image File Format
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="playback.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Playback
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="plugin_contents.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Plugin Contents
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="point_clouds.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Point Clouds
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="project_binaries.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Project Binaries
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_build.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Building PX4
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -1239,9 +1557,157 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_multivehicle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 Multi-vehicle in SITL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/1oY8Qu5maQQ" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim with Pixhawk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/HNWdYrtw3f0" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 Setup with AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging Attitude Estimation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/Intercepting-MavLink-messages" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intercepting MavLink Messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/Rapid-Descent-on-PX4-drones" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rapid Descent on PX4 Drones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_build.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building PX4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
   
@@ -1259,23 +1725,171 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="px4_multi_vehicle.html" class="md-nav__link">
+      <a href="log_viewer.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Setting up multi-vehicle PX4 simulation
+    MavLink LogViewer
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mavlink_comm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MavLinkCom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mavlink_mocap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MavLink MoCap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ArduPilot
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            ArduPilot
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ardupilot.org/dev/docs/building-the-code.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ArduPilot SITL Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ardupilot.org/dev/docs/sitl-with-AirSim.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim & ArduPilot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1286,16 +1900,105 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Upgrading
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrading
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="px4_setup.html" class="md-nav__link">
+      <a href="unreal_upgrade.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    PX4 Setup
+    Upgrading Unreal
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade_apis.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade_settings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1304,64 +2007,43 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="px4_sitl.html" class="md-nav__link">
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
-    Setting up PX4 Software-in-Loop
+    Contributed Tutorials
   </span>
   
 
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_sitl_wsl2.html" class="md-nav__link">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
-  
-  <span class="md-ellipsis">
-    PX4 Software-in-Loop with WSL 2
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="recording_data.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Recording Data
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Contributed Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
     
@@ -1413,27 +2095,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gym-wrapper" class="md-nav__link">
+  <a href="#wrapping-gymnasium-or-gym" class="md-nav__link">
     <span class="md-ellipsis">
-      Gym Wrapper
+      Wrapping Gymnasium or Gym
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#car-rl" class="md-nav__link">
+  <a href="#learning-to-control-rovers" class="md-nav__link">
     <span class="md-ellipsis">
-      Car RL
+      Learning to Control Rovers
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rl-with-quadrotor" class="md-nav__link">
+  <a href="#learning-to-control-drones" class="md-nav__link">
     <span class="md-ellipsis">
-      RL with Quadrotor
+      Learning to Control Drones
     </span>
   </a>
   
@@ -1455,23 +2137,242 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="ros_pkgs.html" class="md-nav__link">
+      <a href="https://www.youtube.com/watch?v=y09VbdQWvQY" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    ROS Packages
+    Using Environments from Marketplace
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/simondlevy/AirSimTensorFlow" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Collision Avoidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://aka.ms/AutonomousDrivingCookbook" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autonomous Driving on Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/hexacopter" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building Hexacopter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/moveOnPath-demo" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Moving on Path Demo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="point_clouds.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building Point Clouds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="drone_survey.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surveying Using Drone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orbit.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orbit Trajectory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/Bp86WiLUC80" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Importing a custom multirotor mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="object_detection.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Detection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/ZonkdMcwXH4" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim with MAVROS and PX4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1482,12 +2383,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Misc
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Misc
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="ros_pkgs_tutorial.html" class="md-nav__link">
+      <a href="custom_drone.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    ROS Tutorials
+    AutonomySim on Real Drones
   </span>
   
 
@@ -1495,19 +2435,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="sensors.html" class="md-nav__link">
+      <a href="cmake_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sensors
+    Installing cmake on Linux
   </span>
   
 
@@ -1515,19 +2456,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="settings.html" class="md-nav__link">
+      <a href="hard_drive.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Settings
+    Tips for Busy HDD
   </span>
   
 
@@ -1535,19 +2477,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="simple_flight.html" class="md-nav__link">
+      <a href="pfm.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Simple Flight Controller
+    pfm format
   </span>
   
 
@@ -1555,19 +2498,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="steering_wheel.html" class="md-nav__link">
+      <a href="unreal_proj.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Steering Wheels
+    Setting up Unreal Environment
   </span>
   
 
@@ -1575,49 +2519,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="surveying.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Surveying
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="texture_swapping.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Runtime Texture Swapping
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -1635,23 +2540,74 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="unreal_custenv.html" class="md-nav__link">
+      <a href="who_is_using.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unreal Environments
+    Who is Using AutonomySim
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="working_with_plugin_contents.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working with UE Plugin Contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/technion" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formula Student Technion Self-drive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1662,12 +2618,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Support
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="unreal_projects.html" class="md-nav__link">
+      <a href="faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unreal Projects
+    FAQ
   </span>
   
 
@@ -1675,19 +2670,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="unreal_upgrading.html" class="md-nav__link">
+      <a href="SUPPORT.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrading Unreal Engine
+    Support
   </span>
   
 
@@ -1695,19 +2691,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="upgrade_settings.html" class="md-nav__link">
+      <a href="create_issue.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrading the Settings
+    Create Issue
   </span>
   
 
@@ -1715,19 +2712,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="usage_rover.html" class="md-nav__link">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Rover Usage
+    Contribute
   </span>
   
 
@@ -1735,43 +2733,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="userbase.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Past and Current Users
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="voxel_grid.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Voxel Grid
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1794,41 +2760,48 @@
   
 
 
-<h1 id="reinforcement-learning">Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permanent link">#</a></h1>
-<p>We below describe how we can implement DQN in AutonomySim using an OpenAI gym wrapper around AutonomySim API, and using stable baselines implementations of standard RL algorithms. We recommend installing stable-baselines3 in order to run these examples (please see https://github.com/DLR-RM/stable-baselines3)</p>
+<h1 id="reinforcement-learning-rl">Reinforcement Learning (RL)<a class="headerlink" href="#reinforcement-learning-rl" title="Permanent link">#</a></h1>
+<p>Below, we describe how to implement a <a href="https://arxiv.org/abs/1312.5602v1">deep Q network</a> (DQN) in <code>AutonomySim</code>. We use a <a href="https://github.com/Farama-Foundation/Gymnasium"><code>Gynamsium</code></a> (previously <code>OpenAI Gym</code>) wrapper around the <code>AutomomySim</code> API together with the OpenAI <code>Stable Baselines</code> implementations of standard RL algorithms. We recommend installing <a href="https://github.com/DLR-RM/stable-baselines3">stable-baselines3</a> from the <a href="#">DLR Institute of Robotics and Mechatronics</a> to run these examples.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This is still in active development. What we share below is a framework that can be extended and tweaked to obtain better performance.</p>
+<p>This is still in active development. The below is a framework that can be extended and tweaked to obtain better performance.</p>
 </div>
-<h2 id="gym-wrapper">Gym Wrapper<a class="headerlink" href="#gym-wrapper" title="Permanent link">#</a></h2>
-<p>In order to use AutonomySim as a gym environment, we extend and reimplement the base methods such as <code>step</code>, <code>_get_obs</code>, <code>_compute_reward</code> and <code>reset</code> specific to AutonomySim and the task of interest. The sample environments used in these examples for car and drone can be seen in <code>PythonClient/reinforcement_learning/*_env.py</code></p>
-<h2 id="car-rl">Car RL<a class="headerlink" href="#car-rl" title="Permanent link">#</a></h2>
-<p><a href="https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning">Source code</a></p>
-<p>This example works with AutonomySimNeighborhood environment available in <a href="https://github.com/nervosys/AutonomySim/releases">releases</a>.</p>
-<p>First, we need to get the images from simulation and transform them appropriately. Below, we show how a depth image can be obtained from the ego camera and transformed to an 84X84 input to the network. (you can use other sensor modalities, and sensor inputs as well – of course you’ll have to modify the code accordingly).</p>
+<h2 id="wrapping-gymnasium-or-gym">Wrapping Gymnasium or Gym<a class="headerlink" href="#wrapping-gymnasium-or-gym" title="Permanent link">#</a></h2>
+<p>In order to use <code>AutonomySim</code> as a gym environment, we extend and reimplement the base methods such as <code>step</code>, <code>_get_obs</code>, <code>_compute_reward</code> and <code>reset</code> specific to <code>AutonomySim</code> and the task of interest. The sample environments used in these examples for cars and drones can be seen here: <code>PythonClient/reinforcement_learning/*_env.py</code></p>
+<h2 id="learning-to-control-rovers">Learning to Control Rovers<a class="headerlink" href="#learning-to-control-rovers" title="Permanent link">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The source code is <a href="https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning">here</a></p>
+</div>
+<p>This example works with the <code>Neighborhood</code> environment available in <a href="https://github.com/nervosys/AutonomySim/releases">releases</a>.</p>
+<p>First, we need to capture and transform images from the simulation. Below, we show how a depth image can be obtained from the <code>ego</code> camera and transformed to an 84x84 tensor for input into the network.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use other sensor modalities and sensor inputs as well, but you'll have to modify the code accordingly.</p>
+</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">responses</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">simGetImages</span><span class="p">([</span><span class="n">ImageRequest</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">AutonomySimImageType</span><span class="o">.</span><span class="n">DepthPerspective</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)])</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">current_state</span> <span class="o">=</span> <span class="n">transform_input</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
 </span></code></pre></div>
-<p>We further define the six actions (brake, straight with throttle, full-left with throttle, full-right with throttle, half-left with throttle, half-right with throttle) that an agent can execute. This is done via the function <code>interpret_action</code>:</p>
+<p>We define six actions (i.e., brake, straight with throttle, full-left with throttle, full-right with throttle, half-left with throttle, half-right with throttle) that an agent can execute. This is done via the function <code>interpret_action</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">interpret_action</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">car_controls</span><span class="o">.</span><span class="n">brake</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">car_controls</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">brake</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="mf">0.5</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="mf">0.25</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.25</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">car_controls</span><span class="o">.</span><span class="n">brake</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># throttle (initial)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">car_controls</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>           <span class="c1"># ...</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                     <span class="c1"># </span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># brake</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">brake</span> <span class="o">=</span> <span class="mi">1</span>          <span class="c1"># ...</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>                   <span class="c1">#</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># steer center</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>                   <span class="c1">#</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="mf">0.5</span>     <span class="c1"># steer right</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>                   <span class="c1">#</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>    <span class="c1"># steer left</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>                   <span class="c1">#</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="mf">0.25</span>    <span class="c1"># steer half-right</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">else</span><span class="p">:</span>                               <span class="c1">#</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.25</span>   <span class="c1"># steer half-left</span>
 </span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">return</span> <span class="n">car_controls</span>
 </span></code></pre></div>
-<p>We then define the reward function in <code>_compute_reward</code> as a convex combination of how fast the vehicle is travelling and how much it deviates from the center line. The agent gets a high reward when its moving fast and staying in the center of the lane.</p>
+<p>We then define the reward function in <code>_compute_reward</code> as a convex combination of how fast the vehicle is travelling and how much it deviates from the center line. The agent gets a high reward when moving fast and staying in the center of the lane.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">_compute_reward</span><span class="p">(</span><span class="n">car_state</span><span class="p">):</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">MAX_SPEED</span> <span class="o">=</span> <span class="mi">300</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">MIN_SPEED</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1844,7 +2817,7 @@
 </span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
 </span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="n">dist</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">((</span><span class="n">car_pt</span> <span class="o">-</span> <span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="p">(</span><span class="n">car_pt</span> <span class="o">-</span> <span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">pts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
 </span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="c1">#print(dist)</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="c1"># print(dist)</span>
 </span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">if</span> <span class="n">dist</span> <span class="o">&gt;</span> <span class="n">thresh_dist</span><span class="p">:</span>
 </span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="n">reward</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
 </span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="k">else</span><span class="p">:</span>
@@ -1854,7 +2827,7 @@
 </span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
 </span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    <span class="k">return</span> <span class="n">reward</span>
 </span></code></pre></div>
-<p>The compute reward function also subsequently determines if the episode has terminated (e.g. due to collision). We look at the speed of the vehicle and if it is less than a threshold than the episode is considered to be terminated.</p>
+<p>The computed reward function also subsequently determines if the episode has terminated (e.g., due to collision). We look at the speed of the vehicle and if it is less than a threshold, the episode is considered terminated.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">done</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">if</span> <span class="n">reward</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1863,7 +2836,7 @@
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">return</span> <span class="n">done</span>
 </span></code></pre></div>
-<p>The main loop then sequences through obtaining the image, computing the action to take according to the current policy, getting a reward and so forth. If the episode terminates then we reset the vehicle to the original state via <code>reset()</code>:</p>
+<p>The main loop then sequences through obtaining the image, computing the action to take according to the current policy, getting a reward, and so forth. If the episode terminates, we reset the vehicle to the original state via <code>reset()</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">client</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">client</span><span class="o">.</span><span class="n">enableApiControl</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">client</span><span class="o">.</span><span class="n">armDisarm</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -1871,7 +2844,7 @@
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">client</span><span class="o">.</span><span class="n">setCarControls</span><span class="p">(</span><span class="n">car_control</span><span class="p">)</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span></code></pre></div>
-<p>Once the gym-styled environment wrapper is defined as in <code>car_env.py</code>, we then make use of <code>stable-baselines3</code> to run a DQN training loop. The DQN training can be configured as follows, seen in <code>dqn_car.py</code>.</p>
+<p>Once a Gym environment wrapper is defined as in <code>car_env.py</code>, we make use of <code>stable-baselines3</code> to run a DQN training loop. The DQN training can be configured as seen in <code>dqn_car.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">model</span> <span class="o">=</span> <span class="n">DQN</span><span class="p">(</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="s2">&quot;CnnPolicy&quot;</span><span class="p">,</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">env</span><span class="p">,</span>
@@ -1889,30 +2862,33 @@
 </span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="n">tensorboard_log</span><span class="o">=</span><span class="s2">&quot;./tb_logs/&quot;</span><span class="p">,</span>
 </span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>A training environment and an evaluation envrionment (see <code>EvalCallback</code> in <code>dqn_car.py</code>) can be defined. The evaluation environoment can be different from training, with different termination conditions/scene configuration. A tensorboard log directory is also defined as part of the DQN parameters. Finally, <code>model.learn()</code> starts the DQN training loop. Similarly, implementations of PPO, A3C etc. can be used from stable-baselines3.</p>
-<p>Note that the simulation needs to be up and running before you execute <code>dqn_car.py</code>. The video below shows first few episodes of DQN training.</p>
-<p><a href="https://youtu.be/fv-oFPAqSZ4"><img alt="Reinforcement Learning - Car" src="images/dqn_car.png" /></a></p>
-<h2 id="rl-with-quadrotor">RL with Quadrotor<a class="headerlink" href="#rl-with-quadrotor" title="Permanent link">#</a></h2>
+<p>Training and evaluation environments can be defined (see <code>EvalCallback</code> in <code>dqn_car.py</code>). The evaluation environoment can be different from the one used for training, with different termination conditions or scene configuration. A <code>tensorboard</code> log directory is defined in the DQN parameters. Finally, <code>model.learn()</code> starts the DQN training loop. Implementations of other RL algorithms such as <a href="https://arxiv.org/abs/1707.02286">proximal policy optimization</a> (PPO), <a href="https://arxiv.org/abs/1602.01783">asynchronous advantage actor-critic</a> (A3C), and others, can be found in <code>stable-baselines3</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The simulation needs to be up and running before you execute <code>dqn_car.py</code>. The video below shows first few episodes of DQN training.</p>
+</div>
+<p><a href="https://youtu.be/fv-oFPAqSZ4"><img alt="Reinforcement Learning - Car" src="media/images/dqn_car.png" /></a></p>
+<h2 id="learning-to-control-drones">Learning to Control Drones<a class="headerlink" href="#learning-to-control-drones" title="Permanent link">#</a></h2>
 <p><a href="https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning">Source code</a></p>
-<p>This example works with AutonomySimMountainLandscape environment available in <a href="https://github.com/nervosys/AutonomySim/releases">releases</a>.</p>
-<p>We can similarly apply RL for various autonomous flight scenarios with quadrotors. Below is an example on how RL could be used to train quadrotors to follow high tension power lines (e.g. application for energy infrastructure inspection). There are seven discrete actions here that correspond to different directions in which the quadrotor can move in (six directions + one hovering action).</p>
+<p>This example works with the <code>MountainLandscape</code> environment available in <a href="https://github.com/nervosys/AutonomySim/releases">releases</a>.</p>
+<p>We can also apply RL to learn drone control policies. Below is an example of training a quadrotor to follow along high-tension power lines (e.g., for autonomous inspections). We specify a discrete action space with seven actions: six directions and one hovering action.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span> <span class="nf">interpret_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># step x-axis positive</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># step y-axis positive</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">)</span>  <span class="c1"># step z-axis positive</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># step x-axis negative</span>
 </span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># step y-axis negative</span>
 </span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">)</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">step_length</span><span class="p">)</span> <span class="c1"># step z-axis negative</span>
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>        <span class="n">quad_offset</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>                 <span class="c1"># center coordinates</span>
 </span></code></pre></div>
-<p>The reward again is a function how how fast the quad travels in conjunction with how far it gets from the known powerlines.</p>
+<p>Again, the reward is a joint function of the quadrotor speed and distance from the power lines.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span> <span class="nf">compute_reward</span><span class="p">(</span><span class="n">quad_state</span><span class="p">,</span> <span class="n">quad_vel</span><span class="p">,</span> <span class="n">collision_info</span><span class="p">):</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">thresh_dist</span> <span class="o">=</span> <span class="mi">7</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">beta</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1936,8 +2912,8 @@
 </span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>            <span class="n">reward_speed</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;velocity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;velocity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;velocity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">z_val</span><span class="p">,])</span><span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
 </span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>            <span class="n">reward</span> <span class="o">=</span> <span class="n">reward_dist</span> <span class="o">+</span> <span class="n">reward_speed</span>
 </span></code></pre></div>
-<p>We consider an episode to terminate if it drifts too much away from the known power line coordinates, and then reset the drone to its starting point.</p>
-<p>Once the gym-styled environment wrapper is defined as in <code>drone_env.py</code>, we then make use of stable-baselines3 to run a DQN training loop. The DQN training can be configured as follows, seen in <code>dqn_drone.py</code>.</p>
+<p>We consider an episode to terminate if the quadrotor drifts too far from the power lines. We then reset the drone to its starting position.</p>
+<p>Once a Gym environment wrapper is defined as in <code>drone_env.py</code>, we use <code>stable-baselines3</code> to run a DQN training loop. The DQN training can be configured as seen in <code>dqn_drone.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">model</span> <span class="o">=</span> <span class="n">DQN</span><span class="p">(</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="s2">&quot;CnnPolicy&quot;</span><span class="p">,</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">env</span><span class="p">,</span>
@@ -1955,11 +2931,11 @@
 </span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="n">tensorboard_log</span><span class="o">=</span><span class="s2">&quot;./tb_logs/&quot;</span><span class="p">,</span>
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>A training environment and an evaluation envrionment (see <code>EvalCallback</code> in <code>dqn_drone.py</code>) can be defined. The evaluation environoment can be different from training, with different termination conditions/scene configuration. A tensorboard log directory is also defined as part of the DQN parameters. Finally, <code>model.learn()</code> starts the DQN training loop. Similarly, implementations of PPO, A3C etc. can be used from stable-baselines3.</p>
+<p>Training and evaluation environments can be defined (see <code>EvalCallback</code> in <code>dqn_car.py</code>). The evaluation environoment can be different from the one used for training, with different termination conditions or scene configuration. A <code>tensorboard</code> log directory is defined in the DQN parameters. Finally, <code>model.learn()</code> starts the DQN training loop. Implementations of other RL algorithms such as <a href="https://arxiv.org/abs/1707.02286">proximal policy optimization</a> (PPO), <a href="https://arxiv.org/abs/1602.01783">asynchronous advantage actor-critic</a> (A3C), and others, can be found in <code>stable-baselines3</code>.</p>
 <p>Here is the video of first few episodes during the training.</p>
-<p><a href="https://youtu.be/uKm15Y3M1Nk"><img alt="Reinforcement Learning - Quadrotor" src="images/dqn_quadcopter.png" /></a></p>
+<p><a href="https://youtu.be/uKm15Y3M1Nk"><img alt="Reinforcement Learning - Quadrotor" src="media/images/dqn_quadcopter.png" /></a></p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">#</a></h2>
-<p>Please also see <a href="https://aka.ms/AutonomousDrivingCookbook">The Autonomous Driving Cookbook</a> by Microsoft Deep Learning and Robotics Garage Chapter.</p>
+<p>Also see <a href="https://aka.ms/AutonomousDrivingCookbook">The Autonomous Driving Cookbook</a> by the Microsoft Deep Learning and Robotics Garage Chapter.</p>
 
 
 
@@ -1999,7 +2975,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="recording_data.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Recording Data">
+          <a href="upgrade_settings.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrading Settings">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2009,20 +2985,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Recording Data
+                Upgrading Settings
               </div>
             </div>
           </a>
         
         
           
-          <a href="ros_pkgs.html" class="md-footer__link md-footer__link--next" aria-label="Next: ROS Packages">
+          <a href="orbit.html" class="md-footer__link md-footer__link--next" aria-label="Next: Orbit Trajectory">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ROS Packages
+                Orbit Trajectory
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2039,7 +3015,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 <a href="https://nervosys.ai/">Nervosys, LLC</a>
+      Copyright &copy; 2024 <a href=https://nervosys.ai/>Nervosys, LLC</a>
     </div>
   
   
@@ -2092,12 +3068,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "search.highlight", "search.suggest", "toc.integrate"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.expand", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "search.suggest", "search.share", "toc.follow", "toc.integrate"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
     
     
       <script src="assets/javascripts/bundle.caa56a14.min.js"></script>
       
         <script src="javascripts/extra.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

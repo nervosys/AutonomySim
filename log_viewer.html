@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An open-source automous systems simulator based on Unreal Engine">
+        <meta name="description" content="The simulation engine for autonomous systems">
       
       
       
         <link rel="canonical" href="https://github.com/nervosys/AutonomySim/log_viewer.html">
       
       
-        <link rel="prev" href="lidar.html">
+        <link rel="prev" href="px4_logging.html">
       
       
-        <link rel="next" href="manuscripts.html">
+        <link rel="next" href="mavlink_comm.html">
       
       
       <link rel="icon" href="images/rune.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Log Viewer - AutonomySim</title>
+        <title>MavLink LogViewer - AutonomySim</title>
       
     
     
@@ -110,7 +110,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="." title="AutonomySim" class="md-header__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4m0 4.68c.5 0 .95.43.95.95v3.48L18 13.26v1.27l-5.05-1.58v3.47l1.26.95v.95L12 17.68l-2.21.64v-.95l1.26-.95v-3.47L6 14.53v-1.27l5.05-3.15V6.63c0-.52.45-.95.95-.95Z"/></svg>
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Log Viewer
+              MavLink LogViewer
             
           </span>
         </div>
@@ -195,6 +195,11 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
@@ -257,7 +262,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
+    <a href="." title="AutonomySim" class="md-nav__button md-logo" aria-label="AutonomySim" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4m0 4.68c.5 0 .95.43.95.95v3.48L18 13.26v1.27l-5.05-1.58v3.47l1.26.95v.95L12 17.68l-2.21.64v-.95l1.26-.95v-3.47L6 14.53v-1.27l5.05-3.15V6.63c0-.52.45-.95.95-.95Z"/></svg>
@@ -287,7 +292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href="../README.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -311,7 +316,7 @@
         
   
   <span class="md-ellipsis">
-    Change Log
+    Changelog
   </span>
   
 
@@ -322,16 +327,55 @@
     
       
       
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Building AutonomySim
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Building AutonomySim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="CONTRIBUTING.html" class="md-nav__link">
+      <a href="use_precompiled.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Contributing
+    Download Binaries
   </span>
   
 
@@ -339,229 +383,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="SUPPORT.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Support
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="adding_apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Adding New APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="apis_cpp.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Using the C++ APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="apis_upgrading.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Upgrading APIs
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="autonomylib_realworld.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Running AutonomyLib on Real-world Vehicles
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="azure.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Microsoft Azure Cloud Development Environment
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_docs.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Generating the Documentation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_faq.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build FAQ
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_linux.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build AutonomySim on Linux
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build_macos.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build AutonomySim on macOS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -571,7 +396,7 @@
         
   
   <span class="md-ellipsis">
-    Build AutonomySim on Windows
+    Build on Windows
   </span>
   
 
@@ -579,19 +404,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="camera_views.html" class="md-nav__link">
+      <a href="build_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Camera Views
+    Build on Linux
   </span>
   
 
@@ -599,19 +425,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="cmake_linux.html" class="md-nav__link">
+      <a href="build_macos.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Installing CMake on Linux
+    Build on macOS
   </span>
   
 
@@ -619,169 +446,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="code_structure.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Code Structure
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="coding_guidelines.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    C++ Coding Guidelines
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="controller_remote.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Remote Control
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="controller_robot.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Robot Controller
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="controller_xbox.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    XBox Controller
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="create_issues.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    How to Create Issue or Ask Questions Effectively
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="dev_workflow.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Development Workflow
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="distance_sensor.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Distance Sensor
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -799,15 +467,58 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="faq.html" class="md-nav__link">
+      <a href="azure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim on Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="unreal_custenv.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Unreal Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build_faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -819,23 +530,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="getting_started.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Getting Started
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -846,12 +545,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Using AutonomySim
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Using AutonomySim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="hard_drive.html" class="md-nav__link">
+      <a href="apis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Hard Drives
+    Core APIs
   </span>
   
 
@@ -859,9 +597,780 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis_image.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis_cpp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++ APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_docs/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Reference Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dev_workflow.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="settings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="camera_views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Camera Views
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="using_car.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Car Mode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="remote_control.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbox_controller.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XBox Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="steering_wheel_installation.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Steering Wheel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="multi_vehicle.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Vehicles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sensors
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            Sensors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sensors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sensors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lidar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LIDAR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="distance_sensor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distance Sensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="InfraredCamera.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrared Camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ROS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            ROS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ros_pkgs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim ROS Wrapper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ros_pkgs_tutorial.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim Tutorial Packages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gazebo_drone.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Import Gazebo models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="retexturing.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain Randomization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="meshes.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Vertex Buffers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playback.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playing Logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="voxel_grid.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Voxel Grid Generator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event_sim.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Event camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Design
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="design.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="project_structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apis_new.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding new APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_capture.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modifying Recording Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="coding_guidelines.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="robot_controller.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flight Controller
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="simple_flight.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Flight
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
   
@@ -879,23 +1388,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="image_apis.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Image APIs
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -904,14 +1401,92 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    External Flight Controllers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            External Flight Controllers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    MavLink and PX4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            MavLink and PX4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="image_sensors.html" class="md-nav__link">
+      <a href="px4_setup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Image Sensors
+    PX4 Setup for AutonomySim
   </span>
   
 
@@ -919,19 +1494,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="lidar.html" class="md-nav__link">
+      <a href="px4_sitl.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    LiDAR Sensor
+    PX4 in SITL
   </span>
   
 
@@ -939,9 +1515,220 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_sitl_wsl2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 SITL with WSL 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_lockstep.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 Lockstep
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_multivehicle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 Multi-vehicle in SITL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/1oY8Qu5maQQ" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim with Pixhawk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/HNWdYrtw3f0" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4 Setup with AutonomySim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.youtube.com/watch?v=d_FyjKDWQfc&feature=youtu.be" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging Attitude Estimation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/Intercepting-MavLink-messages" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intercepting MavLink Messages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/Rapid-Descent-on-PX4-drones" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rapid Descent on PX4 Drones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_build.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building PX4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="px4_logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PX4/MavLink Logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
     
@@ -960,7 +1747,7 @@
           
   
   <span class="md-ellipsis">
-    Log Viewer
+    MavLink LogViewer
   </span>
   
 
@@ -971,7 +1758,7 @@
         
   
   <span class="md-ellipsis">
-    Log Viewer
+    MavLink LogViewer
   </span>
   
 
@@ -1044,35 +1831,16 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="manuscripts.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Manuscripts
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="mavlinkcom.html" class="md-nav__link">
+      <a href="mavlink_comm.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1084,23 +1852,129 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="mavlinkmocap.html" class="md-nav__link">
+      <a href="mavlink_mocap.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    MavLinkMoCap
+    MavLink MoCap
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ArduPilot
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            ArduPilot
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ardupilot.org/dev/docs/building-the-code.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ArduPilot SITL Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ardupilot.org/dev/docs/sitl-with-AirSim.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim & ArduPilot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1111,16 +1985,105 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Upgrading
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrading
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="meshes.html" class="md-nav__link">
+      <a href="unreal_upgrade.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Accessing Meshes
+    Upgrading Unreal
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade_apis.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading APIs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade_settings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrading Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1131,322 +2094,41 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="multi_vehicle.html" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
-    Multiple Vehicles
+    Contributed Tutorials
   </span>
   
 
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="object_detection.html" class="md-nav__link">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
-  
-  <span class="md-ellipsis">
-    Object Detection
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="orbit.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Orbital Trajectories
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="pfm.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PFM Image File Format
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="playback.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Playback
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="plugin_contents.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Plugin Contents
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="point_clouds.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Point Clouds
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="project_binaries.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Project Binaries
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_build.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Building PX4
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_lockstep.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PX4 Lockstep
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_logging.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PX4/MavLink Logging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_multi_vehicle.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Setting up multi-vehicle PX4 simulation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_setup.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PX4 Setup
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_sitl.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Setting up PX4 Software-in-Loop
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="px4_sitl_wsl2.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    PX4 Software-in-Loop with WSL 2
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="recording_data.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Recording Data
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Contributed Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
   
@@ -1464,23 +2146,242 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="ros_pkgs.html" class="md-nav__link">
+      <a href="https://www.youtube.com/watch?v=y09VbdQWvQY" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    ROS Packages
+    Using Environments from Marketplace
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/simondlevy/AirSimTensorFlow" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Collision Avoidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://aka.ms/AutonomousDrivingCookbook" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autonomous Driving on Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/hexacopter" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building Hexacopter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/moveOnPath-demo" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Moving on Path Demo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="point_clouds.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building Point Clouds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="drone_survey.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surveying Using Drone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orbit.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orbit Trajectory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/Bp86WiLUC80" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Importing a custom multirotor mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="object_detection.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Detection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://youtu.be/ZonkdMcwXH4" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutonomySim with MAVROS and PX4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1491,12 +2392,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Misc
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Misc
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="ros_pkgs_tutorial.html" class="md-nav__link">
+      <a href="custom_drone.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    ROS Tutorials
+    AutonomySim on Real Drones
   </span>
   
 
@@ -1504,19 +2444,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="sensors.html" class="md-nav__link">
+      <a href="cmake_linux.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sensors
+    Installing cmake on Linux
   </span>
   
 
@@ -1524,19 +2465,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="settings.html" class="md-nav__link">
+      <a href="hard_drive.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Settings
+    Tips for Busy HDD
   </span>
   
 
@@ -1544,19 +2486,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="simple_flight.html" class="md-nav__link">
+      <a href="pfm.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Simple Flight Controller
+    pfm format
   </span>
   
 
@@ -1564,19 +2507,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="steering_wheel.html" class="md-nav__link">
+      <a href="unreal_proj.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Steering Wheels
+    Setting up Unreal Environment
   </span>
   
 
@@ -1584,49 +2528,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="surveying.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Surveying
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="texture_swapping.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Runtime Texture Swapping
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -1644,23 +2549,74 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="unreal_custenv.html" class="md-nav__link">
+      <a href="who_is_using.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unreal Environments
+    Who is Using AutonomySim
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="working_with_plugin_contents.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working with UE Plugin Contents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/nervosys/AutonomySim/wiki/technion" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formula Student Technion Self-drive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1671,12 +2627,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Support
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="unreal_projects.html" class="md-nav__link">
+      <a href="faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unreal Projects
+    FAQ
   </span>
   
 
@@ -1684,19 +2679,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="unreal_upgrading.html" class="md-nav__link">
+      <a href="SUPPORT.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrading Unreal Engine
+    Support
   </span>
   
 
@@ -1704,19 +2700,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="upgrade_settings.html" class="md-nav__link">
+      <a href="create_issue.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrading the Settings
+    Create Issue
   </span>
   
 
@@ -1724,19 +2721,20 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="usage_rover.html" class="md-nav__link">
+      <a href="CONTRIBUTING.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Rover Usage
+    Contribute
   </span>
   
 
@@ -1744,43 +2742,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="userbase.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Past and Current Users
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="voxel_grid.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Voxel Grid
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1807,11 +2773,11 @@
 <p>The <code>LogViewer</code> is a Windows WPF app that presents the MavLink streams that it is getting from the Unreal Simulator.  You can use this to monitor what is happening on the drone while it is flying. For example, the picture below shows  a real time graph of the x, y an z gyro sensor information being generated by the simulator.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">#</a></h2>
 <p>You can open a log file, it supports .mavlink and PX4 *.ulg files, then you will see the contents of the log in a tree view on the left, whatever metrics you select will be added to the right the right side. You can close each individual chart with the little close box in the top right of each chart and you can group charts so they share the same vertical axis using the group charts button on the top toolbar.</p>
-<p><img alt="Log Viewer" src="images/log_viewer.png" /></p>
+<p><img alt="Log Viewer" src="media/images/log_viewer.png" /></p>
 <p>There is also a map option which will plot the GPS path the drone took.  You can also load multiple log files so you can compare the data from each.</p>
 <h2 id="realtime">Realtime<a class="headerlink" href="#realtime" title="Permanent link">#</a></h2>
 <p>You can also get a realtime view if you connect the LogViewer <code>before</code> you run the simulation.</p>
-<p><img alt="connect" src="images/log_viewer_connect.png" /></p>
+<p><img alt="connect" src="media/images/log_viewer_connect.png" /></p>
 <p>For this to work you need to configure the <code>settings.json</code> with the following settings:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;SettingsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span>
@@ -1878,7 +2844,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="lidar.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: LiDAR Sensor">
+          <a href="px4_logging.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: PX4/MavLink Logging">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1888,20 +2854,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                LiDAR Sensor
+                PX4/MavLink Logging
               </div>
             </div>
           </a>
         
         
           
-          <a href="manuscripts.html" class="md-footer__link md-footer__link--next" aria-label="Next: Manuscripts">
+          <a href="mavlink_comm.html" class="md-footer__link md-footer__link--next" aria-label="Next: MavLinkCom">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Manuscripts
+                MavLinkCom
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1918,7 +2884,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 <a href="https://nervosys.ai/">Nervosys, LLC</a>
+      Copyright &copy; 2024 <a href=https://nervosys.ai/>Nervosys, LLC</a>
     </div>
   
   
@@ -1971,12 +2937,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "search.highlight", "search.suggest", "toc.integrate"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.expand", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "search.suggest", "search.share", "toc.follow", "toc.integrate"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest"}}</script>
     
     
       <script src="assets/javascripts/bundle.caa56a14.min.js"></script>
       
         <script src="javascripts/extra.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

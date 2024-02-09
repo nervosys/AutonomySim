@@ -1,4 +1,3 @@
-
 repository: nervosys/AutonomySim
 
 output: web
@@ -10,7 +9,7 @@ topnav_title: AutonomySim
 site_title: AutonomySim Documentation
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 
-company_name: Copyright 2023 © Nervosys, LLC
+company_name: Copyright 2024 &copy; Nervosys, LLC
 # this appears in the footer
 
 github_editme_path:
@@ -19,7 +18,7 @@ github_editme_path:
 # gitlab_editme_path: tomjoht/documentation-theme-jekyll/blob/gh-pages/
 # if you're using GitLab, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
-google_analytics: 
+google_analytics:
 # if you have google-analytics ID, put it in. if not, edit this value to blank.
 
 host: 127.0.0.1
@@ -36,7 +35,7 @@ exclude:
 
 feedback_subject_line: AutonomySim
 
-feedback_email: web@nervosys.ai
+feedback_email: opensource@nervosys.ai
 # used as a contact email for the Feedback link in the top navigation bar
 
 # feedback_disable: true
@@ -54,10 +53,10 @@ highlighter: rouge
 # filter used to process markdown. note that kramdown differs from github-flavored markdown in some subtle ways
 markdown: kramdown
 kramdown:
- input: GFM
- auto_ids: true
- hard_wrap: false
- syntax_highlighter: rouge
+  input: GFM
+  auto_ids: true
+  hard_wrap: false
+  syntax_highlighter: rouge
 
 # collections are declared here. this renders the content in _tooltips and processes it, but doesn't output it as actual files in the output unless you change output to true
 collections:
@@ -66,8 +65,7 @@ collections:
 
 # defaults used for the frontmatter for these file types
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "pages"
     values:
@@ -77,16 +75,14 @@ defaults:
       search: true
       sidebar: autonomysim_sidebar
       topnav: topnav
-  -
-    scope:
+  - scope:
       path: ""
       type: "tooltips"
     values:
       layout: "page"
       search: true
       tooltip: true
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
@@ -98,8 +94,8 @@ defaults:
       topnav: topnav
 
 sidebars:
-- autonomysim_sidebar
-- other
+  - autonomysim_sidebar
+  - other
 
 # description is used in the feed.xml file
 description: "Intended as a documentation theme based on Jekyll for technical writers documenting software and other technical products, this theme has all the elements you would need to handle multiple products with both multi-level sidebar navigation, tags, and other documentation features."
