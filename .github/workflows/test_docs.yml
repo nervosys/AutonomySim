@@ -23,13 +23,13 @@ jobs:
 
       - name: "Build API reference documentation: Sphinx Immaterial"
         run: |
-          python3 -m venv .env  # virtual env to avoid dependecy issues 
-          source .env/bin/activate
+          python3 -m venv ./.env  # virtual env to avoid dependecy issues 
+          source ./.env/bin/activate
           pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
-          pushd Python >/dev/null
-          ./scripts/build_api_docs.sh
+          pushd ./python >/dev/null
+          sh build_api_docs.sh
           popd >/dev/null
-          cp -r Python/docs/_build docs/api_docs/  # copy generated files
+          cp -r ./python/docs/_build docs/api_docs/  # copy generated files
           deactivate
 
       - name: "Build AutonomySim documentation"
