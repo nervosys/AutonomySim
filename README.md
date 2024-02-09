@@ -1,6 +1,6 @@
 <br>
 <p align="center" width="100%">
-    <img src="./media/autonomysim_simple_bw_1000w.png" width="75%" alt="AutonomySim logo">
+    <img src="./media/images/autonomysim_simple_bw_1000w.png" width="75%" alt="AutonomySim logo">
 </p>
 
 <p align="center" width="100%">  
@@ -88,7 +88,7 @@ For details on all aspects of `AutonomySim`, view the [documentation](https://ne
 For an overview of the simulation architecture, see the below figure.
 
 <p align="center">
-  <img src="./media/shah2018_architecture.png" width="65%" alt="architecture">
+  <img src="./media/images/shah2018_architecture.png" width="65%" alt="architecture">
   <br>
   Overview of the simulation architecuture from <a href="https://arxiv.org/abs/1705.05065">Shah et al. (2017)</a>.
 </p>
@@ -480,7 +480,7 @@ Any and all sublicenses can be found [here](sublicenses/).
 
 <p align="center">
   <br>
-  <img src="./media/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
+  <img src="./media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
   <br>
   TM 2024 &copy; Nervosys, LLC
 </p>
