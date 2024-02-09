@@ -7,7 +7,7 @@
 #
 
 site_name: "AutonomySim"
-site_description: "An open-source automous systems simulator based on Unreal Engine"
+site_description: "The simulation engine for autonomous systems"
 site_url: "https://github.com/nervosys/AutonomySim"
 site_dir: "build_docs"
 
