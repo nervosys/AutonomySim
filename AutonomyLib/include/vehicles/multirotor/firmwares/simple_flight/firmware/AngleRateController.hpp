@@ -3,7 +3,7 @@
 
 #include "Params.hpp"
 #include "PidController.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include "interfaces/CommonStructs.hpp"
 #include "interfaces/IAxisController.hpp"
 #include "interfaces/IBoardClock.hpp"

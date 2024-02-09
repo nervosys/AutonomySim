@@ -4,14 +4,14 @@
 
 #include "MultirotorPawnEvents.h"
 #include "PIPCamera.h"
-#include "common/common_utils/Signal.hpp"
-#include "common/common_utils/UniqueValueMap.hpp"
+#include "common/utils/Signal.hpp"
+#include "common/utils/UniqueValueMap.hpp"
 #include <memory>
 
 #include "FlyingPawn.generated.h"
 
 UCLASS()
-class AutonomySim_API AFlyingPawn : public APawn {
+class AutonomySimApi AFlyingPawn : public APawn {
     GENERATED_BODY()
 
   public:

@@ -5,8 +5,8 @@
 #define autonomylib_common_Common_hpp
 
 #include "VectorMath.hpp"
-#include "common/common_utils/Utils.hpp"
-#include "common_utils/RandomGenerator.hpp"
+#include "common/utils/RandomGenerator.hpp"
+#include "common/utils/Utils.hpp"
 #include <cstdint>
 #include <iostream>
 #include <memory>

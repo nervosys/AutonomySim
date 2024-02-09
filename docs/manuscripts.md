@@ -19,4 +19,4 @@ You can read more about our architecture and design in [the original draft manus
 
 Below is high level overview of how different components interact with each other.
 
-![architecture diagram](paper/overview.png)
+![architecture diagram](manuscripts/overview.png)

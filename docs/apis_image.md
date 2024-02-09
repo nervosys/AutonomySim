@@ -1,6 +1,6 @@
 # Image APIs
 
-Please read [general API doc](apis.md) first if you are not familiar with AutonomySim APIs.
+Please read [general API doc](apis.md) first if you are not familiar with `AutonomySim` APIs.
 
 ## Getting a Single Image
 
@@ -9,7 +9,7 @@ Here's a sample code to get a single image from camera named "0". The returned v
 ### Python
 
 ```python
-import AutonomySim #pip install AutonomySim
+import AutonomySim  # pip install AutonomySim
 
 # for car use CarClient() 
 client = AutonomySim.MultirotorClient()
@@ -41,7 +41,7 @@ The `simGetImages` API which is slightly more complex to use than `simGetImage` 
 ### Python
 
 ```python
-import AutonomySim #pip install AutonomySim
+import AutonomySim  # pip install AutonomySim
 
 # for car use CarClient() 
 client = AutonomySim.MultirotorClient()
@@ -52,9 +52,10 @@ responses = client.simGetImages([
     # uncompressed RGB array bytes
     AutonomySim.ImageRequest(1, AutonomySim.ImageType.Scene, False, False),
     # floating point uncompressed image
-    AutonomySim.ImageRequest(1, AutonomySim.ImageType.DepthPlanar, True)])
+    AutonomySim.ImageRequest(1, AutonomySim.ImageType.DepthPlanar, True)
+])
  
- # do something with response which contains image data, pose, timestamp etc
+# do something with response which contains image data, pose, timestamp etc
 ```
 
 #### Using AutonomySim Images with NumPy
@@ -188,7 +189,7 @@ client.simSetCameraPose(0, camera_pose);
 - `simSetCameraFov` allows changing the Field-of-View of the camera at runtime.
 - `simSetDistortionParams`, `simGetDistortionParams` allow setting and fetching the distortion parameters K1, K2, K3, P1, P2
 
-All Camera APIs take in 3 common parameters apart from the API-specific ones, `camera_name`(str), `vehicle_name`(str) and `external`(bool, to indicate [External Camera](settings.md#external-cameras)). Camera and vehicle name is used to get the specific camera, if `external` is set to `true`, then the vehicle name is ignored. Also see [external_camera.py](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/computer_vision/external_camera.py) for example usage of these APIs.
+All Camera APIs take in 3 common parameters apart from the API-specific ones, `camera_name`(str), `vehicle_name`(str) and `external`(bool, to indicate [External Camera](settings.md#external-cameras)). Camera and vehicle name is used to get the specific camera, if `external` is set to `true`, then the vehicle name is ignored. Also see [external_camera.py](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/computer_vision/external_camera.py) for example usage of these APIs.
 
 ### Gimbal
 
@@ -250,7 +251,7 @@ You normally want to retrieve disparity image as float (i.e. set `pixels_as_floa
 
 ### Segmentation
 
-When you specify `ImageType = Segmentation` in `ImageRequest`, you get an image that gives you ground truth segmentation of the scene. At the startup, AutonomySim assigns value 0 to 255 to each mesh available in environment. This value is then mapped to a specific color in [the pallet](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Content/HUDAssets/seg_color_palette.png). The RGB values for each object ID can be found in [this file](seg_rgbs.txt).
+When you specify `ImageType = Segmentation` in `ImageRequest`, you get an image that gives you ground truth segmentation of the scene. At the startup, AutonomySim assigns value 0 to 255 to each mesh available in environment. This value is then mapped to a specific color in [the pallet](https://github.com/nervosys/AutonomySim/blob/master/Unreal/Plugins/AutonomySim/Content/HUDAssets/seg_color_palette.png). The RGB values for each object ID can be found in [this file](files/configurations/seg_rgbs.txt).
 
 You can assign a specific value (limited to the range 0-255) to a specific mesh using APIs. For example, below Python code sets the object ID for the mesh called "Ground" to 20 in Blocks environment and hence changes its color in Segmentation view:
 
@@ -292,7 +293,7 @@ An object's ID can be set to -1 to make it not show up on the segmentation image
 
 To get desired ground truth segmentation you will need to know the names of the meshes in your Unreal environment. To do this, you will need to open up Unreal Environment in Unreal Editor and then inspect the names of the meshes you are interested in using the World Outliner. For example, below we see the mesh names for the ground in Blocks environment in right panel in the editor:
 
-![record screenshot](images/unreal_editor_blocks.png)
+![record screenshot](media/images/unreal_editor_blocks.png)
 
 If you don't know how to open Unreal Environment in Unreal Editor then try following the guide for [building from source](build_windows.md).
 
@@ -300,7 +301,7 @@ Once you decide on the meshes you are interested, note down their names and use 
 
 #### Changing Colors for Object IDs
 
-At present the color for each object ID is fixed as in [this pallet](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Content/HUDAssets/seg_color_palette.png). We will be adding ability to change colors for object IDs to desired values shortly. In the meantime you can open the segmentation image in your favorite image editor and get the RGB values you are interested in.
+At present the color for each object ID is fixed as in [this pallet](https://github.com/nervosys/AutonomySim/blob/master/Unreal/Plugins/AutonomySim/Content/HUDAssets/seg_color_palette.png). We will be adding ability to change colors for object IDs to desired values shortly. In the meantime you can open the segmentation image in your favorite image editor and get the RGB values you are interested in.
 
 #### Initial Object IDs
 

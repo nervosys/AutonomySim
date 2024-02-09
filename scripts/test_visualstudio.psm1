@@ -85,7 +85,7 @@ function Test-VisualStudioVersion {
         Write-Output "$($Program) version $($CurrentVersion) is less than the minimum supported."
         Write-Output 'AutonomySim supports up to Unreal Engine 5.3 and Visual Studio 2022.'
         Write-Output 'Here are few easy steps to perform the upgrade:'
-        Write-Output '  https://github.com/nervosys/AutonomySim/blob/main/docs/unreal_upgrade.md'
+        Write-Output '  https://github.com/nervosys/AutonomySim/blob/master/docs/unreal_upgrade.md'
         Invoke-Fail
     } else {
         Write-Output "Success: Visual Studio version ${CurrentVersion} meets the minimum requirements."

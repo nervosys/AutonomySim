@@ -1,5 +1,7 @@
+// autonomysim_ros_wrapper.cpp
+
 #include "common/AutonomySimSettings.hpp"
-#include <AutonomySim_ros_wrapper.h>
+#include <autonomysim_ros_wrapper.h>
 #include <tf2_sensor_msgs/tf2_sensor_msgs.h>
 
 using namespace std::placeholders;
@@ -20,17 +22,17 @@ const std::unordered_map<int, std::string> AutonomySimROSWrapper::image_type_int
 AutonomySimROSWrapper::AutonomySimROSWrapper(const std::shared_ptr<rclcpp::Node> nh,
                                              const std::shared_ptr<rclcpp::Node> nh_img,
                                              const std::shared_ptr<rclcpp::Node> nh_lidar, const std::string &host_ip)
-    : is_used_lidar_timer_cb_queue_(false), is_used_img_timer_cb_queue_(false), AutonomySim_settings_parser_(host_ip),
-      host_ip_(host_ip), AutonomySim_client_(nullptr), AutonomySim_client_images_(host_ip),
-      AutonomySim_client_lidar_(host_ip), nh_(nh), nh_img_(nh_img), nh_lidar_(nh_lidar), isENU_(false),
+    : is_used_lidar_timer_cb_queue_(false), is_used_img_timer_cb_queue_(false), autonomysim_settings_parser_(host_ip),
+      host_ip_(host_ip), autonomysim_client_(nullptr), autonomysim_client_images_(host_ip),
+      autonomysim_client_lidar_(host_ip), nh_(nh), nh_img_(nh_img), nh_lidar_(nh_lidar), isENU_(false),
       publish_clock_(false) {
     ros_clock_.clock = rclcpp::Time(0);
 
     if (AutonomySimSettings::singleton().simmode_name != AutonomySimSettings::kSimModeTypeCar) {
-        AutonomySim_mode_ = AutonomySim_MODE::DRONE;
+        autonomysim_mode_ = AUTONOMYSIM_MODE::DRONE;
         RCLCPP_INFO(nh_->get_logger(), "Setting ROS wrapper to DRONE mode");
     } else {
-        AutonomySim_mode_ = AutonomySim_MODE::CAR;
+        autonomysim_mode_ = AUTONOMYSIM_MODE::CAR;
         RCLCPP_INFO(nh_->get_logger(), "Setting ROS wrapper to CAR mode");
     }
     tf_buffer_ = std::make_shared<tf2_ros::Buffer>(nh_->get_clock());
@@ -43,30 +45,30 @@ AutonomySimROSWrapper::AutonomySimROSWrapper(const std::shared_ptr<rclcpp::Node>
     RCLCPP_INFO(nh_->get_logger(), "AutonomySimROSWrapper Initialized!");
 }
 
-void AutonomySimROSWrapper::initialize_AutonomySim() {
+void AutonomySimROSWrapper::initialize_autonomysim() {
     // todo do not reset if already in air?
     try {
 
-        if (AutonomySim_mode_ == AutonomySim_MODE::DRONE) {
-            AutonomySim_client_ =
-                std::unique_ptr<nervosys::autonomylib::RpcLibClientBase>(new nervosys::autonomylib::MultirotorRpcLibClient(host_ip_));
+        if (autonomysim_mode_ == AUTONOMYSIM_MODE::DRONE) {
+            autonomysim_client_ = std::unique_ptr<nervosys::autonomylib::RpcLibClientBase>(
+                new nervosys::autonomylib::MultirotorRpcLibClient(host_ip_));
         } else {
-            AutonomySim_client_ =
-                std::unique_ptr<nervosys::autonomylib::RpcLibClientBase>(new nervosys::autonomylib::CarRpcLibClient(host_ip_));
+            autonomysim_client_ = std::unique_ptr<nervosys::autonomylib::RpcLibClientBase>(
+                new nervosys::autonomylib::CarRpcLibClient(host_ip_));
         }
-        AutonomySim_client_->confirmConnection();
-        AutonomySim_client_images_.confirmConnection();
-        AutonomySim_client_lidar_.confirmConnection();
+        autonomysim_client_->confirmConnection();
+        autonomysim_client_images_.confirmConnection();
+        autonomysim_client_lidar_.confirmConnection();
 
         for (const auto &vehicle_name_ptr_pair : vehicle_name_ptr_map_) {
-            AutonomySim_client_->enableApiControl(true, vehicle_name_ptr_pair.first); // todo expose as rosservice?
-            AutonomySim_client_->armDisarm(true, vehicle_name_ptr_pair.first);        // todo exposes as rosservice?
+            autonomysim_client_->enableApiControl(true, vehicle_name_ptr_pair.first); // todo expose as rosservice?
+            autonomysim_client_->armDisarm(true, vehicle_name_ptr_pair.first);        // todo exposes as rosservice?
         }
 
         origin_geo_point_ = get_origin_geo_point();
         // todo there's only one global origin geopoint for environment. but AutonomySim API accept a parameter
         // vehicle_name? inside carsimpawnapi.cpp, there's a geopoint being assigned in the constructor. by?
-        origin_geo_point_msg_ = get_gps_msg_from_AutonomySim_geo_point(origin_geo_point_);
+        origin_geo_point_msg_ = get_gps_msg_from_autonomysim_geo_point(origin_geo_point_);
     } catch (rpc::rpc_error &e) {
         std::string msg = e.get_error().as<std::string>();
         RCLCPP_ERROR(nh_->get_logger(), "Exception raised by the API, something went wrong.\n%s", msg.c_str());
@@ -77,12 +79,12 @@ void AutonomySimROSWrapper::initialize_AutonomySim() {
 void AutonomySimROSWrapper::initialize_ros() {
 
     // ros params
-    double update_AutonomySim_control_every_n_sec;
+    double update_autonomysim_control_every_n_sec;
     nh_->get_parameter("is_vulkan", is_vulkan_);
-    nh_->get_parameter("update_AutonomySim_control_every_n_sec", update_AutonomySim_control_every_n_sec);
+    nh_->get_parameter("update_autonomysim_control_every_n_sec", update_autonomysim_control_every_n_sec);
     nh_->get_parameter("publish_clock", publish_clock_);
     nh_->get_parameter_or("world_frame_id", world_frame_id_, world_frame_id_);
-    odom_frame_id_ = world_frame_id_ == AutonomySim_FRAME_ID ? AutonomySim_ODOM_FRAME_ID : ENU_ODOM_FRAME_ID;
+    odom_frame_id_ = world_frame_id_ == AUTONOMYSIM_FRAME_ID ? AUTONOMYSIM_ODOM_FRAME_ID : ENU_ODOM_FRAME_ID;
     nh_->get_parameter_or("odom_frame_id", odom_frame_id_, odom_frame_id_);
     isENU_ = (odom_frame_id_ == ENU_ODOM_FRAME_ID);
     nh_->get_parameter_or("coordinate_system_enu", isENU_, isENU_);
@@ -93,21 +95,21 @@ void AutonomySimROSWrapper::initialize_ros() {
 
     nh_->declare_parameter("vehicle_name", rclcpp::ParameterValue(""));
     create_ros_pubs_from_settings_json();
-    AutonomySim_control_callback_group_ = nh_->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
-    AutonomySim_control_update_timer_ = nh_->create_wall_timer(
-        std::chrono::duration<double>(update_AutonomySim_control_every_n_sec),
-        std::bind(&AutonomySimROSWrapper::drone_state_timer_cb, this), AutonomySim_control_callback_group_);
+    autonomysim_control_callback_group_ = nh_->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
+    autonomysim_control_update_timer_ = nh_->create_wall_timer(
+        std::chrono::duration<double>(update_autonomysim_control_every_n_sec),
+        std::bind(&AutonomySimROSWrapper::drone_state_timer_cb, this), autonomysim_control_callback_group_);
 }
 
 void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
     // subscribe to control commands on global nodehandle
-    gimbal_angle_quat_cmd_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::GimbalAngleQuatCmd>(
+    gimbal_angle_quat_cmd_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::GimbalAngleQuatCmd>(
         "~/gimbal_angle_quat_cmd", 50, std::bind(&AutonomySimROSWrapper::gimbal_angle_quat_cmd_cb, this, _1));
-    gimbal_angle_euler_cmd_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::GimbalAngleEulerCmd>(
+    gimbal_angle_euler_cmd_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::GimbalAngleEulerCmd>(
         "~/gimbal_angle_euler_cmd", 50, std::bind(&AutonomySimROSWrapper::gimbal_angle_euler_cmd_cb, this, _1));
-    origin_geo_point_pub_ = nh_->create_publisher<AutonomySim_interfaces::msg::GPSYaw>("~/origin_geo_point", 10);
+    origin_geo_point_pub_ = nh_->create_publisher<autonomysim_interfaces::msg::GPSYaw>("~/origin_geo_point", 10);
 
-    AutonomySim_img_request_vehicle_name_pair_vec_.clear();
+    autonomysim_img_request_vehicle_name_pair_vec_.clear();
     image_pub_vec_.clear();
     cam_info_pub_vec_.clear();
     camera_info_msg_vec_.clear();
@@ -127,7 +129,7 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
 
         std::unique_ptr<VehicleROS> vehicle_ros = nullptr;
 
-        if (AutonomySim_mode_ == AutonomySim_MODE::DRONE) {
+        if (autonomysim_mode_ == AUTONOMYSIM_MODE::DRONE) {
             vehicle_ros = std::unique_ptr<MultirotorROS>(new MultirotorROS());
         } else {
             vehicle_ros = std::unique_ptr<CarROS>(new CarROS());
@@ -143,53 +145,53 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
             nh_->create_publisher<nav_msgs::msg::Odometry>(topic_prefix + "/" + odom_frame_id_, 10);
 
         vehicle_ros->env_pub_ =
-            nh_->create_publisher<AutonomySim_interfaces::msg::Environment>(topic_prefix + "/environment", 10);
+            nh_->create_publisher<autonomysim_interfaces::msg::Environment>(topic_prefix + "/environment", 10);
 
         vehicle_ros->global_gps_pub_ =
             nh_->create_publisher<sensor_msgs::msg::NavSatFix>(topic_prefix + "/global_gps", 10);
 
-        if (AutonomySim_mode_ == AutonomySim_MODE::DRONE) {
+        if (autonomysim_mode_ == AUTONOMYSIM_MODE::DRONE) {
             auto drone = static_cast<MultirotorROS *>(vehicle_ros.get());
 
             // bind to a single callback. todo optimal subs queue length
             // bind multiple topics to a single callback, but keep track of which vehicle name it was by passing
             // curr_vehicle_name as the 2nd argument
 
-            std::function<void(const AutonomySim_interfaces::msg::VelCmd::SharedPtr)> fcn_vel_cmd_body_frame_sub =
+            std::function<void(const autonomysim_interfaces::msg::VelCmd::SharedPtr)> fcn_vel_cmd_body_frame_sub =
                 std::bind(&AutonomySimROSWrapper::vel_cmd_body_frame_cb, this, _1, vehicle_ros->vehicle_name_);
-            drone->vel_cmd_body_frame_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::VelCmd>(
+            drone->vel_cmd_body_frame_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::VelCmd>(
                 topic_prefix + "/vel_cmd_body_frame", 1,
                 fcn_vel_cmd_body_frame_sub); // todo ros::TransportHints().tcpNoDelay();
 
-            std::function<void(const AutonomySim_interfaces::msg::VelCmd::SharedPtr)> fcn_vel_cmd_world_frame_sub =
+            std::function<void(const autonomysim_interfaces::msg::VelCmd::SharedPtr)> fcn_vel_cmd_world_frame_sub =
                 std::bind(&AutonomySimROSWrapper::vel_cmd_world_frame_cb, this, _1, vehicle_ros->vehicle_name_);
-            drone->vel_cmd_world_frame_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::VelCmd>(
+            drone->vel_cmd_world_frame_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::VelCmd>(
                 topic_prefix + "/vel_cmd_world_frame", 1, fcn_vel_cmd_world_frame_sub);
 
-            std::function<bool(std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Request>,
-                               std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Response>)>
+            std::function<bool(std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Request>,
+                               std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Response>)>
                 fcn_takeoff_srvr =
                     std::bind(&AutonomySimROSWrapper::takeoff_srv_cb, this, _1, _2, vehicle_ros->vehicle_name_);
             drone->takeoff_srvr_ =
-                nh_->create_service<AutonomySim_interfaces::srv::Takeoff>(topic_prefix + "/takeoff", fcn_takeoff_srvr);
+                nh_->create_service<autonomysim_interfaces::srv::Takeoff>(topic_prefix + "/takeoff", fcn_takeoff_srvr);
 
-            std::function<bool(std::shared_ptr<AutonomySim_interfaces::srv::Land::Request>,
-                               std::shared_ptr<AutonomySim_interfaces::srv::Land::Response>)>
+            std::function<bool(std::shared_ptr<autonomysim_interfaces::srv::Land::Request>,
+                               std::shared_ptr<autonomysim_interfaces::srv::Land::Response>)>
                 fcn_land_srvr =
                     std::bind(&AutonomySimROSWrapper::land_srv_cb, this, _1, _2, vehicle_ros->vehicle_name_);
             drone->land_srvr_ =
-                nh_->create_service<AutonomySim_interfaces::srv::Land>(topic_prefix + "/land", fcn_land_srvr);
+                nh_->create_service<autonomysim_interfaces::srv::Land>(topic_prefix + "/land", fcn_land_srvr);
 
             // vehicle_ros.reset_srvr = nh_->create_service(curr_vehicle_name +
             // "/reset",&AutonomySimROSWrapper::reset_srv_cb, this);
         } else {
             auto car = static_cast<CarROS *>(vehicle_ros.get());
-            std::function<void(const AutonomySim_interfaces::msg::CarControls::SharedPtr)> fcn_car_cmd_sub =
+            std::function<void(const autonomysim_interfaces::msg::CarControls::SharedPtr)> fcn_car_cmd_sub =
                 std::bind(&AutonomySimROSWrapper::car_cmd_cb, this, _1, vehicle_ros->vehicle_name_);
-            car->car_cmd_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::CarControls>(
+            car->car_cmd_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::CarControls>(
                 topic_prefix + "/car_cmd", 1, fcn_car_cmd_sub);
             car->car_state_pub_ =
-                nh_->create_publisher<AutonomySim_interfaces::msg::CarState>(topic_prefix + "/car_state", 10);
+                nh_->create_publisher<autonomysim_interfaces::msg::CarState>(topic_prefix + "/car_state", 10);
         }
 
         // iterate over camera map std::map<std::string, CameraSetting> .cameras;
@@ -211,7 +213,8 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
                 // AutonomySimSettings::initializeCaptureSettings() which initializes default capture settings for _all_
                 // NINE nervosys::autonomylib::ImageCaptureBase::ImageType
                 if (!(std::isnan(capture_setting.fov_degrees))) {
-                    ImageType curr_image_type = nervosys::autonomylib::Utils::toEnum<ImageType>(capture_setting.image_type);
+                    ImageType curr_image_type =
+                        nervosys::autonomylib::Utils::toEnum<ImageType>(capture_setting.image_type);
                     // if scene / segmentation / surface normals / infrared, get uncompressed image with
                     // pixels_as_floats = false
                     if (curr_image_type == ImageType::Scene || curr_image_type == ImageType::Segmentation ||
@@ -234,7 +237,7 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
                 }
             }
             // push back pair (vector of image captures, current vehicle name)
-            AutonomySim_img_request_vehicle_name_pair_vec_.push_back(
+            autonomysim_img_request_vehicle_name_pair_vec_.push_back(
                 std::make_pair(current_image_request_vec, curr_vehicle_name));
         }
 
@@ -247,8 +250,8 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
 
                 switch (sensor_setting->sensor_type) {
                 case SensorBase::SensorType::Barometer: {
-                    SensorPublisher<AutonomySim_interfaces::msg::Altimeter> sensor_publisher =
-                        create_sensor_publisher<AutonomySim_interfaces::msg::Altimeter>(
+                    SensorPublisher<autonomysim_interfaces::msg::Altimeter> sensor_publisher =
+                        create_sensor_publisher<autonomysim_interfaces::msg::Altimeter>(
                             "Barometer", sensor_setting->sensor_name, sensor_setting->sensor_type,
                             curr_vehicle_name + "/altimeter/" + sensor_name, 10);
                     vehicle_ros->barometer_pubs_.emplace_back(sensor_publisher);
@@ -313,34 +316,34 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
     }
 
     // add takeoff and land all services if more than 2 drones
-    if (vehicle_name_ptr_map_.size() > 1 && AutonomySim_mode_ == AutonomySim_MODE::DRONE) {
-        takeoff_all_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::Takeoff>(
+    if (vehicle_name_ptr_map_.size() > 1 && autonomysim_mode_ == AUTONOMYSIM_MODE::DRONE) {
+        takeoff_all_srvr_ = nh_->create_service<autonomysim_interfaces::srv::Takeoff>(
             "~/all_robots/takeoff", std::bind(&AutonomySimROSWrapper::takeoff_all_srv_cb, this, _1, _2));
-        land_all_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::Land>(
+        land_all_srvr_ = nh_->create_service<autonomysim_interfaces::srv::Land>(
             "~/all_robots/land", std::bind(&AutonomySimROSWrapper::land_all_srv_cb, this, _1, _2));
 
-        vel_cmd_all_body_frame_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::VelCmd>(
+        vel_cmd_all_body_frame_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::VelCmd>(
             "~/all_robots/vel_cmd_body_frame", 1,
             std::bind(&AutonomySimROSWrapper::vel_cmd_all_body_frame_cb, this, _1));
-        vel_cmd_all_world_frame_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::VelCmd>(
+        vel_cmd_all_world_frame_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::VelCmd>(
             "~/all_robots/vel_cmd_world_frame", 1,
             std::bind(&AutonomySimROSWrapper::vel_cmd_all_world_frame_cb, this, _1));
 
-        vel_cmd_group_body_frame_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::VelCmdGroup>(
+        vel_cmd_group_body_frame_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::VelCmdGroup>(
             "~/group_of_robots/vel_cmd_body_frame", 1,
             std::bind(&AutonomySimROSWrapper::vel_cmd_group_body_frame_cb, this, _1));
-        vel_cmd_group_world_frame_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::VelCmdGroup>(
+        vel_cmd_group_world_frame_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::VelCmdGroup>(
             "~/group_of_robots/vel_cmd_world_frame", 1,
             std::bind(&AutonomySimROSWrapper::vel_cmd_group_world_frame_cb, this, _1));
 
-        takeoff_group_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::TakeoffGroup>(
+        takeoff_group_srvr_ = nh_->create_service<autonomysim_interfaces::srv::TakeoffGroup>(
             "~/group_of_robots/takeoff", std::bind(&AutonomySimROSWrapper::takeoff_group_srv_cb, this, _1, _2));
-        land_group_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::LandGroup>(
+        land_group_srvr_ = nh_->create_service<autonomysim_interfaces::srv::LandGroup>(
             "~/group_of_robots/land", std::bind(&AutonomySimROSWrapper::land_group_srv_cb, this, _1, _2));
     }
 
     // todo add per vehicle reset in AutonomyLib API
-    reset_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::Reset>(
+    reset_srvr_ = nh_->create_service<autonomysim_interfaces::srv::Reset>(
         "~/reset", std::bind(&AutonomySimROSWrapper::reset_srv_cb, this, _1, _2));
 
     if (publish_clock_) {
@@ -348,13 +351,13 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
     }
 
     // if >0 cameras, add one more thread for img_request_timer_cb
-    if (!AutonomySim_img_request_vehicle_name_pair_vec_.empty()) {
-        double update_AutonomySim_img_response_every_n_sec;
-        nh_->get_parameter("update_AutonomySim_img_response_every_n_sec", update_AutonomySim_img_response_every_n_sec);
+    if (!autonomysim_img_request_vehicle_name_pair_vec_.empty()) {
+        double update_autonomysim_img_response_every_n_sec;
+        nh_->get_parameter("update_autonomysim_img_response_every_n_sec", update_autonomysim_img_response_every_n_sec);
         auto cb = nh_->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
-        AutonomySim_img_callback_groups_.push_back(cb);
-        AutonomySim_img_response_timer_ =
-            nh_img_->create_wall_timer(std::chrono::duration<double>(update_AutonomySim_img_response_every_n_sec),
+        autonomysim_img_callback_groups_.push_back(cb);
+        autonomysim_img_response_timer_ =
+            nh_img_->create_wall_timer(std::chrono::duration<double>(update_autonomysim_img_response_every_n_sec),
                                        std::bind(&AutonomySimROSWrapper::img_response_timer_cb, this), cb);
         is_used_img_timer_cb_queue_ = true;
     }
@@ -364,14 +367,14 @@ void AutonomySimROSWrapper::create_ros_pubs_from_settings_json() {
         double update_lidar_every_n_sec;
         nh_->get_parameter("update_lidar_every_n_sec", update_lidar_every_n_sec);
         auto cb = nh_->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
-        AutonomySim_lidar_callback_groups_.push_back(cb);
-        AutonomySim_lidar_update_timer_ =
+        autonomysim_lidar_callback_groups_.push_back(cb);
+        autonomysim_lidar_update_timer_ =
             nh_lidar_->create_wall_timer(std::chrono::duration<double>(update_lidar_every_n_sec),
                                          std::bind(&AutonomySimROSWrapper::lidar_timer_cb, this), cb);
         is_used_lidar_timer_cb_queue_ = true;
     }
 
-    initialize_AutonomySim();
+    initialize_autonomysim();
 }
 
 // QoS - The depth of the publisher message queue.
@@ -390,39 +393,40 @@ const SensorPublisher<T> AutonomySimROSWrapper::create_sensor_publisher(const st
 }
 
 // todo: error check. if state is not landed, return error.
-bool AutonomySimROSWrapper::takeoff_srv_cb(std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Request> request,
-                                           std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Response> response,
+bool AutonomySimROSWrapper::takeoff_srv_cb(std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Request> request,
+                                           std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Response> response,
                                            const std::string &vehicle_name) {
     unused(response);
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     if (request->wait_on_last_task)
-        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
             ->takeoffAsync(20, vehicle_name)
             ->waitOnLastTask(); // todo value for timeout_sec?
     // response->success =
     else
-        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())->takeoffAsync(20, vehicle_name);
+        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
+            ->takeoffAsync(20, vehicle_name);
     // response->success =
 
     return true;
 }
 
 bool AutonomySimROSWrapper::takeoff_group_srv_cb(
-    std::shared_ptr<AutonomySim_interfaces::srv::TakeoffGroup::Request> request,
-    std::shared_ptr<AutonomySim_interfaces::srv::TakeoffGroup::Response> response) {
+    std::shared_ptr<autonomysim_interfaces::srv::TakeoffGroup::Request> request,
+    std::shared_ptr<autonomysim_interfaces::srv::TakeoffGroup::Response> response) {
     unused(response);
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     if (request->wait_on_last_task)
         for (const auto &vehicle_name : request->vehicle_names)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                 ->takeoffAsync(20, vehicle_name)
                 ->waitOnLastTask(); // todo value for timeout_sec?
     // response->success =
     else
         for (const auto &vehicle_name : request->vehicle_names)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                 ->takeoffAsync(20, vehicle_name);
     // response->success =
 
@@ -430,73 +434,75 @@ bool AutonomySimROSWrapper::takeoff_group_srv_cb(
 }
 
 bool AutonomySimROSWrapper::takeoff_all_srv_cb(
-    std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Request> request,
-    std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Response> response) {
+    std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Request> request,
+    std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Response> response) {
     unused(response);
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     if (request->wait_on_last_task)
         for (const auto &vehicle_name_ptr_pair : vehicle_name_ptr_map_)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                 ->takeoffAsync(20, vehicle_name_ptr_pair.first)
                 ->waitOnLastTask(); // todo value for timeout_sec?
     // response->success =
     else
         for (const auto &vehicle_name_ptr_pair : vehicle_name_ptr_map_)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                 ->takeoffAsync(20, vehicle_name_ptr_pair.first);
     // response->success =
 
     return true;
 }
 
-bool AutonomySimROSWrapper::land_srv_cb(std::shared_ptr<AutonomySim_interfaces::srv::Land::Request> request,
-                                        std::shared_ptr<AutonomySim_interfaces::srv::Land::Response> response,
+bool AutonomySimROSWrapper::land_srv_cb(std::shared_ptr<autonomysim_interfaces::srv::Land::Request> request,
+                                        std::shared_ptr<autonomysim_interfaces::srv::Land::Response> response,
                                         const std::string &vehicle_name) {
     unused(response);
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     if (request->wait_on_last_task)
-        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
             ->landAsync(60, vehicle_name)
             ->waitOnLastTask();
     else
-        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())->landAsync(60, vehicle_name);
+        static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
+            ->landAsync(60, vehicle_name);
 
     return true; // todo
 }
 
 bool AutonomySimROSWrapper::land_group_srv_cb(
-    std::shared_ptr<AutonomySim_interfaces::srv::LandGroup::Request> request,
-    std::shared_ptr<AutonomySim_interfaces::srv::LandGroup::Response> response) {
+    std::shared_ptr<autonomysim_interfaces::srv::LandGroup::Request> request,
+    std::shared_ptr<autonomysim_interfaces::srv::LandGroup::Response> response) {
     unused(response);
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     if (request->wait_on_last_task)
         for (const auto &vehicle_name : request->vehicle_names)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                 ->landAsync(60, vehicle_name)
                 ->waitOnLastTask();
     else
         for (const auto &vehicle_name : request->vehicle_names)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())->landAsync(60, vehicle_name);
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
+                ->landAsync(60, vehicle_name);
 
     return true; // todo
 }
 
-bool AutonomySimROSWrapper::land_all_srv_cb(std::shared_ptr<AutonomySim_interfaces::srv::Land::Request> request,
-                                            std::shared_ptr<AutonomySim_interfaces::srv::Land::Response> response) {
+bool AutonomySimROSWrapper::land_all_srv_cb(std::shared_ptr<autonomysim_interfaces::srv::Land::Request> request,
+                                            std::shared_ptr<autonomysim_interfaces::srv::Land::Response> response) {
     unused(response);
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     if (request->wait_on_last_task)
         for (const auto &vehicle_name_ptr_pair : vehicle_name_ptr_map_)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                 ->landAsync(60, vehicle_name_ptr_pair.first)
                 ->waitOnLastTask();
     else
         for (const auto &vehicle_name_ptr_pair : vehicle_name_ptr_map_)
-            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+            static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                 ->landAsync(60, vehicle_name_ptr_pair.first);
 
     return true; // todo
@@ -504,13 +510,13 @@ bool AutonomySimROSWrapper::land_all_srv_cb(std::shared_ptr<AutonomySim_interfac
 
 // todo add reset by vehicle_name API to airlib
 // todo not async remove wait_on_last_task
-bool AutonomySimROSWrapper::reset_srv_cb(std::shared_ptr<AutonomySim_interfaces::srv::Reset::Request> request,
-                                         std::shared_ptr<AutonomySim_interfaces::srv::Reset::Response> response) {
+bool AutonomySimROSWrapper::reset_srv_cb(std::shared_ptr<autonomysim_interfaces::srv::Reset::Request> request,
+                                         std::shared_ptr<autonomysim_interfaces::srv::Reset::Response> response) {
     unused(request);
     unused(response);
     std::lock_guard<std::mutex> guard(control_mutex_);
 
-    AutonomySim_client_->reset();
+    autonomysim_client_->reset();
     return true; // todo
 }
 
@@ -521,14 +527,14 @@ tf2::Quaternion AutonomySimROSWrapper::get_tf2_quat(const nervosys::autonomylib:
 nervosys::autonomylib::Quaternionr
 AutonomySimROSWrapper::get_airlib_quat(const geometry_msgs::msg::Quaternion &geometry_msgs_quat) const {
     return nervosys::autonomylib::Quaternionr(geometry_msgs_quat.w, geometry_msgs_quat.x, geometry_msgs_quat.y,
-                                    geometry_msgs_quat.z);
+                                              geometry_msgs_quat.z);
 }
 
 nervosys::autonomylib::Quaternionr AutonomySimROSWrapper::get_airlib_quat(const tf2::Quaternion &tf2_quat) const {
     return nervosys::autonomylib::Quaternionr(tf2_quat.w(), tf2_quat.x(), tf2_quat.y(), tf2_quat.z());
 }
 
-void AutonomySimROSWrapper::car_cmd_cb(const AutonomySim_interfaces::msg::CarControls::SharedPtr msg,
+void AutonomySimROSWrapper::car_cmd_cb(const autonomysim_interfaces::msg::CarControls::SharedPtr msg,
                                        const std::string &vehicle_name) {
     std::lock_guard<std::mutex> guard(control_mutex_);
 
@@ -544,12 +550,13 @@ void AutonomySimROSWrapper::car_cmd_cb(const AutonomySim_interfaces::msg::CarCon
     car->has_car_cmd_ = true;
 }
 
-nervosys::autonomylib::Pose AutonomySimROSWrapper::get_airlib_pose(const float &x, const float &y, const float &z,
-                                                         const nervosys::autonomylib::Quaternionr &airlib_quat) const {
+nervosys::autonomylib::Pose
+AutonomySimROSWrapper::get_airlib_pose(const float &x, const float &y, const float &z,
+                                       const nervosys::autonomylib::Quaternionr &airlib_quat) const {
     return nervosys::autonomylib::Pose(nervosys::autonomylib::Vector3r(x, y, z), airlib_quat);
 }
 
-void AutonomySimROSWrapper::vel_cmd_body_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg,
+void AutonomySimROSWrapper::vel_cmd_body_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg,
                                                   const std::string &vehicle_name) {
     std::lock_guard<std::mutex> guard(control_mutex_);
 
@@ -558,7 +565,7 @@ void AutonomySimROSWrapper::vel_cmd_body_frame_cb(const AutonomySim_interfaces::
     drone->has_vel_cmd_ = true;
 }
 
-void AutonomySimROSWrapper::vel_cmd_group_body_frame_cb(const AutonomySim_interfaces::msg::VelCmdGroup::SharedPtr msg) {
+void AutonomySimROSWrapper::vel_cmd_group_body_frame_cb(const autonomysim_interfaces::msg::VelCmdGroup::SharedPtr msg) {
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     for (const auto &vehicle_name : msg->vehicle_names) {
@@ -569,7 +576,7 @@ void AutonomySimROSWrapper::vel_cmd_group_body_frame_cb(const AutonomySim_interf
     }
 }
 
-void AutonomySimROSWrapper::vel_cmd_all_body_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg) {
+void AutonomySimROSWrapper::vel_cmd_all_body_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg) {
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     // todo expose wait_on_last_task or nah?
@@ -580,7 +587,7 @@ void AutonomySimROSWrapper::vel_cmd_all_body_frame_cb(const AutonomySim_interfac
     }
 }
 
-void AutonomySimROSWrapper::vel_cmd_world_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg,
+void AutonomySimROSWrapper::vel_cmd_world_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg,
                                                    const std::string &vehicle_name) {
     std::lock_guard<std::mutex> guard(control_mutex_);
 
@@ -591,7 +598,7 @@ void AutonomySimROSWrapper::vel_cmd_world_frame_cb(const AutonomySim_interfaces:
 
 // this is kinda unnecessary but maybe it makes life easier for the end user.
 void AutonomySimROSWrapper::vel_cmd_group_world_frame_cb(
-    const AutonomySim_interfaces::msg::VelCmdGroup::SharedPtr msg) {
+    const autonomysim_interfaces::msg::VelCmdGroup::SharedPtr msg) {
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     for (const auto &vehicle_name : msg->vehicle_names) {
@@ -601,7 +608,7 @@ void AutonomySimROSWrapper::vel_cmd_group_world_frame_cb(
     }
 }
 
-void AutonomySimROSWrapper::vel_cmd_all_world_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg) {
+void AutonomySimROSWrapper::vel_cmd_all_world_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg) {
     std::lock_guard<std::mutex> guard(control_mutex_);
 
     // todo expose wait_on_last_task or nah?
@@ -614,7 +621,7 @@ void AutonomySimROSWrapper::vel_cmd_all_world_frame_cb(const AutonomySim_interfa
 
 // todo support multiple gimbal commands
 void AutonomySimROSWrapper::gimbal_angle_quat_cmd_cb(
-    const AutonomySim_interfaces::msg::GimbalAngleQuatCmd::SharedPtr gimbal_angle_quat_cmd_msg) {
+    const autonomysim_interfaces::msg::GimbalAngleQuatCmd::SharedPtr gimbal_angle_quat_cmd_msg) {
     tf2::Quaternion quat_control_cmd;
     try {
         tf2::convert(gimbal_angle_quat_cmd_msg->orientation, quat_control_cmd);
@@ -633,7 +640,7 @@ void AutonomySimROSWrapper::gimbal_angle_quat_cmd_cb(
 // 2. forward multiply with quaternion equivalent to desired euler commands (in degrees)
 // 3. call AutonomySim client's setCameraPose which sets camera pose wrt world (or takeoff?) ned frame. todo
 void AutonomySimROSWrapper::gimbal_angle_euler_cmd_cb(
-    const AutonomySim_interfaces::msg::GimbalAngleEulerCmd::SharedPtr gimbal_angle_euler_cmd_msg) {
+    const autonomysim_interfaces::msg::GimbalAngleEulerCmd::SharedPtr gimbal_angle_euler_cmd_msg) {
     try {
         tf2::Quaternion quat_control_cmd;
         quat_control_cmd.setRPY(math_common::deg2rad(gimbal_angle_euler_cmd_msg->roll),
@@ -649,9 +656,9 @@ void AutonomySimROSWrapper::gimbal_angle_euler_cmd_cb(
     }
 }
 
-AutonomySim_interfaces::msg::CarState
-AutonomySimROSWrapper::get_roscarstate_msg_from_car_state(const nervosys::autonomylib::CarApiBase::CarState &car_state) const {
-    AutonomySim_interfaces::msg::CarState state_msg;
+autonomysim_interfaces::msg::CarState AutonomySimROSWrapper::get_roscarstate_msg_from_car_state(
+    const nervosys::autonomylib::CarApiBase::CarState &car_state) const {
+    autonomysim_interfaces::msg::CarState state_msg;
     const auto odo = get_odom_msg_from_car_state(car_state);
 
     state_msg.pose = odo.pose;
@@ -704,16 +711,18 @@ AutonomySimROSWrapper::get_odom_msg_from_car_state(const nervosys::autonomylib::
     return get_odom_msg_from_kinematic_state(car_state.kinematics_estimated);
 }
 
-nav_msgs::msg::Odometry
-AutonomySimROSWrapper::get_odom_msg_from_multirotor_state(const nervosys::autonomylib::MultirotorState &drone_state) const {
+nav_msgs::msg::Odometry AutonomySimROSWrapper::get_odom_msg_from_multirotor_state(
+    const nervosys::autonomylib::MultirotorState &drone_state) const {
     return get_odom_msg_from_kinematic_state(drone_state.kinematics_estimated);
 }
 
 // https://docs.ros.org/jade/api/sensor_msgs/html/point__cloud__conversion_8h_source.html#l00066
 // look at UnrealLidarSensor.cpp UnrealLidarSensor::getPointCloud() for math
 // read this carefully https://docs.ros.org/kinetic/api/sensor_msgs/html/msg/PointCloud2.html
-sensor_msgs::msg::PointCloud2 AutonomySimROSWrapper::get_lidar_msg_from_AutonomySim(
-    const nervosys::autonomylib::LidarData &lidar_data, const std::string &vehicle_name, const std::string &sensor_name) const {
+sensor_msgs::msg::PointCloud2
+AutonomySimROSWrapper::get_lidar_msg_from_autonomysim(const nervosys::autonomylib::LidarData &lidar_data,
+                                                      const std::string &vehicle_name,
+                                                      const std::string &sensor_name) const {
     sensor_msgs::msg::PointCloud2 lidar_msg;
     lidar_msg.header.stamp = rclcpp::Time(lidar_data.time_stamp);
     lidar_msg.header.frame_id = vehicle_name + "/" + sensor_name;
@@ -750,7 +759,7 @@ sensor_msgs::msg::PointCloud2 AutonomySimROSWrapper::get_lidar_msg_from_Autonomy
             try {
                 sensor_msgs::msg::PointCloud2 lidar_msg_enu;
                 auto transformStampedENU = tf_buffer_->lookupTransform(
-                    AutonomySim_FRAME_ID, vehicle_name, rclcpp::Time(0), rclcpp::Duration::from_nanoseconds(1));
+                    AUTONOMYSIM_FRAME_ID, vehicle_name, rclcpp::Time(0), rclcpp::Duration::from_nanoseconds(1));
                 tf2::doTransform(lidar_msg, lidar_msg_enu, transformStampedENU);
 
                 lidar_msg_enu.header.stamp = lidar_msg.header.stamp;
@@ -769,9 +778,9 @@ sensor_msgs::msg::PointCloud2 AutonomySimROSWrapper::get_lidar_msg_from_Autonomy
     return lidar_msg;
 }
 
-AutonomySim_interfaces::msg::Environment
-AutonomySimROSWrapper::get_environment_msg_from_AutonomySim(const nervosys::autonomylib::Environment::State &env_data) const {
-    AutonomySim_interfaces::msg::Environment env_msg;
+autonomysim_interfaces::msg::Environment AutonomySimROSWrapper::get_environment_msg_from_autonomysim(
+    const nervosys::autonomylib::Environment::State &env_data) const {
+    autonomysim_interfaces::msg::Environment env_msg;
     env_msg.position.x = env_data.position.x();
     env_msg.position.y = env_data.position.y();
     env_msg.position.z = env_data.position.z();
@@ -788,8 +797,8 @@ AutonomySimROSWrapper::get_environment_msg_from_AutonomySim(const nervosys::auto
     return env_msg;
 }
 
-sensor_msgs::msg::MagneticField
-AutonomySimROSWrapper::get_mag_msg_from_AutonomySim(const nervosys::autonomylib::MagnetometerBase::Output &mag_data) const {
+sensor_msgs::msg::MagneticField AutonomySimROSWrapper::get_mag_msg_from_autonomysim(
+    const nervosys::autonomylib::MagnetometerBase::Output &mag_data) const {
     sensor_msgs::msg::MagneticField mag_msg;
     mag_msg.magnetic_field.x = mag_data.magnetic_field_body.x();
     mag_msg.magnetic_field.y = mag_data.magnetic_field_body.y();
@@ -803,7 +812,7 @@ AutonomySimROSWrapper::get_mag_msg_from_AutonomySim(const nervosys::autonomylib:
 
 // todo covariances
 sensor_msgs::msg::NavSatFix
-AutonomySimROSWrapper::get_gps_msg_from_AutonomySim(const nervosys::autonomylib::GpsBase::Output &gps_data) const {
+AutonomySimROSWrapper::get_gps_msg_from_autonomysim(const nervosys::autonomylib::GpsBase::Output &gps_data) const {
     sensor_msgs::msg::NavSatFix gps_msg;
     gps_msg.header.stamp = rclcpp::Time(gps_data.time_stamp);
     gps_msg.latitude = gps_data.gnss.geo_point.latitude;
@@ -818,7 +827,7 @@ AutonomySimROSWrapper::get_gps_msg_from_AutonomySim(const nervosys::autonomylib:
 }
 
 sensor_msgs::msg::Range
-AutonomySimROSWrapper::get_range_from_AutonomySim(const nervosys::autonomylib::DistanceSensorData &dist_data) const {
+AutonomySimROSWrapper::get_range_from_autonomysim(const nervosys::autonomylib::DistanceSensorData &dist_data) const {
     sensor_msgs::msg::Range dist_msg;
     dist_msg.header.stamp = rclcpp::Time(dist_data.time_stamp);
     dist_msg.range = dist_data.distance;
@@ -828,9 +837,9 @@ AutonomySimROSWrapper::get_range_from_AutonomySim(const nervosys::autonomylib::D
     return dist_msg;
 }
 
-AutonomySim_interfaces::msg::Altimeter
-AutonomySimROSWrapper::get_altimeter_msg_from_AutonomySim(const nervosys::autonomylib::BarometerBase::Output &alt_data) const {
-    AutonomySim_interfaces::msg::Altimeter alt_msg;
+autonomysim_interfaces::msg::Altimeter AutonomySimROSWrapper::get_altimeter_msg_from_autonomysim(
+    const nervosys::autonomylib::BarometerBase::Output &alt_data) const {
+    autonomysim_interfaces::msg::Altimeter alt_msg;
     alt_msg.header.stamp = rclcpp::Time(alt_data.time_stamp);
     alt_msg.altitude = alt_data.altitude;
     alt_msg.pressure = alt_data.pressure;
@@ -841,7 +850,7 @@ AutonomySimROSWrapper::get_altimeter_msg_from_AutonomySim(const nervosys::autono
 
 // todo covariances
 sensor_msgs::msg::Imu
-AutonomySimROSWrapper::get_imu_msg_from_AutonomySim(const nervosys::autonomylib::ImuBase::Output &imu_data) const {
+AutonomySimROSWrapper::get_imu_msg_from_autonomysim(const nervosys::autonomylib::ImuBase::Output &imu_data) const {
     sensor_msgs::msg::Imu imu_msg;
     // imu_msg.header.frame_id = "/AutonomySim/odom_local_ned";// todo multiple drones
     imu_msg.header.stamp = rclcpp::Time(imu_data.time_stamp);
@@ -878,17 +887,17 @@ void AutonomySimROSWrapper::publish_odom_tf(const nav_msgs::msg::Odometry &odom_
     tf_broadcaster_->sendTransform(odom_tf);
 }
 
-AutonomySim_interfaces::msg::GPSYaw
-AutonomySimROSWrapper::get_gps_msg_from_AutonomySim_geo_point(const nervosys::autonomylib::GeoPoint &geo_point) const {
-    AutonomySim_interfaces::msg::GPSYaw gps_msg;
+autonomysim_interfaces::msg::GPSYaw
+AutonomySimROSWrapper::get_gps_msg_from_autonomysim_geo_point(const nervosys::autonomylib::GeoPoint &geo_point) const {
+    autonomysim_interfaces::msg::GPSYaw gps_msg;
     gps_msg.latitude = geo_point.latitude;
     gps_msg.longitude = geo_point.longitude;
     gps_msg.altitude = geo_point.altitude;
     return gps_msg;
 }
 
-sensor_msgs::msg::NavSatFix
-AutonomySimROSWrapper::get_gps_sensor_msg_from_AutonomySim_geo_point(const nervosys::autonomylib::GeoPoint &geo_point) const {
+sensor_msgs::msg::NavSatFix AutonomySimROSWrapper::get_gps_sensor_msg_from_autonomysim_geo_point(
+    const nervosys::autonomylib::GeoPoint &geo_point) const {
     sensor_msgs::msg::NavSatFix gps_msg;
     gps_msg.latitude = geo_point.latitude;
     gps_msg.longitude = geo_point.longitude;
@@ -901,7 +910,7 @@ nervosys::autonomylib::GeoPoint AutonomySimROSWrapper::get_origin_geo_point() co
     return geo_point.home_geo_point;
 }
 
-VelCmd AutonomySimROSWrapper::get_airlib_world_vel_cmd(const AutonomySim_interfaces::msg::VelCmd &msg) const {
+VelCmd AutonomySimROSWrapper::get_airlib_world_vel_cmd(const autonomysim_interfaces::msg::VelCmd &msg) const {
     VelCmd vel_cmd;
     vel_cmd.x = msg.twist.linear.x;
     vel_cmd.y = msg.twist.linear.y;
@@ -912,7 +921,7 @@ VelCmd AutonomySimROSWrapper::get_airlib_world_vel_cmd(const AutonomySim_interfa
     return vel_cmd;
 }
 
-VelCmd AutonomySimROSWrapper::get_airlib_body_vel_cmd(const AutonomySim_interfaces::msg::VelCmd &msg,
+VelCmd AutonomySimROSWrapper::get_airlib_body_vel_cmd(const autonomysim_interfaces::msg::VelCmd &msg,
                                                       const nervosys::autonomylib::Quaternionr &airlib_quat) const {
     VelCmd vel_cmd;
     double roll, pitch, yaw;
@@ -931,9 +940,9 @@ VelCmd AutonomySimROSWrapper::get_airlib_body_vel_cmd(const AutonomySim_interfac
     return vel_cmd;
 }
 
-geometry_msgs::msg::Transform
-AutonomySimROSWrapper::get_transform_msg_from_AutonomySim(const nervosys::autonomylib::Vector3r &position,
-                                                          const nervosys::autonomylib::AutonomySimSettings::Rotation &rotation) {
+geometry_msgs::msg::Transform AutonomySimROSWrapper::get_transform_msg_from_autonomysim(
+    const nervosys::autonomylib::Vector3r &position,
+    const nervosys::autonomylib::AutonomySimSettings::Rotation &rotation) {
     geometry_msgs::msg::Transform transform;
     transform.translation.x = position.x();
     transform.translation.y = position.y();
@@ -949,7 +958,7 @@ AutonomySimROSWrapper::get_transform_msg_from_AutonomySim(const nervosys::autono
 }
 
 geometry_msgs::msg::Transform
-AutonomySimROSWrapper::get_transform_msg_from_AutonomySim(const nervosys::autonomylib::Vector3r &position,
+AutonomySimROSWrapper::get_transform_msg_from_autonomysim(const nervosys::autonomylib::Vector3r &position,
                                                           const nervosys::autonomylib::Quaternionr &quaternion) {
     geometry_msgs::msg::Transform transform;
     transform.translation.x = position.x();
@@ -972,8 +981,8 @@ void AutonomySimROSWrapper::drone_state_timer_cb() {
         const auto now = update_state();
 
         // on init, will publish 0 to /clock as expected for use_sim_time compatibility
-        if (!AutonomySim_client_->simIsPaused()) {
-            // AutonomySim_client needs to provide the simulation time in a future version of the API
+        if (!autonomysim_client_->simIsPaused()) {
+            // autonomysim_client needs to provide the simulation time in a future version of the API
             ros_clock_.clock = now;
         }
         // publish the simulation clock
@@ -1006,7 +1015,7 @@ rclcpp::Time AutonomySimROSWrapper::update_state() {
     rclcpp::Time curr_ros_time = nh_->now();
 
     // should be easier way to get the sim time through API, something like:
-    // nervosys::autonomylib::Environment::State env = AutonomySim_client_->simGetGroundTruthEnvironment("");
+    // nervosys::autonomylib::Environment::State env = autonomysim_client_->simGetGroundTruthEnvironment("");
     // curr_ros_time = rclcpp::Time(env.clock().nowNanos());
 
     // iterate over drones
@@ -1016,11 +1025,11 @@ rclcpp::Time AutonomySimROSWrapper::update_state() {
         auto &vehicle_ros = vehicle_name_ptr_pair.second;
 
         // vehicle environment, we can get ambient temperature here and other truths
-        auto env_data = AutonomySim_client_->simGetGroundTruthEnvironment(vehicle_ros->vehicle_name_);
+        auto env_data = autonomysim_client_->simGetGroundTruthEnvironment(vehicle_ros->vehicle_name_);
 
-        if (AutonomySim_mode_ == AutonomySim_MODE::DRONE) {
+        if (autonomysim_mode_ == AUTONOMYSIM_MODE::DRONE) {
             auto drone = static_cast<MultirotorROS *>(vehicle_ros.get());
-            auto rpc = static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get());
+            auto rpc = static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get());
             drone->curr_drone_state_ = rpc->getMultirotorState(vehicle_ros->vehicle_name_);
 
             vehicle_time = rclcpp::Time(drone->curr_drone_state_.timestamp);
@@ -1030,13 +1039,13 @@ rclcpp::Time AutonomySimROSWrapper::update_state() {
             }
 
             vehicle_ros->gps_sensor_msg_ =
-                get_gps_sensor_msg_from_AutonomySim_geo_point(drone->curr_drone_state_.gps_location);
+                get_gps_sensor_msg_from_autonomysim_geo_point(drone->curr_drone_state_.gps_location);
             vehicle_ros->gps_sensor_msg_.header.stamp = vehicle_time;
 
             vehicle_ros->curr_odom_ = get_odom_msg_from_multirotor_state(drone->curr_drone_state_);
         } else {
             auto car = static_cast<CarROS *>(vehicle_ros.get());
-            auto rpc = static_cast<nervosys::autonomylib::CarRpcLibClient *>(AutonomySim_client_.get());
+            auto rpc = static_cast<nervosys::autonomylib::CarRpcLibClient *>(autonomysim_client_.get());
             car->curr_car_state_ = rpc->getCarState(vehicle_ros->vehicle_name_);
 
             vehicle_time = rclcpp::Time(car->curr_car_state_.timestamp);
@@ -1045,19 +1054,19 @@ rclcpp::Time AutonomySimROSWrapper::update_state() {
                 got_sim_time = true;
             }
 
-            vehicle_ros->gps_sensor_msg_ = get_gps_sensor_msg_from_AutonomySim_geo_point(env_data.geo_point);
+            vehicle_ros->gps_sensor_msg_ = get_gps_sensor_msg_from_autonomysim_geo_point(env_data.geo_point);
             vehicle_ros->gps_sensor_msg_.header.stamp = vehicle_time;
 
             vehicle_ros->curr_odom_ = get_odom_msg_from_car_state(car->curr_car_state_);
 
-            AutonomySim_interfaces::msg::CarState state_msg = get_roscarstate_msg_from_car_state(car->curr_car_state_);
+            autonomysim_interfaces::msg::CarState state_msg = get_roscarstate_msg_from_car_state(car->curr_car_state_);
             state_msg.header.frame_id = vehicle_ros->vehicle_name_;
             car->car_state_msg_ = state_msg;
         }
 
         vehicle_ros->stamp_ = vehicle_time;
 
-        AutonomySim_interfaces::msg::Environment env_msg = get_environment_msg_from_AutonomySim(env_data);
+        autonomysim_interfaces::msg::Environment env_msg = get_environment_msg_from_autonomysim(env_data);
         env_msg.header.frame_id = vehicle_ros->vehicle_name_;
         env_msg.header.stamp = vehicle_time;
         vehicle_ros->env_msg_ = env_msg;
@@ -1078,7 +1087,7 @@ void AutonomySimROSWrapper::publish_vehicle_state() {
         // simulation environment truth
         vehicle_ros->env_pub_->publish(vehicle_ros->env_msg_);
 
-        if (AutonomySim_mode_ == AutonomySim_MODE::CAR) {
+        if (autonomysim_mode_ == AUTONOMYSIM_MODE::CAR) {
             // dashboard reading from car, RPM, gear, etc
             auto car = static_cast<CarROS *>(vehicle_ros.get());
             car->car_state_pub_->publish(car->car_state_msg_);
@@ -1093,35 +1102,35 @@ void AutonomySimROSWrapper::publish_vehicle_state() {
 
         for (auto &sensor_publisher : vehicle_ros->barometer_pubs_) {
             auto baro_data =
-                AutonomySim_client_->getBarometerData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
-            AutonomySim_interfaces::msg::Altimeter alt_msg = get_altimeter_msg_from_AutonomySim(baro_data);
+                autonomysim_client_->getBarometerData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
+            autonomysim_interfaces::msg::Altimeter alt_msg = get_altimeter_msg_from_autonomysim(baro_data);
             alt_msg.header.frame_id = vehicle_ros->vehicle_name_;
             sensor_publisher.publisher->publish(alt_msg);
         }
 
         for (auto &sensor_publisher : vehicle_ros->imu_pubs_) {
-            auto imu_data = AutonomySim_client_->getImuData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
-            sensor_msgs::msg::Imu imu_msg = get_imu_msg_from_AutonomySim(imu_data);
+            auto imu_data = autonomysim_client_->getImuData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
+            sensor_msgs::msg::Imu imu_msg = get_imu_msg_from_autonomysim(imu_data);
             imu_msg.header.frame_id = vehicle_ros->vehicle_name_;
             sensor_publisher.publisher->publish(imu_msg);
         }
         for (auto &sensor_publisher : vehicle_ros->distance_pubs_) {
             auto distance_data =
-                AutonomySim_client_->getDistanceSensorData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
-            sensor_msgs::msg::Range dist_msg = get_range_from_AutonomySim(distance_data);
+                autonomysim_client_->getDistanceSensorData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
+            sensor_msgs::msg::Range dist_msg = get_range_from_autonomysim(distance_data);
             dist_msg.header.frame_id = vehicle_ros->vehicle_name_;
             sensor_publisher.publisher->publish(dist_msg);
         }
         for (auto &sensor_publisher : vehicle_ros->gps_pubs_) {
-            auto gps_data = AutonomySim_client_->getGpsData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
-            sensor_msgs::msg::NavSatFix gps_msg = get_gps_msg_from_AutonomySim(gps_data);
+            auto gps_data = autonomysim_client_->getGpsData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
+            sensor_msgs::msg::NavSatFix gps_msg = get_gps_msg_from_autonomysim(gps_data);
             gps_msg.header.frame_id = vehicle_ros->vehicle_name_;
             sensor_publisher.publisher->publish(gps_msg);
         }
         for (auto &sensor_publisher : vehicle_ros->magnetometer_pubs_) {
             auto mag_data =
-                AutonomySim_client_->getMagnetometerData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
-            sensor_msgs::msg::MagneticField mag_msg = get_mag_msg_from_AutonomySim(mag_data);
+                autonomysim_client_->getMagnetometerData(sensor_publisher.sensor_name, vehicle_ros->vehicle_name_);
+            sensor_msgs::msg::MagneticField mag_msg = get_mag_msg_from_autonomysim(mag_data);
             mag_msg.header.frame_id = vehicle_ros->vehicle_name_;
             sensor_publisher.publisher->publish(mag_msg);
         }
@@ -1134,16 +1143,16 @@ void AutonomySimROSWrapper::update_commands() {
     for (auto &vehicle_name_ptr_pair : vehicle_name_ptr_map_) {
         auto &vehicle_ros = vehicle_name_ptr_pair.second;
 
-        if (AutonomySim_mode_ == AutonomySim_MODE::DRONE) {
+        if (autonomysim_mode_ == AUTONOMYSIM_MODE::DRONE) {
             auto drone = static_cast<MultirotorROS *>(vehicle_ros.get());
 
             // send control commands from the last callback to AutonomySim
             if (drone->has_vel_cmd_) {
                 std::lock_guard<std::mutex> guard(control_mutex_);
-                static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(AutonomySim_client_.get())
+                static_cast<nervosys::autonomylib::MultirotorRpcLibClient *>(autonomysim_client_.get())
                     ->moveByVelocityAsync(drone->vel_cmd_.x, drone->vel_cmd_.y, drone->vel_cmd_.z, vel_cmd_duration_,
-                                          nervosys::autonomylib::DrivetrainType::MaxDegreeOfFreedom, drone->vel_cmd_.yaw_mode,
-                                          drone->vehicle_name_);
+                                          nervosys::autonomylib::DrivetrainType::MaxDegreeOfFreedom,
+                                          drone->vel_cmd_.yaw_mode, drone->vehicle_name_);
             }
             drone->has_vel_cmd_ = false;
         } else {
@@ -1151,7 +1160,7 @@ void AutonomySimROSWrapper::update_commands() {
             auto car = static_cast<CarROS *>(vehicle_ros.get());
             if (car->has_car_cmd_) {
                 std::lock_guard<std::mutex> guard(control_mutex_);
-                static_cast<nervosys::autonomylib::CarRpcLibClient *>(AutonomySim_client_.get())
+                static_cast<nervosys::autonomylib::CarRpcLibClient *>(autonomysim_client_.get())
                     ->setCarControls(car->car_cmd_, vehicle_ros->vehicle_name_);
             }
             car->has_car_cmd_ = false;
@@ -1161,7 +1170,7 @@ void AutonomySimROSWrapper::update_commands() {
     // Only camera rotation, no translation movement of camera
     if (has_gimbal_cmd_) {
         std::lock_guard<std::mutex> guard(control_mutex_);
-        AutonomySim_client_->simSetCameraPose(
+        autonomysim_client_->simSetCameraPose(
             gimbal_cmd_.camera_name, get_airlib_pose(0, 0, 0, gimbal_cmd_.target_quat), gimbal_cmd_.vehicle_name);
     }
 
@@ -1221,8 +1230,8 @@ void AutonomySimROSWrapper::convert_tf_msg_to_enu(geometry_msgs::msg::TransformS
 geometry_msgs::msg::Transform
 AutonomySimROSWrapper::get_camera_optical_tf_from_body_tf(const geometry_msgs::msg::Transform &body_tf) const {
     geometry_msgs::msg::Transform optical_tf = body_tf; // same translation
-    auto opticalQ = nervosys::autonomylib::Quaternionr(optical_tf.rotation.w, optical_tf.rotation.x, optical_tf.rotation.y,
-                                             optical_tf.rotation.z);
+    auto opticalQ = nervosys::autonomylib::Quaternionr(optical_tf.rotation.w, optical_tf.rotation.x,
+                                                       optical_tf.rotation.y, optical_tf.rotation.z);
     if (isENU_)
         opticalQ *= nervosys::autonomylib::Quaternionr(
             0.7071068, -0.7071068, 0,
@@ -1242,7 +1251,7 @@ void AutonomySimROSWrapper::append_static_vehicle_tf(VehicleROS *vehicle_ros, co
     vehicle_tf_msg.header.frame_id = world_frame_id_;
     vehicle_tf_msg.header.stamp = nh_->now();
     vehicle_tf_msg.child_frame_id = vehicle_ros->vehicle_name_;
-    vehicle_tf_msg.transform = get_transform_msg_from_AutonomySim(vehicle_setting.position, vehicle_setting.rotation);
+    vehicle_tf_msg.transform = get_transform_msg_from_autonomysim(vehicle_setting.position, vehicle_setting.rotation);
 
     if (isENU_) {
         convert_tf_msg_to_enu(vehicle_tf_msg);
@@ -1256,7 +1265,7 @@ void AutonomySimROSWrapper::append_static_lidar_tf(VehicleROS *vehicle_ros, cons
     geometry_msgs::msg::TransformStamped lidar_tf_msg;
     lidar_tf_msg.header.frame_id = vehicle_ros->vehicle_name_ + "/" + odom_frame_id_;
     lidar_tf_msg.child_frame_id = vehicle_ros->vehicle_name_ + "/" + lidar_name;
-    lidar_tf_msg.transform = get_transform_msg_from_AutonomySim(lidar_setting.relative_pose.position,
+    lidar_tf_msg.transform = get_transform_msg_from_autonomysim(lidar_setting.relative_pose.position,
                                                                 lidar_setting.relative_pose.orientation);
 
     if (isENU_) {
@@ -1272,7 +1281,7 @@ void AutonomySimROSWrapper::append_static_camera_tf(VehicleROS *vehicle_ros, con
     static_cam_tf_body_msg.header.frame_id = vehicle_ros->vehicle_name_ + "/" + odom_frame_id_;
     static_cam_tf_body_msg.child_frame_id = vehicle_ros->vehicle_name_ + "/" + camera_name + "_body/static";
     static_cam_tf_body_msg.transform =
-        get_transform_msg_from_AutonomySim(camera_setting.position, camera_setting.rotation);
+        get_transform_msg_from_autonomysim(camera_setting.position, camera_setting.rotation);
 
     if (isENU_) {
         convert_tf_msg_to_enu(static_cam_tf_body_msg);
@@ -1290,13 +1299,13 @@ void AutonomySimROSWrapper::append_static_camera_tf(VehicleROS *vehicle_ros, con
 void AutonomySimROSWrapper::img_response_timer_cb() {
     try {
         int image_response_idx = 0;
-        for (const auto &AutonomySim_img_request_vehicle_name_pair : AutonomySim_img_request_vehicle_name_pair_vec_) {
-            const std::vector<ImageResponse> &img_response = AutonomySim_client_images_.simGetImages(
-                AutonomySim_img_request_vehicle_name_pair.first, AutonomySim_img_request_vehicle_name_pair.second);
+        for (const auto &autonomysim_img_request_vehicle_name_pair : autonomysim_img_request_vehicle_name_pair_vec_) {
+            const std::vector<ImageResponse> &img_response = autonomysim_client_images_.simGetImages(
+                autonomysim_img_request_vehicle_name_pair.first, autonomysim_img_request_vehicle_name_pair.second);
 
-            if (img_response.size() == AutonomySim_img_request_vehicle_name_pair.first.size()) {
+            if (img_response.size() == autonomysim_img_request_vehicle_name_pair.first.size()) {
                 process_and_publish_img_response(img_response, image_response_idx,
-                                                 AutonomySim_img_request_vehicle_name_pair.second);
+                                                 autonomysim_img_request_vehicle_name_pair.second);
                 image_response_idx += img_response.size();
             }
         }
@@ -1313,9 +1322,9 @@ void AutonomySimROSWrapper::lidar_timer_cb() {
         for (auto &vehicle_name_ptr_pair : vehicle_name_ptr_map_) {
             if (!vehicle_name_ptr_pair.second->lidar_pubs_.empty()) {
                 for (auto &lidar_publisher : vehicle_name_ptr_pair.second->lidar_pubs_) {
-                    auto lidar_data = AutonomySim_client_lidar_.getLidarData(lidar_publisher.sensor_name,
+                    auto lidar_data = autonomysim_client_lidar_.getLidarData(lidar_publisher.sensor_name,
                                                                              vehicle_name_ptr_pair.first);
-                    sensor_msgs::msg::PointCloud2 lidar_msg = get_lidar_msg_from_AutonomySim(
+                    sensor_msgs::msg::PointCloud2 lidar_msg = get_lidar_msg_from_autonomysim(
                         lidar_data, vehicle_name_ptr_pair.first, lidar_publisher.sensor_name);
                     lidar_publisher.publisher->publish(lidar_msg);
                 }
@@ -1394,7 +1403,8 @@ void AutonomySimROSWrapper::process_and_publish_img_response(const std::vector<I
         publish_camera_tf(curr_img_response, curr_ros_time, vehicle_name, curr_img_response.camera_name);
 
         // todo simGetCameraInfo is wrong + also it's only for image type -1.
-        // nervosys::autonomylib::CameraInfo camera_info = AutonomySim_client_.simGetCameraInfo(curr_img_response.camera_name);
+        // nervosys::autonomylib::CameraInfo camera_info =
+        // autonomysim_client_.simGetCameraInfo(curr_img_response.camera_name);
 
         // update timestamp of saved cam info msgs
 
@@ -1426,7 +1436,7 @@ void AutonomySimROSWrapper::publish_camera_tf(const ImageResponse &img_response,
     cam_tf_body_msg.header.frame_id = frame_id;
     cam_tf_body_msg.child_frame_id = frame_id + "/" + child_frame_id + "_body";
     cam_tf_body_msg.transform =
-        get_transform_msg_from_AutonomySim(img_response.camera_position, img_response.camera_orientation);
+        get_transform_msg_from_autonomysim(img_response.camera_position, img_response.camera_orientation);
 
     if (isENU_) {
         convert_tf_msg_to_enu(cam_tf_body_msg);

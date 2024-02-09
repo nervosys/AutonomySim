@@ -1,5 +1,5 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
 import numpy as np
 import math
@@ -7,7 +7,8 @@ import time
 
 import gym
 from gym import spaces
-from autonomygym.envs.AutonomySim_env import AutonomySimEnv
+from autonomygym.envs.autonomysim_env import AutonomySimEnv
+
 
 class AutonomySimCarEnv(AutonomySimEnv):
     def __init__(self, ip_address, image_shape):
@@ -24,14 +25,14 @@ class AutonomySimCarEnv(AutonomySimEnv):
             "collision": False,
         }
 
-        self.car = AutonomySim.CarClient(ip=ip_address)
+        self.car = autonomysim.CarClient(ip=ip_address)
         self.action_space = spaces.Discrete(6)
 
-        self.image_request = AutonomySim.ImageRequest(
-            "0", AutonomySim.ImageType.DepthPerspective, True, False
+        self.image_request = autonomysim.ImageRequest(
+            "0", autonomysim.ImageType.DepthPerspective, True, False
         )
 
-        self.car_controls = AutonomySim.CarControls()
+        self.car_controls = autonomysim.CarControls()
         self.car_state = None
 
     def _setup_car(self):
@@ -97,8 +98,14 @@ class AutonomySimCarEnv(AutonomySimEnv):
         pts = [
             np.array([x, y, 0])
             for x, y in [
-                (0, -1), (130, -1), (130, 125), (0, 125),
-                (0, -1), (130, -1), (130, -128), (0, -128),
+                (0, -1),
+                (130, -1),
+                (130, 125),
+                (0, 125),
+                (0, -1),
+                (130, -1),
+                (130, -128),
+                (0, -128),
                 (0, -1),
             ]
         ]
@@ -108,9 +115,7 @@ class AutonomySimCarEnv(AutonomySimEnv):
         for i in range(0, len(pts) - 1):
             dist = min(
                 dist,
-                np.linalg.norm(
-                    np.cross((car_pt - pts[i]), (car_pt - pts[i + 1]))
-                )
+                np.linalg.norm(np.cross((car_pt - pts[i]), (car_pt - pts[i + 1])))
                 / np.linalg.norm(pts[i] - pts[i + 1]),
             )
 

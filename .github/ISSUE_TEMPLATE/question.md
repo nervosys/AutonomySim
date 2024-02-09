@@ -4,7 +4,7 @@ about: Your question may be moved to https://github.com/nervosys/AutonomySim/dis
 ---
 
 <!-- ⚠️⚠️ DO NOT DELETE THIS! question_template ⚠️⚠️ -->
-<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->
+<!-- Please read our Rules of Conduct. -->
 <!-- Please search existing issues to avoid creating duplicates. -->
 <!-- Add clear and concise title -->
 

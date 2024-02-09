@@ -1,6 +1,6 @@
-# PX4 Software-in-Loop with WSL 2
+# PX4 Software-in-the-loop (SITL) on WSL2
 
-The [Windows subsystem for Linux version 2](https://docs.microsoft.com/en-us/windows/wsl/install-win10) uses a Virtual Machine which has a separate IP address from your Windows host machine. This means PX4 cannot find AutonomySim using "localhost" which is the default behavior for PX4.
+The [Windows subsystem for Linux version 2](https://docs.microsoft.com/en-us/windows/wsl/install-win10) uses a virtual machine, which has a separate IP address from your Windows host machine. This means that PX4 cannot find `AutonomySim` on `localhost`, which is the default behavior for PX4.
 
 You will notice that on Windows `ipconfig` returns a new ethernet adapter for WSL like this (notice the vEthernet has `(WSL)` in the name:
 

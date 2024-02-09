@@ -8,13 +8,13 @@ CommonSetup()
 SetupConsoleBuild()
 
 include_directories(
-  ${AutonomySim_ROOT}/MavLinkCom/MavLinkTest
-  ${AutonomySim_ROOT}/MavLinkCom/include
-  ${AutonomySim_ROOT}/MavLinkCom/common_utils
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/MavLinkTest
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/include
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils
 )
 
 set(PROJECT_CPP ${PROJECT_NAME}_sources)
-file(GLOB_RECURSE PROJECT_CPP "${AutonomySim_ROOT}/MavLinkCom/${PROJECT_NAME}/*.cpp")
+file(GLOB_RECURSE PROJECT_CPP "${AUTONOMYSIM_ROOT}/MavLinkCom/${PROJECT_NAME}/*.cpp")
 add_executable(${PROJECT_NAME} ${PROJECT_CPP})
 			
 target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT} MavLinkCom ${CXX_EXP_LIB})

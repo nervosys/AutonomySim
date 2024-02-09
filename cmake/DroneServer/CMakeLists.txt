@@ -10,10 +10,10 @@ IncludeEigen()
 SetupConsoleBuild()
 
 include_directories(
-  ${AutonomySim_ROOT}/DroneServer
-  ${AutonomySim_ROOT}/MavLinkCom/include
+  ${AUTONOMYSIM_ROOT}/DroneServer
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/include
   ${RPC_LIB_INCLUDES}
-  ${AutonomySim_ROOT}/AutonomyLib/include
+  ${AUTONOMYSIM_ROOT}/AutonomyLib/include
 )
 
 AddExecutableSource()

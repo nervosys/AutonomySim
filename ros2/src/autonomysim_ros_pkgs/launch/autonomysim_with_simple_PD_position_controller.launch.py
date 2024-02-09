@@ -7,24 +7,32 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
-    ld = LaunchDescription([
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory(
-                    'AutonomySim_ros_pkgs'), 'launch/AutonomySim_node.launch.py')
-            )
-        ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory(
-                    'AutonomySim_ros_pkgs'), 'launch/dynamic_constraints.launch.py')
-            )
-        ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory(
-                    'AutonomySim_ros_pkgs'), 'launch/position_controller_simple.launch.py')
-            )
-        )
-    ])
+    ld = LaunchDescription(
+        [
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    os.path.join(
+                        get_package_share_directory("autonomysim_ros_pkgs"),
+                        "launch/autonomysim_node.launch.py",
+                    )
+                )
+            ),
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    os.path.join(
+                        get_package_share_directory("autonomysim_ros_pkgs"),
+                        "launch/dynamic_constraints.launch.py",
+                    )
+                )
+            ),
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    os.path.join(
+                        get_package_share_directory("autonomysim_ros_pkgs"),
+                        "launch/position_controller_simple.launch.py",
+                    )
+                )
+            ),
+        ]
+    )
     return ld

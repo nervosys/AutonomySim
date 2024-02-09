@@ -13,7 +13,7 @@ UENUM(BlueprintType)
 enum class ESimulatorMode : uint8 { SIM_MODE_HIL UMETA(DisplayName = "Hardware-in-loop") };
 
 UCLASS()
-class AutonomySim_API ASimHUD : public AHUD {
+class AutonomySimApi ASimHUD : public AHUD {
     GENERATED_BODY()
 
   public:

@@ -12,8 +12,8 @@
 #include "physics/Kinematics.hpp"
 #include "safety/SafetyEval.hpp"
 
-#include "common/common_utils/WindowsApisCommonPost.hpp"
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 #include "rpc/msgpack.hpp"
 
 namespace nervosys {
@@ -88,7 +88,7 @@ class RpcLibAdaptorsBase {
 
         nervosys::autonomylib::CollisionInfo to() const {
             return nervosys::autonomylib::CollisionInfo(has_collided, normal.to(), impact_point.to(), position.to(),
-                                              penetration_depth, time_stamp, object_name, object_id);
+                                                        penetration_depth, time_stamp, object_name, object_id);
         }
     };
 
@@ -104,7 +104,9 @@ class RpcLibAdaptorsBase {
             y_val = s.y();
             z_val = s.z();
         }
-        nervosys::autonomylib::Quaternionr to() const { return nervosys::autonomylib::Quaternionr(w_val, x_val, y_val, z_val); }
+        nervosys::autonomylib::Quaternionr to() const {
+            return nervosys::autonomylib::Quaternionr(w_val, x_val, y_val, z_val);
+        }
     };
 
     struct Pose {
@@ -132,7 +134,9 @@ class RpcLibAdaptorsBase {
             longitude = s.longitude;
             altitude = s.altitude;
         }
-        nervosys::autonomylib::GeoPoint to() const { return nervosys::autonomylib::GeoPoint(latitude, longitude, altitude); }
+        nervosys::autonomylib::GeoPoint to() const {
+            return nervosys::autonomylib::GeoPoint(latitude, longitude, altitude);
+        }
     };
 
     struct RCData {
@@ -409,7 +413,8 @@ class RpcLibAdaptorsBase {
             return {camera_name, image_type, pixels_as_float, compress};
         }
 
-        static std::vector<ImageRequest> from(const std::vector<nervosys::autonomylib::ImageCaptureBase::ImageRequest> &request) {
+        static std::vector<ImageRequest>
+        from(const std::vector<nervosys::autonomylib::ImageCaptureBase::ImageRequest> &request) {
             std::vector<ImageRequest> request_adaptor;
             for (const auto &item : request)
                 request_adaptor.push_back(ImageRequest(item));
@@ -506,7 +511,7 @@ class RpcLibAdaptorsBase {
     struct LidarData {
 
         nervosys::autonomylib::TTimePoint time_stamp; // timestamp
-        std::vector<float> point_cloud;     // data
+        std::vector<float> point_cloud;               // data
         Pose pose;
         std::vector<int> segmentation;
 

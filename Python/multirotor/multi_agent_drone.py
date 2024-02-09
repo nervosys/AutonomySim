@@ -1,4 +1,4 @@
-import AutonomySim
+import autonomysim
 import setup_path
 
 import cv2
@@ -10,7 +10,7 @@ import tempfile
 # Use below in settings.json with Blocks environment
 """
 {
-	"SeeDocsAt": "https://github.com/nervosys/AutonomySim/blob/main/docs/settings.md",
+	"SeeDocsAt": "https://github.com/nervosys/AutonomySim/blob/master/docs/settings.md",
 	"SettingsVersion": 1.2,
 	"SimMode": "Multirotor",
 	"ClockSpeed": 1,
@@ -30,14 +30,14 @@ import tempfile
 """
 
 # connect to the AutonomySim simulator
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.enableApiControl(True, "Drone1")
 client.enableApiControl(True, "Drone2")
 client.armDisarm(True, "Drone1")
 client.armDisarm(True, "Drone2")
 
-AutonomySim.wait_key('Press any key to takeoff')
+autonomysim.wait_key("Press any key to takeoff")
 f1 = client.takeoffAsync(vehicle_name="Drone1")
 f2 = client.takeoffAsync(vehicle_name="Drone2")
 f1.join()
@@ -50,25 +50,37 @@ state2 = client.getMultirotorState(vehicle_name="Drone2")
 s = pprint.pformat(state2)
 print("state: %s" % s)
 
-AutonomySim.wait_key('Press any key to move vehicles')
+autonomysim.wait_key("Press any key to move vehicles")
 f1 = client.moveToPositionAsync(-5, 5, -10, 5, vehicle_name="Drone1")
 f2 = client.moveToPositionAsync(5, -5, -10, 5, vehicle_name="Drone2")
 f1.join()
 f2.join()
 
-AutonomySim.wait_key('Press any key to take images')
+autonomysim.wait_key("Press any key to take images")
 # get camera images from the car
-responses1 = client.simGetImages([
-    AutonomySim.ImageRequest("0", AutonomySim.ImageType.DepthVis),  #depth visualization image
-    AutonomySim.ImageRequest("1", AutonomySim.ImageType.Scene, False, False)], vehicle_name="Drone1")  #scene vision image in uncompressed RGB array
-print('Drone1: Retrieved images: %d' % len(responses1))
-responses2 = client.simGetImages([
-    AutonomySim.ImageRequest("0", AutonomySim.ImageType.DepthVis),  #depth visualization image
-    AutonomySim.ImageRequest("1", AutonomySim.ImageType.Scene, False, False)], vehicle_name="Drone2")  #scene vision image in uncompressed RGB array
-print('Drone2: Retrieved images: %d' % len(responses2))
+responses1 = client.simGetImages(
+    [
+        autonomysim.ImageRequest(
+            "0", autonomysim.ImageType.DepthVis
+        ),  # depth visualization image
+        autonomysim.ImageRequest("1", autonomysim.ImageType.Scene, False, False),
+    ],
+    vehicle_name="Drone1",
+)  # scene vision image in uncompressed RGB array
+print("Drone1: Retrieved images: %d" % len(responses1))
+responses2 = client.simGetImages(
+    [
+        autonomysim.ImageRequest(
+            "0", autonomysim.ImageType.DepthVis
+        ),  # depth visualization image
+        autonomysim.ImageRequest("1", autonomysim.ImageType.Scene, False, False),
+    ],
+    vehicle_name="Drone2",
+)  # scene vision image in uncompressed RGB array
+print("Drone2: Retrieved images: %d" % len(responses2))
 
-tmp_dir = os.path.join(tempfile.gettempdir(), "AutonomySim_drone")
-print ("Saving images to %s" % tmp_dir)
+tmp_dir = os.path.join(tempfile.gettempdir(), "autonomysim_drone")
+print("Saving images to %s" % tmp_dir)
 try:
     os.makedirs(tmp_dir)
 except OSError:
@@ -76,22 +88,35 @@ except OSError:
         raise
 
 for idx, response in enumerate(responses1 + responses2):
-
     filename = os.path.join(tmp_dir, str(idx))
 
     if response.pixels_as_float:
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_float)))
-        AutonomySim.write_pfm(os.path.normpath(filename + '.pfm'), AutonomySim.get_pfm_array(response))
-    elif response.compress: #png format
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
-        AutonomySim.write_file(os.path.normpath(filename + '.png'), response.image_data_uint8)
-    else: #uncompressed array
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
-        img1d = np.fromstring(response.image_data_uint8, dtype=np.uint8) #get numpy array
-        img_rgb = img1d.reshape(response.height, response.width, 3) #reshape array to 3 channel image array H X W X 3
-        cv2.imwrite(os.path.normpath(filename + '.png'), img_rgb) # write to png
+        print(
+            "Type %d, size %d" % (response.image_type, len(response.image_data_float))
+        )
+        autonomysim.write_pfm(
+            os.path.normpath(filename + ".pfm"), autonomysim.get_pfm_array(response)
+        )
+    elif response.compress:  # png format
+        print(
+            "Type %d, size %d" % (response.image_type, len(response.image_data_uint8))
+        )
+        autonomysim.write_file(
+            os.path.normpath(filename + ".png"), response.image_data_uint8
+        )
+    else:  # uncompressed array
+        print(
+            "Type %d, size %d" % (response.image_type, len(response.image_data_uint8))
+        )
+        img1d = np.fromstring(
+            response.image_data_uint8, dtype=np.uint8
+        )  # get numpy array
+        img_rgb = img1d.reshape(
+            response.height, response.width, 3
+        )  # reshape array to 3 channel image array H X W X 3
+        cv2.imwrite(os.path.normpath(filename + ".png"), img_rgb)  # write to png
 
-AutonomySim.wait_key('Press any key to reset to original state')
+autonomysim.wait_key("Press any key to reset to original state")
 
 client.armDisarm(False, "Drone1")
 client.armDisarm(False, "Drone2")
@@ -100,5 +125,3 @@ client.reset()
 # that's enough fun for now. let's quit cleanly
 client.enableApiControl(False, "Drone1")
 client.enableApiControl(False, "Drone2")
-
-

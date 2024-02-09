@@ -11,20 +11,20 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-ins
 	x11-xserver-utils
 
 RUN python3 -m pip install --upgrade pip && \
-    pip3 install setuptools wheel && \
-    pip3 install AutonomySim
+	pip3 install setuptools wheel && \
+	pip3 install autonomysim
 
-RUN adduser --force-badname --disabled-password --gecos '' --shell /bin/bash AutonomySim_user && \
+RUN adduser --force-badname --disabled-password --gecos '' --shell /bin/bash autonomysim_user && \
 	echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-	adduser AutonomySim_user sudo && \
-	adduser AutonomySim_user audio && \
-	adduser AutonomySim_user video
+	adduser autonomysim_user sudo && \
+	adduser autonomysim_user audio && \
+	adduser autonomysim_user video
 
-USER AutonomySim_user
-WORKDIR /home/AutonomySim_user
+USER autonomysim_user
+WORKDIR /home/autonomysim_user
 
-RUN mkdir -p /home/AutonomySim_user/Documents/AutonomySim
-COPY settings.json /home/AutonomySim_user/Documents/AutonomySim
-#ADD Documents /home/AutonomySim_user/Documents
+RUN mkdir -p /home/autonomysim_user/Documents/AutonomySim
+COPY settings.json /home/autonomysim_user/Documents/AutonomySim
+#ADD Documents /home/autonomysim_user/Documents
 
-RUN sudo chown -R AutonomySim_user /home/AutonomySim_user
+RUN sudo chown -R autonomysim_user /home/autonomysim_user

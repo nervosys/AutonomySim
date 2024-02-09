@@ -6,8 +6,8 @@
 #include "RandomPointPoseGenerator.hpp"
 #include "common/ClockFactory.hpp"
 #include "common/Common.hpp"
-#include "common/common_utils/FileSystem.hpp"
-#include "common/common_utils/ProsumerQueue.hpp"
+#include "common/utils/FileSystem.hpp"
+#include "common/utils/ProsumerQueue.hpp"
 #include "vehicles/multirotor/api/MultirotorApiBase.hpp"
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
 #include <iomanip>

@@ -1,4 +1,6 @@
-#include "AutonomySim_settings_parser.h"
+// autonomysim_settings_parser.cpp
+
+#include "autonomysim_settings_parser.h"
 
 AutonomySimSettingsParser::AutonomySimSettingsParser(const std::string &host_ip) : host_ip_(host_ip) {
     success_ = initializeSettings();
@@ -7,10 +9,10 @@ AutonomySimSettingsParser::AutonomySimSettingsParser(const std::string &host_ip)
 bool AutonomySimSettingsParser::success() { return success_; }
 
 bool AutonomySimSettingsParser::getSettingsText(std::string &settings_text) const {
-    nervosys::autonomylib::RpcLibClientBase AutonomySim_client(host_ip_);
-    AutonomySim_client.confirmConnection();
+    nervosys::autonomylib::RpcLibClientBase autonomysim_client(host_ip_);
+    autonomysim_client.confirmConnection();
 
-    settings_text = AutonomySim_client.getSettingsString();
+    settings_text = autonomysim_client.getSettingsString();
 
     return !settings_text.empty();
 }

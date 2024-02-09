@@ -7,7 +7,7 @@
 #include "ManualPoseController.h"
 #include "PIPCamera.h"
 #include "PawnSimApi.h"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 
 UENUM(BlueprintType)
 enum class ECameraDirectorMode : uint8 {

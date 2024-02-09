@@ -15,11 +15,11 @@
 Congratulations! Unreal Engine is now installed and ready to use.
 
 !!! note
-  If you created projects with UE 4.16 or older, see the [upgrade guide](unreal_upgrade.md) to upgrade your projects.
+  If you created projects with UE 4.16 or older, see the [upgrade guide](unreal_upgrading.md) to upgrade your projects.
 
-![Unreal Engine Tab UI Screenshot](images/ue_install.png)
+![Unreal Engine Tab UI Screenshot](media/images/ue_install.png)
 
-![Unreal Engine Install Location UI Screenshot](images/ue_install_location.png)
+![Unreal Engine Install Location UI Screenshot](media/images/ue_install_location.png)
 
 ## Install Visual Studio 2022
 
@@ -61,14 +61,14 @@ Congratulations! Unreal Engine is now installed and ready to use.
 
 ## Build an Unreal Project
 
-Next, you will need an Unreal project to host an environment for your vehicles. Close and re-open `Unreal Engine` and `Epic Games Launcher` before building your first environment. After restarting `Epic Games Launcher`, it may ask if you want to associate Unreal project files with `Unreal Engine`. Click on `fix now` to do so. While AutonomySim includes the pre-built `Blocks` environment, you can also create new environments. For more information, see the [Unreal environment setup guide](unreal_proj.md) or learn more about these virtual worlds on the Epic Games website [here](https://docs.unrealengine.com/5.3/en-US/building-virtual-worlds-in-unreal-engine/).
+Next, you will need an Unreal project to host an environment for your vehicles. Close and re-open `Unreal Engine` and `Epic Games Launcher` before building your first environment. After restarting `Epic Games Launcher`, it may ask if you want to associate Unreal project files with `Unreal Engine`. Click on `fix now` to do so. While AutonomySim includes the pre-built `Blocks` environment, you can also create new environments. For more information, see the [Unreal environment setup guide](unreal_projects.md) or learn more about these virtual worlds on the Epic Games website [here](https://docs.unrealengine.com/5.3/en-US/building-virtual-worlds-in-unreal-engine/).
 
 ## Setup a Remote Control
 
 !!! note
   The below only applies to multi-rotor drones.
 
-To fly drones manually, a physical (or software-emulated) controller is required. For more information, see the [remote control setup guide](remote_control.md). Alternatively, you may (a) wrap [application programming interfaces (APIs)](apis.md) calls for software control or (b) use the [computer vision mode](image_apis.md) for manual keyboard control.
+To fly drones manually, a physical (or software-emulated) controller is required. For more information, see the [remote control setup guide](controller_remote.md). Alternatively, you may (a) wrap [application programming interfaces (APIs)](apis.md) calls for software control or (b) use the [computer vision mode](apis_image.md) for manual keyboard control.
 
 ## How to Use AutonomySim
 
@@ -86,6 +86,3 @@ Once AutonomySim is set up by following above steps, you can,
     Go to 'Edit->Editor Preferences', in the 'Search' box type 'CPU' and ensure that the 'Use Less CPU when in Background' is unchecked.
 
 See [Using APIs](apis.md) and [settings.json](settings.md) for various options available.
-
-# AutonomySim on Unity (Experimental)
-[Unity](https://unity3d.com/) is another great game engine platform and we have an **experimental** integration of [AutonomySim with Unity](Unity.md). Please note that this is work in progress and all features may not work yet.

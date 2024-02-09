@@ -10,8 +10,8 @@
 #include "common/ImageCaptureBase.hpp"
 #include "vehicles/car/api/CarApiBase.hpp"
 
-#include "common/common_utils/WindowsApisCommonPost.hpp"
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 #include "rpc/msgpack.hpp"
 
 namespace nervosys {
@@ -43,7 +43,7 @@ class CarRpcLibAdaptors : public RpcLibAdaptorsBase {
         }
         nervosys::autonomylib::CarApiBase::CarControls to() const {
             return nervosys::autonomylib::CarApiBase::CarControls(throttle, steering, brake, handbrake, is_manual_gear,
-                                                        manual_gear, gear_immediate);
+                                                                  manual_gear, gear_immediate);
         }
     };
 
@@ -70,8 +70,8 @@ class CarRpcLibAdaptors : public RpcLibAdaptorsBase {
             kinematics_estimated = s.kinematics_estimated;
         }
         nervosys::autonomylib::CarApiBase::CarState to() const {
-            return nervosys::autonomylib::CarApiBase::CarState(speed, gear, rpm, maxrpm, handbrake, kinematics_estimated.to(),
-                                                     timestamp);
+            return nervosys::autonomylib::CarApiBase::CarState(speed, gear, rpm, maxrpm, handbrake,
+                                                               kinematics_estimated.to(), timestamp);
         }
     };
 };

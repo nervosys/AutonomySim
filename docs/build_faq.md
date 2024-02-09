@@ -1,8 +1,8 @@
-# Build FAQ
+# AutonomySim Build FAQ
 
 ## Table of Contents
 
-- [Build FAQ](#build-faq)
+- [AutonomySim Build FAQ](#autonomysim-build-faq)
   - [Table of Contents](#table-of-contents)
   - [Windows Builds](#windows-builds)
     - [How to force Unreal to use Visual Studio 2019?](#how-to-force-unreal-to-use-visual-studio-2019)
@@ -137,7 +137,7 @@
 ### Can I compile AutonomySim in BashOnWindows?
 
 > Yes, however, you can't run Unreal from BashOnWindows. So this is kind of useful to check a Linux compile, but not for an end-to-end run.
-> See the [BashOnWindows install guide](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
+> See the [WSL install guide](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
 > Make sure to have the latest version (Windows 10 Creators Edition) as previous versions had various issues.
 > Also, don't invoke `bash` from `Visual Studio Command Prompt`, otherwise CMake might find VC++ and try and use that!
 

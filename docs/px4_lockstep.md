@@ -1,8 +1,9 @@
-# PX4 Lockstep
+# PX4 Lockstep Mode
 
-The latest version of PX4 supports a new [lockstep feature](https://docs.px4.io/master/en/simulation/#lockstep-simulation) when communicating with the simulator over TCP.  Lockstep is an important feature because it synchronizes PX4 and the simulator so they essentially use the same clock time. This makes PX4 behave normally even during unusually long delays in Simulator performance.
+The latest version of PX4 supports a new [lockstep feature](https://docs.px4.io/master/en/simulation/#lockstep-simulation) when communicating with the simulator over TCP. Lockstep is an important feature because it synchronizes PX4 and the simulator so that they use the same clock time. This makes PX4 behave normally even during unusually long delays in simulator response due to performance lags.
 
-It is recommended that when you are running a lockstep enabled version of PX4 in SITL mode that you tell AutonomySim to use a `SteppableClock`, and set `UseTcp` to `true` and `LockStep` to `true`.
+!!! info "Recommendation"
+    When you are running a lockstep enabled version of PX4 in software-in-the-loop (SITL) mode, set `AutonomySim` to use a `SteppableClock` and set `UseTcp` and `LockStep` to `true`.
 
 ```json
 {
@@ -17,20 +18,19 @@ It is recommended that when you are running a lockstep enabled version of PX4 in
             ...
 ```
 
-This causes AutonomySim to not use a real-time clock, but instead it advances the clock in step which each sensor update sent to PX4. This way PX4 thinks time is progressing smoothly no matter how long it takes AutonomySim to really process that update loop.
+This causes `AutonomySim` to not use a real-time clock, but instead to advance the clock in-step with each sensor update sent to PX4. This way, PX4 perceives time is progressing smoothly no matter how long it takes `AutonomySim` to process the update loop.
 
 This has the following advantages:
 
-* AutonomySim can be used on slow machines that cannot process updates quickly.
-* You can debug AutonomySim and hit a breakpoint, and when you resume PX4 will behave normally.
-* You can enable very slow sensors like the Lidar with large number of simulated points, and PX4
-  will still behave normally.
+* `AutonomySim` can be run on slow machines that cannot process updates quickly.
+* You can debug `AutonomySim`, hit a breakpoint, and when you resume, PX4 will behave normally.
+* You can enable very slow sensors such as LiDAR with a large number of simulated points and PX4 will still behave normally.
 
-There will be some side effects to `lockstep`, namely, slower update loops caused by running AutonomySim on an underpowered machine or from expensive sensors (like Lidar) will create some visible jerkiness in the simulated flight if you look at the updates on screen in realtime.
+However, the `lockstep` feature does have side effects. These include slower update loops caused by running `AutonomySim` on an underpowered machine or by expensive sensors (e.g., LiDAR), which can create visible jerkiness in the simulated flight, if you view the on-screen updates in real-time.
 
-# Disabling LockStep
+# Disabling Lockstep Mode
 
-If you are running PX4 in cygwin, there is an [open issue with lockstep](https://github.com/nervosys/AutonomySim/issues/3415). PX4 is configured to use lockstep by default. To disable this feature, first [disable it in PX4](https://docs.px4.io/master/en/simulation/#disable-lockstep-simulation):
+If you are running PX4 in `Cygwin`, there is an [open issue with lockstep](https://github.com/nervosys/AutonomySim/issues/3415). PX4 is configured to use lockstep by default. To disable this feature, first [disable it in PX4](https://docs.px4.io/master/en/simulation/#disable-lockstep-simulation):
 
 1. Navigate to `boards/px4/sitl/` in your local PX4 repository
 2. Edit `default.cmake` and find the following line:
@@ -53,4 +53,4 @@ If you are running PX4 in cygwin, there is an [open issue with lockstep](https:/
                 "LockStep": false,
                 ...
 ```
-5. Now you can run PX4 SITL as you normally would (`make px4_sitl_default none_iris`) and it will use the host system time without waiting on AutonomySim.
+5. Now you can run PX4 SITL as you normally would (`make px4_sitl_default none_iris`) and it will use the host system time without waiting on `AutonomySim`.

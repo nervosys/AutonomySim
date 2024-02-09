@@ -77,18 +77,12 @@ Visualization Manager:
         world_ned:
           SimpleFlight:
             SimpleFlight/odom_local_ned:
-              SimpleFlight/LidarCustom:
-                {}
-              front_camera_body/static:
-                {}
-              front_camera_optical/static:
-                {}
-            front_camera_body:
-              {}
-            front_camera_optical:
-              {}
-          world_enu:
-            {}
+              SimpleFlight/LidarCustom: {}
+              front_camera_body/static: {}
+              front_camera_optical/static: {}
+            front_camera_body: {}
+            front_camera_optical: {}
+          world_enu: {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -120,7 +114,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /AutonomySim_node/front_left_custom/DepthPlanar/registered/points
+        Value: /autonomysim_node/front_left_custom/DepthPlanar/registered/points
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -160,7 +154,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /AutonomySim_node/MyQuad/odom_local_ned
+        Value: /autonomysim_node/MyQuad/odom_local_ned
       Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
@@ -191,7 +185,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /AutonomySim_node/drone_1/lidar/LidarCustom
+        Value: /autonomysim_node/drone_1/lidar/LidarCustom
       Use Fixed Frame: true
       Use rainbow: true
       Value: true

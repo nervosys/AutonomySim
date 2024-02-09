@@ -1,4 +1,4 @@
-# Running AutonomyLib on Real-world Vehicles
+# Deploying AutonomyLib to Real Vehicles
 
 The `AutonomyLib` library can be compiled and deployed on the companion computer on a real robotic system. For our testing, we connected a `Gigabyte Brix BXi7-5500` companion computer to a Pixhawk/PX4 flight controller over USB on a drone. The Gigabyte PC runs Ubuntu, so we are able to SSH into it over Wi-Fi:
 
@@ -64,7 +64,7 @@ You can run the `MavlinkCom` library and MavLinkTest app to test the connection 
 
 ## How Does This Work?
 
-`AutonomySim` uses `MavLinkCom` component developed by [@lovettchris](https://twitter.com/lovettchris). The `MavLinkCom` has a proxy architecture where you can open a connection to PX4 either using serial or UDP and then other components share this connection. When PX4 sends MavLink message, all components receive that message. If any component sends a message then it's received by PX4 only. This allows you to connect any number of components to PX4 [This code](https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/include/vehicles/multirotor/firmwares/mavlink/MavLinkMultirotorApi.hpp#L600) opens a connection for LogViewer and QGC. You can add something more if you like.
+`AutonomySim` uses `MavLinkCom` component developed by [@lovettchris](https://twitter.com/lovettchris). The `MavLinkCom` has a proxy architecture where you can open a connection to PX4 either using serial or UDP and then other components share this connection. When PX4 sends MavLink message, all components receive that message. If any component sends a message then it's received by PX4 only. This allows you to connect any number of components to PX4 [This code](https://github.com/nervosys/AutonomySim/blob/master/AutonomyLib/include/vehicles/multirotor/firmwares/mavlink/MavLinkMultirotorApi.hpp#L600) opens a connection for LogViewer and QGC. You can add something more if you like.
 
 If you want to use QGC and AutonomySim together than you will need QGC to let own the serial port. QGC opens up TCP connection that acts as a proxy so any other component can connect to QGC and send `MavLinkMessage` to QGC and then QGC forwards that message to PX4. So you tell AutonomySim to connect to QGC and let QGC own serial port.
 

@@ -9,7 +9,7 @@
 #include "common/Common.hpp"
 
 UCLASS()
-class AutonomySim_API ASimModeCar : public ASimModeBase {
+class AutonomySimApi ASimModeCar : public ASimModeBase {
     GENERATED_BODY()
 
   public:
@@ -46,7 +46,7 @@ class AutonomySim_API ASimModeCar : public ASimModeBase {
     virtual std::unique_ptr<PawnSimApi>
     createVehicleSimApi(const PawnSimApi::Params &pawn_sim_api_params) const override;
     virtual nervosys::autonomylib::VehicleApiBase *getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params,
-                                                       const PawnSimApi *sim_api) const override;
+                                                                 const PawnSimApi *sim_api) const override;
 
   private:
     std::atomic<float> current_clockspeed_;

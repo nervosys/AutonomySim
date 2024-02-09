@@ -340,7 +340,7 @@ cmake_build/
 car_assets.zip
 __pycache__/
 /PythonClient/**/metrics/
-/PythonClient/**/AutonomySim.egg-info/
+/PythonClient/**/autonomysim.egg-info/
 /PythonClient/**/dist/
 
 # XCode

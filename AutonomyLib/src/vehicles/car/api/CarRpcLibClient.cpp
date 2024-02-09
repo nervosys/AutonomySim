@@ -22,7 +22,7 @@ STRICT_MODE_OFF
 #undef nil
 #endif // nil
 
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 #undef FLOAT
 #undef check
 #include "rpc/client.h"
@@ -30,7 +30,7 @@ STRICT_MODE_OFF
 #ifndef check
 #define check(expr) (static_cast<void>((expr)))
 #endif
-#include "common/common_utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
 
 #include "vehicles/car/api/CarRpcLibAdaptors.hpp"
 
@@ -39,8 +39,8 @@ STRICT_MODE_ON
 __pragma(warning(disable : 4239))
 #endif
 
-namespace nervosys {
-namespace autonomylib {
+    namespace nervosys {
+    namespace autonomylib {
 
     typedef nervosys::autonomylib_rpclib::CarRpcLibAdaptors CarRpcLibAdaptors;
 
@@ -60,7 +60,7 @@ namespace autonomylib {
             .as<CarRpcLibAdaptors::CarState>()
             .to();
     }
-    
+
     CarApiBase::CarControls CarRpcLibClient::getCarControls(const std::string &vehicle_name) {
         return static_cast<rpc::client *>(getClient())
             ->call("getCarControls", vehicle_name)
@@ -68,7 +68,7 @@ namespace autonomylib {
             .to();
     }
 
-} // namespace autonomylib
+    } // namespace autonomylib
 } // namespace nervosys
 
 #endif

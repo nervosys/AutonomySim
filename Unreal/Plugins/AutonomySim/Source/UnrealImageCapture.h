@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "PIPCamera.h"
 #include "common/ImageCaptureBase.hpp"
-#include "common/common_utils/UniqueValueMap.hpp"
+#include "common/utilsValueMap.hpp"
 
 class UnrealImageCapture : public nervosys::autonomylib::ImageCaptureBase {
   public:
@@ -23,7 +23,8 @@ class UnrealImageCapture : public nervosys::autonomylib::ImageCaptureBase {
     void addScreenCaptureHandler(UWorld *world);
     bool getScreenshotScreen(ImageType image_type, std::vector<uint8_t> &compressedPng);
 
-    bool updateCameraVisibility(APIPCamera *camera, const nervosys::autonomylib::ImageCaptureBase::ImageRequest &request);
+    bool updateCameraVisibility(APIPCamera *camera,
+                                const nervosys::autonomylib::ImageCaptureBase::ImageRequest &request);
 
   private:
     const common_utils::UniqueValueMap<std::string, APIPCamera *> *cameras_;

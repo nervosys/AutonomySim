@@ -11,11 +11,11 @@ SetupConsoleBuild()
 
 ## Specify additional locations of header files
 include_directories(
-  ${AutonomySim_ROOT}/HelloSpawnedDrones
-  ${AutonomySim_ROOT}/AutonomyLib/include
+  ${AUTONOMYSIM_ROOT}/HelloSpawnedDrones
+  ${AUTONOMYSIM_ROOT}/AutonomyLib/include
   ${RPC_LIB_INCLUDES}
-  ${AutonomySim_ROOT}/MavLinkCom/include
-  ${AutonomySim_ROOT}/MavLinkCom/common_utils
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/include
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils
 )
 
 AddExecutableSource()

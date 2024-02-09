@@ -14,9 +14,9 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #endif
 
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 
-#include "common/common_utils/MinWinDefines.hpp"
+#include "common/utils/MinWinDefines.hpp"
 #include <windows.h>
 
 #include <dinput.h>
@@ -34,7 +34,7 @@
 #endif
 #include <wbemidl.h>
 
-#include "common/common_utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
 
 //-----------------------------------------------------------------------------
 // Defines, constants, and global variables

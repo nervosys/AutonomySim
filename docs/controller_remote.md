@@ -1,6 +1,6 @@
 # Remote Control
 
-To fly drones manually, a physical (or software-emulated) controller is required. Alternatively, you may (a) wrap [application programming interfaces (APIs)](apis.md) calls for software control or (b) use the [computer vision mode](image_apis.md) for manual keyboard control.
+To fly drones manually, a physical (or software-emulated) controller is required. Alternatively, you may (a) wrap [application programming interfaces (APIs)](apis.md) calls for software control or (b) use the [computer vision mode](apis_image.md) for manual keyboard control.
 
 ## Default Configuration
 
@@ -10,18 +10,18 @@ By default, AutonomySim uses the [simple flight controller](simple_flight.md), w
 
 To date, XBox and [FrSky Taranis X9D Plus](https://hobbyking.com/en_us/frsky-2-4ghz-accst-taranis-x9d-plus-and-x8r-combo-digital-telemetry-radio-system-mode-2.html) controllers have been verified as supported. Other controllers from Microsoft, Sony, Logitech, FrSky/Turnigy, Spektrum, Futaba, and TBS may also work. If you have a remote control (RC) or radio-frequency (RF) controller that lacks USB support, you will need to convert the signal to USB. Such converters are often called trainer cables or dongles. Learn how to make your own [here](https://github.com/patolin/rc-receiver-joystick). If you have a [Steam Deck](https://www.steamdeck.com/), which runs a flavor of Arch Linux (SteamOS), you may be able to run AutonomySim directly on your controller.
 
-AutonomySim can detect large variety of devices. However, devices other than those listed above may require extra configuration. In the future, we may add relared configuration options in the `settings.json` file. If your controller does not work, we recommend trying workarounds such as [x360ce](http://www.x360ce.com/) or modifying the [SimJoystick.cpp file](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/SimJoyStick/SimJoyStick.cpp#L50).
+AutonomySim can detect large variety of devices. However, devices other than those listed above may require extra configuration. In the future, we may add relared configuration options in the `settings.json` file. If your controller does not work, we recommend trying workarounds such as [x360ce](http://www.x360ce.com/) or modifying the [SimJoystick.cpp file](https://github.com/nervosys/AutonomySim/blob/master/Unreal/Plugins/AutonomySim/Source/SimJoyStick/SimJoyStick.cpp#L50).
 
 !!! note
     If a realistic experience is desired, the XBox 360 controller is not recommended as it has insufficient potentiometer encoding precision. For more information, see the FAQ below.
 
 ### FrSky Taranis X9D Plus
 
-The [FrSky Taranis X9D Plus](https://hobbyking.com/en_us/frsky-2-4ghz-accst-taranis-x9d-plus-and-x8r-combo-digital-telemetry-radio-system-mode-2.html) is a modern RC controller with a USB port so that it can directly connect to PCs. [Download the AutonomySim config file](misc/AutonomySim_FrSkyTaranis.bin) and [follow this tutorial](https://www.youtube.com/watch?v=qe-13Gyb0sw) to import it into your RC. You should then see `sim` model in the RC controller with all channels properly configured. As this controller runs the open-source OpenTX transmitter software, it may be adapted to other controllers as well.
+The [FrSky Taranis X9D Plus](https://hobbyking.com/en_us/frsky-2-4ghz-accst-taranis-x9d-plus-and-x8r-combo-digital-telemetry-radio-system-mode-2.html) is a modern RC controller with a USB port so that it can directly connect to PCs. [Download the AutonomySim config file](files/bin/autonomysim_FrSkyTaranis.bin) and [follow this tutorial](https://www.youtube.com/watch?v=qe-13Gyb0sw) to import it into your RC. You should then see `sim` model in the RC controller with all channels properly configured. As this controller runs the open-source OpenTX transmitter software, it may be adapted to other controllers as well.
 
 ### Linux
 
-The current default configuation on Linux uses an Xbox controller. Other controllers may not properly function. In the future, we may add the ability to configure RC controllers in the `settings.json` file. For now, you may have to modify the [SimJoystick.cpp file](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Source/SimJoyStick/SimJoyStick.cpp#L340) to support other devices.
+The current default configuation on Linux uses an Xbox controller. Other controllers may not properly function. In the future, we may add the ability to configure RC controllers in the `settings.json` file. For now, you may have to modify the [SimJoystick.cpp file](https://github.com/nervosys/AutonomySim/blob/master/Unreal/Plugins/AutonomySim/Source/SimJoyStick/SimJoyStick.cpp#L340) to support other devices.
 
 ## Controller Configuration for PX4
 
@@ -35,7 +35,7 @@ Please see the [PX4 controller configuration](https://docs.px4.io/en/getting_sta
 
 ### XBox 360 Controller
 
-You can also use an xbox controller in SITL mode, it just won't be as precise as a real RC controller. See [xbox controller](xbox_controller.md) for details on how to set that up.
+You can also use an xbox controller in SITL mode, it just won't be as precise as a real RC controller. See [xbox controller](controller_wired.md) for details on how to set that up.
 
 ### Playstation 3 Controller
 

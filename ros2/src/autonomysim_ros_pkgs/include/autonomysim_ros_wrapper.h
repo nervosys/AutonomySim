@@ -1,4 +1,6 @@
-#include "common/common_utils/StrictMode.hpp"
+// autonomysim_ros_wrapper.h
+
+#include "common/utils/StrictMode.hpp"
 STRICT_MODE_OFF // todo what does this do?
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
@@ -6,29 +8,29 @@ STRICT_MODE_OFF // todo what does this do?
 #include "rpc/rpc_error.h"
     STRICT_MODE_ON
 
-#include "AutonomySim_settings_parser.h"
+#include "autonomysim_settings_parser.h"
 #include "common/AutonomySimSettings.hpp"
-#include "common/common_utils/FileSystem.hpp"
+#include "common/utils/FileSystem.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensors/imu/ImuBase.hpp"
 #include "sensors/lidar/LidarSimpleParams.hpp"
 #include "vehicles/car/api/CarRpcLibClient.hpp"
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
 #include "yaml-cpp/yaml.h"
-#include <AutonomySim_interfaces/msg/altimeter.hpp> //hector_uav_msgs defunct?
-#include <AutonomySim_interfaces/msg/car_controls.hpp>
-#include <AutonomySim_interfaces/msg/car_state.hpp>
-#include <AutonomySim_interfaces/msg/environment.hpp>
-#include <AutonomySim_interfaces/msg/gimbal_angle_euler_cmd.hpp>
-#include <AutonomySim_interfaces/msg/gimbal_angle_quat_cmd.hpp>
-#include <AutonomySim_interfaces/msg/gps_yaw.hpp>
-#include <AutonomySim_interfaces/msg/vel_cmd.hpp>
-#include <AutonomySim_interfaces/msg/vel_cmd_group.hpp>
-#include <AutonomySim_interfaces/srv/land.hpp>
-#include <AutonomySim_interfaces/srv/land_group.hpp>
-#include <AutonomySim_interfaces/srv/reset.hpp>
-#include <AutonomySim_interfaces/srv/takeoff.hpp>
-#include <AutonomySim_interfaces/srv/takeoff_group.hpp>
+#include <autonomysim_interfaces/msg/altimeter.hpp> //hector_uav_msgs defunct?
+#include <autonomysim_interfaces/msg/car_controls.hpp>
+#include <autonomysim_interfaces/msg/car_state.hpp>
+#include <autonomysim_interfaces/msg/environment.hpp>
+#include <autonomysim_interfaces/msg/gimbal_angle_euler_cmd.hpp>
+#include <autonomysim_interfaces/msg/gimbal_angle_quat_cmd.hpp>
+#include <autonomysim_interfaces/msg/gps_yaw.hpp>
+#include <autonomysim_interfaces/msg/vel_cmd.hpp>
+#include <autonomysim_interfaces/msg/vel_cmd_group.hpp>
+#include <autonomysim_interfaces/srv/land.hpp>
+#include <autonomysim_interfaces/srv/land_group.hpp>
+#include <autonomysim_interfaces/srv/reset.hpp>
+#include <autonomysim_interfaces/srv/takeoff.hpp>
+#include <autonomysim_interfaces/srv/takeoff_group.hpp>
 #include <chrono>
 #include <cv_bridge/cv_bridge.h>
 #include <geometry_msgs/msg/pose_stamped.hpp>
@@ -104,13 +106,13 @@ class AutonomySimROSWrapper {
     using ImageType = nervosys::autonomylib::ImageCaptureBase::ImageType;
 
   public:
-    enum class AutonomySim_MODE : unsigned { DRONE, CAR };
+    enum class AUTONOMYSIM_MODE : unsigned { DRONE, CAR };
 
     AutonomySimROSWrapper(const std::shared_ptr<rclcpp::Node> nh, const std::shared_ptr<rclcpp::Node> nh_img,
                           const std::shared_ptr<rclcpp::Node> nh_lidar, const std::string &host_ip);
     ~AutonomySimROSWrapper(){};
 
-    void initialize_AutonomySim();
+    void initialize_autonomysim();
     void initialize_ros();
 
     bool is_used_lidar_timer_cb_queue_;
@@ -126,10 +128,10 @@ class AutonomySimROSWrapper {
         /// All things ROS
         rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_local_pub_;
         rclcpp::Publisher<sensor_msgs::msg::NavSatFix>::SharedPtr global_gps_pub_;
-        rclcpp::Publisher<AutonomySim_interfaces::msg::Environment>::SharedPtr env_pub_;
-        AutonomySim_interfaces::msg::Environment env_msg_;
+        rclcpp::Publisher<autonomysim_interfaces::msg::Environment>::SharedPtr env_pub_;
+        autonomysim_interfaces::msg::Environment env_msg_;
 
-        std::vector<SensorPublisher<AutonomySim_interfaces::msg::Altimeter>> barometer_pubs_;
+        std::vector<SensorPublisher<autonomysim_interfaces::msg::Altimeter>> barometer_pubs_;
         std::vector<SensorPublisher<sensor_msgs::msg::Imu>> imu_pubs_;
         std::vector<SensorPublisher<sensor_msgs::msg::NavSatFix>> gps_pubs_;
         std::vector<SensorPublisher<sensor_msgs::msg::MagneticField>> magnetometer_pubs_;
@@ -152,9 +154,9 @@ class AutonomySimROSWrapper {
       public:
         nervosys::autonomylib::CarApiBase::CarState curr_car_state_;
 
-        rclcpp::Subscription<AutonomySim_interfaces::msg::CarControls>::SharedPtr car_cmd_sub_;
-        rclcpp::Publisher<AutonomySim_interfaces::msg::CarState>::SharedPtr car_state_pub_;
-        AutonomySim_interfaces::msg::CarState car_state_msg_;
+        rclcpp::Subscription<autonomysim_interfaces::msg::CarControls>::SharedPtr car_cmd_sub_;
+        rclcpp::Publisher<autonomysim_interfaces::msg::CarState>::SharedPtr car_state_pub_;
+        autonomysim_interfaces::msg::CarState car_state_msg_;
 
         bool has_car_cmd_;
         nervosys::autonomylib::CarApiBase::CarControls car_cmd_;
@@ -165,41 +167,41 @@ class AutonomySimROSWrapper {
         /// State
         nervosys::autonomylib::MultirotorState curr_drone_state_;
 
-        rclcpp::Subscription<AutonomySim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_body_frame_sub_;
-        rclcpp::Subscription<AutonomySim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_world_frame_sub_;
+        rclcpp::Subscription<autonomysim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_body_frame_sub_;
+        rclcpp::Subscription<autonomysim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_world_frame_sub_;
 
-        rclcpp::Service<AutonomySim_interfaces::srv::Takeoff>::SharedPtr takeoff_srvr_;
-        rclcpp::Service<AutonomySim_interfaces::srv::Land>::SharedPtr land_srvr_;
+        rclcpp::Service<autonomysim_interfaces::srv::Takeoff>::SharedPtr takeoff_srvr_;
+        rclcpp::Service<autonomysim_interfaces::srv::Land>::SharedPtr land_srvr_;
 
         bool has_vel_cmd_;
         VelCmd vel_cmd_;
     };
 
     /// ROS timer callbacks
-    void img_response_timer_cb(); // update images from AutonomySim_client_ every nth sec
-    void drone_state_timer_cb();  // update drone state from AutonomySim_client_ every nth sec
+    void img_response_timer_cb(); // update images from autonomysim_client_ every nth sec
+    void drone_state_timer_cb();  // update drone state from autonomysim_client_ every nth sec
     void lidar_timer_cb();
 
     /// ROS subscriber callbacks
-    void vel_cmd_world_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg,
+    void vel_cmd_world_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg,
                                 const std::string &vehicle_name);
-    void vel_cmd_body_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg,
+    void vel_cmd_body_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg,
                                const std::string &vehicle_name);
 
-    void vel_cmd_group_body_frame_cb(const AutonomySim_interfaces::msg::VelCmdGroup::SharedPtr msg);
-    void vel_cmd_group_world_frame_cb(const AutonomySim_interfaces::msg::VelCmdGroup::SharedPtr msg);
+    void vel_cmd_group_body_frame_cb(const autonomysim_interfaces::msg::VelCmdGroup::SharedPtr msg);
+    void vel_cmd_group_world_frame_cb(const autonomysim_interfaces::msg::VelCmdGroup::SharedPtr msg);
 
-    void vel_cmd_all_world_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg);
-    void vel_cmd_all_body_frame_cb(const AutonomySim_interfaces::msg::VelCmd::SharedPtr msg);
+    void vel_cmd_all_world_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg);
+    void vel_cmd_all_body_frame_cb(const autonomysim_interfaces::msg::VelCmd::SharedPtr msg);
 
-    // void vel_cmd_body_frame_cb(const AutonomySim_interfaces::msg::VelCmd& msg, const std::string& vehicle_name);
+    // void vel_cmd_body_frame_cb(const autonomysim_interfaces::msg::VelCmd& msg, const std::string& vehicle_name);
     void gimbal_angle_quat_cmd_cb(
-        const AutonomySim_interfaces::msg::GimbalAngleQuatCmd::SharedPtr gimbal_angle_quat_cmd_msg);
+        const autonomysim_interfaces::msg::GimbalAngleQuatCmd::SharedPtr gimbal_angle_quat_cmd_msg);
     void gimbal_angle_euler_cmd_cb(
-        const AutonomySim_interfaces::msg::GimbalAngleEulerCmd::SharedPtr gimbal_angle_euler_cmd_msg);
+        const autonomysim_interfaces::msg::GimbalAngleEulerCmd::SharedPtr gimbal_angle_euler_cmd_msg);
 
     // commands
-    void car_cmd_cb(const AutonomySim_interfaces::msg::CarControls::SharedPtr msg, const std::string &vehicle_name);
+    void car_cmd_cb(const autonomysim_interfaces::msg::CarControls::SharedPtr msg, const std::string &vehicle_name);
     void update_commands();
 
     // state, returns the simulation timestamp best guess based on drone state timestamp, AutonomySim needs to return
@@ -209,22 +211,22 @@ class AutonomySimROSWrapper {
     void publish_vehicle_state();
 
     /// ROS service callbacks
-    bool takeoff_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Request> request,
-                        const std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Response> response,
+    bool takeoff_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Request> request,
+                        const std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Response> response,
                         const std::string &vehicle_name);
-    bool takeoff_group_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::TakeoffGroup::Request> request,
-                              const std::shared_ptr<AutonomySim_interfaces::srv::TakeoffGroup::Response> response);
-    bool takeoff_all_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Request> request,
-                            const std::shared_ptr<AutonomySim_interfaces::srv::Takeoff::Response> response);
-    bool land_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::Land::Request> request,
-                     const std::shared_ptr<AutonomySim_interfaces::srv::Land::Response> response,
+    bool takeoff_group_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::TakeoffGroup::Request> request,
+                              const std::shared_ptr<autonomysim_interfaces::srv::TakeoffGroup::Response> response);
+    bool takeoff_all_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Request> request,
+                            const std::shared_ptr<autonomysim_interfaces::srv::Takeoff::Response> response);
+    bool land_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::Land::Request> request,
+                     const std::shared_ptr<autonomysim_interfaces::srv::Land::Response> response,
                      const std::string &vehicle_name);
-    bool land_group_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::LandGroup::Request> request,
-                           const std::shared_ptr<AutonomySim_interfaces::srv::LandGroup::Response> response);
-    bool land_all_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::Land::Request> request,
-                         const std::shared_ptr<AutonomySim_interfaces::srv::Land::Response> response);
-    bool reset_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::Reset::Request> request,
-                      const std::shared_ptr<AutonomySim_interfaces::srv::Reset::Response> response);
+    bool land_group_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::LandGroup::Request> request,
+                           const std::shared_ptr<autonomysim_interfaces::srv::LandGroup::Response> response);
+    bool land_all_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::Land::Request> request,
+                         const std::shared_ptr<autonomysim_interfaces::srv::Land::Response> response);
+    bool reset_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::Reset::Request> request,
+                      const std::shared_ptr<autonomysim_interfaces::srv::Reset::Response> response);
 
     /// ROS tf broadcasters
     void publish_camera_tf(const ImageResponse &img_response, const rclcpp::Time &ros_time, const std::string &frame_id,
@@ -265,37 +267,42 @@ class AutonomySimROSWrapper {
     nervosys::autonomylib::Quaternionr get_airlib_quat(const tf2::Quaternion &tf2_quat) const;
     nav_msgs::msg::Odometry
     get_odom_msg_from_kinematic_state(const nervosys::autonomylib::Kinematics::State &kinematics_estimated) const;
-    nav_msgs::msg::Odometry get_odom_msg_from_multirotor_state(const nervosys::autonomylib::MultirotorState &drone_state) const;
-    nav_msgs::msg::Odometry get_odom_msg_from_car_state(const nervosys::autonomylib::CarApiBase::CarState &car_state) const;
-    AutonomySim_interfaces::msg::CarState
+    nav_msgs::msg::Odometry
+    get_odom_msg_from_multirotor_state(const nervosys::autonomylib::MultirotorState &drone_state) const;
+    nav_msgs::msg::Odometry
+    get_odom_msg_from_car_state(const nervosys::autonomylib::CarApiBase::CarState &car_state) const;
+    autonomysim_interfaces::msg::CarState
     get_roscarstate_msg_from_car_state(const nervosys::autonomylib::CarApiBase::CarState &car_state) const;
     nervosys::autonomylib::Pose get_airlib_pose(const float &x, const float &y, const float &z,
-                                      const nervosys::autonomylib::Quaternionr &airlib_quat) const;
-    AutonomySim_interfaces::msg::GPSYaw
-    get_gps_msg_from_AutonomySim_geo_point(const nervosys::autonomylib::GeoPoint &geo_point) const;
+                                                const nervosys::autonomylib::Quaternionr &airlib_quat) const;
+    autonomysim_interfaces::msg::GPSYaw
+    get_gps_msg_from_autonomysim_geo_point(const nervosys::autonomylib::GeoPoint &geo_point) const;
     sensor_msgs::msg::NavSatFix
-    get_gps_sensor_msg_from_AutonomySim_geo_point(const nervosys::autonomylib::GeoPoint &geo_point) const;
-    sensor_msgs::msg::Imu get_imu_msg_from_AutonomySim(const nervosys::autonomylib::ImuBase::Output &imu_data) const;
-    AutonomySim_interfaces::msg::Altimeter
-    get_altimeter_msg_from_AutonomySim(const nervosys::autonomylib::BarometerBase::Output &alt_data) const;
-    sensor_msgs::msg::Range get_range_from_AutonomySim(const nervosys::autonomylib::DistanceSensorData &dist_data) const;
-    sensor_msgs::msg::PointCloud2 get_lidar_msg_from_AutonomySim(const nervosys::autonomylib::LidarData &lidar_data,
+    get_gps_sensor_msg_from_autonomysim_geo_point(const nervosys::autonomylib::GeoPoint &geo_point) const;
+    sensor_msgs::msg::Imu get_imu_msg_from_autonomysim(const nervosys::autonomylib::ImuBase::Output &imu_data) const;
+    autonomysim_interfaces::msg::Altimeter
+    get_altimeter_msg_from_autonomysim(const nervosys::autonomylib::BarometerBase::Output &alt_data) const;
+    sensor_msgs::msg::Range
+    get_range_from_autonomysim(const nervosys::autonomylib::DistanceSensorData &dist_data) const;
+    sensor_msgs::msg::PointCloud2 get_lidar_msg_from_autonomysim(const nervosys::autonomylib::LidarData &lidar_data,
                                                                  const std::string &vehicle_name,
                                                                  const std::string &sensor_name) const;
-    sensor_msgs::msg::NavSatFix get_gps_msg_from_AutonomySim(const nervosys::autonomylib::GpsBase::Output &gps_data) const;
+    sensor_msgs::msg::NavSatFix
+    get_gps_msg_from_autonomysim(const nervosys::autonomylib::GpsBase::Output &gps_data) const;
     sensor_msgs::msg::MagneticField
-    get_mag_msg_from_AutonomySim(const nervosys::autonomylib::MagnetometerBase::Output &mag_data) const;
-    AutonomySim_interfaces::msg::Environment
-    get_environment_msg_from_AutonomySim(const nervosys::autonomylib::Environment::State &env_data) const;
+    get_mag_msg_from_autonomysim(const nervosys::autonomylib::MagnetometerBase::Output &mag_data) const;
+    autonomysim_interfaces::msg::Environment
+    get_environment_msg_from_autonomysim(const nervosys::autonomylib::Environment::State &env_data) const;
     nervosys::autonomylib::GeoPoint get_origin_geo_point() const;
-    VelCmd get_airlib_world_vel_cmd(const AutonomySim_interfaces::msg::VelCmd &msg) const;
-    VelCmd get_airlib_body_vel_cmd(const AutonomySim_interfaces::msg::VelCmd &msg,
+    VelCmd get_airlib_world_vel_cmd(const autonomysim_interfaces::msg::VelCmd &msg) const;
+    VelCmd get_airlib_body_vel_cmd(const autonomysim_interfaces::msg::VelCmd &msg,
                                    const nervosys::autonomylib::Quaternionr &airlib_quat) const;
     geometry_msgs::msg::Transform
-    get_transform_msg_from_AutonomySim(const nervosys::autonomylib::Vector3r &position,
+    get_transform_msg_from_autonomysim(const nervosys::autonomylib::Vector3r &position,
                                        const nervosys::autonomylib::AutonomySimSettings::Rotation &rotation);
-    geometry_msgs::msg::Transform get_transform_msg_from_AutonomySim(const nervosys::autonomylib::Vector3r &position,
-                                                                     const nervosys::autonomylib::Quaternionr &quaternion);
+    geometry_msgs::msg::Transform
+    get_transform_msg_from_autonomysim(const nervosys::autonomylib::Vector3r &position,
+                                       const nervosys::autonomylib::Quaternionr &quaternion);
 
     // not used anymore, but can be useful in future with an unreal camera calibration environment
     void read_params_from_yaml_and_fill_cam_info_msg(const std::string &file_name,
@@ -309,42 +316,42 @@ class AutonomySimROSWrapper {
 
   private:
     // subscriber / services for ALL robots
-    rclcpp::Subscription<AutonomySim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_all_body_frame_sub_;
-    rclcpp::Subscription<AutonomySim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_all_world_frame_sub_;
-    rclcpp::Service<AutonomySim_interfaces::srv::Takeoff>::SharedPtr takeoff_all_srvr_;
-    rclcpp::Service<AutonomySim_interfaces::srv::Land>::SharedPtr land_all_srvr_;
+    rclcpp::Subscription<autonomysim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_all_body_frame_sub_;
+    rclcpp::Subscription<autonomysim_interfaces::msg::VelCmd>::SharedPtr vel_cmd_all_world_frame_sub_;
+    rclcpp::Service<autonomysim_interfaces::srv::Takeoff>::SharedPtr takeoff_all_srvr_;
+    rclcpp::Service<autonomysim_interfaces::srv::Land>::SharedPtr land_all_srvr_;
 
     // todo - subscriber / services for a GROUP of robots, which is defined by a list of `vehicle_name`s passed in the
     // ros msg / srv request
-    rclcpp::Subscription<AutonomySim_interfaces::msg::VelCmdGroup>::SharedPtr vel_cmd_group_body_frame_sub_;
-    rclcpp::Subscription<AutonomySim_interfaces::msg::VelCmdGroup>::SharedPtr vel_cmd_group_world_frame_sub_;
-    rclcpp::Service<AutonomySim_interfaces::srv::TakeoffGroup>::SharedPtr takeoff_group_srvr_;
-    rclcpp::Service<AutonomySim_interfaces::srv::LandGroup>::SharedPtr land_group_srvr_;
+    rclcpp::Subscription<autonomysim_interfaces::msg::VelCmdGroup>::SharedPtr vel_cmd_group_body_frame_sub_;
+    rclcpp::Subscription<autonomysim_interfaces::msg::VelCmdGroup>::SharedPtr vel_cmd_group_world_frame_sub_;
+    rclcpp::Service<autonomysim_interfaces::srv::TakeoffGroup>::SharedPtr takeoff_group_srvr_;
+    rclcpp::Service<autonomysim_interfaces::srv::LandGroup>::SharedPtr land_group_srvr_;
 
-    AutonomySim_MODE AutonomySim_mode_ = AutonomySim_MODE::DRONE;
+    AUTONOMYSIM_MODE autonomysim_mode_ = AUTONOMYSIM_MODE::DRONE;
 
-    rclcpp::Service<AutonomySim_interfaces::srv::Reset>::SharedPtr reset_srvr_;
-    rclcpp::Publisher<AutonomySim_interfaces::msg::GPSYaw>::SharedPtr origin_geo_point_pub_; // home geo coord of drones
-    nervosys::autonomylib::GeoPoint origin_geo_point_;                   // gps coord of unreal origin
-    AutonomySim_interfaces::msg::GPSYaw origin_geo_point_msg_; // todo duplicate
+    rclcpp::Service<autonomysim_interfaces::srv::Reset>::SharedPtr reset_srvr_;
+    rclcpp::Publisher<autonomysim_interfaces::msg::GPSYaw>::SharedPtr origin_geo_point_pub_; // home geo coord of drones
+    nervosys::autonomylib::GeoPoint origin_geo_point_;         // gps coord of unreal origin
+    autonomysim_interfaces::msg::GPSYaw origin_geo_point_msg_; // todo duplicate
 
-    AutonomySimSettingsParser AutonomySim_settings_parser_;
+    AutonomySimSettingsParser autonomysim_settings_parser_;
     std::unordered_map<std::string, std::unique_ptr<VehicleROS>> vehicle_name_ptr_map_;
     static const std::unordered_map<int, std::string> image_type_int_to_string_map_;
 
     bool is_vulkan_; // rosparam obtained from launch file. If vulkan is being used, we BGR encoding instead of RGB
 
     std::string host_ip_;
-    std::unique_ptr<nervosys::autonomylib::RpcLibClientBase> AutonomySim_client_;
+    std::unique_ptr<nervosys::autonomylib::RpcLibClientBase> autonomysim_client_;
     // seperate busy connections to AutonomySim, update in their own thread
-    nervosys::autonomylib::RpcLibClientBase AutonomySim_client_images_;
-    nervosys::autonomylib::RpcLibClientBase AutonomySim_client_lidar_;
+    nervosys::autonomylib::RpcLibClientBase autonomysim_client_images_;
+    nervosys::autonomylib::RpcLibClientBase autonomysim_client_lidar_;
 
     std::shared_ptr<rclcpp::Node> nh_;
     std::shared_ptr<rclcpp::Node> nh_img_;
     std::shared_ptr<rclcpp::Node> nh_lidar_;
 
-    // todo not sure if async spinners shuold be inside this class, or should be instantiated in AutonomySim_node.cpp,
+    // todo not sure if async spinners shuold be inside this class, or should be instantiated in autonomysim_node.cpp,
     // and cb queues should be public todo for multiple drones with multiple sensors, this won't scale. make it a part
     // of VehicleROS?
 
@@ -355,11 +362,11 @@ class AutonomySimROSWrapper {
     GimbalCmd gimbal_cmd_;
 
     /// ROS tf
-    const std::string AutonomySim_FRAME_ID = "world_ned";
-    std::string world_frame_id_ = AutonomySim_FRAME_ID;
-    const std::string AutonomySim_ODOM_FRAME_ID = "odom_local_ned";
+    const std::string AUTONOMYSIM_FRAME_ID = "world_ned";
+    std::string world_frame_id_ = AUTONOMYSIM_FRAME_ID;
+    const std::string AUTONOMYSIM_ODOM_FRAME_ID = "odom_local_ned";
     const std::string ENU_ODOM_FRAME_ID = "odom_local_enu";
-    std::string odom_frame_id_ = AutonomySim_ODOM_FRAME_ID;
+    std::string odom_frame_id_ = AUTONOMYSIM_ODOM_FRAME_ID;
     std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
     std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_tf_pub_;
 
@@ -371,17 +378,17 @@ class AutonomySimROSWrapper {
     double vel_cmd_duration_;
 
     /// ROS Timers.
-    rclcpp::TimerBase::SharedPtr AutonomySim_img_response_timer_;
-    rclcpp::TimerBase::SharedPtr AutonomySim_control_update_timer_;
-    rclcpp::TimerBase::SharedPtr AutonomySim_lidar_update_timer_;
+    rclcpp::TimerBase::SharedPtr autonomysim_img_response_timer_;
+    rclcpp::TimerBase::SharedPtr autonomysim_control_update_timer_;
+    rclcpp::TimerBase::SharedPtr autonomysim_lidar_update_timer_;
 
     /// Callback groups
-    std::vector<rclcpp::CallbackGroup::SharedPtr> AutonomySim_img_callback_groups_;
-    rclcpp::CallbackGroup::SharedPtr AutonomySim_control_callback_group_;
-    std::vector<rclcpp::CallbackGroup::SharedPtr> AutonomySim_lidar_callback_groups_;
+    std::vector<rclcpp::CallbackGroup::SharedPtr> autonomysim_img_callback_groups_;
+    rclcpp::CallbackGroup::SharedPtr autonomysim_control_callback_group_;
+    std::vector<rclcpp::CallbackGroup::SharedPtr> autonomysim_lidar_callback_groups_;
 
-    typedef std::pair<std::vector<ImageRequest>, std::string> AutonomySim_img_request_vehicle_name_pair;
-    std::vector<AutonomySim_img_request_vehicle_name_pair> AutonomySim_img_request_vehicle_name_pair_vec_;
+    typedef std::pair<std::vector<ImageRequest>, std::string> autonomysim_img_request_vehicle_name_pair;
+    std::vector<autonomysim_img_request_vehicle_name_pair> autonomysim_img_request_vehicle_name_pair_vec_;
     std::vector<image_transport::Publisher> image_pub_vec_;
     std::vector<rclcpp::Publisher<sensor_msgs::msg::CameraInfo>::SharedPtr> cam_info_pub_vec_;
 
@@ -392,8 +399,8 @@ class AutonomySimROSWrapper {
     rosgraph_msgs::msg::Clock ros_clock_;
     bool publish_clock_;
 
-    rclcpp::Subscription<AutonomySim_interfaces::msg::GimbalAngleQuatCmd>::SharedPtr gimbal_angle_quat_cmd_sub_;
-    rclcpp::Subscription<AutonomySim_interfaces::msg::GimbalAngleEulerCmd>::SharedPtr gimbal_angle_euler_cmd_sub_;
+    rclcpp::Subscription<autonomysim_interfaces::msg::GimbalAngleQuatCmd>::SharedPtr gimbal_angle_quat_cmd_sub_;
+    rclcpp::Subscription<autonomysim_interfaces::msg::GimbalAngleEulerCmd>::SharedPtr gimbal_angle_euler_cmd_sub_;
 
     static constexpr char CAM_YML_NAME[] = "camera_name";
     static constexpr char WIDTH_YML_NAME[] = "image_width";

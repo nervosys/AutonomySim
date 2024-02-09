@@ -1,6 +1,6 @@
 <!-- Thank you for submitting a pull request! -->
 <!-- ⚠️⚠️ DO NOT DELETE THIS! pull_request_template ⚠️⚠️ -->
-<!-- Please read our contribution guidelines: https://microsoft.github.io/AutonomySim/CONTRIBUTING/ -->
+<!-- Please read our contribution guidelines: https://nervosys.github.io/AutonomySim/CONTRIBUTING/ -->
 
 Fixes: #    <!-- add this line for each issue your PR solves. -->
 <!-- Fixes: # -->

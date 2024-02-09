@@ -1,5 +1,5 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
 import numpy as np
 import os
@@ -8,7 +8,7 @@ import pprint
 import cv2
 
 # connect to the AutonomySim simulator
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.enableApiControl(True)
 
@@ -32,7 +32,7 @@ gps_data = client.getGpsData()
 s = pprint.pformat(gps_data)
 print("gps_data: %s" % s)
 
-AutonomySim.wait_key('Press any key to takeoff')
+autonomysim.wait_key("Press any key to takeoff")
 print("Taking off...")
 client.armDisarm(True)
 client.takeoffAsync().join()
@@ -40,7 +40,7 @@ client.takeoffAsync().join()
 state = client.getMultirotorState()
 print("state: %s" % pprint.pformat(state))
 
-AutonomySim.wait_key('Press any key to move vehicle to (-10, 10, -10) at 5 m/s')
+autonomysim.wait_key("Press any key to move vehicle to (-10, 10, -10) at 5 m/s")
 client.moveToPositionAsync(-10, 10, -10, 5).join()
 
 client.hoverAsync().join()
@@ -48,17 +48,26 @@ client.hoverAsync().join()
 state = client.getMultirotorState()
 print("state: %s" % pprint.pformat(state))
 
-AutonomySim.wait_key('Press any key to take images')
+autonomysim.wait_key("Press any key to take images")
 # get camera images from the car
-responses = client.simGetImages([
-    AutonomySim.ImageRequest("0", AutonomySim.ImageType.DepthVis),  #depth visualization image
-    AutonomySim.ImageRequest("1", AutonomySim.ImageType.DepthPerspective, True), #depth in perspective projection
-    AutonomySim.ImageRequest("1", AutonomySim.ImageType.Scene), #scene vision image in png format
-    AutonomySim.ImageRequest("1", AutonomySim.ImageType.Scene, False, False)])  #scene vision image in uncompressed RGBA array
-print('Retrieved images: %d' % len(responses))
+responses = client.simGetImages(
+    [
+        autonomysim.ImageRequest(
+            "0", autonomysim.ImageType.DepthVis
+        ),  # depth visualization image
+        autonomysim.ImageRequest(
+            "1", autonomysim.ImageType.DepthPerspective, True
+        ),  # depth in perspective projection
+        autonomysim.ImageRequest(
+            "1", autonomysim.ImageType.Scene
+        ),  # scene vision image in png format
+        autonomysim.ImageRequest("1", autonomysim.ImageType.Scene, False, False),
+    ]
+)  # scene vision image in uncompressed RGBA array
+print("Retrieved images: %d" % len(responses))
 
-tmp_dir = os.path.join(tempfile.gettempdir(), "AutonomySim_drone")
-print ("Saving images to %s" % tmp_dir)
+tmp_dir = os.path.join(tempfile.gettempdir(), "autonomysim_drone")
+print("Saving images to %s" % tmp_dir)
 try:
     os.makedirs(tmp_dir)
 except OSError:
@@ -66,22 +75,35 @@ except OSError:
         raise
 
 for idx, response in enumerate(responses):
-
     filename = os.path.join(tmp_dir, str(idx))
 
     if response.pixels_as_float:
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_float)))
-        AutonomySim.write_pfm(os.path.normpath(filename + '.pfm'), AutonomySim.get_pfm_array(response))
-    elif response.compress: #png format
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
-        AutonomySim.write_file(os.path.normpath(filename + '.png'), response.image_data_uint8)
-    else: #uncompressed array
-        print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
-        img1d = np.fromstring(response.image_data_uint8, dtype=np.uint8) # get numpy array
-        img_rgb = img1d.reshape(response.height, response.width, 3) # reshape array to 4 channel image array H X W X 3
-        cv2.imwrite(os.path.normpath(filename + '.png'), img_rgb) # write to png
+        print(
+            "Type %d, size %d" % (response.image_type, len(response.image_data_float))
+        )
+        autonomysim.write_pfm(
+            os.path.normpath(filename + ".pfm"), autonomysim.get_pfm_array(response)
+        )
+    elif response.compress:  # png format
+        print(
+            "Type %d, size %d" % (response.image_type, len(response.image_data_uint8))
+        )
+        autonomysim.write_file(
+            os.path.normpath(filename + ".png"), response.image_data_uint8
+        )
+    else:  # uncompressed array
+        print(
+            "Type %d, size %d" % (response.image_type, len(response.image_data_uint8))
+        )
+        img1d = np.fromstring(
+            response.image_data_uint8, dtype=np.uint8
+        )  # get numpy array
+        img_rgb = img1d.reshape(
+            response.height, response.width, 3
+        )  # reshape array to 4 channel image array H X W X 3
+        cv2.imwrite(os.path.normpath(filename + ".png"), img_rgb)  # write to png
 
-AutonomySim.wait_key('Press any key to reset to original state')
+autonomysim.wait_key("Press any key to reset to original state")
 
 client.reset()
 client.armDisarm(False)

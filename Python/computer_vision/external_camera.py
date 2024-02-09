@@ -1,5 +1,5 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
 import os
 import tempfile
@@ -26,11 +26,11 @@ CAM_NAME = "fixed1"
 IS_EXTERNAL_CAM = True
 
 
-client = AutonomySim.VehicleClient()
+client = autonomysim.VehicleClient()
 client.confirmConnection()
 
-tmp_dir = os.path.join(tempfile.gettempdir(), "AutonomySim_cv_mode")
-print ("Saving images to %s" % tmp_dir)
+tmp_dir = os.path.join(tempfile.gettempdir(), "autonomysim_cv_mode")
+print("Saving images to %s" % tmp_dir)
 try:
     os.makedirs(tmp_dir)
 except OSError:
@@ -44,24 +44,35 @@ cam_info = client.simGetCameraInfo(CAM_NAME, external=IS_EXTERNAL_CAM)
 print(cam_info)
 
 # Test Image APIs
-AutonomySim.wait_key('Press any key to get images')
+autonomysim.wait_key("Press any key to get images")
 
-requests = [AutonomySim.ImageRequest(CAM_NAME, AutonomySim.ImageType.Scene),
-            AutonomySim.ImageRequest(CAM_NAME, AutonomySim.ImageType.DepthPlanar),
-            AutonomySim.ImageRequest(CAM_NAME, AutonomySim.ImageType.DepthVis),
-            AutonomySim.ImageRequest(CAM_NAME, AutonomySim.ImageType.Segmentation),
-            AutonomySim.ImageRequest(CAM_NAME, AutonomySim.ImageType.SurfaceNormals)]
+requests = [
+    autonomysim.ImageRequest(CAM_NAME, autonomysim.ImageType.Scene),
+    autonomysim.ImageRequest(CAM_NAME, autonomysim.ImageType.DepthPlanar),
+    autonomysim.ImageRequest(CAM_NAME, autonomysim.ImageType.DepthVis),
+    autonomysim.ImageRequest(CAM_NAME, autonomysim.ImageType.Segmentation),
+    autonomysim.ImageRequest(CAM_NAME, autonomysim.ImageType.SurfaceNormals),
+]
 
-def save_images(responses, prefix = ""):
+
+def save_images(responses, prefix=""):
     for i, response in enumerate(responses):
         filename = os.path.join(tmp_dir, prefix + "_" + str(i))
 
         if response.pixels_as_float:
-            print(f"Type {response.image_type}, size {len(response.image_data_float)}, pos {response.camera_position}")
-            AutonomySim.write_pfm(os.path.normpath(filename + '.pfm'), AutonomySim.get_pfm_array(response))
+            print(
+                f"Type {response.image_type}, size {len(response.image_data_float)}, pos {response.camera_position}"
+            )
+            autonomysim.write_pfm(
+                os.path.normpath(filename + ".pfm"), autonomysim.get_pfm_array(response)
+            )
         else:
-            print(f"Type {response.image_type}, size {len(response.image_data_uint8)}, pos {response.camera_position}")
-            AutonomySim.write_file(os.path.normpath(filename + '.png'), response.image_data_uint8)
+            print(
+                f"Type {response.image_type}, size {len(response.image_data_uint8)}, pos {response.camera_position}"
+            )
+            autonomysim.write_file(
+                os.path.normpath(filename + ".png"), response.image_data_uint8
+            )
 
 
 responses = client.simGetImages(requests, external=IS_EXTERNAL_CAM)
@@ -69,11 +80,11 @@ save_images(responses, "old_fov")
 
 
 # Test FoV API
-AutonomySim.wait_key('Press any key to change FoV and get images')
+autonomysim.wait_key("Press any key to change FoV and get images")
 
 client.simSetCameraFov(CAM_NAME, 120, external=IS_EXTERNAL_CAM)
 
-responses = client.simGetImages(requests, external = IS_EXTERNAL_CAM)
+responses = client.simGetImages(requests, external=IS_EXTERNAL_CAM)
 save_images(responses, "new_fov")
 
 new_cam_info = client.simGetCameraInfo(CAM_NAME, external=IS_EXTERNAL_CAM)
@@ -81,7 +92,9 @@ print(f"Old FOV: {cam_info.fov}, New FOV: {new_cam_info.fov}")
 
 
 # Test Pose APIs
-new_pose = AutonomySim.Pose(AutonomySim.Vector3r(-10, -5, -5), AutonomySim.to_quaternion(0.1, 0, 0.1))
+new_pose = autonomysim.Pose(
+    autonomysim.Vector3r(-10, -5, -5), autonomysim.to_quaternion(0.1, 0, 0.1)
+)
 client.simSetCameraPose(CAM_NAME, new_pose, external=IS_EXTERNAL_CAM)
 
 responses = client.simGetImages(requests, external=IS_EXTERNAL_CAM)

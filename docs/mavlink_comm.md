@@ -1,10 +1,10 @@
-# MavLinkCom
+# MAVLink Communication (MavLinkCom)
 
 `MavLinkCom` is a cross-platform C++ library that helps connect to and communicate with [MavLink](https://github.com/mavlink/mavlink) based vehicles. Specifically this library is designed to work well with [PX4](https://github.com/PX4/Firmware) based drones.
 
 ## Design
 
-You can view and edit the [Design.dgml](mavlinkcom_design/Design.dgml) diagram in Visual Studio. ![Overview](mavlinkcom_design/images/overview.png)
+You can view and edit the [Design.dgml](media/diagrams/mavlink/Design.dgml) diagram in Visual Studio. ![Overview](media/diagrams/mavlink/images/overview.png)
 
 The following are the most important classes in this library.
 
@@ -189,17 +189,17 @@ You can wire up different configurations of mavlink pipelines using the MavLinkC
 
 Example 1, we connect to PX4 over serial, and proxy those messages through to QGroundControl and the LogViewer who are listening on remote ports.  
 
-![Serial to QGC](mavlinkcom_design/images/example1.png)
+![Serial to QGC](media/diagrams/mavlink/images/example1.png)
 
 Example 2: simulation can talk to jMavSim and jMavSim connects to PX4.  jMavSim can also manage multiple connections, so it can talk to unreal simulator. 
 Another MavLinkConnection can be joined to proxy connections that jMavSim doesn't support, like the LogViewer or a remote camera node.
 
-![Serial to QGC](mavlinkcom_design/images/example2.png)
+![Serial to QGC](media/diagrams/mavlink/images/example2.png)
 
 Example 3: we use MavLinkConnection to connect to PX4 over serial, then join additional connections for all our remote nodes including jMavSim.
 
-![Serial to QGC](mavlinkcom_design/images/example3.png)
+![Serial to QGC](media/diagrams/mavlink/images/example3.png)
 
 Example 4: We can also do distributed systems to control the drone remotely:
 
-![Serial to QGC](mavlinkcom_design/images/example4.png)
+![Serial to QGC](media/diagrams/mavlink/images/example4.png)

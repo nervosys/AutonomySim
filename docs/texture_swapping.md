@@ -36,10 +36,10 @@ The string of "," or ", " delimited tags identifies on which actors to perform t
 Demo (Python):
 
 ```python
-import AutonomySim
+import autonomysim
 import time
 
-c = AutonomySim.client.MultirotorClient()
+c = autonomysim.client.MultirotorClient()
 print(c.simSwapTextures("furniture", 0))
 time.sleep(2)
 print(c.simSwapTextures("chair", 1))

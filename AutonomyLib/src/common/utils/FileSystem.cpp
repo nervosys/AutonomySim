@@ -1,8 +1,8 @@
 // in header only mode, control library is not available
 #ifndef AUTONOMYLIB_HEADER_ONLY
 
-#include "common/common_utils/FileSystem.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/FileSystem.hpp"
+#include "common/utils/Utils.hpp"
 #include <codecvt>
 #include <cstdio>
 #include <fstream>
@@ -10,22 +10,22 @@
 
 #if defined _WIN32 || defined _WIN64
 
-#include "common/common_utils/WindowsApisCommonPre.hpp"
-#include "common/common_utils/MinWinDefines.hpp"
+#include "common/utils/MinWinDefines.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 
-#undef NOWINMESSAGES  // WM_*, EM_*, LB_*, CB_*
-#undef NOCTLMGR       // Control and Dialog routines
-#undef NOGDI          // All GDI #undefs and routines
-#undef NOKERNEL       // All KERNEL #undefs and routines
-#undef NOUSER         // All USER #undefs and routines
-#undef NOMSG          // typedef MSG and associated routines
+#undef NOWINMESSAGES // WM_*, EM_*, LB_*, CB_*
+#undef NOCTLMGR      // Control and Dialog routines
+#undef NOGDI         // All GDI #undefs and routines
+#undef NOKERNEL      // All KERNEL #undefs and routines
+#undef NOUSER        // All USER #undefs and routines
+#undef NOMSG         // typedef MSG and associated routines
 
-//#include <fileapi.h>
-#include <Shlobj.h>  // Windows shell object
-#include <direct.h>  // Windows file system directory manipulation
-#include <stdlib.h>  // C standard library
+// #include <fileapi.h>
+#include <Shlobj.h> // Windows shell object
+#include <direct.h> // Windows file system directory manipulation
+#include <stdlib.h> // C standard library
 
-#include "common/common_utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
 
 #else
 #include <errno.h>
@@ -36,7 +36,7 @@
 #endif
 
 #ifdef __APPLE__
-#include <mach-o/dyld.h>  // MacOS Mach kernel, dynamic loader
+#include <mach-o/dyld.h> // MacOS Mach kernel, dynamic loader
 #endif
 
 namespace common_utils {

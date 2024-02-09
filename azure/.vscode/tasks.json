@@ -6,9 +6,12 @@
         {
             "label": "Start AutonomySim",
             "type": "shell",
-            "options": {"shell": {"executable": "powershell.exe"}},
-            "command": ".\\start-AutonomySim.ps1"
-            
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            },
+            "command": ".\\start-autonomysim.ps1"
         }
     ]
 }

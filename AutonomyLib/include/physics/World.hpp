@@ -9,7 +9,7 @@
 #include "common/ClockFactory.hpp"
 #include "common/Common.hpp"
 #include "common/UpdatableContainer.hpp"
-#include "common/common_utils/ScheduledExecutor.hpp"
+#include "common/utils/ScheduledExecutor.hpp"
 #include <functional>
 
 namespace nervosys {

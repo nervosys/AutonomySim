@@ -1,7 +1,9 @@
+// pd_position_controller_simple.h
+
 #ifndef _PID_POSITION_CONTROLLER_SIMPLE_H_
 #define _PID_POSITION_CONTROLLER_SIMPLE_H_
 
-#include "common/common_utils/StrictMode.hpp"
+#include "common/utils/StrictMode.hpp"
 STRICT_MODE_OFF // todo what does this do?
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
@@ -9,13 +11,13 @@ STRICT_MODE_OFF // todo what does this do?
 #include "rpc/rpc_error.h"
     STRICT_MODE_ON
 
-#include "common/common_utils/FileSystem.hpp"
+#include "common/utils/FileSystem.hpp"
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
 
-#include <AutonomySim_interfaces/msg/gps_yaw.hpp>
-#include <AutonomySim_interfaces/msg/vel_cmd.hpp>
-#include <AutonomySim_interfaces/srv/set_gps_position.hpp>
-#include <AutonomySim_interfaces/srv/set_local_position.hpp>
+#include <autonomysim_interfaces/msg/gps_yaw.hpp>
+#include <autonomysim_interfaces/msg/vel_cmd.hpp>
+#include <autonomysim_interfaces/srv/set_gps_position.hpp>
+#include <autonomysim_interfaces/srv/set_local_position.hpp>
 #include <geodetic_conv.hpp>
 #include <math.h>
 #include <math_common.h>
@@ -74,19 +76,19 @@ class PIDPositionController {
 
     // ROS service callbacks
     bool
-    local_position_goal_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Request> request,
-                               std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Response> response);
+    local_position_goal_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Request> request,
+                               std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Response> response);
     bool local_position_goal_srv_override_cb(
-        const std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Request> request,
-        std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Response> response);
-    bool gps_goal_srv_cb(const std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Request> request,
-                         std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Response> response);
-    bool gps_goal_srv_override_cb(const std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Request> request,
-                                  std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Response> response);
+        const std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Request> request,
+        std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Response> response);
+    bool gps_goal_srv_cb(const std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Request> request,
+                         std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Response> response);
+    bool gps_goal_srv_override_cb(const std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Request> request,
+                                  std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Response> response);
 
     // ROS subscriber callbacks
-    void AutonomySim_odom_cb(const nav_msgs::msg::Odometry::SharedPtr odom_msg);
-    void home_geopoint_cb(const AutonomySim_interfaces::msg::GPSYaw::SharedPtr gps_msg);
+    void autonomysim_odom_cb(const nav_msgs::msg::Odometry::SharedPtr odom_msg);
+    void home_geopoint_cb(const autonomysim_interfaces::msg::GPSYaw::SharedPtr gps_msg);
 
     void update_control_cmd_timer_cb();
 
@@ -112,24 +114,24 @@ class PIDPositionController {
     XYZYaw curr_error_;
 
     bool has_home_geo_;
-    AutonomySim_interfaces::msg::GPSYaw gps_home_msg_;
+    autonomysim_interfaces::msg::GPSYaw gps_home_msg_;
 
     nav_msgs::msg::Odometry curr_odom_;
-    AutonomySim_interfaces::msg::VelCmd vel_cmd_;
+    autonomysim_interfaces::msg::VelCmd vel_cmd_;
     bool reached_goal_;
     bool has_goal_;
     bool has_odom_;
     bool got_goal_once_;
     // todo check for odom msg being older than n sec
 
-    rclcpp::Publisher<AutonomySim_interfaces::msg::VelCmd>::SharedPtr AutonomySim_vel_cmd_world_frame_pub_;
-    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr AutonomySim_odom_sub_;
-    rclcpp::Subscription<AutonomySim_interfaces::msg::GPSYaw>::SharedPtr home_geopoint_sub_;
+    rclcpp::Publisher<autonomysim_interfaces::msg::VelCmd>::SharedPtr autonomysim_vel_cmd_world_frame_pub_;
+    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr autonomysim_odom_sub_;
+    rclcpp::Subscription<autonomysim_interfaces::msg::GPSYaw>::SharedPtr home_geopoint_sub_;
 
-    rclcpp::Service<AutonomySim_interfaces::srv::SetLocalPosition>::SharedPtr local_position_goal_srvr_;
-    rclcpp::Service<AutonomySim_interfaces::srv::SetLocalPosition>::SharedPtr local_position_goal_override_srvr_;
-    rclcpp::Service<AutonomySim_interfaces::srv::SetGPSPosition>::SharedPtr gps_goal_srvr_;
-    rclcpp::Service<AutonomySim_interfaces::srv::SetGPSPosition>::SharedPtr gps_goal_override_srvr_;
+    rclcpp::Service<autonomysim_interfaces::srv::SetLocalPosition>::SharedPtr local_position_goal_srvr_;
+    rclcpp::Service<autonomysim_interfaces::srv::SetLocalPosition>::SharedPtr local_position_goal_override_srvr_;
+    rclcpp::Service<autonomysim_interfaces::srv::SetGPSPosition>::SharedPtr gps_goal_srvr_;
+    rclcpp::Service<autonomysim_interfaces::srv::SetGPSPosition>::SharedPtr gps_goal_override_srvr_;
 
     rclcpp::TimerBase::SharedPtr update_control_cmd_timer_;
 };

@@ -10,40 +10,37 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
+    output = DeclareLaunchArgument("output", default_value="log")
 
-    output = DeclareLaunchArgument(
-        "output",
-        default_value='log')
+    publish_clock = DeclareLaunchArgument("publish_clock", default_value="False")
 
-    publish_clock = DeclareLaunchArgument(
-        "publish_clock",
-        default_value='False')
+    is_vulkan = DeclareLaunchArgument("is_vulkan", default_value="True")
 
-    is_vulkan = DeclareLaunchArgument(
-        "is_vulkan",
-        default_value='True')
+    host = DeclareLaunchArgument("host", default_value="localhost")
 
-    host = DeclareLaunchArgument(
-        "host",
-        default_value='localhost')
-  
-    AutonomySim_node = Node(
-            package='AutonomySim_ros_pkgs',
-            executable='AutonomySim_node',
-            name='AutonomySim_node',
-            output='screen',
-            parameters=[{
-                'is_vulkan': False,
-                'update_AutonomySim_img_response_every_n_sec': 0.05,
-                'update_AutonomySim_control_every_n_sec': 0.01,
-                'update_lidar_every_n_sec': 0.01,
-                'publish_clock': LaunchConfiguration('publish_clock'),
-                'host_ip': LaunchConfiguration('host')
-            }])
+    autonomysim_node = Node(
+        package="autonomysim_ros_pkgs",
+        executable="autonomysim_node",
+        name="autonomysim_node",
+        output="screen",
+        parameters=[
+            {
+                "is_vulkan": False,
+                "update_autonomysim_img_response_every_n_sec": 0.05,
+                "update_autonomysim_control_every_n_sec": 0.01,
+                "update_lidar_every_n_sec": 0.01,
+                "publish_clock": LaunchConfiguration("publish_clock"),
+                "host_ip": LaunchConfiguration("host"),
+            }
+        ],
+    )
 
     static_transforms = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('AutonomySim_ros_pkgs'), 'launch/static_transforms.launch.py')
+            os.path.join(
+                get_package_share_directory("autonomysim_ros_pkgs"),
+                "launch/static_transforms.launch.py",
+            )
         )
     )
 
@@ -55,8 +52,8 @@ def generate_launch_description():
     ld.add_action(publish_clock)
     ld.add_action(is_vulkan)
     ld.add_action(host)
-  
+
     ld.add_action(static_transforms)
-    ld.add_action(AutonomySim_node)
+    ld.add_action(autonomysim_node)
 
     return ld

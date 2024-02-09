@@ -1,10 +1,10 @@
-# Recording Data
+# Capturing Data
 
-`AutonomySim` has a [Recording feature](settings.md#recording) to easily collect data and images. The [Recording APIs](apis.md#recording-apis) also allows starting and stopping the recording using API.
+`AutonomySim` has a [`Recording` feature](settings.md#recording) to easily collect data and images. The [Recording APIs](apis.md#recording-apis) also allows starting and stopping the recording using API.
 
-However, the data recorded by default might not be sufficient for your use cases, and it might be preferable to record additional data such as IMU, GPS sensors, Rotor speed for copters, etc. You can use the existing Python and C++ APIs to get the information and store it as required, especially for Lidar. Another option for adding small fields such as GPS or internal data such as Unreal position or something else is possible through modifying the recording methods inside AutonomySim. This page describes the specific methods which you might need to change.
+However, the data recorded by default might not be sufficient for your use cases, and it might be preferable to record additional data such as IMU, GPS sensors, Rotor speed for copters, etc. You can use the existing Python and C++ APIs to get the information and store it as required, especially for LiDAR. Another option for adding small fields such as GPS or internal data such as Unreal position or something else is possible through modifying the recording methods inside `AutonomySim`. This page describes the specific methods which you might need to change.
 
-The recorded data is written in a `AutonomySim_rec.txt` file in a tab-separated format, with images in an `images/` folder. The entire folder is by default present in the `Documents` folder (or specified in settings) with the timestamp of when the recording started in `%Y-%M-%D-%H-%M-%S` format.
+The recorded data is written in a `autonomysim_rec.txt` file in a tab-separated format, with images in an `images/` folder. The entire folder is by default present in the `Documents` folder (or specified in settings) with the timestamp of when the recording started in `%Y-%M-%D-%H-%M-%S` format.
 
 The `Car` vehicle records the following fields:
 

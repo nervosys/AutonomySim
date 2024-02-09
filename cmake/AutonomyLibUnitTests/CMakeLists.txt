@@ -10,9 +10,9 @@ IncludeEigen()
 SetupConsoleBuild()
 
 include_directories(
-  ${AutonomySim_ROOT}/AutonomyLibUnitTests
-  ${AutonomySim_ROOT}/AutonomyLib/include
-  ${AutonomySim_ROOT}/MavLinkCom/include
+  ${AUTONOMYSIM_ROOT}/AutonomyLibUnitTests
+  ${AUTONOMYSIM_ROOT}/AutonomyLib/include
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/include
 )
 
 AddExecutableSource()

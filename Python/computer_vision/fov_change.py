@@ -1,14 +1,14 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
 import os
 import tempfile
 
-client = AutonomySim.VehicleClient()
+client = autonomysim.VehicleClient()
 client.confirmConnection()
 
-tmp_dir = os.path.join(tempfile.gettempdir(), "AutonomySim_cv_mode")
-print ("Saving images to %s" % tmp_dir)
+tmp_dir = os.path.join(tempfile.gettempdir(), "autonomysim_cv_mode")
+print("Saving images to %s" % tmp_dir)
 try:
     os.makedirs(tmp_dir)
 except OSError:
@@ -18,31 +18,42 @@ except OSError:
 CAM_NAME = "front_center"
 print(f"Camera: {CAM_NAME}")
 
-AutonomySim.wait_key('Press any key to get camera parameters')
+autonomysim.wait_key("Press any key to get camera parameters")
 
 cam_info = client.simGetCameraInfo(CAM_NAME)
 print(cam_info)
 
-AutonomySim.wait_key(f'Press any key to get images, saving to {tmp_dir}')
+autonomysim.wait_key(f"Press any key to get images, saving to {tmp_dir}")
 
-requests = [AutonomySim.ImageRequest(CAM_NAME, AutonomySim.ImageType.Scene),
-           AutonomySim.ImageRequest(CAM_NAME, AutonomySim.ImageType.DepthVis)]
+requests = [
+    autonomysim.ImageRequest(CAM_NAME, autonomysim.ImageType.Scene),
+    autonomysim.ImageRequest(CAM_NAME, autonomysim.ImageType.DepthVis),
+]
 
-def save_images(responses, prefix = ""):
+
+def save_images(responses, prefix=""):
     for i, response in enumerate(responses):
         filename = os.path.join(tmp_dir, prefix + "_" + str(i))
         if response.pixels_as_float:
-            print(f"Type {response.image_type}, size {len(response.image_data_float)}, pos {response.camera_position}")
-            AutonomySim.write_pfm(os.path.normpath(filename + '.pfm'), AutonomySim.get_pfm_array(response))
+            print(
+                f"Type {response.image_type}, size {len(response.image_data_float)}, pos {response.camera_position}"
+            )
+            autonomysim.write_pfm(
+                os.path.normpath(filename + ".pfm"), autonomysim.get_pfm_array(response)
+            )
         else:
-            print(f"Type {response.image_type}, size {len(response.image_data_uint8)}, pos {response.camera_position}")
-            AutonomySim.write_file(os.path.normpath(filename + '.png'), response.image_data_uint8)
+            print(
+                f"Type {response.image_type}, size {len(response.image_data_uint8)}, pos {response.camera_position}"
+            )
+            autonomysim.write_file(
+                os.path.normpath(filename + ".png"), response.image_data_uint8
+            )
 
 
 responses = client.simGetImages(requests)
 save_images(responses, "old_fov")
 
-AutonomySim.wait_key('Press any key to change FoV and get images')
+autonomysim.wait_key("Press any key to change FoV and get images")
 
 client.simSetCameraFov(CAM_NAME, 120)
 responses = client.simGetImages(requests)

@@ -11,7 +11,7 @@
 * Lidar = 6
 
 !!! note
-    Cameras are configured differently than the other sensors and do not have an enum associated with them. Look at [general settings](settings.md) and [image API](image_apis.md) for camera config and API.
+    Cameras are configured differently than the other sensors and do not have an enum associated with them. Look at [general settings](settings.md) and [image API](apis_image.md) for camera config and API.
 
 ## Default sensors
 
@@ -32,7 +32,7 @@ If no sensors are specified in the `settings.json`, then the following sensors a
 
 * None
 
-Behind the scenes, `createDefaultSensorSettings` method in [AutonomySimSettings.hpp](https://github.com/nervosys/AutonomySim/blob/main/AutonomyLib/include/common/AutonomySimSettings.hpp) sets up the above sensors with their default parameters, depending on the sim mode specified in the `settings.json` file.
+Behind the scenes, `createDefaultSensorSettings` method in [AutonomySimSettings.hpp](https://github.com/nervosys/AutonomySim/blob/master/AutonomyLib/include/common/AutonomySimSettings.hpp) sets up the above sensors with their default parameters, depending on the sim mode specified in the `settings.json` file.
 
 ## Configuring the default sensor list
 
@@ -173,7 +173,7 @@ Be default, the points hit by distance sensor are not drawn on the viewport. To 
 
 ## Sensor APIs
 
-Jump straight to [`hello_drone.py`](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/multirotor/hello_drone.py) or [`hello_drone.cpp`](https://github.com/nervosys/AutonomySim/blob/main/HelloDrone/main.cpp) for example usage, or see follow below for the full API.
+Jump straight to [`hello_drone.py`](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/multirotor/hello_drone.py) or [`hello_drone.cpp`](https://github.com/nervosys/AutonomySim/blob/master/HelloDrone/main.cpp) for example usage, or see follow below for the full API.
 
 ### Barometer
 

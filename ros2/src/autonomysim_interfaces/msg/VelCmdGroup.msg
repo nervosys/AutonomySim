@@ -1,2 +1,2 @@
-AutonomySim_interfaces/VelCmd vel_cmd
+autonomysim_interfaces/VelCmd vel_cmd
 string[] vehicle_names

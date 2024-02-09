@@ -1,5 +1,5 @@
 import setup_path
-import AutonomySim
+import autonomysim
 import cv2
 import numpy as np
 import os
@@ -7,14 +7,14 @@ import time
 import tempfile
 
 # connect to the AutonomySim simulator
-client = AutonomySim.CarClient()
+client = autonomysim.CarClient()
 client.confirmConnection()
 client.enableApiControl(True)
 print("API Control enabled: %s" % client.isApiControlEnabled())
-car_controls = AutonomySim.CarControls()
+car_controls = autonomysim.CarControls()
 
-tmp_dir = os.path.join(tempfile.gettempdir(), "AutonomySim_car")
-print ("Saving images to %s" % tmp_dir)
+tmp_dir = os.path.join(tempfile.gettempdir(), "autonomysim_car")
+print("Saving images to %s" % tmp_dir)
 try:
     os.makedirs(tmp_dir)
 except OSError:
@@ -31,14 +31,14 @@ for idx in range(3):
     car_controls.steering = 0
     client.setCarControls(car_controls)
     print("Go Forward")
-    time.sleep(3)   # let car drive a bit
+    time.sleep(3)  # let car drive a bit
 
     # Go forward + steer right
     car_controls.throttle = 0.5
     car_controls.steering = 1
     client.setCarControls(car_controls)
     print("Go Forward, steer right")
-    time.sleep(3)   # let car drive a bit
+    time.sleep(3)  # let car drive a bit
 
     # go reverse
     car_controls.throttle = -0.5
@@ -47,41 +47,67 @@ for idx in range(3):
     car_controls.steering = 0
     client.setCarControls(car_controls)
     print("Go reverse, steer right")
-    time.sleep(3)   # let car drive a bit
-    car_controls.is_manual_gear = False # change back gear to auto
+    time.sleep(3)  # let car drive a bit
+    car_controls.is_manual_gear = False  # change back gear to auto
     car_controls.manual_gear = 0
 
     # apply brakes
     car_controls.brake = 1
     client.setCarControls(car_controls)
     print("Apply brakes")
-    time.sleep(3)   # let car drive a bit
-    car_controls.brake = 0 #remove brake
+    time.sleep(3)  # let car drive a bit
+    car_controls.brake = 0  # remove brake
 
     # get camera images from the car
-    responses = client.simGetImages([
-        AutonomySim.ImageRequest("0", AutonomySim.ImageType.DepthVis),  #depth visualization image
-        AutonomySim.ImageRequest("1", AutonomySim.ImageType.DepthPerspective, True), #depth in perspective projection
-        AutonomySim.ImageRequest("1", AutonomySim.ImageType.Scene), #scene vision image in png format
-        AutonomySim.ImageRequest("1", AutonomySim.ImageType.Scene, False, False)])  #scene vision image in uncompressed RGB array
-    print('Retrieved images: %d' % len(responses))
+    responses = client.simGetImages(
+        [
+            autonomysim.ImageRequest(
+                "0", autonomysim.ImageType.DepthVis
+            ),  # depth visualization image
+            autonomysim.ImageRequest(
+                "1", autonomysim.ImageType.DepthPerspective, True
+            ),  # depth in perspective projection
+            autonomysim.ImageRequest(
+                "1", autonomysim.ImageType.Scene
+            ),  # scene vision image in png format
+            autonomysim.ImageRequest("1", autonomysim.ImageType.Scene, False, False),
+        ]
+    )  # scene vision image in uncompressed RGB array
+    print("Retrieved images: %d" % len(responses))
 
     for response_idx, response in enumerate(responses):
         filename = os.path.join(tmp_dir, f"{idx}_{response.image_type}_{response_idx}")
 
         if response.pixels_as_float:
-            print("Type %d, size %d" % (response.image_type, len(response.image_data_float)))
-            AutonomySim.write_pfm(os.path.normpath(filename + '.pfm'), AutonomySim.get_pfm_array(response))
-        elif response.compress: #png format
-            print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
-            AutonomySim.write_file(os.path.normpath(filename + '.png'), response.image_data_uint8)
-        else: #uncompressed array
-            print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
-            img1d = np.fromstring(response.image_data_uint8, dtype=np.uint8) # get numpy array
-            img_rgb = img1d.reshape(response.height, response.width, 3) # reshape array to 3 channel image array H X W X 3
-            cv2.imwrite(os.path.normpath(filename + '.png'), img_rgb) # write to png
+            print(
+                "Type %d, size %d"
+                % (response.image_type, len(response.image_data_float))
+            )
+            autonomysim.write_pfm(
+                os.path.normpath(filename + ".pfm"), autonomysim.get_pfm_array(response)
+            )
+        elif response.compress:  # png format
+            print(
+                "Type %d, size %d"
+                % (response.image_type, len(response.image_data_uint8))
+            )
+            autonomysim.write_file(
+                os.path.normpath(filename + ".png"), response.image_data_uint8
+            )
+        else:  # uncompressed array
+            print(
+                "Type %d, size %d"
+                % (response.image_type, len(response.image_data_uint8))
+            )
+            img1d = np.fromstring(
+                response.image_data_uint8, dtype=np.uint8
+            )  # get numpy array
+            img_rgb = img1d.reshape(
+                response.height, response.width, 3
+            )  # reshape array to 3 channel image array H X W X 3
+            cv2.imwrite(os.path.normpath(filename + ".png"), img_rgb)  # write to png
 
-#restore to original state
+# restore to original state
 client.reset()
 
 client.enableApiControl(False)

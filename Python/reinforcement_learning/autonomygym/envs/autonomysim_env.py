@@ -1,9 +1,10 @@
-import AutonomySim
+import autonomysim
 
 import numpy as np
 
 import gym
 from gym import spaces
+
 
 class AutonomySimEnv(gym.Env):
     metadata = {"render.modes": ["rgb_array"]}

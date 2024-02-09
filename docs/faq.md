@@ -60,7 +60,7 @@
 
 > First turn on C++ exceptions from the Exceptions window:
 
-> ![exceptions](images/exceptions.png)
+> ![exceptions](media/images/exceptions.png)
 
 > and copy the stack trace of all exceptions you see there during execution that look relevant (for example, there might be an initial exception from VSPerf140 that you can >ignore) then paste these call stacks into a new AutonomySim GitHub issue, thanks.
 
@@ -74,7 +74,7 @@
 
 ### Can I use an XBox controller to fly?
 
-> See [XBox controller](xbox_controller.md) for details.
+> See [XBox controller](controllers_wired.md) for details.
 
 ### Can I build a hexacopter with AutonomySim?
 
@@ -112,7 +112,7 @@
 * [Linux Build FAQ](build_linux.md#faq)
 * [Windows Build FAQ](build_windows.md#faq)
 * [PX4 Setup FAQ](px4_setup.md#faq)
-* [Remote Control FAQ](remote_control.md#faq)
+* [Remote Control FAQ](controllers_remote.md#faq)
 * [Unreal Blocks Environment FAQ](unreal_blocks.md#faq)
 * [Unreal Custom Environment FAQ](unreal_custenv.md#faq)
 * [Packaging AutonomySim](build_faq.md#packaging-a-binary-including-the-AutonomySim-plugin)

@@ -21,7 +21,7 @@ STRICT_MODE_OFF
 #undef nil
 #endif // nil
 
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 #undef FLOAT
 #undef check
 #include "rpc/client.h"
@@ -29,7 +29,7 @@ STRICT_MODE_OFF
 #ifndef check
 #define check(expr) (static_cast<void>((expr)))
 #endif
-#include "common/common_utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
 
 #include "vehicles/multirotor/api/MultirotorRpcLibAdaptors.hpp"
 
@@ -38,8 +38,8 @@ STRICT_MODE_ON
 __pragma(warning(disable : 4239))
 #endif
 
-namespace nervosys {
-namespace autonomylib {
+    namespace nervosys {
+    namespace autonomylib {
 
     typedef nervosys::autonomylib_rpclib::MultirotorRpcLibAdaptors MultirotorRpcLibAdaptors;
 
@@ -119,8 +119,8 @@ namespace autonomylib {
         return this;
     }
 
-    MultirotorRpcLibClient
-    *MultirotorRpcLibClient::moveByRollPitchYawrateThrottleAsync(float roll, float pitch, float yaw_rate, float throttle,
+    MultirotorRpcLibClient *
+    MultirotorRpcLibClient::moveByRollPitchYawrateThrottleAsync(float roll, float pitch, float yaw_rate, float throttle,
                                                                 float duration, const std::string &vehicle_name) {
         pimpl_->last_future =
             static_cast<rpc::client *>(getClient())
@@ -328,7 +328,7 @@ namespace autonomylib {
         return this;
     }
 
-} // namespace autonomylib
+    } // namespace autonomylib
 } // namespace
 
 #endif

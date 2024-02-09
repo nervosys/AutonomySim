@@ -1,14 +1,14 @@
-import setup_path 
-import AutonomySim
+import setup_path
+import autonomysim
 
 import pprint
 import time
 
-# connect to the AutonomySim simulator 
-client = AutonomySim.CarClient()
+# connect to the AutonomySim simulator
+client = autonomysim.CarClient()
 client.confirmConnection()
 client.enableApiControl(True)
-car_controls = AutonomySim.CarControls()
+car_controls = autonomysim.CarControls()
 
 client.reset()
 
@@ -27,11 +27,17 @@ while True:
     collision_info = client.simGetCollisionInfo()
 
     if collision_info.has_collided:
-        print("Collision at pos %s, normal %s, impact pt %s, penetration %f, name %s, obj id %d" % (
-            pprint.pformat(collision_info.position), 
-            pprint.pformat(collision_info.normal), 
-            pprint.pformat(collision_info.impact_point), 
-            collision_info.penetration_depth, collision_info.object_name, collision_info.object_id))
+        print(
+            "Collision at pos %s, normal %s, impact pt %s, penetration %f, name %s, obj id %d"
+            % (
+                pprint.pformat(collision_info.position),
+                pprint.pformat(collision_info.normal),
+                pprint.pformat(collision_info.impact_point),
+                collision_info.penetration_depth,
+                collision_info.object_name,
+                collision_info.object_id,
+            )
+        )
         break
 
     time.sleep(0.1)

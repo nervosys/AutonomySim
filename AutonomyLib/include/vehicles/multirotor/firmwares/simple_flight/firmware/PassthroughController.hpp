@@ -2,7 +2,7 @@
 #define autonomylib_vehicles_simpleflight_firmware_PassthroughController_hpp
 
 #include "Params.hpp"
-#include "common/common_utils//Utils.hpp"
+#include "common/utils
 #include "interfaces/CommonStructs.hpp"
 #include "interfaces/IAxisController.hpp"
 #include "interfaces/IBoardClock.hpp"

@@ -246,8 +246,8 @@ This setting specifies the latitude, longitude and altitude of the Player Start 
 This setting determines what is shown in each of 3 subwindows which are visible when you press 1,2,3 keys. 
 
 * `WindowID`: Can be 0 to 2
-* `CameraName`: is any [available camera](image_apis.md#available-cameras) on the vehicle or external camera
-* `ImageType`: integer value determines what kind of image gets shown according to [ImageType enum](image_apis.md#available-imagetype-values).
+* `CameraName`: is any [available camera](apis_image.md#available-cameras) on the vehicle or external camera
+* `ImageType`: integer value determines what kind of image gets shown according to [ImageType enum](apis_image.md#available-imagetype-values).
 * `VehicleName`: string allows you to specify the vehicle to use the camera from, used when multiple vehicles are specified in the settings. First vehicle's camera will be used if there are any mistakes such as incorrect vehicle name, or only a single vehicle.
 * `External`: Set it to `true` if the camera is an external camera. If true, then the `VehicleName` parameter is ignored
 
@@ -303,7 +303,7 @@ This setting allows you to set the speed of simulation clock with respect to wal
 
 ## Segmentation Settings
 
-The `InitMethod` determines how object IDs are initialized at startup to generate [segmentation](image_apis.md#segmentation). The value "" or "CommonObjectsRandomIDs" (default) means assign random IDs to each object at startup. This will generate segmentation view with random colors assign to each object. The value "None" means don't initialize object IDs. This will cause segmentation view to have single solid colors. This mode is useful if you plan to set up object IDs using [APIs](image_apis.md#segmentation) and it can save lot of delay at startup for large environments like CityEnviron.
+The `InitMethod` determines how object IDs are initialized at startup to generate [segmentation](apis_image.md#segmentation). The value "" or "CommonObjectsRandomIDs" (default) means assign random IDs to each object at startup. This will generate segmentation view with random colors assign to each object. The value "None" means don't initialize object IDs. This will cause segmentation view to have single solid colors. This mode is useful if you plan to set up object IDs using [APIs](apis_image.md#segmentation) and it can save lot of delay at startup for large environments like CityEnviron.
 
 If `OverrideExisting` is false then initialization does not alter non-zero object IDs already assigned otherwise it does.
 
@@ -326,7 +326,7 @@ The `CameraDefaults` element at root level specifies defaults used for all camer
 
 ### Note on ImageType element
 
-The `ImageType` element in JSON array determines which image type that settings applies to. The valid values are described in [ImageType section](image_apis.md#available-imagetype). In addition, we also support special value `ImageType: -1` to apply the settings to external camera (i.e. what you are looking at on the screen).
+The `ImageType` element in JSON array determines which image type that settings applies to. The valid values are described in [ImageType section](apis_image.md#available-imagetype). In addition, we also support special value `ImageType: -1` to apply the settings to external camera (i.e. what you are looking at on the screen).
 
 For example, `CaptureSettings` element is json array so you can add settings for multiple image types easily.
 
@@ -338,7 +338,7 @@ For explanation of other settings, please see [this article](https://docs.unreal
 
 ### NoiseSettings
 
-The `NoiseSettings` allows to add noise to the specified image type with a goal of simulating camera sensor noise, interference and other artifacts. By default no noise is added, i.e., `Enabled: false`. If you set `Enabled: true` then following different types of noise and interference artifacts are enabled, each can be further tuned using setting. The noise effects are implemented as shader created as post processing material in Unreal Engine called [CameraSensorNoise](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Plugins/AutonomySim/Content/HUDAssets/CameraSensorNoise.uasset).
+The `NoiseSettings` allows to add noise to the specified image type with a goal of simulating camera sensor noise, interference and other artifacts. By default no noise is added, i.e., `Enabled: false`. If you set `Enabled: true` then following different types of noise and interference artifacts are enabled, each can be further tuned using setting. The noise effects are implemented as shader created as post processing material in Unreal Engine called [CameraSensorNoise](https://github.com/nervosys/AutonomySim/blob/master/Unreal/Plugins/AutonomySim/Content/HUDAssets/CameraSensorNoise.uasset).
 
 Demo of camera noise and interference simulation:
 
@@ -417,7 +417,7 @@ Each simulation mode will go through the list of vehicles specified in this sett
 * `X, Y, Z, Yaw, Roll, Pitch`: These elements allows you to specify the initial position and orientation of the vehicle. Position is in NED coordinates in SI units with origin set to Player Start location in Unreal environment. The orientation is specified in degrees.
 * `IsFpvVehicle`: This setting allows to specify which vehicle camera will follow and the view that will be shown when ViewMode is set to Fpv. By default, AutonomySim selects the first vehicle in settings as FPV vehicle.
 * `Sensors`: This element specifies the sensors associated with the vehicle, see [Sensors page](sensors.md) for details.
-* `Cameras`: This element specifies camera settings for vehicle. The key in this element is name of the [available camera](image_apis.md#available_cameras) and the value is same as `CameraDefaults` as described above. For example, to change FOV for the front center camera to 120 degrees, you can use this for `Vehicles` setting:
+* `Cameras`: This element specifies camera settings for vehicle. The key in this element is name of the [available camera](apis_image.md#available_cameras) and the value is same as `CameraDefaults` as described above. For example, to change FOV for the front center camera to 120 degrees, you can use this for `Vehicles` setting:
 
 ```json
 "Vehicles": {

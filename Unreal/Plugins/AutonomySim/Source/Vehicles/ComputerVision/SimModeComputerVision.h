@@ -10,7 +10,7 @@
 #include "SimModeComputerVision.generated.h"
 
 UCLASS()
-class AutonomySim_API ASimModeComputerVision : public ASimModeBase {
+class AutonomySimApi ASimModeComputerVision : public ASimModeBase {
     GENERATED_BODY()
 
   private:
@@ -29,5 +29,5 @@ class AutonomySim_API ASimModeComputerVision : public ASimModeBase {
     virtual std::unique_ptr<PawnSimApi>
     createVehicleSimApi(const PawnSimApi::Params &pawn_sim_api_params) const override;
     virtual nervosys::autonomylib::VehicleApiBase *getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params,
-                                                       const PawnSimApi *sim_api) const override;
+                                                                 const PawnSimApi *sim_api) const override;
 };

@@ -25,7 +25,7 @@
 #include "Runtime/Engine/Classes/GameFramework/PlayerStart.h"
 #include "Slate/SceneViewport.h"
 #include "UObject/UObjectIterator.h"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include <exception>
 
 /*
@@ -36,17 +36,18 @@ parameters -> camel_case
 */
 
 bool UAutonomyBlueprintLib::log_messages_hidden_ = false;
-nervosys::autonomylib::AutonomySimSettings::SegmentationSetting::MeshNamingMethodType UAutonomyBlueprintLib::mesh_naming_method_ =
-    nervosys::autonomylib::AutonomySimSettings::SegmentationSetting::MeshNamingMethodType::OwnerName;
+nervosys::autonomylib::AutonomySimSettings::SegmentationSetting::MeshNamingMethodType
+    UAutonomyBlueprintLib::mesh_naming_method_ =
+        nervosys::autonomylib::AutonomySimSettings::SegmentationSetting::MeshNamingMethodType::OwnerName;
 IImageWrapperModule *UAutonomyBlueprintLib::image_wrapper_module_ = nullptr;
 
 void UAutonomyBlueprintLib::LogMessageString(const std::string &prefix, const std::string &suffix, LogDebugLevel level,
-                                        float persist_sec) {
+                                             float persist_sec) {
     LogMessage(FString(prefix.c_str()), FString(suffix.c_str()), level, persist_sec);
 }
 
 EAppReturnType::Type UAutonomyBlueprintLib::ShowMessage(EAppMsgType::Type message_type, const std::string &message,
-                                                   const std::string &title) {
+                                                        const std::string &title) {
     FText title_text = FText::FromString(title.c_str());
 
     return FMessageDialog::Open(message_type, FText::FromString(message.c_str()), &title_text);
@@ -179,7 +180,7 @@ void UAutonomyBlueprintLib::setLogMessagesVisibility(bool is_visible) {
 }
 
 void UAutonomyBlueprintLib::LogMessage(const FString &prefix, const FString &suffix, LogDebugLevel level,
-                                  float persist_sec) {
+                                       float persist_sec) {
     if (log_messages_hidden_)
         return;
 
@@ -403,7 +404,8 @@ int UAutonomyBlueprintLib::GetMeshStencilID(const std::string &mesh_name) {
     return -1;
 }
 
-std::vector<std::string> UAutonomyBlueprintLib::ListMatchingActors(const UObject *context, const std::string &name_regex) {
+std::vector<std::string> UAutonomyBlueprintLib::ListMatchingActors(const UObject *context,
+                                                                   const std::string &name_regex) {
     std::vector<std::string> results;
     auto world = context->GetWorld();
     std::regex compiledRegex(name_regex, std::regex::optimize);
@@ -600,7 +602,7 @@ bool UAutonomyBlueprintLib::RunConsoleCommand(const AActor *context, const FStri
 }
 
 bool UAutonomyBlueprintLib::HasObstacle(const AActor *actor, const FVector &start, const FVector &end,
-                                   const AActor *ignore_actor, ECollisionChannel collision_channel) {
+                                        const AActor *ignore_actor, ECollisionChannel collision_channel) {
     FCollisionQueryParams trace_params;
     trace_params.AddIgnoredActor(actor);
     if (ignore_actor != nullptr)
@@ -610,7 +612,7 @@ bool UAutonomyBlueprintLib::HasObstacle(const AActor *actor, const FVector &star
 }
 
 bool UAutonomyBlueprintLib::GetObstacle(const AActor *actor, const FVector &start, const FVector &end, FHitResult &hit,
-                                   const AActor *ignore_actor, ECollisionChannel collision_channel) {
+                                        const AActor *ignore_actor, ECollisionChannel collision_channel) {
     hit = FHitResult(ForceInit);
 
     FCollisionQueryParams trace_params;
@@ -622,8 +624,8 @@ bool UAutonomyBlueprintLib::GetObstacle(const AActor *actor, const FVector &star
 }
 
 bool UAutonomyBlueprintLib::GetLastObstaclePosition(const AActor *actor, const FVector &start, const FVector &end,
-                                               FHitResult &hit, const AActor *ignore_actor,
-                                               ECollisionChannel collision_channel) {
+                                                    FHitResult &hit, const AActor *ignore_actor,
+                                                    ECollisionChannel collision_channel) {
     TArray<FHitResult> hits;
 
     FCollisionQueryParams trace_params;
@@ -640,7 +642,7 @@ bool UAutonomyBlueprintLib::GetLastObstaclePosition(const AActor *actor, const F
 }
 
 void UAutonomyBlueprintLib::FollowActor(AActor *follower, const AActor *followee, const FVector &offset, bool fixed_z,
-                                   float fixed_z_val) {
+                                        float fixed_z_val) {
     // can we see followee?
     FHitResult hit;
     if (followee == nullptr) {
@@ -675,7 +677,7 @@ void UAutonomyBlueprintLib::FollowActor(AActor *follower, const AActor *followee
 }
 
 int UAutonomyBlueprintLib::RemoveAxisBinding(const FInputAxisKeyMapping &axis, FInputAxisBinding *axis_binding,
-                                        AActor *actor) {
+                                             AActor *actor) {
     if (axis_binding != nullptr && actor != nullptr) {
         APlayerController *controller = actor->GetWorld()->GetFirstPlayerController();
 
@@ -710,7 +712,9 @@ int UAutonomyBlueprintLib::RemoveAxisBinding(const FInputAxisKeyMapping &axis, F
 
 float UAutonomyBlueprintLib::GetDisplayGamma() { return GEngine->DisplayGamma; }
 
-void UAutonomyBlueprintLib::EnableInput(AActor *actor) { actor->EnableInput(actor->GetWorld()->GetFirstPlayerController()); }
+void UAutonomyBlueprintLib::EnableInput(AActor *actor) {
+    actor->EnableInput(actor->GetWorld()->GetFirstPlayerController());
+}
 
 UObject *UAutonomyBlueprintLib::LoadObject(const std::string &name) {
     FString str(name.c_str());
@@ -736,7 +740,8 @@ UClass *UAutonomyBlueprintLib::LoadClass(const std::string &name) {
     return cls;
 }
 
-void UAutonomyBlueprintLib::CompressImageArray(int32 width, int32 height, const TArray<FColor> &src, TArray<uint8> &dest) {
+void UAutonomyBlueprintLib::CompressImageArray(int32 width, int32 height, const TArray<FColor> &src,
+                                               TArray<uint8> &dest) {
     TArray<FColor> MutableSrcData = src;
 
     // PNGs are saved as RGBA but FColors are stored as BGRA. An option to swap the order upon compression may be added
@@ -762,7 +767,7 @@ void UAutonomyBlueprintLib::CompressImageArray(int32 width, int32 height, const 
 }
 
 bool UAutonomyBlueprintLib::CompressUsingImageWrapper(const TArray<uint8> &uncompressed, const int32 width,
-                                                 const int32 height, TArray<uint8> &compressed) {
+                                                      const int32 height, TArray<uint8> &compressed) {
     bool bSucceeded = false;
     compressed.Reset();
     if (uncompressed.Num() > 0) {

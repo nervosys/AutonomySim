@@ -1,9 +1,9 @@
 #pragma once
 
 #include "common/Common.hpp"
-#include "common/common_utils/ColorUtils.hpp"
-#include "common/common_utils/FileSystem.hpp"
-#include "common/common_utils/bitmap_image.hpp"
+#include "common/utils/ColorUtils.hpp"
+#include "common/utils/FileSystem.hpp"
+#include "common/utils/bitmap_image.hpp"
 
 namespace nervosys {
 namespace autonomylib {

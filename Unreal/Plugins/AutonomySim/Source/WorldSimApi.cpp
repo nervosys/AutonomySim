@@ -7,7 +7,7 @@
 #include "Runtime/Engine/Classes/Engine/Engine.h"
 #include "TextureShuffleActor.h"
 #include "Weather/WeatherLib.h"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
@@ -28,7 +28,8 @@ bool WorldSimApi::loadLevel(const std::string &level_name) {
         true);
 
     // Remove Loading screen from viewport
-    UAutonomyBlueprintLib::RunCommandOnGameThread([this, level_name]() { this->simmode_->OnLevelLoaded.Broadcast(); }, true);
+    UAutonomyBlueprintLib::RunCommandOnGameThread([this, level_name]() { this->simmode_->OnLevelLoaded.Broadcast(); },
+                                                  true);
     this->simmode_->toggleLoadingScreen(false);
 
     return success;
@@ -310,7 +311,8 @@ void WorldSimApi::printLogMessage(const std::string &message, const std::string 
 std::vector<std::string> WorldSimApi::listSceneObjects(const std::string &name_regex) const {
     std::vector<std::string> result;
     UAutonomyBlueprintLib::RunCommandOnGameThread(
-        [this, &name_regex, &result]() { result = UAutonomyBlueprintLib::ListMatchingActors(simmode_, name_regex); }, true);
+        [this, &name_regex, &result]() { result = UAutonomyBlueprintLib::ListMatchingActors(simmode_, name_regex); },
+        true);
     return result;
 }
 
@@ -397,7 +399,8 @@ void WorldSimApi::enableWeather(bool enable) {
 }
 
 void WorldSimApi::setWeatherParameter(WeatherParameter param, float val) {
-    unsigned char param_n = static_cast<unsigned char>(nervosys::autonomylib::Utils::toNumeric<WeatherParameter>(param));
+    unsigned char param_n =
+        static_cast<unsigned char>(nervosys::autonomylib::Utils::toNumeric<WeatherParameter>(param));
     EWeatherParamScalar param_e = nervosys::autonomylib::Utils::toEnum<EWeatherParamScalar>(param_n);
 
     UAutonomyBlueprintLib::RunCommandOnGameThread(
@@ -448,7 +451,7 @@ bool WorldSimApi::setObjectMaterialFromTexture(const std::string &object_name, c
         [this, &object_name, &texture_path, &success, &component_id]() {
             if (!IsValid(simmode_->domain_rand_material_)) {
                 UAutonomyBlueprintLib::LogMessageString("Cannot find material for domain randomization", "",
-                                                   LogDebugLevel::Failure);
+                                                        LogDebugLevel::Failure);
             } else {
                 UTexture2D *texture_desired = FImageUtils::ImportFileAsTexture2D(FString(texture_path.c_str()));
                 AActor *actor = UAutonomyBlueprintLib::FindActor<AActor>(simmode_, FString(object_name.c_str()));
@@ -465,7 +468,7 @@ bool WorldSimApi::setObjectMaterialFromTexture(const std::string &object_name, c
                     success = true;
                 } else {
                     UAutonomyBlueprintLib::LogMessageString("Cannot find specified actor for domain randomization", "",
-                                                       LogDebugLevel::Failure);
+                                                            LogDebugLevel::Failure);
                 }
             }
         },
@@ -485,7 +488,7 @@ bool WorldSimApi::setObjectMaterial(const std::string &object_name, const std::s
 
             if (!IsValid(material)) {
                 UAutonomyBlueprintLib::LogMessageString("Cannot find specified material for domain randomization", "",
-                                                   LogDebugLevel::Failure);
+                                                        LogDebugLevel::Failure);
             } else {
                 if (IsValid(actor)) {
                     TArray<UStaticMeshComponent *> components;
@@ -496,7 +499,7 @@ bool WorldSimApi::setObjectMaterial(const std::string &object_name, const std::s
                     success = true;
                 } else {
                     UAutonomyBlueprintLib::LogMessageString("Cannot find specified actor for domain randomization", "",
-                                                       LogDebugLevel::Failure);
+                                                            LogDebugLevel::Failure);
                 }
             }
         },
@@ -675,8 +678,8 @@ bool WorldSimApi::testLineOfSightBetweenPoints(const nervosys::autonomylib::GeoP
 
             const auto &settings = nervosys::autonomylib::AutonomySimSettings::singleton();
             nervosys::autonomylib::GeodeticConverter converter(settings.origin_geopoint.home_geo_point.latitude,
-                                                     settings.origin_geopoint.home_geo_point.longitude,
-                                                     settings.origin_geopoint.home_geo_point.altitude);
+                                                               settings.origin_geopoint.home_geo_point.longitude,
+                                                               settings.origin_geopoint.home_geo_point.altitude);
             double north, east, down;
             converter.geodetic2Ned(lla1.latitude, lla1.longitude, lla1.altitude, &north, &east, &down);
             nervosys::autonomylib::Vector3r ned(north, east, down);
@@ -776,7 +779,8 @@ void WorldSimApi::setCameraPose(const nervosys::autonomylib::Pose &pose, const C
 
 void WorldSimApi::setCameraFoV(float fov_degrees, const CameraDetails &camera_details) {
     APIPCamera *camera = simmode_->getCamera(camera_details);
-    UAutonomyBlueprintLib::RunCommandOnGameThread([camera, &fov_degrees]() { camera->setCameraFoV(fov_degrees); }, true);
+    UAutonomyBlueprintLib::RunCommandOnGameThread([camera, &fov_degrees]() { camera->setCameraFoV(fov_degrees); },
+                                                  true);
 }
 
 void WorldSimApi::setDistortionParam(const std::string &param_name, float value, const CameraDetails &camera_details) {
@@ -913,7 +917,7 @@ void WorldSimApi::clearDetectionMeshNames(ImageCaptureBase::ImageType image_type
 }
 
 std::vector<nervosys::autonomylib::DetectionInfo> WorldSimApi::getDetections(ImageCaptureBase::ImageType image_type,
-                                                                   const CameraDetails &camera_details) {
+                                                                             const CameraDetails &camera_details) {
     std::vector<nervosys::autonomylib::DetectionInfo> result;
 
     const APIPCamera *camera = simmode_->getCamera(camera_details);

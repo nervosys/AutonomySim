@@ -1,9 +1,9 @@
-import setup_path 
-import AutonomySim
+import setup_path
+import autonomysim
 
 import time
 
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 
 pose = client.simGetVehiclePose()

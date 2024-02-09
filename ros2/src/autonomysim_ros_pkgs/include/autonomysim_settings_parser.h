@@ -1,4 +1,6 @@
-#include "common/common_utils/StrictMode.hpp"
+// autonomysim_settings_parser.h
+
+#include "common/utils/StrictMode.hpp"
 STRICT_MODE_OFF
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
@@ -7,12 +9,13 @@ STRICT_MODE_OFF
 STRICT_MODE_ON
 
 #include "common/AutonomySimSettings.hpp"
-#include "common/common_utils/FileSystem.hpp"
+#include "common/utils/FileSystem.hpp"
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
 #include <chrono>
 #include <iostream>
 
-// a minimal AutonomySim settings parser, adapted from Unreal/Plugins/AutonomySim/SimHUD/SimHUD.h
+// a minimal AutonomySim settings parser
+// adapted from Unreal/Plugins/AutonomySim/SimHUD/SimHUD.h
 class AutonomySimSettingsParser {
   public:
     typedef nervosys::autonomylib::AutonomySimSettings AutonomySimSettings;

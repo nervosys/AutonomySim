@@ -5,7 +5,7 @@
 #define autonomylib_common_ImageCaptureBase_hpp
 
 #include "common/Common.hpp"
-#include "common/common_utils/EnumFlags.hpp"
+#include "common/utils/EnumFlags.hpp"
 
 namespace nervosys {
 namespace autonomylib {

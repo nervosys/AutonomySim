@@ -4,7 +4,7 @@ Since release 1.2, `AutonomySim` supports multiple vehicles. This capability all
 
 ## Creating Multiple Vehicles
 
-It's as easy as specifying them in [settings.json](settings.md). The `Vehicles` element allows you to specify list of vehicles you want to create along with their initial positions and orientations. The positions are specified in NED coordinates in SI units with origin set at Player Start component in Unreal environment. The orientation is specified as Yaw, Pitch and Roll in degrees.
+It's as easy as specifying them in [settings.json](settings.md). The `Vehicles` element allows you to specify list of vehicles you want to create along with their initial positions and orientations. The positions are specified in [north-east-down (NED) coordinates](https://www.mathworks.com/help/aeroblks/about-aerospace-coordinate-systems.html) in SI units with origin set at `Player Start` component in the Unreal environment. The orientation is specified as `Yaw`, `Pitch` and `Roll` in degrees.
 
 ### Creating Multiple Cars
 
@@ -53,9 +53,9 @@ It's as easy as specifying them in [settings.json](settings.md). The `Vehicles` 
 
 The new APIs since AutonomySim 1.2 allows you to specify `vehicle_name`. This name corresponds to keys in json settings (for example, Car1 or Drone2 above).
 
-[Example code for cars](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/car/multi_agent_car.py)
+[Example code for rovers](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/car/multi_agent_car.py)
 
-[Example code for multirotors](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/multirotor/multi_agent_drone.py)
+[Example code for drones](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/multirotor/multi_agent_drone.py)
 
 Using APIs for multi-vehicles requires specifying the `vehicle_name`, which needs to be hardcoded in the script or requires parsing of the settings file. There's also a simple API `listVehicles()` which returns a list (vector in C++) of strings containing names of the current vehicles. For example, with the above settings for 2 Cars -
 
@@ -66,7 +66,7 @@ Using APIs for multi-vehicles requires specifying the `vehicle_name`, which need
 
 ### Demo
 
-[![AutonomySimMultiple Vehicles Demo Video](images/demo_multi_vehicles.png)](https://youtu.be/35dgcuLuF5M)
+[![AutonomySimMultiple Vehicles Demo Video](media/images/demo_multi_vehicles.png)](https://youtu.be/35dgcuLuF5M)
 
 ### Creating vehicles at runtime through API
 
@@ -84,10 +84,10 @@ Returns: `bool` Whether vehicle was created
 
 The usual APIs can be used to control and interact with the vehicle once created, with the `vehicle_name` parameter. Specifying other settings such as additional cameras, etc. isn't possible currently, a future enhancement could be passing JSON string of settings for the vehicle. It also works with the `listVehicles()` API described above, so the vehicles spawned would be included in the list.
 
-For some examples, check out [HelloSpawnedDrones.cpp](https://github.com/nervosys/AutonomySim/blob/main/HelloSpawnedDrones/HelloSpawnedDrones.cpp) -
+For some examples, check out [HelloSpawnedDrones.cpp](https://github.com/nervosys/AutonomySim/blob/master/HelloSpawnedDrones/HelloSpawnedDrones.cpp) -
 
-![HelloSpawnedDrones](images/HelloSpawnedDrones.gif)
+![HelloSpawnedDrones](media/images/HelloSpawnedDrones.gif)
 
 And [runtime_car.py](https://github.com/nervosys/AutonomySim/tree/master/PythonClient/car/runtime_car.py) -
 
-![runtime_car](images/simAddVehicle_Car.gif)
+![runtime_car](media/images/simAddVehicle_Car.gif)

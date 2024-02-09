@@ -31,9 +31,8 @@ Note that you will have to use a 3rdparty library or your own custom code to act
 ```python
 import AutonomySim
 
-AutonomySim_HOST_IP='127.0.0.1'
-
-client = AutonomySim.VehicleClient(ip=AutonomySim_HOST_IP)
+AUTONOMYSIM_HOST_IP='127.0.0.1'
+client = AutonomySim.VehicleClient(ip=AUTONOMYSIM_HOST_IP)
 client.confirmConnection()
 
 # List of returned meshes are received via this function

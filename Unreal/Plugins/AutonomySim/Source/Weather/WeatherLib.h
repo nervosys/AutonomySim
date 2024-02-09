@@ -34,7 +34,7 @@ enum class EWeatherParamVector : uint8 {
  *
  */
 UCLASS(BlueprintType)
-class AutonomySim_API UWeatherLib : public UBlueprintFunctionLibrary {
+class AutonomySimApi UWeatherLib : public UBlueprintFunctionLibrary {
     GENERATED_BODY()
 
     // not sure why, but content folder should be omitted in the path

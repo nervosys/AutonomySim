@@ -25,7 +25,7 @@ struct FDetectionInfo {
 };
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
-class AutonomySim_API UDetectionComponent : public USceneComponent {
+class AutonomySimApi UDetectionComponent : public USceneComponent {
     GENERATED_BODY()
 
   public:

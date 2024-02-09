@@ -1,6 +1,6 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.armDisarm(True)

@@ -5,10 +5,10 @@
 #include "Materials/Material.h"
 #include "TextureShuffleActor.generated.h"
 #include "common/AutonomySimSettings.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 
 UCLASS()
-class AutonomySim_API ATextureShuffleActor : public AStaticMeshActor {
+class AutonomySimApi ATextureShuffleActor : public AStaticMeshActor {
     GENERATED_BODY()
 
   protected:

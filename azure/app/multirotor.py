@@ -1,5 +1,6 @@
-import AutonomySim
+import autonomysim
 import pprint
+
 
 def print_state(client):
     state = client.getMultirotorState()
@@ -22,21 +23,22 @@ def print_state(client):
     s = pprint.pformat(gps_data)
     print("gps_data: %s" % s)
 
-# connect to the AutonomySim simulator
-client = AutonomySim.MultirotorClient()
+
+# connect to the autonomysim simulator
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.enableApiControl(True)
 client.armDisarm(True)
 
 print_state(client)
-print('Takeoff')
+print("Takeoff")
 client.takeoffAsync().join()
 
 while True:
     print_state(client)
-    print('Go to (-10, 10, -10) at 5 m/s')
+    print("Go to (-10, 10, -10) at 5 m/s")
     client.moveToPositionAsync(-10, 10, -10, 5).join()
     client.hoverAsync().join()
     print_state(client)
-    print('Go to (0, 10, 0) at 5 m/s')
+    print("Go to (0, 10, 0) at 5 m/s")
     client.moveToPositionAsync(0, 10, 0, 5).join()

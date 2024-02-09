@@ -1,10 +1,10 @@
-import setup_path 
-import AutonomySim
+import setup_path
+import autonomysim
 
 import time
 
 # connect to the AutonomySim simulator
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.enableApiControl(True)
 client.armDisarm(True)

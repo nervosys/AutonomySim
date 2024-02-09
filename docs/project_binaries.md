@@ -4,20 +4,25 @@ You can simply download precompiled binaries and run to get started immediately.
 
 ## Unreal Engine
 
-**Windows, Linux**: Download the binaries for the environment of your choice from the [latest release](https://github.com/nervosys/AutonomySim/releases).
+!!! info "Windows, Linux"
+    Download the binaries for the environment of your choice from the [latest release](https://github.com/nervosys/AutonomySim/releases).
 
 Some pre-compiled environment binaries may include multiple files (i.e. City.zip.001, City.zip.002). Make sure to download both files before starting the environment.
 Use [7zip](https://www.7-zip.org/download.html) to unzip these files. On Linux, pass the first zip file name as argument and it should detect all the other parts as well - `7zz x TrapCamera.zip.001`
 
-**macOS**:  You will need to [build it yourself](build_linux.md)
+!!! info "macOS"
+    You will need to [build it yourself](build_linux.md)
 
 ## Unity (Experimental)
 
-A free environment called Windridge City is available at [Unity Asset Store](https://assetstore.unity.com/) as an experimental release of AutonomySim on Unity. **Note**: This is an old release, and many of the features and APIs might not work.
+A free environment called Windridge City is available at [Unity Asset Store](https://assetstore.unity.com/) as an experimental release of AutonomySim on Unity.
+
+!!! note
+    This is an old release, and many of the features and APIs might not work.
 
 ## Controlling Vehicles
 
-Most of our users typically use [APIs](apis.md) to control the vehicles. However you can also control vehicles manually. You can drive the car using keyboard, gamepad or [steering wheel](steering_wheel_installation.md). To fly drone manually, you will need either XBox controller or a remote control (feel free to [contribute](CONTRIBUTING.md) keyboard support). Please see [remote control setup](remote_control.md) for more details. Alternatively you can use [APIs](apis.md) for programmatic control or use so-called [Computer Vision mode](image_apis.md) to move around in environment using the keyboard.
+Most of our users typically use [APIs](apis.md) to control the vehicles. However you can also control vehicles manually. You can drive the car using keyboard, gamepad or [steering wheel](controller_wheel.md). To fly drone manually, you will need either XBox controller or a remote control (feel free to [contribute](CONTRIBUTING.md) keyboard support). Please see [remote control setup](controller_remote.md) for more details. Alternatively you can use [APIs](apis.md) for programmatic control or use so-called [Computer Vision mode](apis_image.md) to move around in environment using the keyboard.
 
 ## Don't Have Good GPU?
 

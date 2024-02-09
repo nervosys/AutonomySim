@@ -1,5 +1,5 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
 import numpy as np
 import math
@@ -8,7 +8,7 @@ from argparse import ArgumentParser
 
 import gym
 from gym import spaces
-from autonomygym.envs.AutonomySim_env import AutonomySimEnv
+from autonomygym.envs.autonomysim_env import AutonomySimEnv
 
 
 class AutonomySimDroneEnv(AutonomySimEnv):
@@ -23,12 +23,12 @@ class AutonomySimDroneEnv(AutonomySimEnv):
             "prev_position": np.zeros(3),
         }
 
-        self.drone = AutonomySim.MultirotorClient(ip=ip_address)
+        self.drone = autonomysim.MultirotorClient(ip=ip_address)
         self.action_space = spaces.Discrete(7)
         self._setup_flight()
 
-        self.image_request = AutonomySim.ImageRequest(
-            3, AutonomySim.ImageType.DepthPerspective, True, False
+        self.image_request = autonomysim.ImageRequest(
+            3, autonomysim.ImageType.DepthPerspective, True, False
         )
 
     def __del__(self):

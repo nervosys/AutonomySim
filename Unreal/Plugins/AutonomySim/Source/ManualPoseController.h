@@ -7,7 +7,7 @@
 #include "ManualPoseController.generated.h"
 
 UCLASS()
-class AutonomySim_API UManualPoseController : public UObject {
+class AutonomySimApi UManualPoseController : public UObject {
     GENERATED_BODY()
 
   public:

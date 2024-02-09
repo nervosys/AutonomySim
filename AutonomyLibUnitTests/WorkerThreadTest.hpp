@@ -3,7 +3,7 @@
 
 #include "TestBase.hpp"
 #include "common/WorkerThread.hpp"
-#include "common/common_utils/Timer.hpp"
+#include "common/utils/Timer.hpp"
 #include <chrono>
 
 namespace nervosys {

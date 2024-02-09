@@ -36,7 +36,7 @@ then
 fi
 
 # this are the first (maximum) four arguments which the user specifies:
-# ex: ./run_AutonomySim_image.sh /PATH/TO/UnrealBinary/UnrealBinary.sh -windowed -ResX=1080 -ResY=720
+# ex: ./run_autonomysim_image.sh /PATH/TO/UnrealBinary/UnrealBinary.sh -windowed -ResX=1080 -ResY=720
 # we save them in a variable right now:  
 UNREAL_BINARY_COMMAND="$UNREAL_BINARY_SHELL_ABSPATH $3 $4 $5"
 
@@ -63,7 +63,7 @@ done
 # set the environment varible SDL_VIDEODRIVER to SDL_VIDEODRIVER_VALUE
 # and tell the docker container to execute UNREAL_BINARY_COMMAND
 ${DOCKER_CMD} -it \
-    -v $(pwd)/settings.json:/home/AutonomySim_user/Documents/AutonomySim/settings.json \
+    -v $(pwd)/settings.json:/home/autonomysim_user/Documents/AutonomySim/settings.json \
     -v $UNREAL_BINARY_PATH:$UNREAL_BINARY_PATH \
     -e SDL_VIDEODRIVER=$SDL_VIDEODRIVER_VALUE \
     -e SDL_HINT_CUDA_DEVICE='0' \

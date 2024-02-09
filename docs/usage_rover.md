@@ -25,4 +25,4 @@ By default camera will chase the car from the back. You can get the FPV view by 
 
 ## Cameras
 
-By default car is installed with 5 cameras: center, left and right, driver and reverse. You can chose the images from these camera by specifying [the name](image_apis.md#available_cameras).
+By default car is installed with 5 cameras: center, left and right, driver and reverse. You can chose the images from these camera by specifying [the name](apis_image.md#available_cameras).

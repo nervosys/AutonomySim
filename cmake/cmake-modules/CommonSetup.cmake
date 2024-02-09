@@ -6,12 +6,12 @@ macro(CommonTargetLink)
 endmacro(CommonTargetLink)
 
 macro(IncludeEigen)
-    include_directories(${AutonomySim_ROOT}/AutonomyLib/deps/eigen3)
+    include_directories(${AUTONOMYSIM_ROOT}/AutonomyLib/deps/eigen3)
 endmacro(IncludeEigen)
 
 macro(AddExecutableSource)
     set(PROJECT_CPP ${PROJECT_NAME}_sources)
-    file(GLOB_RECURSE PROJECT_CPP "${AutonomySim_ROOT}/${PROJECT_NAME}/*.cpp")
+    file(GLOB_RECURSE PROJECT_CPP "${AUTONOMYSIM_ROOT}/${PROJECT_NAME}/*.cpp")
     add_executable(${PROJECT_NAME} ${PROJECT_CPP})
 endmacro(AddExecutableSource)
 
@@ -25,7 +25,7 @@ endmacro(SetupConsoleBuild)
 
 macro(CommonSetup)
     find_package(Threads REQUIRED)
-    find_path(AutonomySim_ROOT NAMES AutonomySim.sln PATHS ".." "../.." "../../.." "../../../.." "../../../../.." "../../../../../.." REQUIRED)
+    find_path(AUTONOMYSIM_ROOT NAMES AutonomySim.sln PATHS ".." "../.." "../../.." "../../../.." "../../../../.." "../../../../../.." REQUIRED)
 
     # Setup output paths
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/lib)
@@ -34,7 +34,7 @@ macro(CommonSetup)
 
     # Setup include and lib for rpclib which will be referenced by other projects
     set(RPCLIB_VERSION_FOLDER rpclib-2.3.0)
-    set(RPC_LIB_INCLUDES " ${AutonomySim_ROOT}/external/rpclib/${RPCLIB_VERSION_FOLDER}/include")
+    set(RPC_LIB_INCLUDES " ${AUTONOMYSIM_ROOT}/external/rpclib/${RPCLIB_VERSION_FOLDER}/include")
     #name of .a file with lib prefix
     set(RPC_LIB rpc)
 

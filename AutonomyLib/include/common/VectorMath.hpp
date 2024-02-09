@@ -4,13 +4,13 @@
 #ifndef autonomylib_common_VectorMath_hpp
 #define autonomylib_common_VectorMath_hpp
 
-#include "common/common_utils/Utils.hpp"
-#include "common_utils/RandomGenerator.hpp"
+#include "common/utils/RandomGenerator.hpp"
+#include "common/utils/Utils.hpp"
 #include <cmath>
 
 STRICT_MODE_OFF
 // if not using unaligned types then disable vectorization to avoid alignment issues all over the places
-//#define EIGEN_DONT_VECTORIZE
+// #define EIGEN_DONT_VECTORIZE
 #include "Eigen/Dense"
 STRICT_MODE_ON
 

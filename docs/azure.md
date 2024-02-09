@@ -1,17 +1,20 @@
-# Microsoft Azure Cloud Development Environment
+# Cloud Development Environments
 
-This document explains how to automate the creation of an Azure cloud development environment to code and debug a Python application connected to `AutonomySim` using Visual Studio Code.
+This document explains how to automate the creation of a `Microsoft Azure` cloud development environment (MSA-CDE) to code and debug a Python application connected to `AutonomySim` using Visual Studio Code.
 
-## Automatically Deploy the Azure VM
+## Automatically Deploy the Azure virtual machine (VM)
 
-Click the blue button to start the Azure deployment (The template is pre-filled with the recommended virtual machine size for the use cases of the following two tutorials)
+Click the blue button to start the Azure deployment.
+
+!!! note
+    The template is pre-filled with the recommended virtual machine size for the use cases of the following two tutorials.
 
 <a href="https://aka.ms/AA8umgt" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>  
 
 !!! note
-    The VM deployment and configuration process may take 20+ minutes to complete*
+    The VM deployment and configuration process may take over 20 minutes to complete.
 
 ### Regarding the deployment of the Azure VM
 
@@ -77,13 +80,13 @@ To use a different `AutonomySim` binary, first check the official documentation 
 
 Once you have a zip file with the new AutonomySim environment (or prefer to use one from the [Official Releases](https://github.com/nervosys/AutonomySim/releases)), you need to modify some of the scripts in the `azure` directory of the repository to point to the new environment:
 
-* In [`azure/azure-env-creation/configure-vm.ps1`](https://github.com/nervosys/AutonomySim/blob/main/azure/azure-env-creation/configure-vm.ps1), modify all the parameters starting with `$AutonomySimBinary` with the new values
-* In [`azure/start-AutonomySim.ps1`](https://github.com/nervosys/AutonomySim/blob/main/azure/start-AutonomySim.ps1), modify `$AutonomySimExecutable` and `$AutonomySimProcessName` with the new values
+* In [`azure/azure-env-creation/configure-vm.ps1`](https://github.com/nervosys/AutonomySim/blob/master/azure/azure-env-creation/configure-vm.ps1), modify all the parameters starting with `$AutonomySimBinary` with the new values
+* In [`azure/start-AutonomySim.ps1`](https://github.com/nervosys/AutonomySim/blob/master/azure/start-AutonomySim.ps1), modify `$AutonomySimExecutable` and `$AutonomySimProcessName` with the new values
 
 If you are using the docker image, you also need a Linux binary zip file and modify the following Docker-related files:
 
-* In [`azure/docker/Dockerfile`](https://github.com/nervosys/AutonomySim/blob/main/azure/docker/Dockerfile), modify the `AutonomySim_BINARY_ZIP_URL` and `AutonomySim_BINARY_ZIP_FILENAME` ENV declarations with the new values
-* In [`azure/docker/docker-entrypoint.sh`](https://github.com/nervosys/AutonomySim/blob/main/azure/docker/docker-entrypoint.sh), modify `AutonomySim_EXECUTABLE` with the new value 
+* In [`azure/docker/Dockerfile`](https://github.com/nervosys/AutonomySim/blob/master/azure/docker/Dockerfile), modify the `AUTONOMYSIM_BINARY_ZIP_URL` and `AUTONOMYSIM_BINARY_ZIP_FILENAME` ENV declarations with the new values
+* In [`azure/docker/docker-entrypoint.sh`](https://github.com/nervosys/AutonomySim/blob/master/azure/docker/docker-entrypoint.sh), modify `AUTONOMYSIM_EXECUTABLE` with the new value 
 
 ## Maintaining the development environment
 

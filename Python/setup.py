@@ -1,11 +1,11 @@
 import setuptools
-from AutonomySim import __version__
+from autonomysim import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="AutonomySim",
+    name="autonomysim",
     version=__version__,
     author="Adam Erickson",
     author_email="opensource@nervosys.ai",

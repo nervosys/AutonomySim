@@ -16,7 +16,7 @@
 extern CORE_API uint32 GFrameNumber;
 
 UCLASS()
-class AutonomySim_API ASimModeWorldBase : public ASimModeBase {
+class AutonomySimApi ASimModeWorldBase : public ASimModeBase {
     GENERATED_BODY()
 
   public:

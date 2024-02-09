@@ -1,5 +1,5 @@
-import AutonomySim
+import autonomysim
 
-c = AutonomySim.MultirotorClient()
+c = autonomysim.MultirotorClient()
 c.confirmConnection()
 c.simSetObjectMaterialFromTexture("OrangeBall", "sample_texture.jpg")

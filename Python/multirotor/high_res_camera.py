@@ -1,8 +1,8 @@
-import AutonomySim
+import autonomysim
 
 from datetime import datetime
 
-'''
+"""
 Simple script with settings to create a high-resolution camera, and fetching it
 
 Settings used-
@@ -40,23 +40,31 @@ Settings used-
         }
     }
 }
-'''
+"""
 
-client = AutonomySim.VehicleClient()
+client = autonomysim.VehicleClient()
 client.confirmConnection()
 framecounter = 1
 
 prevtimestamp = datetime.now()
 
-while(framecounter <= 500):
-    if framecounter%150 == 0:
-        client.simGetImages([AutonomySim.ImageRequest("high_res", AutonomySim.ImageType.Scene, False, False)])
+while framecounter <= 500:
+    if framecounter % 150 == 0:
+        client.simGetImages(
+            [
+                autonomysim.ImageRequest(
+                    "high_res", autonomysim.ImageType.Scene, False, False
+                )
+            ]
+        )
         print("High resolution image captured.")
 
-    if framecounter%30 == 0:
+    if framecounter % 30 == 0:
         now = datetime.now()
         print(f"Time spent for 30 frames: {now-prevtimestamp}")
         prevtimestamp = now
 
-    client.simGetImages([AutonomySim.ImageRequest("low_res", AutonomySim.ImageType.Scene, False, False)])
+    client.simGetImages(
+        [autonomysim.ImageRequest("low_res", autonomysim.ImageType.Scene, False, False)]
+    )
     framecounter += 1

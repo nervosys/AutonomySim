@@ -6,7 +6,7 @@ The `LogViewer` is a Windows WPF app that presents the MavLink streams that it i
 
 You can open a log file, it supports .mavlink and PX4 *.ulg files, then you will see the contents of the log in a tree view on the left, whatever metrics you select will be added to the right the right side. You can close each individual chart with the little close box in the top right of each chart and you can group charts so they share the same vertical axis using the group charts button on the top toolbar.
 
-![Log Viewer](images/log_viewer.png)
+![Log Viewer](media/images/log_viewer.png)
 
 There is also a map option which will plot the GPS path the drone took.  You can also load multiple log files so you can compare the data from each.
 
@@ -14,7 +14,7 @@ There is also a map option which will plot the GPS path the drone took.  You can
 
 You can also get a realtime view if you connect the LogViewer `before` you run the simulation.
 
-![connect](images/log_viewer_connect.png)
+![connect](media/images/log_viewer_connect.png)
 
 For this to work you need to configure the `settings.json` with the following settings:
 

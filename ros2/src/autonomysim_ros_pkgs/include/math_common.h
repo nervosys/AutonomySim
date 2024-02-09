@@ -1,4 +1,7 @@
+// math_commmon.h
+
 namespace math_common {
+
 template <typename T> inline T rad2deg(const T radians) { return (radians / M_PI) * 180.0; }
 
 template <typename T> inline T deg2rad(const T degrees) { return (degrees / 180.0) * M_PI; }
@@ -25,4 +28,5 @@ template <class T> inline T angular_dist(T from, T to) {
         d += 2. * M_PI;
     return d;
 }
+
 } // namespace math_common

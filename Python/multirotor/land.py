@@ -1,13 +1,13 @@
-import setup_path 
-import AutonomySim
+import setup_path
+import autonomysim
 
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.enableApiControl(True)
 client.armDisarm(True)
 
 landed = client.getMultirotorState().landed_state
-if landed == AutonomySim.LandedState.Landed:
+if landed == autonomysim.LandedState.Landed:
     print("already landed...")
 else:
     print("landing...")

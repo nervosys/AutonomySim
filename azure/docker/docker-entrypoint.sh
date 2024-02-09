@@ -3,13 +3,13 @@
 # Docker entrypoint for AutonomySim on Azure
 #
 
-AutonomySim_EXECUTABLE='/home/AutonomySim_user/Blocks/Blocks.sh'
+AUTONOMYSIM_EXECUTABLE='/home/autonomysim_user/Blocks/Blocks.sh'
 
 echo 'Starting AutonomySim binary...'
-${AutonomySim_EXECUTABLE} &
+${AUTONOMYSIM_EXECUTABLE} &
 
 echo 'Waiting 10 seconds before starting app...'
 sleep 10
 
 echo 'Starting Python app'
-python3.11 /home/AutonomySim_user/app/multirotor.py
+python3.11 /home/autonomysim_user/app/multirotor.py

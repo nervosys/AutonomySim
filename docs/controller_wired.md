@@ -1,14 +1,17 @@
-# XBox Controller
+# Wired Controllers
 
-To use an `XBox` controller with `AutonomySim`, follow the below steps:
+To use an `XBox` or similar with `AutonomySim`, follow the below steps:
 
-1. Connect XBox controller so it shows up in your PC Game Controllers:
+!!! note
+    Xbox controllers can be emulated by theoretically any controller in software. A number of programs exist for this purpose, such as [HideHide](https://github.com/nefarius/HidHide), [X360CE](https://github.com/x360ce/x360ce), or [DS4Windows](https://ds4-windows.com/). In fact, you can also write Python scripts to emulate physical controllers if so desired.
 
-![Gamecontrollers](images/game_controllers.png)
+1. Connect the XBox controller so that it shows up in your PC Game Controllers:
 
-2. Launch QGroundControl and you should see a new Joystick tab under settings:
+![game controllers](media/images/game_controllers.png)
 
-![Gamecontrollers](images/qgc_joystick.png)
+2. Launch `QGroundControl` and you should see a new Joystick tab under settings:
+
+![game controllers](media/images/qgc_joystick.png)
 
 Now calibrate the radio, and setup some handy button actions. For example, I set mine so that 
 the `A` button arms the drone, `B` put it in manual flight mode, `X` puts it in altitude hold mode and `Y` puts it in position hold mode. I also prefer the feel of the controller when I check the box labelled `Use exponential curve on roll, pitch, yaw` because this gives me more sensitivity for small movements.
@@ -44,4 +47,4 @@ type `COM_RC_IN_MODE` in search box and change its value to either `Joystick/No 
 
 ### Other Options
 
-See [remote controller options](remote_control.md)
+See [remote controller options](controllers_remote.md)

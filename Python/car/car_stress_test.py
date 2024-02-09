@@ -1,13 +1,13 @@
-import setup_path 
-import AutonomySim
+import setup_path
+import autonomysim
 
 import time
 
-# connect to the AutonomySim simulator 
-client = AutonomySim.CarClient()
+# connect to the AutonomySim simulator
+client = autonomysim.CarClient()
 client.confirmConnection()
 client.enableApiControl(True)
-car_controls = AutonomySim.CarControls()
+car_controls = autonomysim.CarControls()
 
 for idx in range(3000):
     # get state of the car
@@ -18,34 +18,31 @@ for idx in range(3000):
     car_controls.throttle = 0.5
     car_controls.steering = 0
     client.setCarControls(car_controls)
-    time.sleep(1)   # let car drive a bit
+    time.sleep(1)  # let car drive a bit
 
     # Go forward + steer right
     car_controls.throttle = 0.5
     car_controls.steering = 1
     client.setCarControls(car_controls)
-    time.sleep(1)   # let car drive a bit
+    time.sleep(1)  # let car drive a bit
 
     # go reverse
     car_controls.throttle = -0.5
-    car_controls.is_manual_gear = True;
+    car_controls.is_manual_gear = True
     car_controls.manual_gear = -1
     car_controls.steering = 0
     client.setCarControls(car_controls)
-    time.sleep(1)   # let car drive a bit
-    car_controls.is_manual_gear = False; # change back gear to auto
-    car_controls.manual_gear = 0  
+    time.sleep(1)  # let car drive a bit
+    car_controls.is_manual_gear = False  # change back gear to auto
+    car_controls.manual_gear = 0
 
     # apply breaks
     car_controls.brake = 1
     client.setCarControls(car_controls)
-    time.sleep(1)   # let car drive a bit
-    car_controls.brake = 0 #remove break
-    
-    #restore to original state
+    time.sleep(1)  # let car drive a bit
+    car_controls.brake = 0  # remove break
+
+    # restore to original state
     client.reset()
 
 client.enableApiControl(False)
-
-
-            

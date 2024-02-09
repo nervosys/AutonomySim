@@ -9,7 +9,7 @@
 #include "Runtime/Core/Public/PixelFormat.h"
 #include "common/AutonomySimSettings.hpp"
 #include "common/ImageCaptureBase.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 
 // CinemAutonomySim
 #include <CineCameraActor.h>
@@ -21,7 +21,7 @@
 #include "PIPCamera.generated.h"
 
 UCLASS()
-class AutonomySim_API APIPCamera : public ACineCameraActor // CinemAutonomySim
+class AutonomySimApi APIPCamera : public ACineCameraActor // CinemAutonomySim
 {
     GENERATED_BODY()
 

@@ -10,7 +10,7 @@
 #include "CarWheelFront.h"
 #include "CarWheelRear.h"
 #include "common/ClockFactory.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include <vector>
 
 #define LOCTEXT_NAMESPACE "VehiclePawn"
@@ -30,7 +30,8 @@ ACarPawn::ACarPawn() {
     if (non_slippery_mat)
         non_slippery_mat_ = non_slippery_mat;
     else
-        UAutonomyBlueprintLib::LogMessageString("Failed to load NonSlippery physics material", "", LogDebugLevel::Failure);
+        UAutonomyBlueprintLib::LogMessageString("Failed to load NonSlippery physics material", "",
+                                                LogDebugLevel::Failure);
 
     setupVehicleMovementComponent();
 
@@ -286,7 +287,7 @@ void ACarPawn::updateHUDStrings() {
     UAutonomyBlueprintLib::LogMessage(TEXT("Speed: "), last_speed_.ToString(), LogDebugLevel::Informational);
     UAutonomyBlueprintLib::LogMessage(TEXT("Gear: "), last_gear_.ToString(), LogDebugLevel::Informational);
     UAutonomyBlueprintLib::LogMessage(TEXT("RPM: "), FText::AsNumber(movement->GetEngineRotationSpeed()).ToString(),
-                                 LogDebugLevel::Informational);
+                                      LogDebugLevel::Informational);
 }
 
 void ACarPawn::updateInCarHUD() {
@@ -322,31 +323,31 @@ void ACarPawn::setupInputBindings() {
     UAutonomyBlueprintLib::EnableInput(this);
 
     UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("MoveForward", EKeys::Up, 1), this, this,
-                                    &ACarPawn::onMoveForward);
+                                         &ACarPawn::onMoveForward);
 
     UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("MoveForward", EKeys::Down, -1), this, this,
-                                    &ACarPawn::onMoveForward);
+                                         &ACarPawn::onMoveForward);
 
     UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("MoveRight", EKeys::Right, 0.5), this, this,
-                                    &ACarPawn::onMoveRight);
+                                         &ACarPawn::onMoveRight);
 
     UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("MoveRight", EKeys::Left, -0.5), this, this,
-                                    &ACarPawn::onMoveRight);
+                                         &ACarPawn::onMoveRight);
 
     UAutonomyBlueprintLib::BindActionToKey("Handbrake", EKeys::End, this, &ACarPawn::onHandbrakePressed, true);
     UAutonomyBlueprintLib::BindActionToKey("Handbrake", EKeys::End, this, &ACarPawn::onHandbrakeReleased, false);
 
     UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("Footbrake", EKeys::SpaceBar, 1), this, this,
-                                    &ACarPawn::onFootBrake);
+                                         &ACarPawn::onFootBrake);
 
     UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("MoveRight", EKeys::Gamepad_LeftX, 1), this, this,
-                                    &ACarPawn::onMoveRight);
+                                         &ACarPawn::onMoveRight);
 
-    UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("MoveForward", EKeys::Gamepad_RightTriggerAxis, 1), this, this,
-                                    &ACarPawn::onMoveForward);
+    UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("MoveForward", EKeys::Gamepad_RightTriggerAxis, 1), this,
+                                         this, &ACarPawn::onMoveForward);
 
-    UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("Footbrake", EKeys::Gamepad_LeftTriggerAxis, 1), this, this,
-                                    &ACarPawn::onFootBrake);
+    UAutonomyBlueprintLib::BindAxisToKey(FInputAxisKeyMapping("Footbrake", EKeys::Gamepad_LeftTriggerAxis, 1), this,
+                                         this, &ACarPawn::onFootBrake);
 
     // below is not needed
     // UAutonomyBlueprintLib::BindActionToKey("Reverse", EKeys::Down, this, &ACarPawn::onReversePressed, true);

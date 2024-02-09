@@ -1,3 +1,5 @@
+// geodetic_conv.hpp
+//
 // full credits to https://github.com/ethz-asl/geodetic_utils
 // todo add as external lib
 #ifndef GEODETIC_CONVERTER_H_
@@ -7,6 +9,7 @@
 #include <Eigen/Dense>
 
 namespace geodetic_converter {
+
 // Geodetic system parameters
 static double kSemimajorAxis = 6378137;
 static double kSemiminorAxis = 6356752.3142;
@@ -193,6 +196,7 @@ class GeodeticConverter {
     bool haveReference_;
 
 }; // class GeodeticConverter
+
 }; // namespace geodetic_converter
 
 #endif // GEODETIC_CONVERTER_H_

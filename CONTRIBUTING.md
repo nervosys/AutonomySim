@@ -1,3 +1,3 @@
 # Contributing
 
-This page has moved [here](https://github.com/nervosys/AutonomySim/blob/main/docs/CONTRIBUTING.md).
+This page has moved [here](https://github.com/nervosys/AutonomySim/blob/master/docs/CONTRIBUTING.md).

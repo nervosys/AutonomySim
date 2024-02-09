@@ -17,7 +17,7 @@ To build it, you will need the right tools.
 
 The full instructions are available on the [dev.px4.io](https://docs.px4.io/master/en/dev_setup/building_px4.html) website, but we've copied the relevant subset of those instructions here for your convenience.
 
-(Note that [BashOnWindows](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)) can be used to build the PX4 firmware, just follow the BashOnWindows instructions at the bottom of this page) then proceed with the Ubuntu setup for PX4.
+(Note that [WSL](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)) can be used to build the PX4 firmware, just follow the BashOnWindows instructions at the bottom of this page) then proceed with the Ubuntu setup for PX4.
 
 ## Build SITL version
 

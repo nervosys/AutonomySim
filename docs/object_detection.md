@@ -35,7 +35,7 @@ DetectionInfo
 
 ## Usage
 
-The Python script [`detection.py`](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/detection/detection.py) shows how to set detection parameters and shows the result in OpenCV capture.
+The Python script [`detection.py`](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/detection/detection.py) shows how to set detection parameters and shows the result in OpenCV capture.
 
 A minimal example using API with Blocks environment to detect Cylinder objects is below:
 
@@ -100,5 +100,5 @@ Cylinder: <DetectionInfo> {
 }
 ```
 
-![image](images/detection_ue4.png)
-![image](images/detection_python.png)
+![image](media/images/detection_ue4.png)
+![image](media/images/detection_python.png)

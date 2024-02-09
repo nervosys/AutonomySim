@@ -14,7 +14,7 @@ Visit [Infrastructure](code_structure.md) to learn more about how the AutonomySi
   
 ## Features and Releases
 
-Visit [Features and Releases](features.md) to view the features and release notes for this platform.
+Visit [Features and Releases](getting_started.md) to view the features and release notes for this platform.
 
 ## Repository
 

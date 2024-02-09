@@ -11,7 +11,7 @@
  *
  */
 UCLASS()
-class AutonomySim_API AAutonomySimGameMode : public AGameModeBase {
+class AutonomySimApi AAutonomySimGameMode : public AGameModeBase {
   public:
     GENERATED_BODY()
 

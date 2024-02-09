@@ -12,7 +12,7 @@ class UStaticMesh;
 class USkeletalMesh;
 
 USTRUCT(BlueprintType)
-struct AutonomySim_API FObjectFilter {
+struct AutonomySimApi FObjectFilter {
     GENERATED_BODY()
 
     UPROPERTY(EditAnywhere, Category = Mesh)

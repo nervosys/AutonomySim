@@ -12,8 +12,8 @@
 #include "PawnEvents.h"
 #include "api/VehicleSimApiBase.hpp"
 #include "common/AutonomySimSettings.hpp"
-#include "common/common_utils/Signal.hpp"
-#include "common/common_utils/UniqueValueMap.hpp"
+#include "common/utils/Signal.hpp"
+#include "common/utils/UniqueValueMap.hpp"
 #include "physics/Kinematics.hpp"
 #include "vehicles/car/api/CarApiBase.hpp"
 

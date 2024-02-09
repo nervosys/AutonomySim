@@ -1,50 +1,54 @@
-# Reinforcement Learning
+# Reinforcement Learning (RL)
 
-We below describe how we can implement DQN in AutonomySim using an OpenAI gym wrapper around AutonomySim API, and using stable baselines implementations of standard RL algorithms. We recommend installing stable-baselines3 in order to run these examples (please see https://github.com/DLR-RM/stable-baselines3)
+Below, we describe how to implement a [deep Q network](https://arxiv.org/abs/1312.5602v1) (DQN) in `AutonomySim`. We use a [`Gynamsium`](https://github.com/Farama-Foundation/Gymnasium) (previously `OpenAI Gym`) wrapper around the `AutomomySim` API together with the OpenAI `Stable Baselines` implementations of standard RL algorithms. We recommend installing [stable-baselines3](https://github.com/DLR-RM/stable-baselines3) from the [DLR Institute of Robotics and Mechatronics](#) to run these examples.
 
 !!! warning
-    This is still in active development. What we share below is a framework that can be extended and tweaked to obtain better performance.
+    This is still in active development. The below is a framework that can be extended and tweaked to obtain better performance.
 
-## Gym Wrapper
+## Wrapping Gymnasium or Gym
 
-In order to use AutonomySim as a gym environment, we extend and reimplement the base methods such as `step`, `_get_obs`, `_compute_reward` and `reset` specific to AutonomySim and the task of interest. The sample environments used in these examples for car and drone can be seen in `PythonClient/reinforcement_learning/*_env.py`
+In order to use `AutonomySim` as a gym environment, we extend and reimplement the base methods such as `step`, `_get_obs`, `_compute_reward` and `reset` specific to `AutonomySim` and the task of interest. The sample environments used in these examples for cars and drones can be seen here: `PythonClient/reinforcement_learning/*_env.py`
 
-## Car RL
+## Learning to Control Rovers
 
-[Source code](https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning)
+!!! note
+    The source code is [here](https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning)
 
-This example works with AutonomySimNeighborhood environment available in [releases](https://github.com/nervosys/AutonomySim/releases).
+This example works with the `Neighborhood` environment available in [releases](https://github.com/nervosys/AutonomySim/releases).
 
-First, we need to get the images from simulation and transform them appropriately. Below, we show how a depth image can be obtained from the ego camera and transformed to an 84X84 input to the network. (you can use other sensor modalities, and sensor inputs as well – of course you’ll have to modify the code accordingly).
+First, we need to capture and transform images from the simulation. Below, we show how a depth image can be obtained from the `ego` camera and transformed to an 84x84 tensor for input into the network.
+
+!!! note
+    You can use other sensor modalities and sensor inputs as well, but you'll have to modify the code accordingly.
 
 ```python
 responses = client.simGetImages([ImageRequest(0, AutonomySimImageType.DepthPerspective, True, False)])
 current_state = transform_input(responses)
 ```
 
-We further define the six actions (brake, straight with throttle, full-left with throttle, full-right with throttle, half-left with throttle, half-right with throttle) that an agent can execute. This is done via the function `interpret_action`:
+We define six actions (i.e., brake, straight with throttle, full-left with throttle, full-right with throttle, half-left with throttle, half-right with throttle) that an agent can execute. This is done via the function `interpret_action`:
 
 ```python
 def interpret_action(action):
-    car_controls.brake = 0
-    car_controls.throttle = 1
-    if action == 0:
-        car_controls.throttle = 0
-        car_controls.brake = 1
-    elif action == 1:
-        car_controls.steering = 0
-    elif action == 2:
-        car_controls.steering = 0.5
-    elif action == 3:
-        car_controls.steering = -0.5
-    elif action == 4:
-        car_controls.steering = 0.25
-    else:
-        car_controls.steering = -0.25
+    car_controls.brake = 0              # throttle (initial)
+    car_controls.throttle = 1           # ...
+    if action == 0:                     # 
+        car_controls.throttle = 0       # brake
+        car_controls.brake = 1          # ...
+    elif action == 1:                   #
+        car_controls.steering = 0       # steer center
+    elif action == 2:                   #
+        car_controls.steering = 0.5     # steer right
+    elif action == 3:                   #
+        car_controls.steering = -0.5    # steer left
+    elif action == 4:                   #
+        car_controls.steering = 0.25    # steer half-right
+    else:                               #
+        car_controls.steering = -0.25   # steer half-left
     return car_controls
 ```
 
-We then define the reward function in `_compute_reward` as a convex combination of how fast the vehicle is travelling and how much it deviates from the center line. The agent gets a high reward when its moving fast and staying in the center of the lane.
+We then define the reward function in `_compute_reward` as a convex combination of how fast the vehicle is travelling and how much it deviates from the center line. The agent gets a high reward when moving fast and staying in the center of the lane.
 
 ```python
 def _compute_reward(car_state):
@@ -62,7 +66,7 @@ def _compute_reward(car_state):
     for i in range(0, len(pts)-1):
         dist = min(dist, np.linalg.norm(np.cross((car_pt - pts[i]), (car_pt - pts[i+1])))/np.linalg.norm(pts[i]-pts[i+1]))
 
-    #print(dist)
+    # print(dist)
     if dist > thresh_dist:
         reward = -3
     else:
@@ -73,7 +77,7 @@ def _compute_reward(car_state):
     return reward
 ```
 
-The compute reward function also subsequently determines if the episode has terminated (e.g. due to collision). We look at the speed of the vehicle and if it is less than a threshold than the episode is considered to be terminated.
+The computed reward function also subsequently determines if the episode has terminated (e.g., due to collision). We look at the speed of the vehicle and if it is less than a threshold, the episode is considered terminated.
 
 ```python
 done = 0
@@ -85,7 +89,7 @@ if car_controls.brake == 0:
 return done
 ```
 
-The main loop then sequences through obtaining the image, computing the action to take according to the current policy, getting a reward and so forth. If the episode terminates then we reset the vehicle to the original state via `reset()`:
+The main loop then sequences through obtaining the image, computing the action to take according to the current policy, getting a reward, and so forth. If the episode terminates, we reset the vehicle to the original state via `reset()`:
 
 ```python
 client.reset()
@@ -96,7 +100,7 @@ client.setCarControls(car_control)
 time.sleep(1)
 ```
 
-Once the gym-styled environment wrapper is defined as in `car_env.py`, we then make use of `stable-baselines3` to run a DQN training loop. The DQN training can be configured as follows, seen in `dqn_car.py`.
+Once a Gym environment wrapper is defined as in `car_env.py`, we make use of `stable-baselines3` to run a DQN training loop. The DQN training can be configured as seen in `dqn_car.py`:
 
 ```python
 model = DQN(
@@ -117,39 +121,40 @@ model = DQN(
 )
 ```
 
-A training environment and an evaluation envrionment (see `EvalCallback` in `dqn_car.py`) can be defined. The evaluation environoment can be different from training, with different termination conditions/scene configuration. A tensorboard log directory is also defined as part of the DQN parameters. Finally, `model.learn()` starts the DQN training loop. Similarly, implementations of PPO, A3C etc. can be used from stable-baselines3.
+Training and evaluation environments can be defined (see `EvalCallback` in `dqn_car.py`). The evaluation environoment can be different from the one used for training, with different termination conditions or scene configuration. A `tensorboard` log directory is defined in the DQN parameters. Finally, `model.learn()` starts the DQN training loop. Implementations of other RL algorithms such as [proximal policy optimization](https://arxiv.org/abs/1707.02286) (PPO), [asynchronous advantage actor-critic](https://arxiv.org/abs/1602.01783) (A3C), and others, can be found in `stable-baselines3`.
 
-Note that the simulation needs to be up and running before you execute `dqn_car.py`. The video below shows first few episodes of DQN training.
+!!! note
+    The simulation needs to be up and running before you execute `dqn_car.py`. The video below shows first few episodes of DQN training.
 
-[![Reinforcement Learning - Car](images/dqn_car.png)](https://youtu.be/fv-oFPAqSZ4)
+[![Reinforcement Learning - Car](media/images/dqn_car.png)](https://youtu.be/fv-oFPAqSZ4)
 
-## RL with Quadrotor
+## Learning to Control Drones
 
 [Source code](https://github.com/nervosys/AutonomySim/tree/master/PythonClient/reinforcement_learning)
 
-This example works with AutonomySimMountainLandscape environment available in [releases](https://github.com/nervosys/AutonomySim/releases).
+This example works with the `MountainLandscape` environment available in [releases](https://github.com/nervosys/AutonomySim/releases).
 
-We can similarly apply RL for various autonomous flight scenarios with quadrotors. Below is an example on how RL could be used to train quadrotors to follow high tension power lines (e.g. application for energy infrastructure inspection). There are seven discrete actions here that correspond to different directions in which the quadrotor can move in (six directions + one hovering action).
+We can also apply RL to learn drone control policies. Below is an example of training a quadrotor to follow along high-tension power lines (e.g., for autonomous inspections). We specify a discrete action space with seven actions: six directions and one hovering action.
 
 ```python
 def interpret_action(self, action):
     if action == 0:
-        quad_offset = (self.step_length, 0, 0)
+        quad_offset = (self.step_length, 0, 0)  # step x-axis positive
     elif action == 1:
-        quad_offset = (0, self.step_length, 0)
+        quad_offset = (0, self.step_length, 0)  # step y-axis positive
     elif action == 2:
-        quad_offset = (0, 0, self.step_length)
+        quad_offset = (0, 0, self.step_length)  # step z-axis positive
     elif action == 3:
-        quad_offset = (-self.step_length, 0, 0)
+        quad_offset = (-self.step_length, 0, 0) # step x-axis negative
     elif action == 4:
-        quad_offset = (0, -self.step_length, 0)
+        quad_offset = (0, -self.step_length, 0) # step y-axis negative
     elif action == 5:
-        quad_offset = (0, 0, -self.step_length)
+        quad_offset = (0, 0, -self.step_length) # step z-axis negative
     else:
-        quad_offset = (0, 0, 0)
+        quad_offset = (0, 0, 0)                 # center coordinates
 ```
 
-The reward again is a function how how fast the quad travels in conjunction with how far it gets from the known powerlines.
+Again, the reward is a joint function of the quadrotor speed and distance from the power lines.
 
 ```python
 def compute_reward(quad_state, quad_vel, collision_info):
@@ -176,9 +181,9 @@ def compute_reward(quad_state, quad_vel, collision_info):
             reward = reward_dist + reward_speed
 ```
 
-We consider an episode to terminate if it drifts too much away from the known power line coordinates, and then reset the drone to its starting point.
+We consider an episode to terminate if the quadrotor drifts too far from the power lines. We then reset the drone to its starting position.
 
-Once the gym-styled environment wrapper is defined as in `drone_env.py`, we then make use of stable-baselines3 to run a DQN training loop. The DQN training can be configured as follows, seen in `dqn_drone.py`.
+Once a Gym environment wrapper is defined as in `drone_env.py`, we use `stable-baselines3` to run a DQN training loop. The DQN training can be configured as seen in `dqn_drone.py`:
 
 ```python
 model = DQN(
@@ -199,12 +204,12 @@ model = DQN(
 )
 ```
 
-A training environment and an evaluation envrionment (see `EvalCallback` in `dqn_drone.py`) can be defined. The evaluation environoment can be different from training, with different termination conditions/scene configuration. A tensorboard log directory is also defined as part of the DQN parameters. Finally, `model.learn()` starts the DQN training loop. Similarly, implementations of PPO, A3C etc. can be used from stable-baselines3.
+Training and evaluation environments can be defined (see `EvalCallback` in `dqn_car.py`). The evaluation environoment can be different from the one used for training, with different termination conditions or scene configuration. A `tensorboard` log directory is defined in the DQN parameters. Finally, `model.learn()` starts the DQN training loop. Implementations of other RL algorithms such as [proximal policy optimization](https://arxiv.org/abs/1707.02286) (PPO), [asynchronous advantage actor-critic](https://arxiv.org/abs/1602.01783) (A3C), and others, can be found in `stable-baselines3`.
 
 Here is the video of first few episodes during the training.
 
-[![Reinforcement Learning - Quadrotor](images/dqn_quadcopter.png)](https://youtu.be/uKm15Y3M1Nk)
+[![Reinforcement Learning - Quadrotor](media/images/dqn_quadcopter.png)](https://youtu.be/uKm15Y3M1Nk)
 
 ## Related
 
-Please also see [The Autonomous Driving Cookbook](https://aka.ms/AutonomousDrivingCookbook) by Microsoft Deep Learning and Robotics Garage Chapter.
+Also see [The Autonomous Driving Cookbook](https://aka.ms/AutonomousDrivingCookbook) by the Microsoft Deep Learning and Robotics Garage Chapter.

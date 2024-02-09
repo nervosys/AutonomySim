@@ -7,7 +7,7 @@
 #include "VehicleApiBase.hpp"
 #include "VehicleSimApiBase.hpp"
 #include "WorldSimApiBase.hpp"
-#include "common/common_utils/UniqueValueMap.hpp"
+#include "common/utils/UniqueValueMap.hpp"
 #include <map>
 
 namespace nervosys {
@@ -32,7 +32,7 @@ class ApiProvider {
     }
 
     size_t getVehicleCount() const { return vehicle_apis_.valsSize(); }
-    
+
     void insert_or_assign(const std::string &vehicle_name, VehicleApiBase *vehicle_api,
                           VehicleSimApiBase *vehicle_sim_api) {
         vehicle_apis_.insert_or_assign(vehicle_name, vehicle_api);

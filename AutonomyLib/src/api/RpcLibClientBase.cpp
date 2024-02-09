@@ -24,7 +24,7 @@ STRICT_MODE_OFF
 #undef nil
 #endif // nil
 
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 #undef FLOAT
 #undef check
 #include "rpc/client.h"
@@ -32,7 +32,7 @@ STRICT_MODE_OFF
 #ifndef check
 #define check(expr) (static_cast<void>((expr)))
 #endif
-#include "common/common_utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
 
 #include "api/RpcLibAdaptorsBase.hpp"
 
@@ -41,8 +41,8 @@ STRICT_MODE_ON
 __pragma(warning(disable : 4239))
 #endif
 
-namespace nervosys {
-namespace autonomylib {
+    namespace nervosys {
+    namespace autonomylib {
 
     struct RpcLibClientBase::impl {
         impl(const string &ip_address, uint16_t port, float timeout_sec) : client(ip_address, port) {
@@ -627,7 +627,7 @@ namespace autonomylib {
 
     const void *RpcLibClientBase::getClient() const { return &pimpl_->client; }
 
-} // namespace autonomylib
+    } // namespace autonomylib
 } // namespace nervosys
 
 #endif

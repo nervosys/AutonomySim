@@ -5,7 +5,7 @@
 
 #include "PawnEvents.h"
 #include "common/Common.hpp"
-#include "common/common_utils/Signal.hpp"
+#include "common/utils/Signal.hpp"
 
 class MultirotorPawnEvents : public PawnEvents {
   public: // types

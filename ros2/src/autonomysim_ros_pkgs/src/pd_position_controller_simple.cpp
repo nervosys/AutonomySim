@@ -1,3 +1,5 @@
+// pd_position_controller_simple.cpp
+
 #include "pd_position_controller_simple.h"
 
 using namespace std::placeholders;
@@ -48,12 +50,12 @@ void PIDPositionController::reset_errors() {
 }
 
 void PIDPositionController::initialize_ros() {
-    vel_cmd_ = AutonomySim_interfaces::msg::VelCmd();
+    vel_cmd_ = autonomysim_interfaces::msg::VelCmd();
     // ROS params
     double update_control_every_n_sec;
     nh_->get_parameter("update_control_every_n_sec", update_control_every_n_sec);
 
-    auto parameters_client = std::make_shared<rclcpp::SyncParametersClient>(nh_, "/AutonomySim_node");
+    auto parameters_client = std::make_shared<rclcpp::SyncParametersClient>(nh_, "/autonomysim_node");
     while (!parameters_client->wait_for_service(std::chrono::seconds(1))) {
         if (!rclcpp::ok()) {
             RCLCPP_ERROR(nh_->get_logger(), "Interrupted while waiting for the service. Exiting.");
@@ -70,26 +72,26 @@ void PIDPositionController::initialize_ros() {
     }
 
     // ROS publishers
-    AutonomySim_vel_cmd_world_frame_pub_ = nh_->create_publisher<AutonomySim_interfaces::msg::VelCmd>(
-        "/AutonomySim_node/" + vehicle_name + "/vel_cmd_world_frame", 1);
+    autonomysim_vel_cmd_world_frame_pub_ = nh_->create_publisher<autonomysim_interfaces::msg::VelCmd>(
+        "/autonomysim_node/" + vehicle_name + "/vel_cmd_world_frame", 1);
 
     // ROS subscribers
-    AutonomySim_odom_sub_ = nh_->create_subscription<nav_msgs::msg::Odometry>(
-        "/AutonomySim_node/" + vehicle_name + "/odom_local_ned", 50,
-        std::bind(&PIDPositionController::AutonomySim_odom_cb, this, _1));
-    home_geopoint_sub_ = nh_->create_subscription<AutonomySim_interfaces::msg::GPSYaw>(
-        "/AutonomySim_node/home_geo_point", 50, std::bind(&PIDPositionController::home_geopoint_cb, this, _1));
+    autonomysim_odom_sub_ = nh_->create_subscription<nav_msgs::msg::Odometry>(
+        "/autonomysim_node/" + vehicle_name + "/odom_local_ned", 50,
+        std::bind(&PIDPositionController::autonomysim_odom_cb, this, _1));
+    home_geopoint_sub_ = nh_->create_subscription<autonomysim_interfaces::msg::GPSYaw>(
+        "/autonomysim_node/home_geo_point", 50, std::bind(&PIDPositionController::home_geopoint_cb, this, _1));
     // todo publish this under global nodehandle / "AutonomySim node" and hide it from user
-    local_position_goal_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::SetLocalPosition>(
-        "/AutonomySim_node/local_position_goal",
+    local_position_goal_srvr_ = nh_->create_service<autonomysim_interfaces::srv::SetLocalPosition>(
+        "/autonomysim_node/local_position_goal",
         std::bind(&PIDPositionController::local_position_goal_srv_cb, this, _1, _2));
-    local_position_goal_override_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::SetLocalPosition>(
-        "/AutonomySim_node/local_position_goal/override",
+    local_position_goal_override_srvr_ = nh_->create_service<autonomysim_interfaces::srv::SetLocalPosition>(
+        "/autonomysim_node/local_position_goal/override",
         std::bind(&PIDPositionController::local_position_goal_srv_override_cb, this, _1, _2));
-    gps_goal_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::SetGPSPosition>(
-        "/AutonomySim_node/gps_goal", std::bind(&PIDPositionController::gps_goal_srv_cb, this, _1, _2));
-    gps_goal_override_srvr_ = nh_->create_service<AutonomySim_interfaces::srv::SetGPSPosition>(
-        "/AutonomySim_node/gps_goal/override",
+    gps_goal_srvr_ = nh_->create_service<autonomysim_interfaces::srv::SetGPSPosition>(
+        "/autonomysim_node/gps_goal", std::bind(&PIDPositionController::gps_goal_srv_cb, this, _1, _2));
+    gps_goal_override_srvr_ = nh_->create_service<autonomysim_interfaces::srv::SetGPSPosition>(
+        "/autonomysim_node/gps_goal/override",
         std::bind(&PIDPositionController::gps_goal_srv_override_cb, this, _1, _2));
 
     // ROS timers
@@ -98,7 +100,7 @@ void PIDPositionController::initialize_ros() {
                                std::bind(&PIDPositionController::update_control_cmd_timer_cb, this));
 }
 
-void PIDPositionController::AutonomySim_odom_cb(const nav_msgs::msg::Odometry::SharedPtr odom_msg) {
+void PIDPositionController::autonomysim_odom_cb(const nav_msgs::msg::Odometry::SharedPtr odom_msg) {
     has_odom_ = true;
     curr_odom_ = *odom_msg;
     curr_position_.x = odom_msg->pose.pose.position.x;
@@ -123,8 +125,8 @@ void PIDPositionController::check_reached_goal() {
 }
 
 bool PIDPositionController::local_position_goal_srv_cb(
-    const std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Request> request,
-    std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Response> response) {
+    const std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Request> request,
+    std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Response> response) {
     unused(response);
     // this tells the update timer callback to not do active hovering
     if (!got_goal_once_)
@@ -160,8 +162,8 @@ bool PIDPositionController::local_position_goal_srv_cb(
 }
 
 bool PIDPositionController::local_position_goal_srv_override_cb(
-    const std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Request> request,
-    std::shared_ptr<AutonomySim_interfaces::srv::SetLocalPosition::Response> response) {
+    const std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Request> request,
+    std::shared_ptr<autonomysim_interfaces::srv::SetLocalPosition::Response> response) {
     unused(response);
     // this tells the update timer callback to not do active hovering
     if (!got_goal_once_)
@@ -182,7 +184,7 @@ bool PIDPositionController::local_position_goal_srv_override_cb(
     return true;
 }
 
-void PIDPositionController::home_geopoint_cb(const AutonomySim_interfaces::msg::GPSYaw::SharedPtr gps_msg) {
+void PIDPositionController::home_geopoint_cb(const autonomysim_interfaces::msg::GPSYaw::SharedPtr gps_msg) {
     if (has_home_geo_)
         return;
     gps_home_msg_ = *gps_msg;
@@ -195,8 +197,8 @@ void PIDPositionController::home_geopoint_cb(const AutonomySim_interfaces::msg::
 
 // todo do relative altitude, or add an option for the same?
 bool PIDPositionController::gps_goal_srv_cb(
-    const std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Request> request,
-    std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Response> response) {
+    const std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Request> request,
+    std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Response> response) {
     if (!has_home_geo_) {
         RCLCPP_ERROR_STREAM(nh_->get_logger(), "I don't have home GPS coord. Can't go to GPS goal!");
         response->success = false;
@@ -206,7 +208,8 @@ bool PIDPositionController::gps_goal_srv_cb(
 
     if (!has_goal_) {
         nervosys::autonomylib::GeoPoint goal_gps_point(request->latitude, request->longitude, request->altitude);
-        nervosys::autonomylib::GeoPoint gps_home(gps_home_msg_.latitude, gps_home_msg_.longitude, gps_home_msg_.altitude);
+        nervosys::autonomylib::GeoPoint gps_home(gps_home_msg_.latitude, gps_home_msg_.longitude,
+                                                 gps_home_msg_.altitude);
         if (use_eth_lib_for_geodetic_conv_) {
             double initial_latitude, initial_longitude, initial_altitude;
             geodetic_converter_.getReference(&initial_latitude, &initial_longitude, &initial_altitude);
@@ -223,7 +226,8 @@ bool PIDPositionController::gps_goal_srv_cb(
                                                                         << " long=" << gps_home.longitude
                                                                         << " alt=" << gps_home.altitude << " yaw="
                                                                         << "todo");
-            nervosys::autonomylib::Vector3r ned_goal = nervosys::autonomylib::EarthUtils::GeodeticToNedFast(goal_gps_point, gps_home);
+            nervosys::autonomylib::Vector3r ned_goal =
+                nervosys::autonomylib::EarthUtils::GeodeticToNedFast(goal_gps_point, gps_home);
             target_position_.x = ned_goal[0];
             target_position_.y = ned_goal[1];
             target_position_.z = ned_goal[2];
@@ -253,8 +257,8 @@ bool PIDPositionController::gps_goal_srv_cb(
 
 // todo do relative altitude, or add an option for the same?
 bool PIDPositionController::gps_goal_srv_override_cb(
-    const std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Request> request,
-    std::shared_ptr<AutonomySim_interfaces::srv::SetGPSPosition::Response> response) {
+    const std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Request> request,
+    std::shared_ptr<autonomysim_interfaces::srv::SetGPSPosition::Response> response) {
     if (!has_home_geo_) {
         RCLCPP_ERROR_STREAM(nh_->get_logger(), "I don't have home GPS coord. Can't go to GPS goal!");
         response->success = false;
@@ -280,7 +284,8 @@ bool PIDPositionController::gps_goal_srv_override_cb(
                                                                     << " long=" << gps_home.longitude
                                                                     << " alt=" << gps_home.altitude << " yaw="
                                                                     << "todo");
-        nervosys::autonomylib::Vector3r ned_goal = nervosys::autonomylib::EarthUtils::GeodeticToNedFast(goal_gps_point, gps_home);
+        nervosys::autonomylib::Vector3r ned_goal =
+            nervosys::autonomylib::EarthUtils::GeodeticToNedFast(goal_gps_point, gps_home);
         target_position_.x = ned_goal[0];
         target_position_.y = ned_goal[1];
         target_position_.z = ned_goal[2];
@@ -378,4 +383,4 @@ void PIDPositionController::enforce_dynamic_constraints() {
     }
 }
 
-void PIDPositionController::publish_control_cmd() { AutonomySim_vel_cmd_world_frame_pub_->publish(vel_cmd_); }
+void PIDPositionController::publish_control_cmd() { autonomysim_vel_cmd_world_frame_pub_->publish(vel_cmd_); }

@@ -22,41 +22,41 @@ RUN apt-get install -y \
 RUN python3.11 -m pip install --upgrade pip
 RUN python3.11 -m pip install setuptools wheel
 
-RUN adduser --force-badname --disabled-password --gecos '' --shell /bin/bash AutonomySim_user && \ 
+RUN adduser --force-badname --disabled-password --gecos '' --shell /bin/bash autonomysim_user && \ 
 	echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \ 
-	adduser AutonomySim_user sudo && \ 
-	adduser AutonomySim_user audio && \ 
-	adduser AutonomySim_user video
+	adduser autonomysim_user sudo && \ 
+	adduser autonomysim_user audio && \ 
+	adduser autonomysim_user video
 
-USER AutonomySim_user
-WORKDIR /home/AutonomySim_user
+USER autonomysim_user
+WORKDIR /home/autonomysim_user
 
 # Change the following values to use a different AutonomySim binary
-# Also change the AutonomySim_EXECUTABLE variable in docker-entrypoint.sh
-ENV AutonomySim_BINARY_ZIP_URL=https://github.com/nervosys/AutonomySim/releases/download/v1.3.1-linux/Blocks.zip 
-ENV AutonomySim_BINARY_ZIP_FILENAME=Blocks.zip
+# Also change the AUTONOMYSIM_EXECUTABLE variable in docker-entrypoint.sh
+ENV AUTONOMYSIM_BINARY_ZIP_URL=https://github.com/nervosys/AutonomySim/releases/download/v1.3.1-linux/Blocks.zip 
+ENV AUTONOMYSIM_BINARY_ZIP_FILENAME=Blocks.zip
 
 ENV SDL_VIDEODRIVER_VALUE=offscreen
 ENV SDL_HINT_CUDA_DEVICE=0
 
 # Download and unzip the AutonomySim binary
-RUN wget -c $AutonomySim_BINARY_ZIP_URL
-RUN unzip $AutonomySim_BINARY_ZIP_FILENAME
-RUN rm $AutonomySim_BINARY_ZIP_FILENAME
+RUN wget -c $AUTONOMYSIM_BINARY_ZIP_URL
+RUN unzip $AUTONOMYSIM_BINARY_ZIP_FILENAME
+RUN rm $AUTONOMYSIM_BINARY_ZIP_FILENAME
 
 # Add the Python app to the image
-ADD ./app /home/AutonomySim_user/app
+ADD ./app /home/autonomysim_user/app
 
-WORKDIR /home/AutonomySim_user
-RUN mkdir -p /home/AutonomySim_user/Documents/AutonomySim
-ADD ./app/settings.json /home/AutonomySim_user/Documents/AutonomySim
-ADD ./docker/docker-entrypoint.sh /home/AutonomySim_user/docker-entrypoint.sh
+WORKDIR /home/autonomysim_user
+RUN mkdir -p /home/autonomysim_user/Documents/AutonomySim
+ADD ./app/settings.json /home/autonomysim_user/Documents/AutonomySim
+ADD ./docker/docker-entrypoint.sh /home/autonomysim_user/docker-entrypoint.sh
 
-RUN sudo chown -R AutonomySim_user /home/AutonomySim_user
+RUN sudo chown -R autonomysim_user /home/autonomysim_user
 
-WORKDIR /home/AutonomySim_user/app
+WORKDIR /home/autonomysim_user/app
 
 # Install Python requirements
 RUN python3.11 -m pip install -r requirements.txt
 
-ENTRYPOINT /home/AutonomySim_user/docker-entrypoint.sh
+ENTRYPOINT /home/autonomysim_user/docker-entrypoint.sh

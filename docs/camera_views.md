@@ -1,10 +1,10 @@
 # Camera Views
 
-The camera views shown on-screen are the image streams that can be fetched via the [Image APIs](image_apis.md).
+The camera views shown on-screen are the image streams that can be fetched via the [Image APIs](apis_image.md).
 
-![Cameras](images/cameras.png)
+![Cameras](media/images/cameras.png)
 
-From left to right is the depth view, segmentation view and the FPV view. See [Image APIs](image_apis.md) for description of various available views.
+From left to right is the depth view, segmentation view and the FPV view. See [Image APIs](apis_image.md) for description of various available views.
 
 ## Turning ON/OFF Views
 
@@ -42,7 +42,7 @@ Now you can select what is shown by each of above sub windows. For instance, you
 
 Now rendering these views does impact the FPS performance of the game, since this is additional work for the GPU.  The following shows the impact on FPS when you open these views.
 
-![fps](images/fps_views.png)
+![fps](media/images/fps_views.png)
 
 This is measured on `Intel Core i7` computer with 32 gb RAM and a `GeForce GTX 1080` graphics card running the Modular Neighborhood map, using cooked debug bits, no debugger or GameEditor open.  The normal state with no subviews open is measuring around 16 ms per frame, which means it is keeping a nice steady 60 FPS (which is the target FPS).  As it climbs up to 35ms the FPS drops to around 28 frames per second, spiking to 40ms means a few drops to 25 fps.
 
@@ -52,4 +52,4 @@ On the computer where this was measured the drone could fly the `path.py` progra
 
 The following shows the impact on CPU, perhaps a bit surprisingly, the CPU impact is also non trivial.
 
-![fps](images/cpu_views.png)
+![fps](media/images/cpu_views.png)

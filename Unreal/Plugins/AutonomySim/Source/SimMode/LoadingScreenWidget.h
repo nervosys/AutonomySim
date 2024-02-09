@@ -8,6 +8,6 @@
 #include "Runtime/UMG/Public/Components/Image.h"
 
 UCLASS()
-class AutonomySim_API ULoadingScreenWidget : public UUserWidget {
+class AutonomySimApi ULoadingScreenWidget : public UUserWidget {
     GENERATED_BODY()
 };

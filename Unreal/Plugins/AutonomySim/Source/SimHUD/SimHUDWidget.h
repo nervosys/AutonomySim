@@ -7,7 +7,7 @@
 #include <functional>
 
 UCLASS()
-class AutonomySim_API USimHUDWidget : public UUserWidget {
+class AutonomySimApi USimHUDWidget : public UUserWidget {
     GENERATED_BODY()
 
   public:

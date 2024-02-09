@@ -40,7 +40,7 @@ For example:
 
 ```json
 {
-    "SeeDocsAt": "https://microsoft.github.io/AutonomySim/settings/",
+    "SeeDocsAt": "https://nervosys.github.io/AutonomySim/settings/",
     "SettingsVersion": 1.2,
 
     "SimMode": "Multirotor",
@@ -115,10 +115,10 @@ Use `getLidarData()` API to retrieve the Lidar data.
 
 ### Python Examples
 
-* [drone_lidar.py](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/multirotor/drone_lidar.py)
-* [car_lidar.py](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/car/car_lidar.py)
-* [sensorframe_lidar_pointcloud.py](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/multirotor/sensorframe_lidar_pointcloud.py)
-* [vehicleframe_lidar_pointcloud.py](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/multirotor/vehicleframe_lidar_pointcloud.py)
+* [drone_lidar.py](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/multirotor/drone_lidar.py)
+* [car_lidar.py](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/car/car_lidar.py)
+* [sensorframe_lidar_pointcloud.py](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/multirotor/sensorframe_lidar_pointcloud.py)
+* [vehicleframe_lidar_pointcloud.py](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/multirotor/vehicleframe_lidar_pointcloud.py)
 
 ## Coming soon
 

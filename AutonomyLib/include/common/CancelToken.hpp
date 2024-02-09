@@ -5,7 +5,7 @@
 #define autonomylib_common_CancelToken_hpp
 
 #include "common/Common.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include <atomic>
 #include <mutex>
 
@@ -30,7 +30,9 @@ class CancelToken {
         // We can pass duration directly to sleep_for however it is known that on
         // some systems, sleep_for makes system call anyway even if passed duration
         // is <= 0. This can cause 50us of delay due to context switch.
-        if (isCancelled()) { return false; }
+        if (isCancelled()) {
+            return false;
+        }
         TTimePoint start = ClockFactory::get()->nowNanos();
         static constexpr std::chrono::duration<double> MinSleepDuration(0);
         while (secs > 0 && !isCancelled() && ClockFactory::get()->elapsedSince(start) < secs) {

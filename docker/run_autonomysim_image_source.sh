@@ -53,7 +53,7 @@ done
 # set the environment varible SDL_VIDEODRIVER to SDL_VIDEODRIVER_VALUE
 # and tell the docker container to execute UNREAL_BINARY_COMMAND
 ${DOCKER_CMD} -it \
-    -v $(pwd)/settings.json:/home/AutonomySim_user/Documents/AutonomySim/settings.json \
+    -v $(pwd)/settings.json:/home/autonomysim_user/Documents/AutonomySim/settings.json \
     -e SDL_VIDEODRIVER=$SDL_VIDEODRIVER_VALUE \
     -e SDL_HINT_CUDA_DEVICE='0' \
     --net=host \

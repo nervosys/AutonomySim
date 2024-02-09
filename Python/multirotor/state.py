@@ -1,7 +1,8 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
 import pprint
+
 
 def print_state():
     print("===============================================================")
@@ -10,7 +11,7 @@ def print_state():
     return state
 
 
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 state = print_state()
 
 if state.ready:

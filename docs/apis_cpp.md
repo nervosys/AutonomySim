@@ -18,7 +18,7 @@ The fastest way to get started is to open `AutonomySim.sln` in Visual Studio 202
 Here's how to use AutonomySim APIs using C++ to control simulated car (see also [Python example](apis.md#hello_car)):
 
 ```cpp
-// ready to run example: https://github.com/nervosys/AutonomySim/blob/main/HelloCar/main.cpp
+// ready to run example: https://github.com/nervosys/AutonomySim/blob/master/HelloCar/main.cpp
 
 #include <iostream>
 #include "vehicles/car/api/CarRpcLibClient.hpp"
@@ -55,7 +55,7 @@ int main() {
 Here's how to use AutonomySim APIs using C++ to control simulated quadrotor (see also [Python example](apis.md#hello_drone)):
 
 ```cpp
-// ready to run example: https://github.com/nervosys/AutonomySim/blob/main/HelloDrone/main.cpp
+// ready to run example: https://github.com/nervosys/AutonomySim/blob/master/HelloDrone/main.cpp
 
 #include <iostream>
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"

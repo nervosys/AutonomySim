@@ -4,7 +4,7 @@ about: Create a report to help us improve
 ---
 
 <!-- ⚠️⚠️ DO NOT DELETE THIS! bug_report_template ⚠️⚠️ -->
-<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->
+<!-- Please read our Rules of Conduct: CODE_OF_CONDUCT -->
 <!-- Please search for existing issues to avoid creating duplicates. -->
 <!-- Incomplete reports will lead to closing the issue. -->
 <!-- Also, please test using the latest main branch make sure your issue has not already been fixed -->

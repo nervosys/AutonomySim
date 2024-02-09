@@ -5,10 +5,10 @@
 
 AutonomySim
 =========================================
-This page documents `AutonomySim`_, the python package to be used for `Microsoft AutonomySim`_.
+This page documents `autonomysim`_, the python package to be used for `Nervosys AutonomySim`_.
 
-.. _`AutonomySim`: https://pypi.org/project/AutonomySim/
-.. _`Microsoft AutonomySim`: https://github.com/nervosys/AutonomySim 
+.. _`autonomysim`: https://pypi.org/project/autonomysim/
+.. _`Nervosys AutonomySim`: https://github.com/nervosys/AutonomySim 
 
 .. toctree::
 	:maxdepth: 3
@@ -16,27 +16,27 @@ This page documents `AutonomySim`_, the python package to be used for `Microsoft
 * :ref:`genindex`
 * :ref:`modindex`
 
-.. autoclass:: AutonomySim.client.VehicleClient
+.. autoclass:: autonomysim.client.VehicleClient
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass::  AutonomySim.client.MultirotorClient
+.. autoclass::  autonomysim.client.MultirotorClient
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: AutonomySim.client.CarClient
+.. autoclass:: autonomysim.client.CarClient
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. automodule:: AutonomySim.types
+.. automodule:: autonomysim.types
     :members:
     :undoc-members:
    	:show-inheritance: 
 
-.. automodule:: AutonomySim.utils
+.. automodule:: autonomysim.utils
     :members:
     :undoc-members:	
    	:show-inheritance: 

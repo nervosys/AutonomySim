@@ -15,10 +15,10 @@ STRICT_MODE_OFF
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
 #endif // !RPCLIB_MSGPACK
-#include "common/common_utils/MinWinDefines.hpp"
+#include "common/utils/MinWinDefines.hpp"
 #undef NOUSER
 
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 #undef FLOAT
 #undef check
 #include "rpc/server.h"
@@ -26,7 +26,7 @@ STRICT_MODE_OFF
 #ifndef check
 #define check(expr) (static_cast<void>((expr)))
 #endif
-#include "common/common_utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
 
 #include "vehicles/multirotor/api/MultirotorRpcLibAdaptors.hpp"
 

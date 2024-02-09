@@ -22,7 +22,7 @@ Please see instructions [here](docker_ubuntu.md)
    Click on the `Add Versions` which should show the option to download **Unreal 4.27** as shown below. If you have multiple versions of Unreal installed then **make sure 4.27 is set to `current`** by clicking down arrow next to the Launch button for the version.
 
    **Note**: AutonomySim also works with UE >= 4.24, however, we recommend 4.27.
-   **Note**: If you have UE 4.16 or older projects, please see the [upgrade guide](unreal_upgrade.md) to upgrade your projects.
+   **Note**: If you have UE 4.16 or older projects, please see the [upgrade guide](unreal_upgrading.md) to upgrade your projects.
 
 ### Build AutonomySim
 
@@ -46,7 +46,7 @@ CMake 3.19.2 is required for building on Apple silicon.
 
 ### Build Unreal Environment
 
-Finally, you will need an Unreal project that hosts the environment for your vehicles. AutonomySim comes with a built-in "Blocks Environment" which you can use, or you can create your own. Please see [setting up Unreal Environment](unreal_proj.md) if you'd like to setup your own environment.
+Finally, you will need an Unreal project that hosts the environment for your vehicles. AutonomySim comes with a built-in "Blocks Environment" which you can use, or you can create your own. Please see [setting up Unreal Environment](unreal_projects.md) if you'd like to setup your own environment.
 
 ## How to Use AutonomySim
 
@@ -62,6 +62,6 @@ See [Using APIs](apis.md) and [settings.json](settings.md) for various options a
 
 ### [Optional] Setup Remote Control (Multirotor Only)
 
-A remote control is required if you want to fly manually. See the [remote control setup](remote_control.md) for more details.
+A remote control is required if you want to fly manually. See the [remote control setup](controller_remote.md) for more details.
 
-Alternatively, you can use [APIs](apis.md) for programmatic control or use the so-called [Computer Vision mode](image_apis.md) to move around using the keyboard.
+Alternatively, you can use [APIs](apis.md) for programmatic control or use the so-called [Computer Vision mode](apis_image.md) to move around using the keyboard.

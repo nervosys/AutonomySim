@@ -1,6 +1,6 @@
-# Setting up PX4 Software-in-Loop
+# Setting up PX4 Software-in-the-loop (SITL)
 
-The [PX4](http://dev.px4.io) software provides a software-in-the-loop (SITL) simulation mode of their stack that runs on Linux. If you are on Windows, you can use the [Cygwin Toolchain](https://dev.px4.io/master/en/setup/dev_env_windows_cygwin.html) or you can use the [Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow the PX4 Linux toolchain setup.
+The [PX4](http://dev.px4.io) software provides a software-in-the-loop (SITL) simulation mode that runs on Linux. If you are on Windows, you can use the [Cygwin Toolchain](https://dev.px4.io/master/en/setup/dev_env_windows_cygwin.html) or you can use the [Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow the PX4 Linux toolchain setup.
 
 If you are using WSL2, please read these [additional instructions](px4_sitl_wsl2.md).
 

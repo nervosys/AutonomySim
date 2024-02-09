@@ -3,7 +3,7 @@
 #include "ImageUtils.h"
 #include "Misc/FileHelper.h"
 #include "common/ClockFactory.hpp"
-#include "common/common_utils/FileSystem.hpp"
+#include "common/utils/FileSystem.hpp"
 #include <sstream>
 
 void RecordingFile::appendRecord(const std::vector<nervosys::autonomylib::ImageCaptureBase::ImageResponse> &responses,
@@ -54,7 +54,8 @@ void RecordingFile::appendRecord(const std::vector<nervosys::autonomylib::ImageC
             save_success = true;
         } catch (std::exception &ex) {
             save_success = false;
-            UAutonomyBlueprintLib::LogMessage(TEXT("Image file save failed"), FString(ex.what()), LogDebugLevel::Failure);
+            UAutonomyBlueprintLib::LogMessage(TEXT("Image file save failed"), FString(ex.what()),
+                                              LogDebugLevel::Failure);
         }
     }
 
@@ -80,7 +81,7 @@ void RecordingFile::createFile(const std::string &file_path, const std::string &
         appendColumnHeader(header_columns);
     } catch (std::exception &ex) {
         UAutonomyBlueprintLib::LogMessageString(std::string("createFile Failed for ") + file_path, ex.what(),
-                                           LogDebugLevel::Failure);
+                                                LogDebugLevel::Failure);
     }
 }
 
@@ -99,17 +100,18 @@ void RecordingFile::writeString(const std::string &str) const {
             FString line_f(str.c_str());
             log_file_handle_->Write((const uint8 *)TCHAR_TO_ANSI(*line_f), line_f.Len());
         } else
-            UAutonomyBlueprintLib::LogMessageString("Attempt to write to recording log file when file was not opened", "",
-                                               LogDebugLevel::Failure);
+            UAutonomyBlueprintLib::LogMessageString("Attempt to write to recording log file when file was not opened",
+                                                    "", LogDebugLevel::Failure);
     } catch (std::exception &ex) {
         UAutonomyBlueprintLib::LogMessageString(std::string("file write to recording file failed "), ex.what(),
-                                           LogDebugLevel::Failure);
+                                                LogDebugLevel::Failure);
     }
 }
 
 RecordingFile::~RecordingFile() { stopRecording(true); }
 
-void RecordingFile::startRecording(nervosys::autonomylib::VehicleSimApiBase *vehicle_sim_api, const std::string &folder) {
+void RecordingFile::startRecording(nervosys::autonomylib::VehicleSimApiBase *vehicle_sim_api,
+                                   const std::string &folder) {
     try {
         std::string log_folderpath = common_utils::FileSystem::getLogFolderPath(true, folder);
         image_path_ = common_utils::FileSystem::ensureFolder(log_folderpath, "images");
@@ -118,8 +120,8 @@ void RecordingFile::startRecording(nervosys::autonomylib::VehicleSimApiBase *veh
         if (log_filepath != "")
             createFile(log_filepath, vehicle_sim_api->getRecordFileLine(true));
         else {
-            UAutonomyBlueprintLib::LogMessageString("Cannot start recording because path for log file is not available", "",
-                                               LogDebugLevel::Failure);
+            UAutonomyBlueprintLib::LogMessageString("Cannot start recording because path for log file is not available",
+                                                    "", LogDebugLevel::Failure);
             return;
         }
 
@@ -128,7 +130,8 @@ void RecordingFile::startRecording(nervosys::autonomylib::VehicleSimApiBase *veh
 
             UAutonomyBlueprintLib::LogMessage(TEXT("Recording: "), TEXT("Started"), LogDebugLevel::Success);
         } else
-            UAutonomyBlueprintLib::LogMessageString("Error creating log file", log_filepath.c_str(), LogDebugLevel::Failure);
+            UAutonomyBlueprintLib::LogMessageString("Error creating log file", log_filepath.c_str(),
+                                                    LogDebugLevel::Failure);
     } catch (...) {
         UAutonomyBlueprintLib::LogMessageString("Error in startRecording", "", LogDebugLevel::Failure);
     }

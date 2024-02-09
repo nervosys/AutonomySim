@@ -1,17 +1,18 @@
 import setup_path
-import AutonomySim
+import autonomysim
 import time
 import sys
 import threading
 
 
 def runSingleCar(id: int):
-    client = AutonomySim.CarClient()
+    client = autonomysim.CarClient()
     client.confirmConnection()
 
     vehicle_name = f"Car_{id}"
-    pose = AutonomySim.Pose(AutonomySim.Vector3r(0, 7*id, 0),
-                       AutonomySim.Quaternionr(0, 0, 0, 0))
+    pose = autonomysim.Pose(
+        autonomysim.Vector3r(0, 7 * id, 0), autonomysim.Quaternionr(0, 0, 0, 0)
+    )
 
     print(f"Creating {vehicle_name}")
     success = client.simAddVehicle(vehicle_name, "Physxcar", pose)
@@ -27,13 +28,13 @@ def runSingleCar(id: int):
     print(f"Driving {vehicle_name} for a few secs...")
     client.enableApiControl(True, vehicle_name)
 
-    car_controls = AutonomySim.CarControls()
+    car_controls = autonomysim.CarControls()
 
     # go forward
     car_controls.throttle = 0.5
     car_controls.steering = 0
     client.setCarControls(car_controls, vehicle_name)
-    time.sleep(3)   # let car drive a bit
+    time.sleep(3)  # let car drive a bit
 
     # Go forward + steer right
     car_controls.throttle = 0.5

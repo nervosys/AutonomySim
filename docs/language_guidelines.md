@@ -1,6 +1,8 @@
-# C++ Coding Guidelines
+# Programming Language Guidelines
 
 We adopt the modern C++[11..23] standards. Smart pointers, lambdas, and multithreading primitives are your friend.
+
+For Python and C#, we adopt the same [standards](#naming-conventions) as C++ where possible.
 
 ## A Note on Standards
 
@@ -42,8 +44,8 @@ Avoid using any sort of Hungarian notation on names and `_ptr` on pointers.
 Use a namespace qualified #ifdef to protect against multiple inclusion:
 
 ```cpp
-#ifndef msr_AutonomySim_MyHeader_hpp
-#define msr_AutonomySim_MyHeader_hpp
+#ifndef nervosys_AutonomySim_MyHeader_hpp
+#define nervosys_AutonomySim_MyHeader_hpp
 
 //--your code
 

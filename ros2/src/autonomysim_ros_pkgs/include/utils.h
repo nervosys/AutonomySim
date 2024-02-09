@@ -1,5 +1,9 @@
+// utils.h
+
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+
 namespace utils {
+
 inline double get_yaw_from_quat_msg(const geometry_msgs::msg::Quaternion &quat_msg) {
     tf2::Quaternion quat_tf;
     double roll, pitch, yaw;
@@ -9,4 +13,5 @@ inline double get_yaw_from_quat_msg(const geometry_msgs::msg::Quaternion &quat_m
 }
 
 // OdometryEuler get_eigen_odom_from_rosmsg(const nav::msgs &odom_msg);
+
 } // namespace utils

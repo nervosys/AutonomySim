@@ -1,21 +1,23 @@
-import AutonomySim
+import autonomysim
 
 import time
 
-client = AutonomySim.VehicleClient()
+client = autonomysim.VehicleClient()
 client.confirmConnection()
 
 # Access an existing light in the world
 lights = client.simListSceneObjects("PointLight.*")
 pose = client.simGetObjectPose(lights[0])
-scale = AutonomySim.Vector3r(1, 1, 1)
+scale = autonomysim.Vector3r(1, 1, 1)
 
 # Destroy the light
 client.simDestroyObject(lights[0])
 time.sleep(1)
 
 # Create a new light at the same pose
-new_light_name = client.simSpawnObject("PointLight", "PointLightBP", pose, scale, False, True)
+new_light_name = client.simSpawnObject(
+    "PointLight", "PointLightBP", pose, scale, False, True
+)
 time.sleep(1)
 
 # Change the light's intensity

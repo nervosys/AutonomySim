@@ -1,13 +1,15 @@
 import setup_path
-import AutonomySim
+import autonomysim
 
 import sys
 import time
 
-print("""This script is designed to fly on the streets of the Neighborhood environment
-and assumes the unreal position of the drone is [160, -1500, 120].""")
+print(
+    """This script is designed to fly on the streets of the Neighborhood environment
+and assumes the unreal position of the drone is [160, -1500, 120]."""
+)
 
-client = AutonomySim.MultirotorClient()
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.enableApiControl(True)
 
@@ -15,7 +17,7 @@ print("arming the drone...")
 client.armDisarm(True)
 
 state = client.getMultirotorState()
-if state.landed_state == AutonomySim.LandedState.Landed:
+if state.landed_state == autonomysim.LandedState.Landed:
     print("taking off...")
     client.takeoffAsync().join()
 else:
@@ -24,7 +26,7 @@ else:
 time.sleep(1)
 
 state = client.getMultirotorState()
-if state.landed_state == AutonomySim.LandedState.Landed:
+if state.landed_state == autonomysim.LandedState.Landed:
     print("take off failed...")
     sys.exit(1)
 
@@ -39,15 +41,23 @@ client.moveToZAsync(z, 1).join()
 # this method is async and we are not waiting for the result since we are passing timeout_sec=0.
 
 print("flying on path...")
-result = client.moveOnPathAsync([AutonomySim.Vector3r(125,0,z),
-                                AutonomySim.Vector3r(125,-130,z),
-                                AutonomySim.Vector3r(0,-130,z),
-                                AutonomySim.Vector3r(0,0,z)],
-                        12, 120,
-                        AutonomySim.DrivetrainType.ForwardOnly, AutonomySim.YawMode(False,0), 20, 1).join()
+result = client.moveOnPathAsync(
+    [
+        autonomysim.Vector3r(125, 0, z),
+        autonomysim.Vector3r(125, -130, z),
+        autonomysim.Vector3r(0, -130, z),
+        autonomysim.Vector3r(0, 0, z),
+    ],
+    12,
+    120,
+    autonomysim.DrivetrainType.ForwardOnly,
+    autonomysim.YawMode(False, 0),
+    20,
+    1,
+).join()
 
 # drone will over-shoot so we bring it back to the start point before landing.
-client.moveToPositionAsync(0,0,z,1).join()
+client.moveToPositionAsync(0, 0, z, 1).join()
 print("landing...")
 client.landAsync().join()
 print("disarming...")

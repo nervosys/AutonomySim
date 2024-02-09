@@ -1,4 +1,4 @@
-import AutonomySim
+import autonomysim
 from event_simulator import *
 
 import numpy as np
@@ -16,17 +16,18 @@ parser.add_argument("--save", action="store_true")
 parser.add_argument("--height", type=int, default=144)
 parser.add_argument("--width", type=int, default=256)
 
+
 class AutonomySimEventGen:
     def __init__(self, W, H, save=False, debug=False):
         self.ev_sim = EventSimulator(W, H)
         self.H = H
         self.W = W
 
-        self.image_request = AutonomySim.ImageRequest(
-            "0", AutonomySim.ImageType.Scene, False, False
+        self.image_request = autonomysim.ImageRequest(
+            "0", autonomysim.ImageType.Scene, False, False
         )
 
-        self.client = AutonomySim.VehicleClient()
+        self.client = autonomysim.VehicleClient()
         self.client.confirmConnection()
         self.init = True
         self.start_ts = None
@@ -65,7 +66,9 @@ class AutonomySimEventGen:
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    event_generator = AutonomySimEventGen(args.width, args.height, save=args.save, debug=args.debug)
+    event_generator = AutonomySimEventGen(
+        args.width, args.height, save=args.save, debug=args.debug
+    )
     i = 0
     start_time = 0
     t_start = time.time()
@@ -73,7 +76,9 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, event_generator._stop_event_gen)
 
     while True:
-        image_request = AutonomySim.ImageRequest("0", AutonomySim.ImageType.Scene, False, False)
+        image_request = autonomysim.ImageRequest(
+            "0", autonomysim.ImageType.Scene, False, False
+        )
 
         response = event_generator.client.simGetImages([event_generator.image_request])
         while response[0].height == 0 or response[0].width == 0:

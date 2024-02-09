@@ -21,7 +21,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLevelLoaded);
 
 UCLASS()
-class AutonomySim_API ASimModeBase : public AActor {
+class AutonomySimApi ASimModeBase : public AActor {
   public:
     GENERATED_BODY()
 
@@ -124,7 +124,7 @@ class AutonomySim_API ASimModeBase : public AActor {
     virtual void initializeVehiclePawn(APawn *pawn);
     virtual std::unique_ptr<PawnSimApi> createVehicleSimApi(const PawnSimApi::Params &pawn_sim_api_params) const;
     virtual nervosys::autonomylib::VehicleApiBase *getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params,
-                                                       const PawnSimApi *sim_api) const;
+                                                                 const PawnSimApi *sim_api) const;
     virtual void registerPhysicsBody(nervosys::autonomylib::VehicleSimApiBase *physicsBody);
 
   protected: // optional overrides

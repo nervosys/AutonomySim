@@ -23,7 +23,7 @@ The [Gimbal element](settings.md#Gimbal) (instead of old Gimble element) is now 
 
 ### CameraID to CameraName
 
-All settings now reference cameras by [name](image_apis.md#available_cameras) instead of ID.
+All settings now reference cameras by [name](apis_image.md#available_cameras) instead of ID.
 
 ### Using PX4
 

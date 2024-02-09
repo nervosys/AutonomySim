@@ -8,19 +8,19 @@ CommonSetup()
 IncludeEigen()
 
 include_directories(
-  ${AutonomySim_ROOT}/AutonomyLib/
-  ${AutonomySim_ROOT}/AutonomyLib/include
-  ${AutonomySim_ROOT}/MavLinkCom/include
+  ${AUTONOMYSIM_ROOT}/AutonomyLib/
+  ${AUTONOMYSIM_ROOT}/AutonomyLib/include
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/include
   ${RPC_LIB_INCLUDES}
 )
 
 file(GLOB_RECURSE ${PROJECT_NAME}_sources 
-  ${AutonomySim_ROOT}/${PROJECT_NAME}/src/api/*.cpp
-  ${AutonomySim_ROOT}/${PROJECT_NAME}/src/common/common_utils/*.cpp
-  ${AutonomySim_ROOT}/${PROJECT_NAME}/src/safety/*.cpp
-  ${AutonomySim_ROOT}/${PROJECT_NAME}/src/vehicles/car/api/*.cpp
-  ${AutonomySim_ROOT}/${PROJECT_NAME}/src/vehicles/multirotor/*.cpp
-  ${AutonomySim_ROOT}/${PROJECT_NAME}/src/vehicles/multirotor/api/*.cpp
+  ${AUTONOMYSIM_ROOT}/${PROJECT_NAME}/src/api/*.cpp
+  ${AUTONOMYSIM_ROOT}/${PROJECT_NAME}/src/common/utils/*.cpp
+  ${AUTONOMYSIM_ROOT}/${PROJECT_NAME}/src/safety/*.cpp
+  ${AUTONOMYSIM_ROOT}/${PROJECT_NAME}/src/vehicles/car/api/*.cpp
+  ${AUTONOMYSIM_ROOT}/${PROJECT_NAME}/src/vehicles/multirotor/*.cpp
+  ${AUTONOMYSIM_ROOT}/${PROJECT_NAME}/src/vehicles/multirotor/api/*.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})

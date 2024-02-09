@@ -17,13 +17,13 @@ There are two options for Docker:
   `--base_image`: This is image over which we'll install AutonomySim. We've tested on Ubuntu 18.04 with CUDA 10.0.
    You can specify any [NVIDIA cudagl](https://hub.docker.com/r/nvidia/cudagl/) at your own risk.
    `--target_image` is the desired name of your docker image.
-   Defaults to `AutonomySim_binary` with same tag as the base image
+   Defaults to `autonomysim_binary` with same tag as the base image
 
 ```bash
    cd AutonomySim/docker
-   python build_AutonomySim_image.py \
+   python build_autonomysim_image.py \
       --base_image=nvidia/cudagl:10.0-devel-ubuntu18.04 \
-      --target_image=AutonomySim_binary:10.0-devel-ubuntu18.04
+      --target_image=autonomysim_binary:10.0-devel-ubuntu18.04
 ```
 
 * Verify you have an image by: `$ docker images | grep AutonomySim`
@@ -42,12 +42,12 @@ Modify it to fetch the specific binary required.
 * Running an unreal binary inside a docker container, the syntax is:
 
 ```bash
-   ./run_AutonomySim_image_binary.sh DOCKER_IMAGE_NAME UNREAL_BINARY_SHELL_SCRIPT UNREAL_BINARY_ARGUMENTS -- headless
+   ./run_autonomysim_image_binary.sh DOCKER_IMAGE_NAME UNREAL_BINARY_SHELL_SCRIPT UNREAL_BINARY_ARGUMENTS -- headless
 ```
 
-* For Blocks, you can do a `$ ./run_AutonomySim_image_binary.sh AutonomySim_binary:10.0-devel-ubuntu18.04 Blocks/Blocks.sh -windowed -ResX=1080 -ResY=720`
+* For Blocks, you can do a `$ ./run_autonomysim_image_binary.sh autonomysim_binary:10.0-devel-ubuntu18.04 Blocks/Blocks.sh -windowed -ResX=1080 -ResY=720`
 
-* `DOCKER_IMAGE_NAME`: Same as `target_image` parameter in previous step. By default, enter `AutonomySim_binary:10.0-devel-ubuntu18.04`
+* `DOCKER_IMAGE_NAME`: Same as `target_image` parameter in previous step. By default, enter `autonomysim_binary:10.0-devel-ubuntu18.04`
 * `UNREAL_BINARY_SHELL_SCRIPT`: for Blocks enviroment, it will be `Blocks/Blocks.sh`
 * [`UNREAL_BINARY_ARGUMENTS`](https://docs.unrealengine.com/en-us/Programming/Basics/CommandLineArguments):
 
@@ -56,7 +56,7 @@ For AutonomySim, most relevant would be `-windowed`, `-ResX`, `-ResY`. Click on 
 * Running in Headless mode: suffix `-- headless` at the end:
 
 ```bash
-./run_AutonomySim_image_binary.sh Blocks/Blocks.sh -- headless
+./run_autonomysim_image_binary.sh Blocks/Blocks.sh -- headless
 ```
 
 * [Specifying a `settings.json`](#specifying-settingsjson)
@@ -96,14 +96,14 @@ For AutonomySim, most relevant would be `-windowed`, `-ResX`, `-ResY`. Click on 
    * `--base_image`: This is image over which we'll install AutonomySim. We've tested on `adamrehn/ue4-engine:4.19.2-cudagl10.0`. See [ue4-docker](https://docs.adamrehn.com/ue4-docker/building-images/available-container-images) for other versions.
    * `--target_image` is the desired name of your docker image.
 
-Defaults to `AutonomySim_source` with same tag as the base image
+Defaults to `autonomysim_source` with same tag as the base image
 
 ```bash
 cd AutonomySim/docker;
-python build_AutonomySim_image.py \
+python build_autonomysim_image.py \
    --source \
    ----base_image adamrehn/ue4-engine:4.19.2-cudagl10.0 \
-   --target_image=AutonomySim_source:4.19.2-cudagl10.0
+   --target_image=autonomysim_source:4.19.2-cudagl10.0
 ```
 
 ### Running AutonomySim container
@@ -111,10 +111,10 @@ python build_AutonomySim_image.py \
 * Run the AutonomySim source image we built by:
 
 ```bash
-   ./run_AutonomySim_image_source.sh AutonomySim_source:4.19.2-cudagl10.0
+   ./run_autonomysim_image_source.sh autonomysim_source:4.19.2-cudagl10.0
 ```
 
-* Syntax is `./run_AutonomySim_image_source.sh DOCKER_IMAGE_NAME -- headless`
+* Syntax is `./run_autonomysim_image_source.sh DOCKER_IMAGE_NAME -- headless`
    `-- headless`: suffix this to run in optional headless mode.
 
 * Inside the container, you can see `UnrealEngine` and `AutonomySim` under `/home/ue4`.
@@ -123,7 +123,7 @@ python build_AutonomySim_image.py \
 * [Specifying an AutonomySim settings.json](#specifying-settingsjson)
 * Continue with [AutonomySim's Linux docs](build_linux.md#build-unreal-environment).
 
-### [Misc] Packaging Unreal Environments in `AutonomySim_source` containers
+### [Misc] Packaging Unreal Environments in `autonomysim_source` containers
 
 * Let's take the Blocks environment as an example. In the following script, specify the full path to your unreal uproject file by `project` and the directory where you want the binaries to be placed by `archivedirectory`
 
@@ -139,14 +139,14 @@ This would create a Blocks binary in `/home/ue4/Binaries/Blocks/`. You can test 
 
 ### Specifying settings.json
 
-#### `AutonomySim_binary` Docker image
+#### `autonomysim_binary` Docker image
 
-* We're mapping the host machine's `PATH/TO/AutonomySim/docker/settings.json` to the docker container's `/home/AutonomySim_user/Documents/AutonomySim/settings.json`.
-* Hence, we can load any settings file by simply modifying `PATH_TO_YOUR/settings.json` by modifying the following snippets in [`run_AutonomySim_image_binary.sh`](https://github.com/nervosys/AutonomySim/blob/main/docker/run_AutonomySim_image_binary.sh)
+* We're mapping the host machine's `PATH/TO/AutonomySim/docker/settings.json` to the docker container's `/home/autonomysim_user/Documents/AutonomySim/settings.json`.
+* Hence, we can load any settings file by simply modifying `PATH_TO_YOUR/settings.json` by modifying the following snippets in [`run_autonomysim_image_binary.sh`](https://github.com/nervosys/AutonomySim/blob/master/docker/run_autonomysim_image_binary.sh)
 
 ```bash
 nvidia-docker run --runtime=nvidia -it \
-   -v $PATH_TO_YOUR/settings.json:/home/AutonomySim_user/Documents/AutonomySim/settings.json \
+   -v $PATH_TO_YOUR/settings.json:/home/autonomysim_user/Documents/AutonomySim/settings.json \
    -v $UNREAL_BINARY_PATH:$UNREAL_BINARY_PATH \
    -e SDL_VIDEODRIVER=$SDL_VIDEODRIVER_VALUE \
    -e SDL_HINT_CUDA_DEVICE='0' \
@@ -167,14 +167,14 @@ nvidia-docker run --runtime=nvidia -it \
 docker run --gpus all -it ...
 ```
 
-####  `AutonomySim_source` docker image
+####  `autonomysim_source` docker image
 
-* We're mapping the host machine's `PATH/TO/AutonomySim/docker/settings.json` to the docker container's `/home/AutonomySim_user/Documents/AutonomySim/settings.json`.
-* Hence, we can load any settings file by simply modifying `PATH_TO_YOUR/settings.json` by modifying the following snippets in [`run_AutonomySim_image_source.sh`](https://github.com/nervosys/AutonomySim/blob/main/docker/run_AutonomySim_image_source.sh):
+* We're mapping the host machine's `PATH/TO/AutonomySim/docker/settings.json` to the docker container's `/home/autonomysim_user/Documents/AutonomySim/settings.json`.
+* Hence, we can load any settings file by simply modifying `PATH_TO_YOUR/settings.json` by modifying the following snippets in [`run_autonomysim_image_source.sh`](https://github.com/nervosys/AutonomySim/blob/master/docker/run_autonomysim_image_source.sh):
 
 ```bash
    nvidia-docker run --runtime=nvidia -it \
-      -v $(pwd)/settings.json:/home/AutonomySim_user/Documents/AutonomySim/settings.json \
+      -v $(pwd)/settings.json:/home/autonomysim_user/Documents/AutonomySim/settings.json \
       -e SDL_VIDEODRIVER=$SDL_VIDEODRIVER_VALUE \
       -e SDL_HINT_CUDA_DEVICE='0' \
       --net=host \

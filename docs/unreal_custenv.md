@@ -101,7 +101,7 @@ By default AutonomySim prompts user for which vehicle to use. You can easily cha
 
 Once you have your environment using above instructions, you should frequently update your local AutonomySim code to latest version from GitHub. Below are the instructions to do this:
 
-1. First put [clean.cmd](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Environments/Blocks/clean.cmd) (or [clean.sh](https://github.com/nervosys/AutonomySim/blob/main/Unreal/Environments/Blocks/clean.sh) for Linux users) in the root folder of your environment. Run this file to clean up all intermediate files in your Unreal project.
+1. First put [clean.cmd](https://github.com/nervosys/AutonomySim/blob/master/Unreal/Environments/Blocks/clean.cmd) (or [clean.sh](https://github.com/nervosys/AutonomySim/blob/master/Unreal/Environments/Blocks/clean.sh) for Linux users) in the root folder of your environment. Run this file to clean up all intermediate files in your Unreal project.
 2. Do `git pull` in your AutonomySim repo followed by `build.cmd` (or `./build.sh` for Linux users).
 3. Replace [your project]/Plugins folder with AutonomySim/Unreal/Plugins folder.
 4. Right click on your .uproject file and chose "Generate Visual Studio project files" option. This is not required for Linux.

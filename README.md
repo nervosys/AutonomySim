@@ -122,7 +122,7 @@ If you have wired or remote controller, you can manually control vehicles in the
 
 The APIs are also available as part of a separate, independent, cross-platform library, so that they can be deployed on a real-time embedded system on your vehicle. That way, you can write and test your code in simulation, where mistakes are relatively cheap, before deploying it to real-world systems. Moreover, a core focal area of `AutonomySim` is the development of simulation-to-real (sim2real) domain adaptation AI models, a form of transfer learning. These metamodels map from models of simulations to models of real-world systems, leveraging the universal function approximation abilities of artificial neural networks to _implicitly_ represent real-world processes not _explicitly_ represented in simulations.
 
-Note that you can use [Sim Mode](https://nervosys.github.io/AutonomySim/settings#simmode) setting to specify the default vehicle or the new [Computer Vision](https://nervosys.github.io/AutonomySim/image_apis#computer-vision-mode-1) mode, so you don't get prompted each time you start `AutonomySim`. See [this](https://nervosys.github.io/AutonomySim/apis) for more details.
+Note that you can use [Sim Mode](https://nervosys.github.io/AutonomySim/settings#simmode) setting to specify the default vehicle or the new [Computer Vision](https://nervosys.github.io/AutonomySim/apis_image#computer-vision-mode-1) mode, so you don't get prompted each time you start `AutonomySim`. See [this](https://nervosys.github.io/AutonomySim/apis) for more details.
 
 ### Hybrid Human-Machine Operation
 
@@ -147,11 +147,11 @@ The second method, using the APIs, is a more precise and repeatable method for g
 
 ### Computer Vision Mode
 
-It is also possible to use `AutonomySim` with vehicles and physics disabled. This is known as Computer Vision Mode and it supports both human and machine control. In this mode, you can use the keyboard or APIs to position cameras in arbitrary poses and collect imagery including depth, disparity, surface normals, or object segmentation masks. As the name implies, this is useful for generating labeled data for learning computer vision models. See [this](https://nervosys.github.io/AutonomySim/image_apis) for more details.
+It is also possible to use `AutonomySim` with vehicles and physics disabled. This is known as Computer Vision Mode and it supports both human and machine control. In this mode, you can use the keyboard or APIs to position cameras in arbitrary poses and collect imagery including depth, disparity, surface normals, or object segmentation masks. As the name implies, this is useful for generating labeled data for learning computer vision models. See [this](https://nervosys.github.io/AutonomySim/apis_image) for more details.
 
 ## Labeled Data Modalities
 
-The following [sensors](https://microsoft.github.io/AirSim/sensors/) and data modalities are either available or planned:
+The following [sensors](https://nervosys.github.io/AutonomySim/sensors/) and data modalities are either available or planned:
 
 * RGB imagery
 * Depth
@@ -161,9 +161,9 @@ The following [sensors](https://microsoft.github.io/AirSim/sensors/) and data mo
 * Object bounding boxes (coming soon)
 * Audio (coming soon)
 * Video (coming soon)
-* Short- or long-wavelength infrared imagery ([see](https://microsoft.github.io/AirSim/InfraredCamera/))
+* Short- or long-wavelength infrared imagery ([see](https://nervosys.github.io/AutonomySim/InfraredCamera/))
 * Multi- and Hyper-spectral (coming soon)
-* LiDAR ([see](https://github.com/nervosys/AutonomySim/blob/main/docs/lidar.md); GPU acceleration coming soon)
+* LiDAR ([see](https://github.com/nervosys/AutonomySim/blob/master/docs/lidar.md); GPU acceleration coming soon)
 * RaDAR (coming soon)
 * SoNAR (coming soon)
 

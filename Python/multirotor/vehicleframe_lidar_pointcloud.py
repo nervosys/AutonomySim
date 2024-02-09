@@ -1,9 +1,9 @@
 # Python client example to get Lidar data from a drone, although this script works for any AutonomySim-supported vehicle
 # This script is for Lidar sensors using 'VehicleInertialFrame' as DataFrame under settings.json
 # Sample settings.json used for this script:
-'''
+"""
 {
-    "SeeDocsAt": "https://github.com/nervosys/AutonomySim/blob/main/docs/settings_json.md",
+    "SeeDocsAt": "https://github.com/nervosys/AutonomySim/blob/master/docs/settings_json.md",
     "SettingsVersion": 1.2,
 
     "SimMode": "Multirotor",
@@ -49,45 +49,52 @@
         }
     }
 }
-'''
-import setup_path 
-import AutonomySim
+"""
+import setup_path
+import autonomysim
 import numpy as np
 
+
 class LidarTest:
-
     def __init__(self):
-
-        # connect to the AutonomySim simulator
-        self.client = AutonomySim.VehicleClient()
+        # connect to the autonomysim simulator
+        self.client = autonomysim.VehicleClient()
         self.client.confirmConnection()
-        print('Connected!\n')
+        print("Connected!\n")
 
-    def execute(self,vehicle_name,lidar_names):
-        print('Scanning Has Started\n')
-        print('Use Keyboard Interrupt \'CTRL + C\' to Stop Scanning\n')
-        existing_data_cleared = False   #change to true to superimpose new scans onto existing .asc files
+    def execute(self, vehicle_name, lidar_names):
+        print("Scanning Has Started\n")
+        print("Use Keyboard Interrupt 'CTRL + C' to Stop Scanning\n")
+        existing_data_cleared = (
+            False  # change to true to superimpose new scans onto existing .asc files
+        )
         try:
             while True:
                 for lidar_name in lidar_names:
                     filename = f"{vehicle_name}_{lidar_name}_pointcloud.asc"
                     if not existing_data_cleared:
-                        f = open(filename,'w')
+                        f = open(filename, "w")
                     else:
-                        f = open(filename,'a')
-                    lidar_data = self.client.getLidarData(lidar_name=lidar_name,vehicle_name=vehicle_name)
+                        f = open(filename, "a")
+                    lidar_data = self.client.getLidarData(
+                        lidar_name=lidar_name, vehicle_name=vehicle_name
+                    )
 
                     for i in range(0, len(lidar_data.point_cloud), 3):
-                        xyz = lidar_data.point_cloud[i:i+3]
-                        
-                        f.write("%f %f %f %d %d %d \n" % (xyz[0],xyz[1],xyz[2],255,255,0))
+                        xyz = lidar_data.point_cloud[i : i + 3]
+
+                        f.write(
+                            "%f %f %f %d %d %d \n"
+                            % (xyz[0], xyz[1], xyz[2], 255, 255, 0)
+                        )
                     f.close()
                 existing_data_cleared = True
         except KeyboardInterrupt:
-            AutonomySim.wait_key('Press any key to stop running this script')
+            autonomysim.wait_key("Press any key to stop running this script")
             print("Done!\n")
+
 
 # main
 if __name__ == "__main__":
     lidarTest = LidarTest()
-    lidarTest.execute('Drone1',['LidarSensor1','LidarSensor2'])
+    lidarTest.execute("Drone1", ["LidarSensor1", "LidarSensor2"])

@@ -2,12 +2,12 @@
 
 The [PX4 software stack](http://github.com/px4/firmware) is an open-source popular flight controller with support for wide variety of boards and sensors as well as built-in capability for higher level tasks such as mission planning. Please visit [px4.io](http://px4.io) for more information.
 
-!!! warning
-    While all releases of AutonomySim are always tested with PX4 to ensure the support, setting up PX4 is not a trivial task. Unless you have at least intermediate level of experience with PX4 stack, we recommend you use [simple_flight](simple_flight.md), which is now a default in AutonomySim.
+!!! warning "Setting up PX4 can be challenging"
+    While all releases of `AutonomySim` are always tested with PX4 to ensure support, setting up PX4 is not a trivial task. Unless you have at least intermediate level of experience with PX4 stack, we recommend you use [simple_flight](simple_flight.md), which is now a default in `AutonomySim`.
 
 ## Supported Hardware
 
-The following Pixhawk hardware has been tested with AutonomySim:
+The following Pixhawk hardware versions have been tested and verified to work with `AutonomySim`:
 
 * [Pixhawk PX4 2.4.8](http://www.banggood.com/Pixhawk-PX4-2_4_8-Flight-Controller-32-Bit-ARM-PX4FMU-PX4IO-Combo-for-Multicopters-p-1040416.html)
 * [PixFalcon](https://hobbyking.com/en_us/pixfalcon-micro-px4-autopilot.html?___store=en_us)
@@ -16,20 +16,23 @@ The following Pixhawk hardware has been tested with AutonomySim:
 * [Pixhawk 4 mini from Holybro](https://shop.holybro.com/pixhawk4-mini_p1120.html)
 * [Pixhawk 4 from Holybro](https://shop.holybro.com/pixhawk-4beta-launch_p1089.html)
 
-Version 1.11.2 of the PX4 firmware also works on the Pixhawk 4 devices.
+PX4 firmware version 1.11.2 also works on the Pixhawk 4 devices.
 
-## Setting up PX4 Hardware-in-Loop
+## PX4 Hardware-in-the-loop (HITL) Setup
 
-For this you will need one of the supported device listed above. For manual flight you will also need RC + transmitter.
+First, you will need one of the supported device listed above. For manual flight, you will also need an RC transmitter and receiver.
 
-1. Make sure your RC receiver is bound with its RC transmitter. Connect the RC transmitter to the flight controller's RC port. Refer to your RC manual and [PX4 docs](https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html) for more information.
+1. Ensure your RC receiver is bound with its RC transmitter. Connect the RC transmitter to the flight controller's RC port. Refer to your RC manual and [PX4 docs](https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html) for more information.
 2. Download [QGroundControl](http://qgroundcontrol.com/), launch it and connect your flight controller to the USB port.
-3. Use QGroundControl to flash the latest PX4 Flight Stack.
+3. Use `QGroundControl` to flash the latest PX4 Flight Stack.
 See also [initial firmware setup video](https://docs.px4.io/master/en/config/).
-4. In QGroundControl, configure your Pixhawk for HIL simulation by selecting the HIL Quadrocopter X airframe.  After PX4 reboots, check that "HIL Quadrocopter X" is indeed selected.
-5. In QGroundControl, go to Radio tab and calibrate (make sure the remote control is on and the receiver is showing the indicator for the binding).
-6. Go to the Flight Mode tab and chose one of the remote control switches as "Mode Channel". Then set (for example) Stabilized and Attitude flight modes for two positions of the switch.
-7. Go to the Tuning section of QGroundControl and set appropriate values. For example, for Fly Sky's FS-TH9X remote control, the following settings give a more realistic feel: Hover Throttle = mid+1 mark, Roll and pitch sensitivity = mid-3 mark, Altitude and position control sensitivity = mid-2 mark.
+4. In `QGroundControl`, configure your Pixhawk for HITL simulation by selecting the HITL Quadrocopter X airframe. After PX4 reboots, check that `HIL Quadrocopter X` is selected.
+5. In `QGroundControl`, go to `Radio` tab and calibrate (make sure the remote control is on and the receiver is showing the indicator for the binding).
+6. Go to the `Flight Mode` tab and chose one of the remote control switches as `Mode Channel`. Then set (for example) `Stabilized` and `Attitude` flight modes for two positions of the switch.
+7. Go to the `Tuning` section of QGroundControl and set appropriate values. For example, for the Turnigy/FrSky/FlySky FS-TH9X RC transmitter, the following values give a more realistic feel:
+   * Hover Throttle = mid+1 mark
+   * Roll and pitch sensitivity = mid-3 mark
+   * Altitude and position control sensitivity = mid-2 mark
 8. In [AutonomySim settings](settings.md) file, specify PX4 for your vehicle config like this:
 
 ```json
@@ -61,9 +64,10 @@ See also [initial firmware setup video](https://docs.px4.io/master/en/config/).
     }
 ```
 
-Notice the PX4 `[simulator]` is using TCP, which is why we need to add: `"UseTcp": true,`. Notice we are also enabling `LockStep`, see [PX4 LockStep](px4_lockstep.md) for more information. The `Barometer` setting keeps PX4 happy because the default AutonomySim barometer has a bit too much noise generation. This setting clamps that down a bit which allows PX4 to achieve GPS lock more quickly.
+!!! note
+    The PX4 `[simulator]` is communicating over TCP, so we need to set `"UseTcp": true,`. We have also enabled `LockStep` (see [PX4 LockStep](px4_lockstep.md) for more information). The `Barometer` setting keeps PX4 stable because the default `AutonomySim` barometer generates excessive noise. This setting improves the signal-to-noise ratio (SNR), producing faster GPS lock on PX4.
 
-After above setup you should be able to use a remote control (RC) to fly with AutonomySim. You can usually arm the vehicle by lowering and bringing two sticks of RC together down and in-wards. You don't need QGroundControl after the initial setup. Typically the Stabilized (instead of Manual) mode gives better experience for beginners.  See [PX4 Basic Flying Guide](https://docs.px4.io/master/en/flying/basic_flying.html).
+With the above settings, you should be able to use a radio/remote controller (RC) in `AutonomySim`. You can usually arm the vehicle by bringing two RC sticks or 'pots' downward and inward toward one another. You do not need `QGroundControl` after the initial setup. Typically, the `Stabilized` rather than `Manual` mode provides new users or 'newbs' a better experience. See [PX4 Basic Flying Guide](https://docs.px4.io/master/en/flying/basic_flying.html).
 
 You can also control the drone from [Python APIs](apis.md).
 

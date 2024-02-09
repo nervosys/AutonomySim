@@ -1,10 +1,10 @@
-# Upgrading APIs
+# Upgrading Existing APIs
 
-There have been several API changes in AutonomySim v1.2 that we hope removes inconsistency, adds future extensibility and presents cleaner interface. Many of these changes are however *breaking changes* which means you will need to modify your client code that talks to AutonomySim.
+There have been several API changes in `AutonomySim` v1.2 that we hope removes inconsistency, adds future extensibility and presents cleaner interface. Many of these changes are however _breaking changes_, which means that you will need to modify your client code that communicates with `AutonomySim`.
 
-## A Quicker Way
+## A Faster Way
 
-While most changes you need to do in your client code are fairly easy, a quicker way is simply to take a look at the example code such as [Hello Drone](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//multirotor/hello_drone.py)or [Hello Car](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//car/hello_car.py) to get gist of changes.
+While most changes you need to do in your client code are fairly easy, a faster way is to simply take a look at the example code, such as [Hello Drone](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//multirotor/hello_drone.py)or [Hello Car](https://github.com/nervosys/AutonomySim/tree/master/PythonClient//car/hello_car.py), to gain an understanding of the changes.
 
 ## Importing `AutonomySim`
 
@@ -72,7 +72,7 @@ d = AutonomySim.DrivetrainType.MaxDegreeOfFreedom
 
 ## Getting Images
 
-Nothing new below, it's just combination of above. Note that all APIs that previously took `camera_id`, now takes `camera_name` instead. You can take a look at [available cameras](image_apis.md#avilable_cameras) here.
+Nothing new below, it's just combination of above. Note that all APIs that previously took `camera_id`, now takes `camera_name` instead. You can take a look at [available cameras](apis_image.md#avilable_cameras) here.
 
 Instead of this:
 
@@ -108,7 +108,7 @@ AutonomySim.wait_key('Press any key')
 
 ## Camera Names
 
-AutonomySim now uses [names](image_apis.md#available_cameras) to reference cameras instead of index numbers. However to retain backward compatibility, these names are aliased with old index numbers as string.
+AutonomySim now uses [names](apis_image.md#available_cameras) to reference cameras instead of index numbers. However to retain backward compatibility, these names are aliased with old index numbers as string.
 
 Instead of this:
 

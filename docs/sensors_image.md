@@ -6,7 +6,7 @@
 
 The following image sensor types are supported or planned:
 
-* RGB imager ([see](image_apis.md))
+* RGB imager ([see](apis_image.md))
 * Multispectral imager (MSI)
 * Hyperspectral imager (HSI)
 * Short-wave infrared (SWIR) thermal imager
@@ -16,7 +16,7 @@ The following image sensor types are supported or planned:
 
 ## RGB Sensor
 
-See the visible-spectrum RGB image sensor section [here](image_apis.md).
+See the visible-spectrum RGB image sensor section [here](apis_image.md).
 
 ## Multi- and Hyper-spectral Sensors
 
@@ -53,7 +53,7 @@ The `AutonomySim` event simulator uses two consecutive RGB images (converted to 
 
 `x` and `y` are the pixel locations of the event firing, `timestamp` is the global timestamp in microseconds and `pol` is either +1/-1 depending on whether the brightness increased or decreased. Along with this bytestream, an accumulation of events over a 2D frame is also constructed, known as an 'event image' that visualizes +1 events as red and -1 as blue pixels. An example event image is shown below:
 
-![image](images/event_sim.png)
+![image](media/images/event_sim.png)
 
 ### Algorithm
 
@@ -68,7 +68,7 @@ $t = t_{prev} + \frac{\Delta T}{N_e(u)}$
 
 ### Usage
 
-An example script to run the event simulator alongside AutonomySim is located at https://github.com/nervosys/AutonomySim/blob/main/PythonClient/eventcamera_sim/test_event_sim.py. The following optional command-line arguments can be passed to this script.
+An example script to run the event simulator alongside AutonomySim is located at https://github.com/nervosys/AutonomySim/blob/master/PythonClient/eventcamera_sim/test_event_sim.py. The following optional command-line arguments can be passed to this script.
 
 ```python
 args.width, args.height (float): Simulated event camera resolution
@@ -76,7 +76,7 @@ args.save (bool): whether to save the event data to a file
 args.debug (bool): Whether to display the simulated events as an image
 ```
 
-The implementation of the actual event simulation, written in Python and numba, is at https://github.com/nervosys/AutonomySim/blob/main/PythonClient/eventcamera_sim/event_simulator.py. The event simulator is initialized as follows, with the arguments controlling the resolution of the camera.
+The implementation of the actual event simulation, written in Python and numba, is at https://github.com/nervosys/AutonomySim/blob/master/PythonClient/eventcamera_sim/event_simulator.py. The event simulator is initialized as follows, with the arguments controlling the resolution of the camera.
 
 ```python
 from event_simulator import *

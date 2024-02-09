@@ -1,3 +1,3 @@
 # Support
 
-This page has moved [here](https://github.com/nervosys/AutonomySim/blob/main/docs/SUPPORT.md).
+This page has moved [here](https://github.com/nervosys/AutonomySim/blob/master/docs/SUPPORT.md).

@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 
-#include "common/common_utils/Signal.hpp"
+#include "common/utils/Signal.hpp"
 
 class PawnEvents {
   public: // types

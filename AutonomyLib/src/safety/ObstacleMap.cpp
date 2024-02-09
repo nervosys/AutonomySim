@@ -5,7 +5,7 @@
 #ifndef AUTONOMYLIB_HEADER_ONLY
 
 #include "safety/ObstacleMap.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include <thread>
 
 namespace nervosys {
@@ -83,8 +83,12 @@ ObstacleMap::ObstacleInfo ObstacleMap::hasObstacle_(int from_tick, int to_tick) 
 ObstacleMap::ObstacleInfo ObstacleMap::hasObstacle(int from_tick, int to_tick) {
     std::lock_guard<std::mutex> lock(mutex_); // lock the map before query
 
-    if (blindspots_.at(wrap(from_tick))) { from_tick--; }        
-    if (blindspots_.at(wrap(to_tick))) { to_tick++; }
+    if (blindspots_.at(wrap(from_tick))) {
+        from_tick--;
+    }
+    if (blindspots_.at(wrap(to_tick))) {
+        to_tick++;
+    }
 
     return hasObstacle_(from_tick, to_tick);
 }

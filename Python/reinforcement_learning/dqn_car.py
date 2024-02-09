@@ -14,7 +14,7 @@ env = DummyVecEnv(
     [
         lambda: Monitor(
             gym.make(
-                "autonomygym:AutonomySim-car-sample-v0",
+                "autonomygym:autonomysim-car-sample-v0",
                 ip_address="127.0.0.1",
                 image_shape=(84, 84, 1),
             )
@@ -60,8 +60,10 @@ kwargs["callback"] = callbacks
 
 # Train for a certain number of timesteps
 model.learn(
-    total_timesteps=5e5, tb_log_name="dqn_AutonomySim_car_run_" + str(time.time()), **kwargs
+    total_timesteps=5e5,
+    tb_log_name="dqn_autonomysim_car_run_" + str(time.time()),
+    **kwargs,
 )
 
 # Save policy weights
-model.save("dqn_AutonomySim_car_policy")
+model.save("dqn_autonomysim_car_policy")

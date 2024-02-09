@@ -17,7 +17,7 @@
     Vehicles are spawned at position specified in settings in global NED
 */
 
-class AutonomySim_API NedTransform {
+class AutonomySimApi NedTransform {
   public:
     typedef nervosys::autonomylib::Vector3r Vector3r;
     typedef nervosys::autonomylib::Quaternionr Quaternionr;

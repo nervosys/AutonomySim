@@ -7,8 +7,8 @@
 #include "IGeoFence.hpp"
 #include "ObstacleMap.hpp"
 #include "common/Common.hpp"
-#include "common/common_utils/EnumFlags.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/EnumFlags.hpp"
+#include "common/utils/Utils.hpp"
 #include "vehicles/multirotor/api/MultirotorCommon.hpp"
 #include <array>
 #include <functional>

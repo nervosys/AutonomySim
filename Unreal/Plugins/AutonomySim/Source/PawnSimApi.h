@@ -14,8 +14,8 @@
 #include "common/Common.hpp"
 #include "common/CommonStructs.hpp"
 #include "common/GeodeticConverter.hpp"
-#include "common/common_utils/Signal.hpp"
-#include "common/common_utils/UniqueValueMap.hpp"
+#include "common/utils/Signal.hpp"
+#include "common/utils/UniqueValueMap.hpp"
 #include "physics/Kinematics.hpp"
 #include <memory>
 #include <vector>
@@ -52,8 +52,8 @@ class PawnSimApi : public nervosys::autonomylib::VehicleSimApiBase {
 
         Params(APawn *pawn_val, const NedTransform *global_transform_val, PawnEvents *pawn_events_val,
                const common_utils::UniqueValueMap<std::string, APIPCamera *> &cameras_val, UClass *pip_camera_class_val,
-               UParticleSystem *collision_display_template_val, const nervosys::autonomylib::GeoPoint &home_geopoint_val,
-               const std::string &vehicle_name_val)
+               UParticleSystem *collision_display_template_val,
+               const nervosys::autonomylib::GeoPoint &home_geopoint_val, const std::string &vehicle_name_val)
             : pawn(pawn_val), global_transform(global_transform_val), pawn_events(pawn_events_val),
               cameras(cameras_val), pip_camera_class(pip_camera_class_val),
               collision_display_template(collision_display_template_val), home_geopoint(home_geopoint_val),

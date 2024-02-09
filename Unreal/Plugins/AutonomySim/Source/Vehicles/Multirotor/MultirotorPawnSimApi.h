@@ -6,7 +6,7 @@
 #include "PawnSimApi.h"
 #include "common/Common.hpp"
 #include "common/CommonStructs.hpp"
-#include "common/common_utils/UniqueValueMap.hpp"
+#include "common/utils/UniqueValueMap.hpp"
 #include "physics//Kinematics.hpp"
 #include "vehicles/multirotor/MultirotorParams.hpp"
 #include "vehicles/multirotor/MultirotorPhysicsBody.hpp"

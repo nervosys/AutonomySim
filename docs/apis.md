@@ -134,8 +134,8 @@ for response in responses:
 
 AutonomySim offers comprehensive images APIs to retrieve synchronized images from multiple cameras along with ground truth including depth, disparity, surface normals and vision. You can set the resolution, FOV, motion blur etc parameters in [settings.json](settings.md). There is also API for detecting collision state. See also [complete code](https://github.com/nervosys/AutonomySim/tree/master/Examples/DataCollection/StereoImageGenerator.hpp) that generates specified number of stereo images and ground truth depth with normalization to camera plane, computation of disparity image and saving it to [pfm format](pfm.md).
 
-More on [image APIs and Computer Vision mode](image_apis.md).
-For vision problems that can benefit from domain randomization, there is also an [object retexturing API](retexturing.md), which can be used in supported scenes.
+More on [image APIs and Computer Vision mode](apis_image.md).
+For vision problems that can benefit from domain randomization, there is also an [object texture_swapping API](texture_swapping.md), which can be used in supported scenes.
 
 ### Pause and Continue APIs
 
@@ -193,7 +193,7 @@ class WeatherParameter:
 
 Please note that `Roadwetness`, `RoadSnow` and `RoadLeaf` effects requires adding [materials](https://github.com/nervosys/AutonomySim/tree/master/Unreal/Plugins/AutonomySim/Content/Weather/WeatherFX) to your scene.
 
-Please see [example code](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/environment/weather.py) for more details.
+Please see [example code](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/environment/weather.py) for more details.
 
 ### Recording APIs
 
@@ -207,7 +207,7 @@ Similarly, to stop recording, use `client.stopRecording()`. To check whether Rec
 
 This API works alongwith toggling Recording using R button, therefore if it's enabled using R key, `isRecording()` will return `True`, and recording can be stopped via API using `stopRecording()`. Similarly, recording started using API will be stopped if R key is pressed in Viewport. LogMessage will also appear in the top-left of the viewport if recording is started or stopped using API.
 
-Note that this will only save the data as specfied in the settings. For full freedom in storing data such as certain sensor information, or in a different format or layout, use the other APIs to fetch the data and save as desired. Check out [Modifying Recording Data](modify_recording_data.md) for details on how to modify the kinematics data being recorded.
+Note that this will only save the data as specfied in the settings. For full freedom in storing data such as certain sensor information, or in a different format or layout, use the other APIs to fetch the data and save as desired. Check out [Modifying Recording Data](recording_data.md) for details on how to modify the kinematics data being recorded.
 
 ### Wind API
 
@@ -221,7 +221,7 @@ wind = AutonomySim.Vector3r(20, 0, 0)
 client.simSetWind(wind)
 ```
 
-Also see example script in [set_wind.py](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/multirotor/set_wind.py)
+Also see example script in [set_wind.py](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/multirotor/set_wind.py)
 
 ### Lidar APIs
 
@@ -258,7 +258,7 @@ Car has followings APIs available:
 
 * `setCarControls`: This allows you to set throttle, steering, handbrake and auto or manual gear.
 * `getCarState`: This retrieves the state information including speed, current gear and 6 kinematics quantities: position, orientation, linear and angular velocity, linear and angular acceleration. All quantities are in NED coordinate system, SI units in world frame except for angular velocity and accelerations which are in body frame.
-* [Image APIs](image_apis.md).
+* [Image APIs](apis_image.md).
 
 ### APIs for Multirotor
 
@@ -308,11 +308,11 @@ We want to be able to run *same code* that runs in simulation as on real vehicle
 
 Generally speaking, APIs therefore shouldn't allow you to do something that cannot be done on real vehicle (for example, getting the ground truth). But, of course, simulator has much more information and it would be useful in applications that may not care about running things on real vehicle. For this reason, we clearly delineate between sim-only APIs by attaching `sim` prefix, for example, `simGetGroundTruthKinematics`. This way you can avoid using these simulation-only APIs if you care about running your code on real vehicles.
 
-The AutonomyLib is self-contained library that you can put on an offboard computing module such as the Gigabyte barebone Mini PC. This module then can talk to the flight controllers such as PX4 using exact same code and flight controller protocol. The code you write for testing in the simulator remains unchanged. See [AutonomyLib on custom drones](custom_drone.md).
+The AutonomyLib is self-contained library that you can put on an offboard computing module such as the Gigabyte barebone Mini PC. This module then can talk to the flight controllers such as PX4 using exact same code and flight controller protocol. The code you write for testing in the simulator remains unchanged. See [AutonomyLib on custom drones](real_vehicles.md).
 
 ## Adding New APIs to AutonomySim
 
-See the [Adding New APIs](adding_new_apis.md) page
+See the [Adding New APIs](apis_new.md) page
 
 ## References and Examples
 

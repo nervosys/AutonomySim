@@ -19,21 +19,21 @@ Configure the GitHub repository to automatically deploy documentation to a GitHu
 
 For more information on this process, see the GitHub Pages [documentation](https://pages.github.com/).
 
-## Install Python `mkdocs`
+## Install Python `mkdocs` and `mkdocstrings`
 
 Using a package manager such as Anaconda or Mamba, install `mkdocs`:
 
 ```bash
 micromamba create -n mkdocs python=3.11 pip
 micromamba activate mkdocs
-pip install mkdocs mkdocs-material pymdown-extensions essentials-openapi
+pip install mkdocs mkdocs-material pymdown-extensions mkdocstrings[python]
 mkdocs --version
 ```
 
-## Edit the Build Configuration File
+## Edit the Configuration File
 
 ```bash
-code mkdocs.yaml
+vim mkdocs.yaml
 ```
 
 ## Build and Deploy Documentation

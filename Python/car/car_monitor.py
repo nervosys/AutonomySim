@@ -1,13 +1,13 @@
-import setup_path 
-import AutonomySim
+import setup_path
+import autonomysim
 
-import cv2 #conda install opencv
+import cv2  # conda install opencv
 import time
 
-# connect to the AutonomySim simulator 
-client = AutonomySim.CarClient()
+# connect to the AutonomySim simulator
+client = autonomysim.CarClient()
 client.confirmConnection()
-car_controls = AutonomySim.CarControls()
+car_controls = autonomysim.CarControls()
 
 start = time.time()
 
@@ -20,7 +20,19 @@ while (cv2.waitKey(1) & 0xFF) == 0xFF:
     pos = car_state.kinematics_estimated.position
     orientation = car_state.kinematics_estimated.orientation
     milliseconds = (time.time() - start) * 1000
-    print("%s,%d,%d,%f,%f,%f,%f,%f,%f,%f" % \
-       (milliseconds, car_state.speed, car_state.gear, pos.x_val, pos.y_val, pos.z_val, 
-        orientation.w_val, orientation.x_val, orientation.y_val, orientation.z_val))
+    print(
+        "%s,%d,%d,%f,%f,%f,%f,%f,%f,%f"
+        % (
+            milliseconds,
+            car_state.speed,
+            car_state.gear,
+            pos.x_val,
+            pos.y_val,
+            pos.z_val,
+            orientation.w_val,
+            orientation.x_val,
+            orientation.y_val,
+            orientation.z_val,
+        )
+    )
     time.sleep(0.1)

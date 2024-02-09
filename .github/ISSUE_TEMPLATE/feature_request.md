@@ -4,7 +4,7 @@ about: Suggest an idea for this project
 ---
 
 <!-- ⚠️⚠️ DO NOT DELETE THIS! feature_request_template ⚠️⚠️ -->
-<!-- Please read our Rules of Conduct: https://opensource.microsoft.com/codeofconduct/ -->
+<!-- Please read our Rules of Conduct: CODE_OF_CONDUCT -->
 <!-- Please search existing issues to avoid creating duplicates. -->
 
 ## What feature are you suggesting?

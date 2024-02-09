@@ -25,7 +25,7 @@ class RecordingFile {
     bool isFileOpen() const;
 
   private:
-    std::string record_filename = "AutonomySim_rec";
+    std::string record_filename = "autonomysim_rec";
     std::string image_path_;
     bool is_recording_ = false;
     IFileHandle *log_file_handle_ = nullptr;

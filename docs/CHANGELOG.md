@@ -134,7 +134,7 @@ Below is summarized list of important changes. This does not include minor/less 
 * [Add Recording APIs](https://github.com/nervosys/AutonomySim/pull/2834)
 * [Update Dockerfiles and documentation to Ubuntu 18.04](https://github.com/nervosys/AutonomySim/pull/2865)
 * [Azure development environment and documentation](https://github.com/nervosys/AutonomySim/pull/2816)
-* [ROS: Add AutonomySim_node to install list](https://github.com/nervosys/AutonomySim/pull/2706)
+* [ROS: Add autonomysim_node to install list](https://github.com/nervosys/AutonomySim/pull/2706)
 
 ### May 2020
 
@@ -168,13 +168,13 @@ Below is summarized list of important changes. This does not include minor/less 
 * [Removed legacy API wrappers](https://github.com/nervosys/AutonomySim/pull/2494)
 * [Support for latest PX4 stable release](px4_setup.md)
 * Support for [ArduPilot](https://ardupilot.org/ardupilot/) - [Copter, Rover vehicles](https://ardupilot.org/dev/docs/sitl-with-AutonomySim.html)
-* [Updated Unity support](Unity.md)
+* [Updated Unity support](#)
 * [Removed simChar* APIs](https://github.com/nervosys/AutonomySim/pull/2493)
 * [Plotting APIs for Debugging](https://github.com/nervosys/AutonomySim/pull/2304)
 * [Low-level Multirotor APIs](https://github.com/nervosys/AutonomySim/pull/2297)
 * [Updated Eigen version to 3.3.7](https://github.com/nervosys/AutonomySim/pull/2325)
 * [Distance Sensor API fix](https://github.com/nervosys/AutonomySim/pull/2403)
-* Add [`simSwapTextures`](retexturing.md) API
+* Add [`simSwapTextures`](texture_swapping.md) API
 * Fix [`simContinueForTime`](https://github.com/nervosys/AutonomySim/pull/2299), [`simPause`](https://github.com/nervosys/AutonomySim/pull/2292) APIs
 * [Lidar Sensor Trace Casting fix](https://github.com/nervosys/AutonomySim/pull/2143)
 * [Fix rare `reset()` bug which causes Unreal crash](https://github.com/nervosys/AutonomySim/pull/2146)
@@ -183,7 +183,7 @@ Below is summarized list of important changes. This does not include minor/less 
 * [Recording thread deadlock fix](https://github.com/nervosys/AutonomySim/pull/1695)
 * [Prevent environment crash when Sun is not present](https://github.com/nervosys/AutonomySim/pull/2147)
 * [Africa Tracking feautre, add `simListSceneObjects()` API, fix camera projection matrix](https://github.com/nervosys/AutonomySim/pull/1959)
-* ROS wrapper for multirotors is available. See [AutonomySim_ros_pkgs](AutonomySim_ros_pkgs.md) for the ROS API, and [AutonomySim_tutorial_pkgs](AutonomySim_tutorial_pkgs.md) for tutorials.
+* ROS wrapper for multirotors is available. See [ros_pkgs](ros_pkg.md) for the ROS API, and [ros_pkgs_tutorial](ros_pkgs_tutorial.md) for tutorials.
 * [Added sensor APIs for Barometer, IMU, GPS, Magnetometer, Distance Sensor](sensors.md)
 * Added support for [docker in ubuntu](docker_ubuntu.md)
 
@@ -201,7 +201,7 @@ Below is summarized list of important changes. This does not include minor/less 
 * [Custom speed units](https://github.com/nervosys/AutonomySim/pull/1181)
 * [ROS publisher](https://github.com/nervosys/AutonomySim/pull/1135)
 * [simSetObjectPose API](https://github.com/nervosys/AutonomySim/pull/1161)
-* [Character Control APIs](https://github.com/nervosys/AutonomySim/blob/main/PythonClient/AutonomySim/client.py#L137) (works on TalkingHeads binaries in release)
+* [Character Control APIs](https://github.com/nervosys/AutonomySim/blob/master/PythonClient/AutonomySim/client.py#L137) (works on TalkingHeads binaries in release)
 * [Arducopter Solo Support](https://github.com/nervosys/AutonomySim/pull/1387)
 * [Linux install without sudo access](https://github.com/nervosys/AutonomySim/pull/1434)
 * [Kinect like ROS publisher](https://github.com/nervosys/AutonomySim/pull/1298)
@@ -277,15 +277,15 @@ Below is summarized list of important changes. This does not include minor/less 
 * Remove submodules, use rpclib as download
 
 ### Nov 2017
-* We now have the [car model](using_car.md).
+* We now have the [car model](usage_rover.md).
 * No need to build the code. Just download [binaries](https://github.com/nervosys/AutonomySim/releases) and you are good to go!
 * The [reinforcement learning example](reinforcement_learning.md) with AutonomySim
 * New built-in flight controller called [simple_flight](simple_flight.md) that "just works" without any additional setup. It is also now *default*. 
-* AutonomySim now also generates [depth as well as disparity images](image_apis.md) that are in camera plane. 
+* AutonomySim now also generates [depth as well as disparity images](apis_image.md) that are in camera plane. 
 * We also have official Linux build now!
 
 ## Sep 2017
-- We have added [car model](using_car.md)!
+- We have added [car model](usage_rover.md)!
 
 ## Aug 2017
 - [simple_flight](simple_flight.md) is now default flight controller for drones. If you want to use PX4, you will need to modify settings.json as per [PX4 setup doc](px4_setup.md).

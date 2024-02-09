@@ -7,7 +7,7 @@
 #include "PassthroughController.hpp"
 #include "PositionController.hpp"
 #include "VelocityController.hpp"
-#include "common/common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include "interfaces/ICommLink.hpp"
 #include "interfaces/IController.hpp"
 #include "interfaces/IGoal.hpp"

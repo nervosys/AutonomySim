@@ -12,8 +12,8 @@
 #include "vehicles/multirotor/api/MultirotorApiBase.hpp"
 #include "vehicles/multirotor/api/MultirotorCommon.hpp"
 
-#include "common/common_utils/WindowsApisCommonPost.hpp"
-#include "common/common_utils/WindowsApisCommonPre.hpp"
+#include "common/utils/WindowsApisCommonPost.hpp"
+#include "common/utils/WindowsApisCommonPre.hpp"
 #include "rpc/msgpack.hpp"
 
 namespace nervosys {
@@ -50,7 +50,9 @@ class MultirotorRpcLibAdaptors : public RpcLibAdaptorsBase {
             speed = s.speed;
         }
 
-        nervosys::autonomylib::RotorParameters to() const { return nervosys::autonomylib::RotorParameters(thrust, torque_scaler, speed); }
+        nervosys::autonomylib::RotorParameters to() const {
+            return nervosys::autonomylib::RotorParameters(thrust, torque_scaler, speed);
+        }
     };
 
     struct RotorStates {
@@ -107,8 +109,9 @@ class MultirotorRpcLibAdaptors : public RpcLibAdaptorsBase {
         }
 
         nervosys::autonomylib::MultirotorState to() const {
-            return nervosys::autonomylib::MultirotorState(collision.to(), kinematics_estimated.to(), gps_location.to(), timestamp,
-                                                landed_state, rc_data.to(), ready, ready_message, can_arm);
+            return nervosys::autonomylib::MultirotorState(collision.to(), kinematics_estimated.to(), gps_location.to(),
+                                                          timestamp, landed_state, rc_data.to(), ready, ready_message,
+                                                          can_arm);
         }
     };
 };

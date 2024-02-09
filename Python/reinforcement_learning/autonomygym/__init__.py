@@ -1,9 +1,11 @@
 from gym.envs.registration import register
 
 register(
-    id="AutonomySim-drone-sample-v0", entry_point="autonomygym.envs:AutonomySimDroneEnv",
+    id="autonomysim-drone-sample-v0",
+    entry_point="autonomygym.envs:AutonomySimDroneEnv",
 )
 
 register(
-    id="AutonomySim-car-sample-v0", entry_point="autonomygym.envs:AutonomySimCarEnv",
+    id="autonomysim-car-sample-v0",
+    entry_point="autonomygym.envs:AutonomySimCarEnv",
 )

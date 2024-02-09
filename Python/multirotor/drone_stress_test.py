@@ -1,11 +1,11 @@
-import setup_path 
-import AutonomySim
+import setup_path
+import autonomysim
 
 # this script moves the drone to a location, then rests it thousands of time
 # purpose of this script is to stress test reset API
 
-# connect to the AutonomySim simulator 
-client = AutonomySim.MultirotorClient()
+# connect to the AutonomySim simulator
+client = autonomysim.MultirotorClient()
 client.confirmConnection()
 client.enableApiControl(True)
 client.armDisarm(True)
