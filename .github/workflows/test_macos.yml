@@ -1,23 +1,29 @@
-name: MacOS Build
+name: "macOS Builds"
 
-on: [push, pull_request, workflow_dispatch]  # controls when the action will run
+on: [push, pull_request, workflow_dispatch] # triggers
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}  # macos-latest
+    runs-on: ${{ matrix.os }} # macos-latest
     strategy:
       matrix:
-        os: [macos-11, macos-12]
+        os: [macos-11, macos-12, macos-13, macos-14]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
 
-      - name: Remove Python 2 to 3 for Python 3.11 symlink
+      - name: "Install BASH (newer macOS versions use Zsh by default)"
+        run: brew install bash
+
+      - name: "Remove Python 3 for Python 3.11 symbolic link"
+        shell: bash
         run: brew unlink python@3.11 && brew link --overwrite python@3.11 && brew unlink python@3.10 && brew link --overwrite python@3.10
 
-      - name: Setup
-        run: ./setup.sh
+      - name: "Install Dependencies"
+        shell: bash
+        run: ./scripts/setup.sh
 
-      - name: Build AutonomyLib
-        run: ./build.sh
+      - name: "Build AutonomySim"
+        shell: bash
+        run: ./scripts/build.sh

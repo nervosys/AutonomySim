@@ -1,42 +1,43 @@
-name: Documentation Build & Deploy
+name: "Documentation Build and Deployment"
 
-on: [push, pull_request, workflow_dispatch]  # controls when the action will run
+on: [push, pull_request, workflow_dispatch] # triggers
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # ubuntu-22.04
-    
-    steps:
-      - uses: actions/checkout@v4  # https://github.com/actions/checkout
+    runs-on: ubuntu-latest
 
-      - name: Setup Python
-        uses: actions/setup-python@v4  # https://github.com/actions/setup-python
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Setup Python"
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          architecture: 'x64'
-      
-      - name: Install dependencies
+          python-version: "3.11"
+          architecture: "x64"
+
+      - name: "Install dependencies"
+        shell: bash
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install mkdocs pymdown-extensions  # Mkdocs requirements
-      
-      - name: Build API reference documentation
+          python3 -m pip install mkdocs mkdocs-material pymdown-extensions mkdocstrings[python]
+
+      - name: "Build API reference documentation"
         run: |
-          python3 -m venv .env                              # Virtual env to avoid dep. issues 
+          python3 -m venv .env  # virtual env to avoid dependecy issues 
           source .env/bin/activate
-          pip install Sphinx sphinx_rtd_theme numpy msgpack-rpc-python
+          pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
           pushd PythonClient >/dev/null
-          ./build_api_docs.sh
+          ./scripts/build_api_docs.sh
           popd >/dev/null
-          cp -r PythonClient/docs/_build docs/api_docs/     # Copy generated files
+          cp -r PythonClient/docs/_build docs/api_docs/  # copy generated files
           deactivate
-      
-      - name: Build AutonomySim documentation
-        run: ./build_docs.sh
-      
+
+      - name: "Build AutonomySim documentation"
+        run: ./scripts/build_docs.sh
+
       # Only on commits to 'master' branch
-      - name: Deploy master branch
-        uses: peaceiris/actions-gh-pages@v3  # https://github.com/peaceiris/actions-gh-pages
+      - name: "Deploy master branch"
+        uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

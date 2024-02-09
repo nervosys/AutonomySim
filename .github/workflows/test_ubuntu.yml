@@ -1,28 +1,34 @@
-name: Linux/Ubuntu Build
+name: "Ubuntu Linux Builds"
 
-on: [push, pull_request, workflow_dispatch]  # controls when the action will run
+on: [push, pull_request, workflow_dispatch] # triggers
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}  # ubuntu-latest
+    runs-on: ${{ matrix.os }} # ubuntu-latest
     strategy:
       matrix:
         os: [ubuntu-20.04, ubuntu-22.04]
+        arch:
+          - amd64
+          - arm64
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup
-        run: ./setup.sh
+      - name: "Install Dependencies"
+        shell: bash
+        run: ./scripts/setup.sh
 
-      - name: Build AutonomyLib
-        run: ./build.sh
-      
-      - name: Build ROS2 wrapper
+      - name: "Build AutonomySim"
+        shell: bash
+        run: ./scripts/build.sh
+
+      - name: "Build ROS2 wrapper"
         # if: matrix.os == 'ubuntu-20.04'
+        shell: bash
         run: |
-          chmod +x ./tools/install_ros2_deps.sh
-          ./tools/install_ros2_deps.sh
+          bash ./scripts/install_ros2_deps.sh
           source /opt/ros/*/setup.bash
-          cd ros2
+          cd ./ros2
           colcon build --cmake-args -DCMAKE_C_COMPILER=gcc-8 --cmake-args -DCMAKE_CXX_COMPILER=g++-8

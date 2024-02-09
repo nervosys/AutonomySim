@@ -1,21 +1,28 @@
-name: Windows Build
+name: "Windows Builds"
 
-on: [push, pull_request, workflow_dispatch]  # controls when the action will run
+on: [push, pull_request, workflow_dispatch] # triggers
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}  # windows-latest
+    runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
-        os: [windows-2019, windows-2022]  # windows-2022 is untested
-    
+        os: [windows-2019, windows-2022]
+        arch:
+          - amd64
+          - arm64
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
 
-      - name: Enable Developer Command Prompt
+      - name: "Enable Developer Command Prompt"
         uses: ilammy/msvc-dev-cmd@v1
-      
-      - name: Build AutonomyLib
+
+      - name: "Install PowerShell"
         shell: cmd
-        run: build.cmd
+        run: winget install --id Microsoft.Powershell --source winget
+
+      - name: "Build AutonomySim"
+        shell: pwsh
+        run: ./scripts/build.ps1
