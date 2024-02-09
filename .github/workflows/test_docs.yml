@@ -15,21 +15,21 @@ jobs:
           python-version: "3.11"
           architecture: "x64"
 
-      - name: "Install dependencies"
+      - name: "Install dependencies: MkDocs Material"
         shell: bash
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install mkdocs mkdocs-material pymdown-extensions mkdocstrings[python]
 
-      - name: "Build API reference documentation"
+      - name: "Build API reference documentation: Sphinx Immaterial"
         run: |
           python3 -m venv .env  # virtual env to avoid dependecy issues 
           source .env/bin/activate
           pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
-          pushd PythonClient >/dev/null
+          pushd Python >/dev/null
           ./scripts/build_api_docs.sh
           popd >/dev/null
-          cp -r PythonClient/docs/_build docs/api_docs/  # copy generated files
+          cp -r Python/docs/_build docs/api_docs/  # copy generated files
           deactivate
 
       - name: "Build AutonomySim documentation"
