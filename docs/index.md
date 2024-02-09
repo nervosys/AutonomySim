@@ -24,5 +24,7 @@ Visit [Features and Releases](getting_started.md) to view the features and relea
   <br>
   <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="33%" alt="xwerx logo">
   <br>
+  <i>"Accelerating the development of robotic general intelligence"</i>
+  <br>
   TM 2024 &copy; <a href="https://nervosys.ai/">Nervosys, LLC</a>
 </p>
