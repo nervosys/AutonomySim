@@ -4,17 +4,11 @@
 
 <h1 align="center">The simulation engine for autonomous systems</h1>
 
-## Tutorial
+## Welcome
 
-Visit [Getting Started](getting_started.md) to view a short tutorial on getting started with the platform and submitting your first simulation.
+Welcome to the official documentation for `AutonomySim`, the simulation engine for autonomous systems.
 
-## Infrastructure
-
-Visit [Infrastructure](code_structure.md) to learn more about how the AutonomySim system runs your algorithm in the cloud.
-  
-## Features and Releases
-
-Visit [Features and Releases](getting_started.md) to view the features and release notes for this platform.
+Please see the navigation sidebar to the left for more information.
 
 ## Repository
 
