@@ -121,7 +121,7 @@ nav:
         - index.md
         - CHANGELOG.md
         - "Building AutonomySim":
-                  - use_precompiled.md
+                  - project_binaries.md
                   - build_windows.md
                   - build_linux.md
                   - build_macos.md
