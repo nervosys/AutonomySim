@@ -166,17 +166,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/log_viewer.html</loc>
-         <lastmod>2024-02-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://github.com/nervosys/AutonomySim/manuscripts.html</loc>
          <lastmod>2024-02-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/nervosys/AutonomySim/mavlink_comm.html</loc>
+         <lastmod>2024-02-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/nervosys/AutonomySim/mavlink_logviewer.html</loc>
          <lastmod>2024-02-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -296,6 +296,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/nervosys/AutonomySim/settings_upgrading.html</loc>
+         <lastmod>2024-02-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/nervosys/AutonomySim/simple_flight.html</loc>
          <lastmod>2024-02-09</lastmod>
          <changefreq>daily</changefreq>
@@ -316,7 +321,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/nervosys/AutonomySim/unreal_custenv.html</loc>
+         <loc>https://github.com/nervosys/AutonomySim/unreal_envs.html</loc>
          <lastmod>2024-02-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -332,11 +337,6 @@
     </url>
     <url>
          <loc>https://github.com/nervosys/AutonomySim/unreal_upgrading.html</loc>
-         <lastmod>2024-02-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/nervosys/AutonomySim/upgrade_settings.html</loc>
          <lastmod>2024-02-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
