@@ -139,7 +139,6 @@ nav:
                   - apis.md
                   - apis_image.md
                   - apis_cpp.md
-                  - api_docs/html/index.html
                   - development_workflow.md
                   - settings.md
                   - camera_views.md
