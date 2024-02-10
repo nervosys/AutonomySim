@@ -125,6 +125,7 @@ validation:
 nav:
         - index.md
         - CHANGELOG.md
+        - "API Documentation": api_docs/html/index.html
         - "Building AutonomySim":
                   - project_binaries.md
                   - build_windows.md
