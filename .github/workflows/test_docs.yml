@@ -23,13 +23,13 @@ jobs:
 
       - name: "Build API reference documentation: Sphinx Immaterial"
         run: |
-          #echo "Current directory: $PWD"
-          #echo "$(ls -a)"
-          python3 -m venv ./.env  # virtual env to avoid dependecy issues 
-          source .env/bin/activate
+          #echo "Current directory: $PWD"              # DEBUGGING
+          #echo "$(ls -a)"                             # DEBUGGING
+          python3 -m venv .env                         # virtual environment to avoid dependecy issues 
+          source ./.env/bin/activate
           pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
-          (cd Python/docs; make html)
-          cp -r Python/docs/_build docs/api_docs/  # copy generated files
+          (cd ./python/docs; make html)
+          cp -r ./python/docs/_build ./docs/api_docs/  # copy generated files
           deactivate
 
       - name: "Build AutonomySim documentation"
