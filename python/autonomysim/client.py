@@ -581,7 +581,7 @@ class VehicleClient:
         """
         pose = self.client.call("simGetVehiclePose", vehicle_name)
         return Pose.from_msgpack(pose)
-autonomysim
+
     def simSetTraceLine(self, color_rgba, thickness=1.0, vehicle_name=""):
         """
         Modify the color and thickness of the line when Tracing is enabled
