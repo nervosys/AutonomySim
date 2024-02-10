@@ -22,6 +22,7 @@ jobs:
           python3 -m pip install mkdocs mkdocs-material pymdown-extensions mkdocstrings[python]
 
       - name: "Build API reference documentation: Sphinx Immaterial"
+        shell: bash
         run: |
           #echo "Current directory: $PWD"              # DEBUGGING
           #echo "$(ls -a)"                             # DEBUGGING
@@ -33,7 +34,8 @@ jobs:
           deactivate
 
       - name: "Build AutonomySim documentation"
-        run: ./scripts/build_docs.sh
+        shell: bash
+        run: bash ./scripts/build_docs.sh
 
       # Only on commits to 'master' branch
       - name: "Deploy master branch"
