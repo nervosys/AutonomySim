@@ -199,7 +199,7 @@ html_theme_options = {
             "link": "https://discord.gg/x84JXYje",
         },
         {
-            "icon": "fontawesome/brands/x-twitter",
+            "icon": "fontawesome/brands/twitter",
             "link": "https://x.com/nervosys",
         },
     ],
