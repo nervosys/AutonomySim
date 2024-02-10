@@ -184,7 +184,7 @@ html_theme_options = {
     ],
     "favicon": "media/images/rune.svg",
     "icon": {
-        "logo": "material/shield-airplane",
+        "logo": "material/book-open-page-variant",
         "repo": "fontawesome/brands/git-alt",
         "edit": "material/pencil",
         "view": "material/eye",
