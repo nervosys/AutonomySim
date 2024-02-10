@@ -199,7 +199,7 @@ html_theme_options = {
             "link": "https://discord.gg/x84JXYje",
         },
         {
-            "icon": "fontawesome/brands/twitter",
+            "icon": "fontawesome/brands/twitter",  # x-twitter, square-x-twitter must be added to sphinx-immaterial
             "link": "https://x.com/nervosys",
         },
     ],
