@@ -360,7 +360,7 @@ Compared to other simulation engines for robotic systems, `AutonomySim` is open-
 
 ## References
 
-For technical aspects on the design of `AutonomySim`, refer to the original `AirSim` manuscripts and subsequent works:
+For technical aspects on the design of `AutonomySim`, refer to the original `AirSim` manuscript:
 
 ```bibtex
 @techreport{shah2017,
@@ -373,90 +373,9 @@ For technical aspects on the design of `AutonomySim`, refer to the original `Air
   eprint = {https://www.microsoft.com/en-us/research/wp-content/uploads/2017/02/aerial-informatics-robotics.pdf},
   note = {AirSim draft manuscript}
 }
-
-@inproceedings{dey2017,
-  author = {Dey, Debadeepta and Ranade, Gireeja and Kapoor, Ashish},
-  year = 2017,
-  title = {Learning to Gather Information via Imitation},
-  journal = {International Conference on Robotics and Automation},
-  month = 05,
-  url = {https://www.microsoft.com/en-us/research/publication/learning-gather-information-via-imitation-2/}
-}
-
-@inproceedings{shah2018,
-  author = {Shah, Shital and Dey, Debadeepta and Lovett, Chris and Kapoor, Ashish},
-  year = 2018,
-  title = {{AirSim}: High-Fidelity Visual and Physical Simulation for Autonomous Vehicles},
-  booktitle = {Field and Service Robotics},
-  editor = {Hutter, Marco and Siegwart, Roland},
-  pages = {621--635},
-  isbn= {978-3-319-67361-5},
-  doi = {10.1007/978-3-319-67361-5_40}
-  publisher = {Springer International Publishing},
-  address = {Cham, Switzerland},
-  url = {https://doi.org/10.1007/978-3-319-67361-5_40},
-  note = {AirSim}
-}
-
-@inproceedings{bondi2018,
-  author = {Bondi, Elizabeth and Dey, Debadeepta and Kapoor, Ashish and Piavis, Jim and Shah, Shital and Fang, Fei and Dilkina, Bistra and Hannaford, Robert and Iyer, Arvind and Joppa, Lucas and Tambe, Milind},
-  year = 2018,
-  title = {{AirSim-W}: A Simulation Environment for Wildlife Conservation with {UAVs}},
-  booktitle = {Proceedings of the 1st ACM SIGCAS Conference on Computing and Sustainable Societies},
-  series = {COMPASS '18},
-  number = 40,
-  isbn = {9781450358163},
-  doi = {10.1145/3209811.3209880},
-  organization = {ACM},
-  publisher = {Association for Computing Machinery},
-  address = {Menlo Park and San Jose, CA, USA},
-  url = {https://doi.org/10.1145/3209811.3209880},
-  note = {AirSim}
-}
-
-@article{schouten2021,
-  author = {Schouten, Girmi and Jansen, Wouter and Steckel, Jan},
-  year = 2021,
-  title = {Simulation of Pulse-Echo Radar for Vehicle Control and {SLAM}},
-  journal = {Sensors},
-  volume = 21,
-  number = 2,
-  doi = {10.3390/s21020523},
-  url = {https://www.mdpi.com/1424-8220/21/2/523},
-  note = {Cosys-AirSim}
-}
-
-@inproceedings{jansen2022,
-  author = {Jansen, Wouter and Huebel, Nico and Steckel, Jan},
-  year = 2022,
-  title = {Physical {LiDAR} Simulation in Real-Time Engine},
-  booktitle = {2022 IEEE Sensors},
-  volume = {},
-  number = {},
-  pages = {1--4},
-  doi = {10.1109/SENSORS52175.2022.9967197},
-  url = {https://ieeexplore.ieee.org/document/9967197},
-  eprint = {https://arxiv.org/abs/2208.10295},
-  note = {Cosys-AirSim}
-}
-
-@inproceedings{jansen2023,
-  author = {Jansen, Wouter and Verreycken, Erik and Schenck, Anthony and Blanquart, Jean-Edouard and Verhulst, Connor and Huebel, Nico and Steckel, Jan},
-  year = 2023,
-  title = {{Cosys-AirSim}: A Real-Time Simulation Framework Expanded for Complex Industrial Applications},
-  booktitle = {2023 Annual Modeling and Simulation Conference (ANNSIM)},
-  month = 05,
-  volume = {},
-  pages = {37--48},
-  issn = {},
-  publisher = {IEEE Computer Society},
-  address = {Los Alamitos, CA, USA},
-  doi = {},
-  url = {https://www.computer.org/csdl/proceedings-article/annsim/2023/10155352/},
-  eprint = {https://arxiv.org/abs/2303.13381},
-  note = {Cosys-AirSim}
-}
 ```
+
+A list of manuscripts related to the design and implementation of `AutonomySim` and its predecessors can be found [here](./manuscripts.bib). Please open a GitHub Issue to add your manuscript.
 
 A manuscript on the design and implementation of `AutonomySim` is forthcoming.
 
