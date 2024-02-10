@@ -149,7 +149,7 @@ latex_documents = [
         master_doc,
         "AutonomySim.tex",
         "AutonomySim Documentation",
-        "Ratnesh Madaan, Matthew Brown, Nicholas Gyde",
+        "Adam Erickson",
         "manual",
     ),
 ]
@@ -174,7 +174,7 @@ texinfo_documents = [
         "AutonomySim Documentation",
         author,
         "AutonomySim",
-        "One line description of project.",
+        "The simulation engine for autonomous systems",
         "Miscellaneous",
     ),
 ]
