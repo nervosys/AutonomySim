@@ -175,7 +175,7 @@ html_theme_options = {
     "favicon": "../images/rune.svg",
     "icon": {
         "logo": "material/shield-airplane",
-        "repo": "fab/git-alt",
+        "repo": "fontawesome/brands/git-alt",
         "edit": "material/pencil",
         "view": "material/eye",
     },
