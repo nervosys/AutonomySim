@@ -120,6 +120,16 @@ html_theme_options = {
     "repo_url": "https://github.com/nervosys/AutonomySim",
     "repo_name": "AutonomySim",
     "edit_uri": "blob/master/docs",
+    "globaltoc_collapse": True,
+    "toc_title_is_page_title": False,
+    "version_dropdown": True,
+    "version_info": [
+        {
+            "version": "https://nervosys.github.io/AutonomySim",
+            "title": "Github Pages",
+            "aliases": [],
+        },
+    ],
     "features": [
         "announce.dismiss",
         "content.code.annotate",
@@ -172,24 +182,13 @@ html_theme_options = {
             },
         },
     ],
-    "favicon": "../images/rune.svg",
+    "favicon": "media/images/rune.svg",
     "icon": {
         "logo": "material/shield-airplane",
         "repo": "fontawesome/brands/git-alt",
         "edit": "material/pencil",
         "view": "material/eye",
     },
-    "globaltoc_collapse": True,
-    "toc_title_is_page_title": True,
-    "version_dropdown": True,
-    "version_info": [
-        {
-            "version": "https://nervosys.github.io/AutonomySim",
-            "title": "Github Pages",
-            "aliases": [],
-        },
-    ],
-    # icon links (not necessarily limited to social media)
     "social": [
         {
             "icon": "fontawesome/brands/github-alt",
