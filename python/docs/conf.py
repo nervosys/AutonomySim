@@ -27,7 +27,7 @@ from autonomysim import __version__
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "AutonomySim"
+project = "AutonomySim Python API"
 copyright = "Copyright © 2024 Nervosys, LLC"
 author = "Nervosys"
 
