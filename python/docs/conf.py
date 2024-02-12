@@ -131,7 +131,7 @@ html_theme_options = {
     "site_url": "https://nervosys.github.io/AutonomySim",
     "repo_url": "https://github.com/nervosys/AutonomySim",
     "repo_name": "AutonomySim",
-    "edit_uri": "blob/master/docs",
+    "edit_uri": "edit/master/docs",
     "globaltoc_collapse": True,
     "toc_title_is_page_title": False,
     "version_dropdown": True,
@@ -170,13 +170,13 @@ html_theme_options = {
     },
     "language": "en",
     "palette": [
-        {
-            "media": "(prefers-color-scheme)",
-            "toggle": {
-                "icon": "material/brightness-auto",
-                "name": "Switch to light mode",
-            },
-        },
+        # {
+        #    "media": "(prefers-color-scheme)",
+        #    "toggle": {
+        #        "icon": "material/brightness-auto",
+        #        "name": "Switch to light mode",
+        #    },
+        # },
         {
             "media": "(prefers-color-scheme: light)",
             "scheme": "nervosys_light",
