@@ -179,7 +179,7 @@ html_theme_options = {
         },
         {
             "media": "(prefers-color-scheme: light)",
-            "scheme": "default",
+            "scheme": "nervosys_light",
             "toggle": {
                 "icon": "material/brightness-7",
                 "name": "Switch to dark mode",
@@ -187,7 +187,7 @@ html_theme_options = {
         },
         {
             "media": "(prefers-color-scheme: dark)",
-            "scheme": "slate",
+            "scheme": "nervosys_dark",
             "toggle": {
                 "icon": "material/brightness-4",
                 "name": "Switch to system preference",
