@@ -4,6 +4,7 @@
 }
 
 [data-md-color-scheme="nervosys_light"] {
+    color: #000000;
     --md-primary-fg-color: #5000cd;
     --md-primary-fg-color--light: #ff008a;
     --md-primary-fg-color--dark: #00ffcd;
@@ -11,6 +12,7 @@
 }
 
 [data-md-color-scheme="nervosys_dark"] {
+    color: #ffffff;
     --md-primary-fg-color: #ff008a;
     --md-primary-fg-color--light: #5000cd;
     --md-primary-fg-color--dark: #00ffcd;
