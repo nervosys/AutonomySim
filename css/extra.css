@@ -1,0 +1,18 @@
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+[data-md-color-scheme="nervosys_light"] {
+    --md-primary-fg-color: #5000cd;
+    --md-primary-fg-color--light: #ff008a;
+    --md-primary-fg-color--dark: #00ffcd;
+    --md-primary-bg-color: #ffffff;
+}
+
+[data-md-color-scheme="nervosys_dark"] {
+    --md-primary-fg-color: #ff008a;
+    --md-primary-fg-color--light: #5000cd;
+    --md-primary-fg-color--dark: #00ffcd;
+    --md-default-bg-color: #000000;
+}
