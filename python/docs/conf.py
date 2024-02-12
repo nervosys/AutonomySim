@@ -170,16 +170,16 @@ html_theme_options = {
     },
     "language": "en",
     "palette": [
-        # {
-        #    "media": "(prefers-color-scheme)",
-        #    "toggle": {
-        #        "icon": "material/brightness-auto",
-        #        "name": "Switch to light mode",
-        #    },
-        # },
+        {
+            "media": "(prefers-color-scheme)",
+            "toggle": {
+                "icon": "material/brightness-auto",
+                "name": "Switch to light mode",
+            },
+        },
         {
             "media": "(prefers-color-scheme: light)",
-            "scheme": "nervosys_light",
+            "scheme": "default",
             "toggle": {
                 "icon": "material/brightness-7",
                 "name": "Switch to dark mode",
@@ -187,7 +187,7 @@ html_theme_options = {
         },
         {
             "media": "(prefers-color-scheme: dark)",
-            "scheme": "nervosys_dark",
+            "scheme": "slate",
             "toggle": {
                 "icon": "material/brightness-4",
                 "name": "Switch to system preference",
