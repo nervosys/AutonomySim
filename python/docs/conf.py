@@ -105,9 +105,6 @@ html_title = project
 # html_theme = 'alabaster'
 html_theme = "sphinx_immaterial"
 
-# style override
-html_style = "css/extra.css"
-
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -122,6 +119,9 @@ html_css_files = [
 html_js_files = [
     "js/extra.css",
 ]
+
+# style override
+html_style = "css/extra.css"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
