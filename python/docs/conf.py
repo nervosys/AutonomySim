@@ -28,7 +28,7 @@ from autonomysim import __version__
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "AutonomySim"
-copyright = 'Copyright &copy; 2024 <a href="https://nervosys.ai/">Nervosys, LLC</a>'
+copyright = "Copyright © 2024 Nervosys, LLC"
 author = "Nervosys"
 
 # short X.Y version
@@ -114,13 +114,13 @@ html_theme_options = {
     "globaltoc_collapse": True,
     "toc_title_is_page_title": False,
     "version_dropdown": True,
-    "version_info": [
-        {
-            "version": "https://nervosys.github.io/AutonomySim",
-            "title": "Main",
-            "aliases": [],
-        },
-    ],
+    # "version_info": [
+    #    {
+    #        "version": "https://nervosys.github.io/AutonomySim",
+    #        "title": "Main",
+    #        "aliases": [],
+    #    },
+    # ],
     "features": [
         "announce.dismiss",
         "content.code.annotate",
