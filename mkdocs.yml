@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+#
 # mkdocs.yml
 #
 # MkDocs configuration file.
@@ -52,12 +53,12 @@ theme:
                           icon: material/brightness-auto
                           name: "Switch to light mode"
                 - media: "(prefers-color-scheme: light)"
-                  scheme: nervosys # default
+                  scheme: nervosys_light
                   toggle:
                           icon: material/brightness-7
                           name: "Switch to dark mode"
                 - media: "(prefers-color-scheme: dark)"
-                  scheme: slate
+                  scheme: nervosys_dark
                   toggle:
                           icon: material/brightness-4
                           name: "Switch to system preference"
@@ -91,11 +92,11 @@ markdown_extensions:
                   generic: true
 
 extra_css:
-        - stylesheets/extra.css
+        - css/extra.css
 
 extra_javascript:
-        - javascripts/extra.js
-        - javascripts/mathjax.js
+        - js/extra.js
+        - js/mathjax.js
         - "https://polyfill.io/v3/polyfill.min.js?features=es6"
         - "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 

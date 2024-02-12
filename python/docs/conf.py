@@ -14,6 +14,7 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
+#
 
 import os
 import sys
@@ -105,6 +106,9 @@ html_title = project
 # html_theme = 'alabaster'
 html_theme = "sphinx_immaterial"
 
+# style override
+html_style = "css/extra.css"
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -161,7 +165,7 @@ html_theme_options = {
         },
         {
             "media": "(prefers-color-scheme: light)",
-            "scheme": "nervosys",
+            "scheme": "nervosys_light",
             "toggle": {
                 "icon": "material/brightness-7",
                 "name": "Switch to dark mode",
@@ -169,7 +173,7 @@ html_theme_options = {
         },
         {
             "media": "(prefers-color-scheme: dark)",
-            "scheme": "slate",
+            "scheme": "nervosys_dark",
             "toggle": {
                 "icon": "material/brightness-4",
                 "name": "Switch to system preference",
@@ -206,12 +210,12 @@ html_static_path = ["_static"]
 
 # custom CSS file
 html_css_files = [
-    "stylesheets/extra.css",
+    "css/extra.css",
 ]
 
 # custom JS file
-html_css_files = [
-    "javascripts/extra.css",
+html_javascript_files = [
+    "js/extra.css",
 ]
 
 # Custom sidebar templates, must be a dictionary that maps document names
