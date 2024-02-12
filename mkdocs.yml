@@ -47,7 +47,8 @@ theme:
                 text: "Roboto"
                 code: "Roboto Mono"
         language: en
-        #palette:
+        palette:
+                primary: custom
         #        - media: "(prefers-color-scheme)"
         #          toggle:
         #                  icon: material/brightness-auto
