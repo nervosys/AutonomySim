@@ -21,6 +21,7 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 
 import sphinx_immaterial
+import darkdetect
 from autonomysim import __version__
 
 
@@ -172,6 +173,7 @@ html_theme_options = {
     "palette": [
         {
             "media": "(prefers-color-scheme)",
+            "scheme": "nervosys_dark" if darkdetect.isDark() else "nervosys_light",
             "toggle": {
                 "icon": "material/brightness-auto",
                 "name": "Switch to light mode",
