@@ -193,7 +193,7 @@ html_theme_options = {
             "link": "https://discord.gg/x84JXYje",
         },
         {
-            "icon": "fontawesome/brands/twitter",  # x-twitter, square-x-twitter must be added to sphinx-immaterial
+            "icon": "fontawesome/brands/twitter",  # x-twitter, square-x-twitter missing in sphinx-immaterial (needs update)
             "link": "https://x.com/nervosys",
         },
     ],
@@ -203,6 +203,16 @@ html_theme_options = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+# custom CSS file
+html_css_files = [
+    "stylesheets/extra.css",
+]
+
+# custom JS file
+html_css_files = [
+    "javascripts/extra.css",
+]
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
