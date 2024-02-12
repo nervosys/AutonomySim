@@ -5,6 +5,13 @@
     margin: 0 auto;
 }
 
+/*
+Nervosys tripartite color scheme:
+    violet: #5000cd
+    magenta: #ff008a
+    seafoam: #00ffcd
+*/
+
 [data-md-color-scheme="nervosys_light"] {
     color: #000000;
     --md-primary-fg-color: #5000cd;

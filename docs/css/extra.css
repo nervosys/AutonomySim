@@ -5,11 +5,51 @@
     margin: 0 auto;
 }
 
+/*
+Nervosys tripartite color scheme:
+    violet: #5000cd
+    magenta: #ff008a
+    seafoam: #00ffcd
+*/
+
+/* nervosys: root */
+:root {
+
+    /* primary color shades */
+    --md-primary-fg-color--light: #ff008a;
+    --md-primary-fg-color--dark: #5000cd;
+    --md-primary-bg-color--light: hsl(0, 0%, 100%);
+    --md-primary-bg-color--dark: hsl(0, 0%, 100%);
+    --md-text-link-color: hsla(168, 100%, 50%, 1);
+
+    /* accent color shades */
+    --md-accent-fg-color: rgb(80, 0, 205);
+    --md-accent-fg-color--transparent: hsla(189, 100%, 37%, 0.1);
+    --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    --md-accent-bg-color--dark: hsla(0, 0%, 100%, 0.3);
+}
+
+:root  > * {
+  
+    /* code block color shades */
+    --md-code-bg-color: hsla(0, 0%, 96%, 1);
+    --md-code-fg-color: hsla(200, 18%, 26%, 1);
+
+    /* footer */
+    --md-footer-bg-color: #861f41;
+    --md-footer-bg-color--light: hsla(0, 0%, 0%, 0.32);
+    --md-footer-bg-color--dark: hsla(0, 0%, 0%, 0.68);
+    --md-footer-fg-color: hsla(0, 0%, 100%, 1);
+    --md-footer-fg-color--light: hsla(0, 0%, 100%, 0.7);
+    --md-footer-fg-color--lighter: hsla(0, 0%, 100%, 0.3);
+    --md-footer-fg-color--dark: hsla(0, 0%, 100%, 0.3);
+    --md-footer-fg-color--darker: hsla(0, 0%, 100%, 0.9);
+}
+
 /* nervosys: light mode */
 [data-md-color-scheme="nervosys_light"] {
 
     /* primary color shades */
-    /* violet: #5000cd, magenta: #ff008a, seafoam: #00ffcd */
     --md-primary-fg-color: #5000cd;
     --md-primary-fg-color--light: #ff008a;
     --md-default-bg-color: #ffffff;
