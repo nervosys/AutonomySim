@@ -97,6 +97,9 @@ pygments_style = None
 # https://jbms.github.io/sphinx-immaterial/customization.html
 # see `theme.conf` for more information
 
+# Title; default: <project> v<revision> documentation
+html_title = project
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 # html_theme = 'alabaster'
