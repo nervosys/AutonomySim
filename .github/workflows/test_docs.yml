@@ -19,8 +19,8 @@ jobs:
       - name: "Generate Doxygen output for C++ API"
         uses: mattnotmitt/doxygen-action@v1.9.8
         with:
-          doxyfile-path: "Doxyfile"
-          working-directory: "AutonomyLib/docs"
+          doxyfile-path: "AutonomyLib/docs/Doxyfile"
+          working-directory: "."
 
       - name: "Install Python dependencies: MkDocs-Material, Sphinx-Immaterial, Breathe"
         shell: bash

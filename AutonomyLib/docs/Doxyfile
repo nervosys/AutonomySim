@@ -9,7 +9,7 @@ PROJECT_NUMBER         =
 PROJECT_BRIEF          = "The simulation engine for autonomous systems"
 PROJECT_LOGO           =
 PROJECT_ICON           =
-OUTPUT_DIRECTORY       = C:/Users/adamm/dev/AutonomySim/AutonomyLib/docs/doxyxml
+OUTPUT_DIRECTORY       = ./AutonomyLib/docs/doxyxml
 CREATE_SUBDIRS         = NO
 CREATE_SUBDIRS_LEVEL   = 8
 ALLOW_UNICODE_NAMES    = NO
@@ -125,7 +125,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = C:/Users/adamm/dev/AutonomySim/AutonomyLib
+INPUT                  = ./AutonomyLib
 INPUT_ENCODING         = UTF-8
 INPUT_FILE_ENCODING    =
 FILE_PATTERNS          = *.c \
