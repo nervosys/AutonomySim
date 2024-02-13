@@ -13,7 +13,7 @@
     
     
       
-        <title>AutonomyLib C++ API</title>
+        <title>AutonomySim C++ API</title>
       
     
     
@@ -32,9 +32,11 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="_static/css/extra.css?v=6d4e535a" />
+        <link rel="stylesheet" type="text/css" href="_static/css/extra.css?v=8930c6f9" />
         <link rel="stylesheet" type="text/css" href="_static/sphinx_immaterial_theme.03ee1730f15ed0f74.min.css?v=e1a21df1" />
-        <link rel="stylesheet" type="text/css" href="_static/css/extra.css?v=6d4e535a" />
+        <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+        <link rel="stylesheet" type="text/css" href="_static/collapsible-lists\css\tree_view.css?v=a885cde7" />
+        <link rel="stylesheet" type="text/css" href="_static/css/extra.css?v=8930c6f9" />
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -77,7 +79,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="#" title="AutonomyLib C++ API" class="md-header__button md-logo" aria-label="AutonomyLib C++ API" data-md-component="logo">
+    <a href="#" title="AutonomySim C++ API" class="md-header__button md-logo" aria-label="AutonomySim C++ API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
@@ -89,7 +91,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            AutonomyLib C++ API
+            AutonomySim C++ API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -195,6 +197,77 @@
         <div class="md-main__inner md-grid">
           
             
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="#" title="AutonomySim C++ API" class="md-nav__button md-logo" aria-label="AutonomySim C++ API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+    </a>
+    AutonomySim C++ API
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nervosys/AutonomySim" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AutonomySim
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/library_root.html" class="md-nav__link">
+        <span class="md-ellipsis">Page Hierarchy</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/library_root.html#full-api" class="md-nav__link">
+        <span title="api/library_root:full api (reference label)" class="md-ellipsis">Full API</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
             
           
           
@@ -211,6 +284,19 @@
 <h1 id="autonomylib">AutonomyLib<a class="headerlink" href="#autonomylib" title="Link to this heading">¶</a></h1>
 <p>This page documents <a class="reference internal" href="#autonomylib">AutonomyLib</a>, the C++ library of <a class="reference external" href="https://github.com/nervosys/AutonomySim">AutonomySim</a>.</p>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Page Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/library_root.html#full-api">Full API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
 </div>
 
 
@@ -235,6 +321,27 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+      
+        
+        <a href="api/library_root.html" class="md-footer__link md-footer__link--next" aria-label="Next: Page Hierarchy" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Page Hierarchy
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   
   
@@ -301,6 +408,8 @@
     
       
         <script src="_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="_static/collapsible-lists\js\CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="_static/collapsible-lists\js\apply-collapsible-lists.js?v=660e4f45"></script>
         <script src="_static/js/extra.css"></script>
     
   </body>
