@@ -35,18 +35,18 @@ jobs:
       - name: "Generate C++ API documentation: Doxygen -> Breathe -> Sphinx"
         shell: bash
         run: |
-          # source ./.env/bin/activate
+          source ./.env/bin/activate
           (cd ./AutonomyLib/docs; make html)
           cp -r ./AutonomyLib/docs/_build ./docs/api/cpp/  # copy generated API documentation
-          # deactivate
+          deactivate
 
       - name: "Generate Python API documentation: Sphinx-Immaterial"
         shell: bash
         run: |
-          # source ./.env/bin/activate
+          source ./.env/bin/activate
           (cd ./python/docs; make html)
           cp -r ./python/docs/_build ./docs/api/python/  # copy generated API documentation
-          # deactivate
+          deactivate
 
       - name: "Project documentation: MkDocs-Material"
         shell: bash
@@ -54,9 +54,9 @@ jobs:
         run: |
           cp ./README.md ./docs/
           sed -i 's/](docs\//](/g' ./docs/README.md
-          # source ./.env/bin/activate
+          source ./.env/bin/activate
           mkdocs build
-          # deactivate
+          deactivate
 
       # Only deploy on commits to 'master' branch
       - name: "Deploy on commit to master"
