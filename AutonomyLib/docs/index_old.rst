@@ -3,15 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-AutonomyLib
+Welcome to AutonomyLib's documentation!
 =======================================
 
-This page documents `AutonomyLib`_, the C++ library of `AutonomySim`_.
+.. doxygenindex::
+   :project: AutonomyLib
+   :path: doxyxml/xml
+   :outline:
+   :no-link:
+   :allow-dot-graphs:
 
-.. _`AutonomySim`: https://github.com/nervosys/AutonomySim 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+Indices and tables
+==================
 
-../AutonomyLib/
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

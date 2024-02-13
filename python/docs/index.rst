@@ -5,10 +5,11 @@
 
 AutonomySim
 =========================================
-This page documents `autonomysim`_, the python package to be used for `Nervosys AutonomySim`_.
+
+This page documents `autonomysim`_, the Python package of `AutonomySim`_.
 
 .. _`autonomysim`: https://pypi.org/project/autonomysim/
-.. _`Nervosys AutonomySim`: https://github.com/nervosys/AutonomySim 
+.. _`AutonomySim`: https://github.com/nervosys/AutonomySim 
 
 .. toctree::
 	:maxdepth: 3

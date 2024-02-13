@@ -63,6 +63,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "breathe",
+    "exhale",
 ]
 
 autodoc_default_flags = ["members"]
