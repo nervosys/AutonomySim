@@ -395,8 +395,8 @@ ros2/src/log
 # Docs
 docs/README.md
 build_docs/
-docs/api/cpp/
-docs/api/python
+#docs/api/cpp/
+#docs/api/python
 
 # C++ API docs
 AutonomyLib/docs/doxyxml/
