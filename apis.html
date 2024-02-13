@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -331,16 +333,80 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="api_docs/html/index.html" class="md-nav__link">
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     API Documentation
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/python/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/cpp/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3066,16 +3132,13 @@
 <h2 id="python-quickstart">Python Quickstart<a class="headerlink" href="#python-quickstart" title="Permanent link">#</a></h2>
 <p>If you want to use Python to call AutonomySim APIs, we recommend using Anaconda with Python 3.5 or later versions however some code may also work with Python 2.7 (<a href="CONTRIBUTING.html">help us</a> improve compatibility!).</p>
 <p>First install this package:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>msgpack-rpc-python
-</span></code></pre></div>
+<pre class="highlight"><code class="language-shell">pip install msgpack-rpc-python</code></pre>
 <p>You can either get AutonomySim binaries from <a href="https://github.com/nervosys/AutonomySim/releases">releases</a> or compile from the source (<a href="build_windows.html">Windows</a>, <a href="build_linux.html">Linux</a>). Once you can run AutonomySim, choose Car as vehicle and then navigate to <code>PythonClient\car\</code> folder and run:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>hello_car.py
-</span></code></pre></div>
+<pre class="highlight"><code class="language-shell">python hello_car.py</code></pre>
 <p>If you are using Visual Studio 2019 then just open AutonomySim.sln, set PythonClient as startup project and choose <code>car\hello_car.py</code> as your startup script.</p>
 <h3 id="installing-autonomysim-package">Installing AutonomySim Package<a class="headerlink" href="#installing-autonomysim-package" title="Permanent link">#</a></h3>
 <p>You can also install <code>AutonomySim</code> package simply by,</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>AutonomySim
-</span></code></pre></div>
+<pre class="highlight"><code class="language-shell">pip install AutonomySim</code></pre>
 <p>You can find source code and samples for this package in <code>PythonClient</code> folder in your repo.</p>
 <p><strong>Notes</strong>
 1. You may notice a file <code>setup_path.py</code> in our example folders. This file has simple code to detect if <code>AutonomySim</code> package is available in parent folder and in that case we use that instead of pip installed package so you always use latest code.
@@ -3084,75 +3147,74 @@
 <p>If you want to use C++ APIs and examples, please see <a href="apis_cpp.html">C++ APIs Guide</a>.</p>
 <h2 id="hello-car">Hello Car<a class="headerlink" href="#hello-car" title="Permanent link">#</a></h2>
 <p>Here's how to use AutonomySim APIs using Python to control simulated car (see also <a href="apis_cpp.html#hello_car">C++ example</a>):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># ready to run example: PythonClient/car/hello_car.py</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span> <span class="nn">AutonomySim</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span> <span class="nn">time</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># connect to the AutonomySim simulator</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">CarClient</span><span class="p">()</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">client</span><span class="o">.</span><span class="n">confirmConnection</span><span class="p">()</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">client</span><span class="o">.</span><span class="n">enableApiControl</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">car_controls</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">CarControls</span><span class="p">()</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="c1"># get state of the car</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">car_state</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">getCarState</span><span class="p">()</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Speed </span><span class="si">%d</span><span class="s2">, Gear </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">car_state</span><span class="o">.</span><span class="n">speed</span><span class="p">,</span> <span class="n">car_state</span><span class="o">.</span><span class="n">gear</span><span class="p">))</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="c1"># set the controls for car</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="n">car_controls</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="n">car_controls</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="n">client</span><span class="o">.</span><span class="n">setCarControls</span><span class="p">(</span><span class="n">car_controls</span><span class="p">)</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="c1"># let car drive a bit</span>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="c1"># get camera images from the car</span>
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="n">responses</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">simGetImages</span><span class="p">([</span>
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageRequest</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageType</span><span class="o">.</span><span class="n">DepthVis</span><span class="p">),</span>
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageRequest</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageType</span><span class="o">.</span><span class="n">DepthPlanar</span><span class="p">,</span> <span class="kc">True</span><span class="p">)])</span>
-</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved images: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">))</span>
-</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
-</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="c1"># do something with images</span>
-</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
-</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">pixels_as_float</span><span class="p">:</span>
-</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type </span><span class="si">%d</span><span class="s2">, size </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_type</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_data_float</span><span class="p">)))</span>
-</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>            <span class="n">AutonomySim</span><span class="o">.</span><span class="n">write_pfm</span><span class="p">(</span><span class="s1">&#39;py1.pfm&#39;</span><span class="p">,</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">get_pfm_array</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
-</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type </span><span class="si">%d</span><span class="s2">, size </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_type</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_data_uint8</span><span class="p">)))</span>
-</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>            <span class="n">AutonomySim</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;py1.png&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">image_data_uint8</span><span class="p">)</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python"># ready to run example: PythonClient/car/hello_car.py
+import AutonomySim
+import time
+
+# connect to the AutonomySim simulator
+client = AutonomySim.CarClient()
+client.confirmConnection()
+client.enableApiControl(True)
+car_controls = AutonomySim.CarControls()
+
+while True:
+    # get state of the car
+    car_state = client.getCarState()
+    print("Speed %d, Gear %d" % (car_state.speed, car_state.gear))
+
+    # set the controls for car
+    car_controls.throttle = 1
+    car_controls.steering = 1
+    client.setCarControls(car_controls)
+
+    # let car drive a bit
+    time.sleep(1)
+
+    # get camera images from the car
+    responses = client.simGetImages([
+        AutonomySim.ImageRequest(0, AutonomySim.ImageType.DepthVis),
+        AutonomySim.ImageRequest(1, AutonomySim.ImageType.DepthPlanar, True)])
+    print('Retrieved images: %d', len(responses))
+
+    # do something with images
+    for response in responses:
+        if response.pixels_as_float:
+            print("Type %d, size %d" % (response.image_type, len(response.image_data_float)))
+            AutonomySim.write_pfm('py1.pfm', AutonomySim.get_pfm_array(response))
+        else:
+            print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
+            AutonomySim.write_file('py1.png', response.image_data_uint8)
+</code></pre>
 <h2 id="hello-drone">Hello Drone<a class="headerlink" href="#hello-drone" title="Permanent link">#</a></h2>
 <p>Here's how to use AutonomySim APIs using Python to control simulated quadrotor (see also <a href="apis_cpp.html#hello_drone">C++ example</a>):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># ready to run example: PythonClient/multirotor/hello_drone.py</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span> <span class="nn">AutonomySim</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span> <span class="nn">os</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># connect to the AutonomySim simulator</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">MultirotorClient</span><span class="p">()</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">client</span><span class="o">.</span><span class="n">confirmConnection</span><span class="p">()</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">client</span><span class="o">.</span><span class="n">enableApiControl</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">client</span><span class="o">.</span><span class="n">armDisarm</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># Async methods returns Future. Call join() to wait for task to complete.</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">client</span><span class="o">.</span><span class="n">takeoffAsync</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">client</span><span class="o">.</span><span class="n">moveToPositionAsync</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># take images</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">responses</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">simGetImages</span><span class="p">([</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageRequest</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageType</span><span class="o">.</span><span class="n">DepthVis</span><span class="p">),</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageRequest</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageType</span><span class="o">.</span><span class="n">DepthPlanar</span><span class="p">,</span> <span class="kc">True</span><span class="p">)])</span>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Retrieved images: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">))</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="c1"># do something with the images</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">pixels_as_float</span><span class="p">:</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type </span><span class="si">%d</span><span class="s2">, size </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_type</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_data_float</span><span class="p">)))</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>        <span class="n">AutonomySim</span><span class="o">.</span><span class="n">write_pfm</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="s1">&#39;/temp/py1.pfm&#39;</span><span class="p">),</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">get_pfm_array</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type </span><span class="si">%d</span><span class="s2">, size </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_type</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_data_uint8</span><span class="p">)))</span>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>        <span class="n">AutonomySim</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="s1">&#39;/temp/py1.png&#39;</span><span class="p">),</span> <span class="n">response</span><span class="o">.</span><span class="n">image_data_uint8</span><span class="p">)</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python"># ready to run example: PythonClient/multirotor/hello_drone.py
+import AutonomySim
+import os
+
+# connect to the AutonomySim simulator
+client = AutonomySim.MultirotorClient()
+client.confirmConnection()
+client.enableApiControl(True)
+client.armDisarm(True)
+
+# Async methods returns Future. Call join() to wait for task to complete.
+client.takeoffAsync().join()
+client.moveToPositionAsync(-10, 10, -10, 5).join()
+
+# take images
+responses = client.simGetImages([
+    AutonomySim.ImageRequest("0", AutonomySim.ImageType.DepthVis),
+    AutonomySim.ImageRequest("1", AutonomySim.ImageType.DepthPlanar, True)])
+print('Retrieved images: %d', len(responses))
+
+# do something with the images
+for response in responses:
+    if response.pixels_as_float:
+        print("Type %d, size %d" % (response.image_type, len(response.image_data_float)))
+        AutonomySim.write_pfm(os.path.normpath('/temp/py1.pfm'), AutonomySim.get_pfm_array(response))
+    else:
+        print("Type %d, size %d" % (response.image_type, len(response.image_data_uint8)))
+        AutonomySim.write_file(os.path.normpath('/temp/py1.png'), response.image_data_uint8)</code></pre>
 <h2 id="common-apis">Common APIs<a class="headerlink" href="#common-apis" title="Permanent link">#</a></h2>
 <ul>
 <li><code>reset</code>: This resets the vehicle to its original starting state. Note that you must call <code>enableApiControl</code> and <code>armDisarm</code> again after the call to <code>reset</code>.</li>
@@ -3174,8 +3236,7 @@ For vision problems that can benefit from domain randomization, there is also an
 <h3 id="time-of-day-api">Time-of-day API<a class="headerlink" href="#time-of-day-api" title="Permanent link">#</a></h3>
 <p>AutonomySim assumes there exist sky sphere of class <code>EngineSky/BP_Sky_Sphere</code> in your environment with <a href="https://github.com/nervosys/AutonomySim/blob/v1.4.0-linux/Unreal/Plugins/AutonomySim/Source/SimMode/SimModeBase.cpp#L224">ADirectionalLight actor</a>. By default, the position of the sun in the scene doesn't move with time. You can use <a href="settings.html#timeofday">settings</a> to set up latitude, longitude, date and time which AutonomySim uses to compute the position of sun in the scene.</p>
 <p>You can also use following API call to set the sun position according to given date time:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">simSetTimeOfDay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_enabled</span><span class="p">,</span> <span class="n">start_datetime</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">is_start_datetime_dst</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">celestial_clock_speed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">update_interval_secs</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="n">move_sun</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">simSetTimeOfDay(self, is_enabled, start_datetime = "", is_start_datetime_dst = False, celestial_clock_speed = 1, update_interval_secs = 60, move_sun = True)</code></pre>
 <p>The <code>is_enabled</code> parameter must be <code>True</code> to enable time of day effect. If it is <code>False</code> then sun position is reset to its original in the environment.</p>
 <p>Other parameters are same as in <a href="settings.html#timeofday">settings</a>.</p>
 <h3 id="line-of-sight-and-world-extent-apis">Line-of-sight and world extent APIs<a class="headerlink" href="#line-of-sight-and-world-extent-apis" title="Permanent link">#</a></h3>
@@ -3183,38 +3244,33 @@ For vision problems that can benefit from domain randomization, there is also an
 Sim world extent, in the form of a vector of two GeoPoints, can be retrieved using simGetWorldExtents().</p>
 <h3 id="weather-apis">Weather APIs<a class="headerlink" href="#weather-apis" title="Permanent link">#</a></h3>
 <p>By default all weather effects are disabled. To enable weather effect, first call:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">simEnableWeather</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">simEnableWeather(True)</code></pre>
 <p>Various weather effects can be enabled by using <code>simSetWeatherParameter</code> method which takes <code>WeatherParameter</code>, for example,</p>
-<p><div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">client</span><span class="o">.</span><span class="n">simSetWeatherParameter</span><span class="p">(</span><span class="n">AutonomySim</span><span class="o">.</span><span class="n">WeatherParameter</span><span class="o">.</span><span class="n">Rain</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">);</span>
-</span></code></pre></div>
+<p><pre class="highlight"><code class="language-python">client.simSetWeatherParameter(AutonomySim.WeatherParameter.Rain, 0.25);</code></pre>
 The second parameter value is from 0 to 1. The first parameter provides following options:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">class</span> <span class="nc">WeatherParameter</span><span class="p">:</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">Rain</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">Roadwetness</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">Snow</span> <span class="o">=</span> <span class="mi">2</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">RoadSnow</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">MapleLeaf</span> <span class="o">=</span> <span class="mi">4</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">RoadLeaf</span> <span class="o">=</span> <span class="mi">5</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">Dust</span> <span class="o">=</span> <span class="mi">6</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">Fog</span> <span class="o">=</span> <span class="mi">7</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">class WeatherParameter:
+    Rain = 0
+    Roadwetness = 1
+    Snow = 2
+    RoadSnow = 3
+    MapleLeaf = 4
+    RoadLeaf = 5
+    Dust = 6
+    Fog = 7</code></pre>
 <p>Please note that <code>Roadwetness</code>, <code>RoadSnow</code> and <code>RoadLeaf</code> effects requires adding <a href="https://github.com/nervosys/AutonomySim/tree/master/Unreal/Plugins/AutonomySim/Content/Weather/WeatherFX">materials</a> to your scene.</p>
 <p>Please see <a href="https://github.com/nervosys/AutonomySim/blob/master/PythonClient/environment/weather.py">example code</a> for more details.</p>
 <h3 id="recording-apis">Recording APIs<a class="headerlink" href="#recording-apis" title="Permanent link">#</a></h3>
 <p>Recording APIs can be used to start recording data through APIs. Data to be recorded can be specified using <a href="settings.html#recording">settings</a>. To start recording, use -</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">client</span><span class="o">.</span><span class="n">startRecording</span><span class="p">()</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">client.startRecording()</code></pre>
 <p>Similarly, to stop recording, use <code>client.stopRecording()</code>. To check whether Recording is running, call <code>client.isRecording()</code>, returns a <code>bool</code>.</p>
 <p>This API works alongwith toggling Recording using R button, therefore if it's enabled using R key, <code>isRecording()</code> will return <code>True</code>, and recording can be stopped via API using <code>stopRecording()</code>. Similarly, recording started using API will be stopped if R key is pressed in Viewport. LogMessage will also appear in the top-left of the viewport if recording is started or stopped using API.</p>
 <p>Note that this will only save the data as specfied in the settings. For full freedom in storing data such as certain sensor information, or in a different format or layout, use the other APIs to fetch the data and save as desired. Check out <a href="recording_data.md">Modifying Recording Data</a> for details on how to modify the kinematics data being recorded.</p>
 <h3 id="wind-api">Wind API<a class="headerlink" href="#wind-api" title="Permanent link">#</a></h3>
 <p>Wind can be changed during simulation using <code>simSetWind()</code>. Wind is specified in World frame, NED direction and m/s values</p>
 <p>For example, to set 20m/s wind in north (forward) direction:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Set wind to (20,0,0) in NED (forward direction)</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">wind</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">Vector3r</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">client</span><span class="o">.</span><span class="n">simSetWind</span><span class="p">(</span><span class="n">wind</span><span class="p">)</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python"># Set wind to (20,0,0) in NED (forward direction)
+wind = AutonomySim.Vector3r(20, 0, 0)
+client.simSetWind(wind)</code></pre>
 <p>Also see example script in <a href="https://github.com/nervosys/AutonomySim/blob/master/PythonClient/multirotor/set_wind.py">set_wind.py</a></p>
 <h3 id="lidar-apis">Lidar APIs<a class="headerlink" href="#lidar-apis" title="Permanent link">#</a></h3>
 <p>AutonomySim offers API to retrieve point cloud data from Lidar sensors on vehicles. You can set the number of channels, points per second, horizontal and vertical FOV, etc parameters in <a href="settings.html">settings.json</a>.</p>
@@ -3248,12 +3304,10 @@ The second parameter value is from 0 to 1. The first parameter provides followin
 <p>This API returns the state of the vehicle in one call. The state includes, collision, estimated kinematics (i.e. kinematics computed by fusing sensors), and timestamp (nano seconds since epoch). The kinematics here means 6 quantities: position, orientation, linear and angular velocity, linear and angular acceleration. Please note that simple_slight currently doesn't support state estimator which means estimated and ground truth kinematics values would be same for simple_flight. Estimated kinematics are however available for PX4 except for angular acceleration. All quantities are in NED coordinate system, SI units in world frame except for angular velocity and accelerations which are in body frame.</p>
 <h4 id="async-methods-duration-and-max_wait_seconds">Async methods, duration and max_wait_seconds<a class="headerlink" href="#async-methods-duration-and-max_wait_seconds" title="Permanent link">#</a></h4>
 <p>Many API methods has parameters named <code>duration</code> or <code>max_wait_seconds</code> and they have <em>Async</em> as suffix, for example, <code>takeoffAsync</code>. These methods will return immediately after starting the task in AutonomySim so that your client code can do something else while that task is being executed. If you want to wait for this task to complete then you can call <code>waitOnLastTask</code> like this:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">//C++</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">client</span><span class="p">.</span><span class="n">takeoffAsync</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">waitOnLastTask</span><span class="p">();</span>
-</span></code></pre></div>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="cp"># Python</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">client</span><span class="p">.</span><span class="n">takeoffAsync</span><span class="p">().</span><span class="n">join</span><span class="p">()</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-cpp">//C++
+client.takeoffAsync()-&gt;waitOnLastTask();</code></pre>
+<pre class="highlight"><code class="language-cpp"># Python
+client.takeoffAsync().join()</code></pre>
 <p>If you start another command then it automatically cancels the previous task and starts new command. This allows to use pattern where your coded continuously does the sensing, computes a new trajectory to follow and issues that path to vehicle in AutonomySim. Each newly issued trajectory cancels the previous trajectory allowing your code to continuously do the update as new sensor data arrives.</p>
 <p>All <em>Async</em> method returns <code>concurrent.futures.Future</code> in Python (<code>std::future</code> in C++). Please note that these future classes currently do not allow to check status or cancel the task; they only allow to wait for task to complete. AutonomySim does provide API <code>cancelLastTask</code>, however.</p>
 <h4 id="drivetrain">drivetrain<a class="headerlink" href="#drivetrain" title="Permanent link">#</a></h4>
@@ -3289,9 +3343,8 @@ The second parameter value is from 0 to 1. The first parameter provides followin
 <p>We recommend <a href="https://www.anaconda.com/download/">Anaconda</a> to get Python tools and libraries. Our code is tested with Python 3.5.3 :: Anaconda 4.4.0. This is important because older version have been known to have <a href="https://stackoverflow.com/a/45934992/207661">problems</a>.</p>
 <h4 id="i-get-error-on-import-cv2">I get error on <code>import cv2</code><a class="headerlink" href="#i-get-error-on-import-cv2" title="Permanent link">#</a></h4>
 <p>You can install OpenCV using:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>conda<span class="w"> </span>install<span class="w"> </span>opencv
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>pip<span class="w"> </span>install<span class="w"> </span>opencv-python
-</span></code></pre></div>
+<pre class="highlight"><code class="language-shell">conda install opencv
+pip install opencv-python</code></pre>
 <h4 id="typeerror-unsupported-operand-types-for-asyncioloop-and-float">TypeError: unsupported operand type(s) for *: 'AsyncIOLoop' and 'float'<a class="headerlink" href="#typeerror-unsupported-operand-types-for-asyncioloop-and-float" title="Permanent link">#</a></h4>
 <p>This error happens if you install Jupyter, which somehow breaks the msgpackrpc library.  Create a new python environment
 which the minimal required packages.</p>
@@ -3439,6 +3492,8 @@ which the minimal required packages.</p>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

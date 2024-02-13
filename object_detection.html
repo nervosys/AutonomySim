@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -331,16 +333,80 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="api_docs/html/index.html" class="md-nav__link">
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     API Documentation
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/python/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/cpp/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2747,72 +2813,69 @@
 </li>
 </ul>
 <p>The return value of <code>simGetDetections</code> is a <code>DetectionInfo</code> array:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">DetectionInfo</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">geo_point</span> <span class="o">=</span> <span class="n">GeoPoint</span><span class="p">()</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">box2D</span> <span class="o">=</span> <span class="n">Box2D</span><span class="p">()</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">box3D</span> <span class="o">=</span> <span class="n">Box3D</span><span class="p">()</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">relative_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">DetectionInfo
+    name = ''
+    geo_point = GeoPoint()
+    box2D = Box2D()
+    box3D = Box3D()
+    relative_pose = Pose()</code></pre>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">#</a></h2>
 <p>The Python script <a href="https://github.com/nervosys/AutonomySim/blob/master/PythonClient/detection/detection.py"><code>detection.py</code></a> shows how to set detection parameters and shows the result in OpenCV capture.</p>
 <p>A minimal example using API with Blocks environment to detect Cylinder objects is below:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">camera_name</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">image_type</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">ImageType</span><span class="o">.</span><span class="n">Scene</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">MultirotorClient</span><span class="p">()</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">client</span><span class="o">.</span><span class="n">confirmConnection</span><span class="p">()</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">client</span><span class="o">.</span><span class="n">simSetDetectionFilterRadius</span><span class="p">(</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="mi">80</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># in [cm]</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">client</span><span class="o">.</span><span class="n">simAddDetectionFilterMeshName</span><span class="p">(</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="s2">&quot;Cylinder_*&quot;</span><span class="p">)</span> 
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">client</span><span class="o">.</span><span class="n">simGetDetections</span><span class="p">(</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">)</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">detections</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">simClearDetectionMeshNames</span><span class="p">(</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">)</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">camera_name = "0"
+image_type = AutonomySim.ImageType.Scene
+
+client = AutonomySim.MultirotorClient()
+client.confirmConnection()
+
+client.simSetDetectionFilterRadius(camera_name, image_type, 80 * 100) # in [cm]
+client.simAddDetectionFilterMeshName(camera_name, image_type, "Cylinder_*") 
+client.simGetDetections(camera_name, image_type)
+detections = client.simClearDetectionMeshNames(camera_name, image_type)</code></pre>
 <p>Output result:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Cylinder</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DetectionInfo</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Cylinder9_2&#39;</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="s1">&#39;geo_point&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">GeoPoint</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="s1">&#39;altitude&#39;</span><span class="p">:</span> <span class="mf">16.979999542236328</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="mf">32.28772183970703</span><span class="p">,</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="mf">34.864785008379876</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">},</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="s1">&#39;box2D&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Box2D</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Vector2r</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="s1">&#39;x_val&#39;</span><span class="p">:</span> <span class="mf">617.025634765625</span><span class="p">,</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="mf">583.5487060546875</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="p">},</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Vector2r</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="s1">&#39;x_val&#39;</span><span class="p">:</span> <span class="mf">485.74359130859375</span><span class="p">,</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="mf">438.33465576171875</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="p">}</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="p">},</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="s1">&#39;box3D&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Box3D</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Vector3r</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="s1">&#39;x_val&#39;</span><span class="p">:</span> <span class="mf">4.900000095367432</span><span class="p">,</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>            <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="mf">0.7999999523162842</span><span class="p">,</span>
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>            <span class="s1">&#39;z_val&#39;</span><span class="p">:</span> <span class="mf">0.5199999809265137</span>
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="p">},</span>
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Vector3r</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>            <span class="s1">&#39;x_val&#39;</span><span class="p">:</span> <span class="mf">3.8999998569488525</span><span class="p">,</span>
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>            <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.19999998807907104</span><span class="p">,</span>
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>            <span class="s1">&#39;z_val&#39;</span><span class="p">:</span> <span class="mf">1.5199999809265137</span>
-</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>        <span class="p">}</span>
-</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    <span class="p">},</span>
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    <span class="s1">&#39;relative_pose&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Pose</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>        <span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Quaternionr</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>            <span class="s1">&#39;w_val&#39;</span><span class="p">:</span> <span class="mf">0.9929741621017456</span><span class="p">,</span>
-</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>            <span class="s1">&#39;x_val&#39;</span><span class="p">:</span> <span class="mf">0.0038591264747083187</span><span class="p">,</span>
-</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>            <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.11333247274160385</span><span class="p">,</span>
-</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>            <span class="s1">&#39;z_val&#39;</span><span class="p">:</span> <span class="mf">0.03381215035915375</span>
-</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>        <span class="p">},</span>
-</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>        <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Vector3r</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>            <span class="s1">&#39;x_val&#39;</span><span class="p">:</span> <span class="mf">4.400000095367432</span><span class="p">,</span>
-</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>            <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="mf">0.29999998211860657</span><span class="p">,</span>
-</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>            <span class="s1">&#39;z_val&#39;</span><span class="p">:</span> <span class="mf">1.0199999809265137</span>
-</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>        <span class="p">}</span>
-</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>    <span class="p">}</span>
-</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="p">}</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">Cylinder: &lt;DetectionInfo&gt; {
+    'name': 'Cylinder9_2',
+    'geo_point': &lt;GeoPoint&gt; {
+        'altitude': 16.979999542236328,
+        'latitude': 32.28772183970703,
+        'longitude': 34.864785008379876
+    },
+    'box2D': &lt;Box2D&gt; {
+        'max': &lt;Vector2r&gt; {
+            'x_val': 617.025634765625,
+            'y_val': 583.5487060546875
+        },
+        'min': &lt;Vector2r&gt; {
+            'x_val': 485.74359130859375,
+            'y_val': 438.33465576171875
+        }
+    },
+    'box3D': &lt;Box3D&gt; {
+        'max': &lt;Vector3r&gt; {
+            'x_val': 4.900000095367432,
+            'y_val': 0.7999999523162842,
+            'z_val': 0.5199999809265137
+        },
+        'min': &lt;Vector3r&gt; {
+            'x_val': 3.8999998569488525,
+            'y_val': -0.19999998807907104,
+            'z_val': 1.5199999809265137
+        }
+    },
+    'relative_pose': &lt;Pose&gt; {
+        'orientation': &lt;Quaternionr&gt; {
+            'w_val': 0.9929741621017456,
+            'x_val': 0.0038591264747083187,
+            'y_val': -0.11333247274160385,
+            'z_val': 0.03381215035915375
+        },
+        'position': &lt;Vector3r&gt; {
+            'x_val': 4.400000095367432,
+            'y_val': 0.29999998211860657,
+            'z_val': 1.0199999809265137
+        }
+    }
+}</code></pre>
 <p><img alt="image" src="media/images/detection_ue4.png" />
 <img alt="image" src="media/images/detection_python.png" /></p>
 
@@ -2959,6 +3022,8 @@
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

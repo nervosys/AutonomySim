@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -331,16 +333,80 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="api_docs/html/index.html" class="md-nav__link">
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     API Documentation
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/python/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/cpp/html/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    None
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2728,27 +2794,24 @@
 <p><code>AutonomySim</code> provides a feature that constructs ground truth voxel grids of the world directly from <code>Unreal Engine</code>. A voxel grid is a representation of the occupancy of a given world/map, by discretizing into cells of a certain size; and recording a voxel if that particular location is occupied. </p>
 <h2 id="algorithm-and-usage">Algorithm and Usage<a class="headerlink" href="#algorithm-and-usage" title="Permanent link">#</a></h2>
 <p>The logic for constructing the voxel grid is in <code>WorldSimApi.cpp-&gt;createVoxelGrid()</code>. For now, the assumption is that the voxel grid is a cube - and the API call from Python is of the structure:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">simCreateVoxelGrid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">of</span><span class="p">)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">position</span> <span class="p">(</span><span class="n">Vector3r</span><span class="p">):</span> <span class="n">Global</span> <span class="n">position</span> <span class="n">around</span> <span class="n">which</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="ow">is</span> <span class="n">centered</span> <span class="ow">in</span> <span class="n">m</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Size</span> <span class="n">of</span> <span class="n">each</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="n">dimension</span> <span class="ow">in</span> <span class="n">m</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">res</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Resolution</span> <span class="n">of</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">m</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">of</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">output</span> <span class="n">file</span> <span class="n">to</span> <span class="n">save</span> <span class="n">voxel</span> <span class="n">grid</span> <span class="k">as</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">simCreateVoxelGrid(self, position, x, y, z, res, of)
+
+position (Vector3r): Global position around which voxel grid is centered in m
+x, y, z (float): Size of each voxel grid dimension in m
+res (float): Resolution of voxel grid in m
+of (str): Name of output file to save voxel grid as</code></pre>
 <p>Within <code>createVoxelGrid()</code>, the main Unreal Engine function that returns occupancy is <a href="https://docs.unrealengine.com/en-US/API/Runtime/Engine/Engine/UWorld/OverlapBlockingTestByChannel/index.html">OverlapBlockingTestByChannel</a>.</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">OverlapBlockingTestByChannel</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="p">,</span><span class="w"> </span><span class="n">ECollisionChannel</span><span class="p">,</span><span class="w"> </span><span class="n">FCollisionShape</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">);</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-cpp">OverlapBlockingTestByChannel(position, rotation, ECollisionChannel, FCollisionShape, params);</code></pre>
 <p>This function is called on the positions of all the 'cells' we wish to discretize the map into, and the returned occupancy result is collected into an array <code>voxel_grid_</code>. The indexing of the cell occupancy values follows the convention of the <a href="https://www.patrickmin.com/binvox/binvox.html">binvox</a> format. </p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ncells_x</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ncells_z</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ncells_y</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ncells_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ncells_z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">            </span><span class="n">FVector</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FVector</span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ncells_x</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale_cm</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ncells_y</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale_cm</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ncells_z</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale_cm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">position_in_UE_frame</span><span class="p">;</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">            </span><span class="n">voxel_grid_</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simmode_</span><span class="o">-&gt;</span><span class="n">GetWorld</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">OverlapBlockingTestByChannel</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">FQuat</span><span class="o">::</span><span class="n">Identity</span><span class="p">,</span><span class="w"> </span><span class="n">ECollisionChannel</span><span class="o">::</span><span class="n">ECC_Pawn</span><span class="p">,</span><span class="w"> </span><span class="n">FCollisionShape</span><span class="o">::</span><span class="n">MakeBox</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="n">scale_cm</span><span class="w"> </span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">params</span><span class="p">);</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-cpp">for (float i = 0; i &lt; ncells_x; i++) {
+    for (float k = 0; k &lt; ncells_z; k++) {
+        for (float j = 0; j &lt; ncells_y; j++) {
+            int idx = i + ncells_x * (k + ncells_z * j);
+            FVector position = FVector((i - ncells_x /2) * scale_cm, (j - ncells_y /2) * scale_cm, (k - ncells_z /2) * scale_cm) + position_in_UE_frame;
+            voxel_grid_[idx] = simmode_-&gt;GetWorld()-&gt;OverlapBlockingTestByChannel(position, FQuat::Identity, ECollisionChannel::ECC_Pawn, FCollisionShape::MakeBox(FVector(scale_cm /2)), params);
+        }
+    }
+}</code></pre>
 <p>The occupancy of the map is calculated iteratively over all discretized cells, which can make it an intensive operation depending on the resolution of the cells, and the total size of the area being measured. If the user's map of interest does not change much, it is possible to run the voxel grid operation once on this map, and save the voxel grid and reuse it. For performance, or with dynamic environments, we recommend running the voxel grid generation for a small area around the robot; and subsequently use it for local planning purposes.</p>
 <p>The voxel grids are stored in the binvox format which can then be converted by the user into an octomap .bt or any other relevant, desired format. Subsequently, these voxel grids/octomaps can be used within mapping/planning. One nifty little utility to visualize a created binvox files is <a href="https://www.patrickmin.com/viewvox/">viewvox</a>. Similarly, <code>binvox2bt</code> can convert the binvox to an octomap file.</p>
 <h2 id="example-in-blocks">Example in Blocks<a class="headerlink" href="#example-in-blocks" title="Permanent link">#</a></h2>
@@ -2756,12 +2819,11 @@
 <h2 id="converion-to-octomap-format-visualized-in-rviz">Converion to Octomap format (visualized in rviz)<a class="headerlink" href="#converion-to-octomap-format-visualized-in-rviz" title="Permanent link">#</a></h2>
 <p><img alt="image" src="images/octomap.png" /></p>
 <p>As an example, a voxel grid can be constructed as follows, once the Blocks environment is up and running:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">AutonomySim</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">c</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">VehicleClient</span><span class="p">()</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">center</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">Vector3r</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;map.binvox&quot;</span><span class="p">)</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">c</span><span class="o">.</span><span class="n">simCreateVoxelGrid</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
-</span></code></pre></div>
+<pre class="highlight"><code class="language-python">import AutonomySim
+c = AutonomySim.VehicleClient()
+center = AutonomySim.Vector3r(0, 0, 0)
+output_path = os.path.join(os.getcwd(), "map.binvox")
+c.simCreateVoxelGrid(center, 100, 100, 100, 0.5, output_path)</code></pre>
 <p>And visualized through <code>viewvox map.binvox</code>.</p>
 
 
@@ -2907,6 +2969,8 @@
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>
