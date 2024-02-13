@@ -24,7 +24,6 @@ import sys
 sys.path.insert(0, os.path.abspath("./ext/breathe/"))
 
 import sphinx_immaterial
-from autonomysim import __version__
 
 
 # -- Project information -----------------------------------------------------
