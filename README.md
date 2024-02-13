@@ -1,6 +1,6 @@
 <br>
 <p align="center" width="100%">
-    <img src="./media/images/autonomysim_simple_bw_1000w.png" width="75%" alt="AutonomySim logo">
+    <img src="./media/images/autonomysim_simple_bw_1000w.png" width="600vw" alt="AutonomySim logo">
 </p>
 
 <p align="center" width="100%">  
@@ -399,7 +399,7 @@ Any and all sublicenses can be found [here](sublicenses/).
 
 <p align="center">
   <br>
-  <img src="./media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
+  <img src="./media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="400vw" alt="xwerx logo">
   <br>
   <i>"Accelerating the development of robotic general intelligence"</i>
   <br>
