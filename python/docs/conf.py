@@ -68,6 +68,12 @@ autosummary_generate = True
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 4
 
+# Tell sphinx what the primary language being documented is.
+primary_domain = "python"
+
+# Tell sphinx what the pygments highlight language should be.
+highlight_language = "python"
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 

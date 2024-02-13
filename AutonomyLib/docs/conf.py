@@ -87,7 +87,7 @@ exhale_args = {
     "createTreeView": True,
     # tip: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
-    "exhaleExecutesDoxygen": True,
+    "exhaleExecutesDoxygen": False,
     "exhaleDoxygenStdin": "INPUT = ../include",
 }
 
