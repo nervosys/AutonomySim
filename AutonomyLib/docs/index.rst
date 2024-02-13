@@ -6,13 +6,10 @@
 Welcome to AutonomyLib's documentation!
 =======================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
 .. doxygenindex::
    :project: AutonomyLib
    :path: doxyxml/xml
+   :toctree:
    :outline:
    :no-link:
    :allow-dot-graphs:
