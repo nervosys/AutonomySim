@@ -63,7 +63,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "breathe",
-    "exhale",
 ]
 
 autodoc_default_flags = ["members"]
@@ -74,22 +73,6 @@ autosectionlabel_maxdepth = 4
 # Breathe Configuration
 breathe_projects = {"AutonomyLib": "./doxyxml/xml/"}
 breathe_default_project = "AutonomyLib"
-
-# Setup the exhale extension
-exhale_args = {
-    # required arguments
-    "containmentFolder": "./api",
-    "rootFileName": "library_root.rst",
-    "doxygenStripFromPath": "..",
-    # strongly encouraged optional argument (see docs)
-    "rootFileTitle": "C++ Library API",
-    # suggested optional arguments
-    "createTreeView": True,
-    # tip: if using the sphinx-bootstrap-theme, you need
-    # "treeViewIsBootstrap": True,
-    "exhaleExecutesDoxygen": False,
-    "exhaleDoxygenStdin": "INPUT = ../include",
-}
 
 # Tell sphinx what the primary language being documented is.
 primary_domain = "cpp"

@@ -37,8 +37,12 @@ class ColorUtils {
      * follows the International Electrotechnical Commission standard IEC 61966-2-1 "Multimedia systems and equipment -
      * Colour measurement and management - Part 2-1: Colour management - Default RGB colour space - sRGB"
      *
-     * @param xyz XYZ values in a double array in the order of X, Y, Z. each value in the range of [0.0, 1.0]
-     * @return RGB values in a double array, in the order of R, G, B. each value in the range of [0.0, 1.0]
+     * @param x XYZ values in a double array in the order of X, Y, Z. each value in the range of [0.0, 1.0]
+     * @param y XYZ values in a double array in the order of X, Y, Z. each value in the range of [0.0, 1.0]
+     * @param x XYZ values in a double array in the order of X, Y, Z. each value in the range of [0.0, 1.0]
+     * @param r values in a double array, in the order of R, G, B. each value in the range of [0.0, 1.0]
+     * @param g values in a double array, in the order of R, G, B. each value in the range of [0.0, 1.0]
+     * @param b values in a double array, in the order of R, G, B. each value in the range of [0.0, 1.0]
      */
     static void srgbXYZ2RGB(double x, double y, double z, double &r, double &g, double &b) {
         double rl = 3.2406255 * x + -1.537208 * y + -0.4986286 * z;
@@ -48,6 +52,8 @@ class ColorUtils {
         r = srgbXYZ2RGBPostprocess(rl);
         g = srgbXYZ2RGBPostprocess(gl);
         b = srgbXYZ2RGBPostprocess(bl);
+
+        return;
     }
 
     /**
