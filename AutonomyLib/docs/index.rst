@@ -14,4 +14,4 @@ This page documents `AutonomyLib`_, the C++ library of `AutonomySim`_.
    :maxdepth: 2
    :caption: Contents:
 
-   api/library_root
+   ../include
