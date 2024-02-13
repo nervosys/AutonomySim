@@ -1,6 +1,6 @@
 name: "Documentation Build and Deployment"
 
-on: [push, pull_request, workflow_dispatch] # triggers
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
@@ -16,11 +16,11 @@ jobs:
           python-version: "3.11"
           architecture: "x64"
 
-      - name: "Generate Doxygen output for C++ API"
+      - name: "Generate Doxygen XML output for C++ API"
         uses: mattnotmitt/doxygen-action@v1.9.8
         with:
-          doxyfile-path: "AutonomyLib/docs/Doxyfile"
-          working-directory: "."
+          doxyfile-path: AutonomyLib/docs/Doxyfile
+          working-directory: .
 
       - name: "Install Python dependencies: MkDocs-Material, Sphinx-Immaterial, Breathe"
         shell: bash
@@ -28,7 +28,7 @@ jobs:
           python3 -m venv .env  # virtual environment to avoid dependecy issues
           source ./.env/bin/activate
           python3 -m pip install --upgrade pip
-          pip install mkdocs mkdocs-material pymdown-extensions mkdocstrings[python]
+          pip install mkdocs mkdocs-material pymdown-extensions  # mkdocstrings[python]
           pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
           pip install breathe  # for doxygen -> sphinx conversion
 
@@ -48,7 +48,7 @@ jobs:
           cp -r ./python/docs/_build ./docs/api/python/  # copy generated API documentation
           deactivate
 
-      - name: "Project documentation: MkDocs-Material"
+      - name: "Generate main documentation: MkDocs-Material"
         shell: bash
         #run: bash ./scripts/build_docs.sh
         run: |
@@ -58,8 +58,7 @@ jobs:
           mkdocs build
           deactivate
 
-      # Only deploy on commits to 'master' branch
-      - name: "Deploy on commit to master"
+      - name: "Deploy on commit to master branch"
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         with:

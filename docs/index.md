@@ -16,7 +16,7 @@ Please see the navigation sidebar to the left for more information.
 
 <p align="center">
   <br>
-  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="33%" alt="xwerx logo">
+  <img src="media/images/logo_block_raven_rgi_modern_blueye_xwerx_bw_1000h.png" width="50%" alt="xwerx logo">
   <br>
   <i>"Accelerating the development of robotic general intelligence"</i>
   <br>
