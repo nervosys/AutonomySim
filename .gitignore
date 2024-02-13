@@ -295,8 +295,6 @@ ModelManifest.xml
 /cmake/DroneShell/Makefile
 /cmake/DroneServer/Makefile
 /cmake/AutonomyLib/Makefile
-/cmake/AutonomyLibUnity/Makefile
-/cmake/AutonomyLibUnity/AutonomyLibUnity
 /cmake/HelloDrone/HelloDrone
 /cmake/HelloSpawnedDrones/HelloSpawnedDrones
 /cmake/DroneShell/DroneShell
@@ -398,8 +396,11 @@ ros2/src/log
 docs/README.md
 build_docs/
 
+# C++ API docs
+AutonomyLib/docs/doxyxml/
+
 # Python API docs
-PythonClient/docs/_build
+python/docs/_build
 
 # Docker
 /docker/Blocks/

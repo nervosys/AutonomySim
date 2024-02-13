@@ -82,9 +82,11 @@ markdown_extensions:
         - attr_list
         - md_in_html
         - pymdownx.highlight:
+                  use_pygments: false
+                  # pygments_style: default
+                  # pygments_lang_class: true
                   anchor_linenums: true
                   line_spans: __span
-                  pygments_lang_class: true
         - pymdownx.inlinehilite
         - pymdownx.snippets
         - pymdownx.superfences
@@ -93,12 +95,14 @@ markdown_extensions:
 
 extra_css:
         - css/extra.css
+        - "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css" # highlight.js
 
 extra_javascript:
         - js/extra.js
         - js/mathjax.js
         - "https://polyfill.io/v3/polyfill.min.js?features=es6"
         - "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        - "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js" # highlight.js
 
 extra:
         highlightjs: true
@@ -124,9 +128,11 @@ validation:
         unrecognized_links: warn
 
 nav:
-        - index.md
+        - index.md # Project documentation generated with MkDocs
         - CHANGELOG.md
-        - "API Documentation": api_docs/html/index.html
+        - "API Documentation":
+                  - api/python/html/index.html # Python API documentation generated with Sphinx
+                  - api/cpp/html/index.html # C++ API documentation generated with Doxygen, Breathe, Sphinx
         - "Building AutonomySim":
                   - project_binaries.md
                   - build_windows.md

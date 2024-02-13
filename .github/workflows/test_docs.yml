@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: "Checkout"
+        uses: actions/checkout@v4
 
       - name: "Setup Python"
         uses: actions/setup-python@v4
@@ -15,7 +16,13 @@ jobs:
           python-version: "3.11"
           architecture: "x64"
 
-      - name: "Install dependencies: MkDocs Material, Sphinx Immaterial"
+      - name: "Generate Doxygen output for C++ API"
+        uses: mattnotmitt/doxygen-action@v1.9.8
+        with:
+          doxyfile-path: "Doxyfile"
+          working-directory: "AutonomyLib/docs"
+
+      - name: "Install Python dependencies: MkDocs-Material, Sphinx-Immaterial, Breathe"
         shell: bash
         run: |
           python3 -m venv .env  # virtual environment to avoid dependecy issues
@@ -23,27 +30,36 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install mkdocs mkdocs-material pymdown-extensions mkdocstrings[python]
           pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
+          pip install breathe  # for doxygen -> sphinx conversion
 
-      - name: "Build API documentation: Sphinx Immaterial"
+      - name: "Generate C++ API documentation: Doxygen -> Breathe -> Sphinx"
         shell: bash
         run: |
-          source ./.env/bin/activate
-          (cd ./python/docs; make html)
-          cp -r ./python/docs/_build ./docs/api_docs/  # copy generated API documentation
-          deactivate
+          # source ./.env/bin/activate
+          (cd ./AutonomyLib/docs; make html)
+          cp -r ./AutonomyLib/docs/_build ./docs/api/cpp/  # copy generated API documentation
+          # deactivate
 
-      - name: "Build main documentation: MkDocs Material"
+      - name: "Generate Python API documentation: Sphinx-Immaterial"
+        shell: bash
+        run: |
+          # source ./.env/bin/activate
+          (cd ./python/docs; make html)
+          cp -r ./python/docs/_build ./docs/api/python/  # copy generated API documentation
+          # deactivate
+
+      - name: "Project documentation: MkDocs-Material"
         shell: bash
         #run: bash ./scripts/build_docs.sh
         run: |
           cp ./README.md ./docs/
           sed -i 's/](docs\//](/g' ./docs/README.md
-          source ./.env/bin/activate
+          # source ./.env/bin/activate
           mkdocs build
-          deactivate
+          # deactivate
 
-      # Only on commits to 'master' branch
-      - name: "Deploy master branch"
+      # Only deploy on commits to 'master' branch
+      - name: "Deploy on commit to master"
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         with:
