@@ -128,11 +128,11 @@ validation:
         unrecognized_links: warn
 
 nav:
-        - index.md # Project documentation generated with MkDocs
+        - index.md # generated with MkDocs
         - CHANGELOG.md
         - "API Documentation":
-                  - api/python/html/index.html # Python API documentation generated with Sphinx
-                  - api/cpp/html/index.html # C++ API documentation generated with Doxygen, Breathe, Sphinx
+                  - "Python API": api/python/html/index.html # generated with Sphinx
+                  - "C++ API": api/cpp/html/index.html # generated with Doxygen, Breathe, Sphinx
         - "Building AutonomySim":
                   - project_binaries.md
                   - build_windows.md
