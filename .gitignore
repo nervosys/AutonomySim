@@ -395,9 +395,12 @@ ros2/src/log
 # Docs
 docs/README.md
 build_docs/
+docs/api/cpp/
+docs/api/python
 
 # C++ API docs
 AutonomyLib/docs/doxyxml/
+AutonomyLib/docs/_build/
 
 # Python API docs
 python/docs/_build

@@ -37,7 +37,7 @@ jobs:
         run: |
           source ./.env/bin/activate
           (cd ./AutonomyLib/docs; make html)
-          cp -r ./AutonomyLib/docs/_build ./docs/api/cpp/  # copy generated API documentation
+          cp -r ./AutonomyLib/docs/_build/* ./docs/api/cpp/  # copy generated API documentation
           deactivate
 
       - name: "Generate Python API documentation: Sphinx-Immaterial"
@@ -45,7 +45,7 @@ jobs:
         run: |
           source ./.env/bin/activate
           (cd ./python/docs; make html)
-          cp -r ./python/docs/_build ./docs/api/python/  # copy generated API documentation
+          cp -r ./python/docs/_build/* ./docs/api/python/  # copy generated API documentation
           deactivate
 
       - name: "Generate main documentation: MkDocs-Material"
