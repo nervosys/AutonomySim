@@ -71,7 +71,7 @@ autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 4
 
 # Breathe Configuration
-breathe_projects = {"AutonomyLib": "./doxyxml/"}
+breathe_projects = {"AutonomyLib": "./doxyxml/xml/"}
 breathe_default_project = "AutonomyLib"
 
 # Add any paths that contain templates here, relative to this directory.
