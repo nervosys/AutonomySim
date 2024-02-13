@@ -1,0 +1,39 @@
+
+.. _program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IAxisController.hpp:
+
+Program Listing for File IAxisController.hpp
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IAxisController.hpp>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/IAxisController.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef autonomylib_vehicles_simpleflight_firmware_IAxisController_hpp
+   #define autonomylib_vehicles_simpleflight_firmware_IAxisController_hpp
+   
+   #include "IBoardClock.hpp"
+   #include "IGoal.hpp"
+   #include "IStateEstimator.hpp"
+   #include "IUpdatable.hpp"
+   #include <cstdint>
+   
+   namespace simple_flight {
+   
+   class IAxisController : public IUpdatable {
+     public:
+       virtual void initialize(unsigned int axis, const IGoal *goal, const IStateEstimator *state_estimator) = 0;
+       virtual TReal getOutput() = 0;
+   
+       virtual void reset() override {
+           // disable checks for reset/update sequence because
+           // this object may get created but not used
+           clearResetUpdateAsserts();
+           IUpdatable::reset();
+       }
+   };
+   
+   } // namespace simple_flight
+   
+   #endif

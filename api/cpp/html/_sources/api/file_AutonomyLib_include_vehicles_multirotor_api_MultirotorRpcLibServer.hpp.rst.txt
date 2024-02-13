@@ -1,0 +1,66 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibServer.hpp:
+
+File MultirotorRpcLibServer.hpp
+===============================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_api>` (``AutonomyLib/include/vehicles/multirotor/api``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/api/MultirotorRpcLibServer.hpp``)
+---------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibServer.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``api/RpcLibServerBase.hpp`` (:ref:`file_AutonomyLib_include_api_RpcLibServerBase.hpp`)
+
+- ``common/Common.hpp``
+
+- ``functional``
+
+- ``vehicles/multirotor/api/MultirotorApiBase.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorApiBase.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_src_vehicles_multirotor_api_MultirotorRpcLibServer.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorRpcLibServer`
+

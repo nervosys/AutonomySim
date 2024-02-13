@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a22dccd379199c1e183e7c397857ea491:
+
+Variable conf::latex_elements
+=============================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::latex_elements
+   :project: AutonomyLib

@@ -1,0 +1,24 @@
+.. _dir_AutonomyLib_include_vehicles_car_api:
+
+
+Directory api
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_car>` (``AutonomyLib/include/vehicles/car``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/vehicles/car/api``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_include_vehicles_car_api_CarApiBase.hpp`
+- :ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibAdaptors.hpp`
+- :ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibClient.hpp`
+- :ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibServer.hpp`
+
+

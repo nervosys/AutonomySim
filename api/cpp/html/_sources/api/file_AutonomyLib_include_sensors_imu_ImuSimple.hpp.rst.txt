@@ -1,0 +1,66 @@
+
+.. _file_AutonomyLib_include_sensors_imu_ImuSimple.hpp:
+
+File ImuSimple.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_sensors_imu>` (``AutonomyLib/include/sensors/imu``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/sensors/imu/ImuSimple.hpp``)
+--------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_sensors_imu_ImuSimple.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``ImuBase.hpp``
+
+- ``ImuSimpleParams.hpp`` (:ref:`file_AutonomyLib_include_sensors_imu_ImuSimpleParams.hpp`)
+
+- ``common/Common.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_sensors_SensorFactory.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimple_1_1State`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ImuSimple`
+

@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1VehicleSimApiBase:
+
+Class VehicleSimApiBase
+=======================
+
+- Defined in :ref:`file_AutonomyLib_include_api_VehicleSimApiBase.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::UpdatableObject``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::VehicleSimApiBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

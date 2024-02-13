@@ -1,0 +1,22 @@
+.. _dir_AutonomyLib_include_sensors_imu:
+
+
+Directory imu
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_sensors>` (``AutonomyLib/include/sensors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/sensors/imu``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_include_sensors_imu_ImuSimple.hpp`
+- :ref:`file_AutonomyLib_include_sensors_imu_ImuSimpleParams.hpp`
+
+

@@ -1,0 +1,23 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1ObstacleMap_1_1ObstacleInfo:
+
+Struct ObstacleMap::ObstacleInfo
+================================
+
+- Defined in :ref:`file_AutonomyLib_include_safety_ObstacleMap.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ObstacleMap`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::ObstacleMap::ObstacleInfo
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

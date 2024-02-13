@@ -1,0 +1,62 @@
+
+.. _file_AutonomyLib_include_sensors_barometer_BarometerSimpleParams.hpp:
+
+File BarometerSimpleParams.hpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_sensors_barometer>` (``AutonomyLib/include/sensors/barometer``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/sensors/barometer/BarometerSimpleParams.hpp``)
+--------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_sensors_barometer_BarometerSimpleParams.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/AutonomySimSettings.hpp``
+
+- ``common/Common.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_sensors_barometer_BarometerSimple.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1BarometerSimpleParams`
+

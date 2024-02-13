@@ -1,0 +1,69 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_RotorParams.hpp:
+
+File RotorParams.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor>` (``AutonomyLib/include/vehicles/multirotor``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/RotorParams.hpp``)
+------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_RotorParams.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/Common.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_MultiRotorParams.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_RotorActuator.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RotorParams`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_namespacenervosys_1_1autonomylib_1ad3b29d40f39b85f517085b2d3316fce4`
+

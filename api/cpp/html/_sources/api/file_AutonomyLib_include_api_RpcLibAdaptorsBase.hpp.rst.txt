@@ -1,0 +1,147 @@
+
+.. _file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp:
+
+File RpcLibAdaptorsBase.hpp
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_api>` (``AutonomyLib/include/api``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/api/RpcLibAdaptorsBase.hpp``)
+---------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``api/WorldSimApiBase.hpp`` (:ref:`file_AutonomyLib_include_api_WorldSimApiBase.hpp`)
+
+- ``common/Common.hpp``
+
+- ``common/CommonStructs.hpp``
+
+- ``common/ImageCaptureBase.hpp``
+
+- ``common/utils/WindowsApisCommonPost.hpp``
+
+- ``common/utils/WindowsApisCommonPre.hpp``
+
+- ``physics/Environment.hpp`` (:ref:`file_AutonomyLib_include_physics_Environment.hpp`)
+
+- ``physics/Kinematics.hpp`` (:ref:`file_AutonomyLib_include_physics_Kinematics.hpp`)
+
+- ``rpc/msgpack.hpp``
+
+- ``safety/SafetyEval.hpp`` (:ref:`file_AutonomyLib_include_safety_SafetyEval.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibAdaptors.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibAdaptors.hpp`
+
+- :ref:`file_AutonomyLib_src_api_RpcLibClientBase.cpp`
+
+- :ref:`file_AutonomyLib_src_api_RpcLibServerBase.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib_rpclib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1BarometerData`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Box2D`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Box3D`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1CameraInfo`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1CollisionInfo`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1DetectionInfo`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1DistanceSensorData`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1EnvironmentState`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GeoPoint`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GnssReport`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GpsData`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImageRequest`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImageResponse`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImuData`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1KinematicsState`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1LidarData`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1MagnetometerData`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1MeshPositionVertexBuffersResponse`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Pose`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ProjectionMatrix`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Quaternionr`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1RCData`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Vector2r`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Vector3r`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1afb001b2ca995cc726f581621db317400`
+
+- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1a4f4b3060c8be9db77d0cbd4d342023ab`
+
+- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1aa48460dda401d585625e850d035669c3`
+
+- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1abb33b0231861928bba288833a2c05173`
+
+- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1a46cd14d414e8fc72032ef2edc817fca7`
+

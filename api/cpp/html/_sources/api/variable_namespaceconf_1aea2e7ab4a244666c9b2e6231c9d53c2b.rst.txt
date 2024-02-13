@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1aea2e7ab4a244666c9b2e6231c9d53c2b:
+
+Variable conf::pygments_style
+=============================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::pygments_style
+   :project: AutonomyLib

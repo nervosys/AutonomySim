@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1World:
+
+Class World
+===========
+
+- Defined in :ref:`file_AutonomyLib_include_physics_World.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UpdatableContainer< UpdatableObject * >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::World
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

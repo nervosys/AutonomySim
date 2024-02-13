@@ -1,0 +1,23 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1GpsBase_1_1Output:
+
+Struct GpsBase::Output
+======================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_gps_GpsBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib_1_1GpsBase`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::GpsBase::Output
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

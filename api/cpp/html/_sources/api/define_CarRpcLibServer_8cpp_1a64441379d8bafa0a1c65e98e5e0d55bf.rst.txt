@@ -1,0 +1,14 @@
+.. _exhale_define_CarRpcLibServer_8cpp_1a64441379d8bafa0a1c65e98e5e0d55bf:
+
+Define RPCLIB_MSGPACK
+=====================
+
+- Defined in :ref:`file_AutonomyLib_src_vehicles_car_api_CarRpcLibServer.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: RPCLIB_MSGPACK
+   :project: AutonomyLib

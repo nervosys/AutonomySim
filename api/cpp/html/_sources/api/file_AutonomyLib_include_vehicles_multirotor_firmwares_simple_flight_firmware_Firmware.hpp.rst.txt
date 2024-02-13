@@ -1,0 +1,80 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Firmware.hpp:
+
+File Firmware.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/Firmware.hpp``)
+------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Firmware.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AdaptiveController.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AdaptiveController.hpp`)
+
+- ``CascadeController.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_CascadeController.hpp`)
+
+- ``Mixer.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Mixer.hpp`)
+
+- ``OffboardApi.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IOffboardApi.hpp`)
+
+- ``Params.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter_ArduCopterParams.hpp`)
+
+- ``RemoteControl.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_RemoteControl.hpp`)
+
+- ``interfaces/CommonStructs.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`)
+
+- ``interfaces/IBoard.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoard.hpp`)
+
+- ``interfaces/ICommLink.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_ICommLink.hpp`)
+
+- ``interfaces/IFirmware.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IFirmware.hpp`)
+
+- ``interfaces/IStateEstimator.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IStateEstimator.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightApi.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classsimple__flight_1_1Firmware`
+

@@ -1,0 +1,70 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IUpdatable.hpp:
+
+File IUpdatable.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/IUpdatable.hpp``)
+-------------------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IUpdatable.hpp.rst
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleLevelController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_OffboardApi.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PositionController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_VelocityController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IAxisController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoard.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_ICommLink.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IFirmware.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IGoal.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classsimple__flight_1_1IUpdatable`
+

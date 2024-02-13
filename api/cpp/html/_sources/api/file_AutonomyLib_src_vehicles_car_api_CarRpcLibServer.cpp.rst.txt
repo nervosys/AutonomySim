@@ -1,0 +1,68 @@
+
+.. _file_AutonomyLib_src_vehicles_car_api_CarRpcLibServer.cpp:
+
+File CarRpcLibServer.cpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_vehicles_car_api>` (``AutonomyLib/src/vehicles/car/api``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/src/vehicles/car/api/CarRpcLibServer.cpp``)
+---------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_src_vehicles_car_api_CarRpcLibServer.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/Common.hpp``
+
+- ``common/utils/MinWinDefines.hpp``
+
+- ``common/utils/WindowsApisCommonPost.hpp``
+
+- ``common/utils/WindowsApisCommonPre.hpp``
+
+- ``rpc/server.h``
+
+- ``vehicles/car/api/CarRpcLibAdaptors.hpp`` (:ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibAdaptors.hpp`)
+
+- ``vehicles/car/api/CarRpcLibServer.hpp`` (:ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibServer.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_CarRpcLibServer_8cpp_1a586e110623cde145b8a5bdefb429e144`
+
+- :ref:`exhale_define_CarRpcLibServer_8cpp_1a64441379d8bafa0a1c65e98e5e0d55bf`
+

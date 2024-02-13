@@ -1,0 +1,23 @@
+.. _exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImuData:
+
+Struct RpcLibAdaptorsBase::ImuData
+==================================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib_rpclib::RpcLibAdaptorsBase::ImuData
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

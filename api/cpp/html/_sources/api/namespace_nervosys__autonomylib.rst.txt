@@ -1,0 +1,266 @@
+
+.. _namespace_nervosys__autonomylib:
+
+Namespace nervosys::autonomylib
+===============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ArduCopterApi_1_1RotorControlMessage`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ArduCopterSoloApi_1_1RotorControlMessage`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ArduCopterSoloApi_1_1SensorMessage`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ArduRoverApi_1_1RoverControlMessage`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1BarometerBase_1_1Output`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1BarometerSimpleParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1CarApiBase_1_1CarControls`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1CarApiBase_1_1CarState`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1DistanceSimpleParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1Environment_1_1State`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1GpsBase_1_1GnssReport`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1GpsBase_1_1GpsPoint`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1GpsBase_1_1NavSatFix`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1GpsBase_1_1NavSatStatus`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1GpsBase_1_1Output`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1GpsSimpleParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimple_1_1State`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimpleParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimpleParams_1_1Accelerometer`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimpleParams_1_1Gyroscope`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1Kinematics_1_1State`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1LidarSimpleParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MagnetometerBase_1_1Output`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MagnetometerSimpleParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1PathPosition`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1PathSegment`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1StatusLock`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorParams_1_1Params`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorParams_1_1RotorPose`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorRpcLibClient_1_1impl`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorState`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ObstacleMap_1_1ObstacleInfo`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RotorActuator_1_1Output`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RotorParameters`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RotorParams`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RotorStates`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RpcLibClientBase_1_1impl`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RpcLibServerBase_1_1impl`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1SafetyEval_1_1EvalResult`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1SensorBase_1_1GroundTruth`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1YawMode`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ApiProvider`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ApiServerBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterApi`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterParams`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterSoloApi`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterSoloParams`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduRoverApi`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1BarometerBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1BarometerSimple`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1CarApiBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1CarApiFactory`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1CarRpcLibClient`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1CarRpcLibServer`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1CubeGeoFence`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1DebugPhysicsBody`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1DebugPhysicsBody_1_1WrenchVertex`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1DistanceBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1DistanceSimple`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1Environment`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ExternalPhysicsEngine`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1FastPhysicsEngine`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1GpsBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1GpsSimple`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1IGeoFence`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ImuSimple`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1Kinematics`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1LidarBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1LidarSimple`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MagnetometerBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MagnetometerSimple`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MavLinkMultirotorApi`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MavLinkMultirotorApi_1_1MavLinkLogViewerLog`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1ObsStrategyChanger`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1SingleCall`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1SingleTaskCall`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1UnsafeMoveException`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorParams`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorParamsFactory`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorPhysicsBody`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorRpcLibClient`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorRpcLibServer`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ObstacleMap`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsBody`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsBodyVertex`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsEngineBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsWorld`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysXCarApi`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1Px4MultirotorParams`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1RotorActuator`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1RpcLibClientBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1RpcLibServerBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1RpcLibServerBase_1_1ApiNotSupported`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SafetyEval`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SensorBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SensorCollection`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SensorFactory`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightApi`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightBoard`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightCommLink`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightCommon`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightEstimator`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightQuadXParams`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SphereGeoFence`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleCommandNotImplementedException`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleControllerException`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleMoveException`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleSimApiBase`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1World`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1WorldSimApiBase`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_namespacenervosys_1_1autonomylib_1a1196743369d5c954ebd9873aaeb4b16f`
+
+- :ref:`exhale_enum_namespacenervosys_1_1autonomylib_1a2402602ce73d29c9c525783b2c5e7e68`
+
+- :ref:`exhale_enum_namespacenervosys_1_1autonomylib_1ad3b29d40f39b85f517085b2d3316fce4`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_namespacenervosys_1_1autonomylib_1aca0b799f5c11c061814050c52d1f5837`
+
+- :ref:`exhale_typedef_namespacenervosys_1_1autonomylib_1af6585842024482c1a3830f623b357fcf`
+
+- :ref:`exhale_typedef_namespacenervosys_1_1autonomylib_1ab612bbe5d09576c357476cf93a8b611b`

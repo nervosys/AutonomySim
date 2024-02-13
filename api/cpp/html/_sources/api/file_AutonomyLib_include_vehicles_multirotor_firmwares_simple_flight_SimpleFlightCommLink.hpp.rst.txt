@@ -1,0 +1,64 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightCommLink.hpp:
+
+File SimpleFlightCommLink.hpp
+=============================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightCommLink.hpp``)
+---------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightCommLink.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/Common.hpp``
+
+- ``exception``
+
+- ``firmware/interfaces/ICommLink.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_ICommLink.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightApi.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightCommLink`
+

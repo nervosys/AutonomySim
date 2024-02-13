@@ -1,0 +1,17 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1BarometerSimpleParams:
+
+Struct BarometerSimpleParams
+============================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_barometer_BarometerSimpleParams.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::BarometerSimpleParams
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

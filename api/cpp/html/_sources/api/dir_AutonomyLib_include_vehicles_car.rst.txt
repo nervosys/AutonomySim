@@ -1,0 +1,27 @@
+.. _dir_AutonomyLib_include_vehicles_car:
+
+
+Directory car
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles>` (``AutonomyLib/include/vehicles``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/vehicles/car``
+
+Subdirectories
+--------------
+
+- :ref:`dir_AutonomyLib_include_vehicles_car_api`
+- :ref:`dir_AutonomyLib_include_vehicles_car_firmwares`
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_include_vehicles_car_CarApiFactory.hpp`
+
+

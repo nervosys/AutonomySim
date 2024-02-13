@@ -1,0 +1,68 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_ArduCopterSoloApi.hpp:
+
+File ArduCopterSoloApi.hpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink>` (``AutonomyLib/include/vehicles/multirotor/firmwares/mavlink``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/mavlink/ArduCopterSoloApi.hpp``)
+------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_ArduCopterSoloApi.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AdHocConnection.hpp``
+
+- ``vehicles/multirotor/MultirotorPhysicsBody.hpp``
+
+- ``vehicles/multirotor/firmwares/mavlink/MavLinkMultirotorApi.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_MavLinkMultirotorApi.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_ArduCopterSoloParams.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ArduCopterSoloApi_1_1RotorControlMessage`
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ArduCopterSoloApi_1_1SensorMessage`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterSoloApi`
+

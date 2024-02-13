@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightEstimator:
+
+Class SimpleFlightEstimator
+===========================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightEstimator.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public simple_flight::IStateEstimator`` (:ref:`exhale_class_classsimple__flight_1_1IStateEstimator`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::SimpleFlightEstimator
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

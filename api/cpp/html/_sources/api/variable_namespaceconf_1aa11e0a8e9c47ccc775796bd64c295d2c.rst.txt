@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1aa11e0a8e9c47ccc775796bd64c295d2c:
+
+Variable conf::copyright
+========================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::copyright
+   :project: AutonomyLib

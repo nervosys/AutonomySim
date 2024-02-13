@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1SensorCollection:
+
+Class SensorCollection
+======================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_SensorCollection.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UpdatableObject``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::SensorCollection
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,39 @@
+.. _exhale_class_classnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors:
+
+Class MultirotorRpcLibAdaptors
+==============================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibAdaptors.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1MultirotorState`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1RotorParameters`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1RotorStates`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1YawMode`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib_rpclib::RpcLibAdaptorsBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib_rpclib::MultirotorRpcLibAdaptors
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

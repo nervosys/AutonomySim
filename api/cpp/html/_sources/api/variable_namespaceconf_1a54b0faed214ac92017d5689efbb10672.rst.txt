@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a54b0faed214ac92017d5689efbb10672:
+
+Variable conf::texinfo_documents
+================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::texinfo_documents
+   :project: AutonomyLib

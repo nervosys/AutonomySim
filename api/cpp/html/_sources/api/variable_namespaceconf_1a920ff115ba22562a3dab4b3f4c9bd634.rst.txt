@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a920ff115ba22562a3dab4b3f4c9bd634:
+
+Variable conf::html_theme_options
+=================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::html_theme_options
+   :project: AutonomyLib

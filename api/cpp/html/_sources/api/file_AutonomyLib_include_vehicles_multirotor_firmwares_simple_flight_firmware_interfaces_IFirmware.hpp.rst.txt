@@ -1,0 +1,62 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IFirmware.hpp:
+
+File IFirmware.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/IFirmware.hpp``)
+------------------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IFirmware.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``IOffboardApi.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IOffboardApi.hpp`)
+
+- ``IStateEstimator.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IStateEstimator.hpp`)
+
+- ``IUpdatable.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IUpdatable.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Firmware.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classsimple__flight_1_1IFirmware`
+

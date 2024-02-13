@@ -1,0 +1,33 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1PhysicsBody:
+
+Class PhysicsBody
+=================
+
+- Defined in :ref:`file_AutonomyLib_include_physics_PhysicsBody.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UpdatableObject``
+
+
+Derived Types
+*************
+
+- ``public nervosys::autonomylib::DebugPhysicsBody`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1DebugPhysicsBody`)
+- ``public nervosys::autonomylib::MultirotorPhysicsBody`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorPhysicsBody`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::PhysicsBody
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

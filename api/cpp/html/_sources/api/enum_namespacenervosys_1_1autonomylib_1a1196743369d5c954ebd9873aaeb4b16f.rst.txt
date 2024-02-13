@@ -1,0 +1,14 @@
+.. _exhale_enum_namespacenervosys_1_1autonomylib_1a1196743369d5c954ebd9873aaeb4b16f:
+
+Enum DrivetrainType
+===================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorCommon.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nervosys::autonomylib::DrivetrainType
+   :project: AutonomyLib

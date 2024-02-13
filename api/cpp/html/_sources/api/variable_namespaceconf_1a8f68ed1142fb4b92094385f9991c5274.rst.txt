@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a8f68ed1142fb4b92094385f9991c5274:
+
+Variable conf::autosummary_generate
+===================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::autosummary_generate
+   :project: AutonomyLib

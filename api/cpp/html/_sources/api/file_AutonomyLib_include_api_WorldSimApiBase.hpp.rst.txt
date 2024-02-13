@@ -1,0 +1,66 @@
+
+.. _file_AutonomyLib_include_api_WorldSimApiBase.hpp:
+
+File WorldSimApiBase.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_api>` (``AutonomyLib/include/api``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/api/WorldSimApiBase.hpp``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_api_WorldSimApiBase.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/CommonStructs.hpp``
+
+- ``common/ImageCaptureBase.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_api_ApiProvider.hpp`
+
+- :ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`
+
+- :ref:`file_AutonomyLib_include_api_RpcLibClientBase.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1WorldSimApiBase`
+

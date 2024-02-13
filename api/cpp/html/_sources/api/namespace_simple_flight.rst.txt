@@ -1,0 +1,128 @@
+
+.. _namespace_simple_flight:
+
+Namespace simple_flight
+=======================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structsimple__flight_1_1GeoPoint`
+
+- :ref:`exhale_struct_structsimple__flight_1_1KinematicsState`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Mixer_1_1motorMixer__t`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1AngleLevelPid`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1AngleRatePid`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1Motor`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1PositionPid`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1Rc`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1Takeoff`
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1VelocityPid`
+
+- :ref:`exhale_struct_structsimple__flight_1_1PidConfig`
+
+- :ref:`exhale_class_classsimple__flight_1_1AdaptiveController`
+
+- :ref:`exhale_class_classsimple__flight_1_1AngleLevelController`
+
+- :ref:`exhale_class_classsimple__flight_1_1AngleRateController`
+
+- :ref:`exhale_class_classsimple__flight_1_1Axis3`
+
+- :ref:`exhale_class_classsimple__flight_1_1Axis4`
+
+- :ref:`exhale_class_classsimple__flight_1_1CascadeController`
+
+- :ref:`exhale_class_classsimple__flight_1_1ConstantOutputController`
+
+- :ref:`exhale_class_classsimple__flight_1_1Firmware`
+
+- :ref:`exhale_class_classsimple__flight_1_1GoalMode`
+
+- :ref:`exhale_class_classsimple__flight_1_1IAxisController`
+
+- :ref:`exhale_class_classsimple__flight_1_1IBoard`
+
+- :ref:`exhale_class_classsimple__flight_1_1IBoardClock`
+
+- :ref:`exhale_class_classsimple__flight_1_1IBoardInputPins`
+
+- :ref:`exhale_class_classsimple__flight_1_1IBoardOutputPins`
+
+- :ref:`exhale_class_classsimple__flight_1_1IBoardSensors`
+
+- :ref:`exhale_class_classsimple__flight_1_1ICommLink`
+
+- :ref:`exhale_class_classsimple__flight_1_1IController`
+
+- :ref:`exhale_class_classsimple__flight_1_1IFirmware`
+
+- :ref:`exhale_class_classsimple__flight_1_1IGoal`
+
+- :ref:`exhale_class_classsimple__flight_1_1IOffboardApi`
+
+- :ref:`exhale_class_classsimple__flight_1_1IPidIntegrator`
+
+- :ref:`exhale_class_classsimple__flight_1_1IStateEstimator`
+
+- :ref:`exhale_class_classsimple__flight_1_1IUpdatable`
+
+- :ref:`exhale_class_classsimple__flight_1_1Mixer`
+
+- :ref:`exhale_class_classsimple__flight_1_1OffboardApi`
+
+- :ref:`exhale_class_classsimple__flight_1_1PassthroughController`
+
+- :ref:`exhale_class_classsimple__flight_1_1PidController`
+
+- :ref:`exhale_class_classsimple__flight_1_1PositionController`
+
+- :ref:`exhale_class_classsimple__flight_1_1RemoteControl`
+
+- :ref:`exhale_class_classsimple__flight_1_1RungKuttaPidIntegrator`
+
+- :ref:`exhale_class_classsimple__flight_1_1StdPidIntegrator`
+
+- :ref:`exhale_class_classsimple__flight_1_1VehicleState`
+
+- :ref:`exhale_class_classsimple__flight_1_1VelocityController`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_namespacesimple__flight_1a250e3c7d376dc0322fe64230b88cb4e1`
+
+- :ref:`exhale_enum_namespacesimple__flight_1a57a47b1a1e13d7ac5ba39dd60752f6f8`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_namespacesimple__flight_1afb2b9fec0eda30ae3f743b1013beb242`
+
+- :ref:`exhale_typedef_namespacesimple__flight_1a709310063a5dd767791c3dc8d729e3c6`
+
+- :ref:`exhale_typedef_namespacesimple__flight_1a6c283e487d45919133e4e34a89d7b1bf`

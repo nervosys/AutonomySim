@@ -1,0 +1,21 @@
+.. _dir_AutonomyLib_src_vehicles_multirotor:
+
+
+Directory multirotor
+====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_vehicles>` (``AutonomyLib/src/vehicles``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/src/vehicles/multirotor``
+
+Subdirectories
+--------------
+
+- :ref:`dir_AutonomyLib_src_vehicles_multirotor_api`
+
+
+

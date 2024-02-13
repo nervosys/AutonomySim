@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacenervosys_1_1autonomylib_1ab612bbe5d09576c357476cf93a8b611b:
+
+Typedef nervosys::autonomylib::RpcLibAdaptorsBase
+=================================================
+
+- Defined in :ref:`file_AutonomyLib_src_api_RpcLibClientBase.cpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nervosys::autonomylib::RpcLibAdaptorsBase
+   :project: AutonomyLib

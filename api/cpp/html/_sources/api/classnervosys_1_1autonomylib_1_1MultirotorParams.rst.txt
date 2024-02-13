@@ -1,0 +1,40 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1MultirotorParams:
+
+Class MultirotorParams
+======================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_MultiRotorParams.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorParams_1_1Params`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorParams_1_1RotorPose`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public nervosys::autonomylib::ArduCopterParams`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterParams`)
+- ``public nervosys::autonomylib::ArduCopterSoloParams`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterSoloParams`)
+- ``public nervosys::autonomylib::Px4MultirotorParams`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1Px4MultirotorParams`)
+- ``public nervosys::autonomylib::SimpleFlightQuadXParams`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightQuadXParams`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::MultirotorParams
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

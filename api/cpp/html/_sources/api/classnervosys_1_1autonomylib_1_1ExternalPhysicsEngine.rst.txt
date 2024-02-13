@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1ExternalPhysicsEngine:
+
+Class ExternalPhysicsEngine
+===========================
+
+- Defined in :ref:`file_AutonomyLib_include_physics_ExternalPhysicsEngine.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::PhysicsEngineBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsEngineBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::ExternalPhysicsEngine
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

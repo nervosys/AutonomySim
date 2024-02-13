@@ -1,0 +1,17 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiParams:
+
+Struct MultirotorApiParams
+==========================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorCommon.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::MultirotorApiParams
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

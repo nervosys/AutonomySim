@@ -1,0 +1,17 @@
+.. _exhale_class_classsimple__flight_1_1VehicleState:
+
+Class VehicleState
+==================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::VehicleState
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

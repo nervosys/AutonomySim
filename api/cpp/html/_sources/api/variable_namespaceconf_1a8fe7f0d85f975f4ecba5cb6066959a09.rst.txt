@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a8fe7f0d85f975f4ecba5cb6066959a09:
+
+Variable conf::todo_include_todos
+=================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::todo_include_todos
+   :project: AutonomyLib

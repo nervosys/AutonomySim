@@ -1,0 +1,56 @@
+
+.. _file_AutonomyLib_include_vehicles_car_CarApiFactory.hpp:
+
+File CarApiFactory.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_car>` (``AutonomyLib/include/vehicles/car``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/car/CarApiFactory.hpp``)
+-------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_car_CarApiFactory.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``vehicles/car/firmwares/ardurover/ArduRoverApi.hpp`` (:ref:`file_AutonomyLib_include_vehicles_car_firmwares_ardurover_ArduRoverApi.hpp`)
+
+- ``vehicles/car/firmwares/physxcar/PhysXCarApi.hpp`` (:ref:`file_AutonomyLib_include_vehicles_car_firmwares_physxcar_PhysXCarApi.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1CarApiFactory`
+

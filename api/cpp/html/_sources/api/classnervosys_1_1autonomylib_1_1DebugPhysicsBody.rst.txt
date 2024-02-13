@@ -1,0 +1,36 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1DebugPhysicsBody:
+
+Class DebugPhysicsBody
+======================
+
+- Defined in :ref:`file_AutonomyLib_include_physics_DebugPhysicsBody.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1DebugPhysicsBody_1_1WrenchVertex`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::PhysicsBody`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsBody`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::DebugPhysicsBody
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

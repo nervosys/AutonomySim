@@ -1,0 +1,122 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_MavLinkMultirotorApi.hpp:
+
+File MavLinkMultirotorApi.hpp
+=============================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink>` (``AutonomyLib/include/vehicles/multirotor/firmwares/mavlink``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/mavlink/MavLinkMultirotorApi.hpp``)
+---------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_MavLinkMultirotorApi.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``MavLinkConnection.hpp``
+
+- ``MavLinkMessages.hpp``
+
+- ``MavLinkNode.hpp``
+
+- ``MavLinkVehicle.hpp``
+
+- ``MavLinkVideoStream.hpp``
+
+- ``common/AutonomySimSettings.hpp``
+
+- ``common/Common.hpp``
+
+- ``common/CommonStructs.hpp``
+
+- ``common/PidController.hpp``
+
+- ``common/VectorMath.hpp``
+
+- ``common/utils/FileSystem.hpp``
+
+- ``common/utils/SmoothingFilter.hpp``
+
+- ``common/utils/Timer.hpp``
+
+- ``exception``
+
+- ``memory``
+
+- ``mutex``
+
+- ``physics/World.hpp`` (:ref:`file_AutonomyLib_include_physics_World.hpp`)
+
+- ``queue``
+
+- ``sensors/SensorCollection.hpp`` (:ref:`file_AutonomyLib_include_sensors_SensorCollection.hpp`)
+
+- ``sensors/barometer/BarometerBase.hpp`` (:ref:`file_AutonomyLib_include_sensors_barometer_BarometerBase.hpp`)
+
+- ``sensors/distance/DistanceSimple.hpp`` (:ref:`file_AutonomyLib_include_sensors_distance_DistanceSimple.hpp`)
+
+- ``sensors/gps/GpsBase.hpp`` (:ref:`file_AutonomyLib_include_sensors_gps_GpsBase.hpp`)
+
+- ``sensors/imu/ImuBase.hpp``
+
+- ``sensors/magnetometer/MagnetometerBase.hpp`` (:ref:`file_AutonomyLib_include_sensors_magnetometer_MagnetometerBase.hpp`)
+
+- ``string``
+
+- ``thread``
+
+- ``tuple``
+
+- ``vector``
+
+- ``vehicles/multirotor/api/MultirotorApiBase.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorApiBase.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_MultiRotorParamsFactory.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_ArduCopterSoloApi.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_Px4MultiRotorParams.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MavLinkMultirotorApi`
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MavLinkMultirotorApi_1_1MavLinkLogViewerLog`
+

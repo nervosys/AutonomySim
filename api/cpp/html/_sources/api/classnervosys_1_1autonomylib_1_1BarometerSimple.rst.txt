@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1BarometerSimple:
+
+Class BarometerSimple
+=====================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_barometer_BarometerSimple.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::BarometerBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1BarometerBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::BarometerSimple
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,23 @@
+.. _exhale_struct_structsimple__flight_1_1Mixer_1_1motorMixer__t:
+
+Struct Mixer::motorMixer_t
+==========================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Mixer.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classsimple__flight_1_1Mixer`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: simple_flight::Mixer::motorMixer_t
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

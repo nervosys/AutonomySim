@@ -1,0 +1,17 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1RotorParams:
+
+Struct RotorParams
+==================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_RotorParams.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::RotorParams
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

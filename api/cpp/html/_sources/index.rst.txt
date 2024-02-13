@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 AutonomyLib
-=======================================
+===========
 
 This page documents `AutonomyLib`_, the C++ library of `AutonomySim`_.
 
@@ -12,5 +12,6 @@ This page documents `AutonomyLib`_, the C++ library of `AutonomySim`_.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   about
+   api/library_root

@@ -1,0 +1,23 @@
+.. _dir_AutonomyLib_src_vehicles_multirotor_api:
+
+
+Directory api
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_vehicles_multirotor>` (``AutonomyLib/src/vehicles/multirotor``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/src/vehicles/multirotor/api``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_src_vehicles_multirotor_api_MultirotorApiBase.cpp`
+- :ref:`file_AutonomyLib_src_vehicles_multirotor_api_MultirotorRpcLibClient.cpp`
+- :ref:`file_AutonomyLib_src_vehicles_multirotor_api_MultirotorRpcLibServer.cpp`
+
+

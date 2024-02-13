@@ -1,0 +1,38 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleMoveException:
+
+Class VehicleApiBase::VehicleMoveException
+==========================================
+
+- Defined in :ref:`file_AutonomyLib_include_api_VehicleApiBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase`.
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::VehicleApiBase::VehicleControllerException`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleControllerException`)
+
+
+Derived Type
+************
+
+- ``public nervosys::autonomylib::MultirotorApiBase::UnsafeMoveException`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1UnsafeMoveException`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::VehicleApiBase::VehicleMoveException
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

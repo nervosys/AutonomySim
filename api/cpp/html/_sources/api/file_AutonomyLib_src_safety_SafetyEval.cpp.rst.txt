@@ -1,0 +1,53 @@
+
+.. _file_AutonomyLib_src_safety_SafetyEval.cpp:
+
+File SafetyEval.cpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_safety>` (``AutonomyLib/src/safety``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/src/safety/SafetyEval.cpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_src_safety_SafetyEval.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cmath``
+
+- ``safety/SafetyEval.hpp`` (:ref:`file_AutonomyLib_include_safety_SafetyEval.hpp`)
+
+- ``sstream``
+
+- ``vehicles/multirotor/api/MultirotorCommon.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorCommon.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+

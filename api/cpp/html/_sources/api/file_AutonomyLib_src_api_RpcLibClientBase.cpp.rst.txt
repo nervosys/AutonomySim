@@ -1,0 +1,88 @@
+
+.. _file_AutonomyLib_src_api_RpcLibClientBase.cpp:
+
+File RpcLibClientBase.cpp
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_api>` (``AutonomyLib/src/api``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/src/api/RpcLibClientBase.cpp``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_src_api_RpcLibClientBase.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``api/RpcLibAdaptorsBase.hpp`` (:ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`)
+
+- ``api/RpcLibClientBase.hpp`` (:ref:`file_AutonomyLib_include_api_RpcLibClientBase.hpp`)
+
+- ``common/ClockFactory.hpp``
+
+- ``common/Common.hpp``
+
+- ``common/utils/WindowsApisCommonPost.hpp``
+
+- ``common/utils/WindowsApisCommonPre.hpp``
+
+- ``functional``
+
+- ``rpc/client.h``
+
+- ``thread``
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RpcLibClientBase_1_1impl`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_RpcLibClientBase_8cpp_1a586e110623cde145b8a5bdefb429e144`
+
+- :ref:`exhale_define_RpcLibClientBase_8cpp_1a64441379d8bafa0a1c65e98e5e0d55bf`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_namespacenervosys_1_1autonomylib_1ab612bbe5d09576c357476cf93a8b611b`
+

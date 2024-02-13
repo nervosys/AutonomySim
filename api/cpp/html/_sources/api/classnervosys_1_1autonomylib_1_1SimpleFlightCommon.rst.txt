@@ -1,0 +1,17 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightCommon:
+
+Class SimpleFlightCommon
+========================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightCommon.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::SimpleFlightCommon
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

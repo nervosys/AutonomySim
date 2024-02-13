@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacesimple__flight_1afb2b9fec0eda30ae3f743b1013beb242:
+
+Typedef simple_flight::Axis3r
+=============================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: simple_flight::Axis3r
+   :project: AutonomyLib

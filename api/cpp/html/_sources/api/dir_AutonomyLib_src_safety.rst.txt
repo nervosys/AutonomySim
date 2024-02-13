@@ -1,0 +1,22 @@
+.. _dir_AutonomyLib_src_safety:
+
+
+Directory safety
+================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src>` (``AutonomyLib/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/src/safety``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_src_safety_ObstacleMap.cpp`
+- :ref:`file_AutonomyLib_src_safety_SafetyEval.cpp`
+
+

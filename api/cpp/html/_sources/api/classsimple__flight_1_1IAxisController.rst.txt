@@ -1,0 +1,37 @@
+.. _exhale_class_classsimple__flight_1_1IAxisController:
+
+Class IAxisController
+=====================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IAxisController.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public simple_flight::IUpdatable`` (:ref:`exhale_class_classsimple__flight_1_1IUpdatable`)
+
+
+Derived Types
+*************
+
+- ``public simple_flight::AngleLevelController`` (:ref:`exhale_class_classsimple__flight_1_1AngleLevelController`)
+- ``public simple_flight::AngleRateController`` (:ref:`exhale_class_classsimple__flight_1_1AngleRateController`)
+- ``public simple_flight::ConstantOutputController`` (:ref:`exhale_class_classsimple__flight_1_1ConstantOutputController`)
+- ``public simple_flight::PassthroughController`` (:ref:`exhale_class_classsimple__flight_1_1PassthroughController`)
+- ``public simple_flight::PositionController`` (:ref:`exhale_class_classsimple__flight_1_1PositionController`)
+- ``public simple_flight::VelocityController`` (:ref:`exhale_class_classsimple__flight_1_1VelocityController`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::IAxisController
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

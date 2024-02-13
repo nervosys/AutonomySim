@@ -1,0 +1,66 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PassthroughController.hpp:
+
+File PassthroughController.hpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/PassthroughController.hpp``)
+-------------------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PassthroughController.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``#include``
+
+- ``Params.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter_ArduCopterParams.hpp`)
+
+- ``interfaces/IAxisController.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IAxisController.hpp`)
+
+- ``interfaces/IBoardClock.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardClock.hpp`)
+
+- ``memory``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_CascadeController.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classsimple__flight_1_1PassthroughController`
+

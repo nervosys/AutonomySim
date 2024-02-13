@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1ab6542454bc5925b7e6e5bb075315570d:
+
+Variable conf::language
+=======================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::language
+   :project: AutonomyLib

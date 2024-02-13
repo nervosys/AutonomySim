@@ -1,0 +1,23 @@
+.. _dir_AutonomyLib_include_sensors_distance:
+
+
+Directory distance
+==================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_sensors>` (``AutonomyLib/include/sensors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/sensors/distance``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_include_sensors_distance_DistanceBase.hpp`
+- :ref:`file_AutonomyLib_include_sensors_distance_DistanceSimple.hpp`
+- :ref:`file_AutonomyLib_include_sensors_distance_DistanceSimpleParams.hpp`
+
+

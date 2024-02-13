@@ -1,0 +1,77 @@
+
+.. _file_AutonomyLib_src_vehicles_car_api_CarRpcLibClient.cpp:
+
+File CarRpcLibClient.cpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_vehicles_car_api>` (``AutonomyLib/src/vehicles/car/api``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/src/vehicles/car/api/CarRpcLibClient.cpp``)
+---------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_src_vehicles_car_api_CarRpcLibClient.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/ClockFactory.hpp``
+
+- ``common/Common.hpp``
+
+- ``common/utils/WindowsApisCommonPost.hpp``
+
+- ``common/utils/WindowsApisCommonPre.hpp``
+
+- ``rpc/client.h``
+
+- ``thread``
+
+- ``vehicles/car/api/CarRpcLibAdaptors.hpp`` (:ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibAdaptors.hpp`)
+
+- ``vehicles/car/api/CarRpcLibClient.hpp`` (:ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibClient.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_CarRpcLibClient_8cpp_1a586e110623cde145b8a5bdefb429e144`
+
+- :ref:`exhale_define_CarRpcLibClient_8cpp_1a64441379d8bafa0a1c65e98e5e0d55bf`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_namespacenervosys_1_1autonomylib_1aca0b799f5c11c061814050c52d1f5837`
+

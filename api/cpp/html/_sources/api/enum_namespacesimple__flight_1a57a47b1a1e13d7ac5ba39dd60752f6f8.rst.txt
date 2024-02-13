@@ -1,0 +1,14 @@
+.. _exhale_enum_namespacesimple__flight_1a57a47b1a1e13d7ac5ba39dd60752f6f8:
+
+Enum VehicleStateType
+=====================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: simple_flight::VehicleStateType
+   :project: AutonomyLib

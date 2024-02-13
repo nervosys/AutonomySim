@@ -1,0 +1,28 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimpleParams:
+
+Struct ImuSimpleParams
+======================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_imu_ImuSimpleParams.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimpleParams_1_1Accelerometer`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1ImuSimpleParams_1_1Gyroscope`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::ImuSimpleParams
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

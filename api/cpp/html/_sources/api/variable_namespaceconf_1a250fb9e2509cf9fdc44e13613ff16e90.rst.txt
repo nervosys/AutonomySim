@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a250fb9e2509cf9fdc44e13613ff16e90:
+
+Variable conf::autosectionlabel_maxdepth
+========================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::autosectionlabel_maxdepth
+   :project: AutonomyLib

@@ -1,0 +1,14 @@
+.. _exhale_define_MultirotorRpcLibClient_8cpp_1a586e110623cde145b8a5bdefb429e144:
+
+Define check
+============
+
+- Defined in :ref:`file_AutonomyLib_src_vehicles_multirotor_api_MultirotorRpcLibClient.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: check
+   :project: AutonomyLib

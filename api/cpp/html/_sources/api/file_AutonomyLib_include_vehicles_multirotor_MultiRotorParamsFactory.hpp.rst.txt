@@ -1,0 +1,62 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_MultiRotorParamsFactory.hpp:
+
+File MultiRotorParamsFactory.hpp
+================================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor>` (``AutonomyLib/include/vehicles/multirotor``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/MultiRotorParamsFactory.hpp``)
+------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_MultiRotorParamsFactory.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``vehicles/multirotor/firmwares/arducopter/ArduCopterParams.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter_ArduCopterParams.hpp`)
+
+- ``vehicles/multirotor/firmwares/mavlink/ArduCopterSoloParams.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_ArduCopterSoloParams.hpp`)
+
+- ``vehicles/multirotor/firmwares/mavlink/MavLinkMultirotorApi.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_MavLinkMultirotorApi.hpp`)
+
+- ``vehicles/multirotor/firmwares/mavlink/Px4MultirotorParams.hpp``
+
+- ``vehicles/multirotor/firmwares/simple_flight/SimpleFlightQuadXParams.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightQuadXParams.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorParamsFactory`
+

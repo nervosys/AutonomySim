@@ -1,0 +1,27 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1IGeoFence:
+
+Class IGeoFence
+===============
+
+- Defined in :ref:`file_AutonomyLib_include_safety_IGeoFence.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public nervosys::autonomylib::CubeGeoFence`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1CubeGeoFence`)
+- ``public nervosys::autonomylib::SphereGeoFence`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1SphereGeoFence`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::IGeoFence
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,31 @@
+
+.. _program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IGoal.hpp:
+
+Program Listing for File IGoal.hpp
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IGoal.hpp>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/IGoal.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef autonomylib_vehicles_simpleflight_firmware_IGoal_hpp
+   #define autonomylib_vehicles_simpleflight_firmware_IGoal_hpp
+   
+   #include "CommonStructs.hpp"
+   #include "IUpdatable.hpp"
+   
+   namespace simple_flight {
+   
+   class IGoal {
+     public:
+       virtual const Axis4r &getGoalValue() const = 0;
+       virtual const GoalMode &getGoalMode() const = 0;
+   
+       virtual ~IGoal() = default;
+   };
+   
+   } // namespace simple_flight
+   
+   #endif

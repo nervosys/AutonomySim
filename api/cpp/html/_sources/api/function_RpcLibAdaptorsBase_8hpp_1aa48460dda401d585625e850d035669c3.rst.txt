@@ -1,0 +1,14 @@
+.. _exhale_function_RpcLibAdaptorsBase_8hpp_1aa48460dda401d585625e850d035669c3:
+
+Function MSGPACK_ADD_ENUM(nervosys::autonomylib::SafetyEval::SafetyViolationType_)
+==================================================================================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: MSGPACK_ADD_ENUM(nervosys::autonomylib::SafetyEval::SafetyViolationType_)
+   :project: AutonomyLib

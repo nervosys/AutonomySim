@@ -1,0 +1,14 @@
+.. _exhale_function_RpcLibAdaptorsBase_8hpp_1afb001b2ca995cc726f581621db317400:
+
+Function MSGPACK_ADD_ENUM(nervosys::autonomylib::ImageCaptureBase::ImageType)
+=============================================================================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: MSGPACK_ADD_ENUM(nervosys::autonomylib::ImageCaptureBase::ImageType)
+   :project: AutonomyLib

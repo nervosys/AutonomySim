@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1PhysXCarApi:
+
+Class PhysXCarApi
+=================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_car_firmwares_physxcar_PhysXCarApi.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::CarApiBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1CarApiBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::PhysXCarApi
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

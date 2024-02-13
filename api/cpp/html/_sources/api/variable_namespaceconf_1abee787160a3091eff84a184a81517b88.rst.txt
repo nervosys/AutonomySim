@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1abee787160a3091eff84a184a81517b88:
+
+Variable conf::autosectionlabel_prefix_document
+===============================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::autosectionlabel_prefix_document
+   :project: AutonomyLib

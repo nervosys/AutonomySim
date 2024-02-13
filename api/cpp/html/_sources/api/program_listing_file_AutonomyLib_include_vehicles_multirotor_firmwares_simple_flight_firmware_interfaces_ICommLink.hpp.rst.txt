@@ -1,0 +1,32 @@
+
+.. _program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_ICommLink.hpp:
+
+Program Listing for File ICommLink.hpp
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_ICommLink.hpp>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/ICommLink.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef autonomylib_vehicles_simpleflight_firmware_ICommLink_hpp
+   #define autonomylib_vehicles_simpleflight_firmware_ICommLink_hpp
+   
+   #include "IUpdatable.hpp"
+   #include <cstdint>
+   
+   namespace simple_flight {
+   
+   class ICommLink : public IUpdatable {
+     public:
+       static constexpr int kLogLevelInfo = 0;
+       static constexpr int kLogLevelWarn = 1;
+       static constexpr int kLogLevelError = 2;
+   
+       virtual void log(const std::string &message, int32_t log_level = ICommLink::kLogLevelInfo) = 0;
+   };
+   
+   } // namespace simple_flight
+   
+   #endif

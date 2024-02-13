@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1aca7e23e5f354ec5d8e18d6b5769908c9:
+
+Variable conf::release
+======================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::release
+   :project: AutonomyLib

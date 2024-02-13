@@ -1,0 +1,23 @@
+.. _exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1RotorParameters:
+
+Struct MultirotorRpcLibAdaptors::RotorParameters
+================================================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibAdaptors.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib_rpclib::MultirotorRpcLibAdaptors::RotorParameters
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

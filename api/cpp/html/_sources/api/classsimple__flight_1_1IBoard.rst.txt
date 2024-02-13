@@ -1,0 +1,36 @@
+.. _exhale_class_classsimple__flight_1_1IBoard:
+
+Class IBoard
+============
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoard.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public simple_flight::IUpdatable`` (:ref:`exhale_class_classsimple__flight_1_1IUpdatable`)
+- ``public simple_flight::IBoardClock`` (:ref:`exhale_class_classsimple__flight_1_1IBoardClock`)
+- ``public simple_flight::IBoardInputPins`` (:ref:`exhale_class_classsimple__flight_1_1IBoardInputPins`)
+- ``public simple_flight::IBoardOutputPins`` (:ref:`exhale_class_classsimple__flight_1_1IBoardOutputPins`)
+- ``public simple_flight::IBoardSensors`` (:ref:`exhale_class_classsimple__flight_1_1IBoardSensors`)
+
+
+Derived Type
+************
+
+- ``public nervosys::autonomylib::SimpleFlightBoard`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightBoard`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::IBoard
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,60 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IPidIntegrator.hpp:
+
+File IPidIntegrator.hpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/IPidIntegrator.hpp``)
+-----------------------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IPidIntegrator.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``CommonStructs.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`)
+
+- ``algorithm``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PidController.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classsimple__flight_1_1IPidIntegrator`
+

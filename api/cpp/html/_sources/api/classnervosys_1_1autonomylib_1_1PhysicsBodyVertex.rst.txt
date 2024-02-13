@@ -1,0 +1,32 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1PhysicsBodyVertex:
+
+Class PhysicsBodyVertex
+=======================
+
+- Defined in :ref:`file_AutonomyLib_include_physics_PhysicsBodyVertex.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public UpdatableObject``
+
+
+Derived Type
+************
+
+- ``public nervosys::autonomylib::RotorActuator`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1RotorActuator`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::PhysicsBodyVertex
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

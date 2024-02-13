@@ -1,0 +1,42 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1MagnetometerBase:
+
+Class MagnetometerBase
+======================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_magnetometer_MagnetometerBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MagnetometerBase_1_1Output`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::SensorBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1SensorBase`)
+
+
+Derived Type
+************
+
+- ``public nervosys::autonomylib::MagnetometerSimple`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1MagnetometerSimple`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::MagnetometerBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

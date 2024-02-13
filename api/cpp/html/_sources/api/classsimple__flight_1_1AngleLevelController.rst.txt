@@ -1,0 +1,27 @@
+.. _exhale_class_classsimple__flight_1_1AngleLevelController:
+
+Class AngleLevelController
+==========================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleLevelController.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public simple_flight::IAxisController`` (:ref:`exhale_class_classsimple__flight_1_1IAxisController`)
+- ``public simple_flight::IGoal`` (:ref:`exhale_class_classsimple__flight_1_1IGoal`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::AngleLevelController
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

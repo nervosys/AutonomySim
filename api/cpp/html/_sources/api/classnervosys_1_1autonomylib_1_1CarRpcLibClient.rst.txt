@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1CarRpcLibClient:
+
+Class CarRpcLibClient
+=====================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibClient.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::RpcLibClientBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1RpcLibClientBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::CarRpcLibClient
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

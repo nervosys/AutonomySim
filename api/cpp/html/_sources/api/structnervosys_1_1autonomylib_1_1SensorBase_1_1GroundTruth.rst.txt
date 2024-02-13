@@ -1,0 +1,23 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1SensorBase_1_1GroundTruth:
+
+Struct SensorBase::GroundTruth
+==============================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_SensorBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SensorBase`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::SensorBase::GroundTruth
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

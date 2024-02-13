@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1aef7f6885073ed868d8115d6645e81744:
+
+Variable conf::epub_title
+=========================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::epub_title
+   :project: AutonomyLib

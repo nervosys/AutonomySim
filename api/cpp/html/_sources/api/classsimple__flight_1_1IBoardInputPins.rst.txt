@@ -1,0 +1,26 @@
+.. _exhale_class_classsimple__flight_1_1IBoardInputPins:
+
+Class IBoardInputPins
+=====================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardInputPins.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public simple_flight::IBoard`` (:ref:`exhale_class_classsimple__flight_1_1IBoard`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::IBoardInputPins
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

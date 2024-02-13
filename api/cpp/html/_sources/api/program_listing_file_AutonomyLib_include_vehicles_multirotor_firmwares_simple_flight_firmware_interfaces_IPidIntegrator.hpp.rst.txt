@@ -1,0 +1,32 @@
+
+.. _program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IPidIntegrator.hpp:
+
+Program Listing for File IPidIntegrator.hpp
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IPidIntegrator.hpp>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/IPidIntegrator.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef autonomylib_vehicles_simpleflight_firmware_IPidIntegrator_hpp
+   #define autonomylib_vehicles_simpleflight_firmware_IPidIntegrator_hpp
+   
+   #include "CommonStructs.hpp"
+   #include <algorithm>
+   
+   namespace simple_flight {
+   
+   template <typename T> class IPidIntegrator {
+     public:
+       virtual ~IPidIntegrator() {}
+       virtual void reset() = 0;
+       virtual void set(T val) = 0;
+       virtual void update(float dt, T error, uint64_t last_time) = 0;
+       virtual T getOutput() = 0;
+   };
+   
+   } // namespace simple_flight
+   
+   #endif

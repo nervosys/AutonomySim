@@ -1,0 +1,3776 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>Class World - AutonomyLib C++ API</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/css/extra.css?v=8930c6f9" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.03ee1730f15ed0f74.min.css?v=e1a21df1" />
+        <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+        <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+        <link rel="stylesheet" type="text/css" href="../_static/css/extra.css?v=8930c6f9" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="nervosys_light" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="AutonomyLib C++ API" class="md-header__button md-logo" aria-label="AutonomyLib C++ API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AutonomyLib C++ API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class World
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="nervosys_light" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="nervosys_dark" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nervosys/AutonomySim" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AutonomySim
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="AutonomyLib C++ API" class="md-nav__button md-logo" aria-label="AutonomyLib C++ API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+    </a>
+    AutonomyLib C++ API
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nervosys/AutonomySim" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AutonomySim
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="library_root.html"><span class="md-ellipsis">C++ Library API</span></a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++ Library API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">C++ Library API</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_1" type="checkbox" id="__nav_1_1" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="library_root.html#full-api"><span title="api/library_root:full api (reference label)" class="md-ellipsis">Full API</span></a>
+          
+            <label for="__nav_1_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Full API" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          <span title="api/library_root:full api (reference label)" class="md-ellipsis">Full API</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="library_root.html#namespaces" class="md-nav__link">
+        <span title="api/library_root:namespaces (reference label)" class="md-ellipsis">Namespaces</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_1_2" type="checkbox" id="__nav_1_1_2" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="library_root.html#classes-and-structs"><span title="api/library_root:classes and structs (reference label)" class="md-ellipsis">Classes and Structs</span></a>
+          
+            <label for="__nav_1_1_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Classes and Structs" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          <span title="api/library_root:classes and structs (reference label)" class="md-ellipsis">Classes and Structs</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ArduCopterApi_1_1RotorControlMessage.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Ardu<wbr>Copter<wbr>Api::<wbr>Rotor<wbr>Control<wbr>Message</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ArduCopterSoloApi_1_1RotorControlMessage.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Ardu<wbr>Copter<wbr>Solo<wbr>Api::<wbr>Rotor<wbr>Control<wbr>Message</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ArduCopterSoloApi_1_1SensorMessage.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Ardu<wbr>Copter<wbr>Solo<wbr>Api::<wbr>Sensor<wbr>Message</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ArduRoverApi_1_1RoverControlMessage.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Ardu<wbr>Rover<wbr>Api::<wbr>Rover<wbr>Control<wbr>Message</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1BarometerBase_1_1Output.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Barometer<wbr>Base::<wbr>Output</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1BarometerSimpleParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Barometer<wbr>Simple<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1CarApiBase_1_1CarControls.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Car<wbr>Api<wbr>Base::<wbr>Car<wbr>Controls</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1CarApiBase_1_1CarState.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Car<wbr>Api<wbr>Base::<wbr>Car<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1DistanceSimpleParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Distance<wbr>Simple<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1Environment_1_1State.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Environment::<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1GpsBase_1_1GnssReport.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Gps<wbr>Base::<wbr>Gnss<wbr>Report</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1GpsBase_1_1GpsPoint.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Gps<wbr>Base::<wbr>Gps<wbr>Point</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1GpsBase_1_1NavSatFix.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Gps<wbr>Base::<wbr>Nav<wbr>Sat<wbr>Fix</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1GpsBase_1_1NavSatStatus.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Gps<wbr>Base::<wbr>Nav<wbr>Sat<wbr>Status</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1GpsBase_1_1Output.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Gps<wbr>Base::<wbr>Output</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1GpsSimpleParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Gps<wbr>Simple<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ImuSimple_1_1State.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Imu<wbr>Simple::<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ImuSimpleParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Imu<wbr>Simple<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ImuSimpleParams_1_1Accelerometer.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Imu<wbr>Simple<wbr>Params::<wbr>Accelerometer</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ImuSimpleParams_1_1Gyroscope.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Imu<wbr>Simple<wbr>Params::<wbr>Gyroscope</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1Kinematics_1_1State.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Kinematics::<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1LidarSimpleParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Lidar<wbr>Simple<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MagnetometerBase_1_1Output.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Magnetometer<wbr>Base::<wbr>Output</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MagnetometerSimpleParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Magnetometer<wbr>Simple<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1PathPosition.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Api<wbr>Base::<wbr>Path<wbr>Position</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1PathSegment.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Api<wbr>Base::<wbr>Path<wbr>Segment</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1StatusLock.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Api<wbr>Base::<wbr>Status<wbr>Lock</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorApiParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Api<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorParams_1_1Params.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Params::<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorParams_1_1RotorPose.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Params::<wbr>Rotor<wbr>Pose</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorRpcLibClient_1_1impl.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Rpc<wbr>Lib<wbr>Client::<wbr>impl</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1MultirotorState.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1ObstacleMap_1_1ObstacleInfo.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Obstacle<wbr>Map::<wbr>Obstacle<wbr>Info</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1RotorActuator_1_1Output.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rotor<wbr>Actuator::<wbr>Output</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1RotorParameters.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rotor<wbr>Parameters</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1RotorParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rotor<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1RotorStates.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rotor<wbr>States</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1RpcLibClientBase_1_1impl.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Client<wbr>Base::<wbr>impl</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1RpcLibServerBase_1_1impl.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Server<wbr>Base::<wbr>impl</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1SafetyEval_1_1EvalResult.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Safety<wbr>Eval::<wbr>Eval<wbr>Result</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1SensorBase_1_1GroundTruth.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Sensor<wbr>Base::<wbr>Ground<wbr>Truth</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib_1_1YawMode.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Yaw<wbr>Mode</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1CarRpcLibAdaptors_1_1CarControls.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Car<wbr>Rpc<wbr>Lib<wbr>Adaptors::<wbr>Car<wbr>Controls</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1CarRpcLibAdaptors_1_1CarState.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Car<wbr>Rpc<wbr>Lib<wbr>Adaptors::<wbr>Car<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1MultirotorState.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Rpc<wbr>Lib<wbr>Adaptors::<wbr>Multirotor<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1RotorParameters.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Rpc<wbr>Lib<wbr>Adaptors::<wbr>Rotor<wbr>Parameters</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1RotorStates.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Rpc<wbr>Lib<wbr>Adaptors::<wbr>Rotor<wbr>States</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors_1_1YawMode.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Multirotor<wbr>Rpc<wbr>Lib<wbr>Adaptors::<wbr>Yaw<wbr>Mode</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1BarometerData.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Barometer<wbr>Data</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Box2D.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Box2D</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Box3D.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Box3D</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1CameraInfo.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Camera<wbr>Info</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1CollisionInfo.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Collision<wbr>Info</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1DetectionInfo.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Detection<wbr>Info</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1DistanceSensorData.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Distance<wbr>Sensor<wbr>Data</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1EnvironmentState.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Environment<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GeoPoint.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Geo<wbr>Point</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GnssReport.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Gnss<wbr>Report</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GpsData.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Gps<wbr>Data</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImageRequest.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Image<wbr>Request</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImageResponse.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Image<wbr>Response</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImuData.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Imu<wbr>Data</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1KinematicsState.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Kinematics<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1LidarData.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Lidar<wbr>Data</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1MagnetometerData.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Magnetometer<wbr>Data</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1MeshPositionVertexBuffersResponse.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Mesh<wbr>Position<wbr>Vertex<wbr>Buffers<wbr>Response</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Pose.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Pose</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ProjectionMatrix.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Projection<wbr>Matrix</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Quaternionr.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Quaternionr</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1RCData.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>RCData</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Vector2r.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Vector2r</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Vector3r.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Rpc<wbr>Lib<wbr>Adaptors<wbr>Base::<wbr>Vector3r</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1GeoPoint.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Geo<wbr>Point</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1KinematicsState.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Kinematics<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Mixer_1_1motorMixer__t.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Mixer::<wbr>motor<wbr>Mixer_<wbr>t</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params_1_1AngleLevelPid.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params::<wbr>Angle<wbr>Level<wbr>Pid</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params_1_1AngleRatePid.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params::<wbr>Angle<wbr>Rate<wbr>Pid</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params_1_1Motor.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params::<wbr>Motor</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params_1_1PositionPid.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params::<wbr>Position<wbr>Pid</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params_1_1Rc.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params::<wbr>Rc</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params_1_1Takeoff.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params::<wbr>Takeoff</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1Params_1_1VelocityPid.html" class="md-nav__link">
+        <span class="md-ellipsis">Struct Params::<wbr>Velocity<wbr>Pid</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structsimple__flight_1_1PidConfig.html" class="md-nav__link">
+        <span class="md-ellipsis">Template Struct Pid<wbr>Config</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ApiProvider.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Api<wbr>Provider</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ApiServerBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Api<wbr>Server<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ArduCopterApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Ardu<wbr>Copter<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ArduCopterParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Ardu<wbr>Copter<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ArduCopterSoloApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Ardu<wbr>Copter<wbr>Solo<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ArduCopterSoloParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Ardu<wbr>Copter<wbr>Solo<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ArduRoverApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Ardu<wbr>Rover<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1BarometerBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Barometer<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1BarometerSimple.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Barometer<wbr>Simple</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1CarApiBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Car<wbr>Api<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1CarApiFactory.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Car<wbr>Api<wbr>Factory</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1CarRpcLibClient.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Car<wbr>Rpc<wbr>Lib<wbr>Client</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1CarRpcLibServer.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Car<wbr>Rpc<wbr>Lib<wbr>Server</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1CubeGeoFence.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Cube<wbr>Geo<wbr>Fence</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1DebugPhysicsBody.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Debug<wbr>Physics<wbr>Body</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1DebugPhysicsBody_1_1WrenchVertex.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Debug<wbr>Physics<wbr>Body::<wbr>Wrench<wbr>Vertex</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1DistanceBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Distance<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1DistanceSimple.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Distance<wbr>Simple</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1Environment.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Environment</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ExternalPhysicsEngine.html" class="md-nav__link">
+        <span class="md-ellipsis">Class External<wbr>Physics<wbr>Engine</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1FastPhysicsEngine.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Fast<wbr>Physics<wbr>Engine</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1GpsBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Gps<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1GpsSimple.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Gps<wbr>Simple</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1IGeoFence.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IGeo<wbr>Fence</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ImuSimple.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Imu<wbr>Simple</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1Kinematics.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Kinematics</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1LidarBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Lidar<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1LidarSimple.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Lidar<wbr>Simple</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MagnetometerBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Magnetometer<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MagnetometerSimple.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Magnetometer<wbr>Simple</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MavLinkMultirotorApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Mav<wbr>Link<wbr>Multirotor<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MavLinkMultirotorApi_1_1MavLinkLogViewerLog.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Mav<wbr>Link<wbr>Multirotor<wbr>Api::<wbr>Mav<wbr>Link<wbr>Log<wbr>Viewer<wbr>Log</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorApiBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Api<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1ObsStrategyChanger.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Api<wbr>Base::<wbr>Obs<wbr>Strategy<wbr>Changer</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1SingleCall.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Api<wbr>Base::<wbr>Single<wbr>Call</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1SingleTaskCall.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Api<wbr>Base::<wbr>Single<wbr>Task<wbr>Call</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1UnsafeMoveException.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Api<wbr>Base::<wbr>Unsafe<wbr>Move<wbr>Exception</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorParamsFactory.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Params<wbr>Factory</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorPhysicsBody.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Physics<wbr>Body</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorRpcLibClient.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Rpc<wbr>Lib<wbr>Client</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1MultirotorRpcLibServer.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Rpc<wbr>Lib<wbr>Server</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1ObstacleMap.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Obstacle<wbr>Map</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1PhysicsBody.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Physics<wbr>Body</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1PhysicsBodyVertex.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Physics<wbr>Body<wbr>Vertex</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1PhysicsEngineBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Physics<wbr>Engine<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1PhysicsWorld.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Physics<wbr>World</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1PhysXCarApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Phys<wbr>XCar<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1Px4MultirotorParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Px4Multirotor<wbr>Params</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1RotorActuator.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Rotor<wbr>Actuator</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1RpcLibClientBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Rpc<wbr>Lib<wbr>Client<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1RpcLibServerBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Rpc<wbr>Lib<wbr>Server<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1RpcLibServerBase_1_1ApiNotSupported.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Rpc<wbr>Lib<wbr>Server<wbr>Base::<wbr>Api<wbr>Not<wbr>Supported</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SafetyEval.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Safety<wbr>Eval</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SensorBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Sensor<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SensorCollection.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Sensor<wbr>Collection</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SensorFactory.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Sensor<wbr>Factory</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SimpleFlightApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Simple<wbr>Flight<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SimpleFlightBoard.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Simple<wbr>Flight<wbr>Board</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SimpleFlightCommLink.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Simple<wbr>Flight<wbr>Comm<wbr>Link</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SimpleFlightCommon.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Simple<wbr>Flight<wbr>Common</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SimpleFlightEstimator.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Simple<wbr>Flight<wbr>Estimator</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SimpleFlightQuadXParams.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Simple<wbr>Flight<wbr>Quad<wbr>XParams</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1SphereGeoFence.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Sphere<wbr>Geo<wbr>Fence</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1VehicleApiBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Vehicle<wbr>Api<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleCommandNotImplementedException.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Vehicle<wbr>Api<wbr>Base::<wbr>Vehicle<wbr>Command<wbr>Not<wbr>Implemented<wbr>Exception</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleControllerException.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Vehicle<wbr>Api<wbr>Base::<wbr>Vehicle<wbr>Controller<wbr>Exception</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1VehicleApiBase_1_1VehicleMoveException.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Vehicle<wbr>Api<wbr>Base::<wbr>Vehicle<wbr>Move<wbr>Exception</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1VehicleSimApiBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Vehicle<wbr>Sim<wbr>Api<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Class World</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Class World</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance-relationships" class="md-nav__link">
+    <span title="api/classnervosys_1_1autonomylib_1_1world:inheritance relationships (reference label)" class="md-ellipsis">Inheritance Relationships</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inheritance Relationships">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-type" class="md-nav__link">
+    <span title="api/classnervosys_1_1autonomylib_1_1world:base type (reference label)" class="md-ellipsis">Base Type</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-documentation" class="md-nav__link">
+    <span title="api/classnervosys_1_1autonomylib_1_1world:class documentation (reference label)" class="md-ellipsis">Class Documentation</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5WorldE" class="md-nav__link">
+    <span aria-label="C++ class" class="objinfo-icon objinfo-icon__data" title="C++ class">C</span><span title="nervosys::autonomylib::World (C++ class) — Public Functions    inline World(std::unique_ptr&lt;PhysicsEngineBase&gt; physics_engine)      inline virtual void resetImplementation() override      inline virtual void update() override      inline virtual void reportState(StateReporter &amp;reporter) override      inline virtual void clear() override      inline virtual void insert(UpdatableObject *member) override      inline virtual void erase_remove(UpdatableObject *member) override      inline void startAsyncUpdator(uint64_t period)      inline void stopAsyncUpdator()      inline void lock()      inline void unlock()      inline virtual ~World()      inline void pause(bool is_paused)      inline bool isPaused() const      inline void pauseForTime(double seconds)      inline void continueForTime(double seconds)      inline void continueForFrames(uint32_t frames)      inline void setFrameNumber(uint32_t frameNumber)" class="md-ellipsis">World</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="World">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breathe-section-title-public-functions" class="md-nav__link">
+    <span class="md-ellipsis">Public Functions</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World5WorldENSt10unique_ptrI17PhysicsEngineBaseEE" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::World (C++ function)" class="md-ellipsis">World</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World19resetImplementationEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::resetImplementation (C++ function)" class="md-ellipsis">reset<wbr>Implementation</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World6updateEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::update (C++ function)" class="md-ellipsis">update</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World11reportStateER13StateReporter" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::reportState (C++ function)" class="md-ellipsis">report<wbr>State</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World5clearEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::clear (C++ function)" class="md-ellipsis">clear</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World6insertEP15UpdatableObject" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::insert (C++ function)" class="md-ellipsis">insert</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World12erase_removeEP15UpdatableObject" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::erase_remove (C++ function)" class="md-ellipsis">erase_<wbr>remove</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World17startAsyncUpdatorE8uint64_t" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::startAsyncUpdator (C++ function)" class="md-ellipsis">start<wbr>Async<wbr>Updator</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World16stopAsyncUpdatorEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::stopAsyncUpdator (C++ function)" class="md-ellipsis">stop<wbr>Async<wbr>Updator</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World4lockEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::lock (C++ function)" class="md-ellipsis">lock</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World6unlockEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::unlock (C++ function)" class="md-ellipsis">unlock</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5WorldD0Ev" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::~World (C++ function)" class="md-ellipsis">~World</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World5pauseEb" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::pause (C++ function)" class="md-ellipsis">pause</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4NK8nervosys11autonomylib5World8isPausedEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::isPaused (C++ function)" class="md-ellipsis">is<wbr>Paused</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World12pauseForTimeEd" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::pauseForTime (C++ function)" class="md-ellipsis">pause<wbr>For<wbr>Time</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World15continueForTimeEd" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::continueForTime (C++ function)" class="md-ellipsis">continue<wbr>For<wbr>Time</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World17continueForFramesE8uint32_t" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::continueForFrames (C++ function)" class="md-ellipsis">continue<wbr>For<wbr>Frames</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib5World14setFrameNumberE8uint32_t" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::World::setFrameNumber (C++ function)" class="md-ellipsis">set<wbr>Frame<wbr>Number</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib_1_1WorldSimApiBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class World<wbr>Sim<wbr>Api<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib__rpclib_1_1CarRpcLibAdaptors.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Car<wbr>Rpc<wbr>Lib<wbr>Adaptors</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Multirotor<wbr>Rpc<wbr>Lib<wbr>Adaptors</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Rpc<wbr>Lib<wbr>Adaptors<wbr>Base</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1AdaptiveController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Adaptive<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1AngleLevelController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Angle<wbr>Level<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1AngleRateController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Angle<wbr>Rate<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1Axis3.html" class="md-nav__link">
+        <span class="md-ellipsis">Template Class Axis3</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1Axis4.html" class="md-nav__link">
+        <span class="md-ellipsis">Template Class Axis4</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1CascadeController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Cascade<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1ConstantOutputController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Constant<wbr>Output<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1Firmware.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Firmware</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1GoalMode.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Goal<wbr>Mode</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IAxisController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IAxis<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IBoard.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IBoard</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IBoardClock.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IBoard<wbr>Clock</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IBoardInputPins.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IBoard<wbr>Input<wbr>Pins</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IBoardOutputPins.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IBoard<wbr>Output<wbr>Pins</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IBoardSensors.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IBoard<wbr>Sensors</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1ICommLink.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IComm<wbr>Link</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IController</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IFirmware.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IFirmware</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IGoal.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IGoal</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IOffboardApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IOffboard<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IPidIntegrator.html" class="md-nav__link">
+        <span class="md-ellipsis">Template Class IPid<wbr>Integrator</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IStateEstimator.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IState<wbr>Estimator</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1IUpdatable.html" class="md-nav__link">
+        <span class="md-ellipsis">Class IUpdatable</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1Mixer.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Mixer</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1OffboardApi.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Offboard<wbr>Api</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1PassthroughController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Passthrough<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1PidController.html" class="md-nav__link">
+        <span class="md-ellipsis">Template Class Pid<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1PositionController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Position<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1RemoteControl.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Remote<wbr>Control</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1RungKuttaPidIntegrator.html" class="md-nav__link">
+        <span class="md-ellipsis">Template Class Rung<wbr>Kutta<wbr>Pid<wbr>Integrator</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1StdPidIntegrator.html" class="md-nav__link">
+        <span class="md-ellipsis">Template Class Std<wbr>Pid<wbr>Integrator</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1VehicleState.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Vehicle<wbr>State</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classsimple__flight_1_1VelocityController.html" class="md-nav__link">
+        <span class="md-ellipsis">Class Velocity<wbr>Controller</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="library_root.html#enums" class="md-nav__link">
+        <span title="api/library_root:enums (reference label)" class="md-ellipsis">Enums</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="library_root.html#functions" class="md-nav__link">
+        <span title="api/library_root:functions (reference label)" class="md-ellipsis">Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="library_root.html#variables" class="md-nav__link">
+        <span title="api/library_root:variables (reference label)" class="md-ellipsis">Variables</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="library_root.html#defines" class="md-nav__link">
+        <span title="api/library_root:defines (reference label)" class="md-ellipsis">Defines</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="library_root.html#typedefs" class="md-nav__link">
+        <span title="api/library_root:typedefs (reference label)" class="md-ellipsis">Typedefs</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/nervosys/AutonomySim/edit/master/docs/api/classnervosys_1_1autonomylib_1_1World.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="class-world"><span id="exhale-class-classnervosys-1-1autonomylib-1-1world"></span>Class World<a class="headerlink" href="#class-world" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_AutonomyLib_include_physics_World.hpp.html#file-autonomylib-include-physics-world-hpp"><span class="std std-ref">File World.hpp</span></a></p></li>
+</ul>
+<h2 id="inheritance-relationships">Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading">¶</a></h2>
+<h3 id="base-type">Base Type<a class="headerlink" href="#base-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">UpdatableContainer&lt;</span> <span class="pre">UpdatableObject</span> <span class="pre">*</span> <span class="pre">&gt;</span></code></p></li>
+</ul>
+<h2 id="class-documentation">Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp class objdesc">
+<dt class="sig sig-object highlight sig-wrap cpp" id="_CPPv4N8nervosys11autonomylib5WorldE">
+<span id="_CPPv3N8nervosys11autonomylib5WorldE"></span><span id="_CPPv2N8nervosys11autonomylib5WorldE"></span><span id="nervosys::autonomylib::World"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">World</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">UpdatableContainer</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">UpdatableObject</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5WorldE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions<a class="headerlink" href="#breathe-section-title-public-functions" title="Permalink to this headline">¶</a></p>
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World5WorldENSt10unique_ptrI17PhysicsEngineBaseEE">
+<span id="_CPPv3N8nervosys11autonomylib5World5WorldENSt10unique_ptrI17PhysicsEngineBaseEE"></span><span id="_CPPv2N8nervosys11autonomylib5World5WorldENSt10unique_ptrI17PhysicsEngineBaseEE"></span><span id="nervosys::autonomylib::World::World__std::unique_ptr:PhysicsEngineBase:"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a4bf742b8df2136682c7feff54d62b55a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">World</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="desctype reference internal" href="classnervosys_1_1autonomylib_1_1PhysicsEngineBase.html#_CPPv4N8nervosys11autonomylib17PhysicsEngineBaseE" title="nervosys::autonomylib::PhysicsEngineBase (C++ class) — Subclassed by nervosys::autonomylib::ExternalPhysicsEngine, nervosys::autonomylib::FastPhysicsEngine"><span class="n"><span class="pre">PhysicsEngineBase</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World5WorldENSt10unique_ptrI17PhysicsEngineBaseEE" title="nervosys::autonomylib::World::World::physics_engine (C++ function parameter)"><span class="n sig-param"><span class="pre">physics_engine</span></span></a></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World5WorldENSt10unique_ptrI17PhysicsEngineBaseEE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World19resetImplementationEv">
+<span id="_CPPv3N8nervosys11autonomylib5World19resetImplementationEv"></span><span id="_CPPv2N8nervosys11autonomylib5World19resetImplementationEv"></span><span id="nervosys::autonomylib::World::resetImplementation"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a8b410c9b40bb0e1d78af38310319ae82"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resetImplementation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World19resetImplementationEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World6updateEv">
+<span id="_CPPv3N8nervosys11autonomylib5World6updateEv"></span><span id="_CPPv2N8nervosys11autonomylib5World6updateEv"></span><span id="nervosys::autonomylib::World::update"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a22c72ab70bdcb4f1723795ef9b61a056"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World6updateEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World11reportStateER13StateReporter">
+<span id="_CPPv3N8nervosys11autonomylib5World11reportStateER13StateReporter"></span><span id="_CPPv2N8nervosys11autonomylib5World11reportStateER13StateReporter"></span><span id="nervosys::autonomylib::World::reportState__StateReporterR"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1aa2b841ca148de6d3e54e7f0199ef040f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reportState</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="n"><span class="pre">StateReporter</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World11reportStateER13StateReporter" title="nervosys::autonomylib::World::reportState::reporter (C++ function parameter)"><span class="n sig-param"><span class="pre">reporter</span></span></a></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World11reportStateER13StateReporter" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World5clearEv">
+<span id="_CPPv3N8nervosys11autonomylib5World5clearEv"></span><span id="_CPPv2N8nervosys11autonomylib5World5clearEv"></span><span id="nervosys::autonomylib::World::clear"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a08dc3246262a40b3fade2d01e91b3add"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World5clearEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World6insertEP15UpdatableObject">
+<span id="_CPPv3N8nervosys11autonomylib5World6insertEP15UpdatableObject"></span><span id="_CPPv2N8nervosys11autonomylib5World6insertEP15UpdatableObject"></span><span id="nervosys::autonomylib::World::insert__UpdatableObjectP"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1ab89d34fb34c3478e7ff1b543de51eb19"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">insert</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="n"><span class="pre">UpdatableObject</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World6insertEP15UpdatableObject" title="nervosys::autonomylib::World::insert::member (C++ function parameter)"><span class="n sig-param"><span class="pre">member</span></span></a></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World6insertEP15UpdatableObject" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World12erase_removeEP15UpdatableObject">
+<span id="_CPPv3N8nervosys11autonomylib5World12erase_removeEP15UpdatableObject"></span><span id="_CPPv2N8nervosys11autonomylib5World12erase_removeEP15UpdatableObject"></span><span id="nervosys::autonomylib::World::erase_remove__UpdatableObjectP"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a4dacec8385202cf5fe1fb581c72a3db0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">erase_remove</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="n"><span class="pre">UpdatableObject</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World12erase_removeEP15UpdatableObject" title="nervosys::autonomylib::World::erase_remove::member (C++ function parameter)"><span class="n sig-param"><span class="pre">member</span></span></a></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World12erase_removeEP15UpdatableObject" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World17startAsyncUpdatorE8uint64_t">
+<span id="_CPPv3N8nervosys11autonomylib5World17startAsyncUpdatorE8uint64_t"></span><span id="_CPPv2N8nervosys11autonomylib5World17startAsyncUpdatorE8uint64_t"></span><span id="nervosys::autonomylib::World::startAsyncUpdator__uint64_t"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a44c84783fe2c38db7682f5358cd3df7b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">startAsyncUpdator</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World17startAsyncUpdatorE8uint64_t" title="nervosys::autonomylib::World::startAsyncUpdator::period (C++ function parameter)"><span class="n sig-param"><span class="pre">period</span></span></a></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World17startAsyncUpdatorE8uint64_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World16stopAsyncUpdatorEv">
+<span id="_CPPv3N8nervosys11autonomylib5World16stopAsyncUpdatorEv"></span><span id="_CPPv2N8nervosys11autonomylib5World16stopAsyncUpdatorEv"></span><span id="nervosys::autonomylib::World::stopAsyncUpdator"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1af45c314423c2721596c547d973b77632"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stopAsyncUpdator</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World16stopAsyncUpdatorEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World4lockEv">
+<span id="_CPPv3N8nervosys11autonomylib5World4lockEv"></span><span id="_CPPv2N8nervosys11autonomylib5World4lockEv"></span><span id="nervosys::autonomylib::World::lock"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a48ffcfe6205240812715670b59f38703"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World4lockEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World6unlockEv">
+<span id="_CPPv3N8nervosys11autonomylib5World6unlockEv"></span><span id="_CPPv2N8nervosys11autonomylib5World6unlockEv"></span><span id="nervosys::autonomylib::World::unlock"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a3389d392fe7678f7b0cd233a9085ed1c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unlock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World6unlockEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5WorldD0Ev">
+<span id="_CPPv3N8nervosys11autonomylib5WorldD0Ev"></span><span id="_CPPv2N8nervosys11autonomylib5WorldD0Ev"></span><span id="nervosys::autonomylib::World::~World"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a4cbef0d19d4f725129a04d41741d47b8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~World</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5WorldD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World5pauseEb">
+<span id="_CPPv3N8nervosys11autonomylib5World5pauseEb"></span><span id="_CPPv2N8nervosys11autonomylib5World5pauseEb"></span><span id="nervosys::autonomylib::World::pause__b"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1a96d13a11dbe033738a2d58d5b6d3c692"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pause</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World5pauseEb" title="nervosys::autonomylib::World::pause::is_paused (C++ function parameter)"><span class="n sig-param"><span class="pre">is_paused</span></span></a></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World5pauseEb" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4NK8nervosys11autonomylib5World8isPausedEv">
+<span id="_CPPv3NK8nervosys11autonomylib5World8isPausedEv"></span><span id="_CPPv2NK8nervosys11autonomylib5World8isPausedEv"></span><span id="nervosys::autonomylib::World::isPausedC"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1adfd5fb05039841fb85df7b1989d5f098"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPaused</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8nervosys11autonomylib5World8isPausedEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World12pauseForTimeEd">
+<span id="_CPPv3N8nervosys11autonomylib5World12pauseForTimeEd"></span><span id="_CPPv2N8nervosys11autonomylib5World12pauseForTimeEd"></span><span id="nervosys::autonomylib::World::pauseForTime__double"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1ab3612901de935b3254cb64cd2fa27963"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pauseForTime</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="kt"><span class="pre">double</span></span><span class="w"> </span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World12pauseForTimeEd" title="nervosys::autonomylib::World::pauseForTime::seconds (C++ function parameter)"><span class="n sig-param"><span class="pre">seconds</span></span></a></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World12pauseForTimeEd" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World15continueForTimeEd">
+<span id="_CPPv3N8nervosys11autonomylib5World15continueForTimeEd"></span><span id="_CPPv2N8nervosys11autonomylib5World15continueForTimeEd"></span><span id="nervosys::autonomylib::World::continueForTime__double"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1ac7e8eabd6f8f00ad9fb246c32b2ed430"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">continueForTime</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="kt"><span class="pre">double</span></span><span class="w"> </span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World15continueForTimeEd" title="nervosys::autonomylib::World::continueForTime::seconds (C++ function parameter)"><span class="n sig-param"><span class="pre">seconds</span></span></a></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World15continueForTimeEd" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World17continueForFramesE8uint32_t">
+<span id="_CPPv3N8nervosys11autonomylib5World17continueForFramesE8uint32_t"></span><span id="_CPPv2N8nervosys11autonomylib5World17continueForFramesE8uint32_t"></span><span id="nervosys::autonomylib::World::continueForFrames__uint32_t"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1afa2ad6d6a132261b072a849e86810bc6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">continueForFrames</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World17continueForFramesE8uint32_t" title="nervosys::autonomylib::World::continueForFrames::frames (C++ function parameter)"><span class="n sig-param"><span class="pre">frames</span></span></a></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World17continueForFramesE8uint32_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib5World14setFrameNumberE8uint32_t">
+<span id="_CPPv3N8nervosys11autonomylib5World14setFrameNumberE8uint32_t"></span><span id="_CPPv2N8nervosys11autonomylib5World14setFrameNumberE8uint32_t"></span><span id="nervosys::autonomylib::World::setFrameNumber__uint32_t"></span><span class="target" id="classnervosys_1_1autonomylib_1_1World_1ade72c8bfa76ad8bf9f6075fb14b9d4cc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setFrameNumber</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><a class="n sig-param reference internal" href="#_CPPv4N8nervosys11autonomylib5World14setFrameNumberE8uint32_t" title="nervosys::autonomylib::World::setFrameNumber::frameNumber (C++ function parameter)"><span class="n sig-param"><span class="pre">frameNumber</span></span></a></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib5World14setFrameNumberE8uint32_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="classnervosys_1_1autonomylib_1_1VehicleSimApiBase.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Class VehicleSimApiBase" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Class VehicleSimApiBase
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="classnervosys_1_1autonomylib_1_1WorldSimApiBase.html" class="md-footer__link md-footer__link--next" aria-label="Next: Class WorldSimApiBase" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Class WorldSimApiBase
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright Copyright © 2024 Nervosys, LLC.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    7.2.6.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/nervosys/AutonomySim" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/x84JXYje" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://x.com/nervosys" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.expand", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "search.suggest", "search.share", "toc.follow", "toc.integrate"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike", "staticVersions": null, "versionPath": null}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+        <script src="../_static/js/extra.css"></script>
+    
+  </body>
+</html>

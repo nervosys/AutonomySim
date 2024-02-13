@@ -1,0 +1,50 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase:
+
+Class MultirotorApiBase
+=======================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorApiBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1ObsStrategyChanger`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1PathPosition`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1PathSegment`
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1SingleCall`
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1SingleTaskCall`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1StatusLock`
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorApiBase_1_1UnsafeMoveException`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::VehicleApiBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase`)
+
+
+Derived Types
+*************
+
+- ``public nervosys::autonomylib::ArduCopterApi`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduCopterApi`)
+- ``public nervosys::autonomylib::MavLinkMultirotorApi`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1MavLinkMultirotorApi`)
+- ``public nervosys::autonomylib::SimpleFlightApi`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightApi`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::MultirotorApiBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

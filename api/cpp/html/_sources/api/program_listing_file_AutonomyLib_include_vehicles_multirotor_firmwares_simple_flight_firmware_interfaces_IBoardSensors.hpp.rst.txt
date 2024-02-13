@@ -1,0 +1,28 @@
+
+.. _program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardSensors.hpp:
+
+Program Listing for File IBoardSensors.hpp
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardSensors.hpp>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/IBoardSensors.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef autonomylib_vehicles_simpleflight_firmware_IBoardSensors_hpp
+   #define autonomylib_vehicles_simpleflight_firmware_IBoardSensors_hpp
+   
+   namespace simple_flight {
+   
+   class IBoardSensors {
+     public:
+       virtual void readAccel(float accel[3]) const = 0; // accel in m/s^2
+       virtual void readGyro(float gyro[3]) const = 0;   // angular velocity vector rad/sec
+   
+       virtual ~IBoardSensors() = default;
+   };
+   
+   } // namespace simple_flight
+   
+   #endif

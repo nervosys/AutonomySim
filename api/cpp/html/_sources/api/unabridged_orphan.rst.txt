@@ -1,0 +1,753 @@
+:orphan:
+
+
+Full API
+========
+
+Directories
+***********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_docs.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_api.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_physics.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_safety.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_sensors.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_sensors_barometer.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_sensors_distance.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_sensors_gps.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_sensors_imu.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_sensors_lidar.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_sensors_magnetometer.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_car.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_car_api.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_car_firmwares.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_car_firmwares_ardurover.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_car_firmwares_physxcar.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor_api.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor_firmwares.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src_api.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src_safety.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src_vehicles.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src_vehicles_car.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src_vehicles_car_api.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src_vehicles_multirotor.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_AutonomyLib_src_vehicles_multirotor_api.rst
+
+Files
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AdaptiveController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleLevelController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleRateController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_ApiProvider.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_ApiServerBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter_ArduCopterApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter_ArduCopterParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_ArduCopterSoloApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_ArduCopterSoloParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_car_firmwares_ardurover_ArduRoverApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_barometer_BarometerBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_barometer_BarometerSimple.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_barometer_BarometerSimpleParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_car_api_CarApiBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_car_CarApiFactory.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_car_api_CarRpcLibAdaptors.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_vehicles_car_api_CarRpcLibClient.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_car_api_CarRpcLibClient.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_vehicles_car_api_CarRpcLibServer.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_car_api_CarRpcLibServer.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_CascadeController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_docs_conf.py.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_ConstantOutputController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_safety_CubeGeoFence.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_DebugPhysicsBody.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_distance_DistanceBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_distance_DistanceSimple.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_distance_DistanceSimpleParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_Environment.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_ExternalPhysicsEngine.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_FastPhysicsEngine.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Firmware.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_gps_GpsBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_gps_GpsSimple.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_gps_GpsSimpleParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IAxisController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoard.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardClock.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardInputPins.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardOutputPins.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardSensors.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_ICommLink.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IFirmware.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_safety_IGeoFence.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IGoal.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_imu_ImuSimple.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_imu_ImuSimpleParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IOffboardApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IPidIntegrator.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IStateEstimator.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IUpdatable.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_Kinematics.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_lidar_LidarBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_lidar_LidarSimple.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_lidar_LidarSimpleParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_magnetometer_MagnetometerBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_magnetometer_MagnetometerSimple.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_magnetometer_MagnetometerSimpleParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_MavLinkMultirotorApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Mixer.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_vehicles_multirotor_api_MultirotorApiBase.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_api_MultirotorApiBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_api_MultirotorCommon.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_MultiRotorParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_MultiRotorParamsFactory.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_MultiRotorPhysicsBody.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibAdaptors.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_vehicles_multirotor_api_MultirotorRpcLibClient.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibClient.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_vehicles_multirotor_api_MultirotorRpcLibServer.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibServer.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_safety_ObstacleMap.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_safety_ObstacleMap.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_OffboardApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Params.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PassthroughController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_PhysicsBody.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_PhysicsBodyVertex.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_PhysicsEngineBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_PhysicsWorld.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_car_firmwares_physxcar_PhysXCarApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PidController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PositionController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_Px4MultiRotorParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_RemoteControl.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_RotorActuator.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_RotorParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_api_RpcLibClientBase.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_RpcLibClientBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_api_RpcLibServerBase.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_RpcLibServerBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_RungKuttaPidIntegrator.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_src_safety_SafetyEval.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_safety_SafetyEval.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_SensorBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_SensorCollection.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_sensors_SensorFactory.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightApi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightBoard.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightCommLink.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightCommon.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightEstimator.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightQuadXParams.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_safety_SphereGeoFence.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_StdPidIntegrator.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_VehicleApiBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_VehicleSimApiBase.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_VelocityController.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_physics_World.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_AutonomyLib_include_api_WorldSimApiBase.hpp.rst

@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a29a875965329e39a7743d14834ecd7b3:
+
+Variable conf::primary_domain
+=============================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::primary_domain
+   :project: AutonomyLib

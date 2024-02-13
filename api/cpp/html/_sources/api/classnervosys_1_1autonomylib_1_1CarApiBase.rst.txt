@@ -1,0 +1,44 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1CarApiBase:
+
+Class CarApiBase
+================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_car_api_CarApiBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1CarApiBase_1_1CarControls`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1CarApiBase_1_1CarState`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::VehicleApiBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1VehicleApiBase`)
+
+
+Derived Types
+*************
+
+- ``public nervosys::autonomylib::ArduRoverApi`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1ArduRoverApi`)
+- ``public nervosys::autonomylib::PhysXCarApi`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysXCarApi`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::CarApiBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

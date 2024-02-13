@@ -1,0 +1,26 @@
+.. _exhale_class_classsimple__flight_1_1GoalMode:
+
+Class GoalMode
+==============
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public simple_flight::Axis4< GoalModeType >`` (:ref:`exhale_class_classsimple__flight_1_1Axis4`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::GoalMode
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacenervosys_1_1autonomylib_1af6585842024482c1a3830f623b357fcf:
+
+Typedef nervosys::autonomylib::MultirotorRpcLibAdaptors
+=======================================================
+
+- Defined in :ref:`file_AutonomyLib_src_vehicles_multirotor_api_MultirotorRpcLibClient.cpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nervosys::autonomylib::MultirotorRpcLibAdaptors
+   :project: AutonomyLib

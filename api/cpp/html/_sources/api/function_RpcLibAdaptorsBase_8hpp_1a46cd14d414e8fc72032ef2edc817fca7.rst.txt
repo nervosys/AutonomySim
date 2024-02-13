@@ -1,0 +1,14 @@
+.. _exhale_function_RpcLibAdaptorsBase_8hpp_1a46cd14d414e8fc72032ef2edc817fca7:
+
+Function MSGPACK_ADD_ENUM(nervosys::autonomylib::GpsBase::GnssFixType)
+======================================================================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: MSGPACK_ADD_ENUM(nervosys::autonomylib::GpsBase::GnssFixType)
+   :project: AutonomyLib

@@ -1,0 +1,32 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1LidarBase:
+
+Class LidarBase
+===============
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_lidar_LidarBase.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::SensorBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1SensorBase`)
+
+
+Derived Type
+************
+
+- ``public nervosys::autonomylib::LidarSimple`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1LidarSimple`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::LidarBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

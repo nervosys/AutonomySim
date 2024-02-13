@@ -1,0 +1,124 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp:
+
+File CommonStructs.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/interfaces/CommonStructs.hpp``)
+----------------------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``exception``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightEstimator.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleLevelController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleRateController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_ConstantOutputController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Firmware.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Mixer.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_OffboardApi.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Params.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PidController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PositionController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_RemoteControl.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_RungKuttaPidIntegrator.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_StdPidIntegrator.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IGoal.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IOffboardApi.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IPidIntegrator.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IStateEstimator.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structsimple__flight_1_1GeoPoint`
+
+- :ref:`exhale_struct_structsimple__flight_1_1KinematicsState`
+
+- :ref:`exhale_struct_structsimple__flight_1_1PidConfig`
+
+- :ref:`exhale_class_classsimple__flight_1_1Axis3`
+
+- :ref:`exhale_class_classsimple__flight_1_1Axis4`
+
+- :ref:`exhale_class_classsimple__flight_1_1GoalMode`
+
+- :ref:`exhale_class_classsimple__flight_1_1VehicleState`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_namespacesimple__flight_1a250e3c7d376dc0322fe64230b88cb4e1`
+
+- :ref:`exhale_enum_namespacesimple__flight_1a57a47b1a1e13d7ac5ba39dd60752f6f8`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_namespacesimple__flight_1afb2b9fec0eda30ae3f743b1013beb242`
+
+- :ref:`exhale_typedef_namespacesimple__flight_1a709310063a5dd767791c3dc8d729e3c6`
+
+- :ref:`exhale_typedef_namespacesimple__flight_1a6c283e487d45919133e4e34a89d7b1bf`
+

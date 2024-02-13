@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1MultirotorRpcLibServer:
+
+Class MultirotorRpcLibServer
+============================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibServer.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::RpcLibServerBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1RpcLibServerBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::MultirotorRpcLibServer
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

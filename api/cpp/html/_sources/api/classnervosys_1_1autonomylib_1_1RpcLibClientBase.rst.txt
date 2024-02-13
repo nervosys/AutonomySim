@@ -1,0 +1,37 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1RpcLibClientBase:
+
+Class RpcLibClientBase
+======================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibClientBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RpcLibClientBase_1_1impl`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public nervosys::autonomylib::CarRpcLibClient`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1CarRpcLibClient`)
+- ``public nervosys::autonomylib::MultirotorRpcLibClient`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1MultirotorRpcLibClient`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::RpcLibClientBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

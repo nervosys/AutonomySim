@@ -1,0 +1,57 @@
+
+.. _file_AutonomyLib_src_vehicles_multirotor_api_MultirotorApiBase.cpp:
+
+File MultirotorApiBase.cpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_vehicles_multirotor_api>` (``AutonomyLib/src/vehicles/multirotor/api``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/src/vehicles/multirotor/api/MultirotorApiBase.cpp``)
+------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_src_vehicles_multirotor_api_MultirotorApiBase.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``exception``
+
+- ``fstream``
+
+- ``functional``
+
+- ``iostream``
+
+- ``vector``
+
+- ``vehicles/multirotor/api/MultirotorApiBase.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorApiBase.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+

@@ -1,0 +1,36 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1RotorActuator:
+
+Class RotorActuator
+===================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_RotorActuator.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib_1_1RotorActuator_1_1Output`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::PhysicsBodyVertex`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsBodyVertex`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::RotorActuator
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

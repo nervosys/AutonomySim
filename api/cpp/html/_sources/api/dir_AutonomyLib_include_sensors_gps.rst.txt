@@ -1,0 +1,23 @@
+.. _dir_AutonomyLib_include_sensors_gps:
+
+
+Directory gps
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_sensors>` (``AutonomyLib/include/sensors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/sensors/gps``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_include_sensors_gps_GpsBase.hpp`
+- :ref:`file_AutonomyLib_include_sensors_gps_GpsSimple.hpp`
+- :ref:`file_AutonomyLib_include_sensors_gps_GpsSimpleParams.hpp`
+
+

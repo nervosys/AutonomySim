@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacesimple__flight_1a6c283e487d45919133e4e34a89d7b1bf:
+
+Typedef simple_flight::TReal
+============================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: simple_flight::TReal
+   :project: AutonomyLib

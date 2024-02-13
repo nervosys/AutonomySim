@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1FastPhysicsEngine:
+
+Class FastPhysicsEngine
+=======================
+
+- Defined in :ref:`file_AutonomyLib_include_physics_FastPhysicsEngine.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::PhysicsEngineBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1PhysicsEngineBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::FastPhysicsEngine
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

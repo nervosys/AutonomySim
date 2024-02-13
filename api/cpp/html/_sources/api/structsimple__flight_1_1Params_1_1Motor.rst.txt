@@ -1,0 +1,23 @@
+.. _exhale_struct_structsimple__flight_1_1Params_1_1Motor:
+
+Struct Params::Motor
+====================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Params.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_struct_structsimple__flight_1_1Params`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: simple_flight::Params::Motor
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

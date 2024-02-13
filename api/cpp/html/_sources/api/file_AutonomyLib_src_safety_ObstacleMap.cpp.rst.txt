@@ -1,0 +1,51 @@
+
+.. _file_AutonomyLib_src_safety_ObstacleMap.cpp:
+
+File ObstacleMap.cpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src_safety>` (``AutonomyLib/src/safety``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/src/safety/ObstacleMap.cpp``)
+-------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_src_safety_ObstacleMap.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/utils/Utils.hpp``
+
+- ``safety/ObstacleMap.hpp`` (:ref:`file_AutonomyLib_include_safety_ObstacleMap.hpp`)
+
+- ``thread``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+

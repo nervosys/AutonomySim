@@ -1,0 +1,14 @@
+.. _exhale_enum_namespacesimple__flight_1a250e3c7d376dc0322fe64230b88cb4e1:
+
+Enum GoalModeType
+=================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: simple_flight::GoalModeType
+   :project: AutonomyLib

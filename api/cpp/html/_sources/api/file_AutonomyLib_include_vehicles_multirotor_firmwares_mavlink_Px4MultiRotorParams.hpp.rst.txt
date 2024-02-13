@@ -1,0 +1,60 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_Px4MultiRotorParams.hpp:
+
+File Px4MultiRotorParams.hpp
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink>` (``AutonomyLib/include/vehicles/multirotor/firmwares/mavlink``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/mavlink/Px4MultiRotorParams.hpp``)
+--------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_Px4MultiRotorParams.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``common/AutonomySimSettings.hpp``
+
+- ``sensors/SensorFactory.hpp`` (:ref:`file_AutonomyLib_include_sensors_SensorFactory.hpp`)
+
+- ``vehicles/multirotor/MultirotorParams.hpp``
+
+- ``vehicles/multirotor/firmwares/mavlink/MavLinkMultirotorApi.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_mavlink_MavLinkMultirotorApi.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1Px4MultirotorParams`
+

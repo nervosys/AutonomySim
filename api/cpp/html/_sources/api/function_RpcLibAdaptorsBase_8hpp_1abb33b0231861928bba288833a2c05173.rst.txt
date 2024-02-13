@@ -1,0 +1,14 @@
+.. _exhale_function_RpcLibAdaptorsBase_8hpp_1abb33b0231861928bba288833a2c05173:
+
+Function MSGPACK_ADD_ENUM(nervosys::autonomylib::WorldSimApiBase::WeatherParameter)
+===================================================================================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: MSGPACK_ADD_ENUM(nervosys::autonomylib::WorldSimApiBase::WeatherParameter)
+   :project: AutonomyLib

@@ -1,0 +1,32 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1RpcLibServerBase_1_1ApiNotSupported:
+
+Class RpcLibServerBase::ApiNotSupported
+=======================================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibServerBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib_1_1RpcLibServerBase`.
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::runtime_error``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::RpcLibServerBase::ApiNotSupported
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

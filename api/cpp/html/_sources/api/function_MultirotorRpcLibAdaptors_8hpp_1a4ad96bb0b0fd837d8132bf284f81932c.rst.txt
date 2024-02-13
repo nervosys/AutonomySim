@@ -1,0 +1,14 @@
+.. _exhale_function_MultirotorRpcLibAdaptors_8hpp_1a4ad96bb0b0fd837d8132bf284f81932c:
+
+Function MSGPACK_ADD_ENUM(nervosys::autonomylib::DrivetrainType)
+================================================================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorRpcLibAdaptors.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: MSGPACK_ADD_ENUM(nervosys::autonomylib::DrivetrainType)
+   :project: AutonomyLib

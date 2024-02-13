@@ -1,0 +1,84 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightApi.hpp:
+
+File SimpleFlightApi.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/SimpleFlightApi.hpp``)
+----------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightApi.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``SimpleFlightBoard.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightBoard.hpp`)
+
+- ``SimpleFlightCommLink.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightCommLink.hpp`)
+
+- ``SimpleFlightCommon.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightCommon.hpp`)
+
+- ``SimpleFlightEstimator.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightEstimator.hpp`)
+
+- ``common/AutonomySimSettings.hpp``
+
+- ``common/Common.hpp``
+
+- ``firmware/Firmware.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Firmware.hpp`)
+
+- ``physics/Environment.hpp`` (:ref:`file_AutonomyLib_include_physics_Environment.hpp`)
+
+- ``physics/Kinematics.hpp`` (:ref:`file_AutonomyLib_include_physics_Kinematics.hpp`)
+
+- ``physics/PhysicsBody.hpp`` (:ref:`file_AutonomyLib_include_physics_PhysicsBody.hpp`)
+
+- ``sensors/SensorCollection.hpp`` (:ref:`file_AutonomyLib_include_sensors_SensorCollection.hpp`)
+
+- ``vehicles/multirotor/MultirotorParams.hpp``
+
+- ``vehicles/multirotor/api/MultirotorApiBase.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorApiBase.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_SimpleFlightQuadXParams.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightApi`
+

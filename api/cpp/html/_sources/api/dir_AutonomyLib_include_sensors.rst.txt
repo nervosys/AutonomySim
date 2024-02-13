@@ -1,0 +1,33 @@
+.. _dir_AutonomyLib_include_sensors:
+
+
+Directory sensors
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include>` (``AutonomyLib/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/sensors``
+
+Subdirectories
+--------------
+
+- :ref:`dir_AutonomyLib_include_sensors_barometer`
+- :ref:`dir_AutonomyLib_include_sensors_distance`
+- :ref:`dir_AutonomyLib_include_sensors_gps`
+- :ref:`dir_AutonomyLib_include_sensors_imu`
+- :ref:`dir_AutonomyLib_include_sensors_lidar`
+- :ref:`dir_AutonomyLib_include_sensors_magnetometer`
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_include_sensors_SensorBase.hpp`
+- :ref:`file_AutonomyLib_include_sensors_SensorCollection.hpp`
+- :ref:`file_AutonomyLib_include_sensors_SensorFactory.hpp`
+
+

@@ -1,0 +1,66 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Mixer.hpp:
+
+File Mixer.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/Mixer.hpp``)
+---------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Mixer.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Params.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter_ArduCopterParams.hpp`)
+
+- ``algorithm``
+
+- ``interfaces/CommonStructs.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`)
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Firmware.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structsimple__flight_1_1Mixer_1_1motorMixer__t`
+
+- :ref:`exhale_class_classsimple__flight_1_1Mixer`
+

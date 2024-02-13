@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a15ff89fd36856d4530d4ed2083e6dfc7:
+
+Variable conf::breathe_default_project
+======================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::breathe_default_project
+   :project: AutonomyLib

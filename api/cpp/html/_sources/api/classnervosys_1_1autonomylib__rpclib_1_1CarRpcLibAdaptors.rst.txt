@@ -1,0 +1,37 @@
+.. _exhale_class_classnervosys_1_1autonomylib__rpclib_1_1CarRpcLibAdaptors:
+
+Class CarRpcLibAdaptors
+=======================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_car_api_CarRpcLibAdaptors.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1CarRpcLibAdaptors_1_1CarControls`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1CarRpcLibAdaptors_1_1CarState`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib_rpclib::RpcLibAdaptorsBase`` (:ref:`exhale_class_classnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib_rpclib::CarRpcLibAdaptors
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

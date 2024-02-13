@@ -1,0 +1,22 @@
+.. _dir_AutonomyLib_src_api:
+
+
+Directory api
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_src>` (``AutonomyLib/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/src/api``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_src_api_RpcLibClientBase.cpp`
+- :ref:`file_AutonomyLib_src_api_RpcLibServerBase.cpp`
+
+

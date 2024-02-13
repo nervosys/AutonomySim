@@ -1,0 +1,23 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1MagnetometerBase_1_1Output:
+
+Struct MagnetometerBase::Output
+===============================
+
+- Defined in :ref:`file_AutonomyLib_include_sensors_magnetometer_MagnetometerBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib_1_1MagnetometerBase`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::MagnetometerBase::Output
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

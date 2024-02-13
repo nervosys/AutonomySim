@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1ad9d7d7cfcf6e22cc48ad369cded0448a:
+
+Variable conf::htmlhelp_basename
+================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::htmlhelp_basename
+   :project: AutonomyLib

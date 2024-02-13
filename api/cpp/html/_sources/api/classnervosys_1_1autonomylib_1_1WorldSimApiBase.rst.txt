@@ -1,0 +1,17 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1WorldSimApiBase:
+
+Class WorldSimApiBase
+=====================
+
+- Defined in :ref:`file_AutonomyLib_include_api_WorldSimApiBase.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::WorldSimApiBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

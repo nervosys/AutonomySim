@@ -1,0 +1,23 @@
+.. _exhale_struct_structnervosys_1_1autonomylib_1_1RpcLibClientBase_1_1impl:
+
+Struct RpcLibClientBase::impl
+=============================
+
+- Defined in :ref:`file_AutonomyLib_src_api_RpcLibClientBase.cpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classnervosys_1_1autonomylib_1_1RpcLibClientBase`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: nervosys::autonomylib::RpcLibClientBase::impl
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

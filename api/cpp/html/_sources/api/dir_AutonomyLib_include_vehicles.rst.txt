@@ -1,0 +1,22 @@
+.. _dir_AutonomyLib_include_vehicles:
+
+
+Directory vehicles
+==================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include>` (``AutonomyLib/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/vehicles``
+
+Subdirectories
+--------------
+
+- :ref:`dir_AutonomyLib_include_vehicles_car`
+- :ref:`dir_AutonomyLib_include_vehicles_multirotor`
+
+
+

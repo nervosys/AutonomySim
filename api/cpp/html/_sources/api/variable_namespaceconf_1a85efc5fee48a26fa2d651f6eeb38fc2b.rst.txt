@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a85efc5fee48a26fa2d651f6eeb38fc2b:
+
+Variable conf::man_pages
+========================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::man_pages
+   :project: AutonomyLib

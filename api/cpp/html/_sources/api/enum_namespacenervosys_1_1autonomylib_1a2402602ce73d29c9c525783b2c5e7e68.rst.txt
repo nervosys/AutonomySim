@@ -1,0 +1,14 @@
+.. _exhale_enum_namespacenervosys_1_1autonomylib_1a2402602ce73d29c9c525783b2c5e7e68:
+
+Enum LandedState
+================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_api_MultirotorCommon.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nervosys::autonomylib::LandedState
+   :project: AutonomyLib

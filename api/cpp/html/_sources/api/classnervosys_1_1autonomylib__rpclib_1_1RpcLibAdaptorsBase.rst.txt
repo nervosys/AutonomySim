@@ -1,0 +1,60 @@
+.. _exhale_class_classnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase:
+
+Class RpcLibAdaptorsBase
+========================
+
+- Defined in :ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1BarometerData`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Box2D`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Box3D`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1CameraInfo`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1CollisionInfo`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1DetectionInfo`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1DistanceSensorData`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1EnvironmentState`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GeoPoint`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GnssReport`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1GpsData`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImageRequest`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImageResponse`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ImuData`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1KinematicsState`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1LidarData`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1MagnetometerData`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1MeshPositionVertexBuffersResponse`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Pose`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1ProjectionMatrix`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Quaternionr`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1RCData`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Vector2r`
+- :ref:`exhale_struct_structnervosys_1_1autonomylib__rpclib_1_1RpcLibAdaptorsBase_1_1Vector3r`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public nervosys::autonomylib_rpclib::CarRpcLibAdaptors`` (:ref:`exhale_class_classnervosys_1_1autonomylib__rpclib_1_1CarRpcLibAdaptors`)
+- ``public nervosys::autonomylib_rpclib::MultirotorRpcLibAdaptors`` (:ref:`exhale_class_classnervosys_1_1autonomylib__rpclib_1_1MultirotorRpcLibAdaptors`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib_rpclib::RpcLibAdaptorsBase
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

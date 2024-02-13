@@ -1,0 +1,33 @@
+.. _exhale_class_classsimple__flight_1_1IUpdatable:
+
+Class IUpdatable
+================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IUpdatable.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public simple_flight::IAxisController`` (:ref:`exhale_class_classsimple__flight_1_1IAxisController`)
+- ``public simple_flight::IBoard`` (:ref:`exhale_class_classsimple__flight_1_1IBoard`)
+- ``public simple_flight::ICommLink`` (:ref:`exhale_class_classsimple__flight_1_1ICommLink`)
+- ``public simple_flight::IController`` (:ref:`exhale_class_classsimple__flight_1_1IController`)
+- ``public simple_flight::IFirmware`` (:ref:`exhale_class_classsimple__flight_1_1IFirmware`)
+- ``public simple_flight::OffboardApi`` (:ref:`exhale_class_classsimple__flight_1_1OffboardApi`)
+- ``public simple_flight::PidController< T >`` (:ref:`exhale_class_classsimple__flight_1_1PidController`)
+- ``public simple_flight::RemoteControl`` (:ref:`exhale_class_classsimple__flight_1_1RemoteControl`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::IUpdatable
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

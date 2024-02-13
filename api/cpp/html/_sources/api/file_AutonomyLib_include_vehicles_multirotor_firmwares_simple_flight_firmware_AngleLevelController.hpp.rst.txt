@@ -1,0 +1,80 @@
+
+.. _file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleLevelController.hpp:
+
+File AngleLevelController.hpp
+=============================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware>` (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/vehicles/multirotor/firmwares/simple_flight/firmware/AngleLevelController.hpp``)
+------------------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleLevelController.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``AngleRateController.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_AngleRateController.hpp`)
+
+- ``Params.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_arducopter_ArduCopterParams.hpp`)
+
+- ``PidController.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_PidController.hpp`)
+
+- ``common/utils/Utils.hpp``
+
+- ``exception``
+
+- ``interfaces/CommonStructs.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`)
+
+- ``interfaces/IAxisController.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IAxisController.hpp`)
+
+- ``interfaces/IBoardClock.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IBoardClock.hpp`)
+
+- ``interfaces/IGoal.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IGoal.hpp`)
+
+- ``interfaces/IUpdatable.hpp`` (:ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IUpdatable.hpp`)
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_CascadeController.hpp`
+
+- :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_VelocityController.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_simple_flight`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classsimple__flight_1_1AngleLevelController`
+

@@ -1,0 +1,26 @@
+.. _exhale_class_classnervosys_1_1autonomylib_1_1SphereGeoFence:
+
+Class SphereGeoFence
+====================
+
+- Defined in :ref:`file_AutonomyLib_include_safety_SphereGeoFence.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public nervosys::autonomylib::IGeoFence`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1IGeoFence`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: nervosys::autonomylib::SphereGeoFence
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

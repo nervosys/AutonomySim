@@ -1,0 +1,32 @@
+.. _exhale_class_classsimple__flight_1_1ICommLink:
+
+Class ICommLink
+===============
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_ICommLink.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public simple_flight::IUpdatable`` (:ref:`exhale_class_classsimple__flight_1_1IUpdatable`)
+
+
+Derived Type
+************
+
+- ``public nervosys::autonomylib::SimpleFlightCommLink`` (:ref:`exhale_class_classnervosys_1_1autonomylib_1_1SimpleFlightCommLink`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::ICommLink
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

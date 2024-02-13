@@ -1,0 +1,21 @@
+.. _dir_AutonomyLib_docs:
+
+
+Directory docs
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib>` (``AutonomyLib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/docs``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_docs_conf.py`
+
+

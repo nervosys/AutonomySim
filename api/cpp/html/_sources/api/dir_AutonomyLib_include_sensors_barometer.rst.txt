@@ -1,0 +1,23 @@
+.. _dir_AutonomyLib_include_sensors_barometer:
+
+
+Directory barometer
+===================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_sensors>` (``AutonomyLib/include/sensors``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``AutonomyLib/include/sensors/barometer``
+
+
+Files
+-----
+
+- :ref:`file_AutonomyLib_include_sensors_barometer_BarometerBase.hpp`
+- :ref:`file_AutonomyLib_include_sensors_barometer_BarometerSimple.hpp`
+- :ref:`file_AutonomyLib_include_sensors_barometer_BarometerSimpleParams.hpp`
+
+

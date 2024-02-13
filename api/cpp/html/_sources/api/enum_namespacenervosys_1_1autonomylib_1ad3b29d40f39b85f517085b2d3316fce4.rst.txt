@@ -1,0 +1,14 @@
+.. _exhale_enum_namespacenervosys_1_1autonomylib_1ad3b29d40f39b85f517085b2d3316fce4:
+
+Enum RotorTurningDirection
+==========================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_RotorParams.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: nervosys::autonomylib::RotorTurningDirection
+   :project: AutonomyLib

@@ -1,0 +1,32 @@
+.. _exhale_class_classsimple__flight_1_1IFirmware:
+
+Class IFirmware
+===============
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_IFirmware.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public simple_flight::IUpdatable`` (:ref:`exhale_class_classsimple__flight_1_1IUpdatable`)
+
+
+Derived Type
+************
+
+- ``public simple_flight::Firmware`` (:ref:`exhale_class_classsimple__flight_1_1Firmware`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: simple_flight::IFirmware
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

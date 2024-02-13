@@ -1,0 +1,74 @@
+
+.. _file_AutonomyLib_include_sensors_barometer_BarometerSimple.hpp:
+
+File BarometerSimple.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_AutonomyLib_include_sensors_barometer>` (``AutonomyLib/include/sensors/barometer``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``AutonomyLib/include/sensors/barometer/BarometerSimple.hpp``)
+--------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_AutonomyLib_include_sensors_barometer_BarometerSimple.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``BarometerBase.hpp`` (:ref:`file_AutonomyLib_include_sensors_barometer_BarometerBase.hpp`)
+
+- ``BarometerSimpleParams.hpp`` (:ref:`file_AutonomyLib_include_sensors_barometer_BarometerSimpleParams.hpp`)
+
+- ``common/Common.hpp``
+
+- ``common/DelayLine.hpp``
+
+- ``common/EarthUtils.hpp``
+
+- ``common/FrequencyLimiter.hpp``
+
+- ``common/GaussianMarkov.hpp``
+
+- ``random``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_AutonomyLib_include_sensors_SensorFactory.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_nervosys`
+
+- :ref:`namespace_nervosys__autonomylib`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classnervosys_1_1autonomylib_1_1BarometerSimple`
+

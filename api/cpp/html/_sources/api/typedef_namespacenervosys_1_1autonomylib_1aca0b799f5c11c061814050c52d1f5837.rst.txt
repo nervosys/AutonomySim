@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacenervosys_1_1autonomylib_1aca0b799f5c11c061814050c52d1f5837:
+
+Typedef nervosys::autonomylib::CarRpcLibAdaptors
+================================================
+
+- Defined in :ref:`file_AutonomyLib_src_vehicles_car_api_CarRpcLibClient.cpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: nervosys::autonomylib::CarRpcLibAdaptors
+   :project: AutonomyLib

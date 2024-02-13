@@ -1,0 +1,33 @@
+.. _exhale_struct_structsimple__flight_1_1Params:
+
+Struct Params
+=============
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_Params.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1AngleLevelPid`
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1AngleRatePid`
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1Motor`
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1PositionPid`
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1Rc`
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1Takeoff`
+- :ref:`exhale_struct_structsimple__flight_1_1Params_1_1VelocityPid`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: simple_flight::Params
+   :project: AutonomyLib
+   :members:
+   :protected-members:
+   :undoc-members:

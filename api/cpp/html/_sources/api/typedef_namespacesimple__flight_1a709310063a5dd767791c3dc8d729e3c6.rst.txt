@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacesimple__flight_1a709310063a5dd767791c3dc8d729e3c6:
+
+Typedef simple_flight::Axis4r
+=============================
+
+- Defined in :ref:`file_AutonomyLib_include_vehicles_multirotor_firmwares_simple_flight_firmware_interfaces_CommonStructs.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: simple_flight::Axis4r
+   :project: AutonomyLib

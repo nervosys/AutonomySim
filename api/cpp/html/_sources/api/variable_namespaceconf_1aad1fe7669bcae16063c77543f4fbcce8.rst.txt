@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1aad1fe7669bcae16063c77543f4fbcce8:
+
+Variable conf::autodoc_default_flags
+====================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::autodoc_default_flags
+   :project: AutonomyLib
