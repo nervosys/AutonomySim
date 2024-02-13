@@ -401,6 +401,7 @@ build_docs/
 # C++ API docs
 AutonomyLib/docs/doxyxml/
 AutonomyLib/docs/_build/
+AutonomyLib/docs/api/
 
 # Python API docs
 python/docs/_build

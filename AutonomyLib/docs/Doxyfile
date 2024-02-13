@@ -180,7 +180,9 @@ FILE_PATTERNS          = *.c \
                          *.qsf \
                          *.ice
 RECURSIVE              = YES
-EXCLUDE                =
+EXCLUDE                = ./AutonomyLib/include/common/ \
+                         ./AutonomyLib/src/common/ \
+                         ./AutonomyLib/include/sensors/imu/ImuBase.hpp
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =
@@ -354,7 +356,7 @@ PERLMOD_MAKEVAR_PREFIX =
 # Configuration options related to the preprocessor
 #---------------------------------------------------------------------------
 ENABLE_PREPROCESSING   = YES
-MACRO_EXPANSION        = NO
+MACRO_EXPANSION        = YES
 EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
 INCLUDE_PATH           =

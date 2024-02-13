@@ -51,18 +51,21 @@ release = ""
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx_immaterial",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.doctest",
+    "sphinx.ext.duration",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.inheritance_diagram",
     "sphinx.ext.todo",
     "sphinx.ext.mathjax",
     "sphinx.ext.coverage",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
+    "sphinx_immaterial",
     "breathe",
+    "exhale",
 ]
 
 autodoc_default_flags = ["members"]
@@ -71,8 +74,25 @@ autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 4
 
 # Breathe Configuration
-breathe_projects = {"AutonomyLib": "./doxyxml/xml/"}
+breathe_projects = {"AutonomyLib": "./doxyxml/xml"}
+# breathe_projects_source = {"AutonomyLib": "./doxyxml/xml"}
 breathe_default_project = "AutonomyLib"
+# breathe_default_members = ("members", "undoc-members")
+
+exhale_args = {
+    # These arguments are required
+    "containmentFolder": "./api",
+    "rootFileName": "library_root.rst",
+    "doxygenStripFromPath": "..",
+    # Heavily encouraged optional argument (see docs)
+    "rootFileTitle": "C++ Library API",
+    # Suggested optional arguments
+    "createTreeView": True,
+    # TIP: if using the sphinx-bootstrap-theme, you need
+    # "treeViewIsBootstrap": True,
+    "exhaleExecutesDoxygen": False,
+    # "exhaleDoxygenStdin":    "INPUT = ../include"
+}
 
 # Tell sphinx what the primary language being documented is.
 primary_domain = "cpp"
@@ -183,7 +203,7 @@ html_theme_options = {
         "text": "Roboto",
         "code": "Roboto Mono",
     },
-    "language": "en",
+    # "language": "en",
     "palette": [
         # {
         #     "media": "(prefers-color-scheme)",
@@ -209,7 +229,7 @@ html_theme_options = {
             },
         },
     ],
-    "favicon": "media/images/rune.svg",
+    # "favicon": "media/images/rune.svg",
     "icon": {
         "logo": "material/book-open-page-variant",
         "repo": "fontawesome/brands/git-alt",
