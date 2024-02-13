@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2871,7 +2869,8 @@
 <p>To avoid charges for the Virtual Machine usage while not in use, remember to deallocate its resources from the <a href="https://portal.azure.com">Azure Portal</a> or use the following command from the Azure CLI:</p>
 </li>
 </ul>
-<pre class="highlight"><code class="language-shell">az vm deallocate --resource-group MyResourceGroup --name MyVMName</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>az<span class="w"> </span>vm<span class="w"> </span>deallocate<span class="w"> </span>--resource-group<span class="w"> </span>MyResourceGroup<span class="w"> </span>--name<span class="w"> </span>MyVMName
+</span></code></pre></div>
 <h2 id="code-and-debug-from-visual-studio-code-and-remote-ssh">Code and debug from Visual Studio Code and Remote SSH<a class="headerlink" href="#code-and-debug-from-visual-studio-code-and-remote-ssh" title="Permanent link">#</a></h2>
 <ul>
 <li>Install Visual Studio Code</li>
@@ -2910,7 +2909,8 @@
 <p>When using Azure Container Services to run this image, the only extra-requirement is to add GPU support to the Container Group where it will be deployed. </p>
 <p>It can use either public docker images from DockerHub or images deployed to a private Azure Container Registry</p>
 <h3 id="building-the-docker-image">Building the docker image<a class="headerlink" href="#building-the-docker-image" title="Permanent link">#</a></h3>
-<pre class="highlight"><code class="language-shell">docker build -t &lt;your-registry-url&gt;/&lt;your-image-name&gt; -f ./docker/Dockerfile .`</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;your-registry-url&gt;/&lt;your-image-name&gt;<span class="w"> </span>-f<span class="w"> </span>./docker/Dockerfile<span class="w"> </span>.<span class="sb">`</span>
+</span></code></pre></div>
 <h2 id="using-a-different-autonomysim-binary">Using a different AutonomySim binary<a class="headerlink" href="#using-a-different-autonomysim-binary" title="Permanent link">#</a></h2>
 <p>To use a different <code>AutonomySim</code> binary, first check the official documentation on <a href="build_windows.html">How to Build AutonomySim on Windows</a> and <a href="build_linux.html">How to Build AutonomySim on Linux</a> if you also want to run it with Docker</p>
 <p>Once you have a zip file with the new AutonomySim environment (or prefer to use one from the <a href="https://github.com/nervosys/AutonomySim/releases">Official Releases</a>), you need to modify some of the scripts in the <code>azure</code> directory of the repository to point to the new environment:</p>
@@ -3069,8 +3069,6 @@
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

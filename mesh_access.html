@@ -50,8 +50,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2721,13 +2719,14 @@
 <p><code>AutonomySim</code> supports the ability to access the static meshes that make up the scene.</p>
 <h2 id="mesh-data-structure">Mesh Data Structure<a class="headerlink" href="#mesh-data-structure" title="Permanent link">#</a></h2>
 <p>Each mesh is represented with the below struct:</p>
-<pre class="highlight"><code class="language-cpp">struct MeshPositionVertexBuffersResponse {
-    Vector3r position;
-    Quaternionr orientation;
-    std::vector&lt;float&gt; vertices;
-    std::vector&lt;uint32_t&gt; indices;
-    std::string name;
-};</code></pre>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">MeshPositionVertexBuffersResponse</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">Vector3r</span><span class="w"> </span><span class="n">position</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">Quaternionr</span><span class="w"> </span><span class="n">orientation</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vertices</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">indices</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">};</span>
+</span></code></pre></div>
 <ul>
 <li>The position and orientation are in the Unreal coordinate system.</li>
 <li>The mesh itself is a triangular mesh represented by the vertices and the indices.</li>
@@ -2738,49 +2737,50 @@
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">#</a></h2>
 <p>The API to get the meshes in the scene is quite simple. However, one should note that the function call is very expensive and should very rarely be called. In general this is ok because this function only accesses the static meshes which for most applications are not changing during the duration of your program.</p>
 <p>Note that you will have to use a 3rdparty library or your own custom code to actually interact with the received meshes. Below I utilize the Python bindings of <a href="https://github.com/libigl/libigl">libigl</a> to visualize the received meshes.</p>
-<pre class="highlight"><code class="language-python">import AutonomySim
-
-AUTONOMYSIM_HOST_IP='127.0.0.1'
-client = AutonomySim.VehicleClient(ip=AUTONOMYSIM_HOST_IP)
-client.confirmConnection()
-
-# List of returned meshes are received via this function
-meshes=client.simGetMeshPositionVertexBuffers()
-
-index=0
-for m in meshes:
-    # Finds one of the cube meshes in the Blocks environment
-    if 'cube' in m.name:
-
-        # Code from here on relies on libigl. Libigl uses pybind11 to wrap C++ code. So here the built pyigl.so
-        # library is in the same directory as this example code.
-        # This is here as code for your own mesh library should require something similar
-        from pyigl import *
-        from iglhelpers import *
-
-        # Convert the lists to numpy arrays
-        vertex_list=np.array(m.vertices,dtype=np.float32)
-        indices=np.array(m.indices,dtype=np.uint32)
-
-        num_vertices=int(len(vertex_list)/3)
-        num_indices=len(indices)
-
-        # Libigl requires the shape to be Nx3 where N is number of vertices or indices
-        # It also requires the actual type to be double(float64) for vertices and int64 for the triangles/indices
-        vertices_reshaped=vertex_list.reshape((num_vertices,3))
-        indices_reshaped=indices.reshape((int(num_indices/3),3))
-        vertices_reshaped=vertices_reshaped.astype(np.float64)
-        indices_reshaped=indices_reshaped.astype(np.int64)
-
-        # Libigl function to convert to internal Eigen format
-        v_eig=p2e(vertices_reshaped)
-        i_eig=p2e(indices_reshaped)
-
-        # View the mesh
-        viewer = igl.glfw.Viewer()
-        viewer.data().set_mesh(v_eig,i_eig)
-        viewer.launch()
-        break</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">AutonomySim</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">AUTONOMYSIM_HOST_IP</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AutonomySim</span><span class="o">.</span><span class="n">VehicleClient</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">AUTONOMYSIM_HOST_IP</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">client</span><span class="o">.</span><span class="n">confirmConnection</span><span class="p">()</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># List of returned meshes are received via this function</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">meshes</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">simGetMeshPositionVertexBuffers</span><span class="p">()</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">index</span><span class="o">=</span><span class="mi">0</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">meshes</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="c1"># Finds one of the cube meshes in the Blocks environment</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">if</span> <span class="s1">&#39;cube&#39;</span> <span class="ow">in</span> <span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="c1"># Code from here on relies on libigl. Libigl uses pybind11 to wrap C++ code. So here the built pyigl.so</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="c1"># library is in the same directory as this example code.</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="c1"># This is here as code for your own mesh library should require something similar</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="kn">from</span> <span class="nn">pyigl</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="kn">from</span> <span class="nn">iglhelpers</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="c1"># Convert the lists to numpy arrays</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">vertex_list</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">indices</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">indices</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="n">num_vertices</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vertex_list</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="n">num_indices</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="c1"># Libigl requires the shape to be Nx3 where N is number of vertices or indices</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="c1"># It also requires the actual type to be double(float64) for vertices and int64 for the triangles/indices</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">vertices_reshaped</span><span class="o">=</span><span class="n">vertex_list</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_vertices</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">indices_reshaped</span><span class="o">=</span><span class="n">indices</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">num_indices</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">vertices_reshaped</span><span class="o">=</span><span class="n">vertices_reshaped</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>        <span class="n">indices_reshaped</span><span class="o">=</span><span class="n">indices_reshaped</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="c1"># Libigl function to convert to internal Eigen format</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>        <span class="n">v_eig</span><span class="o">=</span><span class="n">p2e</span><span class="p">(</span><span class="n">vertices_reshaped</span><span class="p">)</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>        <span class="n">i_eig</span><span class="o">=</span><span class="n">p2e</span><span class="p">(</span><span class="n">indices_reshaped</span><span class="p">)</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>        <span class="c1"># View the mesh</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="n">viewer</span> <span class="o">=</span> <span class="n">igl</span><span class="o">.</span><span class="n">glfw</span><span class="o">.</span><span class="n">Viewer</span><span class="p">()</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>        <span class="n">viewer</span><span class="o">.</span><span class="n">data</span><span class="p">()</span><span class="o">.</span><span class="n">set_mesh</span><span class="p">(</span><span class="n">v_eig</span><span class="p">,</span><span class="n">i_eig</span><span class="p">)</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>        <span class="n">viewer</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="k">break</span>
+</span></code></pre></div>
 
 
 
@@ -2887,8 +2887,6 @@ for m in meshes:
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

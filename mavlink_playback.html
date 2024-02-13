@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2785,14 +2783,17 @@
 
 <h1 id="mavlink-command-playback">MAVLink Command Playback<a class="headerlink" href="#mavlink-command-playback" title="Permanent link">#</a></h1>
 <p><code>AutonomySim</code> supports playing back the high-level commands in a <code>.mavlink</code> log file that were recorded using the <code>MavLinkTest</code> application for the purpose of comparing real and simulated flight. The <a href="files/logs/recording.mavlink">recording.mavlink</a> is an example of a log file captured using a real drone using the following commands:</p>
-<pre class="highlight"><code class="language-shell">MavLinkTest -serial:/dev/ttyACM0,115200 -logdir:. </code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>MavLinkTest<span class="w"> </span>-serial:/dev/ttyACM0,115200<span class="w"> </span>-logdir:.<span class="w"> </span>
+</span></code></pre></div>
 <p>The log file contains the commands performed, which included several "orbit" commands. The resulting GPS map of the flight looks like this:</p>
 <p><img alt="real flight" src="media/images/RealFlight.png" /></p>
 <h2 id="side-by-side-comparison">Side-by-side comparison<a class="headerlink" href="#side-by-side-comparison" title="Permanent link">#</a></h2>
 <p>Now we can copy the *.mavlink log file recorded by <code>MavLinkTest</code> to the PC running the Unreal simulator with AutonomySim plugin. When the Simulator is running and the drone is parked in a place in a map that has room to do the same maneuvers we can run this <code>MavLinkTest</code> command line:</p>
-<pre class="highlight"><code class="language-shell">MavLinkTest -server:127.0.0.1:14550</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>MavLinkTest<span class="w"> </span>-server:127.0.0.1:14550
+</span></code></pre></div>
 <p>This should connect to the simulator. Now you can enter this command:</p>
-<pre class="highlight"><code class="language-shell">PlayLog recording.mavlink</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PlayLog<span class="w"> </span>recording.mavlink
+</span></code></pre></div>
 <p>The same commands you performed on the real drone will now play again in the simulator. You can then press <code>t</code> to see the trace, and it will show you the trace of the real drone and the simulated drone. Every time you press <code>t</code> again you can reset the lines so they are synched to the current position, this way I was able to capture a side-by-side trace of the "orbit" command performed in this recording, which generates the picture below.  The pink line is the simulated flight and the red line is the real flight:</p>
 <p><img alt="playback" src="media/images/Playback.png" /></p>
 <div class="admonition note">
@@ -2801,12 +2802,13 @@
 </div>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">#</a></h2>
 <p>It may help to set the simulator up with some of the same flight parameters that your real drone is using. For example, in my case, I was using a lower than normal cruise speed, slow takeoff speed, and it helps to tell the simulator to wait a long time before disarming (<code>COM_DISARM_LAND</code>) and to turn off the safety switches <code>NAV_RCL_ACT</code> and <code>NAV_DLL_ACT</code> (do not do that on a real drone).</p>
-<pre class="highlight"><code class="language-shell">param MPC_XY_CRUISE 2
-param MPC_XY_VEL_MAX 2
-param MPC_TKO_SPEED 1
-param COM_DISARM_LAND 60
-param NAV_RCL_ACT 0
-param NAV_DLL_ACT 0</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>param<span class="w"> </span>MPC_XY_CRUISE<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>param<span class="w"> </span>MPC_XY_VEL_MAX<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>param<span class="w"> </span>MPC_TKO_SPEED<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>param<span class="w"> </span>COM_DISARM_LAND<span class="w"> </span><span class="m">60</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>param<span class="w"> </span>NAV_RCL_ACT<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>param<span class="w"> </span>NAV_DLL_ACT<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div>
 
 
 
@@ -2951,8 +2953,6 @@ param NAV_DLL_ACT 0</code></pre>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

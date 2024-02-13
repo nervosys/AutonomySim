@@ -50,8 +50,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2765,14 +2763,17 @@
 </ol>
 <h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">#</a></h3>
 <p>An example script to run the event simulator alongside AutonomySim is located at https://github.com/nervosys/AutonomySim/blob/master/PythonClient/eventcamera_sim/test_event_sim.py. The following optional command-line arguments can be passed to this script.</p>
-<pre class="highlight"><code class="language-python">args.width, args.height (float): Simulated event camera resolution
-args.save (bool): whether to save the event data to a file
-args.debug (bool): Whether to display the simulated events as an image</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">args</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">height</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Simulated</span> <span class="n">event</span> <span class="n">camera</span> <span class="n">resolution</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">args</span><span class="o">.</span><span class="n">save</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">save</span> <span class="n">the</span> <span class="n">event</span> <span class="n">data</span> <span class="n">to</span> <span class="n">a</span> <span class="n">file</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">args</span><span class="o">.</span><span class="n">debug</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">Whether</span> <span class="n">to</span> <span class="n">display</span> <span class="n">the</span> <span class="n">simulated</span> <span class="n">events</span> <span class="k">as</span> <span class="n">an</span> <span class="n">image</span>
+</span></code></pre></div>
 <p>The implementation of the actual event simulation, written in Python and numba, is at https://github.com/nervosys/AutonomySim/blob/master/PythonClient/eventcamera_sim/event_simulator.py. The event simulator is initialized as follows, with the arguments controlling the resolution of the camera.</p>
-<pre class="highlight"><code class="language-python">from event_simulator import *
-ev_sim = EventSimulator(W, H)</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">event_simulator</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">ev_sim</span> <span class="o">=</span> <span class="n">EventSimulator</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
+</span></code></pre></div>
 <p>The actual computation of the events is triggered through an <code>image_callback</code> function, which is executed every time a new RGB image is obtained. The first time this function is called, due to the lack of a 'previous' image, it acts as an initialization of the event sim. </p>
-<pre class="highlight"><code class="language-python">event_img, events = ev_sim.image_callback(img, ts_delta)</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">event_img</span><span class="p">,</span> <span class="n">events</span> <span class="o">=</span> <span class="n">ev_sim</span><span class="o">.</span><span class="n">image_callback</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ts_delta</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This function, which behaves similar to a callback (called every time a new image is received) returns an event image as a one dimensional array of +1/-1 values, thus indicating only whether events were seen at each pixel, but not the timing/number of events. This one dimensional array can be converted into the red/blue event image as seen in the function <code>convert_event_img_rgb</code>. <code>events</code> is a numpy array of events, each of format <code>&lt;x&gt; &lt;y&gt; &lt;timestamp&gt; &lt;pol&gt;</code>.</p>
 <p>Through this function, the event sim computes the difference between the past and the current image, and computes a stream of events which is then returned as a numpy array. This can then be appended to a file.</p>
 <p>There are quite a few parameters that can be tuned to achieve a level of visual fidelity/performance of the event simulation. The main factors to tune are the following:</p>
@@ -2890,8 +2891,6 @@ ev_sim = EventSimulator(W, H)</code></pre>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

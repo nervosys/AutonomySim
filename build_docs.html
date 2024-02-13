@@ -50,8 +50,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2736,15 +2734,18 @@
 <p>For more information on this process, see the GitHub Pages <a href="https://pages.github.com/">documentation</a>.</p>
 <h2 id="install-python-mkdocs-and-mkdocstrings">Install Python <code>mkdocs</code> and <code>mkdocstrings</code><a class="headerlink" href="#install-python-mkdocs-and-mkdocstrings" title="Permanent link">#</a></h2>
 <p>Using a package manager such as Anaconda or Mamba, install <code>mkdocs</code>:</p>
-<pre class="highlight"><code class="language-bash">micromamba create -n mkdocs python=3.11 pip
-micromamba activate mkdocs
-pip install mkdocs mkdocs-material pymdown-extensions mkdocstrings[python]
-mkdocs --version</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>micromamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mkdocs<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11<span class="w"> </span>pip
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>micromamba<span class="w"> </span>activate<span class="w"> </span>mkdocs
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material<span class="w"> </span>pymdown-extensions<span class="w"> </span>mkdocstrings<span class="o">[</span>python<span class="o">]</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>mkdocs<span class="w"> </span>--version
+</span></code></pre></div>
 <h2 id="edit-the-configuration-file">Edit the Configuration File<a class="headerlink" href="#edit-the-configuration-file" title="Permanent link">#</a></h2>
-<pre class="highlight"><code class="language-bash">vim mkdocs.yaml</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>vim<span class="w"> </span>mkdocs.yaml
+</span></code></pre></div>
 <h2 id="build-and-deploy-documentation">Build and Deploy Documentation<a class="headerlink" href="#build-and-deploy-documentation" title="Permanent link">#</a></h2>
 <p>Build and deploy the documentation to GitHub Pages:</p>
-<pre class="highlight"><code class="language-bash">mkdocs gh-deploy</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdocs<span class="w"> </span>gh-deploy
+</span></code></pre></div>
 <p>The documentation should soon be viewable on GitHub Pages. For more information, see the <code>mkdocs</code> documentation <a href="https://www.mkdocs.org/getting-started/">here</a> and <a href="https://www.mkdocs.org/user-guide/deploying-your-docs/">here</a>.</p>
 
 
@@ -2852,8 +2853,6 @@ mkdocs --version</code></pre>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

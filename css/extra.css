@@ -122,7 +122,7 @@ Nervosys tripartite color scheme:
     --md-default-fg-color--lighter: hsl(0, 0%, 90%);
     --md-default-fg-color--lightest: hsl(0, 0%, 10%);  /* background */
 
-    --md-primary-bg-color: hsl(0, 0%, 0%);
+    --md-primary-bg-color: hsl(0, 0%, 100%); /* header */
     --md-default-bg-color: hsl(0, 14%, 4%);
     
     /* text color shades */
@@ -161,7 +161,7 @@ Nervosys tripartite color scheme:
     --md-code-hl-variable-color:       hsl(200, 100%, 70%);
 
     /* typeset color shades */
-    /* 
+    /*
     --md-typeset-color:                hsl(0, 0%, 90%);
     --md-typeset-a-color:              hsl(0, 0%, 50%);
     */

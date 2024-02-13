@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -3016,22 +3014,27 @@
 </ul>
 <h2 id="build">Build<a class="headerlink" href="#build" title="Permanent link">#</a></h2>
 <p>Build <code>AutonomySim</code>:</p>
-<pre class="highlight"><code class="language-shell">git clone https://github.com/nervosys/AutonomySim.git;
-cd AutonomySim;
-./setup.sh;
-./build.sh;</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nervosys/AutonomySim.git<span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>AutonomySim<span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>./setup.sh<span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>./build.sh<span class="p">;</span>
+</span></code></pre></div>
 <p>Ensure that you have setup the environment variables for ROS, as mentioned in the installation pages above. Add the <code>source</code> command to your <code>.bashrc</code> for convenience (replace <code>melodic</code> with specfic version name):</p>
-<pre class="highlight"><code class="language-shell">echo "source /opt/ros/melodic/setup.bash" &gt;&gt; ~/.bashrc
-source ~/.bashrc</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source /opt/ros/melodic/setup.bash&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</span></code></pre></div>
 <p>Build the ROS package:</p>
-<pre class="highlight"><code class="language-shell">cd ros;
-catkin build;  # or catkin_make</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>ros<span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>catkin<span class="w"> </span>build<span class="p">;</span><span class="w">  </span><span class="c1"># or catkin_make</span>
+</span></code></pre></div>
 <p>If your default <code>gcc</code> version is less than 8 (see <code>gcc --version</code> output), compilation will fail. In that case, use <code>gcc-8</code> explicitly as follows:</p>
-<pre class="highlight"><code class="language-shell">catkin build -DCMAKE_C_COMPILER=gcc-8 -DCMAKE_CXX_COMPILER=g++-8</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>catkin<span class="w"> </span>build<span class="w"> </span>-DCMAKE_C_COMPILER<span class="o">=</span>gcc-8<span class="w"> </span>-DCMAKE_CXX_COMPILER<span class="o">=</span>g++-8
+</span></code></pre></div>
 <h2 id="running-autonomysim_ros_pkgs">Running <code>autonomysim_ros_pkgs</code><a class="headerlink" href="#running-autonomysim_ros_pkgs" title="Permanent link">#</a></h2>
-<pre class="highlight"><code class="language-shell">source devel/setup.bash;
-roslaunch autonomysim_ros_pkgs autonomysim_node.launch;
-roslaunch autonomysim_ros_pkgs rviz.launch;</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>devel/setup.bash<span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>roslaunch<span class="w"> </span>autonomysim_ros_pkgs<span class="w"> </span>autonomysim_node.launch<span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>roslaunch<span class="w"> </span>autonomysim_ros_pkgs<span class="w"> </span>rviz.launch<span class="p">;</span>
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
@@ -3280,15 +3283,18 @@ or
 WSL2:
 <code>export WSL_HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')</code></p>
 <p>Now, as in the running on Linux <a href="#running">section</a>, execute the following:</p>
-<pre class="highlight"><code class="language-shell">source devel/setup.bash
-roslaunch autonomysim_ros_pkgs autonomysim_node.launch output:=screen host:=$WSL_HOST_IP
-roslaunch autonomysim_ros_pkgs rviz.launch</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">source</span><span class="w"> </span>devel/setup.bash
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>roslaunch<span class="w"> </span>autonomysim_ros_pkgs<span class="w"> </span>autonomysim_node.launch<span class="w"> </span>output:<span class="o">=</span>screen<span class="w"> </span>host:<span class="o">=</span><span class="nv">$WSL_HOST_IP</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>roslaunch<span class="w"> </span>autonomysim_ros_pkgs<span class="w"> </span>rviz.launch
+</span></code></pre></div>
 <h3 id="using-ros-with-docker">Using ROS with Docker<a class="headerlink" href="#using-ros-with-docker" title="Permanent link">#</a></h3>
 <p>A <code>Dockerfile</code> is present in the <a href="https://github.com/nervosys/AutonomySim/tree/master/docker/Dockerfile_ros2"><code>docker</code></a> directory. To build the <code>autonomysim-ros</code> image, run the following:</p>
-<pre class="highlight"><code class="language-shell">cd tools
-docker build -t autonomysim-ros -f Dockerfile-ROS .</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>tools
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>autonomysim-ros<span class="w"> </span>-f<span class="w"> </span>Dockerfile-ROS<span class="w"> </span>.
+</span></code></pre></div>
 <p>To run, replace the path of the <code>AutonomySim</code> folder below:</p>
-<pre class="highlight"><code class="language-shell">docker run --rm -it --net=host -v &lt;your-AutonomySim-folder-path&gt;:/home/testuser/AutonomySim AutonomySim-ros:latest bash</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>-v<span class="w"> </span>&lt;your-AutonomySim-folder-path&gt;:/home/testuser/AutonomySim<span class="w"> </span>AutonomySim-ros:latest<span class="w"> </span>bash
+</span></code></pre></div>
 <p>The above command mounts the AutonomySim directory to the home directory inside the container. Any changes you make in the source files from your host will be visible inside the container, which is useful for development and testing. Now follow the steps from <a href="#build">Build</a> to compile and run the ROS wrapper.</p>
 
 
@@ -3434,8 +3440,6 @@ docker build -t autonomysim-ros -f Dockerfile-ROS .</code></pre>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

@@ -50,8 +50,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2721,33 +2719,38 @@
 <p>The <code>AutonomyLib</code> library can be compiled and deployed on the companion computer on a real robotic system. For our testing, we connected a <code>Gigabyte Brix BXi7-5500</code> companion computer to a Pixhawk/PX4 flight controller over USB on a drone. The Gigabyte PC runs Ubuntu, so we are able to SSH into it over Wi-Fi:</p>
 <p><img alt="Flamewheel" src="images/Flamewheel.png" /></p>
 <p>Once connected, you can run <code>MavLinkTest</code> with this command line:</p>
-<pre class="highlight"><code class="language-shell">MavLinkTest -serial:/dev/ttyACM0,115200 -logdir:. </code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>MavLinkTest<span class="w"> </span>-serial:/dev/ttyACM0,115200<span class="w"> </span>-logdir:.<span class="w"> </span>
+</span></code></pre></div>
 <p>This will produce a log file of the flight which can then be used for <a href="playback.md">playback in the simulator</a>.</p>
 <p>You can also add <code>-proxy:192.168.1.100:14550</code> to connect <code>MavLinkTest</code> to a remote computer where you can run QGroundControl or our <a href="log_viewer.md">PX4 Log Viewer</a>, which is another handy way to see what is going on with your drone.</p>
 <p><code>MavLinkTest</code> has simple commands for testing your drone, such as the following example:</p>
-<pre class="highlight"><code class="language-shell">arm
-takeoff 5
-orbit 10 2</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>arm
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>takeoff<span class="w"> </span><span class="m">5</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>orbit<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">2</span>
+</span></code></pre></div>
 <p>This will arm the drone, ascend to 5 meters above-ground-level (AGL), and perform an orbit pattern with a radius of 10 meters at 2 m/s. Type '?' to find all available commands.</p>
 <p><strong>Note:</strong> Some commands (for example, <code>orbit</code>) are named differently and have different syntax in <code>MavLinkTest</code> and <code>DroneShell</code> (for example, <code>circlebypath -radius 10 -velocity 21</code>).</p>
 <p>When you land the drone you can stop <code>MavLinkTest</code> and copy the *.mavlink log file that was generated.</p>
 <h1 id="droneserver-and-droneshell">DroneServer and DroneShell<a class="headerlink" href="#droneserver-and-droneshell" title="Permanent link">#</a></h1>
 <p>Once you are happy that the <code>MavLinkTest</code> is working, you can also run <code>DroneServer</code> and <code>DroneShell</code> as follows. First, run <code>MavLinkTest</code> with a local proxy to send everything to <code>DroneServer</code>:</p>
-<pre class="highlight"><code class="language-shell">MavLinkTest -serial:/dev/ttyACM0,115200 -logdir:. -proxy:127.0.0.1:14560</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>MavLinkTest<span class="w"> </span>-serial:/dev/ttyACM0,115200<span class="w"> </span>-logdir:.<span class="w"> </span>-proxy:127.0.0.1:14560
+</span></code></pre></div>
 <p>Change <code>~/Documents/AutonomySim/settings.json</code> to say "serial": false, because we want <code>DroneServer</code> to look for this UDP connection.</p>
-<pre class="highlight"><code class="language-shell">DroneServer 0</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>DroneServer<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div>
 <p>Lastly, you can now connect <code>DroneShell</code> to this instance of <code>DroneServer</code> and use the commands to fly your drone:</p>
-<pre class="highlight"><code class="language-shell">DroneShell
-==||=&gt;
-        Welcome to DroneShell 1.0.
-        Type ? for help.
-        Nervosys, LLC (c) 2024.
-
-Waiting for drone to report a valid GPS location...
-==||=&gt; requestcontrol
-==||=&gt; arm
-==||=&gt; takeoff
-==||=&gt; circlebypath -radius 10 -velocity 2</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">DroneShell</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">==||=</span>&gt;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span>Welcome<span class="w"> </span>to<span class="w"> </span>DroneShell<span class="w"> </span><span class="m">1</span>.0.
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span>Type<span class="w"> </span>?<span class="w"> </span><span class="k">for</span><span class="w"> </span>help.
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span>Nervosys,<span class="w"> </span>LLC<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2024</span>.
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>drone<span class="w"> </span>to<span class="w"> </span>report<span class="w"> </span>a<span class="w"> </span>valid<span class="w"> </span>GPS<span class="w"> </span>location...
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="o">==||=</span>&gt;<span class="w"> </span><span class="nv">requestcontrol</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="o">==||=</span>&gt;<span class="w"> </span><span class="nv">arm</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="o">==||=</span>&gt;<span class="w"> </span><span class="nv">takeoff</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="o">==||=</span>&gt;<span class="w"> </span>circlebypath<span class="w"> </span>-radius<span class="w"> </span><span class="m">10</span><span class="w"> </span>-velocity<span class="w"> </span><span class="m">2</span>
+</span></code></pre></div>
 <h2 id="px4-specific-tools">PX4 Specific Tools<a class="headerlink" href="#px4-specific-tools" title="Permanent link">#</a></h2>
 <p>You can run the <code>MavlinkCom</code> library and MavLinkTest app to test the connection between your companion computer and flight controller.  </p>
 <h2 id="how-does-this-work">How Does This Work?<a class="headerlink" href="#how-does-this-work" title="Permanent link">#</a></h2>
@@ -2860,8 +2863,6 @@ Waiting for drone to report a valid GPS location...
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>

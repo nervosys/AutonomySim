@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2876,14 +2874,16 @@
 <ul>
 <li>Clone AutonomySim and build it:</li>
 </ul>
-<pre class="highlight"><code class="language-bash"># go to the folder where you clone GitHub projects
-git clone https://github.com/nervosys/AutonomySim.git
-cd AutonomySim</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># go to the folder where you clone GitHub projects</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nervosys/AutonomySim.git
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>AutonomySim
+</span></code></pre></div>
 <p>By default AutonomySim uses <code>clang-8</code> to build for compatibility with UE 4.25. The setup script will install the right version of <code>cmake</code>, <code>llvm</code>, and <code>eigen</code>.</p>
 <p>CMake 3.19.2 is required for building on Apple silicon.</p>
-<pre class="highlight"><code class="language-bash">./setup.sh
-./build.sh
-# use ./build.sh --debug to build in debug mode</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./setup.sh
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>./build.sh
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># use ./build.sh --debug to build in debug mode</span>
+</span></code></pre></div>
 <h3 id="build-unreal-environment">Build Unreal Environment<a class="headerlink" href="#build-unreal-environment" title="Permanent link">#</a></h3>
 <p>Finally, you will need an Unreal project that hosts the environment for your vehicles. AutonomySim comes with a built-in "Blocks Environment" which you can use, or you can create your own. Please see <a href="unreal_projects.html">setting up Unreal Environment</a> if you'd like to setup your own environment.</p>
 <h2 id="how-to-use-autonomysim">How to Use AutonomySim<a class="headerlink" href="#how-to-use-autonomysim" title="Permanent link">#</a></h2>
@@ -3045,8 +3045,6 @@ cd AutonomySim</code></pre>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
       
     
   </body>
