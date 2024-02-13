@@ -29,7 +29,7 @@ import sphinx_immaterial
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "AutonomyLib C++ API"
+project = "AutonomySim C++ API"
 copyright = "Copyright © 2024 Nervosys, LLC"
 author = "Nervosys"
 
