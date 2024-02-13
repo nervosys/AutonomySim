@@ -75,6 +75,28 @@ autosectionlabel_maxdepth = 4
 breathe_projects = {"AutonomyLib": "./doxyxml/xml/"}
 breathe_default_project = "AutonomyLib"
 
+# Setup the exhale extension
+exhale_args = {
+    # required arguments
+    "containmentFolder": "./api",
+    "rootFileName": "library_root.rst",
+    "doxygenStripFromPath": "..",
+    # strongly encouraged optional argument (see docs)
+    "rootFileTitle": "C++ Library API",
+    # suggested optional arguments
+    "createTreeView": True,
+    # tip: if using the sphinx-bootstrap-theme, you need
+    # "treeViewIsBootstrap": True,
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin": "INPUT = ../include",
+}
+
+# Tell sphinx what the primary language being documented is.
+primary_domain = "cpp"
+
+# Tell sphinx what the pygments highlight language should be.
+highlight_language = "cpp"
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
