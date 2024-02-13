@@ -9,7 +9,6 @@ Welcome to AutonomyLib's documentation!
 .. doxygenindex::
    :project: AutonomyLib
    :path: doxyxml/xml
-   :toctree:
    :outline:
    :no-link:
    :allow-dot-graphs:
