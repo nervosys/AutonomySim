@@ -263,7 +263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autonomysim.html" class="md-nav__link">
+      <a href="../../api/autonomysim.html" class="md-nav__link">
         <span class="md-ellipsis">autonomysim package</span>
       </a>
     </li>
@@ -311,31 +311,31 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <div class="viewcode-block" id="string_to_uint8_array">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.string_to_uint8_array">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.string_to_uint8_array">[docs]</a>
 <span class="k">def</span> <span class="nf">string_to_uint8_array</span><span class="p">(</span><span class="n">bstr</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">bstr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="string_to_float_array">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.string_to_float_array">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.string_to_float_array">[docs]</a>
 <span class="k">def</span> <span class="nf">string_to_float_array</span><span class="p">(</span><span class="n">bstr</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">bstr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="list_to_2d_float_array">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.list_to_2d_float_array">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.list_to_2d_float_array">[docs]</a>
 <span class="k">def</span> <span class="nf">list_to_2d_float_array</span><span class="p">(</span><span class="n">flst</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">flst</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span></div>
 
     
 <div class="viewcode-block" id="get_pfm_array">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.get_pfm_array">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.get_pfm_array">[docs]</a>
 <span class="k">def</span> <span class="nf">get_pfm_array</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">list_to_2d_float_array</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_data_float</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_public_fields">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.get_public_fields">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.get_public_fields">[docs]</a>
 <span class="k">def</span> <span class="nf">get_public_fields</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
                             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> 
@@ -345,19 +345,19 @@
 
 
 <div class="viewcode-block" id="to_dict">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.to_dict">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_dict">[docs]</a>
 <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">([</span><span class="n">attr</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)]</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">get_public_fields</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span></div>
 
     
 <div class="viewcode-block" id="to_str">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.to_str">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_str">[docs]</a>
 <span class="k">def</span> <span class="nf">to_str</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">to_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="write_file">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.write_file">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.write_file">[docs]</a>
 <span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">bstr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write binary data to file.</span>
@@ -371,7 +371,7 @@
 <span class="c1"># https:#en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles</span>
     
 <div class="viewcode-block" id="to_eularian_angles">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.to_eularian_angles">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_eularian_angles">[docs]</a>
 <span class="k">def</span> <span class="nf">to_eularian_angles</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">z_val</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">y_val</span>
@@ -401,7 +401,7 @@
 
     
 <div class="viewcode-block" id="to_quaternion">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.to_quaternion">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_quaternion">[docs]</a>
 <span class="k">def</span> <span class="nf">to_quaternion</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">yaw</span><span class="p">):</span>
     <span class="n">t0</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -419,7 +419,7 @@
 
     
 <div class="viewcode-block" id="wait_key">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.wait_key">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.wait_key">[docs]</a>
 <span class="k">def</span> <span class="nf">wait_key</span><span class="p">(</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Wait for a key press on the console and return it. &#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">message</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
@@ -449,7 +449,7 @@
 
     
 <div class="viewcode-block" id="read_pfm">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.read_pfm">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.read_pfm">[docs]</a>
 <span class="k">def</span> <span class="nf">read_pfm</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Read a pfm file &quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
@@ -494,7 +494,7 @@
 
 
 <div class="viewcode-block" id="write_pfm">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.write_pfm">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.write_pfm">[docs]</a>
 <span class="k">def</span> <span class="nf">write_pfm</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Write a pfm file &quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
@@ -527,7 +527,7 @@
 
     
 <div class="viewcode-block" id="write_png">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.utils.write_png">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.write_png">[docs]</a>
 <span class="k">def</span> <span class="nf">write_png</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; image must be numpy array H X W X channels &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">cv2</span>      <span class="c1"># pip install opencv-python</span>

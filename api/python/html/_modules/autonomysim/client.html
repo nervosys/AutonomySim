@@ -263,7 +263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autonomysim.html" class="md-nav__link">
+      <a href="../../api/autonomysim.html" class="md-nav__link">
         <span class="md-ellipsis">autonomysim package</span>
       </a>
     </li>
@@ -310,7 +310,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient">[docs]</a>
 <span class="k">class</span> <span class="nc">VehicleClient</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">41451</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="mi">3600</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ip</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
@@ -324,7 +324,7 @@
 
     <span class="c1"># ----------------------------------- Common vehicle APIs ---------------------------------------------</span>
 <div class="viewcode-block" id="VehicleClient.reset">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.reset">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.reset">[docs]</a>
     <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reset the vehicle to its original starting state</span>
@@ -335,7 +335,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.ping">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.ping">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.ping">[docs]</a>
     <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If connection is established then this call will return true otherwise it will be blocked until timeout</span>
@@ -347,32 +347,32 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getClientVersion">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getClientVersion">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getClientVersion">[docs]</a>
     <span class="k">def</span> <span class="nf">getClientVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">1</span>  <span class="c1"># sync with C++ client</span></div>
 
 
 <div class="viewcode-block" id="VehicleClient.getServerVersion">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getServerVersion">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getServerVersion">[docs]</a>
     <span class="k">def</span> <span class="nf">getServerVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;getServerVersion&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VehicleClient.getMinRequiredServerVersion">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getMinRequiredServerVersion">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getMinRequiredServerVersion">[docs]</a>
     <span class="k">def</span> <span class="nf">getMinRequiredServerVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">1</span>  <span class="c1"># sync with C++ client</span></div>
 
 
 <div class="viewcode-block" id="VehicleClient.getMinRequiredClientVersion">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getMinRequiredClientVersion">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getMinRequiredClientVersion">[docs]</a>
     <span class="k">def</span> <span class="nf">getMinRequiredClientVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;getMinRequiredClientVersion&quot;</span><span class="p">)</span></div>
 
 
     <span class="c1"># basic flight control</span>
 <div class="viewcode-block" id="VehicleClient.enableApiControl">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.enableApiControl">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.enableApiControl">[docs]</a>
     <span class="k">def</span> <span class="nf">enableApiControl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_enabled</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enables or disables API control for vehicle corresponding to vehicle_name</span>
@@ -385,7 +385,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.isApiControlEnabled">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.isApiControlEnabled">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.isApiControlEnabled">[docs]</a>
     <span class="k">def</span> <span class="nf">isApiControlEnabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns true if API control is established.</span>
@@ -402,7 +402,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.armDisarm">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.armDisarm">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.armDisarm">[docs]</a>
     <span class="k">def</span> <span class="nf">armDisarm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arm</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Arms or disarms vehicle</span>
@@ -418,7 +418,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPause">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPause">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPause">[docs]</a>
     <span class="k">def</span> <span class="nf">simPause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_paused</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Pauses simulation</span>
@@ -430,7 +430,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simIsPause">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simIsPause">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simIsPause">[docs]</a>
     <span class="k">def</span> <span class="nf">simIsPause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns true if the simulation is paused</span>
@@ -442,7 +442,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simContinueForTime">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simContinueForTime">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simContinueForTime">[docs]</a>
     <span class="k">def</span> <span class="nf">simContinueForTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Continue the simulation for the specified number of seconds</span>
@@ -454,7 +454,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simContinueForFrames">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simContinueForFrames">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simContinueForFrames">[docs]</a>
     <span class="k">def</span> <span class="nf">simContinueForFrames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Continue (or resume if paused) the simulation for the specified number of frames, after which the simulation will be paused.</span>
@@ -466,7 +466,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getHomeGeoPoint">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getHomeGeoPoint">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getHomeGeoPoint">[docs]</a>
     <span class="k">def</span> <span class="nf">getHomeGeoPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the Home location of the vehicle</span>
@@ -481,7 +481,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.confirmConnection">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.confirmConnection">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.confirmConnection">[docs]</a>
     <span class="k">def</span> <span class="nf">confirmConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checks state of connection every 1 sec and reports it in Console so user can see the progress for connection.</span>
@@ -523,7 +523,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetLightIntensity">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetLightIntensity">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetLightIntensity">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetLightIntensity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">light_name</span><span class="p">,</span> <span class="n">intensity</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change intensity of named light</span>
@@ -539,7 +539,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSwapTextures">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSwapTextures">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSwapTextures">[docs]</a>
     <span class="k">def</span> <span class="nf">simSwapTextures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">,</span> <span class="n">tex_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">component_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">material_id</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runtime Swap Texture API</span>
@@ -563,7 +563,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetObjectMaterial">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetObjectMaterial">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectMaterial">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetObjectMaterial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">material_name</span><span class="p">,</span> <span class="n">component_id</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runtime Swap Texture API</span>
@@ -582,7 +582,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetObjectMaterialFromTexture">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetObjectMaterialFromTexture">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectMaterialFromTexture">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetObjectMaterialFromTexture</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">texture_path</span><span class="p">,</span> <span class="n">component_id</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">):</span>
@@ -605,7 +605,7 @@
     <span class="c1"># time-of-day control</span>
     <span class="c1"># time - of - day control</span>
 <div class="viewcode-block" id="VehicleClient.simSetTimeOfDay">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetTimeOfDay">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetTimeOfDay">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetTimeOfDay</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">is_enabled</span><span class="p">,</span>
@@ -644,7 +644,7 @@
 
     <span class="c1"># weather</span>
 <div class="viewcode-block" id="VehicleClient.simEnableWeather">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simEnableWeather">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simEnableWeather">[docs]</a>
     <span class="k">def</span> <span class="nf">simEnableWeather</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enable Weather effects. Needs to be called before using `simSetWeatherParameter` API</span>
@@ -656,7 +656,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetWeatherParameter">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetWeatherParameter">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetWeatherParameter">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetWeatherParameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enable various weather effects</span>
@@ -672,7 +672,7 @@
     <span class="c1"># simGetImage returns compressed png in array of bytes</span>
     <span class="c1"># image_type uses one of the ImageType members</span>
 <div class="viewcode-block" id="VehicleClient.simGetImage">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetImage">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetImage">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a single image</span>
@@ -706,7 +706,7 @@
     <span class="c1"># simGetImage returns compressed png in array of bytes</span>
     <span class="c1"># image_type uses one of the ImageType members</span>
 <div class="viewcode-block" id="VehicleClient.simGetImages">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetImages">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetImages">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetImages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requests</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get multiple images</span>
@@ -731,7 +731,7 @@
 
     <span class="c1"># CinemAutonomySim</span>
 <div class="viewcode-block" id="VehicleClient.simGetPresetLensSettings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetPresetLensSettings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetPresetLensSettings">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetPresetLensSettings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simGetPresetLensSettings&quot;</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -742,7 +742,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetLensSettings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetLensSettings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetLensSettings">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetLensSettings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simGetLensSettings&quot;</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -753,7 +753,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetPresetLensSettings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetPresetLensSettings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetPresetLensSettings">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetPresetLensSettings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">preset_lens_settings</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -767,7 +767,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetPresetFilmbackSettings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetPresetFilmbackSettings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetPresetFilmbackSettings">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetPresetFilmbackSettings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -780,7 +780,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetPresetFilmbackSettings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetPresetFilmbackSettings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetPresetFilmbackSettings">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetPresetFilmbackSettings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">preset_filmback_settings</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -794,7 +794,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetFilmbackSettings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetFilmbackSettings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetFilmbackSettings">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetFilmbackSettings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simGetFilmbackSettings&quot;</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -805,7 +805,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetFilmbackSettings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetFilmbackSettings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetFilmbackSettings">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetFilmbackSettings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">sensor_width</span><span class="p">,</span> <span class="n">sensor_height</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -820,7 +820,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetFocalLength">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetFocalLength">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetFocalLength">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetFocalLength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simGetFocalLength&quot;</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -828,7 +828,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetFocalLength">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetFocalLength">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetFocalLength">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetFocalLength</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">focal_length</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -838,7 +838,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simEnableManualFocus">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simEnableManualFocus">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simEnableManualFocus">[docs]</a>
     <span class="k">def</span> <span class="nf">simEnableManualFocus</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -848,7 +848,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetFocusDistance">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetFocusDistance">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetFocusDistance">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetFocusDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simGetFocusDistance&quot;</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -856,7 +856,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetFocusDistance">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetFocusDistance">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetFocusDistance">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetFocusDistance</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">focus_distance</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -866,7 +866,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetFocusAperture">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetFocusAperture">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetFocusAperture">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetFocusAperture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simGetFocusAperture&quot;</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -874,7 +874,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetFocusAperture">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetFocusAperture">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetFocusAperture">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetFocusAperture</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">focus_aperture</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -884,7 +884,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simEnableFocusPlane">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simEnableFocusPlane">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simEnableFocusPlane">[docs]</a>
     <span class="k">def</span> <span class="nf">simEnableFocusPlane</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enable</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simEnableFocusPlane&quot;</span><span class="p">,</span> <span class="n">enable</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -892,7 +892,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetCurrentFieldOfView">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetCurrentFieldOfView">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetCurrentFieldOfView">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetCurrentFieldOfView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="s2">&quot;simGetCurrentFieldOfView&quot;</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">external</span>
@@ -901,7 +901,7 @@
 
     <span class="c1"># End CinemAutonomySim</span>
 <div class="viewcode-block" id="VehicleClient.simTestLineOfSightToPoint">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simTestLineOfSightToPoint">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simTestLineOfSightToPoint">[docs]</a>
     <span class="k">def</span> <span class="nf">simTestLineOfSightToPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns whether the target point is visible from the perspective of the inputted vehicle</span>
@@ -917,7 +917,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simTestLineOfSightBetweenPoints">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simTestLineOfSightBetweenPoints">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simTestLineOfSightBetweenPoints">[docs]</a>
     <span class="k">def</span> <span class="nf">simTestLineOfSightBetweenPoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns whether the target point is visible from the perspective of the source point</span>
@@ -933,7 +933,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetWorldExtents">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetWorldExtents">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetWorldExtents">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetWorldExtents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of GeoPoints representing the minimum and maximum extents of the world</span>
@@ -946,7 +946,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simRunConsoleCommand">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simRunConsoleCommand">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simRunConsoleCommand">[docs]</a>
     <span class="k">def</span> <span class="nf">simRunConsoleCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Allows the client to execute a command in Unreal&#39;s native console, via an API.</span>
@@ -964,7 +964,7 @@
 
     <span class="c1"># gets the static meshes in the unreal scene</span>
 <div class="viewcode-block" id="VehicleClient.simGetMeshPositionVertexBuffers">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetMeshPositionVertexBuffers">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetMeshPositionVertexBuffers">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetMeshPositionVertexBuffers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the static meshes that make up the scene</span>
@@ -982,7 +982,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetCollisionInfo">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetCollisionInfo">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetCollisionInfo">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetCollisionInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
@@ -997,7 +997,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetVehiclePose">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetVehiclePose">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetVehiclePose">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetVehiclePose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">ignore_collision</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the pose of the vehicle</span>
@@ -1013,7 +1013,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetVehiclePose">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetVehiclePose">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetVehiclePose">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetVehiclePose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The position inside the returned Pose is in the frame of the vehicle&#39;s starting point</span>
@@ -1029,7 +1029,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetTraceLine">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetTraceLine">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetTraceLine">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetTraceLine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color_rgba</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Modify the color and thickness of the line when Tracing is enabled</span>
@@ -1045,7 +1045,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetObjectPose">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetObjectPose">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetObjectPose">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetObjectPose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The position inside the returned Pose is in the world frame</span>
@@ -1061,7 +1061,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetObjectPose">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetObjectPose">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectPose">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetObjectPose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">teleport</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the pose of the object(actor) in the environment</span>
@@ -1081,7 +1081,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetObjectScale">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetObjectScale">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetObjectScale">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetObjectScale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets scale of an object in the world</span>
@@ -1097,7 +1097,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetObjectScale">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetObjectScale">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectScale">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetObjectScale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">scale_vector</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets scale of an object in the world</span>
@@ -1113,7 +1113,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simListSceneObjects">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simListSceneObjects">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simListSceneObjects">[docs]</a>
     <span class="k">def</span> <span class="nf">simListSceneObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_regex</span><span class="o">=</span><span class="s2">&quot;.*&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Lists the objects present in the environment</span>
@@ -1130,7 +1130,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simLoadLevel">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simLoadLevel">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simLoadLevel">[docs]</a>
     <span class="k">def</span> <span class="nf">simLoadLevel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Loads a level specified by its name</span>
@@ -1145,7 +1145,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simListAssets">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simListAssets">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simListAssets">[docs]</a>
     <span class="k">def</span> <span class="nf">simListAssets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Lists all the assets present in the Asset Registry</span>
@@ -1157,7 +1157,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSpawnObject">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSpawnObject">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSpawnObject">[docs]</a>
     <span class="k">def</span> <span class="nf">simSpawnObject</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">object_name</span><span class="p">,</span>
@@ -1192,7 +1192,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simDestroyObject">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simDestroyObject">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simDestroyObject">[docs]</a>
     <span class="k">def</span> <span class="nf">simDestroyObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes selected object from the world</span>
 
@@ -1206,7 +1206,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetSegmentationObjectID">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetSegmentationObjectID">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetSegmentationObjectID">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetSegmentationObjectID</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh_name</span><span class="p">,</span> <span class="n">object_id</span><span class="p">,</span> <span class="n">is_name_regex</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set segmentation ID for specific objects</span>
@@ -1229,7 +1229,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetSegmentationObjectID">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetSegmentationObjectID">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetSegmentationObjectID">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetSegmentationObjectID</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns Object ID for the given mesh name</span>
@@ -1243,7 +1243,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simAddDetectionFilterMeshName">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simAddDetectionFilterMeshName">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simAddDetectionFilterMeshName">[docs]</a>
     <span class="k">def</span> <span class="nf">simAddDetectionFilterMeshName</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">mesh_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1271,7 +1271,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetDetectionFilterRadius">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetDetectionFilterRadius">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetDetectionFilterRadius">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetDetectionFilterRadius</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">radius_cm</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1296,7 +1296,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simClearDetectionMeshNames">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simClearDetectionMeshNames">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simClearDetectionMeshNames">[docs]</a>
     <span class="k">def</span> <span class="nf">simClearDetectionMeshNames</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1320,7 +1320,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetDetections">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetDetections">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetDetections">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetDetections</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1345,7 +1345,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPrintLogMessage">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPrintLogMessage">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPrintLogMessage">[docs]</a>
     <span class="k">def</span> <span class="nf">simPrintLogMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">message_param</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">severity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints the specified message in the simulator&#39;s window.</span>
@@ -1365,7 +1365,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetCameraInfo">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetCameraInfo">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetCameraInfo">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetCameraInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get details about the camera</span>
@@ -1387,7 +1387,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetDistortionParams">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetDistortionParams">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetDistortionParams">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetDistortionParams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get camera distortion parameters</span>
@@ -1407,7 +1407,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetDistortionParams">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetDistortionParams">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetDistortionParams">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetDistortionParams</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">distortion_params</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1429,7 +1429,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetDistortionParam">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetDistortionParam">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetDistortionParam">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetDistortionParam</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1454,7 +1454,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetCameraPose">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetCameraPose">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetCameraPose">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetCameraPose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        - Control the pose of a selected camera</span>
@@ -1472,7 +1472,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetCameraFov">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetCameraFov">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetCameraFov">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetCameraFov</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">fov_degrees</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1492,7 +1492,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetGroundTruthKinematics">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetGroundTruthKinematics">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetGroundTruthKinematics">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetGroundTruthKinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get Ground truth kinematics of the vehicle</span>
@@ -1512,7 +1512,7 @@
     <span class="n">simGetGroundTruthKinematics</span><span class="o">.</span><span class="vm">__annotations__</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;return&quot;</span><span class="p">:</span> <span class="n">KinematicsState</span><span class="p">}</span>
 
 <div class="viewcode-block" id="VehicleClient.simSetKinematics">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetKinematics">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetKinematics">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetKinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">ignore_collision</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the kinematics state of the vehicle</span>
@@ -1528,7 +1528,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetGroundTruthEnvironment">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetGroundTruthEnvironment">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetGroundTruthEnvironment">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetGroundTruthEnvironment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get ground truth environment state</span>
@@ -1549,7 +1549,7 @@
 
     <span class="c1"># sensor APIs</span>
 <div class="viewcode-block" id="VehicleClient.getImuData">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getImuData">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getImuData">[docs]</a>
     <span class="k">def</span> <span class="nf">getImuData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imu_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
@@ -1565,7 +1565,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getBarometerData">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getBarometerData">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getBarometerData">[docs]</a>
     <span class="k">def</span> <span class="nf">getBarometerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">barometer_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
@@ -1581,7 +1581,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getMagnetometerData">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getMagnetometerData">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getMagnetometerData">[docs]</a>
     <span class="k">def</span> <span class="nf">getMagnetometerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">magnetometer_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
@@ -1597,7 +1597,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getGpsData">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getGpsData">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getGpsData">[docs]</a>
     <span class="k">def</span> <span class="nf">getGpsData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gps_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
@@ -1613,7 +1613,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getDistanceSensorData">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getDistanceSensorData">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getDistanceSensorData">[docs]</a>
     <span class="k">def</span> <span class="nf">getDistanceSensorData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance_sensor_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
@@ -1631,7 +1631,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getLidarData">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getLidarData">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getLidarData">[docs]</a>
     <span class="k">def</span> <span class="nf">getLidarData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lidar_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
@@ -1647,7 +1647,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simGetLidarSegmentation">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simGetLidarSegmentation">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simGetLidarSegmentation">[docs]</a>
     <span class="k">def</span> <span class="nf">simGetLidarSegmentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lidar_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        NOTE: Deprecated API, use `getLidarData()` API instead</span>
@@ -1668,7 +1668,7 @@
 
     <span class="c1"># Plotting APIs</span>
 <div class="viewcode-block" id="VehicleClient.simFlushPersistentMarkers">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simFlushPersistentMarkers">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simFlushPersistentMarkers">[docs]</a>
     <span class="k">def</span> <span class="nf">simFlushPersistentMarkers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clear any persistent markers - those plotted with setting `is_persistent=True` in the APIs below</span>
@@ -1677,7 +1677,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPlotPoints">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPlotPoints">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPlotPoints">[docs]</a>
     <span class="k">def</span> <span class="nf">simPlotPoints</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">points</span><span class="p">,</span>
@@ -1702,7 +1702,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPlotLineStrip">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPlotLineStrip">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPlotLineStrip">[docs]</a>
     <span class="k">def</span> <span class="nf">simPlotLineStrip</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">points</span><span class="p">,</span>
@@ -1727,7 +1727,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPlotLineList">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPlotLineList">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPlotLineList">[docs]</a>
     <span class="k">def</span> <span class="nf">simPlotLineList</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">points</span><span class="p">,</span>
@@ -1752,7 +1752,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPlotArrows">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPlotArrows">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPlotArrows">[docs]</a>
     <span class="k">def</span> <span class="nf">simPlotArrows</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">points_start</span><span class="p">,</span>
@@ -1788,7 +1788,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPlotStrings">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPlotStrings">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPlotStrings">[docs]</a>
     <span class="k">def</span> <span class="nf">simPlotStrings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">strings</span><span class="p">,</span>
@@ -1813,7 +1813,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPlotTransforms">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPlotTransforms">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPlotTransforms">[docs]</a>
     <span class="k">def</span> <span class="nf">simPlotTransforms</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">poses</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">duration</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">is_persistent</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -1833,7 +1833,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simPlotTransformsWithNames">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simPlotTransformsWithNames">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simPlotTransformsWithNames">[docs]</a>
     <span class="k">def</span> <span class="nf">simPlotTransformsWithNames</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">poses</span><span class="p">,</span>
@@ -1869,7 +1869,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.cancelLastTask">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.cancelLastTask">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.cancelLastTask">[docs]</a>
     <span class="k">def</span> <span class="nf">cancelLastTask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cancel previous Async task</span>
@@ -1882,7 +1882,7 @@
 
     <span class="c1"># Recording APIs</span>
 <div class="viewcode-block" id="VehicleClient.startRecording">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.startRecording">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.startRecording">[docs]</a>
     <span class="k">def</span> <span class="nf">startRecording</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Start Recording</span>
@@ -1893,7 +1893,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.stopRecording">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.stopRecording">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.stopRecording">[docs]</a>
     <span class="k">def</span> <span class="nf">stopRecording</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop Recording</span>
@@ -1902,7 +1902,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.isRecording">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.isRecording">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.isRecording">[docs]</a>
     <span class="k">def</span> <span class="nf">isRecording</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Whether Recording is running or not</span>
@@ -1914,7 +1914,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetWind">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetWind">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetWind">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetWind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wind</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set simulated wind, in World frame, NED direction, m/s</span>
@@ -1926,7 +1926,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simCreateVoxelGrid">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simCreateVoxelGrid">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simCreateVoxelGrid">[docs]</a>
     <span class="k">def</span> <span class="nf">simCreateVoxelGrid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">of</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct and save a binvox-formatted voxel grid of environment</span>
@@ -1945,7 +1945,7 @@
 
     <span class="c1"># Add new vehicle via RPC</span>
 <div class="viewcode-block" id="VehicleClient.simAddVehicle">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simAddVehicle">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simAddVehicle">[docs]</a>
     <span class="k">def</span> <span class="nf">simAddVehicle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">,</span> <span class="n">vehicle_type</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">pawn_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create vehicle at runtime</span>
@@ -1965,7 +1965,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.listVehicles">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.listVehicles">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.listVehicles">[docs]</a>
     <span class="k">def</span> <span class="nf">listVehicles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Lists the names of current vehicles</span>
@@ -1977,7 +1977,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.getSettingsString">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.getSettingsString">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.getSettingsString">[docs]</a>
     <span class="k">def</span> <span class="nf">getSettingsString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fetch the settings text being used by AutonomySim</span>
@@ -1989,7 +1989,7 @@
 
 
 <div class="viewcode-block" id="VehicleClient.simSetExtForce">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.VehicleClient.simSetExtForce">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.VehicleClient.simSetExtForce">[docs]</a>
     <span class="k">def</span> <span class="nf">simSetExtForce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ext_force</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set arbitrary external forces, in World frame, NED direction. Can be used</span>
@@ -2005,13 +2005,13 @@
 
 <span class="c1"># -----------------------------------  Multirotor APIs ---------------------------------------------</span>
 <div class="viewcode-block" id="MultirotorClient">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient">[docs]</a>
 <span class="k">class</span> <span class="nc">MultirotorClient</span><span class="p">(</span><span class="n">VehicleClient</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">41451</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="mi">3600</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MultirotorClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout_value</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MultirotorClient.takeoffAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.takeoffAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.takeoffAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">takeoffAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Takeoff vehicle to 3m above ground. Vehicle should not be moving when this API is used</span>
@@ -2027,7 +2027,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.landAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.landAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.landAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">landAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Land the vehicle</span>
@@ -2043,7 +2043,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.goHomeAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.goHomeAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.goHomeAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">goHomeAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="mf">3e38</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return vehicle to Home i.e. Launch location</span>
@@ -2060,7 +2060,7 @@
 
     <span class="c1"># APIs for control</span>
 <div class="viewcode-block" id="MultirotorClient.moveByVelocityBodyFrameAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityBodyFrameAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityBodyFrameAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByVelocityBodyFrameAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vx</span><span class="p">,</span>
@@ -2097,7 +2097,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByVelocityZBodyFrameAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityZBodyFrameAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityZBodyFrameAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByVelocityZBodyFrameAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vx</span><span class="p">,</span>
@@ -2135,7 +2135,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByAngleZAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleZAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleZAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByAngleZAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">yaw</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
             <span class="s2">&quot;moveByAngleZAsync API is deprecated, use moveByRollPitchYawZAsync() API instead&quot;</span>
@@ -2146,7 +2146,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByAngleThrottleAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleThrottleAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleThrottleAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByAngleThrottleAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">throttle</span><span class="p">,</span> <span class="n">yaw_rate</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2165,7 +2165,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByVelocityAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByVelocityAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vx</span><span class="p">,</span>
@@ -2195,7 +2195,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByVelocityZAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityZAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityZAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByVelocityZAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vx</span><span class="p">,</span>
@@ -2212,7 +2212,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveOnPathAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveOnPathAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveOnPathAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveOnPathAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">path</span><span class="p">,</span>
@@ -2238,7 +2238,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveToPositionAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveToPositionAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveToPositionAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveToPositionAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
@@ -2268,7 +2268,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveToGPSAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveToGPSAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveToGPSAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveToGPSAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">latitude</span><span class="p">,</span>
@@ -2298,7 +2298,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveToZAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveToZAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveToZAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveToZAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">z</span><span class="p">,</span>
@@ -2322,7 +2322,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByManualAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByManualAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByManualAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByManualAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vx_max</span><span class="p">,</span>
@@ -2364,7 +2364,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.rotateToYawAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.rotateToYawAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.rotateToYawAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">rotateToYawAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaw</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="mf">3e38</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span>
             <span class="s2">&quot;rotateToYaw&quot;</span><span class="p">,</span> <span class="n">yaw</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="n">vehicle_name</span>
@@ -2372,7 +2372,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.rotateByYawRateAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.rotateByYawRateAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.rotateByYawRateAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">rotateByYawRateAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yaw_rate</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span>
             <span class="s2">&quot;rotateByYawRate&quot;</span><span class="p">,</span> <span class="n">yaw_rate</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span>
@@ -2380,20 +2380,20 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.hoverAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.hoverAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.hoverAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">hoverAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="s2">&quot;hover&quot;</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByRC">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByRC">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRC">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByRC</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rcdata</span><span class="o">=</span><span class="n">RCData</span><span class="p">(),</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;moveByRC&quot;</span><span class="p">,</span> <span class="n">rcdata</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="p">)</span></div>
 
 
     <span class="c1"># low - level control API</span>
 <div class="viewcode-block" id="MultirotorClient.moveByMotorPWMsAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByMotorPWMsAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByMotorPWMsAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByMotorPWMsAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">front_right_pwm</span><span class="p">,</span>
@@ -2428,7 +2428,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByRollPitchYawZAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawZAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawZAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByRollPitchYawZAsync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        - z is given in local NED frame of the vehicle.</span>
@@ -2468,7 +2468,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByRollPitchYawThrottleAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawThrottleAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawThrottleAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByRollPitchYawThrottleAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">,</span> <span class="n">throttle</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2516,7 +2516,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByRollPitchYawrateThrottleAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawrateThrottleAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawrateThrottleAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByRollPitchYawrateThrottleAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw_rate</span><span class="p">,</span> <span class="n">throttle</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2564,7 +2564,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByRollPitchYawrateZAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawrateZAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawrateZAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByRollPitchYawrateZAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw_rate</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2612,7 +2612,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByAngleRatesZAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleRatesZAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleRatesZAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByAngleRatesZAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">roll_rate</span><span class="p">,</span> <span class="n">pitch_rate</span><span class="p">,</span> <span class="n">yaw_rate</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2660,7 +2660,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.moveByAngleRatesThrottleAsync">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleRatesThrottleAsync">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleRatesThrottleAsync">[docs]</a>
     <span class="k">def</span> <span class="nf">moveByAngleRatesThrottleAsync</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">roll_rate</span><span class="p">,</span> <span class="n">pitch_rate</span><span class="p">,</span> <span class="n">yaw_rate</span><span class="p">,</span> <span class="n">throttle</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2708,7 +2708,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.setAngleRateControllerGains">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.setAngleRateControllerGains">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.setAngleRateControllerGains">[docs]</a>
     <span class="k">def</span> <span class="nf">setAngleRateControllerGains</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">angle_rate_gains</span><span class="o">=</span><span class="n">AngleRateControllerGains</span><span class="p">(),</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2731,7 +2731,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.setAngleLevelControllerGains">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.setAngleLevelControllerGains">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.setAngleLevelControllerGains">[docs]</a>
     <span class="k">def</span> <span class="nf">setAngleLevelControllerGains</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">angle_level_gains</span><span class="o">=</span><span class="n">AngleLevelControllerGains</span><span class="p">(),</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2755,7 +2755,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.setVelocityControllerGains">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.setVelocityControllerGains">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.setVelocityControllerGains">[docs]</a>
     <span class="k">def</span> <span class="nf">setVelocityControllerGains</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">velocity_gains</span><span class="o">=</span><span class="n">VelocityControllerGains</span><span class="p">(),</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2777,7 +2777,7 @@
 
 
 <div class="viewcode-block" id="MultirotorClient.setPositionControllerGains">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.setPositionControllerGains">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.setPositionControllerGains">[docs]</a>
     <span class="k">def</span> <span class="nf">setPositionControllerGains</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">position_gains</span><span class="o">=</span><span class="n">PositionControllerGains</span><span class="p">(),</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
@@ -2798,7 +2798,7 @@
 
     <span class="c1"># query vehicle state</span>
 <div class="viewcode-block" id="MultirotorClient.getMultirotorState">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.getMultirotorState">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.getMultirotorState">[docs]</a>
     <span class="k">def</span> <span class="nf">getMultirotorState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The position inside the returned MultirotorState is in the frame of the vehicle&#39;s starting point</span>
@@ -2818,7 +2818,7 @@
 
     <span class="c1"># query rotor states</span>
 <div class="viewcode-block" id="MultirotorClient.getRotorStates">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.MultirotorClient.getRotorStates">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.MultirotorClient.getRotorStates">[docs]</a>
     <span class="k">def</span> <span class="nf">getRotorStates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Used to obtain the current state of all a multirotor&#39;s rotors. The state includes the speeds,</span>
@@ -2841,13 +2841,13 @@
 
 <span class="c1"># ----------------------------------- Car APIs ---------------------------------------------</span>
 <div class="viewcode-block" id="CarClient">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.CarClient">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.CarClient">[docs]</a>
 <span class="k">class</span> <span class="nc">CarClient</span><span class="p">(</span><span class="n">VehicleClient</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">41451</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="mi">3600</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">CarClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout_value</span><span class="p">)</span>
 
 <div class="viewcode-block" id="CarClient.setCarControls">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.CarClient.setCarControls">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.CarClient.setCarControls">[docs]</a>
     <span class="k">def</span> <span class="nf">setCarControls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controls</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Control the car using throttle, steering, brake, etc.</span>
@@ -2860,7 +2860,7 @@
 
 
 <div class="viewcode-block" id="CarClient.getCarState">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.CarClient.getCarState">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.CarClient.getCarState">[docs]</a>
     <span class="k">def</span> <span class="nf">getCarState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The position inside the returned CarState is in the frame of the vehicle&#39;s starting point</span>
@@ -2876,7 +2876,7 @@
 
 
 <div class="viewcode-block" id="CarClient.getCarControls">
-<a class="viewcode-back" href="../../autonomysim.html#autonomysim.client.CarClient.getCarControls">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.client.CarClient.getCarControls">[docs]</a>
     <span class="k">def</span> <span class="nf">getCarControls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
