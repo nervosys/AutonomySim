@@ -1464,9 +1464,9 @@ class MultirotorClient(VehicleClient, object):
             vy (float): desired velocity in the Y axis of the vehicle's local NED frame.
             vz (float): desired velocity in the Z axis of the vehicle's local NED frame.
             duration (float): Desired amount of time (seconds), to send this command for
-            drivetrain (DrivetrainType, optional):
-            yaw_mode (YawMode, optional):
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            drivetrain=0 (DrivetrainType, optional):
+            yaw_mode=<YawMode> (YawMode, optional):
+            vehicle_name='' (str, optional): Name of the multirotor to send this command to
 
         Returns:
             msgpackrpc.future.Future: future. call .join() to wait for method to finish. Example: client.METHOD().join()
@@ -1498,9 +1498,9 @@ class MultirotorClient(VehicleClient, object):
             vy (float): desired velocity in the Y axis of the vehicle's local NED frame
             z (float): desired Z value (in local NED frame of the vehicle)
             duration (float): Desired amount of time (seconds), to send this command for
-            drivetrain (DrivetrainType, optional):
-            yaw_mode (YawMode, optional):
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            drivetrain=0 (DrivetrainType, optional):
+            yaw_mode=<YawMode> (YawMode, optional):
+            vehicle_name='' (str, optional): Name of the multirotor to send this command to
 
         Returns:
             msgpackrpc.future.Future: future. call .join() to wait for method to finish. Example: client.METHOD().join()
@@ -1557,9 +1557,9 @@ class MultirotorClient(VehicleClient, object):
             vy (float): desired velocity in world (NED) Y axis
             vz (float): desired velocity in world (NED) Z axis
             duration (float): Desired amount of time (seconds), to send this command for
-            drivetrain (DrivetrainType, optional):
-            yaw_mode (YawMode, optional):
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            drivetrain=0 (DrivetrainType, optional):
+            yaw_mode=<YawMode> (YawMode, optional):
+            vehicle_name='' (str, optional): Name of the multirotor to send this command to
 
         Returns:
             msgpackrpc.future.Future: future. call .join() to wait for method to finish. Example: client.METHOD().join()
@@ -1691,20 +1691,20 @@ class MultirotorClient(VehicleClient, object):
         vehicle_name="",
     ):
         """
-        - Read current RC state and use it to control the vehicles.
+        Read current RC state and use it to control the vehicles.
 
-        Parameters sets up the constraints on velocity and minimum altitude while flying. If RC state is detected to violate these constraints
+        Parameters setup the constraints on velocity and minimum altitude while flying. If RC state is detected to violate these constraints,
         then that RC state would be ignored.
 
         Args:
             vx_max (float): max velocity allowed in x direction
             vy_max (float): max velocity allowed in y direction
-            vz_max (float): max velocity allowed in z direction
             z_min (float): min z allowed for vehicle position
             duration (float): after this duration vehicle would switch back to non-manual mode
-            drivetrain (DrivetrainType): when ForwardOnly, vehicle rotates itself so that its front is always facing the direction of travel. If MaxDegreeOfFreedom then it doesn't do that (crab-like movement)
-            yaw_mode (YawMode): Specifies if vehicle should face at given angle (is_rate=False) or should be rotating around its axis at given rate (is_rate=True)
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            drivetrain=0 (DrivetrainType): when ForwardOnly, vehicle rotates itself so that its front is always facing the direction of travel. If MaxDegreeOfFreedom then it doesn't do that and instead does crab-like movement
+            yaw_mode=<YawMode> (YawMode): Specifies if vehicle should face at given angle (is_rate=False) or should be rotating around its axis at given rate (is_rate=True)
+            vehicle_name='' (str, optional): Name of the multirotor to send this command to
+
         Returns:
             msgpackrpc.future.Future: future. call .join() to wait for method to finish. Example: client.METHOD().join()
         """
@@ -2040,10 +2040,10 @@ class MultirotorClient(VehicleClient, object):
         - This function should only be called if the default angle rate control PID gains need to be modified.
 
         Args:
-            angle_rate_gains (AngleRateControllerGains):
+            angle_rate_gains=<AngleRateControllerGains> (AngleRateControllerGains):
                 - Correspond to the roll, pitch, yaw axes, defined in the body frame.
                 - Pass AngleRateControllerGains() to reset gains to default recommended values.
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            vehicle_name='' (str, optional): Name of the multirotor to send this command to
         """
         self.client.call(
             "setAngleRateControllerGains",
@@ -2061,10 +2061,10 @@ class MultirotorClient(VehicleClient, object):
         - Passing AngleLevelControllerGains() sets gains to default AutonomySim values.
 
         Args:
-            angle_level_gains (AngleLevelControllerGains):
+            angle_level_gains=<AngleLevelControllerGains> (AngleLevelControllerGains):
                 - Correspond to the roll, pitch, yaw axes, defined in the body frame.
                 - Pass AngleLevelControllerGains() to reset gains to default recommended values.
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            vehicle_name='' (str, optional): Name of the multirotor to send this command to
         """
         self.client.call(
             "setAngleLevelControllerGains",
@@ -2080,11 +2080,11 @@ class MultirotorClient(VehicleClient, object):
         - Passing VelocityControllerGains() sets gains to default AutonomySim values.
 
         Args:
-            velocity_gains (VelocityControllerGains):
+            velocity_gains=<VelocityControllerGains> (VelocityControllerGains):
                 - Correspond to the world X, Y, Z axes.
                 - Pass VelocityControllerGains() to reset gains to default recommended values.
                 - Modifying velocity controller gains will have an affect on the behaviour of moveOnSplineAsync() and moveOnSplineVelConstraintsAsync(), as they both use velocity control to track the trajectory.
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            vehicle_name='' (str, optional): Name of the multirotor to send this command to
         """
         self.client.call(
             "setVelocityControllerGains", *(velocity_gains.to_lists() + (vehicle_name,))
@@ -2098,10 +2098,10 @@ class MultirotorClient(VehicleClient, object):
         This function should only be called if the default position control PID gains need to be modified.
 
         Args:
-            position_gains (PositionControllerGains):
+            position_gains=<PositionControllerGains> (PositionControllerGains):
                 - Correspond to the X, Y, Z axes.
                 - Pass PositionControllerGains() to reset gains to default recommended values.
-            vehicle_name (str, optional): Name of the multirotor to send this command to
+            vehicle_name =''(str, optional): Name of the multirotor to send this command to
         """
         self.client.call(
             "setPositionControllerGains", *(position_gains.to_lists() + (vehicle_name,))

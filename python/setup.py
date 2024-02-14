@@ -9,7 +9,7 @@ setuptools.setup(
     version=__version__,
     author="Adam Erickson",
     author_email="opensource@nervosys.ai",
-    description="Open-source simulator for autonomous systems from Nervosys AI",
+    description="The simulation engine for autonomous systems",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/nervosys/AutonomySim",

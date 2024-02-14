@@ -10,6 +10,18 @@
 # Copyright 2024 Nervosys, LLC
 #
 
+# NOTE: to generate module rst files run from `python` directory:
+#   `sphinx-apidoc -o docs/api autonomysim`
+#   `sphinx-apidoc -o docs/api car`
+#   `sphinx-apidoc -o docs/api computer_vision`
+#   `sphinx-apidoc -o docs/api detection`
+#   `sphinx-apidoc -o docs/api environment`
+#   `sphinx-apidoc -o docs/api eventcamera_sim`
+#   `sphinx-apidoc -o docs/api imitation_learning`
+#   `sphinx-apidoc -o docs/api multirotor`
+#   `sphinx-apidoc -o docs/api reinforcement_learning`
+#
+# Now, we import `api/modules.rst` under `index.rst` `toctree`
 
 # -- Path setup --------------------------------------------------------------
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -21,8 +33,8 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-import sphinx_immaterial
-from autonomysim import __version__
+# import sphinx_immaterial
+# from autonomysim import __version__
 
 
 # -- Project information -----------------------------------------------------
@@ -50,18 +62,25 @@ release = ""
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx_immaterial",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.doctest",
+    "sphinx.ext.duration",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.inheritance_diagram",
     "sphinx.ext.todo",
     "sphinx.ext.mathjax",
     "sphinx.ext.coverage",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
+    "sphinx_immaterial",
+    # "sphinx_immaterial.apidoc.python.apigen",
 ]
+
+# python_apigen_modules = {
+#    "autonomysim": "autonomysim",
+# }
 
 autodoc_default_flags = ["members"]
 autosummary_generate = True
@@ -176,7 +195,7 @@ html_theme_options = {
         "text": "Roboto",
         "code": "Roboto Mono",
     },
-    "language": "en",
+    # "language": "en",
     "palette": [
         # {
         #     "media": "(prefers-color-scheme)",
@@ -202,7 +221,7 @@ html_theme_options = {
             },
         },
     ],
-    "favicon": "media/images/rune.svg",
+    # "favicon": "media/images/rune.svg",
     "icon": {
         "logo": "material/book-open-page-variant",
         "repo": "fontawesome/brands/git-alt",
