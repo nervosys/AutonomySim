@@ -34,6 +34,7 @@
     
         <link rel="stylesheet" type="text/css" href="../../_static/css/extra.css?v=8930c6f9" />
         <link rel="stylesheet" type="text/css" href="../../_static/sphinx_immaterial_theme.03ee1730f15ed0f74.min.css?v=e1a21df1" />
+        <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
         <link rel="stylesheet" type="text/css" href="../../_static/css/extra.css?v=8930c6f9" />
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -195,6 +196,94 @@
         <div class="md-main__inner md-grid">
           
             
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="AutonomySim Python API" class="md-nav__button md-logo" aria-label="AutonomySim Python API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+    </a>
+    AutonomySim Python API
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nervosys/AutonomySim" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AutonomySim
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          <span class="md-ellipsis">Contents:<wbr></span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Contents:" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Contents:<wbr></span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autonomysim.html" class="md-nav__link">
+        <span class="md-ellipsis">autonomysim package</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
             
           
           
@@ -209,65 +298,89 @@
   </a>
 
 <h1>Source code for autonomysim.types</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">import</span> <span class="nn">msgpackrpc</span> <span class="c1">#install as admin: pip install msgpack-rpc-python</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#pip install numpy</span>
+<span></span><code><span class="kn">import</span> <span class="nn">msgpackrpc</span>  <span class="c1"># install as admin: pip install msgpack-rpc-python</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># pip install numpy</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
+
 <div class="viewcode-block" id="MsgpackMixin">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.MsgpackMixin">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.MsgpackMixin">[docs]</a>
 <span class="k">class</span> <span class="nc">MsgpackMixin</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span>
+
         <span class="k">return</span> <span class="s2">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;&gt; &quot;</span> <span class="o">+</span> <span class="n">pformat</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MsgpackMixin.to_msgpack">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.MsgpackMixin.to_msgpack">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.MsgpackMixin.to_msgpack">[docs]</a>
     <span class="k">def</span> <span class="nf">to_msgpack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span></div>
 
 
 <div class="viewcode-block" id="MsgpackMixin.from_msgpack">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.MsgpackMixin.from_msgpack">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.MsgpackMixin.from_msgpack">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_msgpack</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">encoded</span><span class="p">):</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="c1">#obj.__dict__ = {k.decode(&#39;utf-8&#39;): (from_msgpack(v.__class__, v) if hasattr(v, &quot;__dict__&quot;) else v) for k, v in encoded.items()}</span>
-        <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="p">{</span> <span class="n">k</span> <span class="p">:</span> <span class="p">(</span><span class="n">v</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="s2">&quot;from_msgpack&quot;</span><span class="p">)(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">encoded</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-        <span class="c1">#return cls(**msgpack.unpack(encoded))</span>
+        <span class="c1"># obj.__dict__ = {k.decode(&#39;utf-8&#39;): (from_msgpack(v.__class__, v) if hasattr(v, &quot;__dict__&quot;) else v) for k, v in encoded.items()}</span>
+        <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="p">(</span>
+                <span class="n">v</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+                <span class="k">else</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="s2">&quot;from_msgpack&quot;</span><span class="p">)(</span><span class="n">v</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">encoded</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="c1"># return cls(**msgpack.unpack(encoded))</span>
         <span class="k">return</span> <span class="n">obj</span></div>
 </div>
+
 
 
 <span class="k">class</span> <span class="nc">_ImageType</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">Scene</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">0</span>
+
     <span class="k">def</span> <span class="nf">DepthPlanar</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">1</span>
+
     <span class="k">def</span> <span class="nf">DepthPerspective</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">2</span>
+
     <span class="k">def</span> <span class="nf">DepthVis</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">3</span>
+
     <span class="k">def</span> <span class="nf">DisparityNormalized</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">4</span>
+
     <span class="k">def</span> <span class="nf">Segmentation</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">5</span>
+
     <span class="k">def</span> <span class="nf">SurfaceNormals</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">6</span>
+
     <span class="k">def</span> <span class="nf">Infrared</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">7</span>
+
     <span class="k">def</span> <span class="nf">OpticalFlow</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">8</span>
+
     <span class="k">def</span> <span class="nf">OpticalFlowVis</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">9</span>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;DepthPlanner&#39;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[31m&#39;</span><span class="o">+</span><span class="s2">&quot;DepthPlanner has been (correctly) renamed to DepthPlanar. Please use ImageType.DepthPlanar instead.&quot;</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;DepthPlanner&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[31m&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;DepthPlanner has been (correctly) renamed to DepthPlanar. Please use ImageType.DepthPlanar instead.&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[0m&quot;</span>
+            <span class="p">)</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span>
 
+
 <div class="viewcode-block" id="ImageType">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.ImageType">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.ImageType">[docs]</a>
 <span class="k">class</span> <span class="nc">ImageType</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_ImageType</span><span class="p">):</span>
     <span class="n">Scene</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">DepthPlanar</span> <span class="o">=</span> <span class="mi">1</span>
@@ -281,22 +394,25 @@
     <span class="n">OpticalFlowVis</span> <span class="o">=</span> <span class="mi">9</span></div>
 
 
+
 <div class="viewcode-block" id="DrivetrainType">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.DrivetrainType">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.DrivetrainType">[docs]</a>
 <span class="k">class</span> <span class="nc">DrivetrainType</span><span class="p">:</span>
     <span class="n">MaxDegreeOfFreedom</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">ForwardOnly</span> <span class="o">=</span> <span class="mi">1</span></div>
 
 
+
 <div class="viewcode-block" id="LandedState">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.LandedState">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.LandedState">[docs]</a>
 <span class="k">class</span> <span class="nc">LandedState</span><span class="p">:</span>
     <span class="n">Landed</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">Flying</span> <span class="o">=</span> <span class="mi">1</span></div>
 
 
+
 <div class="viewcode-block" id="WeatherParameter">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.WeatherParameter">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.WeatherParameter">[docs]</a>
 <span class="k">class</span> <span class="nc">WeatherParameter</span><span class="p">:</span>
     <span class="n">Rain</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">Roadwetness</span> <span class="o">=</span> <span class="mi">1</span>
@@ -309,99 +425,139 @@
     <span class="n">Enabled</span> <span class="o">=</span> <span class="mi">8</span></div>
 
 
+
 <div class="viewcode-block" id="Vector2r">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector2r">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector2r">[docs]</a>
 <span class="k">class</span> <span class="nc">Vector2r</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">x_val</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">y_val</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">=</span> <span class="n">x_val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">=</span> <span class="n">y_val</span></div>
 
 
+
 <div class="viewcode-block" id="Vector3r">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r">[docs]</a>
 <span class="k">class</span> <span class="nc">Vector3r</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">x_val</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">y_val</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">z_val</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">z_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">=</span> <span class="n">x_val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">=</span> <span class="n">y_val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">=</span> <span class="n">z_val</span>
 
 <div class="viewcode-block" id="Vector3r.nanVector3r">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.nanVector3r">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.nanVector3r">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">nanVector3r</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Vector3r.containsNan">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.containsNan">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.containsNan">[docs]</a>
     <span class="k">def</span> <span class="nf">containsNan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;uint&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;uint&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;float&quot;</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for /: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for /: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;uint&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">*</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">*</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">*</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;uint&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;float&quot;</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for *: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for *: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span>
 
 <div class="viewcode-block" id="Vector3r.dot">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.dot">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.dot">[docs]</a>
     <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for </span><span class="se">\&#39;</span><span class="s1">dot</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for &#39;dot&#39;: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Vector3r.cross">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.cross">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.cross">[docs]</a>
     <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
             <span class="n">cross_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">())</span>
             <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="n">cross_product</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cross_product</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cross_product</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for </span><span class="se">\&#39;</span><span class="s1">cross</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for &#39;cross&#39;: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Vector3r.get_length">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.get_length">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.get_length">[docs]</a>
     <span class="k">def</span> <span class="nf">get_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span><span class="o">**</span><span class="mf">0.5</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span></div>
 
 
 <div class="viewcode-block" id="Vector3r.distance_to">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.distance_to">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.distance_to">[docs]</a>
     <span class="k">def</span> <span class="nf">distance_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span><span class="o">**</span><span class="mf">0.5</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span></div>
 
 
 <div class="viewcode-block" id="Vector3r.to_Quaternionr">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.to_Quaternionr">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.to_Quaternionr">[docs]</a>
     <span class="k">def</span> <span class="nf">to_Quaternionr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Vector3r.to_numpy_array">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Vector3r.to_numpy_array">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Vector3r.to_numpy_array">[docs]</a>
     <span class="k">def</span> <span class="nf">to_numpy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
 
@@ -410,168 +566,224 @@
         <span class="k">return</span> <span class="nb">iter</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">))</span></div>
 
 
+
 <div class="viewcode-block" id="Quaternionr">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr">[docs]</a>
 <span class="k">class</span> <span class="nc">Quaternionr</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">w_val</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">x_val</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">y_val</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">z_val</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">z_val</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">w_val</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">w_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">=</span> <span class="n">x_val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">=</span> <span class="n">y_val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">=</span> <span class="n">z_val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span> <span class="o">=</span> <span class="n">w_val</span>
 
 <div class="viewcode-block" id="Quaternionr.nanQuaternionr">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.nanQuaternionr">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.nanQuaternionr">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">nanQuaternionr</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.containsNan">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.containsNan">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.containsNan">[docs]</a>
     <span class="k">def</span> <span class="nf">containsNan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">+</span><span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">+</span><span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">+</span><span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="o">+</span><span class="n">other</span><span class="o">.</span><span class="n">w_val</span> <span class="p">)</span>
+            <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">w_val</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for +: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for +: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
             <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span>
             <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">w_val</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
-            <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span> <span class="n">w_val</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">,</span>
-                                <span class="n">x_val</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">z</span><span class="p">,</span>
-                                <span class="n">y_val</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">z</span> <span class="o">-</span> <span class="n">d</span><span class="o">*</span><span class="n">x</span><span class="p">,</span>
-                                <span class="n">z_val</span> <span class="o">=</span> <span class="n">d</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">z</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span>
+                <span class="n">w_val</span><span class="o">=</span><span class="n">a</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">c</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span>
+                <span class="n">x_val</span><span class="o">=</span><span class="n">b</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">d</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="n">c</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span>
+                <span class="n">y_val</span><span class="o">=</span><span class="n">c</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">z</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span>
+                <span class="n">z_val</span><span class="o">=</span><span class="n">d</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for *: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for *: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;uint&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;uint&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;float&quot;</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for /: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for /: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span>
 
 <div class="viewcode-block" id="Quaternionr.dot">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.dot">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.dot">[docs]</a>
     <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">z_val</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="o">*</span><span class="n">other</span><span class="o">.</span><span class="n">w_val</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">w_val</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for </span><span class="se">\&#39;</span><span class="s1">dot</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for &#39;dot&#39;: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.cross">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.cross">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.cross">[docs]</a>
     <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">*</span> <span class="n">other</span> <span class="o">-</span> <span class="n">other</span> <span class="o">*</span> <span class="bp">self</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for </span><span class="se">\&#39;</span><span class="s1">cross</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for &#39;cross&#39;: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.outer_product">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.outer_product">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.outer_product">[docs]</a>
     <span class="k">def</span> <span class="nf">outer_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">*</span><span class="n">other</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span> <span class="o">*</span> <span class="n">other</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for </span><span class="se">\&#39;</span><span class="s1">outer_product</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for &#39;outer_product&#39;: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.rotate">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.rotate">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.rotate">[docs]</a>
     <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">other</span> <span class="o">*</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;length of the other Quaternionr must be 1&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;length of the other Quaternionr must be 1&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unsupported operand type(s) for </span><span class="se">\&#39;</span><span class="s1">rotate</span><span class="se">\&#39;</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span> <span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;unsupported operand type(s) for &#39;rotate&#39;: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.conjugate">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.conjugate">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.conjugate">[docs]</a>
     <span class="k">def</span> <span class="nf">conjugate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.star">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.star">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.star">[docs]</a>
     <span class="k">def</span> <span class="nf">star</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.inverse">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.inverse">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.inverse">[docs]</a>
     <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.sgn">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.sgn">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.sgn">[docs]</a>
     <span class="k">def</span> <span class="nf">sgn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.get_length">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.get_length">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.get_length">[docs]</a>
     <span class="k">def</span> <span class="nf">get_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span><span class="o">**</span><span class="mf">0.5</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.to_numpy_array">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Quaternionr.to_numpy_array">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Quaternionr.to_numpy_array">[docs]</a>
     <span class="k">def</span> <span class="nf">to_numpy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+        <span class="p">)</span></div>
 
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">))</span></div>
 
 
+
 <div class="viewcode-block" id="Pose">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Pose">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Pose">[docs]</a>
 <span class="k">class</span> <span class="nc">Pose</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
     <span class="n">orientation</span> <span class="o">=</span> <span class="n">Quaternionr</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position_val</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">orientation_val</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation_val</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">position_val</span> <span class="o">=</span> <span class="n">position_val</span> <span class="k">if</span> <span class="n">position_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Vector3r</span><span class="p">()</span>
-        <span class="n">orientation_val</span> <span class="o">=</span> <span class="n">orientation_val</span> <span class="k">if</span> <span class="n">orientation_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Quaternionr</span><span class="p">()</span>
+        <span class="n">orientation_val</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">orientation_val</span> <span class="k">if</span> <span class="n">orientation_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Quaternionr</span><span class="p">()</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position_val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">orientation_val</span>
 
 <div class="viewcode-block" id="Pose.nanPose">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Pose.nanPose">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Pose.nanPose">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">nanPose</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">Pose</span><span class="p">(</span><span class="n">Vector3r</span><span class="o">.</span><span class="n">nanVector3r</span><span class="p">(),</span> <span class="n">Quaternionr</span><span class="o">.</span><span class="n">nanQuaternionr</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="Pose.containsNan">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Pose.containsNan">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Pose.containsNan">[docs]</a>
     <span class="k">def</span> <span class="nf">containsNan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">containsNan</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">containsNan</span><span class="p">())</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">containsNan</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">containsNan</span><span class="p">()</span></div>
 
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientation</span><span class="p">))</span></div>
 
 
+
 <div class="viewcode-block" id="CollisionInfo">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.CollisionInfo">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.CollisionInfo">[docs]</a>
 <span class="k">class</span> <span class="nc">CollisionInfo</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">has_collided</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">normal</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
@@ -583,35 +795,56 @@
     <span class="n">object_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span></div>
 
 
+
 <div class="viewcode-block" id="GeoPoint">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.GeoPoint">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.GeoPoint">[docs]</a>
 <span class="k">class</span> <span class="nc">GeoPoint</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">latitude</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">longitude</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">altitude</span> <span class="o">=</span> <span class="mf">0.0</span></div>
 
 
+
 <div class="viewcode-block" id="YawMode">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.YawMode">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.YawMode">[docs]</a>
 <span class="k">class</span> <span class="nc">YawMode</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">is_rate</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">yaw_or_rate</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_rate</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">yaw_or_rate</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_rate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">yaw_or_rate</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_rate</span> <span class="o">=</span> <span class="n">is_rate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">yaw_or_rate</span> <span class="o">=</span> <span class="n">yaw_or_rate</span></div>
 
 
+
 <div class="viewcode-block" id="RCData">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.RCData">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.RCData">[docs]</a>
 <span class="k">class</span> <span class="nc">RCData</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">timestamp</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">throttle</span><span class="p">,</span> <span class="n">yaw</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,)</span><span class="o">*</span><span class="mi">4</span> <span class="c1">#init 4 variable to 0.0</span>
-    <span class="n">switch1</span><span class="p">,</span> <span class="n">switch2</span><span class="p">,</span> <span class="n">switch3</span><span class="p">,</span> <span class="n">switch4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span><span class="o">*</span><span class="mi">4</span>
-    <span class="n">switch5</span><span class="p">,</span> <span class="n">switch6</span><span class="p">,</span> <span class="n">switch7</span><span class="p">,</span> <span class="n">switch8</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span><span class="o">*</span><span class="mi">4</span>
+    <span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">throttle</span><span class="p">,</span> <span class="n">yaw</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">4</span>  <span class="c1"># init 4 variable to 0.0</span>
+    <span class="n">switch1</span><span class="p">,</span> <span class="n">switch2</span><span class="p">,</span> <span class="n">switch3</span><span class="p">,</span> <span class="n">switch4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">switch5</span><span class="p">,</span> <span class="n">switch6</span><span class="p">,</span> <span class="n">switch7</span><span class="p">,</span> <span class="n">switch8</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span> <span class="o">*</span> <span class="mi">4</span>
     <span class="n">is_initialized</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pitch</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">roll</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">yaw</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">switch1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-                 <span class="n">switch2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">switch3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">switch4</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">switch5</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">switch6</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">switch7</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">switch8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">is_initialized</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">timestamp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">pitch</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">roll</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">throttle</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">yaw</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">switch1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">switch2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">switch3</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">switch4</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">switch5</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">switch6</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">switch7</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">switch8</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">is_initialized</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">is_valid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pitch</span> <span class="o">=</span> <span class="n">pitch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">roll</span> <span class="o">=</span> <span class="n">roll</span>
@@ -629,15 +862,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">is_valid</span></div>
 
 
+
 <div class="viewcode-block" id="ImageRequest">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.ImageRequest">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.ImageRequest">[docs]</a>
 <span class="k">class</span> <span class="nc">ImageRequest</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
-    <span class="n">camera_name</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+    <span class="n">camera_name</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
     <span class="n">image_type</span> <span class="o">=</span> <span class="n">ImageType</span><span class="o">.</span><span class="n">Scene</span>
     <span class="n">pixels_as_float</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">compress</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">pixels_as_float</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">compress</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">pixels_as_float</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="c1"># todo: in future remove str(), it&#39;s only for compatibility to pre v1.2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">camera_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">camera_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_type</span> <span class="o">=</span> <span class="n">image_type</span>
@@ -647,14 +881,14 @@
 
 
 <div class="viewcode-block" id="ImageResponse">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.ImageResponse">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.ImageResponse">[docs]</a>
 <span class="k">class</span> <span class="nc">ImageResponse</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">image_data_uint8</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">image_data_float</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">camera_position</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
     <span class="n">camera_orientation</span> <span class="o">=</span> <span class="n">Quaternionr</span><span class="p">()</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">pixels_as_float</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">compress</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">width</span> <span class="o">=</span> <span class="mi">0</span>
@@ -662,8 +896,9 @@
     <span class="n">image_type</span> <span class="o">=</span> <span class="n">ImageType</span><span class="o">.</span><span class="n">Scene</span></div>
 
 
+
 <div class="viewcode-block" id="CarControls">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.CarControls">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.CarControls">[docs]</a>
 <span class="k">class</span> <span class="nc">CarControls</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">throttle</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">steering</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -673,8 +908,16 @@
     <span class="n">manual_gear</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">gear_immediate</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">throttle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">steering</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">brake</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">handbrake</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_manual_gear</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">manual_gear</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">gear_immediate</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">throttle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">steering</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">brake</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">handbrake</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">is_manual_gear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">manual_gear</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">gear_immediate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="n">throttle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">steering</span> <span class="o">=</span> <span class="n">steering</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">brake</span> <span class="o">=</span> <span class="n">brake</span>
@@ -683,23 +926,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">manual_gear</span> <span class="o">=</span> <span class="n">manual_gear</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gear_immediate</span> <span class="o">=</span> <span class="n">gear_immediate</span>
 
-
 <div class="viewcode-block" id="CarControls.set_throttle">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.CarControls.set_throttle">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.CarControls.set_throttle">[docs]</a>
     <span class="k">def</span> <span class="nf">set_throttle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">throttle_val</span><span class="p">,</span> <span class="n">forward</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">forward</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">forward</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_manual_gear</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">manual_gear</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">throttle_val</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_manual_gear</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">manual_gear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">throttle_val</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">throttle</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">throttle_val</span><span class="p">)</span></div>
 </div>
 
 
+
 <div class="viewcode-block" id="KinematicsState">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.KinematicsState">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.KinematicsState">[docs]</a>
 <span class="k">class</span> <span class="nc">KinematicsState</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
     <span class="n">orientation</span> <span class="o">=</span> <span class="n">Quaternionr</span><span class="p">()</span>
@@ -709,8 +952,9 @@
     <span class="n">angular_acceleration</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span></div>
 
 
+
 <div class="viewcode-block" id="EnvironmentState">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.EnvironmentState">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.EnvironmentState">[docs]</a>
 <span class="k">class</span> <span class="nc">EnvironmentState</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
     <span class="n">geo_point</span> <span class="o">=</span> <span class="n">GeoPoint</span><span class="p">()</span>
@@ -720,8 +964,9 @@
     <span class="n">air_density</span> <span class="o">=</span> <span class="mf">0.0</span></div>
 
 
+
 <div class="viewcode-block" id="CarState">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.CarState">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.CarState">[docs]</a>
 <span class="k">class</span> <span class="nc">CarState</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">speed</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">gear</span> <span class="o">=</span> <span class="mi">0</span>
@@ -733,8 +978,9 @@
     <span class="n">timestamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
 
 
+
 <div class="viewcode-block" id="MultirotorState">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.MultirotorState">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.MultirotorState">[docs]</a>
 <span class="k">class</span> <span class="nc">MultirotorState</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">collision</span> <span class="o">=</span> <span class="n">CollisionInfo</span><span class="p">()</span>
     <span class="n">kinematics_estimated</span> <span class="o">=</span> <span class="n">KinematicsState</span><span class="p">()</span>
@@ -747,29 +993,33 @@
     <span class="n">can_arm</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 
+
 <div class="viewcode-block" id="RotorStates">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.RotorStates">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.RotorStates">[docs]</a>
 <span class="k">class</span> <span class="nc">RotorStates</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">timestamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">rotors</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
+
 <div class="viewcode-block" id="ProjectionMatrix">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.ProjectionMatrix">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.ProjectionMatrix">[docs]</a>
 <span class="k">class</span> <span class="nc">ProjectionMatrix</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">matrix</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
+
 <div class="viewcode-block" id="CameraInfo">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.CameraInfo">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.CameraInfo">[docs]</a>
 <span class="k">class</span> <span class="nc">CameraInfo</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span>
     <span class="n">fov</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">proj_mat</span> <span class="o">=</span> <span class="n">ProjectionMatrix</span><span class="p">()</span></div>
 
 
+
 <div class="viewcode-block" id="LidarData">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.LidarData">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.LidarData">[docs]</a>
 <span class="k">class</span> <span class="nc">LidarData</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">point_cloud</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -777,8 +1027,9 @@
     <span class="n">segmentation</span> <span class="o">=</span> <span class="mi">0</span></div>
 
 
+
 <div class="viewcode-block" id="ImuData">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.ImuData">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.ImuData">[docs]</a>
 <span class="k">class</span> <span class="nc">ImuData</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">orientation</span> <span class="o">=</span> <span class="n">Quaternionr</span><span class="p">()</span>
@@ -786,8 +1037,9 @@
     <span class="n">linear_acceleration</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span></div>
 
 
+
 <div class="viewcode-block" id="BarometerData">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.BarometerData">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.BarometerData">[docs]</a>
 <span class="k">class</span> <span class="nc">BarometerData</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">altitude</span> <span class="o">=</span> <span class="n">Quaternionr</span><span class="p">()</span>
@@ -795,16 +1047,18 @@
     <span class="n">qnh</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span></div>
 
 
+
 <div class="viewcode-block" id="MagnetometerData">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.MagnetometerData">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.MagnetometerData">[docs]</a>
 <span class="k">class</span> <span class="nc">MagnetometerData</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">magnetic_field_body</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
     <span class="n">magnetic_field_covariance</span> <span class="o">=</span> <span class="mf">0.0</span></div>
 
 
+
 <div class="viewcode-block" id="GnssFixType">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.GnssFixType">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.GnssFixType">[docs]</a>
 <span class="k">class</span> <span class="nc">GnssFixType</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">GNSS_FIX_NO_FIX</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">GNSS_FIX_TIME_ONLY</span> <span class="o">=</span> <span class="mi">1</span>
@@ -812,8 +1066,9 @@
     <span class="n">GNSS_FIX_3D_FIX</span> <span class="o">=</span> <span class="mi">3</span></div>
 
 
+
 <div class="viewcode-block" id="GnssReport">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.GnssReport">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.GnssReport">[docs]</a>
 <span class="k">class</span> <span class="nc">GnssReport</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">geo_point</span> <span class="o">=</span> <span class="n">GeoPoint</span><span class="p">()</span>
     <span class="n">eph</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -823,16 +1078,18 @@
     <span class="n">time_utc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
 
 
+
 <div class="viewcode-block" id="GpsData">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.GpsData">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.GpsData">[docs]</a>
 <span class="k">class</span> <span class="nc">GpsData</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">gnss</span> <span class="o">=</span> <span class="n">GnssReport</span><span class="p">()</span>
     <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 
+
 <div class="viewcode-block" id="DistanceSensorData">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.DistanceSensorData">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.DistanceSensorData">[docs]</a>
 <span class="k">class</span> <span class="nc">DistanceSensorData</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">distance</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -841,162 +1098,204 @@
     <span class="n">relative_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span></div>
 
 
+
 <div class="viewcode-block" id="Box2D">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Box2D">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Box2D">[docs]</a>
 <span class="k">class</span> <span class="nc">Box2D</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="nb">min</span> <span class="o">=</span> <span class="n">Vector2r</span><span class="p">()</span>
     <span class="nb">max</span> <span class="o">=</span> <span class="n">Vector2r</span><span class="p">()</span></div>
 
 
+
 <div class="viewcode-block" id="Box3D">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.Box3D">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.Box3D">[docs]</a>
 <span class="k">class</span> <span class="nc">Box3D</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="nb">min</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
     <span class="nb">max</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span></div>
 
 
+
 <div class="viewcode-block" id="DetectionInfo">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.DetectionInfo">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.DetectionInfo">[docs]</a>
 <span class="k">class</span> <span class="nc">DetectionInfo</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">geo_point</span> <span class="o">=</span> <span class="n">GeoPoint</span><span class="p">()</span>
     <span class="n">box2D</span> <span class="o">=</span> <span class="n">Box2D</span><span class="p">()</span>
     <span class="n">box3D</span> <span class="o">=</span> <span class="n">Box3D</span><span class="p">()</span>
     <span class="n">relative_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span></div>
 
-    
+
+
 <div class="viewcode-block" id="PIDGains">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.PIDGains">[docs]</a>
-<span class="k">class</span> <span class="nc">PIDGains</span><span class="p">():</span>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.PIDGains">[docs]</a>
+<span class="k">class</span> <span class="nc">PIDGains</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Struct to store values of PID gains. Used to transmit controller gain values while instantiating</span>
 <span class="sd">    AngleLevel/AngleRate/Velocity/PositionControllerGains objects.</span>
 
-<span class="sd">    Attributes:</span>
+<span class="sd">    Members:</span>
 <span class="sd">        kP (float): Proportional gain</span>
 <span class="sd">        kI (float): Integrator gain</span>
 <span class="sd">        kD (float): Derivative gain</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kp</span><span class="p">,</span> <span class="n">ki</span><span class="p">,</span> <span class="n">kd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kp</span> <span class="o">=</span> <span class="n">kp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ki</span> <span class="o">=</span> <span class="n">ki</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kd</span> <span class="o">=</span> <span class="n">kd</span>
 
 <div class="viewcode-block" id="PIDGains.to_list">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.PIDGains.to_list">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.PIDGains.to_list">[docs]</a>
     <span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kd</span><span class="p">]</span></div>
 </div>
 
 
+
 <div class="viewcode-block" id="AngleRateControllerGains">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.AngleRateControllerGains">[docs]</a>
-<span class="k">class</span> <span class="nc">AngleRateControllerGains</span><span class="p">():</span>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.AngleRateControllerGains">[docs]</a>
+<span class="k">class</span> <span class="nc">AngleRateControllerGains</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Struct to contain controller gains used by angle level PID controller</span>
 
-<span class="sd">    Attributes:</span>
+<span class="sd">    Members:</span>
 <span class="sd">        roll_gains (PIDGains): kP, kI, kD for roll axis</span>
 <span class="sd">        pitch_gains (PIDGains): kP, kI, kD for pitch axis</span>
 <span class="sd">        yaw_gains (PIDGains): kP, kI, kD for yaw axis</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roll_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">pitch_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">yaw_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">roll_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">pitch_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">yaw_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span> <span class="o">=</span> <span class="n">roll_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span> <span class="o">=</span> <span class="n">pitch_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span> <span class="o">=</span> <span class="n">yaw_gains</span>
 
 <div class="viewcode-block" id="AngleRateControllerGains.to_lists">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.AngleRateControllerGains.to_lists">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.AngleRateControllerGains.to_lists">[docs]</a>
     <span class="k">def</span> <span class="nf">to_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">],</span>
+        <span class="p">)</span></div>
 </div>
 
 
+
 <div class="viewcode-block" id="AngleLevelControllerGains">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.AngleLevelControllerGains">[docs]</a>
-<span class="k">class</span> <span class="nc">AngleLevelControllerGains</span><span class="p">():</span>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.AngleLevelControllerGains">[docs]</a>
+<span class="k">class</span> <span class="nc">AngleLevelControllerGains</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Struct to contain controller gains used by angle rate PID controller</span>
 
-<span class="sd">    Attributes:</span>
+<span class="sd">    Members:</span>
 <span class="sd">        roll_gains (PIDGains): kP, kI, kD for roll axis</span>
 <span class="sd">        pitch_gains (PIDGains): kP, kI, kD for pitch axis</span>
 <span class="sd">        yaw_gains (PIDGains): kP, kI, kD for yaw axis</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roll_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">pitch_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">yaw_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">roll_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">pitch_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">yaw_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span> <span class="o">=</span> <span class="n">roll_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span> <span class="o">=</span> <span class="n">pitch_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span> <span class="o">=</span> <span class="n">yaw_gains</span>
 
 <div class="viewcode-block" id="AngleLevelControllerGains.to_lists">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.AngleLevelControllerGains.to_lists">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.AngleLevelControllerGains.to_lists">[docs]</a>
     <span class="k">def</span> <span class="nf">to_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">roll_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yaw_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">],</span>
+        <span class="p">)</span></div>
 </div>
 
 
+
 <div class="viewcode-block" id="VelocityControllerGains">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.VelocityControllerGains">[docs]</a>
-<span class="k">class</span> <span class="nc">VelocityControllerGains</span><span class="p">():</span>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.VelocityControllerGains">[docs]</a>
+<span class="k">class</span> <span class="nc">VelocityControllerGains</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Struct to contain controller gains used by velocity PID controller</span>
 
-<span class="sd">    Attributes:</span>
+<span class="sd">    Members:</span>
 <span class="sd">        x_gains (PIDGains): kP, kI, kD for X axis</span>
 <span class="sd">        y_gains (PIDGains): kP, kI, kD for Y axis</span>
 <span class="sd">        z_gains (PIDGains): kP, kI, kD for Z axis</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">y_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">z_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">y_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">z_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span> <span class="o">=</span> <span class="n">x_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span> <span class="o">=</span> <span class="n">y_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span> <span class="o">=</span> <span class="n">z_gains</span>
 
 <div class="viewcode-block" id="VelocityControllerGains.to_lists">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.VelocityControllerGains.to_lists">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.VelocityControllerGains.to_lists">[docs]</a>
     <span class="k">def</span> <span class="nf">to_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">],</span>
+        <span class="p">)</span></div>
 </div>
 
 
+
 <div class="viewcode-block" id="PositionControllerGains">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.PositionControllerGains">[docs]</a>
-<span class="k">class</span> <span class="nc">PositionControllerGains</span><span class="p">():</span>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.PositionControllerGains">[docs]</a>
+<span class="k">class</span> <span class="nc">PositionControllerGains</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Struct to contain controller gains used by position PID controller</span>
 
-<span class="sd">    Attributes:</span>
+<span class="sd">    Members:</span>
 <span class="sd">        x_gains (PIDGains): kP, kI, kD for X axis</span>
 <span class="sd">        y_gains (PIDGains): kP, kI, kD for Y axis</span>
 <span class="sd">        z_gains (PIDGains): kP, kI, kD for Z axis</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">y_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">z_gains</span> <span class="o">=</span> <span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">y_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">z_gains</span><span class="o">=</span><span class="n">PIDGains</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span> <span class="o">=</span> <span class="n">x_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span> <span class="o">=</span> <span class="n">y_gains</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span> <span class="o">=</span> <span class="n">z_gains</span>
 
 <div class="viewcode-block" id="PositionControllerGains.to_lists">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.PositionControllerGains.to_lists">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.PositionControllerGains.to_lists">[docs]</a>
     <span class="k">def</span> <span class="nf">to_lists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kp</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">ki</span><span class="p">],</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_gains</span><span class="o">.</span><span class="n">kd</span><span class="p">],</span>
+        <span class="p">)</span></div>
 </div>
 
 
+
 <div class="viewcode-block" id="MeshPositionVertexBuffersResponse">
-<a class="viewcode-back" href="../../index.html#autonomysim.types.MeshPositionVertexBuffersResponse">[docs]</a>
+<a class="viewcode-back" href="../../autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse">[docs]</a>
 <span class="k">class</span> <span class="nc">MeshPositionVertexBuffersResponse</span><span class="p">(</span><span class="n">MsgpackMixin</span><span class="p">):</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">Vector3r</span><span class="p">()</span>
     <span class="n">orientation</span> <span class="o">=</span> <span class="n">Quaternionr</span><span class="p">()</span>
     <span class="n">vertices</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></div>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
 
 </code></pre></div>
 
