@@ -14,7 +14,7 @@ This page documents `autonomysim`_, the Python package of `AutonomySim`_.
    :maxdepth: 4
    :caption: Contents:
 
-   autonomysim
+   api/autonomysim
 
 Indices and Tables
 ==================
