@@ -268,8 +268,8 @@
   
   
     <li class="md-nav__item">
-      <a href="api/autonomysim.html" class="md-nav__link">
-        <span class="md-ellipsis">autonomysim package</span>
+      <a href="api/modules.html" class="md-nav__link">
+        <span class="md-ellipsis">autonomysim</span>
       </a>
     </li>
   
@@ -303,495 +303,73 @@
   </a>
 
 <h1 id="autonomysim">AutonomySim<a class="headerlink" href="#autonomysim" title="Link to this heading">¶</a></h1>
-<p>This page documents <a class="reference external" href="https://github.com/nervosys/AutonomySim">autonomysim</a>, the Python package of <a class="reference external" href="https://github.com/nervosys/AutonomySim">AutonomySim</a>.</p>
+<p>This page documents <a class="reference external" href="https://pypi.org/project/autonomysim/">autonomysim</a>, the Python package of <a class="reference external" href="https://github.com/nervosys/AutonomySim">Nervosys AutonomySim</a>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/autonomysim.html">autonomysim package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/autonomysim.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/autonomysim.html#module-autonomysim.client">autonomysim.client module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.CarClient">autonomysim.client.CarClient</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.CarClient.getCarControls">getCarControls</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.CarClient.getCarState">getCarState</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.CarClient.setCarControls">setCarControls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">autonomysim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/autonomysim.html">autonomysim package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.ai.html">autonomysim.ai package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.gym.html">autonomysim.gym package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.sensors.html">autonomysim.sensors package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.unreal.html">autonomysim.unreal package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.utils.html">autonomysim.utils package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient">autonomysim.client.MultirotorClient</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.getMultirotorState">getMultirotorState</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.getRotorStates">getRotorStates</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.goHomeAsync">goHomeAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.hoverAsync">hoverAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.landAsync">landAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleRatesThrottleAsync">moveByAngleRatesThrottleAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleRatesZAsync">moveByAngleRatesZAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleThrottleAsync">moveByAngleThrottleAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByAngleZAsync">moveByAngleZAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByManualAsync">moveByManualAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByMotorPWMsAsync">moveByMotorPWMsAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRC">moveByRC</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawThrottleAsync">moveByRollPitchYawThrottleAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawZAsync">moveByRollPitchYawZAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawrateThrottleAsync">moveByRollPitchYawrateThrottleAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByRollPitchYawrateZAsync">moveByRollPitchYawrateZAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityAsync">moveByVelocityAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityBodyFrameAsync">moveByVelocityBodyFrameAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityZAsync">moveByVelocityZAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveByVelocityZBodyFrameAsync">moveByVelocityZBodyFrameAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveOnPathAsync">moveOnPathAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveToGPSAsync">moveToGPSAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveToPositionAsync">moveToPositionAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.moveToZAsync">moveToZAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.rotateByYawRateAsync">rotateByYawRateAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.rotateToYawAsync">rotateToYawAsync</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.setAngleLevelControllerGains">setAngleLevelControllerGains</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.setAngleRateControllerGains">setAngleRateControllerGains</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.setPositionControllerGains">setPositionControllerGains</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.setVelocityControllerGains">setVelocityControllerGains</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.MultirotorClient.takeoffAsync">takeoffAsync</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#module-autonomysim.clients">autonomysim.clients module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.clients.CarClient">autonomysim.clients.CarClient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.clients.MultirotorClient">autonomysim.clients.MultirotorClient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.clients.VehicleClient">autonomysim.clients.VehicleClient</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient">autonomysim.client.VehicleClient</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.armDisarm">armDisarm</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.cancelLastTask">cancelLastTask</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.confirmConnection">confirmConnection</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.enableApiControl">enableApiControl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getBarometerData">getBarometerData</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getClientVersion">getClientVersion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getDistanceSensorData">getDistanceSensorData</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getGpsData">getGpsData</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getHomeGeoPoint">getHomeGeoPoint</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getImuData">getImuData</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getLidarData">getLidarData</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getMagnetometerData">getMagnetometerData</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getMinRequiredClientVersion">getMinRequiredClientVersion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getMinRequiredServerVersion">getMinRequiredServerVersion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getServerVersion">getServerVersion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.getSettingsString">getSettingsString</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.isApiControlEnabled">isApiControlEnabled</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.isRecording">isRecording</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.listVehicles">listVehicles</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.ping">ping</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.reset">reset</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simAddDetectionFilterMeshName">simAddDetectionFilterMeshName</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simAddVehicle">simAddVehicle</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simClearDetectionMeshNames">simClearDetectionMeshNames</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simContinueForFrames">simContinueForFrames</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simContinueForTime">simContinueForTime</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simCreateVoxelGrid">simCreateVoxelGrid</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simDestroyObject">simDestroyObject</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simEnableFocusPlane">simEnableFocusPlane</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simEnableManualFocus">simEnableManualFocus</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simEnableWeather">simEnableWeather</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simFlushPersistentMarkers">simFlushPersistentMarkers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetCameraInfo">simGetCameraInfo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetCollisionInfo">simGetCollisionInfo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetCurrentFieldOfView">simGetCurrentFieldOfView</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetDetections">simGetDetections</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetDistortionParams">simGetDistortionParams</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetFilmbackSettings">simGetFilmbackSettings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetFocalLength">simGetFocalLength</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetFocusAperture">simGetFocusAperture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetFocusDistance">simGetFocusDistance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetGroundTruthEnvironment">simGetGroundTruthEnvironment</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetGroundTruthKinematics">simGetGroundTruthKinematics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetImage">simGetImage</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetImages">simGetImages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetLensSettings">simGetLensSettings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetLidarSegmentation">simGetLidarSegmentation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetMeshPositionVertexBuffers">simGetMeshPositionVertexBuffers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetObjectPose">simGetObjectPose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetObjectScale">simGetObjectScale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetPresetFilmbackSettings">simGetPresetFilmbackSettings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetPresetLensSettings">simGetPresetLensSettings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetSegmentationObjectID">simGetSegmentationObjectID</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetVehiclePose">simGetVehiclePose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simGetWorldExtents">simGetWorldExtents</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simIsPause">simIsPause</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simListAssets">simListAssets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simListSceneObjects">simListSceneObjects</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simLoadLevel">simLoadLevel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPause">simPause</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPlotArrows">simPlotArrows</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPlotLineList">simPlotLineList</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPlotLineStrip">simPlotLineStrip</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPlotPoints">simPlotPoints</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPlotStrings">simPlotStrings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPlotTransforms">simPlotTransforms</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPlotTransformsWithNames">simPlotTransformsWithNames</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simPrintLogMessage">simPrintLogMessage</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simRunConsoleCommand">simRunConsoleCommand</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetCameraFov">simSetCameraFov</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetCameraPose">simSetCameraPose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetDetectionFilterRadius">simSetDetectionFilterRadius</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetDistortionParam">simSetDistortionParam</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetDistortionParams">simSetDistortionParams</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetExtForce">simSetExtForce</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetFilmbackSettings">simSetFilmbackSettings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetFocalLength">simSetFocalLength</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetFocusAperture">simSetFocusAperture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetFocusDistance">simSetFocusDistance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetKinematics">simSetKinematics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetLightIntensity">simSetLightIntensity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectMaterial">simSetObjectMaterial</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectMaterialFromTexture">simSetObjectMaterialFromTexture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectPose">simSetObjectPose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetObjectScale">simSetObjectScale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetPresetFilmbackSettings">simSetPresetFilmbackSettings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetPresetLensSettings">simSetPresetLensSettings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetSegmentationObjectID">simSetSegmentationObjectID</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetTimeOfDay">simSetTimeOfDay</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetTraceLine">simSetTraceLine</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetVehiclePose">simSetVehiclePose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetWeatherParameter">simSetWeatherParameter</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSetWind">simSetWind</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSpawnObject">simSpawnObject</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simSwapTextures">simSwapTextures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simTestLineOfSightBetweenPoints">simTestLineOfSightBetweenPoints</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.simTestLineOfSightToPoint">simTestLineOfSightToPoint</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.startRecording">startRecording</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.client.VehicleClient.stopRecording">stopRecording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#module-autonomysim.types">autonomysim.types module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.AngleLevelControllerGains">autonomysim.types.AngleLevelControllerGains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.AngleRateControllerGains">autonomysim.types.AngleRateControllerGains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.BarometerData">autonomysim.types.BarometerData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box2D">autonomysim.types.Box2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box3D">autonomysim.types.Box3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CameraInfo">autonomysim.types.CameraInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls">autonomysim.types.CarControls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState">autonomysim.types.CarState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo">autonomysim.types.CollisionInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DetectionInfo">autonomysim.types.DetectionInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DistanceSensorData">autonomysim.types.DistanceSensorData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DrivetrainType">autonomysim.types.DrivetrainType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState">autonomysim.types.EnvironmentState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GeoPoint">autonomysim.types.GeoPoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssFixType">autonomysim.types.GnssFixType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport">autonomysim.types.GnssReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GpsData">autonomysim.types.GpsData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageRequest">autonomysim.types.ImageRequest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse">autonomysim.types.ImageResponse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType">autonomysim.types.ImageType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImuData">autonomysim.types.ImuData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState">autonomysim.types.KinematicsState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LandedState">autonomysim.types.LandedState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LidarData">autonomysim.types.LidarData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MagnetometerData">autonomysim.types.MagnetometerData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse">autonomysim.types.MeshPositionVertexBuffersResponse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MsgpackMixin">autonomysim.types.MsgpackMixin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState">autonomysim.types.MultirotorState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.PIDGains">autonomysim.types.PIDGains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Pose">autonomysim.types.Pose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.PositionControllerGains">autonomysim.types.PositionControllerGains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ProjectionMatrix">autonomysim.types.ProjectionMatrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr">autonomysim.types.Quaternionr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData">autonomysim.types.RCData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RotorStates">autonomysim.types.RotorStates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector2r">autonomysim.types.Vector2r</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r">autonomysim.types.Vector3r</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.VelocityControllerGains">autonomysim.types.VelocityControllerGains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter">autonomysim.types.WeatherParameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.YawMode">autonomysim.types.YawMode</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#module-autonomysim">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api/autonomysim.html#autonomysim-pfm-module">autonomysim.pfm module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/autonomysim.html#module-autonomysim.types">autonomysim.types module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.AngleLevelControllerGains">autonomysim.types.AngleLevelControllerGains</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.AngleLevelControllerGains.to_lists">to_lists</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.AngleRateControllerGains">autonomysim.types.AngleRateControllerGains</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.AngleRateControllerGains.to_lists">to_lists</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.BarometerData">autonomysim.types.BarometerData</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.BarometerData.altitude">altitude</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.BarometerData.pressure">pressure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.BarometerData.qnh">qnh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.BarometerData.time_stamp">time_stamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box2D">autonomysim.types.Box2D</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box2D.max">max</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box2D.min">min</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box3D">autonomysim.types.Box3D</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box3D.max">max</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Box3D.min">min</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CameraInfo">autonomysim.types.CameraInfo</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CameraInfo.fov">fov</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CameraInfo.pose">pose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CameraInfo.proj_mat">proj_mat</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls">autonomysim.types.CarControls</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.brake">brake</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.gear_immediate">gear_immediate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.handbrake">handbrake</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.is_manual_gear">is_manual_gear</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.manual_gear">manual_gear</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.set_throttle">set_throttle</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.steering">steering</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarControls.throttle">throttle</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState">autonomysim.types.CarState</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.collision">collision</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.gear">gear</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.handbrake">handbrake</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.kinematics_estimated">kinematics_estimated</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.maxrpm">maxrpm</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.rpm">rpm</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.speed">speed</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CarState.timestamp">timestamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo">autonomysim.types.CollisionInfo</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.has_collided">has_collided</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.impact_point">impact_point</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.normal">normal</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.object_id">object_id</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.object_name">object_name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.penetration_depth">penetration_depth</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.position">position</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.CollisionInfo.time_stamp">time_stamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DetectionInfo">autonomysim.types.DetectionInfo</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DetectionInfo.box2D">box2D</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DetectionInfo.box3D">box3D</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DetectionInfo.geo_point">geo_point</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DetectionInfo.name">name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DetectionInfo.relative_pose">relative_pose</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DistanceSensorData">autonomysim.types.DistanceSensorData</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DistanceSensorData.distance">distance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DistanceSensorData.max_distance">max_distance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DistanceSensorData.min_distance">min_distance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DistanceSensorData.relative_pose">relative_pose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DistanceSensorData.time_stamp">time_stamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DrivetrainType">autonomysim.types.DrivetrainType</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DrivetrainType.ForwardOnly">ForwardOnly</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.DrivetrainType.MaxDegreeOfFreedom">MaxDegreeOfFreedom</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState">autonomysim.types.EnvironmentState</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState.air_density">air_density</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState.air_pressure">air_pressure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState.geo_point">geo_point</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState.gravity">gravity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState.position">position</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.EnvironmentState.temperature">temperature</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GeoPoint">autonomysim.types.GeoPoint</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GeoPoint.altitude">altitude</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GeoPoint.latitude">latitude</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GeoPoint.longitude">longitude</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssFixType">autonomysim.types.GnssFixType</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssFixType.GNSS_FIX_2D_FIX">GNSS_FIX_2D_FIX</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssFixType.GNSS_FIX_3D_FIX">GNSS_FIX_3D_FIX</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssFixType.GNSS_FIX_NO_FIX">GNSS_FIX_NO_FIX</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssFixType.GNSS_FIX_TIME_ONLY">GNSS_FIX_TIME_ONLY</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport">autonomysim.types.GnssReport</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport.eph">eph</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport.epv">epv</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport.fix_type">fix_type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport.geo_point">geo_point</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport.time_utc">time_utc</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GnssReport.velocity">velocity</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GpsData">autonomysim.types.GpsData</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GpsData.gnss">gnss</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GpsData.is_valid">is_valid</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.GpsData.time_stamp">time_stamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageRequest">autonomysim.types.ImageRequest</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageRequest.camera_name">camera_name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageRequest.compress">compress</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageRequest.image_type">image_type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageRequest.pixels_as_float">pixels_as_float</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse">autonomysim.types.ImageResponse</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.camera_orientation">camera_orientation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.camera_position">camera_position</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.compress">compress</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.height">height</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.image_data_float">image_data_float</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.image_data_uint8">image_data_uint8</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.image_type">image_type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.message">message</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.pixels_as_float">pixels_as_float</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.time_stamp">time_stamp</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageResponse.width">width</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType">autonomysim.types.ImageType</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.DepthPerspective">DepthPerspective</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.DepthPlanar">DepthPlanar</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.DepthVis">DepthVis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.DisparityNormalized">DisparityNormalized</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.Infrared">Infrared</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.OpticalFlow">OpticalFlow</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.OpticalFlowVis">OpticalFlowVis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.Scene">Scene</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.Segmentation">Segmentation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImageType.SurfaceNormals">SurfaceNormals</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImuData">autonomysim.types.ImuData</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImuData.angular_velocity">angular_velocity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImuData.linear_acceleration">linear_acceleration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImuData.orientation">orientation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ImuData.time_stamp">time_stamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState">autonomysim.types.KinematicsState</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState.angular_acceleration">angular_acceleration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState.angular_velocity">angular_velocity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState.linear_acceleration">linear_acceleration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState.linear_velocity">linear_velocity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState.orientation">orientation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.KinematicsState.position">position</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LandedState">autonomysim.types.LandedState</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LandedState.Flying">Flying</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LandedState.Landed">Landed</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LidarData">autonomysim.types.LidarData</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LidarData.point_cloud">point_cloud</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LidarData.pose">pose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LidarData.segmentation">segmentation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.LidarData.time_stamp">time_stamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MagnetometerData">autonomysim.types.MagnetometerData</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MagnetometerData.magnetic_field_body">magnetic_field_body</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MagnetometerData.magnetic_field_covariance">magnetic_field_covariance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MagnetometerData.time_stamp">time_stamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse">autonomysim.types.MeshPositionVertexBuffersResponse</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse.indices">indices</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse.name">name</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse.orientation">orientation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse.position">position</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MeshPositionVertexBuffersResponse.vertices">vertices</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MsgpackMixin">autonomysim.types.MsgpackMixin</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MsgpackMixin.from_msgpack">from_msgpack</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MsgpackMixin.to_msgpack">to_msgpack</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState">autonomysim.types.MultirotorState</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.can_arm">can_arm</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.collision">collision</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.gps_location">gps_location</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.kinematics_estimated">kinematics_estimated</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.landed_state">landed_state</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.rc_data">rc_data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.ready">ready</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.ready_message">ready_message</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.MultirotorState.timestamp">timestamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.PIDGains">autonomysim.types.PIDGains</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.PIDGains.to_list">to_list</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Pose">autonomysim.types.Pose</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Pose.containsNan">containsNan</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Pose.nanPose">nanPose</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Pose.orientation">orientation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Pose.position">position</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.PositionControllerGains">autonomysim.types.PositionControllerGains</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.PositionControllerGains.to_lists">to_lists</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ProjectionMatrix">autonomysim.types.ProjectionMatrix</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.ProjectionMatrix.matrix">matrix</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr">autonomysim.types.Quaternionr</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.conjugate">conjugate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.containsNan">containsNan</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.cross">cross</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.dot">dot</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.get_length">get_length</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.inverse">inverse</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.nanQuaternionr">nanQuaternionr</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.outer_product">outer_product</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.rotate">rotate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.sgn">sgn</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.star">star</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.to_numpy_array">to_numpy_array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.w_val">w_val</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.x_val">x_val</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.y_val">y_val</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Quaternionr.z_val">z_val</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData">autonomysim.types.RCData</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.is_initialized">is_initialized</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.is_valid">is_valid</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.pitch">pitch</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.roll">roll</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch1">switch1</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch2">switch2</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch3">switch3</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch4">switch4</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch5">switch5</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch6">switch6</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch7">switch7</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.switch8">switch8</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.throttle">throttle</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.timestamp">timestamp</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RCData.yaw">yaw</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RotorStates">autonomysim.types.RotorStates</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RotorStates.rotors">rotors</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.RotorStates.timestamp">timestamp</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector2r">autonomysim.types.Vector2r</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector2r.x_val">x_val</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector2r.y_val">y_val</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r">autonomysim.types.Vector3r</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.containsNan">containsNan</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.cross">cross</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.distance_to">distance_to</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.dot">dot</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.get_length">get_length</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.nanVector3r">nanVector3r</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.to_Quaternionr">to_Quaternionr</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.to_numpy_array">to_numpy_array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.x_val">x_val</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.y_val">y_val</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.Vector3r.z_val">z_val</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.VelocityControllerGains">autonomysim.types.VelocityControllerGains</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.VelocityControllerGains.to_lists">to_lists</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter">autonomysim.types.WeatherParameter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.Dust">Dust</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.Enabled">Enabled</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.Fog">Fog</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.MapleLeaf">MapleLeaf</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.Rain">Rain</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.RoadLeaf">RoadLeaf</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.RoadSnow">RoadSnow</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.Roadwetness">Roadwetness</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.WeatherParameter.Snow">Snow</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.YawMode">autonomysim.types.YawMode</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.YawMode.is_rate">is_rate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/autonomysim.html#autonomysim.types.YawMode.yaw_or_rate">yaw_or_rate</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/autonomysim.html#module-autonomysim.utils">autonomysim.utils module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.get_pfm_array">autonomysim.utils.get_pfm_array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.get_public_fields">autonomysim.utils.get_public_fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.list_to_2d_float_array">autonomysim.utils.list_to_2d_float_array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.read_pfm">autonomysim.utils.read_pfm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.string_to_float_array">autonomysim.utils.string_to_float_array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.string_to_uint8_array">autonomysim.utils.string_to_uint8_array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.to_dict">autonomysim.utils.to_dict</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.to_eularian_angles">autonomysim.utils.to_eularian_angles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.to_quaternion">autonomysim.utils.to_quaternion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.to_str">autonomysim.utils.to_str</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.wait_key">autonomysim.utils.wait_key</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.write_file">autonomysim.utils.write_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.write_pfm">autonomysim.utils.write_pfm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/autonomysim.html#autonomysim.utils.write_png">autonomysim.utils.write_png</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api/autonomysim.html#module-autonomysim">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -831,13 +409,13 @@
       
       
         
-        <a href="api/autonomysim.html" class="md-footer__link md-footer__link--next" aria-label="Next: autonomysim package" rel="next">
+        <a href="api/modules.html" class="md-footer__link md-footer__link--next" aria-label="Next: autonomysim" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              autonomysim package
+              autonomysim
             </div>
           </div>
           <div class="md-footer__button md-icon">

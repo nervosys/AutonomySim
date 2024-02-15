@@ -263,8 +263,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/autonomysim.html" class="md-nav__link">
-        <span class="md-ellipsis">autonomysim package</span>
+      <a href="../../api/modules.html" class="md-nav__link">
+        <span class="md-ellipsis">autonomysim</span>
       </a>
     </li>
   
@@ -298,141 +298,122 @@
   </a>
 
 <h1>Source code for autonomysim.utils</h1><div class="highlight"><pre>
-<span></span><code><span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#pip install numpy</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">import</span> <span class="nn">types</span>
-<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<div class="viewcode-block" id="string_to_uint8_array">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.string_to_uint8_array">[docs]</a>
-<span class="k">def</span> <span class="nf">string_to_uint8_array</span><span class="p">(</span><span class="n">bstr</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">bstr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span></div>
+<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Utilities</span>
+<span class="s2">&quot;&quot;&quot;</span>
 
-    
-<div class="viewcode-block" id="string_to_float_array">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.string_to_float_array">[docs]</a>
-<span class="k">def</span> <span class="nf">string_to_float_array</span><span class="p">(</span><span class="n">bstr</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">bstr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
 
-    
-<div class="viewcode-block" id="list_to_2d_float_array">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.list_to_2d_float_array">[docs]</a>
-<span class="k">def</span> <span class="nf">list_to_2d_float_array</span><span class="p">(</span><span class="n">flst</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">flst</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span></div>
+<div class="viewcode-block" id="SetupPath">
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.SetupPath">[docs]</a>
+<span class="k">class</span> <span class="nc">SetupPath</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Import this module to automatically setup path to local AutonomySim module.</span>
 
-    
-<div class="viewcode-block" id="get_pfm_array">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.get_pfm_array">[docs]</a>
-<span class="k">def</span> <span class="nf">get_pfm_array</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">list_to_2d_float_array</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image_data_float</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
+<span class="sd">    This module first tries to see if AutonomySim module is installed via `pip`.</span>
+<span class="sd">    If it does, we don&#39;t do anything else. Else, we look up grand-parent folder to</span>
+<span class="sd">    see if it has AutonomySim folder and if it does then we add that in the `sys.path`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addAutonomySimModulePath</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SetupPath.getDirLevels">
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.SetupPath.getDirLevels">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">getDirLevels</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">path_norm</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">path_norm</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="SetupPath.getCurrentPath">
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.SetupPath.getCurrentPath">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">getCurrentPath</span><span class="p">():</span>
+        <span class="n">cur_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">cur_filepath</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SetupPath.getGrandParentDir">
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.SetupPath.getGrandParentDir">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">getGrandParentDir</span><span class="p">():</span>
+        <span class="n">cur_path</span> <span class="o">=</span> <span class="n">SetupPath</span><span class="o">.</span><span class="n">getCurrentPath</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">SetupPath</span><span class="o">.</span><span class="n">getDirLevels</span><span class="p">(</span><span class="n">cur_path</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">cur_path</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="SetupPath.getParentDir">
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.SetupPath.getParentDir">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">getParentDir</span><span class="p">():</span>
+        <span class="n">cur_path</span> <span class="o">=</span> <span class="n">SetupPath</span><span class="o">.</span><span class="n">getCurrentPath</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">SetupPath</span><span class="o">.</span><span class="n">getDirLevels</span><span class="p">(</span><span class="n">cur_path</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">cur_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="SetupPath.addAutonomySimModulePath">
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.SetupPath.addAutonomySimModulePath">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">addAutonomySimModulePath</span><span class="p">():</span>
+        <span class="c1"># if AutonomySim module is installed then don&#39;t do anything else</span>
+        <span class="c1"># import pkgutil</span>
+        <span class="c1"># autonomysim_loader = pkgutil.find_loader(&#39;AutonomySim&#39;)</span>
+        <span class="c1"># if autonomysim_loader is not None:</span>
+        <span class="c1">#    return</span>
+
+        <span class="n">parent</span> <span class="o">=</span> <span class="n">SetupPath</span><span class="o">.</span><span class="n">getParentDir</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">autonomysim_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s2">&quot;AutonomySim&quot;</span><span class="p">)</span>
+            <span class="n">client_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">autonomysim_path</span><span class="p">,</span> <span class="s2">&quot;client.py&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">client_path</span><span class="p">):</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;AutonomySim module not found in parent folder. Using installed package (pip install AutonomySim).&quot;</span>
+            <span class="p">)</span></div>
+</div>
+
 
 
 <div class="viewcode-block" id="get_public_fields">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.get_public_fields">[docs]</a>
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.get_public_fields">[docs]</a>
 <span class="k">def</span> <span class="nf">get_public_fields</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-                            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> 
-                            <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isbuiltin</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
-                            <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isfunction</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
-                            <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">ismethod</span><span class="p">(</span><span class="n">attr</span><span class="p">))]</span></div>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">attr</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
+            <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isbuiltin</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isfunction</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">ismethod</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="to_dict">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_dict">[docs]</a>
-<span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">([</span><span class="n">attr</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)]</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">get_public_fields</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span></div>
 
-    
-<div class="viewcode-block" id="to_str">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_str">[docs]</a>
-<span class="k">def</span> <span class="nf">to_str</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">to_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="write_file">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.write_file">[docs]</a>
-<span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">bstr</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Write binary data to file.</span>
-<span class="sd">    Used for writing compressed PNG images</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">afile</span><span class="p">:</span>
-        <span class="n">afile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bstr</span><span class="p">)</span></div>
-
-
-<span class="c1"># helper method for converting getOrientation to roll/pitch/yaw</span>
-<span class="c1"># https:#en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles</span>
-    
-<div class="viewcode-block" id="to_eularian_angles">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_eularian_angles">[docs]</a>
-<span class="k">def</span> <span class="nf">to_eularian_angles</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">z_val</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">y_val</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">x_val</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">w_val</span>
-    <span class="n">ysqr</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span>
-
-    <span class="c1"># roll (x-axis rotation)</span>
-    <span class="n">t0</span> <span class="o">=</span> <span class="o">+</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
-    <span class="n">t1</span> <span class="o">=</span> <span class="o">+</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">ysqr</span><span class="p">)</span>
-    <span class="n">roll</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">)</span>
-
-    <span class="c1"># pitch (y-axis rotation)</span>
-    <span class="n">t2</span> <span class="o">=</span> <span class="o">+</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">z</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">t2</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">):</span>
-        <span class="n">t2</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">t2</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">):</span>
-        <span class="n">t2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
-    <span class="n">pitch</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
-
-    <span class="c1"># yaw (z-axis rotation)</span>
-    <span class="n">t3</span> <span class="o">=</span> <span class="o">+</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">t4</span> <span class="o">=</span> <span class="o">+</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">ysqr</span> <span class="o">+</span> <span class="n">z</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
-    <span class="n">yaw</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span> <span class="n">t4</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">yaw</span><span class="p">)</span></div>
-
-    
-<div class="viewcode-block" id="to_quaternion">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.to_quaternion">[docs]</a>
-<span class="k">def</span> <span class="nf">to_quaternion</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">yaw</span><span class="p">):</span>
-    <span class="n">t0</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">t1</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">t2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">roll</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">t3</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">roll</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">t4</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pitch</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">t5</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pitch</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
-
-    <span class="n">q</span> <span class="o">=</span> <span class="n">Quaternionr</span><span class="p">()</span>
-    <span class="n">q</span><span class="o">.</span><span class="n">w_val</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">*</span> <span class="n">t2</span> <span class="o">*</span> <span class="n">t4</span> <span class="o">+</span> <span class="n">t1</span> <span class="o">*</span> <span class="n">t3</span> <span class="o">*</span> <span class="n">t5</span> <span class="c1">#w</span>
-    <span class="n">q</span><span class="o">.</span><span class="n">x_val</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">*</span> <span class="n">t3</span> <span class="o">*</span> <span class="n">t4</span> <span class="o">-</span> <span class="n">t1</span> <span class="o">*</span> <span class="n">t2</span> <span class="o">*</span> <span class="n">t5</span> <span class="c1">#x</span>
-    <span class="n">q</span><span class="o">.</span><span class="n">y_val</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">*</span> <span class="n">t2</span> <span class="o">*</span> <span class="n">t5</span> <span class="o">+</span> <span class="n">t1</span> <span class="o">*</span> <span class="n">t3</span> <span class="o">*</span> <span class="n">t4</span> <span class="c1">#y</span>
-    <span class="n">q</span><span class="o">.</span><span class="n">z_val</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">*</span> <span class="n">t2</span> <span class="o">*</span> <span class="n">t4</span> <span class="o">-</span> <span class="n">t0</span> <span class="o">*</span> <span class="n">t3</span> <span class="o">*</span> <span class="n">t5</span> <span class="c1">#z</span>
-    <span class="k">return</span> <span class="n">q</span></div>
-
-    
 <div class="viewcode-block" id="wait_key">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.wait_key">[docs]</a>
-<span class="k">def</span> <span class="nf">wait_key</span><span class="p">(</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Wait for a key press on the console and return it. &#39;&#39;&#39;</span>
-    <span class="k">if</span> <span class="n">message</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.wait_key">[docs]</a>
+<span class="k">def</span> <span class="nf">wait_key</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wait for a key press on the console and return it.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">message</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;nt&quot;</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">msvcrt</span>
+
         <span class="n">result</span> <span class="o">=</span> <span class="n">msvcrt</span><span class="o">.</span><span class="n">getch</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">termios</span>
-        <span class="n">fd</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()</span>
 
+        <span class="n">fd</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()</span>
         <span class="n">oldterm</span> <span class="o">=</span> <span class="n">termios</span><span class="o">.</span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
         <span class="n">newattr</span> <span class="o">=</span> <span class="n">termios</span><span class="o">.</span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
         <span class="n">newattr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">newattr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">termios</span><span class="o">.</span><span class="n">ICANON</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">termios</span><span class="o">.</span><span class="n">ECHO</span>
@@ -447,94 +428,46 @@
 
     <span class="k">return</span> <span class="n">result</span></div>
 
-    
-<div class="viewcode-block" id="read_pfm">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.read_pfm">[docs]</a>
-<span class="k">def</span> <span class="nf">read_pfm</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Read a pfm file &quot;&quot;&quot;</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
-
-    <span class="n">color</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">width</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">scale</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">endian</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="n">header</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-    <span class="n">header</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">header</span> <span class="o">==</span> <span class="s1">&#39;PF&#39;</span><span class="p">:</span>
-        <span class="n">color</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">elif</span> <span class="n">header</span> <span class="o">==</span> <span class="s1">&#39;Pf&#39;</span><span class="p">:</span>
-        <span class="n">color</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Not a PFM file.&#39;</span><span class="p">)</span>
-
-    <span class="n">temp_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
-    <span class="n">dim_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(\d+)\s(\d+)\s$&#39;</span><span class="p">,</span> <span class="n">temp_str</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">dim_match</span><span class="p">:</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">dim_match</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Malformed PFM header.&#39;</span><span class="p">)</span>
-
-    <span class="n">scale</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
-    <span class="k">if</span> <span class="n">scale</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># little-endian</span>
-        <span class="n">endian</span> <span class="o">=</span> <span class="s1">&#39;&lt;&#39;</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="o">-</span><span class="n">scale</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">endian</span> <span class="o">=</span> <span class="s1">&#39;&gt;&#39;</span> <span class="c1"># big-endian</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">endian</span> <span class="o">+</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
-    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">color</span> <span class="k">else</span> <span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
-    <span class="c1"># DEY: I don&#39;t know why this was there.</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    
-    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">scale</span></div>
 
 
-<div class="viewcode-block" id="write_pfm">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.write_pfm">[docs]</a>
-<span class="k">def</span> <span class="nf">write_pfm</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Write a pfm file &quot;&quot;&quot;</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="generate_color_palette">
+<a class="viewcode-back" href="../../api/autonomysim.utils.html#autonomysim.utils.generate_color_palette">[docs]</a>
+<span class="k">def</span> <span class="nf">generate_color_palette</span><span class="p">(</span><span class="n">numPixelsWide</span><span class="p">,</span> <span class="n">outputFile</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">cv2</span>
 
-    <span class="n">color</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;float32&#39;</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Image dtype must be float32.&#39;</span><span class="p">)</span>
+    <span class="n">palette</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">256</span> <span class="o">*</span> <span class="n">numPixelsWide</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">possibilities</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">))]</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="c1"># color image</span>
-        <span class="n">color</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># grayscale</span>
-        <span class="n">color</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Image must have H x W x 3, H x W x 1 or H x W dimensions.&#39;</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)]</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">*</span> <span class="n">numPixelsWide</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">numPixelsWide</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">choice</span>
+        <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">choice</span>
 
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;PF</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>  <span class="k">if</span> <span class="n">color</span> <span class="k">else</span> <span class="s1">&#39;Pf</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
-    <span class="n">temp_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> </span><span class="si">%d</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">temp_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">):</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">possibilities</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">possibilities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+            <span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">*</span> <span class="n">numPixelsWide</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">numPixelsWide</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">choice</span>
+            <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">choice</span>
 
-    <span class="n">endian</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">byteorder</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="mi">255</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">255</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">*</span> <span class="n">numPixelsWide</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">numPixelsWide</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">choice</span>
+        <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">choice</span>
 
-    <span class="k">if</span> <span class="n">endian</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">or</span> <span class="n">endian</span> <span class="o">==</span> <span class="s1">&#39;=&#39;</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span> <span class="o">==</span> <span class="s1">&#39;little&#39;</span><span class="p">:</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="o">-</span><span class="n">scale</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">outputFile</span><span class="p">,</span> <span class="n">palette</span><span class="p">,</span> <span class="p">[</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMWRITE_PNG_COMPRESSION</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
-    <span class="n">temp_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%f</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scale</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">temp_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
-
-    <span class="n">image</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">file</span><span class="p">)</span></div>
-
-    
-<div class="viewcode-block" id="write_png">
-<a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.utils.write_png">[docs]</a>
-<span class="k">def</span> <span class="nf">write_png</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; image must be numpy array H X W X channels &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">cv2</span>      <span class="c1"># pip install opencv-python</span>
-
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Writing PNG file </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> failed&quot;</span><span class="p">)</span></div>
+    <span class="n">rgb_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;rgbs.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+        <span class="n">rgb_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\t</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">])))))</span>
+    <span class="n">rgb_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 </code></pre></div>
 
