@@ -12,16 +12,8 @@
 
 # NOTE: to generate module rst files run from `python` directory:
 #   `sphinx-apidoc -o docs/api autonomysim`
-#   `sphinx-apidoc -o docs/api car`
-#   `sphinx-apidoc -o docs/api computer_vision`
-#   `sphinx-apidoc -o docs/api detection`
-#   `sphinx-apidoc -o docs/api environment`
-#   `sphinx-apidoc -o docs/api eventcamera_sim`
-#   `sphinx-apidoc -o docs/api imitation_learning`
-#   `sphinx-apidoc -o docs/api multirotor`
-#   `sphinx-apidoc -o docs/api reinforcement_learning`
 #
-# Now, we import `api/modules.rst` under `index.rst` `toctree`
+# Import `api/modules.rst` or `api\autonomysim.rst` into `index.rst` `toctree`
 
 # -- Path setup --------------------------------------------------------------
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -79,7 +71,15 @@ extensions = [
 ]
 
 # python_apigen_modules = {
-#    "autonomysim": "autonomysim",
+#     "autonomysim": "api",
+#     "car": "api",
+#     "computer_vision": "api",
+#     "detection": "api",
+#     "environment": "api",
+#     "eventcamera_sim": "api",
+#     "imitation_learning": "api",
+#     "multirotor": "api",
+#     "reinforcement_learning": "api",
 # }
 
 autodoc_default_flags = ["members"]

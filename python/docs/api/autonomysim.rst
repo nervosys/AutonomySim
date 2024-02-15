@@ -1,21 +1,25 @@
 autonomysim package
 ===================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   autonomysim.ai
+   autonomysim.gym
+   autonomysim.sensors
+   autonomysim.unreal
+   autonomysim.utils
+
 Submodules
 ----------
 
-autonomysim.client module
--------------------------
+autonomysim.clients module
+--------------------------
 
-.. automodule:: autonomysim.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-autonomysim.pfm module
-----------------------
-
-.. automodule:: autonomysim.pfm
+.. automodule:: autonomysim.clients
    :members:
    :undoc-members:
    :show-inheritance:
@@ -24,14 +28,6 @@ autonomysim.types module
 ------------------------
 
 .. automodule:: autonomysim.types
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-autonomysim.utils module
-------------------------
-
-.. automodule:: autonomysim.utils
    :members:
    :undoc-members:
    :show-inheritance:

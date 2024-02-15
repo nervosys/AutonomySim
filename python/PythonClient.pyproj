@@ -25,90 +25,90 @@
         <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="autonomysim\client.py" />
-        <Compile Include="autonomysim\types.py">
+        <Compile Include="src\autonomysim\client.py" />
+        <Compile Include="src\autonomysim\types.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="autonomysim\utils.py">
+        <Compile Include="src\autonomysim\utils.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="autonomysim\__init__.py">
+        <Compile Include="src\autonomysim\__init__.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="car\multi_agent_car.py">
+        <Compile Include="src\car\multi_agent_car.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="car\setup_path.py">
+        <Compile Include="src\car\setup_path.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="computer_vision\cv_capture.py">
+        <Compile Include="src\computer_vision\cv_capture.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="computer_vision\cv_navigate.py">
+        <Compile Include="src\computer_vision\cv_navigate.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="computer_vision\getpos.py" />
-        <Compile Include="computer_vision\ground_truth.py">
+        <Compile Include="src\computer_vision\getpos.py" />
+        <Compile Include="src\computer_vision\ground_truth.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="computer_vision\setup_path.py" />
-        <Compile Include="multirotor\drone_lidar.py" />
-        <Compile Include="multirotor\gimbal.py" />
-        <Compile Include="multirotor\land.py" />
-        <Compile Include="car\pause_continue_car.py">
+        <Compile Include="src\computer_vision\setup_path.py" />
+        <Compile Include="src\multirotor\drone_lidar.py" />
+        <Compile Include="src\multirotor\gimbal.py" />
+        <Compile Include="src\multirotor\land.py" />
+        <Compile Include="src\car\pause_continue_car.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="multirotor\clock_speed.py">
+        <Compile Include="src\multirotor\clock_speed.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="multirotor\manual_mode_demo.py">
+        <Compile Include="src\multirotor\manual_mode_demo.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="computer_vision\objects.py">
+        <Compile Include="src\computer_vision\objects.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="multirotor\multi_agent_drone.py">
+        <Compile Include="src\multirotor\multi_agent_drone.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="multirotor\navigate.py">
+        <Compile Include="src\multirotor\navigate.py">
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="autonomysim\pfm.py" />
-        <Compile Include="car\car_collision.py" />
-        <Compile Include="car\car_monitor.py" />
-        <Compile Include="car\car_stress_test.py" />
-        <Compile Include="car\drive_straight.py" />
-        <Compile Include="car\hello_car.py" />
-        <Compile Include="car\reset_test_car.py" />
-        <Compile Include="multirotor\opencv_show.py" />
-        <Compile Include="computer_vision\cv_mode.py" />
-        <Compile Include="multirotor\point_cloud.py" />
-        <Compile Include="computer_vision\segmentation.py" />
-        <Compile Include="multirotor\box.py" />
-        <Compile Include="multirotor\disarm.py" />
-        <Compile Include="multirotor\drone_stress_test.py" />
-        <Compile Include="multirotor\hello_drone.py" />
-        <Compile Include="multirotor\orbit.py" />
-        <Compile Include="multirotor\path.py" />
-        <Compile Include="multirotor\pause_continue_drone.py" />
-        <Compile Include="multirotor\reset_test_drone.py" />
-        <Compile Include="multirotor\setup_path.py" />
-        <Compile Include="multirotor\survey.py" />
-        <Compile Include="multirotor\takeoff.py" />
-        <Compile Include="ros\car_image_raw.py" />
+        <Compile Include="src\autonomysim\pfm.py" />
+        <Compile Include="src\car\car_collision.py" />
+        <Compile Include="src\car\car_monitor.py" />
+        <Compile Include="src\car\car_stress_test.py" />
+        <Compile Include="src\car\drive_straight.py" />
+        <Compile Include="src\car\hello_car.py" />
+        <Compile Include="src\car\reset_test_car.py" />
+        <Compile Include="src\multirotor\opencv_show.py" />
+        <Compile Include="src\computer_vision\cv_mode.py" />
+        <Compile Include="src\multirotor\point_cloud.py" />
+        <Compile Include="src\computer_vision\segmentation.py" />
+        <Compile Include="src\multirotor\box.py" />
+        <Compile Include="src\multirotor\disarm.py" />
+        <Compile Include="src\multirotor\drone_stress_test.py" />
+        <Compile Include="src\multirotor\hello_drone.py" />
+        <Compile Include="src\multirotor\orbit.py" />
+        <Compile Include="src\multirotor\path.py" />
+        <Compile Include="src\multirotor\pause_continue_drone.py" />
+        <Compile Include="src\multirotor\reset_test_drone.py" />
+        <Compile Include="src\multirotor\setup_path.py" />
+        <Compile Include="src\multirotor\survey.py" />
+        <Compile Include="src\multirotor\takeoff.py" />
+        <!-- <Compile Include="ros\car_image_raw.py" />
         <Compile Include="ros\car_pose.py" />
         <Compile Include="ros\drone_image_raw.py" />
-        <Compile Include="ros\setup_path.py" />
+        <Compile Include="ros\setup_path.py" /> -->
         <Compile Include="setup.py">
             <SubType>Code</SubType>
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="autonomysim\" />
-        <Folder Include="car\" />
-        <Folder Include="computer_vision\" />
-        <Folder Include="multirotor\" />
-        <Folder Include="ros\" />
+        <Folder Include="src\autonomysim\" />
+        <Folder Include="src\car\" />
+        <Folder Include="src\computer_vision\" />
+        <Folder Include="src\multirotor\" />
+        <!-- <Folder Include="src\ros\" /> -->
     </ItemGroup>
     <ItemGroup>
         <Content Include="LICENSE" />
