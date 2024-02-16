@@ -23,9 +23,9 @@
 ## Announcements
 
 * `Unreal Engine` version 5.0 brought powerful new features including [Nanite](https://www.unrealengine.com/en-US/blog/understanding-nanite---unreal-engine-5-s-new-virtualized-geometry-system) and [Lumen](https://www.unrealengine.com/en-US/tech-blog/unreal-engine-5-goes-all-in-on-dynamic-global-illumination-with-lumen), while deprecating support for the [PhysX](https://developer.nvidia.com/physx-sdk) backend.
-* `AutonomySim` supports `Unreal Engine` version 5.03 and above. For version 4.27, you can use the `ue4.27` branch.
-* The `master` branch supports `Unreal Engine` version 5.3 and below.
+* `AutonomySim` supports `Unreal Engine` version 5.03 and above. For version 4.27, you can use the `ue4.27` branch. The `master` branch supports `Unreal Engine` version 5.3 and below.
 * Support for `Unity Engine`, `Gazebo`, and `ROS1` has been deprecated to focus on `Unreal Engine`, `ROS2`, `ArduPilot/PX4`, `qGroundControl`, `PyTorch`, and real-time applications of `AutonomyLib` via software- and hardware-in-the-loop.
+* The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
 * We are researching ways to seemlessly interoperate between `AutonomySim` and `Omniverse/IsaacSim`. The `Omniverse Unreal Engine Connector` makes it possible to sync `Unreal Engine` data with an `Omniverse Nucleus` server, which can then sync with any `Omniverse Connect` application including `IsaacSim`.
 * `Windows`: all build scripts have been translated from Command/Batch to PowerShell. `Unreal Engine` still generates Batch files.
 * `Linux`: added `ROS2` support for `Ubuntu 22.04 LTS` (Jammy Jellyfish).
@@ -346,13 +346,14 @@ Are you a fluid dynamics expert? We would love to have your input.
 
 Below is a comparison with `AirSim` and its other forks.
 
-| Project                                                 | Origin   | Year | Core Software | Server Software | Cloud SaaS                                                                              | Organization                     |
-| ------------------------------------------------------- | -------- | ---- | ------------- | --------------- | --------------------------------------------------------------------------------------- | -------------------------------- |
-| [AirSim](https://github.com/microsoft/AirSim/)          | original | 2017 | open-source   | closed-source   | [Project AirSim](https://www.microsoft.com/en-us/ai/autonomous-systems-project-airsim/) | [Microsoft](#)                   |
-| [Cosys-AirSim](https://cosys-lab.github.io/)            | fork     | 2020 | open-source   | none            | none                                                                                    | [Cosys Lab](#)                   |
-| [Colosseum](https://github.com/CodexLabsLLC/Colosseum/) | fork     | 2022 | open-source   | closed-source   | [SWARM](https://www.swarmsim.io/)                                                       | [Codex Labs](#)                  |
-| [AirGen](#)                                             | fork     | 2023 | closed-source | closed-source   | [GRID](https://github.com/ScaledFoundations/GRID-playground/)                           | [Scaled Foundations](#)          |
-| [AutonomySim](#)                                        | fork     | 2023 | open-source   | open-source     | none                                                                                    | [Nervosys](https://nervosys.ai/) |
+| Project                                                     | Origin   | Year | New Features      | Updated | Framework     | Server        | SaaS                                                          | Organization                     |
+| ----------------------------------------------------------- | -------- | ---- | ----------------- | ------- | ------------- | ------------- | ------------------------------------------------------------- | -------------------------------- |
+| [AirSim](https://github.com/microsoft/AirSim/)              | original | 2017 | -                 | 2022    | open-source   | closed-source | [Project AirSim](https://www.microsoft.com/en-us/ai/)         | [Microsoft](#)                   |
+| [Cosys-AirSim](https://github.com/Cosys-Lab/Cosys-AirSim/)  | fork     | 2020 | Sensors, Matlab   | 2024    | open-source   | -             | -                                                             | [Cosys Lab](#)                   |
+| [Colosseum](https://github.com/CodexLabsLLC/Colosseum/)     | fork     | 2022 | Unreal Engine 5   | 2023    | open-source   | closed-source | [SWARM](https://www.swarmsim.io/)                             | [Codex Labs](#)                  |
+| [AirGen](#)                                                 | fork     | 2023 | -                 | -       | closed-source | closed-source | [GRID](https://github.com/ScaledFoundations/GRID-playground/) | [Scaled Foundations](#)          |
+| [AirSim-Client](https://github.com/Sollimann/airsim-client) | original | 2022 | Rust              | 2023    | open-source   | -             | -                                                             | [Kristoffer Solberg Rakstad](#)  |
+| [AutonomySim](#)                                            | fork     | 2023 | Major refactoring | 2024    | open-source   | open-source   | -                                                             | [Nervosys](https://nervosys.ai/) |
 
 Compared to other simulation engines for robotic systems, `AutonomySim` is open-source and built on top of a state-of-the-art game engine with the best available features and performance. It also has batteries-included support for popular machine learning workflows.
 
