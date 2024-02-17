@@ -116,17 +116,18 @@ Program Listing for File RpcLibClientBase.hpp
        bool simRunConsoleCommand(const std::string &command);
    
        // sensor APIs
-       nervosys::autonomylib::LidarData getLidarData(const std::string &lidar_name = "", const std::string &vehicle_name = "") const;
+       nervosys::autonomylib::LidarData getLidarData(const std::string &lidar_name = "",
+                                                     const std::string &vehicle_name = "") const;
        nervosys::autonomylib::ImuBase::Output getImuData(const std::string &imu_name = "",
-                                               const std::string &vehicle_name = "") const;
+                                                         const std::string &vehicle_name = "") const;
        nervosys::autonomylib::BarometerBase::Output getBarometerData(const std::string &barometer_name = "",
-                                                           const std::string &vehicle_name = "") const;
+                                                                     const std::string &vehicle_name = "") const;
        nervosys::autonomylib::MagnetometerBase::Output getMagnetometerData(const std::string &magnetometer_name = "",
-                                                                 const std::string &vehicle_name = "") const;
+                                                                           const std::string &vehicle_name = "") const;
        nervosys::autonomylib::GpsBase::Output getGpsData(const std::string &gps_name = "",
-                                               const std::string &vehicle_name = "") const;
+                                                         const std::string &vehicle_name = "") const;
        nervosys::autonomylib::DistanceSensorData getDistanceSensorData(const std::string &distance_sensor_name = "",
-                                                             const std::string &vehicle_name = "") const;
+                                                                       const std::string &vehicle_name = "") const;
    
        Pose simGetVehiclePose(const std::string &vehicle_name = "") const;
        void simSetVehiclePose(const Pose &pose, bool ignore_collision, const std::string &vehicle_name = "");
@@ -173,7 +174,8 @@ Program Listing for File RpcLibClientBase.hpp
                                             bool external = false);
        // end CinemAutonomySim
        bool simTestLineOfSightToPoint(const nervosys::autonomylib::GeoPoint &point, const std::string &vehicle_name = "");
-       bool simTestLineOfSightBetweenPoints(const nervosys::autonomylib::GeoPoint &point1, const nervosys::autonomylib::GeoPoint &point2);
+       bool simTestLineOfSightBetweenPoints(const nervosys::autonomylib::GeoPoint &point1,
+                                            const nervosys::autonomylib::GeoPoint &point2);
        vector<nervosys::autonomylib::GeoPoint> simGetWorldExtents();
    
        vector<MeshPositionVertexBuffersResponse> simGetMeshPositionVertexBuffers();

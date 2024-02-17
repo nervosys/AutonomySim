@@ -44,8 +44,8 @@ Program Listing for File MultirotorRpcLibClient.hpp
                                                             DrivetrainType drivetrain = DrivetrainType::MaxDegreeOfFreedom,
                                                             const YawMode &yaw_mode = YawMode(),
                                                             const std::string &vehicle_name = "");
-       MultirotorRpcLibClient
-       *moveByVelocityZBodyFrameAsync(float vx, float vy, float z, float duration,
+       MultirotorRpcLibClient *
+       moveByVelocityZBodyFrameAsync(float vx, float vy, float z, float duration,
                                      DrivetrainType drivetrain = DrivetrainType::MaxDegreeOfFreedom,
                                      const YawMode &yaw_mode = YawMode(), const std::string &vehicle_name = "");
        MultirotorRpcLibClient *moveByMotorPWMsAsync(float front_right_pwm, float rear_left_pwm, float front_left_pwm,
