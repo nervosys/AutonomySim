@@ -1,4 +1,4 @@
-name: "Test: C/C++ Source Formatting (clang-format-16)"
+name: "Test: C/C++ Source Formatting (clang-format-17)"
 
 on: [push, pull_request]
 
