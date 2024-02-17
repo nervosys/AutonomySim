@@ -11,7 +11,7 @@ NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
   Script is intended to run from AutonomySim base project directory.
 
-  Copyright © 2023 Nervosys, LLC
+  Copyright © 2024 Nervosys, LLC
 #>
 
 ###
@@ -27,8 +27,8 @@ Remove-Item -Path 'AutonomyLib\deps\MavLinkCom' -Force -Recurse
 Remove-Item -Path 'AutonomyLib\deps\rpclib' -Force -Recurse
 Remove-Item -Path 'external\rpclib\build' -Force -Recurse
 
-Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64","/p:Configuration=Debug","/t:Clean",'AutonomySim.sln' -Wait -NoNewWindow
+Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", "/p:Configuration=Debug", "/t:Clean", 'AutonomySim.sln' -Wait -NoNewWindow
 if (!$?) { exit $LASTEXITCODE }  # exit on error
 
-Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64","/p:Configuration=Release","/t:Clean",'AutonomySim.sln' -Wait -NoNewWindow
+Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", "/p:Configuration=Release", "/t:Clean", 'AutonomySim.sln' -Wait -NoNewWindow
 if (!$?) { exit $LASTEXITCODE }  # exit on error

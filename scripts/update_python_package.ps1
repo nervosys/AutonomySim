@@ -4,8 +4,8 @@ $confirmation = Read-Host -Prompt "Confirming package version was incremented in
 if ($confirmation -ne 'y') { Exit 1 }
 
 $PYTHON_EXE = (Get-Command python.exe).Source
-$PIP_EXE    = (Get-Command pip.exe).Source
-$TWINE_EXE  = (Get-Command pip.exe).Source
+$PIP_EXE = (Get-Command pip.exe).Source
+$TWINE_EXE = (Get-Command pip.exe).Source
 
 Write-Output "Found the following executables:"
 Write-Output "`tpython: $($PYTHON_EXE)`n`tpip: $($PIP_EXE)`n`ttwine: $($TWINE_EXE)"

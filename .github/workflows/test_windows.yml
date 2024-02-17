@@ -1,18 +1,18 @@
-name: "Windows Builds"
+name: "Build: Windows (versions 2019/10, 2022/11)"
 
-on: [push, pull_request, workflow_dispatch] # triggers
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  build-windows:
     runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
         os: [windows-2019, windows-2022]
         arch:
           - amd64
-          - arm64
+          # - arm64
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
 

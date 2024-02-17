@@ -1,9 +1,9 @@
-name: "macOS Builds"
+name: "Build: macOS (versions 11-14)"
 
 on: [push, pull_request, workflow_dispatch] # triggers
 
 jobs:
-  build:
+  build-macos:
     runs-on: ${{ matrix.os }} # macos-latest
     strategy:
       matrix:

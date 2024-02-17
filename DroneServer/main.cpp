@@ -16,7 +16,7 @@ using namespace nervosys::autonomylib;
 */
 
 int main(int argc, const char *argv[]) {
-    
+
     if (argc != 2) {
         std::cout << "Usage: " << argv[0] << " is_simulation" << std::endl;
         std::cout << "\t where is_simulation = 0 or 1" << std::endl;

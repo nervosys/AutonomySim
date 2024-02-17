@@ -25,9 +25,9 @@ int getWifiRssi(int socket, const char *ifaceName) {
     //    req.u.data.pointer = &stats;
     //    req.u.data.length = sizeof(iw_statistics);
     //
-    //#ifdef CLEAR_UPDATED
+    // #ifdef CLEAR_UPDATED
     //    req.u.data.flags = 1;
-    //#endif
+    // #endif
     //
     //    /* Perform the ioctl */
     //    if (ioctl(socket, SIOCGIWSTATS, &req) == -1) {

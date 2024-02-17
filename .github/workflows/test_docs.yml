@@ -1,10 +1,10 @@
-name: "Documentation Build and Deployment"
+name: "Build and Deploy: Documentation (Doxygen, Sphinx, MkDocs)"
 
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-deploy-docs:
+    runs-on: ubuntu-22.04 # ubuntu-latest; use static version for stability
 
     steps:
       - name: "Checkout"
@@ -22,7 +22,7 @@ jobs:
           doxyfile-path: AutonomyLib/docs/Doxyfile
           working-directory: .
 
-      - name: "Install Python dependencies: MkDocs-Material, Sphinx-Immaterial, Breathe"
+      - name: "Install Python dependencies: MkDocs-Material, Sphinx-Immaterial, Breathe, Exhale"
         shell: bash
         run: |
           python3 -m venv .env  # virtual environment to avoid dependecy issues
@@ -32,7 +32,7 @@ jobs:
           pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
           pip install breathe exhale  # for doxygen -> sphinx -> html conversion
 
-      - name: "Generate C++ API documentation: Doxygen -> Breathe -> Sphinx"
+      - name: "Generate C++ API documentation: Doxygen -> Sphinx -> HTML"
         shell: bash
         run: |
           source ./.env/bin/activate
@@ -40,7 +40,7 @@ jobs:
           cp -r ./AutonomyLib/docs/_build/* ./docs/api/cpp/  # copy generated API documentation
           deactivate
 
-      - name: "Generate Python API documentation: Sphinx-Immaterial"
+      - name: "Generate Python API documentation: Sphinx -> HTML"
         shell: bash
         run: |
           source ./.env/bin/activate
@@ -48,7 +48,7 @@ jobs:
           cp -r ./python/docs/_build/* ./docs/api/python/  # copy generated API documentation
           deactivate
 
-      - name: "Generate main documentation: MkDocs-Material"
+      - name: "Generate project documentation: MkDocs -> HTML"
         shell: bash
         #run: bash ./scripts/build_docs.sh
         run: |
@@ -58,7 +58,7 @@ jobs:
           mkdocs build
           deactivate
 
-      - name: "Deploy on commit to master branch"
+      - name: "Deploy generated HTML on commits to master branch"
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         with:

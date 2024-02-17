@@ -100,7 +100,7 @@ SVPNG_LINKAGE void svpng(SVPNG_OUTPUT, unsigned w, unsigned h, const unsigned ch
         SVPNG_PUT((u) >> 24);                                                                                          \
         SVPNG_PUT(((u) >> 16) & 255);                                                                                  \
         SVPNG_PUT(((u) >> 8) & 255);                                                                                   \
-        SVPNG_PUT((u)&255);                                                                                            \
+        SVPNG_PUT((u) & 255);                                                                                          \
     } while (0)
 #define SVPNG_U8C(u)                                                                                                   \
     do {                                                                                                               \
@@ -114,20 +114,20 @@ SVPNG_LINKAGE void svpng(SVPNG_OUTPUT, unsigned w, unsigned h, const unsigned ch
     SVPNG_U8C((ua)[i])
 #define SVPNG_U16LC(u)                                                                                                 \
     do {                                                                                                               \
-        SVPNG_U8C((u)&255);                                                                                            \
+        SVPNG_U8C((u) & 255);                                                                                          \
         SVPNG_U8C(((u) >> 8) & 255);                                                                                   \
     } while (0)
 #define SVPNG_U16C(u)                                                                                                  \
     do {                                                                                                               \
         SVPNG_U8C(((u) >> 8) & 255);                                                                                   \
-        SVPNG_U8C((u)&255);                                                                                            \
+        SVPNG_U8C((u) & 255);                                                                                          \
     } while (0)
 #define SVPNG_U32C(u)                                                                                                  \
     do {                                                                                                               \
         SVPNG_U8C((u) >> 24);                                                                                          \
         SVPNG_U8C(((u) >> 16) & 255);                                                                                  \
         SVPNG_U8C(((u) >> 8) & 255);                                                                                   \
-        SVPNG_U8C((u)&255);                                                                                            \
+        SVPNG_U8C((u) & 255);                                                                                          \
     } while (0)
 #define SVPNG_U8ADLER(u)                                                                                               \
     do {                                                                                                               \

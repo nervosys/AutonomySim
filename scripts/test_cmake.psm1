@@ -11,7 +11,7 @@ NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
   Script is intended to run from AutonomySim base project directory.
 
-  Copyright © 2023 Nervosys, LLC
+  Copyright © 2024 Nervosys, LLC
 #>
 
 ###
@@ -19,7 +19,7 @@ NOTES:
 ###
 
 $CMAKE_VERSION_MINIMUM = '3.14'
-$CMAKE_VERSION_LATEST  = '3.26.4'
+$CMAKE_VERSION_LATEST = '3.26.4'
 
 ###
 ### Functions
@@ -28,8 +28,8 @@ $CMAKE_VERSION_LATEST  = '3.26.4'
 function Get-ProgramVersion {
     [OutputType([Version])]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]
+        [Parameter(Mandatory = $true)]
+        [string]
         $Program
     )
     return (Get-Command -Name $Program -ErrorAction SilentlyContinue).Version
@@ -38,8 +38,8 @@ function Get-ProgramVersion {
 function Get-VersionMajorMinor {
     [OutputType([String])]
     param(
-        [Parameter(Mandatory=$true)]
-        [Version]
+        [Parameter(Mandatory = $true)]
+        [version]
         $Version
     )
     return $Version.Major, $Version.Minor -join '.'
@@ -48,8 +48,8 @@ function Get-VersionMajorMinor {
 function Get-VersionMajorMinorBuild {
     [OutputType([String])]
     param(
-        [Parameter(Mandatory=$true)]
-        [Version]
+        [Parameter(Mandatory = $true)]
+        [version]
         $Version
     )
     return $Version.Major, $Version.Minor, $Version.Build -join '.'
@@ -58,7 +58,7 @@ function Get-VersionMajorMinorBuild {
 function Install-Cmake {
     param(
         [Parameter()]
-        [String]
+        [string]
         $Version = $CMAKE_VERSION_LATEST
     )
     Write-Host -NoNewLine "Download and install CMake v${Version}? [y|N]"
@@ -69,7 +69,8 @@ function Install-Cmake {
         Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile "temp\${Installer}"
         Start-Process -FilePath "temp\${Installer}" -Wait
         Remove-Item -Path "temp\${Installer}"
-    } else {
+    }
+    else {
         Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Stop
     }
 }
@@ -78,19 +79,21 @@ function Test-CmakeVersion {
     [OutputType([Boolean])]
     param(
         [Parameter()]
-        [String]
+        [string]
         $MinimumVersion = $CMAKE_VERSION_MINIMUM,
         [Parameter()]
-        [String]
+        [string]
         $Program = 'cmake'
     )
     $CurrentVersion = Get-ProgramVersion -Program $Program
     if ( $null -eq $CurrentVersion ) { Install-Cmake }  # install CMake if it is missing
     $RequiredVersion = [Version]$MinimumVersion
-    if ($CurrentVersion -lt $RequiredVersion) {  # install CMake if it is less than the required version
+    if ($CurrentVersion -lt $RequiredVersion) {
+        # install CMake if it is less than the required version
         Write-Error "Error: $($Program) version $($CurrentVersion) is less than the minimum supported." -ErrorAction SilentlyContinue
         Install-Cmake
-    } else {
+    }
+    else {
         Write-Output "Success: CMake version ${CurrentVersion} meets the minimum requirements."
     }
 }

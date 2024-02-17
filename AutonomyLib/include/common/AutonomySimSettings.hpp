@@ -967,7 +967,8 @@ struct AutonomySimSettings {
         return gimbal;
     }
 
-    static void loadUnrealEngineSetting(const nervosys::autonomylib::Settings &settings_json, UnrealEngineSetting &ue_setting) {
+    static void loadUnrealEngineSetting(const nervosys::autonomylib::Settings &settings_json,
+                                        UnrealEngineSetting &ue_setting) {
         Settings ue_settings_json;
         if (settings_json.getChild("UnrealEngine", ue_settings_json)) {
             Settings pixel_format_override_settings_json;
@@ -1028,7 +1029,8 @@ struct AutonomySimSettings {
         }
     }
 
-    static void createCaptureSettings(const nervosys::autonomylib::Settings &settings_json, CaptureSetting &capture_setting) {
+    static void createCaptureSettings(const nervosys::autonomylib::Settings &settings_json,
+                                      CaptureSetting &capture_setting) {
         capture_setting.width = settings_json.getInt("Width", capture_setting.width);
         capture_setting.height = settings_json.getInt("Height", capture_setting.height);
         capture_setting.fov_degrees = settings_json.getFloat("FOV_Degrees", capture_setting.fov_degrees);

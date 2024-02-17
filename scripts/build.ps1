@@ -2,32 +2,37 @@
 FILENAME:
   build.ps1
 DESCRIPTION:
-  PowerShell build script for AutonomySim plugin for Unreal Engine
+  PowerShell build script for AutonomySim plugin for Unreal Engine.
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
   11-17-2023
+PARAMETERS:
+  - BuildMode:      [ Debug | Release | RelWithDebInfo ]
+  - BuildDocs:      Enable to build and serve AutonomySim documentation.
+  - FullPolySuv:    Enable for an Unreal Engine full-polycount SUV asset.
+  - SystemDebug:    Enable for computer system debugging messages.
 NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
   Script is intended to run from AutonomySim base project directory.
 
-  Copyright © 2023 Nervosys, LLC
+  Copyright © 2024 Nervosys, LLC
 #>
 
 # Command-line arguments
 param(
-    [Parameter(Mandatory=$true, HelpMessage='Options: [ Debug | Release | RelWithDebInfo ]')]
-    [String]
+    [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
+    [string]
     $BuildMode = 'Release',
-    [Parameter(Mandatory=$false, HelpMessage='Enable to build and serve AutonomySim documentation')]
-    [Switch]
-    $BuildDocs,
-    [Parameter(Mandatory=$false, HelpMessage='Enable for an Unreal Engine full-polycount SUV asset')]
-    [Switch]
-    $FullPolycountSuv,
-    [Parameter(Mandatory=$false, HelpMessage='Enable for computer system debugging messages')]
-    [Switch]
-    $SystemDebug
+    [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
+    [switch]
+    $BuildDocs = $false,
+    [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
+    [switch]
+    $FullPolycountSuv = $false,
+    [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
+    [switch]
+    $SystemDebug = $false
 )
 
 ###
@@ -47,31 +52,31 @@ Import-Module "$SCRIPT_DIR\build_docs.psm1"         # imports: Build-Documentati
 ###
 
 # Static variables
-$PROJECT_DIR         = "$PWD"
-$SCRIPT_DIR          = "$PROJECT_DIR\scripts"
+$PROJECT_DIR = "$PWD"
+$SCRIPT_DIR = "$PROJECT_DIR\scripts"
 
 # Command-line arguments
-$BUILD_MODE          = "$BuildMode"
-$BUILD_DOCS          = if ($BuildDocs) { $true } else { $false }
-$FULL_POLYCOUNT_SUV  = if ($FullPolycountSuv) { $true } else { $false }
-$DEBUG               = if ($SystemDebug) { $true } else { $false }
+$BUILD_MODE = "$BuildMode"
+$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
+$FULL_POLYCOUNT_SUV = if ($FullPolycountSuv) { $true } else { $false }
+$DEBUG = if ($SystemDebug) { $true } else { $false }
 
 # Dynamic variables
-$SYSTEM_INFO         = Get-ComputerInfo  # Windows only
-$SYSTEM_PROCESSOR    = "${env:PROCESSOR_IDENTIFIER}"
+$SYSTEM_INFO = Get-ComputerInfo  # Windows only
+$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
 $SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
-$SYSTEM_PLATFORM     = Get-Architecture -Info $SYSTEM_INFO
-$SYSTEM_CPU_MAX      = Set-ProcessorCount -Info $SYSTEM_INFO
-$SYSTEM_OS_VERSION   = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE         = Set-VsInstance
-$VS_VERSION          = Get-VsInstanceVersion -Config $VS_INSTANCE
-$CMAKE_VERSION       = Get-ProgramVersion -Program 'cmake'
+$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
+$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
+$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
+$VS_INSTANCE = Set-VsInstance
+$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
+$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Functions
 ###
 
-function List-EnvVariables {
+function Get-EnvVariables {
     return Get-ChildItem 'env:*' | Sort-Object 'Name' | Format-List
 }
 
@@ -102,7 +107,7 @@ function Remove-Directories {
 
 function Test-VariableDefined {
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [String]
         $Variable
     )
@@ -111,16 +116,16 @@ function Test-VariableDefined {
 
 function Get-WindowsInfo {
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [System.Object]
         $Info
     )
-    return $Info | Select-Object WindowsProductName,WindowsVersion,OsHardwareAbstractionLayer
+    return $Info | Select-Object WindowsProductName, WindowsVersion, OsHardwareAbstractionLayer
 }
 
 function Get-WindowsVersion {
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [System.Object]
         $Info
     )
@@ -130,14 +135,14 @@ function Get-WindowsVersion {
 function Get-Architecture {
     [OutputType([String])]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [System.Object]
         $Info
     )
     $arch = switch ($Info.CsSystemType) {
-        'x64-based PC' {'x64'}
-        'x86-based PC' {'x86'}
-        $null {$null}
+        'x64-based PC' { 'x64' }
+        'x86-based PC' { 'x86' }
+        $null { $null }
     }
     return $arch
 }
@@ -145,8 +150,8 @@ function Get-Architecture {
 function Get-ArchitectureWidth {
     [OutputType([String])]
     $archWidth = switch ([intptr]::Size) {
-        4 {'32-bit'}
-        8 {'64-bit'}
+        4 { '32-bit' }
+        8 { '64-bit' }
     }
     return $archWidth
 }
@@ -154,10 +159,10 @@ function Get-ArchitectureWidth {
 function Set-ProcessorCount {
     [OutputType([UInt32])]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [System.Object]
         $Info,
-        [Parameter(HelpMessage='The number of processor cores remaining. Use all others for MSBuild.')]
+        [Parameter(HelpMessage = 'The number of processor cores remaining. Use all others for MSBuild.')]
         [UInt32]
         $Remainder = 2
     )
@@ -167,7 +172,7 @@ function Set-ProcessorCount {
 function Get-ProgramVersion {
     [OutputType([Version])]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [String]
         $Program
     )
@@ -177,7 +182,7 @@ function Get-ProgramVersion {
 function Get-VersionMajorMinor {
     [OutputType([String])]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [Version]
         $Version
     )
@@ -187,7 +192,7 @@ function Get-VersionMajorMinor {
 function Get-VersionMajorMinorBuild {
     [OutputType([String])]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [Version]
         $Version
     )
@@ -196,17 +201,18 @@ function Get-VersionMajorMinorBuild {
 
 function Build-Solution {
     if ( $BUILD_MODE -eq 'Release' ) {
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX","/p:Platform=$SYSTEM_PLATFORM","/p:Configuration=Debug",'AutonomySim.sln' -Wait -NoNewWindow
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX","/p:Platform=$SYSTEM_PLATFORM","/p:Configuration=Release",'AutonomySim.sln' -Wait -NoNewWindow
-    } else {
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX","/p:Platform=$SYSTEM_PLATFORM","/p:Configuration=$BUILD_MODE",'AutonomySim.sln' -Wait -NoNewWindow
+        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX", "/p:Platform=$SYSTEM_PLATFORM", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
+        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX", "/p:Platform=$SYSTEM_PLATFORM", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
+    }
+    else {
+        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX", "/p:Platform=$SYSTEM_PLATFORM", "/p:Configuration=$BUILD_MODE", 'AutonomySim.sln' -Wait -NoNewWindow
     }
     if (!$?) { exit $LASTEXITCODE }  # exit on error
 }
 
 function Copy-GeneratedBinaries {
     # Copy binaries and includes for MavLinkCom in deps
-    $MAVLINK_TARGET_LIB     = 'AutonomyLib\deps\MavLinkCom\lib'
+    $MAVLINK_TARGET_LIB = 'AutonomyLib\deps\MavLinkCom\lib'
     $MAVLINK_TARGET_INCLUDE = 'AutonomyLib\deps\MavLinkCom\include'
     [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_LIB)
     [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_INCLUDE)
@@ -222,7 +228,7 @@ function Copy-GeneratedBinaries {
 
 function Get-VsUnrealProjectFiles {
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
         [String]
         $UnrealEnvDir
     )

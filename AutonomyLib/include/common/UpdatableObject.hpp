@@ -30,7 +30,9 @@ class UpdatableObject {
     virtual ~UpdatableObject() = default;
 
     void reset() {
-        if (reset_in_progress) { return; }
+        if (reset_in_progress) {
+            return;
+        }
 
         reset_in_progress = true;
         // TODO: Do we need this check anymore? Maybe reset() should be idempotent.

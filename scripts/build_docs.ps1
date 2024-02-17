@@ -11,7 +11,7 @@ NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
   Script is intended to run from AutonomySim base project directory.
 
-  Copyright © 2023 Nervosys, LLC
+  Copyright © 2024 Nervosys, LLC
 #>
 
 ###

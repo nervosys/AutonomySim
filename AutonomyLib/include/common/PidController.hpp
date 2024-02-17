@@ -37,7 +37,7 @@ class PidController {
         sum_ = 0;
         previous_set = false;
     }
-    
+
     float control(float processVariable) {
         auto t = std::chrono::system_clock::now();
         auto diff = std::chrono::system_clock::now() - prev_time_;

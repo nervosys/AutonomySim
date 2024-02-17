@@ -76,7 +76,7 @@ class MagnetometerSimple : public MagnetometerBase {
             throw std::invalid_argument("magnetic reference source type is not recognized");
         }
     }
-    
+
     Output getOutputInternal() {
         Output output;
         const GroundTruth &ground_truth = getGroundTruth();

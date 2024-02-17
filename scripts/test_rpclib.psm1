@@ -11,17 +11,17 @@ NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
   Script is intended to run from AutonomySim base project directory.
 
-  Copyright © 2023 Nervosys, LLC
+  Copyright © 2024 Nervosys, LLC
 #>
 
 ###
 ### Variables
 ###
 
-[String]$RPCLIB_VERSION = '2.3.0'
-[String]$RPCLIB_PATH    = "external\rpclib\rpclib-$RPCLIB_VERSION"
-[String]$RPCLIB_URL     = "https://github.com/rpclib/rpclib/archive/v${RPCLIB_VERSION}.zip"
-[String]$VS_GENERATOR   = 'Visual Studio 17 2022'
+[string]$RPCLIB_VERSION = '2.3.0'
+[string]$RPCLIB_PATH = "external\rpclib\rpclib-$RPCLIB_VERSION"
+[string]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RPCLIB_VERSION}.zip"
+[string]$VS_GENERATOR = 'Visual Studio 17 2022'
 
 ###
 ### Functions
@@ -62,12 +62,13 @@ function Build-RpcLib {
     Set-Location "$RPCLIB_PATH\build"
     Write-Output "Current directory: $RPCLIB_PATH\build"
 
-    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G $VS_GENERATOR",'..' -Wait -NoNewWindow
+    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G $VS_GENERATOR", '..' -Wait -NoNewWindow
     if ( $BUILD_MODE -eq 'Release' ) {
-        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build','.' -Wait -NoNewWindow
-        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build','.','--config Release' -Wait -NoNewWindow
-    } else {
-        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build','.',"--config $BUILD_MODE" -Wait -NoNewWindow
+        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.' -Wait -NoNewWindow
+        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', '--config Release' -Wait -NoNewWindow
+    }
+    else {
+        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', "--config $BUILD_MODE" -Wait -NoNewWindow
     }
     if (!$?) { exit $LASTEXITCODE }  # exit on error
 
@@ -75,7 +76,7 @@ function Build-RpcLib {
     Write-Output "Current directory: $PROJECT_DIR"
 
     # Copy rpclib binaries and include folder inside AutonomyLib folder
-    $RPCLIB_TARGET_LIB     = 'AutonomyLib\deps\rpclib\lib\x64'
+    $RPCLIB_TARGET_LIB = 'AutonomyLib\deps\rpclib\lib\x64'
     $RPCLIB_TARGET_INCLUDE = 'AutonomyLib\deps\rpclib\include'
     [System.IO.Directory]::CreateDirectory($RPCLIB_TARGET_LIB)
     [System.IO.Directory]::CreateDirectory($RPCLIB_TARGET_INCLUDE)
@@ -85,7 +86,8 @@ function Build-RpcLib {
     if ( $BUILD_MODE -eq 'Release' ) {
         Copy-Item -Path "$RPCLIB_PATH\build\Debug" -Destination "$RPCLIB_TARGET_LIB\Debug"
         Copy-Item -Path "$RPCLIB_PATH\build\Release" -Destination "$RPCLIB_TARGET_LIB\Release"
-    } else {
+    }
+    else {
         Copy-Item -Path "$RPCLIB_PATH\build\$BUILD_MODE" -Destination "$RPCLIB_TARGET_LIB\$BUILD_MODE"
     }
 }
@@ -102,7 +104,8 @@ function Test-RpcLibVersion {
             Write-Error 'Error: Download and build of rpclib failed. Stopping build.' -ErrorAction SilentlyContinue
             Invoke-Fail
         }
-    } else {
+    }
+    else {
         Write-Output "Existing installation of rpclib version $RPCLIB_VERSION found."
     }
 }

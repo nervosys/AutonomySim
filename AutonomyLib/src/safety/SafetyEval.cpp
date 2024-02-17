@@ -89,7 +89,9 @@ void SafetyEval::isSafeDestination(const Vector3r &dest_pos, const Vector3r &cur
     // is this dest_pos cur_pos within the fence?
     checkFence(dest_pos, cur_pos, result);
 
-    if (!(enable_reasons_ & SafetyViolationType_::Obstacle)) { return; }
+    if (!(enable_reasons_ & SafetyViolationType_::Obstacle)) {
+        return;
+    }
 
     // transform dest_pos vector to body frame
     const Vector3r cur_dest = dest_pos - cur_pos;
@@ -147,7 +149,9 @@ float SafetyEval::adjustClearanceForPrStl(float base_clearance, float obs_confid
 
 void SafetyEval::setSuggestedVelocity(SafetyEval::EvalResult &result, const Quaternionr &quaternion) {
     result.suggested_vec = Vector3r::Zero(); // default suggestion
-    if (obs_strategy_ == ObsAvoidanceStrategy::RaiseException) { return; }
+    if (obs_strategy_ == ObsAvoidanceStrategy::RaiseException) {
+        return;
+    }
 
     int ref_tick;
     int ticks = obs_xy_ptr_->getTicks();
@@ -160,7 +164,7 @@ void SafetyEval::setSuggestedVelocity(SafetyEval::EvalResult &result, const Quat
         ref_tick = 0; // default doesn't matter as we will raise exception
     }
 
-    for (int i = 0; i <= ticks/2; ++i) {
+    for (int i = 0; i <= ticks / 2; ++i) {
         // evaluate right and left side of circle
         ObstacleMap::ObstacleInfo right_obs = obs_xy_ptr_->hasObstacle(ref_tick + i, ref_tick + i);
         ObstacleMap::ObstacleInfo left_obs = obs_xy_ptr_->hasObstacle(ref_tick - i, ref_tick - i);

@@ -1,18 +1,18 @@
-name: "Ubuntu Linux Builds"
+name: "Build: Linux (Ubuntu versions 20,22)"
 
-on: [push, pull_request, workflow_dispatch] # triggers
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  build-ubuntu:
     runs-on: ${{ matrix.os }} # ubuntu-latest
     strategy:
       matrix:
         os: [ubuntu-20.04, ubuntu-22.04]
         arch:
           - amd64
-          - arm64
+          # - arm64
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
 

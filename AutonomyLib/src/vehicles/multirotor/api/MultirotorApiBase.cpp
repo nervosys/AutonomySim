@@ -76,7 +76,9 @@ bool MultirotorApiBase::moveByVelocityBodyFrame(float vx, float vy, float vz, fl
                                                 const YawMode &yaw_mode) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     float pitch, roll, yaw;
     VectorMath::toEulerianAngle(getKinematicsEstimated().pose.orientation, pitch, roll, yaw);
@@ -99,7 +101,9 @@ bool MultirotorApiBase::moveByVelocityZBodyFrame(float vx, float vy, float z, fl
                                                  const YawMode &yaw_mode) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     float pitch, roll, yaw;
     VectorMath::toEulerianAngle(getKinematicsEstimated().pose.orientation, pitch, roll, yaw);
@@ -122,7 +126,9 @@ bool MultirotorApiBase::moveByMotorPWMs(float front_right_pwm, float rear_left_p
                                         float rear_right_pwm, float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     return waitForFunction(
                [&]() {
@@ -136,7 +142,9 @@ bool MultirotorApiBase::moveByMotorPWMs(float front_right_pwm, float rear_left_p
 bool MultirotorApiBase::moveByRollPitchYawZ(float roll, float pitch, float yaw, float z, float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     return waitForFunction(
                [&]() {
@@ -150,7 +158,9 @@ bool MultirotorApiBase::moveByRollPitchYawZ(float roll, float pitch, float yaw, 
 bool MultirotorApiBase::moveByRollPitchYawThrottle(float roll, float pitch, float yaw, float throttle, float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     return waitForFunction(
                [&]() {
@@ -165,7 +175,9 @@ bool MultirotorApiBase::moveByRollPitchYawrateThrottle(float roll, float pitch, 
                                                        float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     return waitForFunction(
                [&]() {
@@ -179,7 +191,9 @@ bool MultirotorApiBase::moveByRollPitchYawrateThrottle(float roll, float pitch, 
 bool MultirotorApiBase::moveByRollPitchYawrateZ(float roll, float pitch, float yaw_rate, float z, float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     return waitForFunction(
                [&]() {
@@ -193,7 +207,9 @@ bool MultirotorApiBase::moveByRollPitchYawrateZ(float roll, float pitch, float y
 bool MultirotorApiBase::moveByAngleRatesZ(float roll_rate, float pitch_rate, float yaw_rate, float z, float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     return waitForFunction(
                [&]() {
@@ -208,7 +224,9 @@ bool MultirotorApiBase::moveByAngleRatesThrottle(float roll_rate, float pitch_ra
                                                  float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     return waitForFunction(
                [&]() {
@@ -223,7 +241,9 @@ bool MultirotorApiBase::moveByVelocity(float vx, float vy, float vz, float durat
                                        const YawMode &yaw_mode) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     YawMode adj_yaw_mode(yaw_mode.is_rate, yaw_mode.yaw_or_rate);
     adjustYaw(vx, vy, drivetrain, adj_yaw_mode);
@@ -241,7 +261,9 @@ bool MultirotorApiBase::moveByVelocityZ(float vx, float vy, float z, float durat
                                         const YawMode &yaw_mode) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return false; }
+    if (duration <= 0) {
+        return false;
+    }
 
     YawMode adj_yaw_mode(yaw_mode.is_rate, yaw_mode.yaw_or_rate);
     adjustYaw(vx, vy, drivetrain, adj_yaw_mode);
@@ -342,7 +364,7 @@ bool MultirotorApiBase::moveOnPath(const vector<Vector3r> &path, float velocity,
         float seg_velocity = path_segs.at(next_path_loc.seg_index).seg_velocity;
         float path_length_remaining =
             path_length - path_segs.at(cur_path_loc.seg_index).seg_path_length - cur_path_loc.offset;
-        
+
         if (seg_velocity > getMultirotorApiParams().min_vel_for_breaking && path_length_remaining <= breaking_dist) {
             seg_velocity = getMultirotorApiParams().breaking_vel;
             // Utils::logMessage("path_length_remaining = %f, Switched to breaking vel %f", path_length_remaining,
@@ -354,7 +376,9 @@ bool MultirotorApiBase::moveOnPath(const vector<Vector3r> &path, float velocity,
                            path_segs.at(cur_path_loc.seg_index).start_z);
 
         // sleep for rest of the cycle
-        if (!waiter.sleep()) { return false; }
+        if (!waiter.sleep()) {
+            return false;
+        }
 
         /*  Below, P is previous position on path, N is next goal and C is our current position.
 
@@ -481,9 +505,11 @@ bool MultirotorApiBase::moveToZ(float z, float velocity, float timeout_sec, cons
 bool MultirotorApiBase::moveByManual(float vx_max, float vy_max, float z_min, float duration, DrivetrainType drivetrain,
                                      const YawMode &yaw_mode) {
     SingleTaskCall lock(this);
-    const float kMaxMessageAge = 0.1f  // 0.1 sec
-    const float kMaxRCValue = 10000f;
-    if (duration <= 0) { return true; }
+    const float kMaxMessageAge = 0.1f // 0.1 sec
+        const float kMaxRCValue = 10000f;
+    if (duration <= 0) {
+        return true;
+    }
 
     // freeze the quaternion
     Quaternionr starting_quaternion = getKinematicsEstimated().pose.orientation;
@@ -525,7 +551,9 @@ bool MultirotorApiBase::moveByManual(float vx_max, float vy_max, float z_min, fl
 bool MultirotorApiBase::rotateToYaw(float yaw, float timeout_sec, float margin) {
     SingleTaskCall lock(this);
 
-    if (timeout_sec <= 0) { return true; }
+    if (timeout_sec <= 0) {
+        return true;
+    }
 
     auto start_pos = getPosition();
     float yaw_target = VectorMath::normalizeAngle(yaw);
@@ -554,7 +582,9 @@ bool MultirotorApiBase::rotateToYaw(float yaw, float timeout_sec, float margin) 
 bool MultirotorApiBase::rotateByYawRate(float yaw_rate, float duration) {
     SingleTaskCall lock(this);
 
-    if (duration <= 0) { return true; }
+    if (duration <= 0) {
+        return true;
+    }
 
     auto start_pos = getPosition();
     YawMode yaw_mode(true, yaw_rate);
@@ -749,12 +779,12 @@ void MultirotorApiBase::moveToPathPosition(const Vector3r &dest, float velocity,
 
     // send commands
     // try to maintain altitude if path was in XY plan only, velocity based control is not as good
-    if (std::abs(cur.z() - dest.z()) <= getDistanceAccuracy()) { // for paths in XY plan current code leaves z untouched,
-                                                                 // so we can compare with strict equality
+    if (std::abs(cur.z() - dest.z()) <= getDistanceAccuracy()) { // for paths in XY plan current code leaves z
+                                                                 // untouched, so we can compare with strict equality
         moveByVelocityInternal(velocity_vect.x(), velocity_vect.y(), 0, yaw_mode);
-     } else {
+    } else {
         moveByVelocityInternal(velocity_vect.x(), velocity_vect.y(), velocity_vect.z(), yaw_mode);
-     }
+    }
 }
 
 bool MultirotorApiBase::setSafety(SafetyEval::SafetyViolationType enable_reasons, float obs_clearance,
@@ -800,19 +830,25 @@ bool MultirotorApiBase::emergencyManeuverIfUnsafe(const SafetyEval::EvalResult &
 }
 
 bool MultirotorApiBase::safetyCheckVelocity(const Vector3r &velocity) {
-    if (safety_eval_ptr_ == nullptr) { return true; } // safety checks disabled
+    if (safety_eval_ptr_ == nullptr) {
+        return true;
+    } // safety checks disabled
 
     const auto &result = safety_eval_ptr_->isSafeVelocity(getPosition(), velocity, getOrientation());
     return emergencyManeuverIfUnsafe(result);
 }
 bool MultirotorApiBase::safetyCheckVelocityZ(float vx, float vy, float z) {
-    if (safety_eval_ptr_ == nullptr) { return true; } // safety checks disabled
+    if (safety_eval_ptr_ == nullptr) {
+        return true;
+    } // safety checks disabled
 
     const auto &result = safety_eval_ptr_->isSafeVelocityZ(getPosition(), vx, vy, z, getOrientation());
     return emergencyManeuverIfUnsafe(result);
 }
 bool MultirotorApiBase::safetyCheckDestination(const Vector3r &dest_pos) {
-    if (safety_eval_ptr_ == nullptr) { return true; } // safety checks disabled
+    if (safety_eval_ptr_ == nullptr) {
+        return true;
+    } // safety checks disabled
 
     const auto &result = safety_eval_ptr_->isSafeDestination(getPosition(), dest_pos, getOrientation());
     return emergencyManeuverIfUnsafe(result);

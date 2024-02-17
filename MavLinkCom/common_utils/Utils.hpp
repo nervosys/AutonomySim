@@ -48,9 +48,9 @@ using std::experimental::optional;
 #define M_PIf static_cast<float>(3.1415926535897932384626433832795028841972)
 #endif
 
-//#ifndef M_PI
-//#define M_PI static_cast<double>(3.1415926535897932384626433832795028841972)
-//#endif
+// #ifndef M_PI
+// #define M_PI static_cast<double>(3.1415926535897932384626433832795028841972)
+// #endif
 
 #ifndef M_PIl
 #define M_PIl static_cast<long double>(3.1415926535897932384626433832795028841972)

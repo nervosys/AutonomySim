@@ -56,7 +56,7 @@ struct LidarSimpleParams {
         } else {
             throw std::runtime_error("Unknown requested data frame");
         }
-        
+
         external_controller = settings_json.getBool("ExternalController", external_controller);
         vertical_FOV_upper = settings_json.getFloat("VerticalFOVUpper", Utils::nan<float>());
 

@@ -150,7 +150,7 @@ class FastPhysicsEngine : public PhysicsEngineBase {
             // mean we are coliding with the ground???
             // || Utils::isApproximatelyEqual(std::abs(normal_body.x()), 1.0f, kAxisTolerance)
             // || Utils::isApproximatelyEqual(std::abs(normal_body.y()), 1.0f, kAxisTolerance)
-            
+
             // looks like we are coliding with the ground.  We don't want the ground to be so bouncy
             // so we reduce the coefficient of restitution.  0 means no bounce.
             // TODO: it would be better if we did this based on the material we are landing on.

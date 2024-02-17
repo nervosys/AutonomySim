@@ -11,12 +11,12 @@ NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
   Script is intended to run from AutonomySim base project directory.
 
-  Copyright © 2023 Nervosys, LLC
+  Copyright © 2024 Nervosys, LLC
 #>
 
-$OLD='.bat'
-$NEW='.cmd'
+$OLD = '.bat'
+$NEW = '.cmd'
 
-Get-ChildItem -File -Recurse | ForEach-Object { Rename-Item -Path $_.PSPath -NewName $_.Name.replace($OLD, $NEW)}
+Get-ChildItem -File -Recurse | ForEach-Object { Rename-Item -Path $_.PSPath -NewName $_.Name.replace($OLD, $NEW) }
 
 exit 0

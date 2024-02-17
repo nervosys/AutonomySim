@@ -11,7 +11,7 @@ NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
   Script is intended to run from AutonomySim base project directory.
 
-  Copyright © 2023 Nervosys, LLC
+  Copyright © 2024 Nervosys, LLC
 #>
 
 ###
@@ -20,7 +20,7 @@ NOTES:
 
 # Static variables
 $PROJECT_DIR = "$PWD"
-$SCRIPT_DIR  = "$PROJECT_DIR\scripts"
+$SCRIPT_DIR = "$PROJECT_DIR\scripts"
 
 ###
 ### Main
@@ -30,7 +30,7 @@ $SCRIPT_DIR  = "$PROJECT_DIR\scripts"
 Remove-Item -Path 'external' -Recurse -Force
 
 # Run git-clean and git-pull
-Start-Process -FilePath 'git.exe' -ArgumentList 'clean','-ffdx' -Wait -NoNewWindow
+Start-Process -FilePath 'git.exe' -ArgumentList 'clean', '-ffdx' -Wait -NoNewWindow
 Start-Process -FilePath 'git.exe' -ArgumentList 'pull' -Wait -NoNewWindow
 
 # Run build script

@@ -23,7 +23,7 @@ class PhysicsBodyVertex : public UpdatableObject {
     real_T getDragFactor() const { return drag_factor_; }
     void setDragFactor(real_T val) { drag_factor_ = val; }
 
-    PhysicsBodyVertex() {}  // allow default constructor with later call for initialize
+    PhysicsBodyVertex() {} // allow default constructor with later call for initialize
     PhysicsBodyVertex(const Vector3r &position, const Vector3r &normal, real_T drag_factor = 0) {
         initialize(position, normal, drag_factor);
     }
