@@ -20,7 +20,8 @@ class UnrealLidarSensor : public nervosys::autonomylib::LidarSimple {
                       const NedTransform *ned_transform);
 
   protected:
-    virtual void getPointCloud(const nervosys::autonomylib::Pose &lidar_pose, const nervosys::autonomylib::Pose &vehicle_pose,
+    virtual void getPointCloud(const nervosys::autonomylib::Pose &lidar_pose,
+                               const nervosys::autonomylib::Pose &vehicle_pose,
                                nervosys::autonomylib::TTimeDelta delta_time,
                                nervosys::autonomylib::vector<nervosys::autonomylib::real_T> &point_cloud,
                                nervosys::autonomylib::vector<int> &segmentation_cloud) override;

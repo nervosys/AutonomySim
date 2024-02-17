@@ -18,8 +18,8 @@ USAGE:
 
 # specify C/C++ project directories to avoid having to scan the entire repository.
 $PROJECT_DIRS = @(
-  "AutonomyLib", "AutonomyLibUnitTests", "DroneServer", "DroneShell", "Examples",
-  "HelloCar", "HelloDrone", "HelloSpawnedDrones", "MavLinkCom"
+  "AutonomyLib", "AutonomyLibUnitTests", "DroneServer", "DroneShell", "Examples", "HelloCar",
+  "HelloDrone", "HelloSpawnedDrones", "MavLinkCom", "ros2", "SemiGlobalMatching", "Unreal"
 )
 
 $FILES_INCLUDE = @("*.c", "*.cpp", "*.cc", "*.hpp", "*.h")

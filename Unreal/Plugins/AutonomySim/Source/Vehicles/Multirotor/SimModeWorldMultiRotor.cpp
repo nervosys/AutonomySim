@@ -40,7 +40,8 @@ void ASimModeWorldMultirotor::setupClockSpeed() {
 
     if (clock_type == "ScalableClock") {
         // scalable clock returns interval same as wall clock but multiplied by a scale factor
-        ClockFactory::get(std::make_shared<nervosys::autonomylib::ScalableClock>(clock_speed == 1 ? 1 : 1 / clock_speed));
+        ClockFactory::get(
+            std::make_shared<nervosys::autonomylib::ScalableClock>(clock_speed == 1 ? 1 : 1 / clock_speed));
     } else if (clock_type == "SteppableClock") {
         // steppable clock returns interval that is a constant number irrespective of wall clock
         // we can either multiply this fixed interval by scale factor to speed up/down the clock
@@ -55,8 +56,9 @@ void ASimModeWorldMultirotor::setupClockSpeed() {
 
         // Approach 2: scale control loop frequency if clock is speeded up
         if (clock_speed >= 1) {
-            ClockFactory::get(std::make_shared<nervosys::autonomylib::SteppableClock>(
-                static_cast<nervosys::autonomylib::TTimeDelta>(getPhysicsLoopPeriod() * 1E-9))); // no clock_speed multiplier
+            ClockFactory::get(
+                std::make_shared<nervosys::autonomylib::SteppableClock>(static_cast<nervosys::autonomylib::TTimeDelta>(
+                    getPhysicsLoopPeriod() * 1E-9))); // no clock_speed multiplier
 
             setPhysicsLoopPeriod(getPhysicsLoopPeriod() / static_cast<long long>(clock_speed));
         } else {
@@ -119,8 +121,8 @@ ASimModeWorldMultirotor::createVehicleSimApi(const PawnSimApi::Params &pawn_sim_
     // vehicle_sim_api->reset();
     return vehicle_sim_api;
 }
-nervosys::autonomylib::VehicleApiBase *ASimModeWorldMultirotor::getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params,
-                                                                    const PawnSimApi *sim_api) const {
+nervosys::autonomylib::VehicleApiBase *
+ASimModeWorldMultirotor::getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params, const PawnSimApi *sim_api) const {
     const auto multirotor_sim_api = static_cast<const MultirotorPawnSimApi *>(sim_api);
     return multirotor_sim_api->getVehicleApi();
 }

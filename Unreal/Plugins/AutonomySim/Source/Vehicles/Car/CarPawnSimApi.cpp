@@ -6,7 +6,8 @@
 
 using namespace nervosys::autonomylib;
 
-CarPawnSimApi::CarPawnSimApi(const Params &params, const nervosys::autonomylib::CarApiBase::CarControls &keyboard_controls)
+CarPawnSimApi::CarPawnSimApi(const Params &params,
+                             const nervosys::autonomylib::CarApiBase::CarControls &keyboard_controls)
     : PawnSimApi(params), keyboard_controls_(keyboard_controls) {}
 
 void CarPawnSimApi::initialize() {
@@ -57,7 +58,8 @@ void CarPawnSimApi::updateRendering(float dt) {
     updateCarControls();
 
     for (auto i = 0; i < vehicle_api_messages_.size(); ++i) {
-        UAutonomyBlueprintLib::LogMessage(FString(vehicle_api_messages_[i].c_str()), TEXT(""), LogDebugLevel::Success, 30);
+        UAutonomyBlueprintLib::LogMessage(FString(vehicle_api_messages_[i].c_str()), TEXT(""), LogDebugLevel::Success,
+                                          30);
     }
 
     try {
@@ -73,7 +75,7 @@ void CarPawnSimApi::updateCarControls() {
     if (rc_data.is_initialized) {
         if (!rc_data.is_valid) {
             UAutonomyBlueprintLib::LogMessageString("Control Mode: ", "[INVALID] Wheel/Joystick",
-                                               LogDebugLevel::Informational);
+                                                    LogDebugLevel::Informational);
             return;
         }
         UAutonomyBlueprintLib::LogMessageString("Control Mode: ", "Wheel/Joystick", LogDebugLevel::Informational);
@@ -131,15 +133,15 @@ void CarPawnSimApi::updateCarControls() {
         pawn_api_->updateMovement(current_controls_);
     }
     UAutonomyBlueprintLib::LogMessageString("Accel: ", std::to_string(current_controls_.throttle),
-                                       LogDebugLevel::Informational);
+                                            LogDebugLevel::Informational);
     UAutonomyBlueprintLib::LogMessageString("Break: ", std::to_string(current_controls_.brake),
-                                       LogDebugLevel::Informational);
+                                            LogDebugLevel::Informational);
     UAutonomyBlueprintLib::LogMessageString("Steering: ", std::to_string(current_controls_.steering),
-                                       LogDebugLevel::Informational);
+                                            LogDebugLevel::Informational);
     UAutonomyBlueprintLib::LogMessageString("Handbrake: ", std::to_string(current_controls_.handbrake),
-                                       LogDebugLevel::Informational);
+                                            LogDebugLevel::Informational);
     UAutonomyBlueprintLib::LogMessageString("Target Gear: ", std::to_string(current_controls_.manual_gear),
-                                       LogDebugLevel::Informational);
+                                            LogDebugLevel::Informational);
 }
 
 //*** Start: UpdatableState implementation ***//

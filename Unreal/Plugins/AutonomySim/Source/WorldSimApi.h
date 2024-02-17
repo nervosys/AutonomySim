@@ -140,8 +140,8 @@ class WorldSimApi : public nervosys::autonomylib::WorldSimApiBase {
                                           const CameraDetails &camera_details) override;
     virtual void clearDetectionMeshNames(ImageCaptureBase::ImageType image_type,
                                          const CameraDetails &camera_details) override;
-    virtual std::vector<nervosys::autonomylib::DetectionInfo> getDetections(ImageCaptureBase::ImageType image_type,
-                                                                  const CameraDetails &camera_details) override;
+    virtual std::vector<nervosys::autonomylib::DetectionInfo>
+    getDetections(ImageCaptureBase::ImageType image_type, const CameraDetails &camera_details) override;
 
   private:
     AActor *createNewStaticMeshActor(const FActorSpawnParameters &spawn_params, const FTransform &actor_transform,

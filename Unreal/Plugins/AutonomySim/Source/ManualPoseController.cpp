@@ -110,30 +110,30 @@ void UManualPoseController::setupInputBindings() {
         &UAutonomyBlueprintLib::BindAxisToKey(left_mapping_, actor_, this, &UManualPoseController::inputManualLeft);
     right_binding_ =
         &UAutonomyBlueprintLib::BindAxisToKey(right_mapping_, actor_, this, &UManualPoseController::inputManualRight);
-    forward_binding_ =
-        &UAutonomyBlueprintLib::BindAxisToKey(forward_mapping_, actor_, this, &UManualPoseController::inputManualForward);
-    backward_binding_ =
-        &UAutonomyBlueprintLib::BindAxisToKey(backward_mapping_, actor_, this, &UManualPoseController::inputManualBackward);
+    forward_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(forward_mapping_, actor_, this,
+                                                             &UManualPoseController::inputManualForward);
+    backward_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(backward_mapping_, actor_, this,
+                                                              &UManualPoseController::inputManualBackward);
     up_binding_ =
         &UAutonomyBlueprintLib::BindAxisToKey(up_mapping_, actor_, this, &UManualPoseController::inputManualMoveUp);
     down_binding_ =
         &UAutonomyBlueprintLib::BindAxisToKey(down_mapping_, actor_, this, &UManualPoseController::inputManualDown);
-    left_yaw_binding_ =
-        &UAutonomyBlueprintLib::BindAxisToKey(left_yaw_mapping_, actor_, this, &UManualPoseController::inputManualLeftYaw);
-    right_yaw_binding_ =
-        &UAutonomyBlueprintLib::BindAxisToKey(right_yaw_mapping_, actor_, this, &UManualPoseController::inputManualRightYaw);
-    left_roll_binding_ =
-        &UAutonomyBlueprintLib::BindAxisToKey(left_roll_mapping_, actor_, this, &UManualPoseController::inputManualLeftRoll);
+    left_yaw_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(left_yaw_mapping_, actor_, this,
+                                                              &UManualPoseController::inputManualLeftYaw);
+    right_yaw_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(right_yaw_mapping_, actor_, this,
+                                                               &UManualPoseController::inputManualRightYaw);
+    left_roll_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(left_roll_mapping_, actor_, this,
+                                                               &UManualPoseController::inputManualLeftRoll);
     right_roll_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(right_roll_mapping_, actor_, this,
-                                                           &UManualPoseController::inputManualRightRoll);
-    up_pitch_binding_ =
-        &UAutonomyBlueprintLib::BindAxisToKey(up_pitch_mapping_, actor_, this, &UManualPoseController::inputManualUpPitch);
+                                                                &UManualPoseController::inputManualRightRoll);
+    up_pitch_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(up_pitch_mapping_, actor_, this,
+                                                              &UManualPoseController::inputManualUpPitch);
     down_pitch_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(down_pitch_mapping_, actor_, this,
-                                                           &UManualPoseController::inputManualDownPitch);
+                                                                &UManualPoseController::inputManualDownPitch);
     inc_speed_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(inc_speed_mapping_, actor_, this,
-                                                          &UManualPoseController::inputManualSpeedIncrease);
+                                                               &UManualPoseController::inputManualSpeedIncrease);
     dec_speed_binding_ = &UAutonomyBlueprintLib::BindAxisToKey(dec_speed_mapping_, actor_, this,
-                                                          &UManualPoseController::inputManualSpeedDecrease);
+                                                               &UManualPoseController::inputManualSpeedDecrease);
 }
 
 void UManualPoseController::updateDeltaPosition(float dt) {

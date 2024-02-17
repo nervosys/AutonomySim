@@ -62,8 +62,8 @@ void PawnSimApi::setStartPosition(const FVector &position, const FRotator &rotat
 
     // compute our home point
     Vector3r nedWrtOrigin = ned_transform_.toGlobalNed(initial_state_.start_location);
-    home_geo_point_ =
-        nervosys::autonomylib::EarthUtils::nedToGeodetic(nedWrtOrigin, AutonomySimSettings::singleton().origin_geopoint);
+    home_geo_point_ = nervosys::autonomylib::EarthUtils::nedToGeodetic(
+        nedWrtOrigin, AutonomySimSettings::singleton().origin_geopoint);
 }
 
 void PawnSimApi::pawnTick(float dt) {
@@ -159,11 +159,11 @@ void PawnSimApi::onCollision(class UPrimitiveComponent *MyComp, class AActor *Ot
 
     ++state_.collision_info.collision_count;
 
-    UAutonomyBlueprintLib::LogMessageString("Collision",
-                                       Utils::stringf("#%d with %s - ObjID %d", state_.collision_info.collision_count,
-                                                      state_.collision_info.object_name.c_str(),
-                                                      state_.collision_info.object_id),
-                                       LogDebugLevel::Informational);
+    UAutonomyBlueprintLib::LogMessageString(
+        "Collision",
+        Utils::stringf("#%d with %s - ObjID %d", state_.collision_info.collision_count,
+                       state_.collision_info.object_name.c_str(), state_.collision_info.object_id),
+        LogDebugLevel::Informational);
 }
 
 void PawnSimApi::possess() {
@@ -210,14 +210,14 @@ nervosys::autonomylib::RCData PawnSimApi::getRCData() const {
         // top-left-left, top-right-left
 
         UAutonomyBlueprintLib::LogMessageString("Joystick (T,R,P,Y,Buttons): ",
-                                           Utils::stringf("%f, %f, %f %f, %s", rc_data_.throttle, rc_data_.roll,
-                                                          rc_data_.pitch, rc_data_.yaw,
-                                                          Utils::toBinaryString(joystick_state_.buttons).c_str()),
-                                           LogDebugLevel::Informational);
+                                                Utils::stringf("%f, %f, %f %f, %s", rc_data_.throttle, rc_data_.roll,
+                                                               rc_data_.pitch, rc_data_.yaw,
+                                                               Utils::toBinaryString(joystick_state_.buttons).c_str()),
+                                                LogDebugLevel::Informational);
 
         // TODO: should below be at controller level info?
         UAutonomyBlueprintLib::LogMessageString("RC Mode: ", rc_data_.getSwitch(0) == 0 ? "Angle" : "Rate",
-                                           LogDebugLevel::Informational);
+                                                LogDebugLevel::Informational);
     }
     // else don't waste time
 
@@ -262,8 +262,8 @@ bool PawnSimApi::testLineOfSightToPoint(const nervosys::autonomylib::GeoPoint &l
             // Transform from LLA to NED
             const auto &settings = AutonomySimSettings::singleton();
             nervosys::autonomylib::GeodeticConverter converter(settings.origin_geopoint.home_geo_point.latitude,
-                                                     settings.origin_geopoint.home_geo_point.longitude,
-                                                     settings.origin_geopoint.home_geo_point.altitude);
+                                                               settings.origin_geopoint.home_geo_point.longitude,
+                                                               settings.origin_geopoint.home_geo_point.altitude);
             double north, east, down;
             converter.geodetic2Ned(lla.latitude, lla.longitude, lla.altitude, &north, &east, &down);
             nervosys::autonomylib::Vector3r ned(north, east, down);
@@ -374,8 +374,8 @@ void PawnSimApi::setTraceLine(const std::vector<float> &color_rgba, float thickn
 
 void PawnSimApi::allowPassthroughToggleInput() {
     state_.passthrough_enabled = !state_.passthrough_enabled;
-    UAutonomyBlueprintLib::LogMessage("enable_passthrough_on_collisions: ", FString::FromInt(state_.passthrough_enabled),
-                                 LogDebugLevel::Informational);
+    UAutonomyBlueprintLib::LogMessage("enable_passthrough_on_collisions: ",
+                                      FString::FromInt(state_.passthrough_enabled), LogDebugLevel::Informational);
 }
 
 void PawnSimApi::plot(std::istream &s, FColor color, const Vector3r &offset) {
@@ -447,7 +447,7 @@ void PawnSimApi::setDebugPose(const Pose &debug_pose) {
             DrawDebugLine(params_.pawn->GetWorld(), state_.last_debug_position, debug_position,
                           FColor(0xaa, 0x33, 0x11), true, -1.0F, 0, 10.0F);
             UAutonomyBlueprintLib::LogMessage(FString("Debug Pose: "), debug_position.ToCompactString(),
-                                         LogDebugLevel::Informational);
+                                              LogDebugLevel::Informational);
             state_.last_debug_position = debug_position;
         }
     } else if (!state_.tracing_enabled) {
@@ -472,8 +472,8 @@ void PawnSimApi::updateKinematics(float dt) {
 
     next_kinematics.pose = getPose();
     next_kinematics.twist.linear = getNedTransform().toLocalNedVelocity(getPawn()->GetVelocity());
-    next_kinematics.twist.angular = nervosys::autonomylib::VectorMath::toAngularVelocity(kinematics_->getPose().orientation,
-                                                                               next_kinematics.pose.orientation, dt);
+    next_kinematics.twist.angular = nervosys::autonomylib::VectorMath::toAngularVelocity(
+        kinematics_->getPose().orientation, next_kinematics.pose.orientation, dt);
 
     next_kinematics.accelerations.linear = dt > 0 ? (next_kinematics.twist.linear - kinematics_->getTwist().linear) / dt
                                                   : next_kinematics.accelerations.linear;
@@ -496,7 +496,9 @@ void PawnSimApi::updateRendering(float dt) {
     // no default action in this base class
 }
 
-const nervosys::autonomylib::Kinematics::State *PawnSimApi::getGroundTruthKinematics() const { return &kinematics_->getState(); }
+const nervosys::autonomylib::Kinematics::State *PawnSimApi::getGroundTruthKinematics() const {
+    return &kinematics_->getState();
+}
 
 void PawnSimApi::setKinematics(const Kinematics::State &state, bool ignore_collision) {
     unused(ignore_collision);

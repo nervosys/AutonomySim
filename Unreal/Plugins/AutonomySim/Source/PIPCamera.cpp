@@ -19,7 +19,7 @@ APIPCamera::APIPCamera(const FObjectInitializer &ObjectInitializer)
         noise_material_static_ = mat_finder.Object;
     } else
         UAutonomyBlueprintLib::LogMessageString("Cannot create noise material for the PIPCamera", "",
-                                           LogDebugLevel::Failure);
+                                                LogDebugLevel::Failure);
 
     static ConstructorHelpers::FObjectFinder<UMaterial> dist_mat_finder(
         TEXT("Material'/AutonomySim/HUDAssets/CameraDistortion.CameraDistortion'"));
@@ -30,7 +30,7 @@ APIPCamera::APIPCamera(const FObjectInitializer &ObjectInitializer)
                              TEXT("'/AutonomySim/HUDAssets/DistortionParams.DistortionParams'")));
     } else
         UAutonomyBlueprintLib::LogMessageString("Cannot create distortion material for the PIPCamera", "",
-                                           LogDebugLevel::Failure);
+                                                LogDebugLevel::Failure);
 
     PrimaryActorTick.bCanEverTick = true;
 
@@ -67,12 +67,13 @@ void APIPCamera::PostInitializeComponents() {
     captures_[Utils::toNumeric(ImageType::DepthPlanar)] =
         UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this, TEXT("DepthPlanarCaptureComponent"));
     captures_[Utils::toNumeric(ImageType::DepthPerspective)] =
-        UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this, TEXT("DepthPerspectiveCaptureComponent"));
+        UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this,
+                                                                           TEXT("DepthPerspectiveCaptureComponent"));
     captures_[Utils::toNumeric(ImageType::DepthVis)] =
         UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this, TEXT("DepthVisCaptureComponent"));
     captures_[Utils::toNumeric(ImageType::DisparityNormalized)] =
         UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this,
-                                                                      TEXT("DisparityNormalizedCaptureComponent"));
+                                                                           TEXT("DisparityNormalizedCaptureComponent"));
     captures_[Utils::toNumeric(ImageType::Segmentation)] =
         UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this, TEXT("SegmentationCaptureComponent"));
     captures_[Utils::toNumeric(ImageType::Infrared)] =
@@ -82,7 +83,8 @@ void APIPCamera::PostInitializeComponents() {
     captures_[Utils::toNumeric(ImageType::OpticalFlow)] =
         UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this, TEXT("OpticalFlowCaptureComponent"));
     captures_[Utils::toNumeric(ImageType::OpticalFlowVis)] =
-        UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this, TEXT("OpticalFlowVisCaptureComponent"));
+        UAutonomyBlueprintLib::GetActorComponent<USceneCaptureComponent2D>(this,
+                                                                           TEXT("OpticalFlowVisCaptureComponent"));
 
     for (unsigned int i = 0; i < imageTypeCount(); ++i) {
         detections_[i] = NewObject<UDetectionComponent>(this);
@@ -420,7 +422,9 @@ void APIPCamera::updateCameraSetting(UCineCameraComponent *camera, const Capture
     updateCameraPostProcessingSetting(camera->PostProcessSettings, setting);
 }
 
-nervosys::autonomylib::Pose APIPCamera::getPose() const { return ned_transform_->toLocalNed(this->GetActorTransform()); }
+nervosys::autonomylib::Pose APIPCamera::getPose() const {
+    return ned_transform_->toLocalNed(this->GetActorTransform());
+}
 
 void APIPCamera::updateCameraPostProcessingSetting(FPostProcessSettings &obj, const CaptureSetting &setting) {
     if (!std::isnan(setting.motion_blur_amount)) {

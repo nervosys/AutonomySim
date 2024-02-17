@@ -138,7 +138,7 @@ void ASimHUD::createMainWidget() {
     } else {
         widget_ = nullptr;
         UAutonomyBlueprintLib::LogMessage(TEXT("Cannot instantiate BP_SimHUDWidget blueprint!"), TEXT(""),
-                                     LogDebugLevel::Failure);
+                                          LogDebugLevel::Failure);
     }
 
     initializeSubWindows();
@@ -176,18 +176,19 @@ void ASimHUD::setUnrealEngineSettings() {
 void ASimHUD::setupInputBindings() {
     UAutonomyBlueprintLib::EnableInput(this);
 
-    UAutonomyBlueprintLib::BindActionToKey("inputEventToggleRecording", EKeys::R, this, &ASimHUD::inputEventToggleRecording);
+    UAutonomyBlueprintLib::BindActionToKey("inputEventToggleRecording", EKeys::R, this,
+                                           &ASimHUD::inputEventToggleRecording);
     UAutonomyBlueprintLib::BindActionToKey("InputEventToggleReport", EKeys::Semicolon, this,
-                                      &ASimHUD::inputEventToggleReport);
+                                           &ASimHUD::inputEventToggleReport);
     UAutonomyBlueprintLib::BindActionToKey("InputEventToggleHelp", EKeys::F1, this, &ASimHUD::inputEventToggleHelp);
     UAutonomyBlueprintLib::BindActionToKey("InputEventToggleTrace", EKeys::T, this, &ASimHUD::inputEventToggleTrace);
 
     UAutonomyBlueprintLib::BindActionToKey("InputEventToggleSubwindow0", EKeys::One, this,
-                                      &ASimHUD::inputEventToggleSubwindow0);
+                                           &ASimHUD::inputEventToggleSubwindow0);
     UAutonomyBlueprintLib::BindActionToKey("InputEventToggleSubwindow1", EKeys::Two, this,
-                                      &ASimHUD::inputEventToggleSubwindow1);
+                                           &ASimHUD::inputEventToggleSubwindow1);
     UAutonomyBlueprintLib::BindActionToKey("InputEventToggleSubwindow2", EKeys::Three, this,
-                                      &ASimHUD::inputEventToggleSubwindow2);
+                                           &ASimHUD::inputEventToggleSubwindow2);
     UAutonomyBlueprintLib::BindActionToKey("InputEventToggleAll", EKeys::Zero, this, &ASimHUD::inputEventToggleAll);
 }
 
@@ -216,10 +217,10 @@ std::vector<ASimHUD::AutonomySimSettings::SubwindowSetting> &ASimHUD::getSubWind
 }
 
 std::string ASimHUD::getSimModeFromUser() {
-    if (EAppReturnType::No ==
-        UAutonomyBlueprintLib::ShowMessage(EAppMsgType::YesNo,
-                                      "Would you like to use car simulation? Choose no to use quadrotor simulation.",
-                                      "Choose Vehicle")) {
+    if (EAppReturnType::No == UAutonomyBlueprintLib::ShowMessage(
+                                  EAppMsgType::YesNo,
+                                  "Would you like to use car simulation? Choose no to use quadrotor simulation.",
+                                  "Choose Vehicle")) {
         return AutonomySimSettings::kSimModeTypeMultirotor;
     } else
         return AutonomySimSettings::kSimModeTypeCar;
@@ -252,7 +253,8 @@ void ASimHUD::createSimMode() {
         simmode_ = this->GetWorld()->SpawnActor<ASimModeComputerVision>(FVector::ZeroVector, FRotator::ZeroRotator,
                                                                         simmode_spawn_params);
     else {
-        UAutonomyBlueprintLib::ShowMessage(EAppMsgType::Ok, std::string("SimMode is not valid: ") + simmode_name, "Error");
+        UAutonomyBlueprintLib::ShowMessage(EAppMsgType::Ok, std::string("SimMode is not valid: ") + simmode_name,
+                                           "Error");
         UAutonomyBlueprintLib::LogMessageString("SimMode is not valid: ", simmode_name, LogDebugLevel::Failure);
     }
 }
@@ -282,7 +284,7 @@ void ASimHUD::initializeSubWindows() {
             subwindow_cameras_[setting.window_index] = camera;
         else
             UAutonomyBlueprintLib::LogMessageString("Invalid Camera settings in <SubWindows> element",
-                                               std::to_string(setting.window_index), LogDebugLevel::Failure);
+                                                    std::to_string(setting.window_index), LogDebugLevel::Failure);
     }
 }
 
@@ -301,11 +303,12 @@ FString ASimHUD::getLaunchPath(const std::string &filename) {
 bool ASimHUD::getSettingsText(std::string &settingsText) {
     return (
         getSettingsTextFromCommandLine(settingsText) ||
-        readSettingsTextFromFile(FString(nervosys::autonomylib::Settings::getExecutableFullPath("settings.json").c_str()),
-                                 settingsText) ||
+        readSettingsTextFromFile(
+            FString(nervosys::autonomylib::Settings::getExecutableFullPath("settings.json").c_str()), settingsText) ||
         readSettingsTextFromFile(getLaunchPath("settings.json"), settingsText) ||
         readSettingsTextFromFile(
-            FString(nervosys::autonomylib::Settings::Settings::getUserDirectoryFullPath("settings.json").c_str()), settingsText));
+            FString(nervosys::autonomylib::Settings::Settings::getUserDirectoryFullPath("settings.json").c_str()),
+            settingsText));
 }
 
 // Attempts to parse the settings file path or the settings text from the command line
@@ -322,7 +325,7 @@ bool ASimHUD::getSettingsTextFromCommandLine(std::string &settingsText) {
             return true;
         } else {
             UAutonomyBlueprintLib::LogMessageString("Loaded settings from commandline: ",
-                                               TCHAR_TO_UTF8(*settingsJsonFString), LogDebugLevel::Informational);
+                                                    TCHAR_TO_UTF8(*settingsJsonFString), LogDebugLevel::Informational);
             settingsText = TCHAR_TO_UTF8(*settingsJsonFString);
             return true;
         }
@@ -338,11 +341,11 @@ bool ASimHUD::readSettingsTextFromFile(const FString &settingsFilepath, std::str
         bool readSuccessful = FFileHelper::LoadFileToString(settingsTextFStr, *settingsFilepath);
         if (readSuccessful) {
             UAutonomyBlueprintLib::LogMessageString("Loaded settings from ", TCHAR_TO_UTF8(*settingsFilepath),
-                                               LogDebugLevel::Informational);
+                                                    LogDebugLevel::Informational);
             settingsText = TCHAR_TO_UTF8(*settingsTextFStr);
         } else {
             UAutonomyBlueprintLib::LogMessageString("Cannot read file ", TCHAR_TO_UTF8(*settingsFilepath),
-                                               LogDebugLevel::Failure);
+                                                    LogDebugLevel::Failure);
             throw std::runtime_error("Cannot read settings file.");
         }
     }

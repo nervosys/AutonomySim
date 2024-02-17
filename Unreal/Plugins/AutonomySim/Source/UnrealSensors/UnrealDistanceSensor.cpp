@@ -18,15 +18,15 @@ nervosys::autonomylib::real_T UnrealDistanceSensor::getRayLength(const nervosys:
 
     FHitResult dist_hit = FHitResult(ForceInit);
     bool is_hit = UAutonomyBlueprintLib::GetObstacle(actor_, ned_transform_->fromLocalNed(start),
-                                                ned_transform_->fromLocalNed(end), dist_hit);
+                                                     ned_transform_->fromLocalNed(end), dist_hit);
     float distance = is_hit ? dist_hit.Distance / 100.0f : getParams().max_distance;
 
     // FString hit_name = FString("None");
     // if (dist_hit.GetActor())
     //     hit_name=dist_hit.GetActor()->GetName();
 
-    // UAutonomyBlueprintLib::LogMessage(FString("Distance to "), hit_name+FString(": ")+FString::SanitizeFloat(distance),
-    // LogDebugLevel::Informational);
+    // UAutonomyBlueprintLib::LogMessage(FString("Distance to "), hit_name+FString(":
+    // ")+FString::SanitizeFloat(distance), LogDebugLevel::Informational);
 
     return distance;
 }

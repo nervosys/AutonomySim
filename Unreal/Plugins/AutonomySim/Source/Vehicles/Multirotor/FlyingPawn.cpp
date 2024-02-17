@@ -14,15 +14,20 @@ void AFlyingPawn::BeginPlay() { Super::BeginPlay(); }
 void AFlyingPawn::initializeForBeginPlay() {
     // get references of existing camera
     camera_front_right_ = Cast<APIPCamera>(
-        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("FrontRightCamera")))->GetChildActor());
-    camera_front_left_ = Cast<APIPCamera>(
-        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("FrontLeftCamera")))->GetChildActor());
+        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("FrontRightCamera")))
+            ->GetChildActor());
+    camera_front_left_ =
+        Cast<APIPCamera>((UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("FrontLeftCamera")))
+                             ->GetChildActor());
     camera_front_center_ = Cast<APIPCamera>(
-        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("FrontCenterCamera")))->GetChildActor());
+        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("FrontCenterCamera")))
+            ->GetChildActor());
     camera_back_center_ = Cast<APIPCamera>(
-        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("BackCenterCamera")))->GetChildActor());
+        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("BackCenterCamera")))
+            ->GetChildActor());
     camera_bottom_center_ = Cast<APIPCamera>(
-        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("BottomCenterCamera")))->GetChildActor());
+        (UAutonomyBlueprintLib::GetActorComponent<UChildActorComponent>(this, TEXT("BottomCenterCamera")))
+            ->GetChildActor());
 }
 
 void AFlyingPawn::Tick(float DeltaSeconds) {

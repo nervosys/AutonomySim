@@ -12,8 +12,8 @@ class AUnrealLog : public nervosys::autonomylib::Utils::Logger {
         static const std::string delim = ":\t";
         if ((tab_pos = message.find(delim)) != std::string::npos) {
             UAutonomyBlueprintLib::LogMessageString(message.substr(0, tab_pos),
-                                               message.substr(tab_pos + delim.size(), std::string::npos),
-                                               LogDebugLevel::Informational);
+                                                    message.substr(tab_pos + delim.size(), std::string::npos),
+                                                    LogDebugLevel::Informational);
 
             return; // display only
         }
@@ -26,10 +26,10 @@ class AUnrealLog : public nervosys::autonomylib::Utils::Logger {
             UE_LOG(LogTemp, Log, TEXT("%s"), *FString(message.c_str()));
         }
 
-        //#ifdef _MSC_VER
-        //        //print to VS output window
-        //        OutputDebugString(std::wstring(message.begin(), message.end()).c_str());
-        //#endif
+        // #ifdef _MSC_VER
+        //         //print to VS output window
+        //         OutputDebugString(std::wstring(message.begin(), message.end()).c_str());
+        // #endif
 
         // also do default logging
         nervosys::autonomylib::Utils::Logger::log(level, message);

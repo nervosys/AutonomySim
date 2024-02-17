@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "AutonomyBlueprintLib.generated.h"
 #include "AssetRegistry/AssetRegistryModule.h"
+#include "AutonomyBlueprintLib.generated.h"
 #include "Components/InputComponent.h"
 #include "Components/MeshComponent.h"
 #include "CoreMinimal.h"

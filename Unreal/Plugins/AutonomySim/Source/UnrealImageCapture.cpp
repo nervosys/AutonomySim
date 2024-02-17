@@ -13,8 +13,9 @@ UnrealImageCapture::UnrealImageCapture(const common_utils::UniqueValueMap<std::s
 
 UnrealImageCapture::~UnrealImageCapture() {}
 
-void UnrealImageCapture::getImages(const std::vector<nervosys::autonomylib::ImageCaptureBase::ImageRequest> &requests,
-                                   std::vector<nervosys::autonomylib::ImageCaptureBase::ImageResponse> &responses) const {
+void UnrealImageCapture::getImages(
+    const std::vector<nervosys::autonomylib::ImageCaptureBase::ImageRequest> &requests,
+    std::vector<nervosys::autonomylib::ImageCaptureBase::ImageResponse> &responses) const {
     if (cameras_->valsSize() == 0) {
         for (unsigned int i = 0; i < requests.size(); ++i) {
             responses.push_back(ImageResponse());
@@ -24,9 +25,9 @@ void UnrealImageCapture::getImages(const std::vector<nervosys::autonomylib::Imag
         getSceneCaptureImage(requests, responses, false);
 }
 
-void UnrealImageCapture::getSceneCaptureImage(const std::vector<nervosys::autonomylib::ImageCaptureBase::ImageRequest> &requests,
-                                              std::vector<nervosys::autonomylib::ImageCaptureBase::ImageResponse> &responses,
-                                              bool use_safe_method) const {
+void UnrealImageCapture::getSceneCaptureImage(
+    const std::vector<nervosys::autonomylib::ImageCaptureBase::ImageRequest> &requests,
+    std::vector<nervosys::autonomylib::ImageCaptureBase::ImageResponse> &responses, bool use_safe_method) const {
     std::vector<std::shared_ptr<RenderRequest::RenderParams>> render_params;
     std::vector<std::shared_ptr<RenderRequest::RenderResult>> render_results;
 

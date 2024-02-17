@@ -174,16 +174,20 @@ void ACameraDirector::setupInputBindings() {
     UAutonomyBlueprintLib::EnableInput(this);
 
     UAutonomyBlueprintLib::BindActionToKey("inputEventFpvView", EKeys::F, this, &ACameraDirector::inputEventFpvView);
-    UAutonomyBlueprintLib::BindActionToKey("inputEventFlyWithView", EKeys::B, this, &ACameraDirector::inputEventFlyWithView);
+    UAutonomyBlueprintLib::BindActionToKey("inputEventFlyWithView", EKeys::B, this,
+                                           &ACameraDirector::inputEventFlyWithView);
     UAutonomyBlueprintLib::BindActionToKey("inputEventGroundView", EKeys::Backslash, this,
-                                      &ACameraDirector::inputEventGroundView);
-    UAutonomyBlueprintLib::BindActionToKey("inputEventManualView", EKeys::M, this, &ACameraDirector::inputEventManualView);
+                                           &ACameraDirector::inputEventGroundView);
+    UAutonomyBlueprintLib::BindActionToKey("inputEventManualView", EKeys::M, this,
+                                           &ACameraDirector::inputEventManualView);
     UAutonomyBlueprintLib::BindActionToKey("inputEventSpringArmChaseView", EKeys::Slash, this,
-                                      &ACameraDirector::inputEventSpringArmChaseView);
-    UAutonomyBlueprintLib::BindActionToKey("inputEventBackupView", EKeys::K, this, &ACameraDirector::inputEventBackupView);
+                                           &ACameraDirector::inputEventSpringArmChaseView);
+    UAutonomyBlueprintLib::BindActionToKey("inputEventBackupView", EKeys::K, this,
+                                           &ACameraDirector::inputEventBackupView);
     UAutonomyBlueprintLib::BindActionToKey("inputEventNoDisplayView", EKeys::Hyphen, this,
-                                      &ACameraDirector::inputEventNoDisplayView);
-    UAutonomyBlueprintLib::BindActionToKey("inputEventFrontView", EKeys::I, this, &ACameraDirector::inputEventFrontView);
+                                           &ACameraDirector::inputEventNoDisplayView);
+    UAutonomyBlueprintLib::BindActionToKey("inputEventFrontView", EKeys::I, this,
+                                           &ACameraDirector::inputEventFrontView);
 }
 
 void ACameraDirector::EndPlay(const EEndPlayReason::Type EndPlayReason) {

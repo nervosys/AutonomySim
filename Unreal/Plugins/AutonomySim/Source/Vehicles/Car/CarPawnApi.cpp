@@ -26,9 +26,9 @@ void CarPawnApi::updateMovement(const nervosys::autonomylib::CarApiBase::CarCont
 
 nervosys::autonomylib::CarApiBase::CarState CarPawnApi::getCarState() const {
     nervosys::autonomylib::CarApiBase::CarState state(movement_->GetForwardSpeed() / 100, // cm/s -> m/s
-                                            movement_->GetCurrentGear(), movement_->GetEngineRotationSpeed(),
-                                            movement_->GetEngineMaxRotationSpeed(), last_controls_.handbrake,
-                                            *pawn_kinematics_, vehicle_api_->clock()->nowNanos());
+                                                      movement_->GetCurrentGear(), movement_->GetEngineRotationSpeed(),
+                                                      movement_->GetEngineMaxRotationSpeed(), last_controls_.handbrake,
+                                                      *pawn_kinematics_, vehicle_api_->clock()->nowNanos());
     return state;
 }
 

@@ -39,7 +39,8 @@ void UnrealLidarSensor::createLasers() {
 }
 
 // returns a point-cloud for the tick
-void UnrealLidarSensor::getPointCloud(const nervosys::autonomylib::Pose &lidar_pose, const nervosys::autonomylib::Pose &vehicle_pose,
+void UnrealLidarSensor::getPointCloud(const nervosys::autonomylib::Pose &lidar_pose,
+                                      const nervosys::autonomylib::Pose &vehicle_pose,
                                       const nervosys::autonomylib::TTimeDelta delta_time,
                                       nervosys::autonomylib::vector<nervosys::autonomylib::real_T> &point_cloud,
                                       nervosys::autonomylib::vector<int> &segmentation_cloud) {
@@ -111,9 +112,10 @@ void UnrealLidarSensor::getPointCloud(const nervosys::autonomylib::Pose &lidar_p
 }
 
 // simulate shooting a laser via Unreal ray-tracing.
-bool UnrealLidarSensor::shootLaser(const nervosys::autonomylib::Pose &lidar_pose, const nervosys::autonomylib::Pose &vehicle_pose,
-                                   const float horizontal_angle, const float vertical_angle,
-                                   const nervosys::autonomylib::LidarSimpleParams &params, Vector3r &point, int &segmentationID) {
+bool UnrealLidarSensor::shootLaser(const nervosys::autonomylib::Pose &lidar_pose,
+                                   const nervosys::autonomylib::Pose &vehicle_pose, const float horizontal_angle,
+                                   const float vertical_angle, const nervosys::autonomylib::LidarSimpleParams &params,
+                                   Vector3r &point, int &segmentationID) {
     // start position
     Vector3r start = VectorMath::add(lidar_pose, vehicle_pose).position;
 
@@ -123,7 +125,7 @@ bool UnrealLidarSensor::shootLaser(const nervosys::autonomylib::Pose &lidar_pose
     // get ray quaternion in lidar frame (angles must be in radians)
     nervosys::autonomylib::Quaternionr ray_q_l = nervosys::autonomylib::VectorMath::toQuaternion(
         nervosys::autonomylib::Utils::degreesToRadians(vertical_angle),    // pitch - rotation around Y axis
-        0,                                                       // roll  - rotation around X axis
+        0,                                                                 // roll  - rotation around X axis
         nervosys::autonomylib::Utils::degreesToRadians(horizontal_angle)); // yaw   - rotation around Z axis
 
     // get ray quaternion in body frame
@@ -136,8 +138,9 @@ bool UnrealLidarSensor::shootLaser(const nervosys::autonomylib::Pose &lidar_pose
     Vector3r end = VectorMath::rotateVector(VectorMath::front(), ray_q_w, true) * params.range + start;
 
     FHitResult hit_result = FHitResult(ForceInit);
-    bool is_hit = UAutonomyBlueprintLib::GetObstacle(actor_, ned_transform_->fromLocalNed(start),
-                                                ned_transform_->fromLocalNed(end), hit_result, actor_, ECC_Visibility);
+    bool is_hit =
+        UAutonomyBlueprintLib::GetObstacle(actor_, ned_transform_->fromLocalNed(start),
+                                           ned_transform_->fromLocalNed(end), hit_result, actor_, ECC_Visibility);
 
     if (is_hit) {
         // Store the segmentation id of the hit object.

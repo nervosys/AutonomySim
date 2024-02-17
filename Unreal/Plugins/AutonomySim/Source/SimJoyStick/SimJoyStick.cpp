@@ -187,7 +187,7 @@ struct SimJoyStick::impl {
 #include <limits>
 #include <sstream>
 #include <string>
-//#include <libudev.h>
+// #include <libudev.h>
 #include "unistd.h"
 
 // implementation for unsupported OS

@@ -4,8 +4,8 @@
 #include "ImageUtils.h"
 #include "TextureResource.h"
 
-#include "AutonomyBlueprintLib.h"
 #include "Async/Async.h"
+#include "AutonomyBlueprintLib.h"
 
 RenderRequest::RenderRequest(UGameViewportClient *game_viewport, std::function<void()> &&query_camera_pose_cb)
     : params_(nullptr), results_(nullptr), req_size_(0), wait_signal_(new nervosys::autonomylib::WorkerThreadSignal),
@@ -100,7 +100,7 @@ void RenderRequest::getScreenshot(std::shared_ptr<RenderParams> params[],
                 results[i]->image_data_uint8.SetNumUninitialized(results[i]->width * results[i]->height * 3, false);
                 if (params[i]->compress)
                     UAutonomyBlueprintLib::CompressImageArray(results[i]->width, results[i]->height, results[i]->bmp,
-                                                         results[i]->image_data_uint8);
+                                                              results[i]->image_data_uint8);
                 else {
                     uint8 *ptr = results[i]->image_data_uint8.GetData();
                     for (const auto &item : results[i]->bmp) {

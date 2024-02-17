@@ -42,7 +42,7 @@ void ASimModeCar::setupClockSpeed() {
     // setup clock in PhysX
     UAutonomyBlueprintLib::setUnrealClockSpeed(this, current_clockspeed_);
     UAutonomyBlueprintLib::LogMessageString("Clock Speed: ", std::to_string(current_clockspeed_),
-                                       LogDebugLevel::Informational);
+                                            LogDebugLevel::Informational);
 }
 
 void ASimModeCar::Tick(float DeltaSeconds) {
@@ -76,8 +76,8 @@ std::unique_ptr<nervosys::autonomylib::ApiServerBase> ASimModeCar::createApiServ
 #ifdef AIRLIB_NO_RPC
     return ASimModeBase::createApiServer();
 #else
-    return std::unique_ptr<nervosys::autonomylib::ApiServerBase>(
-        new nervosys::autonomylib::CarRpcLibServer(getApiProvider(), getSettings().api_server_address, getSettings().api_port));
+    return std::unique_ptr<nervosys::autonomylib::ApiServerBase>(new nervosys::autonomylib::CarRpcLibServer(
+        getApiProvider(), getSettings().api_server_address, getSettings().api_port));
 #endif
 }
 
@@ -118,7 +118,7 @@ std::unique_ptr<PawnSimApi> ASimModeCar::createVehicleSimApi(const PawnSimApi::P
     return vehicle_sim_api;
 }
 nervosys::autonomylib::VehicleApiBase *ASimModeCar::getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params,
-                                                        const PawnSimApi *sim_api) const {
+                                                                  const PawnSimApi *sim_api) const {
     const auto car_sim_api = static_cast<const CarPawnSimApi *>(sim_api);
     return car_sim_api->getVehicleApi();
 }

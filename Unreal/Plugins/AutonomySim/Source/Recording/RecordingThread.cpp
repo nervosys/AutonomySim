@@ -94,8 +94,8 @@ uint32 FRecordingThread::Run() {
     while (stop_task_counter_.GetValue() == 0) {
         // make sure all vars are set up
         if (is_ready_) {
-            bool interval_elapsed =
-                nervosys::autonomylib::ClockFactory::get()->elapsedSince(last_screenshot_on_) > settings_.record_interval;
+            bool interval_elapsed = nervosys::autonomylib::ClockFactory::get()->elapsedSince(last_screenshot_on_) >
+                                    settings_.record_interval;
 
             if (interval_elapsed) {
                 last_screenshot_on_ = nervosys::autonomylib::ClockFactory::get()->nowNanos();

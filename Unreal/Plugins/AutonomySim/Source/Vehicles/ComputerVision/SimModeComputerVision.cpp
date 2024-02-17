@@ -18,8 +18,8 @@ std::unique_ptr<nervosys::autonomylib::ApiServerBase> ASimModeComputerVision::cr
 #ifdef AIRLIB_NO_RPC
     return ASimModeBase::createApiServer();
 #else
-    return std::unique_ptr<nervosys::autonomylib::ApiServerBase>(
-        new nervosys::autonomylib::RpcLibServerBase(getApiProvider(), getSettings().api_server_address, getSettings().api_port));
+    return std::unique_ptr<nervosys::autonomylib::ApiServerBase>(new nervosys::autonomylib::RpcLibServerBase(
+        getApiProvider(), getSettings().api_server_address, getSettings().api_port));
 #endif
 }
 
@@ -60,8 +60,8 @@ ASimModeComputerVision::createVehicleSimApi(const PawnSimApi::Params &pawn_sim_a
     return vehicle_sim_api;
 }
 
-nervosys::autonomylib::VehicleApiBase *ASimModeComputerVision::getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params,
-                                                                   const PawnSimApi *sim_api) const {
+nervosys::autonomylib::VehicleApiBase *
+ASimModeComputerVision::getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params, const PawnSimApi *sim_api) const {
     // we don't have real vehicle so no vehicle API
     return nullptr;
 }

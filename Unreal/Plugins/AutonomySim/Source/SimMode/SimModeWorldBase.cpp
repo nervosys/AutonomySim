@@ -14,7 +14,8 @@ void ASimModeWorldBase::initializeForPlay() {
 
     std::unique_ptr<PhysicsEngineBase> physics_engine = createPhysicsEngine();
     physics_engine_ = physics_engine.get();
-    physics_world_.reset(new nervosys::autonomylib::PhysicsWorld(std::move(physics_engine), vehicles, getPhysicsLoopPeriod()));
+    physics_world_.reset(
+        new nervosys::autonomylib::PhysicsWorld(std::move(physics_engine), vehicles, getPhysicsLoopPeriod()));
 }
 
 void ASimModeWorldBase::registerPhysicsBody(nervosys::autonomylib::VehicleSimApiBase *physicsBody) {
@@ -62,7 +63,7 @@ std::unique_ptr<ASimModeWorldBase::PhysicsEngineBase> ASimModeWorldBase::createP
     } else {
         physics_engine.reset();
         UAutonomyBlueprintLib::LogMessageString("Unrecognized physics engine name: ", physics_engine_name,
-                                           LogDebugLevel::Failure);
+                                                LogDebugLevel::Failure);
     }
 
     return physics_engine;

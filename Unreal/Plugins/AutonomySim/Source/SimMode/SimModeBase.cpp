@@ -170,7 +170,7 @@ void ASimModeBase::checkVehicleReady() {
                     UAutonomyBlueprintLib::LogMessage(message.c_str(), "", LogDebugLevel::Failure);
                 }
                 UAutonomyBlueprintLib::LogMessage("Tip: check connection info in settings.json", "",
-                                             LogDebugLevel::Informational);
+                                                  LogDebugLevel::Informational);
             }
         }
     }
@@ -213,7 +213,8 @@ void ASimModeBase::initializeTimeOfDay() {
 
     if (sky_spheres.Num() > 1)
         UAutonomyBlueprintLib::LogMessage(TEXT("More than BP_Sky_Sphere were found. "),
-                                     TEXT("TimeOfDay settings would be applied to first one."), LogDebugLevel::Failure);
+                                          TEXT("TimeOfDay settings would be applied to first one."),
+                                          LogDebugLevel::Failure);
 
     if (sky_spheres.Num() >= 1) {
         sky_sphere_ = sky_spheres[0];
@@ -241,7 +242,7 @@ void ASimModeBase::setTimeOfDay(bool is_enabled, const std::string &start_dateti
 
         if (!sun_) {
             UAutonomyBlueprintLib::LogMessage(TEXT("BP_Sky_Sphere was not found. "),
-                                         TEXT("TimeOfDay settings would be ignored."), LogDebugLevel::Failure);
+                                              TEXT("TimeOfDay settings would be ignored."), LogDebugLevel::Failure);
         } else {
             sun_->GetRootComponent()->Mobility = EComponentMobility::Movable;
 
@@ -259,8 +260,8 @@ void ASimModeBase::setTimeOfDay(bool is_enabled, const std::string &start_dateti
         // Going from enabled to disabled
         if (sun_) {
             setSunRotation(default_sun_rotation_);
-            UAutonomyBlueprintLib::LogMessageString("DateTime: ", Utils::to_string(ClockFactory::get()->nowNanos() / 1E9),
-                                               LogDebugLevel::Informational);
+            UAutonomyBlueprintLib::LogMessageString(
+                "DateTime: ", Utils::to_string(ClockFactory::get()->nowNanos() / 1E9), LogDebugLevel::Informational);
         }
     }
 
@@ -314,10 +315,12 @@ void ASimModeBase::setupClockSpeed() {
     std::string clock_type = getSettings().clock_type;
 
     if (clock_type == "ScalableClock")
-        ClockFactory::get(std::make_shared<nervosys::autonomylib::ScalableClock>(clock_speed == 1 ? 1 : 1 / clock_speed));
+        ClockFactory::get(
+            std::make_shared<nervosys::autonomylib::ScalableClock>(clock_speed == 1 ? 1 : 1 / clock_speed));
     else if (clock_type == "SteppableClock")
-        ClockFactory::get(std::make_shared<nervosys::autonomylib::SteppableClock>(
-            static_cast<nervosys::autonomylib::TTimeDelta>(nervosys::autonomylib::SteppableClock::DefaultStepSize * clock_speed)));
+        ClockFactory::get(
+            std::make_shared<nervosys::autonomylib::SteppableClock>(static_cast<nervosys::autonomylib::TTimeDelta>(
+                nervosys::autonomylib::SteppableClock::DefaultStepSize * clock_speed)));
     else
         throw std::invalid_argument(
             common_utils::Utils::stringf("clock_type %s is not recognized", clock_type.c_str()));
@@ -363,7 +366,8 @@ void ASimModeBase::advanceTimeOfDay() {
             auto interval = ClockFactory::get()->elapsedSince(tod_sim_clock_start_) * tod_celestial_clock_speed_;
             uint64_t cur_time = ClockFactory::get()->addTo(tod_start_time_, interval) / 1E9;
 
-            UAutonomyBlueprintLib::LogMessageString("DateTime: ", Utils::to_string(cur_time), LogDebugLevel::Informational);
+            UAutonomyBlueprintLib::LogMessageString("DateTime: ", Utils::to_string(cur_time),
+                                                    LogDebugLevel::Informational);
 
             auto coord = nervosys::autonomylib::EarthCelestial::getSunCoordinates(
                 cur_time, settings.origin_geopoint.home_geo_point.latitude,
@@ -410,7 +414,9 @@ ECameraDirectorMode ASimModeBase::getInitialViewMode() const {
     return Utils::toEnum<ECameraDirectorMode>(getSettings().initial_view_mode);
 }
 
-const nervosys::autonomylib::AutonomySimSettings &ASimModeBase::getSettings() const { return AutonomySimSettings::singleton(); }
+const nervosys::autonomylib::AutonomySimSettings &ASimModeBase::getSettings() const {
+    return AutonomySimSettings::singleton();
+}
 
 void ASimModeBase::initializeCameraDirector(const FTransform &camera_transform, float follow_distance) {
     TArray<AActor *> camera_dirs;
@@ -589,7 +595,8 @@ std::unique_ptr<PawnSimApi> ASimModeBase::createVehicleApi(APawn *vehicle_pawn) 
     // create vehicle sim api
     const auto &ned_transform = getGlobalNedTransform();
     const auto &pawn_ned_pos = ned_transform.toLocalNed(vehicle_pawn->GetActorLocation());
-    const auto &home_geopoint = nervosys::autonomylib::EarthUtils::nedToGeodetic(pawn_ned_pos, getSettings().origin_geopoint);
+    const auto &home_geopoint =
+        nervosys::autonomylib::EarthUtils::nedToGeodetic(pawn_ned_pos, getSettings().origin_geopoint);
     const std::string vehicle_name(TCHAR_TO_UTF8(*(vehicle_pawn->GetName())));
 
     PawnSimApi::Params pawn_sim_api_params(vehicle_pawn, &getGlobalNedTransform(), getVehiclePawnEvents(vehicle_pawn),
@@ -739,7 +746,7 @@ std::unique_ptr<PawnSimApi> ASimModeBase::createVehicleSimApi(const PawnSimApi::
     return sim_api;
 }
 nervosys::autonomylib::VehicleApiBase *ASimModeBase::getVehicleApi(const PawnSimApi::Params &pawn_sim_api_params,
-                                                         const PawnSimApi *sim_api) const {
+                                                                   const PawnSimApi *sim_api) const {
     // derived class should override this method to retrieve types of pawns they support
     return nullptr;
 }
@@ -766,7 +773,8 @@ void ASimModeBase::drawLidarDebugPoints() {
             for (nervosys::autonomylib::uint i = 0; i < count_lidars; i++) {
                 // TODO: Is it incorrect to assume LidarSimple here?
                 const nervosys::autonomylib::LidarSimple *lidar =
-                    static_cast<const nervosys::autonomylib::LidarSimple *>(api->getSensors().getByType(SensorType::Lidar, i));
+                    static_cast<const nervosys::autonomylib::LidarSimple *>(
+                        api->getSensors().getByType(SensorType::Lidar, i));
                 if (lidar != nullptr && lidar->getParams().draw_debug_points) {
                     lidar_draw_debug_points_ = true;
 
@@ -822,8 +830,9 @@ void ASimModeBase::drawDistanceSensorDebugPoints() {
             Pose vehicle_pose = pawn_sim_api->getGroundTruthKinematics()->pose;
 
             for (nervosys::autonomylib::uint i = 0; i < count_distance_sensors; i++) {
-                const nervosys::autonomylib::DistanceSimple *distance_sensor = static_cast<const nervosys::autonomylib::DistanceSimple *>(
-                    api->getSensors().getByType(SensorType::Distance, i));
+                const nervosys::autonomylib::DistanceSimple *distance_sensor =
+                    static_cast<const nervosys::autonomylib::DistanceSimple *>(
+                        api->getSensors().getByType(SensorType::Distance, i));
 
                 if (distance_sensor != nullptr && distance_sensor->getParams().draw_debug_points) {
                     nervosys::autonomylib::DistanceSensorData distance_sensor_data = distance_sensor->getOutput();
