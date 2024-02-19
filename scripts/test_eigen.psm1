@@ -26,9 +26,20 @@ NOTES:
 ### Functions
 ###
 
+function Remove-Directories {
+  param(
+      [Parameter()]
+      [String[]]
+      $Directories = @('temp', 'external')
+  )
+  foreach ($d in $Directories) {
+      Remove-Item -Path "$d" -Force -Recurse
+  }
+}
+
 function Invoke-Fail {
   param(
-      [Parameter(Mandatory)]
+      [Parameter()]
       [String]
       $ProjectDir = "$PWD"
   )

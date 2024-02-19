@@ -63,6 +63,28 @@ function Test-WorkingDirectory {
     }
 }
 
+function Add-Directories {
+    param(
+        [Parameter()]
+        [String[]]
+        $Directories = @('temp', 'external', 'external\rpclib')
+    )
+    foreach ($d in $Directories) {
+        [System.IO.Directory]::CreateDirectory("$d")
+    }
+}
+
+function Remove-Directories {
+    param(
+        [Parameter()]
+        [String[]]
+        $Directories = @('temp', 'external')
+    )
+    foreach ($d in $Directories) {
+        Remove-Item -Path "$d" -Force -Recurse
+    }
+}
+
 function Invoke-Fail {
     param(
         [Parameter()]
@@ -72,22 +94,6 @@ function Invoke-Fail {
     Set-Location $ProjectDir
     Remove-Directories
     Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
-}
-
-function Add-Directories {
-    param(
-        [Parameter(Mandatory)]
-        [String[]]
-        $Directories
-    )
-    foreach ($d in $Directories) {
-        [System.IO.Directory]::CreateDirectory("$d")
-    }
-}
-
-function Remove-Directories {
-    Remove-Item -Path 'temp' -Force -Recurse
-    Remove-Item -Path 'external' -Force -Recurse
 }
 
 function Test-VariableDefined {

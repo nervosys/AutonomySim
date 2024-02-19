@@ -24,9 +24,20 @@ $VS_VERSION_MINIMUM = '16.0'  # versions: [2019 = 16, 2022 = 17]
 ### Functions
 ###
 
+function Remove-Directories {
+    param(
+        [Parameter()]
+        [String[]]
+        $Directories = @('temp', 'external')
+    )
+    foreach ($d in $Directories) {
+        Remove-Item -Path "$d" -Force -Recurse
+    }
+}
+
 function Invoke-Fail {
     param(
-        [Parameter(Mandatory)]
+        [Parameter()]
         [String]
         $ProjectDir = "$PWD"
     )
