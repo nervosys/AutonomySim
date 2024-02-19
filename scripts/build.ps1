@@ -29,7 +29,7 @@ param(
     $BuildDocs = $false,
     [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
     [switch]
-    $FullPolycountSuv = $false,
+    $FullPolySuv = $false,
     [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
     [switch]
     $SystemDebug = $false
@@ -58,7 +58,7 @@ $SCRIPT_DIR = "$PROJECT_DIR\scripts"
 # Command-line arguments
 $BUILD_MODE = "$BuildMode"
 $BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$FULL_POLYCOUNT_SUV = if ($FullPolycountSuv) { $true } else { $false }
+$FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
 $DEBUG = if ($SystemDebug) { $true } else { $false }
 
 # Dynamic variables
@@ -291,7 +291,7 @@ Write-Output " CMake version:         $CMAKE_VERSION"
 Write-Output " RPClib version:        $RPCLIB_VERSION"
 Write-Output " Eigen version:         $EIGEN_VERSION"
 Write-Output " SUV asset version:     $ASSET_SUV_VERSION"
-Write-Output " Full-polycount SUV:    $FULL_POLYCOUNT_SUV"
+Write-Output " Full-polycount SUV:    $FULL_POLY_SUV"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output ''
 
