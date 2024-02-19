@@ -13,4 +13,4 @@ jobs:
         with:
           clang-format-version: "17"
           check-path: "."
-          exclude-regex: 'AutonomyLib\/include\/common\/common_utils\/json\.hpp'
+          exclude-regex: "*json.hpp"
