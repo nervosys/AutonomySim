@@ -45,9 +45,10 @@ function Invoke-Fail {
         $RemoveDirs = $false
     )
     Set-Location $ProjectDir
-    if $RemoveDirs -eq $true { Remove-Directories }
+    if ($RemoveDirs) -eq $true { Remove-Directories }
     Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
 }
+
 function Get-VsInstance {
     param(
         [Parameter()]
