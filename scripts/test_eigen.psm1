@@ -42,9 +42,12 @@ function Invoke-Fail {
       [Parameter()]
       [String]
       $ProjectDir = "$PWD"
+      [Parameter()]
+      [Switch]
+      $RemoveDirs = $false
   )
   Set-Location $ProjectDir
-  Remove-Directories
+  if $RemoveDirs -eq $true { Remove-Directories }
   Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
 }
 

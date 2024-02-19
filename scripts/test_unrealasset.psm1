@@ -26,6 +26,31 @@ NOTES:
 ### Functions
 ###
 
+function Remove-Directories {
+  param(
+      [Parameter()]
+      [String[]]
+      $Directories = @('temp', 'external')
+  )
+  foreach ($d in $Directories) {
+      Remove-Item -Path "$d" -Force -Recurse
+  }
+}
+
+function Invoke-Fail {
+  param(
+      [Parameter()]
+      [String]
+      $ProjectDir = "$PWD"
+      [Parameter()]
+      [Switch]
+      $RemoveDirs = $false
+  )
+  Set-Location $ProjectDir
+  if $RemoveDirs -eq $true { Remove-Directories }
+  Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
+}
+
 function Test-AssetSuvVersion {
   param(
     [Parameter(Mandatory)]
@@ -33,14 +58,14 @@ function Test-AssetSuvVersion {
     $FullPolySuv = $false
   )
   if ($FullPolySuv -eq $true) {
-    if ( -not (Test-Path -LiteralPath "$ADVANCED_VEHICLE_DIR\SUV\v$ASSET_SUV_VERSION") ) {
+    if ( -not (Test-Path -LiteralPath "${ADVANCED_VEHICLE_DIR}\SUV\v${ASSET_SUV_VERSION}") ) {
       # Create advanced vehicle template directory if it does not exist
-      [System.IO.Directory]::CreateDirectory($ADVANCED_VEHICLE_DIR)
+      [System.IO.Directory]::CreateDirectory("$ADVANCED_VEHICLE_DIR")
             
       Write-Output ''
       Write-Output '-----------------------------------------------------------------------------------------'
-      Write-Output ' Downloading ~37 MB high-polycount SUV assets'
-      Write-Output ' To skip installation of these assets, run script without `-FullPolycountSUV` flag'
+      Write-Output ' Downloading 37 MB high-polycount SUV asset.'
+      Write-Output ' To skip asset installation, run this script without the `-FullPolySuv` flag'
       Write-Output '-----------------------------------------------------------------------------------------'
       Write-Output ''
 
@@ -52,21 +77,22 @@ function Test-AssetSuvVersion {
       [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
       Invoke-WebRequest $ASSET_SUV_URL -OutFile 'temp\suv_download\car_assets.zip'
 
-      Remove-Item "$ADVANCED_VEHICLE_DIR\SUV" -Force -Recurse
+      Remove-Item "${ADVANCED_VEHICLE_DIR}\SUV" -Force -Recurse
       Expand-Archive -Path 'temp\suv_download\car_assets.zip' -DestinationPath $ADVANCED_VEHICLE_DIR
       Remove-Item 'temp\suv_download' -Force -Recurse
 
       # If high-polycount SUV is unable to download, notify users that gokart will be used
-      if ( -not (Test-Path -LiteralPath "$ADVANCED_VEHICLE_DIR\SUV") ) {
+      if ( -not (Test-Path -LiteralPath "${ADVANCED_VEHICLE_DIR}\SUV") ) {
         Write-Output 'Download of high-polycount SUV failed. AutonomySim will use the default vehicle.'
+        Invoke-Fail
       }
     }
     else {
-      Write-Output "Existing installation of high-poly SUV asset version $ASSET_SUV_VERSION found."
+      Write-Output "High-poly SUV asset version found: ${ASSET_SUV_VERSION}."
     }
   }
   else {
-    Write-Output 'Skipping download of high-poly SUV asset. Default vehicle will be used.'
+    Write-Output 'Download of high-poly SUV asset disabled. Default vehicle will be used.'
   }
 }
 

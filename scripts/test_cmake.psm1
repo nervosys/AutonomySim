@@ -25,6 +25,31 @@ $CMAKE_VERSION_LATEST = '3.26.4'
 ### Functions
 ###
 
+function Remove-Directories {
+    param(
+        [Parameter()]
+        [String[]]
+        $Directories = @('temp', 'external')
+    )
+    foreach ($d in $Directories) {
+        Remove-Item -Path "$d" -Force -Recurse
+    }
+}
+
+function Invoke-Fail {
+    param(
+        [Parameter()]
+        [String]
+        $ProjectDir = "$PWD"
+        [Parameter()]
+        [Switch]
+        $RemoveDirs = $false
+    )
+    Set-Location $ProjectDir
+    if $RemoveDirs -eq $true { Remove-Directories }
+    Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
+}
+
 function Get-ProgramVersion {
     [OutputType([Version])]
     param(
@@ -71,7 +96,8 @@ function Install-Cmake {
         Remove-Item -Path "temp\${Installer}"
     }
     else {
-        Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Stop
+        Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Continue
+        Invoke-Fail
     }
 }
 
