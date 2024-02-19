@@ -17,6 +17,23 @@ NOTES:
 ### Functions
 ###
 
+function Test-VariableDefined {
+  param(
+      [Parameter(Mandatory)]
+      [String]
+      $Variable
+  )
+  return [Boolean](Get-Variable $Variable -ErrorAction SilentlyContinue)
+}
+
+function Test-WorkingDirectory {
+  $WorkingDirectory = Split-Path "$PWD" -Leaf
+  if ($WorkingDirectory -ne 'AutonomySim') {
+      Write-Output "Present working directory: ${PWD}"
+      Write-Error "Error: Script must be run from 'AutonomySim' project directory." -ErrorAction Stop
+  }
+}
+
 function Add-Directories {
   param(
       [Parameter()]
@@ -46,28 +63,19 @@ function Invoke-Fail {
         $ProjectDir = "$PWD",
         [Parameter()]
         [Switch]
-        $RemoveDirs = $false
+        $RemoveDirs = $false,
+        [Parameter()]
+        [ErrorRecord]
+        $ErrorCode,
+        [Parameter()]
+        [String]
+        $ErrorMessage
     )
     Set-Location $ProjectDir
     if ($RemoveDirs -eq $true) { Remove-Directories }
-    Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
-}
-
-function Test-WorkingDirectory {
-  $WorkingDirectory = Split-Path "$PWD" -Leaf
-  if ($WorkingDirectory -ne 'AutonomySim') {
-      Write-Output "Present working directory: ${PWD}"
-      Write-Error "Error: Script must be run from 'AutonomySim' project directory." -ErrorAction Stop
-  }
-}
-
-function Test-VariableDefined {
-  param(
-      [Parameter(Mandatory)]
-      [String]
-      $Variable
-  )
-  return [Boolean](Get-Variable $Variable -ErrorAction SilentlyContinue)
+    if (Test-VariableDefined -Variable $ErrorCode -eq $true) { Write-Error "Error code: ${ErrorCode}" -ErrorAction Continue }
+    if (Test-VariableDefined -Variable $ErrorMessage -eq $true) { Write-Error "$ErrorMessage" -ErrorAction Continue }
+    Write-Error 'Build failed. Exiting Program.' -ErrorAction Stop
 }
 
 function Get-EnvVariables {

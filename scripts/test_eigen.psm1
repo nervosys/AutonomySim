@@ -36,23 +36,23 @@ Import-Module "${PWD}\scripts\utils.psm1"
 ###
 
 function Test-EigenVersion {
-  if ( -not (Test-Path -LiteralPath $EIGEN_DIR) ) {
+  if ( -not (Test-Path -LiteralPath "$EIGEN_DIR") ) {
     [System.IO.Directory]::CreateDirectory('AutonomyLib\deps')
 
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Invoke-WebRequest $EIGEN_URL -OutFile 'temp\eigen3.zip'
+    Invoke-WebRequest "$EIGEN_URL" -OutFile 'temp\eigen3.zip'
         
     Expand-Archive -Path 'temp\eigen3.zip' -DestinationPath 'AutonomyLib\deps'
     Move-Item -Path AutonomyLib\deps\eigen* -Destination 'AutonomyLib\deps\del_eigen'
 
-    [System.IO.Directory]::CreateDirectory($EIGEN_DIR)
+    [System.IO.Directory]::CreateDirectory("$EIGEN_DIR")
     Move-Item -Path 'AutonomyLib\deps\del_eigen\Eigen' -Destination "$EIGEN_DIR\Eigen"
     Remove-Item 'AutonomyLib\deps\del_eigen' -Force -Recurse
     Remove-Item 'temp\eigen3.zip' -Force
   }
-  if ( -not (Test-Path -LiteralPath $EIGEN_DIR) ) {
-    Write-Error "Eigen library directory not found: $EIGEN_DIR" -ErrorAction SilentlyContinue
-    Invoke-Fail
+  if ( -not (Test-Path -LiteralPath "$EIGEN_DIR") ) {
+    Write-Error "Eigen library directory not found: ${EIGEN_DIR}" -ErrorAction SilentlyContinue
+    Invoke-Fail -ErrorMessage "Error: Failed to download and unpack Eigen."
   }
 }
 

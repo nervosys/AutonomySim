@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  02-19-2024
 NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
   Script is intended to run from AutonomySim base project directory.
@@ -14,7 +14,10 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
-# Command-line arguments
+###
+### Command-line interface (CLI) arguments
+###
+
 param(
   [Parameter(Mandatory, HelpMessage = 'Root directory of Unreal Engine environment git repositories.')]
   [string]
@@ -25,13 +28,23 @@ param(
 )
 
 ###
+### Imports
+###
+
+# Common utilities:
+#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
+#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\utils.psm1"
+
+###
 ### Variables
 ###
 
 # Static variables
 $PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "$PROJECT_DIR\scripts"
-$GIT_REPO_DIRS = [String[]](
+$SCRIPT_DIR = "${PROJECT_DIR}\scripts"
+$GIT_REPO_DIRS = @(
   '1919Presentation',
   'Africa',
   'AutonomySimEnvNH',
@@ -54,36 +67,29 @@ $GIT_REPO_DIRS = [String[]](
   'ZhangJiaJie'
 )
 
-# Command-line arguments
-$REPO_ROOT_DIR = $RepoRootDir
-$COMMIT_MESSAGE = $CommitMessage
-
 ###
 ### Functions
 ###
 
-function Invoke-Fail {
-  param(
-    [Parameter(Mandatory)]
-    [ErrorRecord]
-    $ErrorCode
-  )
-  Write-Output "Usage: $SCRIPT_DIR\git_commit_all.ps1 <repo root> <commit message>"
-  Write-Error "Error occured while updating git repositories: $ErrorCode" -ErrorAction Stop
+function Write-Usage {
+  Write-Output "Usage: ${SCRIPT_DIR}\git_commit_all.ps1 <repo root> <commit message>"
 }
 
 function Update-GitRepositories {
-  Set-Location $REPO_ROOT_DIR
+  Set-Location "$RepoRootDir"
   foreach ($RepoDir in $GIT_REPO_DIRS) {
     Write-Output "Updating git repository directory: $RepoDir"
     Set-Location $RepoDir
     Start-Process -FilePath 'git.exe' -ArgumentList 'add', '-A' -Wait -NoNewWindow
-    Start-Process -FilePath 'git.exe' -ArgumentList 'commit', "-m $COMMIT_MESSAGE" -Wait -NoNewWindow
+    Start-Process -FilePath 'git.exe' -ArgumentList 'commit', "-m $CommitMessage" -Wait -NoNewWindow
     Start-Process -FilePath 'git.exe' -ArgumentList 'push' -Wait -NoNewWindow
-    if (!$?) { Invoke-Fail -ErrorCode $LASTEXITCODE }  # exit on error
-    Set-Location $REPO_ROOT_DIR
+    # Exit on error
+    if (!$?) {
+      Invoke-Fail -ErrorCode $LASTEXITCODE -ErrorMessage "Usage: ${SCRIPT_DIR}\git_commit_all.ps1 <repo root> <commit message>"
+    }
+    Set-Location "$RepoRootDir"
   }
-  Set-Location $PROJECT_DIR
+  Set-Location "$PROJECT_DIR"
 }
 
 ###

@@ -27,9 +27,10 @@ Import-Module "${PWD}\scripts\utils.psm1"
 ### Variables
 ###
 
-[String]$RPCLIB_VERSION = '2.3.0'
-[String]$RPCLIB_PATH = "external\rpclib\rpclib-${RPCLIB_VERSION}"
-[String]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RPCLIB_VERSION}.zip"
+[Version]$RPCLIB_VERSION = '2.3.0'
+[String]$RCPLIB_VERSION_MAJ_MIN_BUILD = Get-VersionMajorMinorBuild -Version "$RPCLIB_VERSION"
+[String]$RPCLIB_PATH = "external\rpclib\rpclib-${RCPLIB_VERSION_MAJ_MIN_BUILD}"
+[String]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RCPLIB_VERSION_MAJ_MIN_BUILD}.zip"
 [String]$VS_GENERATOR = 'Visual Studio 17 2022'
 
 ###
@@ -52,9 +53,9 @@ function Get-RpcLib {
     Remove-Item 'temp\rpclib.zip'
 
     # Fail build if unable to download and/or unpack rpclib
-    if ( -not (Test-Path -LiteralPath $RPCLIB_PATH) ) {
+    if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
         Write-Error 'Error: Unable to download rpclib. Stopping build.' -ErrorAction SilentlyContinue
-        Invoke-Fail
+        Invoke-Fail -ErrorMessage "Error: Failed to download and unpack RCPLib."
     }
 }
 
@@ -65,9 +66,9 @@ function Build-RpcLib {
     Write-Output '-----------------------------------------------------------------------------------------'
     Write-Output ''
     
-    [System.IO.Directory]::CreateDirectory("$RPCLIB_PATH\build")
-    Set-Location "$RPCLIB_PATH\build"
-    Write-Output "Current directory: $RPCLIB_PATH\build"
+    [System.IO.Directory]::CreateDirectory("${RPCLIB_PATH}\build")
+    Set-Location "${RPCLIB_PATH}\build"
+    Write-Output "Current directory: ${RPCLIB_PATH}\build"
 
     Start-Process -FilePath 'cmake.exe' -ArgumentList "-G $VS_GENERATOR", '..' -Wait -NoNewWindow
     if ( $BUILD_MODE -eq 'Release' ) {
@@ -79,8 +80,8 @@ function Build-RpcLib {
     }
     if (!$?) { exit $LASTEXITCODE }  # exit on error
 
-    Set-Location $PROJECT_DIR
-    Write-Output "Current directory: $PROJECT_DIR"
+    Set-Location "$PROJECT_DIR"
+    Write-Output "Current directory: ${PROJECT_DIR}"
 
     # Copy rpclib binaries and include folder inside AutonomyLib folder
     $RPCLIB_TARGET_LIB = 'AutonomyLib\deps\rpclib\lib\x64'
@@ -100,16 +101,16 @@ function Build-RpcLib {
 }
 
 function Test-RpcLibVersion {
-    if ( -not (Test-Path -LiteralPath $RPCLIB_PATH) ) {
+    if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
         # Remove previous installations
         Remove-Item 'external\rpclib' -Force -Recurse
         # Download and build rpclib
         Get-RpcLib
         Build-RpcLib
         # Fail if rpclib version path not found
-        if ( -not (Test-Path -LiteralPath $RPCLIB_PATH) ) {
+        if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
             Write-Error 'Error: Download and build of rpclib failed. Stopping build.' -ErrorAction SilentlyContinue
-            Invoke-Fail
+            Invoke-Fail -ErrorMessage "Error: Failed to download and build RCPLib."
         }
     }
     else {

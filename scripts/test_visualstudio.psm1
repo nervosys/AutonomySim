@@ -58,7 +58,7 @@ function Set-VsInstance {
     $selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
     if (-not $selected) {
         Write-Output "No Visual Studio installation selected. Exiting program."
-        Invoke-Fail
+        Invoke-Fail -ErrorMessage "Error: Failed to select Visual Studio installation."
     }
     $config = $configs | Where-Object { $_."#" -eq $selected }
     return $config
@@ -85,8 +85,7 @@ function Test-VisualStudioVersion {
     $VsInstance = Set-VsInstance
     $CurrentVersion = Get-VsInstanceVersion($VsInstance)
     if ( $null -eq $CurrentVersion ) {
-        Write-Error 'Error: Failed to locate a Visual Studio instance.'
-        Invoke-Fail
+        Invoke-Fail -ErrorMessage "Error: Failed to locate a Visual Studio instance."
     }
     if ($CurrentVersion -lt $MinimumVersion) {
         # install CMake if it is less than the required version
@@ -95,7 +94,7 @@ function Test-VisualStudioVersion {
         Write-Output 'AutonomySim supports up to Unreal Engine 5.3 and Visual Studio 2022.'
         Write-Output 'Here are few easy steps to perform the upgrade:'
         Write-Output '  https://github.com/nervosys/AutonomySim/blob/master/docs/unreal_upgrade.md'
-        Invoke-Fail
+        Invoke-Fail -ErrorMessage "Error: Visual Studio version does not meet minimum requirement."
     }
     else {
         Write-Output "Success: Visual Studio version ${CurrentVersion} meets the minimum requirements."

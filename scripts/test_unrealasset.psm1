@@ -68,7 +68,7 @@ function Test-AssetSuvVersion {
       # If high-polycount SUV is unable to download, notify users that gokart will be used
       if ( -not (Test-Path -LiteralPath "${ADVANCED_VEHICLE_DIR}\SUV") ) {
         Write-Output 'Download of high-polycount SUV failed. AutonomySim will use the default vehicle.'
-        Invoke-Fail
+        Invoke-Fail -ErrorMessage "Error: Failed to download and unpack high-polygon-count SUV asset."
       }
     }
     else {

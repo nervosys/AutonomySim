@@ -51,7 +51,7 @@ function Install-Cmake {
         Remove-Item -Path "temp\${Installer}"
     } else {
         Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Continue
-        Invoke-Fail
+        Invoke-Fail -ErrorMessage "Error: Failed to install CMake."
     }
 }
 
