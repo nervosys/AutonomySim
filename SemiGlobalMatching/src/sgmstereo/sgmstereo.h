@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 // by Sudipta Sinha
-// adapted for AutonomySim by Matthias Mueller
+// adapted for AirSim by Matthias Mueller
 
 #ifndef sgm_sgmstereo_h
 #define sgm_sgmstereo_h

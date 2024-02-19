@@ -1,16 +1,46 @@
-name: "Test: C/C++ Source Formatting (clang-format-17)"
+name: "Test: C/C++ Source Formatting (clang-format)"
 
 on: [push, pull_request]
 
 jobs:
-  test-cpp:
+  test-formatting:
     name: Formatting Check
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        path:
+          - check: "AutonomyLib"
+            exclude: "json.hpp$" # exclude file paths ending in "json.hpp"
+          - check: "AutonomyLibUnitTests"
+            exclude: ""
+          - check: "DroneServer"
+            exclude: ""
+          - check: "DroneShell"
+            exclude: ""
+          - check: "Examples"
+            exclude: ""
+          - check: "HelloCar"
+            exclude: ""
+          - check: "HelloDrone"
+            exclude: ""
+          - check: "HelloSpawnedDrones"
+            exclude: ""
+          - check: "LogViewer"
+            exclude: ""
+          - check: "MavLinkCom"
+            exclude: "json.hpp$" # exclude file paths ending in "json.hpp"
+          - check: "ros2"
+            exclude: ""
+          - check: "SemiGlobalMatching"
+            exclude: ""
+          - check: "Unreal"
+            exclude: ""
     steps:
       - uses: actions/checkout@v4
-      - name: "clang-format"
+      - name: "Run clang-format style check."
         uses: jidicula/clang-format-action@v4.11.0
         with:
           clang-format-version: "17"
-          check-path: "."
-          exclude-regex: "*json.hpp"
+          check-path: ${{ matrix.path['check'] }}
+          exclude-regex: ${{ matrix.path['exclude'] }}
+          fallback-style: "LLVM" # optional
