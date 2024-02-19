@@ -34,4 +34,4 @@ jobs:
 
       - name: "Build AutonomySim"
         shell: pwsh
-        run: ./scripts/build.ps1 -BuildMode "Debug"
+        run: ./scripts/build.ps1 -BuildMode "Release"
