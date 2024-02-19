@@ -24,6 +24,17 @@ $VS_VERSION_MINIMUM = '17.0'
 ### Functions
 ###
 
+function Invoke-Fail {
+    param(
+        [Parameter(Mandatory)]
+        [String[]]
+        $ProjectDir = "$PWD"
+    )
+    Set-Location $ProjectDir
+    Remove-Directories
+    Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
+}
+
 function Get-VsInstance {
     param(
         [Parameter()]

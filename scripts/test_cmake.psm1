@@ -29,7 +29,7 @@ function Get-ProgramVersion {
     [OutputType([Version])]
     param(
         [Parameter(Mandatory = $true)]
-        [string]
+        [String]
         $Program
     )
     return (Get-Command -Name $Program -ErrorAction SilentlyContinue).Version
@@ -39,7 +39,7 @@ function Get-VersionMajorMinor {
     [OutputType([String])]
     param(
         [Parameter(Mandatory = $true)]
-        [version]
+        [Version]
         $Version
     )
     return $Version.Major, $Version.Minor -join '.'
@@ -49,7 +49,7 @@ function Get-VersionMajorMinorBuild {
     [OutputType([String])]
     param(
         [Parameter(Mandatory = $true)]
-        [version]
+        [Version]
         $Version
     )
     return $Version.Major, $Version.Minor, $Version.Build -join '.'
@@ -58,7 +58,7 @@ function Get-VersionMajorMinorBuild {
 function Install-Cmake {
     param(
         [Parameter()]
-        [string]
+        [String]
         $Version = $CMAKE_VERSION_LATEST
     )
     Write-Host -NoNewLine "Download and install CMake v${Version}? [y|N]"
@@ -79,10 +79,10 @@ function Test-CmakeVersion {
     [OutputType([Boolean])]
     param(
         [Parameter()]
-        [string]
+        [String]
         $MinimumVersion = $CMAKE_VERSION_MINIMUM,
         [Parameter()]
-        [string]
+        [String]
         $Program = 'cmake'
     )
     $CurrentVersion = Get-ProgramVersion -Program $Program

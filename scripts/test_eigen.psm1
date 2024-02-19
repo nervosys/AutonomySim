@@ -26,6 +26,17 @@ NOTES:
 ### Functions
 ###
 
+function Invoke-Fail {
+  param(
+      [Parameter(Mandatory)]
+      [String[]]
+      $ProjectDir = "$PWD"
+  )
+  Set-Location $ProjectDir
+  Remove-Directories
+  Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
+}
+
 function Test-EigenVersion {
   if ( -not (Test-Path -LiteralPath $EIGEN_DIR) ) {
     [System.IO.Directory]::CreateDirectory('AutonomyLib\deps')
