@@ -21,4 +21,4 @@ jobs:
 
       - name: "Build AutonomySim"
         shell: pwsh
-        run: ./scripts/build.ps1 -BuildMode "Debug" -BuildDocs $false -FullPolySuv $false -SystemDebug $false
+        run: ./scripts/build.ps1 -BuildMode "Debug"
