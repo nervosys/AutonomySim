@@ -2,11 +2,11 @@
 FILENAME:
   build.ps1
 DESCRIPTION:
-  PowerShell build script for AutonomySim plugin for Unreal Engine.
+  PowerShell build script: AutonomySim plugin for Unreal Engine.
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  02-19-24
+  02-19-2024
 PARAMETERS:
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
@@ -14,24 +14,27 @@ PARAMETERS:
   - SystemDebug:    Enable for computer system debugging messages.
 NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
-  Script is intended to run from AutonomySim base project directory.
+  Script is intended to run from the 'AutonomySim' base project directory.
 
   Copyright © 2024 Nervosys, LLC
 #>
 
-# Command-line arguments
+###
+### Command-line interface (CLI) arguments
+###
+
 param(
     [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
-    [string]
+    [String]
     $BuildMode = 'Release',
     [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
-    [switch]
+    [Switch]
     $BuildDocs = $false,
     [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
-    [switch]
+    [Switch]
     $FullPolySuv = $false,
     [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
-    [switch]
+    [Switch]
     $SystemDebug = $false
 )
 
@@ -39,159 +42,52 @@ param(
 ### Imports
 ###
 
-# Prefer Import-Module to Get-Content for its scoping rules
-Import-Module "$PWD\scripts\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
-Import-Module "$PWD\scripts\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
-Import-Module "$PWD\scripts\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
-Import-Module "$PWD\scripts\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
-Import-Module "$PWD\scripts\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
-Import-Module "$PWD\scripts\build_docs.psm1"         # imports: Build-Documentation
+# NOTE: Prefer Import-Module to Get-Content for its scoping rules
+
+# Common utilities:
+#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
+#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\utils.psm1"
+
+# Documentation
+Import-Module "${PWD}\scripts\build_docs.psm1"         # imports: Build-Documentation
+
+# Tests
+Import-Module "${PWD}\scripts\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Import-Module "${PWD}\scripts\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
+Import-Module "${PWD}\scripts\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
+Import-Module "${PWD}\scripts\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
+Import-Module "${PWD}\scripts\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
+
+###
+### Variables
+###
+
+# Static variables
+$PROJECT_DIR = "$PWD"
+$SCRIPT_DIR = "$PROJECT_DIR\scripts"
+
+# Command-line arguments
+$BUILD_MODE = "$BuildMode"
+$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
+$FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
+$DEBUG = if ($SystemDebug) { $true } else { $false }
+
+# Dynamic variables
+$SYSTEM_INFO = Get-ComputerInfo  # Windows only
+$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
+$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
+$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
+$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
+$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
+$VS_INSTANCE = Set-VsInstance
+$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
+$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Functions
 ###
-
-function Get-EnvVariables {
-    return Get-ChildItem 'env:*' | Sort-Object 'Name' | Format-List
-}
-
-function Test-WorkingDirectory {
-    $WorkingDirectory = Split-Path $PWD -Leaf
-    if ($WorkingDirectory -ne 'AutonomySim' ) {
-        Write-Output "Present working directory: $PWD"
-        Write-Error "Error: Script must be run from 'AutonomySim' project directory." -ErrorAction Stop
-    }
-}
-
-function Add-Directories {
-    param(
-        [Parameter()]
-        [String[]]
-        $Directories = @('temp', 'external', 'external\rpclib')
-    )
-    foreach ($d in $Directories) {
-        [System.IO.Directory]::CreateDirectory("$d")
-    }
-}
-
-function Remove-Directories {
-    param(
-        [Parameter()]
-        [String[]]
-        $Directories = @('temp', 'external')
-    )
-    foreach ($d in $Directories) {
-        Remove-Item -Path "$d" -Force -Recurse
-    }
-}
-
-function Invoke-Fail {
-    param(
-        [Parameter()]
-        [String]
-        $ProjectDir = "$PWD",
-        [Parameter()]
-        [Switch]
-        $RemoveDirs = $false
-    )
-    Set-Location $ProjectDir
-    if ($RemoveDirs) -eq $true { Remove-Directories }
-    Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
-}
-
-function Test-VariableDefined {
-    param(
-        [Parameter(Mandatory)]
-        [String]
-        $Variable
-    )
-    return [Boolean](Get-Variable $Variable -ErrorAction SilentlyContinue)
-}
-
-function Get-WindowsInfo {
-    param(
-        [Parameter(Mandatory)]
-        [System.Object]
-        $Info
-    )
-    return $Info | Select-Object WindowsProductName, WindowsVersion, OsHardwareAbstractionLayer
-}
-
-function Get-WindowsVersion {
-    param(
-        [Parameter(Mandatory)]
-        [System.Object]
-        $Info
-    )
-    return [Version]$Info.OsHardwareAbstractionLayer
-}
-
-function Get-Architecture {
-    [OutputType([String])]
-    param(
-        [Parameter(Mandatory)]
-        [System.Object]
-        $Info
-    )
-    $arch = switch ($Info.CsSystemType) {
-        'x64-based PC' { 'x64' }
-        'x86-based PC' { 'x86' }
-        $null { $null }
-    }
-    return $arch
-}
-
-function Get-ArchitectureWidth {
-    [OutputType([String])]
-    $archWidth = switch ([intptr]::Size) {
-        4 { '32-bit' }
-        8 { '64-bit' }
-    }
-    return $archWidth
-}
-
-function Set-ProcessorCount {
-    [OutputType([UInt32])]
-    param(
-        [Parameter(Mandatory)]
-        [System.Object]
-        $Info,
-        [Parameter(HelpMessage = 'The number of processor cores remaining. Use all others for MSBuild.')]
-        [UInt32]
-        $Remainder = 2
-    )
-    return [UInt32]$Info.CsNumberOfLogicalProcessors - $Remainder
-}
-
-function Get-ProgramVersion {
-    [OutputType([Version])]
-    param(
-        [Parameter(Mandatory)]
-        [String]
-        $Program
-    )
-    return (Get-Command -Name $Program -ErrorAction SilentlyContinue).Version
-}
-
-function Get-VersionMajorMinor {
-    [OutputType([String])]
-    param(
-        [Parameter(Mandatory)]
-        [Version]
-        $Version
-    )
-    return $Version.Major, $Version.Minor -join '.'
-}
-
-function Get-VersionMajorMinorBuild {
-    [OutputType([String])]
-    param(
-        [Parameter(Mandatory)]
-        [Version]
-        $Version
-    )
-    return $Version.Major, $Version.Minor, $Version.Build -join '.'
-}
 
 function Build-Solution {
     [OutputType()]
@@ -262,31 +158,6 @@ function Update-VsUnrealProjectFiles {
         Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir -ProjectDir $ProjectDir
     }
 }
-
-###
-### Variables
-###
-
-# Static variables
-$PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "$PROJECT_DIR\scripts"
-
-# Command-line arguments
-$BUILD_MODE = "$BuildMode"
-$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
-$DEBUG = if ($SystemDebug) { $true } else { $false }
-
-# Dynamic variables
-$SYSTEM_INFO = Get-ComputerInfo  # Windows only
-$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
-$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
-$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
-$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
-$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance
-$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
-$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Main

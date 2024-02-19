@@ -6,54 +6,37 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  02-19-2024
 NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
-  Script is intended to run from AutonomySim base project directory.
 
   Copyright © 2024 Nervosys, LLC
 #>
 
 ###
+### Imports
+###
+
+# Common utilities:
+#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
+#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\utils.psm1"
+
+###
 ### Variables
 ###
 
-[string]$RPCLIB_VERSION = '2.3.0'
-[string]$RPCLIB_PATH = "external\rpclib\rpclib-$RPCLIB_VERSION"
-[string]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RPCLIB_VERSION}.zip"
-[string]$VS_GENERATOR = 'Visual Studio 17 2022'
+[String]$RPCLIB_VERSION = '2.3.0'
+[String]$RPCLIB_PATH = "external\rpclib\rpclib-${RPCLIB_VERSION}"
+[String]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RPCLIB_VERSION}.zip"
+[String]$VS_GENERATOR = 'Visual Studio 17 2022'
 
 ###
 ### Functions
 ###
 
-function Remove-Directories {
-    param(
-        [Parameter()]
-        [String[]]
-        $Directories = @('temp', 'external')
-    )
-    foreach ($d in $Directories) {
-        Remove-Item -Path "$d" -Force -Recurse
-    }
-}
-
-function Invoke-Fail {
-    param(
-        [Parameter()]
-        [String]
-        $ProjectDir = "$PWD",
-        [Parameter()]
-        [Switch]
-        $RemoveDirs = $false
-    )
-    Set-Location $ProjectDir
-    if ($RemoveDirs) -eq $true { Remove-Directories }
-    Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
-}
-
 function Get-RpcLib {
-
     Write-Output ''
     Write-Output '-----------------------------------------------------------------------------------------'
     Write-Output " Downloading rpclib version $RPCLIB_VERSION"
@@ -76,7 +59,6 @@ function Get-RpcLib {
 }
 
 function Build-RpcLib {
-
     Write-Output ''
     Write-Output '-----------------------------------------------------------------------------------------'
     Write-Output " Building rpclib version $RPCLIB_VERSION with Cmake version $CMAKE_VERSION"

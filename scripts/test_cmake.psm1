@@ -6,96 +6,50 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  02-19-2024
 NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
-  Script is intended to run from AutonomySim base project directory.
-
+  
   Copyright © 2024 Nervosys, LLC
 #>
+
+###
+### Imports
+###
+
+# Common utilities:
+#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
+#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\utils.psm1"
 
 ###
 ### Variables
 ###
 
-$CMAKE_VERSION_MINIMUM = '3.14'
-$CMAKE_VERSION_LATEST = '3.26.4'
+[Version]$CMAKE_VERSION_MINIMUM = '3.14'
+[Version]$CMAKE_VERSION_LATEST = '3.26.4'
 
 ###
 ### Functions
 ###
 
-function Remove-Directories {
-    param(
-        [Parameter()]
-        [String[]]
-        $Directories = @('temp', 'external')
-    )
-    foreach ($d in $Directories) {
-        Remove-Item -Path "$d" -Force -Recurse
-    }
-}
-
-function Invoke-Fail {
-    param(
-        [Parameter()]
-        [String]
-        $ProjectDir = "$PWD",
-        [Parameter()]
-        [Switch]
-        $RemoveDirs = $false
-    )
-    Set-Location $ProjectDir
-    if ($RemoveDirs) -eq $true { Remove-Directories }
-    Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
-}
-
-function Get-ProgramVersion {
-    [OutputType([Version])]
-    param(
-        [Parameter(Mandatory = $true)]
-        [String]
-        $Program
-    )
-    return (Get-Command -Name $Program -ErrorAction SilentlyContinue).Version
-}
-
-function Get-VersionMajorMinor {
-    [OutputType([String])]
-    param(
-        [Parameter(Mandatory = $true)]
-        [Version]
-        $Version
-    )
-    return $Version.Major, $Version.Minor -join '.'
-}
-
-function Get-VersionMajorMinorBuild {
-    [OutputType([String])]
-    param(
-        [Parameter(Mandatory = $true)]
-        [Version]
-        $Version
-    )
-    return $Version.Major, $Version.Minor, $Version.Build -join '.'
-}
-
 function Install-Cmake {
     param(
         [Parameter()]
-        [String]
+        [Version]
         $Version = $CMAKE_VERSION_LATEST
     )
     Write-Host -NoNewLine "Download and install CMake v${Version}? [y|N]"
     $Response = [System.Console]::ReadKey().Key.ToString()  # uses automatic capitalization
     if ( $Response -eq 'Y' ) {
         $VersionMajMin = Get-VersionMajorMinor $Version
-        $Installer = "cmake-${Version}-x86_64.msi"
+        $VersionMajMinBuild = Get-VersionMajorMinorBuild $Version
+        $Installer = "cmake-${VersionMajMinBuild}-x86_64.msi"
         Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile "temp\${Installer}"
         Start-Process -FilePath "temp\${Installer}" -Wait
         Remove-Item -Path "temp\${Installer}"
-    }
-    else {
+    } else {
         Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Continue
         Invoke-Fail
     }
@@ -105,7 +59,7 @@ function Test-CmakeVersion {
     [OutputType([Boolean])]
     param(
         [Parameter()]
-        [String]
+        [Version]
         $MinimumVersion = $CMAKE_VERSION_MINIMUM,
         [Parameter()]
         [String]
@@ -113,13 +67,11 @@ function Test-CmakeVersion {
     )
     $CurrentVersion = Get-ProgramVersion -Program $Program
     if ( $null -eq $CurrentVersion ) { Install-Cmake }  # install CMake if it is missing
-    $RequiredVersion = [Version]$MinimumVersion
-    if ($CurrentVersion -lt $RequiredVersion) {
+    if ($CurrentVersion -lt $MinimumVersion) {
         # install CMake if it is less than the required version
         Write-Error "Error: $($Program) version $($CurrentVersion) is less than the minimum supported." -ErrorAction SilentlyContinue
         Install-Cmake
-    }
-    else {
+    } else {
         Write-Output "Success: CMake version ${CurrentVersion} meets the minimum requirements."
     }
 }

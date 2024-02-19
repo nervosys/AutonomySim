@@ -9,45 +9,29 @@ DATE:
   02-19-2024
 NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
-  Script is intended to run from AutonomySim base project directory.
 
   Copyright © 2024 Nervosys, LLC
 #>
 
 ###
+### Imports
+###
+
+# Common utilities:
+#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
+#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\utils.psm1"
+
+###
 ### Variables
 ###
 
-$VS_VERSION_MINIMUM = '16.0'  # versions: [2019 = 16, 2022 = 17]
+[Version]$VS_VERSION_MINIMUM = '16.0'  # versions: [2019 = 16, 2022 = 17]
 
 ###
 ### Functions
 ###
-
-function Remove-Directories {
-    param(
-        [Parameter()]
-        [String[]]
-        $Directories = @('temp', 'external')
-    )
-    foreach ($d in $Directories) {
-        Remove-Item -Path "$d" -Force -Recurse
-    }
-}
-
-function Invoke-Fail {
-    param(
-        [Parameter()]
-        [String]
-        $ProjectDir = "$PWD",
-        [Parameter()]
-        [Switch]
-        $RemoveDirs = $false
-    )
-    Set-Location $ProjectDir
-    if ($RemoveDirs) -eq $true { Remove-Directories }
-    Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
-}
 
 function Get-VsInstance {
     param(
@@ -95,7 +79,7 @@ function Test-VisualStudioVersion {
     param(
         # Parameter help description
         [Parameter()]
-        [String]
+        [Version]
         $MinimumVersion = $VS_VERSION_MINIMUM
     )
     $VsInstance = Set-VsInstance
@@ -104,8 +88,7 @@ function Test-VisualStudioVersion {
         Write-Error 'Error: Failed to locate a Visual Studio instance.'
         Invoke-Fail
     }
-    $RequiredVersion = [Version]$MinimumVersion
-    if ($CurrentVersion -lt $RequiredVersion) {
+    if ($CurrentVersion -lt $MinimumVersion) {
         # install CMake if it is less than the required version
         Write-Output ''
         Write-Output "$($Program) version $($CurrentVersion) is less than the minimum supported."
@@ -124,6 +107,4 @@ function Test-VisualStudioVersion {
 ###
 
 Export-ModuleMember -Variable VS_VERSION_MINIMUM
-Export-ModuleMember -Function Set-VsInstance
-Export-ModuleMember -Function Get-VsInstanceVersion
-Export-ModuleMember -Function Test-VisualStudioVersion
+Export-ModuleMember -Function Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion

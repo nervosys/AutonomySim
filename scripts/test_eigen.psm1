@@ -6,50 +6,34 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  02-19-2024
 NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
-  Script is intended to run from AutonomySim base project directory.
-
+  
   Copyright © 2024 Nervosys, LLC
 #>
+
+###
+### Imports
+###
+
+# Common utilities:
+#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
+#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\utils.psm1"
 
 ###
 ### Variables
 ###
 
-[string]$EIGEN_VERSION = '3.3.7'
-[string]$EIGEN_DIR = 'AutonomyLib\deps\eigen3'
-[string]$EIGEN_URL = "https://gitlab.com/libeigen/eigen/-/archive/$EIGEN_VERSION/eigen-$EIGEN_VERSION.zip"
+[String]$EIGEN_VERSION = '3.3.7'
+[String]$EIGEN_DIR = 'AutonomyLib\deps\eigen3'
+[String]$EIGEN_URL = "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_VERSION}/eigen-${EIGEN_VERSION}.zip"
 
 ###
 ### Functions
 ###
-
-function Remove-Directories {
-  param(
-      [Parameter()]
-      [String[]]
-      $Directories = @('temp', 'external')
-  )
-  foreach ($d in $Directories) {
-      Remove-Item -Path "$d" -Force -Recurse
-  }
-}
-
-function Invoke-Fail {
-  param(
-      [Parameter()]
-      [String]
-      $ProjectDir = "$PWD",
-      [Parameter()]
-      [Switch]
-      $RemoveDirs = $false
-  )
-  Set-Location $ProjectDir
-  if ($RemoveDirs) -eq $true { Remove-Directories }
-  Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
-}
 
 function Test-EigenVersion {
   if ( -not (Test-Path -LiteralPath $EIGEN_DIR) ) {
