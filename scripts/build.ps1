@@ -35,21 +35,42 @@ param(
     $SystemDebug = $false
 )
 
-# Static variables
-$PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "$PROJECT_DIR\scripts"
-
 ###
 ### Imports
 ###
 
 # Prefer Import-Module to Get-Content for its scoping rules
-Import-Module "$SCRIPT_DIR\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
-Import-Module "$SCRIPT_DIR\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
-Import-Module "$SCRIPT_DIR\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
-Import-Module "$SCRIPT_DIR\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
-Import-Module "$SCRIPT_DIR\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
-Import-Module "$SCRIPT_DIR\build_docs.psm1"         # imports: Build-Documentation
+Import-Module "$PWD\scripts\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Import-Module "$PWD\scripts\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
+Import-Module "$PWD\scripts\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
+Import-Module "$PWD\scripts\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
+Import-Module "$PWD\scripts\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
+Import-Module "$PWD\scripts\build_docs.psm1"         # imports: Build-Documentation
+
+###
+### Variables
+###
+
+# Static variables
+$PROJECT_DIR = "$PWD"
+$SCRIPT_DIR = "$PROJECT_DIR\scripts"
+
+# Command-line arguments
+$BUILD_MODE = "$BuildMode"
+$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
+$FULL_POLYCOUNT_SUV = if ($FullPolycountSuv) { $true } else { $false }
+$DEBUG = if ($SystemDebug) { $true } else { $false }
+
+# Dynamic variables
+$SYSTEM_INFO = Get-ComputerInfo  # Windows only
+$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
+$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
+$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
+$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
+$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
+$VS_INSTANCE = Set-VsInstance
+$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
+$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Functions
@@ -179,12 +200,24 @@ function Get-VersionMajorMinorBuild {
 }
 
 function Build-Solution {
+    [OutputType()]
+    param(
+        [Parameter(Mandatory)]
+        [String]
+        $BuildMode,
+        [Parameter(Mandatory)]
+        [String]
+        $SystemPlatform,
+        [Parameter(Mandatory)]
+        [UInt8]
+        $SystemCpuMax
+    )
     if ( $BUILD_MODE -eq 'Release' ) {
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX", "/p:Platform=$SYSTEM_PLATFORM", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX", "/p:Platform=$SYSTEM_PLATFORM", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
+        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
+        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
     }
     else {
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SYSTEM_CPU_MAX", "/p:Platform=$SYSTEM_PLATFORM", "/p:Configuration=$BUILD_MODE", 'AutonomySim.sln' -Wait -NoNewWindow
+        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=$BuildMode", 'AutonomySim.sln' -Wait -NoNewWindow
     }
     if (!$?) { exit $LASTEXITCODE }  # exit on error
 }
@@ -227,27 +260,6 @@ function Update-VsUnrealProjectFiles {
         Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir
     }
 }
-
-###
-### Variables
-###
-
-# Command-line arguments
-$BUILD_MODE = "$BuildMode"
-$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$FULL_POLYCOUNT_SUV = if ($FullPolycountSuv) { $true } else { $false }
-$DEBUG = if ($SystemDebug) { $true } else { $false }
-
-# Dynamic variables
-$SYSTEM_INFO = Get-ComputerInfo  # Windows only
-$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
-$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
-$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
-$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
-$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance
-$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
-$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Main
@@ -300,7 +312,7 @@ Test-AssetSuvVersion
 Test-EigenVersion
 
 # Compile AutonomySim.sln including MavLinkCom
-Build-Solution
+Build-Solution -BuildMode $BUILD_MODE -SystemPlatform $SYSTEM_PLATFORM -SystemCpuMax $SYSTEM_CPU_MAX
 
 # Copy binaries and includes for MavLinkCom and Unreal/Plugins
 Copy-GeneratedBinaries
