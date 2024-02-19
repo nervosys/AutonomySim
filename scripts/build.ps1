@@ -95,9 +95,14 @@ function Invoke-Fail {
 }
 
 function Add-Directories {
-    [System.IO.Directory]::CreateDirectory('temp')
-    [System.IO.Directory]::CreateDirectory('external')
-    [System.IO.Directory]::CreateDirectory('external\rpclib')
+    param(
+        [Parameter(Mandatory)]
+        [String[]]
+        $Directories
+    )
+    foreach ($d in $Directories) {
+        [System.IO.Directory]::CreateDirectory("$d")
+    }
 }
 
 function Remove-Directories {
@@ -300,7 +305,7 @@ Test-VisualStudioVersion
 Test-CmakeVersion
 
 # Create temporary build directories if they do not exist
-Add-Directories
+Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 
 # Test RPClib version
 Test-RpcLibVersion
