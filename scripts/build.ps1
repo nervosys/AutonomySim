@@ -89,7 +89,7 @@ function Invoke-Fail {
     param(
         [Parameter()]
         [String]
-        $ProjectDir = "$PWD"
+        $ProjectDir = "$PWD",
         [Parameter()]
         [Switch]
         $RemoveDirs = $false
