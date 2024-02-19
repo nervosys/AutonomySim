@@ -35,42 +35,21 @@ param(
     $SystemDebug = $false
 )
 
+# Static variables
+$PROJECT_DIR = "$PWD"
+$SCRIPT_DIR = "$PROJECT_DIR\scripts"
+
 ###
 ### Imports
 ###
 
 # Prefer Import-Module to Get-Content for its scoping rules
-Import-Module ".\scripts\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
-Import-Module ".\scripts\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
-Import-Module ".\scripts\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
-Import-Module ".\scripts\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
-Import-Module ".\scripts\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
-Import-Module ".\scripts\build_docs.psm1"         # imports: Build-Documentation
-
-###
-### Variables
-###
-
-# Static variables
-$PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "$PROJECT_DIR\scripts"
-
-# Command-line arguments
-$BUILD_MODE = "$BuildMode"
-$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$FULL_POLYCOUNT_SUV = if ($FullPolycountSuv) { $true } else { $false }
-$DEBUG = if ($SystemDebug) { $true } else { $false }
-
-# Dynamic variables
-$SYSTEM_INFO = Get-ComputerInfo  # Windows only
-$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
-$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
-$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
-$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
-$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance
-$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
-$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
+Import-Module "$SCRIPT_DIR\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Import-Module "$SCRIPT_DIR\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
+Import-Module "$SCRIPT_DIR\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
+Import-Module "$SCRIPT_DIR\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
+Import-Module "$SCRIPT_DIR\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
+Import-Module "$SCRIPT_DIR\build_docs.psm1"         # imports: Build-Documentation
 
 ###
 ### Functions
@@ -248,6 +227,27 @@ function Update-VsUnrealProjectFiles {
         Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir
     }
 }
+
+###
+### Variables
+###
+
+# Command-line arguments
+$BUILD_MODE = "$BuildMode"
+$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
+$FULL_POLYCOUNT_SUV = if ($FullPolycountSuv) { $true } else { $false }
+$DEBUG = if ($SystemDebug) { $true } else { $false }
+
+# Dynamic variables
+$SYSTEM_INFO = Get-ComputerInfo  # Windows only
+$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
+$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
+$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
+$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
+$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
+$VS_INSTANCE = Set-VsInstance
+$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
+$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Main
