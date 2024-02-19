@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  02-19-24
 PARAMETERS:
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
@@ -40,12 +40,12 @@ param(
 ###
 
 # Prefer Import-Module to Get-Content for its scoping rules
-Import-Module "$SCRIPT_DIR\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
-Import-Module "$SCRIPT_DIR\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
-Import-Module "$SCRIPT_DIR\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
-Import-Module "$SCRIPT_DIR\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
-Import-Module "$SCRIPT_DIR\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
-Import-Module "$SCRIPT_DIR\build_docs.psm1"         # imports: Build-Documentation
+Import-Module ".\scripts\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Import-Module ".\scripts\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
+Import-Module ".\scripts\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
+Import-Module ".\scripts\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
+Import-Module ".\scripts\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
+Import-Module ".\scripts\build_docs.psm1"         # imports: Build-Documentation
 
 ###
 ### Variables
