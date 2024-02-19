@@ -18,7 +18,7 @@ NOTES:
 ### Variables
 ###
 
-$VS_VERSION_MINIMUM = '17.0'
+$VS_VERSION_MINIMUM = '16.0'  # versions: [2019 = 16, 2022 = 17]
 
 ###
 ### Functions
