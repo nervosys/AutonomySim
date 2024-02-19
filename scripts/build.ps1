@@ -317,7 +317,7 @@ Test-AssetSuvVersion
 Test-EigenVersion
 
 # Compile AutonomySim.sln including MavLinkCom
-Build-Solution -BuildMode $BUILD_MODE -SystemPlatform $SYSTEM_PLATFORM -SystemCpuMax $SYSTEM_CPU_MAX
+Build-Solution -BuildMode "$BUILD_MODE" -SystemPlatform "$SYSTEM_PLATFORM" -SystemCpuMax "$SYSTEM_CPU_MAX"
 
 # Copy binaries and includes for MavLinkCom and Unreal/Plugins
 Copy-GeneratedBinaries
