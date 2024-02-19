@@ -48,31 +48,6 @@ Import-Module "$PWD\scripts\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSIO
 Import-Module "$PWD\scripts\build_docs.psm1"         # imports: Build-Documentation
 
 ###
-### Variables
-###
-
-# Static variables
-$PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "$PROJECT_DIR\scripts"
-
-# Command-line arguments
-$BUILD_MODE = "$BuildMode"
-$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
-$DEBUG = if ($SystemDebug) { $true } else { $false }
-
-# Dynamic variables
-$SYSTEM_INFO = Get-ComputerInfo  # Windows only
-$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
-$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
-$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
-$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
-$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance
-$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
-$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
-
-###
 ### Functions
 ###
 
@@ -265,6 +240,31 @@ function Update-VsUnrealProjectFiles {
         Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir
     }
 }
+
+###
+### Variables
+###
+
+# Static variables
+$PROJECT_DIR = "$PWD"
+$SCRIPT_DIR = "$PROJECT_DIR\scripts"
+
+# Command-line arguments
+$BUILD_MODE = "$BuildMode"
+$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
+$FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
+$DEBUG = if ($SystemDebug) { $true } else { $false }
+
+# Dynamic variables
+$SYSTEM_INFO = Get-ComputerInfo  # Windows only
+$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
+$SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
+$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
+$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
+$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
+$VS_INSTANCE = Set-VsInstance
+$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
+$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Main
