@@ -65,7 +65,7 @@ function Test-WorkingDirectory {
 
 function Invoke-Fail {
     param(
-        [Parameter(Mandatory)]
+        [Parameter()]
         [String[]]
         $ProjectDir = "$PWD"
     )
@@ -197,7 +197,7 @@ function Build-Solution {
         [UInt8]
         $SystemCpuMax
     )
-    if ( $BUILD_MODE -eq 'Release' ) {
+    if ( $BuildMode -eq 'Release' ) {
         Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
         Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
     }
@@ -228,7 +228,7 @@ function Get-VsUnrealProjectFiles {
         [Parameter(Mandatory)]
         [String]
         $UnrealEnvDir,
-        [Parameter(Mandatory)]
+        [Parameter()]
         [String]
         $ProjectDir = "$PWD"
     )
@@ -244,7 +244,7 @@ function Get-VsUnrealProjectFiles {
 
 function Update-VsUnrealProjectFiles {
     param(
-        [Parameter(Mandatory)]
+        [Parameter()]
         [String]
         $ProjectDir = "$PWD"
     )
