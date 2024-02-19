@@ -64,7 +64,12 @@ function Test-WorkingDirectory {
 }
 
 function Invoke-Fail {
-    Set-Location $PROJECT_DIR
+    param(
+        [Parameter(Mandatory)]
+        [String[]]
+        $ProjectDir = "$PWD"
+    )
+    Set-Location $ProjectDir
     Remove-Directories
     Write-Error 'Error: Build failed. Exiting Program.' -ErrorAction Stop
 }
@@ -209,7 +214,7 @@ function Copy-GeneratedBinaries {
     [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_LIB)
     [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_INCLUDE)
     Copy-Item -Path 'MavLinkCom\include' -Destination $MAVLINK_TARGET_INCLUDE
-    Copy-Item -Path 'MavLinkCom\lib'     -Destination $MAVLINK_TARGET_LIB
+    Copy-Item -Path 'MavLinkCom\lib' -Destination $MAVLINK_TARGET_LIB
 
     # Copy outputs into Unreal/Plugins directory
     $AUTONOMYLIB_PLUGIN_DIR = 'Unreal\Plugins\AutonomySim\Source\AutonomyLib'
@@ -222,22 +227,30 @@ function Get-VsUnrealProjectFiles {
     param(
         [Parameter(Mandatory)]
         [String]
-        $UnrealEnvDir
+        $UnrealEnvDir,
+        [Parameter(Mandatory)]
+        [String]
+        $ProjectDir = "$PWD"
     )
     Set-Location $UnrealEnvDir
     Import-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"  # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
-    #Test-DirectoryPath -Path $PROJECT_DIR
-    Copy-UnrealEnvItems -Path $PROJECT_DIR
+    #Test-DirectoryPath -Path $ProjectDir
+    Copy-UnrealEnvItems -Path $ProjectDir
     Remove-UnrealEnvItems
     Invoke-VsUnrealProjectFileGenerator
     Remove-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"
-    Set-Location $PROJECT_DIR
+    Set-Location $ProjectDir
 }
 
 function Update-VsUnrealProjectFiles {
+    param(
+        [Parameter(Mandatory)]
+        [String]
+        $ProjectDir = "$PWD"
+    )
     $UnrealEnvDirs = (Get-ChildItem -Path 'Unreal\Environments' -Directory | Select-Object FullName).FullName  # remove attribute decorator
     foreach ($UnrealEnvDir in $UnrealEnvDirs) {
-        Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir
+        Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir -ProjectDir $ProjectDir
     }
 }
 
@@ -323,7 +336,7 @@ Build-Solution -BuildMode "$BUILD_MODE" -SystemPlatform "$SYSTEM_PLATFORM" -Syst
 Copy-GeneratedBinaries
 
 # Update all Unreal Engine environments under AutonomySim\Unreal\Environments
-Update-VsUnrealProjectFiles
+Update-VsUnrealProjectFiles -ProjectDir "$PROJECT_DIR"
 
 # Optionally build documentation
 if ($BUILD_DOCS) { Build-Documentation }
