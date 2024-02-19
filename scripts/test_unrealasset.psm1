@@ -27,7 +27,12 @@ NOTES:
 ###
 
 function Test-AssetSuvVersion {
-  if ($FULL_POLY_SUV -eq $true) {
+  param(
+    [Parameter(Mandatory)]
+    [Boolean]
+    $FullPolySuv = $false
+  )
+  if ($FullPolySuv -eq $true) {
     if ( -not (Test-Path -LiteralPath "$ADVANCED_VEHICLE_DIR\SUV\v$ASSET_SUV_VERSION") ) {
       # Create advanced vehicle template directory if it does not exist
       [System.IO.Directory]::CreateDirectory($ADVANCED_VEHICLE_DIR)

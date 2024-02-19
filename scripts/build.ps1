@@ -324,7 +324,7 @@ Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 Test-RpcLibVersion
 
 # Test high-polycount SUV asset
-Test-AssetSuvVersion
+Test-AssetSuvVersion -FullPolySuv $FULL_POLY_SUV
 
 # Test Eigen library version
 Test-EigenVersion
