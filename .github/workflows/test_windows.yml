@@ -19,15 +19,18 @@ jobs:
       # - name: "Enable Developer Command Prompt for Visual Studio"
       #   uses: ilammy/msvc-dev-cmd@v1
 
-      - name: "Enable Developer Command Prompt for Visual Studio 2019"
-        if: ${{ matrix.os == 'windows-2019' }}
-        shell: pwsh
-        run: 'C:\Program Files\Microsoft Visual Studio\2019\Community\Common6\Tools\Launch-VsDevShell.ps1'
+      - name: "Setup MSBuild"
+        uses: microsoft/setup-msbuild@v2
 
-      - name: "Enable Developer Command Prompt for Visual Studio 2022"
-        if: ${{ matrix.os == 'windows-2022' }}
-        shell: pwsh
-        run: 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Launch-VsDevShell.ps1'
+      # - name: "Enable Developer Command Prompt for Visual Studio 2019"
+      #   if: ${{ matrix.os == 'windows-2019' }}
+      #   shell: pwsh
+      #   run: 'C:\Program Files\Microsoft Visual Studio\2019\Community\Common6\Tools\Launch-VsDevShell.ps1'
+      #
+      # - name: "Enable Developer Command Prompt for Visual Studio 2022"
+      #   if: ${{ matrix.os == 'windows-2022' }}
+      #   shell: pwsh
+      #   run: 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Launch-VsDevShell.ps1'
 
       - name: "Build AutonomySim"
         shell: pwsh
