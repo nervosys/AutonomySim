@@ -66,7 +66,7 @@ function Test-WorkingDirectory {
 function Invoke-Fail {
     param(
         [Parameter()]
-        [String[]]
+        [String]
         $ProjectDir = "$PWD"
     )
     Set-Location $ProjectDir

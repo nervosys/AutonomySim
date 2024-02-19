@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  02-19-2024
 NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
   Script is intended to run from AutonomySim base project directory.
@@ -27,7 +27,7 @@ $VS_VERSION_MINIMUM = '16.0'  # versions: [2019 = 16, 2022 = 17]
 function Invoke-Fail {
     param(
         [Parameter(Mandatory)]
-        [String[]]
+        [String]
         $ProjectDir = "$PWD"
     )
     Set-Location $ProjectDir

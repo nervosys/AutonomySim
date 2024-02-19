@@ -29,7 +29,7 @@ NOTES:
 function Invoke-Fail {
   param(
       [Parameter(Mandatory)]
-      [String[]]
+      [String]
       $ProjectDir = "$PWD"
   )
   Set-Location $ProjectDir
