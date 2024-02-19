@@ -19,13 +19,6 @@ jobs:
       - name: "Enable Developer Command Prompt"
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: "Install winget"
-        uses: Cyberboss/install-winget@v1
-
-      - name: "Install PowerShell"
-        shell: cmd
-        run: winget install --id Microsoft.Powershell --source winget
-
       - name: "Build AutonomySim"
         shell: pwsh
         run: ./scripts/build.ps1
