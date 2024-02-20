@@ -34,8 +34,9 @@ Import-Module "${PWD}\scripts\utils.psm1"
 ###
 
 function Get-VsInstance {
+    [OutputType([PSCustomObject])]
     param(
-        [Parameter()]
+        [Parameter(Mandatory)]
         [System.Object]
         $VsWhereArgs
     )
@@ -45,17 +46,27 @@ function Get-VsInstance {
 }
 
 function Set-VsInstance {
+    [OutputType([PSCustomObject])]
+    param(
+        [Parameter()]
+        [Boolean]
+        $Automate = $false
+    )
     $SetupArgs = "-all -sort"
     $Configs = Get-VsInstance -VsWhereArgs $SetupArgs
     $DisplayProperties = @("displayName", "instanceId", "installationVersion", "isPrerelease", "installationName", "installDate")
     $DisplayProperties = @("#") + $DisplayProperties
-    # Add an incrementing select column
+    # Add an ID number for each installation
     $Configs = $Configs |
-    Sort-Object displayName, installationDate |
-    ForEach-Object { $i = 0; $i++; $_ | Add-Member -NotePropertyName "#" -NotePropertyValue $i -PassThru }
+        Sort-Object displayName, installationDate |
+        ForEach-Object { $i = 0; $i++; $_ | Add-Member -NotePropertyName "#" -NotePropertyValue $i -PassThru }
     Write-Output "The following Visual Studio installations were found:"
     $Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ }
-    $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
+    if ($Automate -ne $true) {
+        $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
+    } else {
+        $Selected = 1
+    }
     if (-not $Selected) {
         Write-Output "No Visual Studio installation selected. Exiting program."
         Invoke-Fail -ErrorMessage "Error: Failed to select Visual Studio installation."
@@ -77,12 +88,14 @@ function Get-VsInstanceVersion {
 function Test-VisualStudioVersion {
     [OutputType([Boolean])]
     param(
-        # Parameter help description
         [Parameter()]
         [Version]
         $MinimumVersion = $VS_VERSION_MINIMUM
+        [Parameter()]
+        [Boolean]
+        $Automate = $false
     )
-    $VsInstance = Set-VsInstance
+    $VsInstance = Set-VsInstance -Automate $Automate
     $CurrentVersion = Get-VsInstanceVersion($VsInstance)
     if ( $null -eq $CurrentVersion ) {
         Invoke-Fail -ErrorMessage "Error: Failed to locate a Visual Studio instance."

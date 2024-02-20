@@ -35,7 +35,10 @@ param(
     $FullPolySuv = $false,
     [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
     [Switch]
-    $SystemDebug = $false
+    $SystemDebug = $false,
+    [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
+    [Switch]
+    $Deploy = $false    
 )
 
 ###
@@ -73,6 +76,7 @@ $BUILD_MODE = "$BuildMode"
 $BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
 $FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
 $DEBUG = if ($SystemDebug) { $true } else { $false }
+$CI_CD = if ($Deploy -eq $true) { $true } else { $false }
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # Windows only
@@ -192,7 +196,7 @@ Write-Output ''
 Test-WorkingDirectory
 
 # Test Visual Studio version
-Test-VisualStudioVersion
+Test-VisualStudioVersion -Automate $CI_CD
 
 # Test CMake version
 Test-CmakeVersion
