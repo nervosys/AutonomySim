@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  02-19-2024
+  2024-02-19
 PARAMETERS:
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
@@ -32,7 +32,7 @@ param(
   $BuildDocs = $false,
   [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
   [Switch]
-  $HighPolycountSuv = $false,
+  $AssetSuv = $false,
   [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
   [Switch]
   $SystemDebug = $false,
@@ -69,25 +69,25 @@ Import-Module "${PWD}\scripts\test_unrealasset.psm1"    # imports: ASSET_SUV_VER
 
 # Static variables
 $PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "$PROJECT_DIR\scripts"
+$SCRIPT_DIR  = "$PROJECT_DIR\scripts"
 
 # Command-line arguments
 $BUILD_MODE = "$BuildMode"
 $BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
 $DEBUG_MODE = if ($SystemDebug) { $true } else { $false }
-$ASSET_SUV_GET = if ($HighPolycountSuv) { $true } else { $false }
 $CI_CD_MODE = if ($IntegrateDeploy -eq $true) { $true } else { $false }
+$ASSET_SUV  = if ($AssetSuv) { $true } else { $false }
 
 # Dynamic variables
-$SYSTEM_INFO = Get-ComputerInfo  # Windows only
-$SYSTEM_PROCESSOR = "${env:PROCESSOR_IDENTIFIER}"
+$SYSTEM_INFO         = Get-ComputerInfo  # WARNING: Windows only
+$SYSTEM_PROCESSOR    = "${env:PROCESSOR_IDENTIFIER}"
 $SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
-$SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
-$SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
-$SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance -Automate $CI_CD_MODE
-$VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
-$CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
+$SYSTEM_PLATFORM     = Get-Architecture -Info $SYSTEM_INFO
+$SYSTEM_CPU_MAX      = Set-ProcessorCount -Info $SYSTEM_INFO
+$SYSTEM_OS_VERSION   = Get-WindowsVersion -Info $SYSTEM_INFO
+$VS_INSTANCE         = Set-VsInstance -Automate $CI_CD_MODE
+$VS_VERSION          = Get-VsInstanceVersion -Config $VS_INSTANCE
+$CMAKE_VERSION       = Get-ProgramVersion -Program 'cmake'
 
 ###
 ### Functions
@@ -174,25 +174,25 @@ Write-Output ''
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output ' Parameters'
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Project directory:           $PROJECT_DIR"
-Write-Output " Script directory:            $SCRIPT_DIR"
+Write-Output " Project directory:       $PROJECT_DIR"
+Write-Output " Script directory:        $SCRIPT_DIR"
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Processor:                   $SYSTEM_PROCESSOR"
-Write-Output " Architecture:                $SYSTEM_ARCHITECTURE"
-Write-Output " Platform:                    $SYSTEM_PLATFORM"
-Write-Output " CPU count max:               $SYSTEM_CPU_MAX"
-Write-Output " Build mode:                  $BUILD_MODE"
+Write-Output " Processor:               $SYSTEM_PROCESSOR"
+Write-Output " Architecture:            $SYSTEM_ARCHITECTURE"
+Write-Output " Platform:                $SYSTEM_PLATFORM"
+Write-Output " CPU count max:           $SYSTEM_CPU_MAX"
+Write-Output " Build mode:              $BUILD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Debug mode:                  $DEBUG_MODE"
-Write-Output " CI/CD mode:                  $CI_CD_MODE"
+Write-Output " Debug mode:              $DEBUG_MODE"
+Write-Output " CI/CD mode:              $CI_CD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Windows version:             $SYSTEM_OS_VERSION"
-Write-Output " Visual Studio version:       $VS_VERSION"
-Write-Output " CMake version:               $CMAKE_VERSION"
-Write-Output " RPClib version:              $RPCLIB_VERSION"
-Write-Output " Eigen version:               $EIGEN_VERSION"
-Write-Output " High-polycount SUV version:  $ASSET_SUV_VERSION"
-Write-Output " High-polycount SUV:          $ASSET_SUV_GET"
+Write-Output " Windows version:         $SYSTEM_OS_VERSION"
+Write-Output " Visual Studio version:   $VS_VERSION"
+Write-Output " CMake version:           $CMAKE_VERSION"
+Write-Output " RPClib version:          $RPCLIB_VERSION"
+Write-Output " Eigen version:           $EIGEN_VERSION"
+Write-Output " Asset SUV:               $ASSET_SUV"
+Write-Output " Asset SUV version:       $ASSET_SUV_VERSION"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output ''
 
@@ -212,7 +212,7 @@ Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 Test-RpcLibVersion
 
 # Test high-polycount SUV asset
-Test-AssetSuvVersion -HighPolycountSuv $ASSET_SUV_GET
+Test-AssetSuvVersion -HighPolycountSuv $ASSET_SUV
 
 # Test Eigen library version
 Test-EigenVersion
