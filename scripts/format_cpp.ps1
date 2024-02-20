@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  02-16-2024
+  2024-02-20
 NOTES:
   Assumes: PowerShell version >= 7, clang-format version 17.
   Script is intended to run from AutonomySim base project directory.

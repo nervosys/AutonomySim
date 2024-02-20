@@ -8,7 +8,7 @@
 # Author
 #   Adam Erickson (Nervosys)
 # Date
-#   2023-10-18
+#   2024-02-20
 # Notes
 #   Recursively finds files and subdirectories under current directory, echoes their
 #   original name `p` and then a modified name `s/${OLD}/${NEW}/g` and feeds both

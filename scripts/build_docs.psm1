@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  2024-02-20
 NOTES:
   Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
   Script is intended to run from AutonomySim base project directory.

@@ -30,15 +30,15 @@ param(
   [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
   [Switch]
   $BuildDocs = $false,
-  [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
-  [Switch]
-  $AssetSuv = $false,
   [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
   [Switch]
   $SystemDebug = $false,
   [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
   [Switch]
-  $IntegrateDeploy = $false    
+  $IntegrateDeploy = $false,
+  [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
+  [Switch]
+  $AssetSuv = $false
 )
 
 ###
@@ -69,7 +69,7 @@ Import-Module "${PWD}\scripts\test_unrealasset.psm1"    # imports: ASSET_SUV_VER
 
 # Static variables
 $PROJECT_DIR = "$PWD"
-$SCRIPT_DIR  = "$PROJECT_DIR\scripts"
+$SCRIPT_DIR  = "${PROJECT_DIR}\scripts"
 
 # Command-line arguments
 $BUILD_MODE = "$BuildMode"
@@ -159,7 +159,7 @@ function Update-VsUnrealProjectFiles {
     $ProjectDir = "$PWD"
   )
   $UnrealEnvDirs = (Get-ChildItem -Path 'Unreal\Environments' -Directory | Select-Object FullName).FullName  # remove attribute decorator
-  foreach ($UnrealEnvDir in $UnrealEnvDirs) {
+  foreach ( $UnrealEnvDir in $UnrealEnvDirs ) {
     Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir -ProjectDir $ProjectDir
   }
 }

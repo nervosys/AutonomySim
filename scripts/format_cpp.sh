@@ -9,7 +9,7 @@
 #   Microsoft (original)
 #   Adam Erickson (Nervosys)
 # Date
-#   2023-10-19
+#   2024-02-20
 # Usage
 #   `bash format_code.sh`
 # Notes

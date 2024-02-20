@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  11-17-2023
+  2024-02-20
 NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
   Script is intended to run from AutonomySim base project directory.

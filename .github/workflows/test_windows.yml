@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
-        # NOTE: windows-2019 has Visual Studio Build Tools v142, not v143 (required), and installing it is non-trivial
+        # NOTE: Visual Studio 2022 (Build Tools v143; windows-2022) is required
         os: [windows-2022] # versions: [2019: 10, 2022: 11]
         arch:
           - amd64
@@ -21,12 +21,12 @@ jobs:
 
       # - name: "Enable Developer Command Prompt for Visual Studio"
       #   uses: ilammy/msvc-dev-cmd@v1
-
+      #
       # - name: "Enable Developer Command Prompt for Visual Studio 2019"
       #   if: ${{ matrix.os == 'windows-2019' }}
       #   shell: pwsh
       #   run: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\Launch-VsDevShell.ps1'
-
+      #
       # - name: "Enable Developer Command Prompt for Visual Studio 2022"
       #   if: ${{ matrix.os == 'windows-2022' }}
       #   shell: pwsh
@@ -36,5 +36,5 @@ jobs:
         shell: pwsh
         run: |
           # Set-PSDebug -Trace 1
-          $CMAKE_GENERATOR_PLATFORM = "Visual Studio 17 2022"
-          ./scripts/build.ps1 -BuildMode "Release" -IntegrateDeploy
+          # $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 17 2022'
+          .\scripts\build.ps1 -BuildMode 'Release' -IntegrateDeploy
