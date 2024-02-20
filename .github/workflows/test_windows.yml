@@ -7,26 +7,26 @@ jobs:
     runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
-        os: [windows-2019, windows-2022] # versions: [2019: 10, 2022: 11]
+        # NOTE: windows-2019 comes with Visual Studio Build Tools v142, not v143 (required)
+        os: [windows-2022] # versions: [2019: 10, 2022: 11];
         arch:
           - amd64
           # - arm64
 
-    # sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
+
+      - name: "Add MSBuild to PATH"
+        uses: microsoft/setup-msbuild@v2
 
       # - name: "Enable Developer Command Prompt for Visual Studio"
       #   uses: ilammy/msvc-dev-cmd@v1
 
-      - name: "Setup MSBuild"
-        uses: microsoft/setup-msbuild@v2
-
       # - name: "Enable Developer Command Prompt for Visual Studio 2019"
       #   if: ${{ matrix.os == 'windows-2019' }}
       #   shell: pwsh
-      #   run: 'C:\Program Files\Microsoft Visual Studio\2019\Community\Common6\Tools\Launch-VsDevShell.ps1'
-      #
+      #   run: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\Launch-VsDevShell.ps1'
+
       # - name: "Enable Developer Command Prompt for Visual Studio 2022"
       #   if: ${{ matrix.os == 'windows-2022' }}
       #   shell: pwsh

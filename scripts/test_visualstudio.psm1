@@ -36,9 +36,9 @@ Import-Module "${PWD}\scripts\utils.psm1"
 function Get-VsInstance {
     [OutputType([PSCustomObject])]
     param(
-        [Parameter(Mandatory)]
+        [Parameter()]
         [System.Object]
-        $VsWhereArgs
+        $VsWhereArgs = "-all -sort"
     )
     $VsWherePath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
     $Expression = "& `"$VsWherePath`" $VsWhereArgs -format json"
