@@ -137,9 +137,9 @@ else
                 make \
                 cmake
         else
-            # if CMake binary not found, build it from source
+            # If CMake binary not found, build it from source
             if [ ! -d "cmake_build/bin" ]; then
-                echo "Downloading cmake..."
+                echo "Downloading CMake..."
                 wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz -O cmake.tar.gz
                 tar -xzf cmake.tar.gz
                 rm cmake.tar.gz
@@ -156,14 +156,14 @@ else
     fi
 fi
 
-# Download and unpack rpclib.
+# Download and unpack RPCLib.
 if [ ! -d "external/rpclib/rpclib-2.3.0" ]; then
     # remove previous versions and create empty directory
     rm -rf "external/rpclib"
     mkdir -p "external/rpclib"
     echo ''
     echo '-----------------------------------------------------------------------------------------'
-    echo ' Downloading rpclib...'
+    echo ' Downloading RPCLib...'
     echo '-----------------------------------------------------------------------------------------'
     wget https://github.com/rpclib/rpclib/archive/v2.3.0.zip
     unzip -q v2.3.0.zip -d external/rpclib

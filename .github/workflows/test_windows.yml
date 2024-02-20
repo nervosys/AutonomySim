@@ -37,4 +37,4 @@ jobs:
         run: |
           # Set-PSDebug -Trace 1
           $CMAKE_GENERATOR_PLATFORM = "Visual Studio 17 2022"
-          ./scripts/build.ps1 -BuildMode "Release" -Deploy
+          ./scripts/build.ps1 -BuildMode "Release" -IntegrateDeploy

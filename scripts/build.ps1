@@ -38,7 +38,7 @@ param(
   $SystemDebug = $false,
   [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
   [Switch]
-  $Deploy = $false    
+  $IntegrateDeploy = $false    
 )
 
 ###
@@ -74,9 +74,9 @@ $SCRIPT_DIR = "$PROJECT_DIR\scripts"
 # Command-line arguments
 $BUILD_MODE = "$BuildMode"
 $BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$HIGH_POLYCOUNT_SUV = if ($HighPolycountSuv) { $true } else { $false }
 $DEBUG_MODE = if ($SystemDebug) { $true } else { $false }
-$CI_CD_MODE = if ($Deploy -eq $true) { $true } else { $false }
+$ASSET_SUV_GET = if ($HighPolycountSuv) { $true } else { $false }
+$CI_CD_MODE = if ($IntegrateDeploy -eq $true) { $true } else { $false }
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # Windows only
@@ -174,45 +174,45 @@ Write-Output ''
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output ' Parameters'
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Project directory:     $PROJECT_DIR"
-Write-Output " Script directory:      $SCRIPT_DIR"
+Write-Output " Project directory:           $PROJECT_DIR"
+Write-Output " Script directory:            $SCRIPT_DIR"
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Processor:             $SYSTEM_PROCESSOR"
-Write-Output " Architecture:          $SYSTEM_ARCHITECTURE"
-Write-Output " Platform:              $SYSTEM_PLATFORM"
-Write-Output " CPU count max:         $SYSTEM_CPU_MAX"
-Write-Output " Build mode:            $BUILD_MODE"
+Write-Output " Processor:                   $SYSTEM_PROCESSOR"
+Write-Output " Architecture:                $SYSTEM_ARCHITECTURE"
+Write-Output " Platform:                    $SYSTEM_PLATFORM"
+Write-Output " CPU count max:               $SYSTEM_CPU_MAX"
+Write-Output " Build mode:                  $BUILD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Debug mode:            $DEBUG_MODE"
-Write-Output " CI/CD mode:            $CI_CD_MODE"
+Write-Output " Debug mode:                  $DEBUG_MODE"
+Write-Output " CI/CD mode:                  $CI_CD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Windows version:       $SYSTEM_OS_VERSION"
-Write-Output " Visual Studio version: $VS_VERSION"
-Write-Output " CMake version:         $CMAKE_VERSION"
-Write-Output " RPClib version:        $RPCLIB_VERSION"
-Write-Output " Eigen version:         $EIGEN_VERSION"
-Write-Output " SUV asset version:     $ASSET_SUV_VERSION"
-Write-Output " High-polycount SUV:    $HIGH_POLYCOUNT_SUV"
+Write-Output " Windows version:             $SYSTEM_OS_VERSION"
+Write-Output " Visual Studio version:       $VS_VERSION"
+Write-Output " CMake version:               $CMAKE_VERSION"
+Write-Output " RPClib version:              $RPCLIB_VERSION"
+Write-Output " Eigen version:               $EIGEN_VERSION"
+Write-Output " High-polycount SUV version:  $ASSET_SUV_VERSION"
+Write-Output " High-polycount SUV:          $ASSET_SUV_GET"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output ''
 
 # Ensure script is run from `AutonomySim` project directory
 Test-WorkingDirectory
 
-# Test Visual Studio version
+# Test Visual Studio version (optionally automated for CI/CD)
 Test-VisualStudioVersion -Automate $CI_CD_MODE
 
-# Test CMake version
+# Test CMake version (downloads and installs CMake)
 Test-CmakeVersion
 
-# Create temporary build directories if they do not exist
+# Create temporary directories if they do not exist
 Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 
-# Test RPClib version
+# Test RpcLib version (downloads and builds rpclib)
 Test-RpcLibVersion
 
 # Test high-polycount SUV asset
-Test-AssetSuvVersion -HighPolycountSuv $HIGH_POLYCOUNT_SUV
+Test-AssetSuvVersion -HighPolycountSuv $ASSET_SUV_GET
 
 # Test Eigen library version
 Test-EigenVersion

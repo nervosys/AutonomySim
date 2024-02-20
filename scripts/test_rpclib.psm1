@@ -43,7 +43,7 @@ Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directori
 function Get-RpcLib {
     Write-Output ''
     Write-Output '-----------------------------------------------------------------------------------------'
-    Write-Output " Downloading rpclib version $RPCLIB_VERSION"
+    Write-Output " Downloading rpclib version ${RPCLIB_VERSION}..."
     Write-Output '-----------------------------------------------------------------------------------------'
     Write-Output ''
 
@@ -65,7 +65,7 @@ function Get-RpcLib {
 function Build-RpcLib {
     Write-Output ''
     Write-Output '-----------------------------------------------------------------------------------------'
-    Write-Output " Building rpclib version $RPCLIB_VERSION with Cmake version $CMAKE_VERSION"
+    Write-Output " Building rpclib version ${RPCLIB_VERSION} with CMake version ${CMAKE_VERSION}..."
     Write-Output '-----------------------------------------------------------------------------------------'
     Write-Output ''
     
@@ -73,13 +73,13 @@ function Build-RpcLib {
     Set-Location "${RPCLIB_PATH}\build"
     Write-Output "Current directory: ${RPCLIB_PATH}\build"
 
-    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G $VS_GENERATOR", '..' -Wait -NoNewWindow
+    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G ${VS_GENERATOR}", '..' -Wait -NoNewWindow
     if ( $BUILD_MODE -eq 'Release' ) {
         Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.' -Wait -NoNewWindow
         Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', '--config Release' -Wait -NoNewWindow
     }
     else {
-        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', "--config $BUILD_MODE" -Wait -NoNewWindow
+        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', "--config ${BUILD_MODE}" -Wait -NoNewWindow
     }
     if (!$?) { exit $LASTEXITCODE }  # exit on error
 
@@ -93,13 +93,13 @@ function Build-RpcLib {
     [System.IO.Directory]::CreateDirectory($RPCLIB_TARGET_INCLUDE)
 
     # copy directories robustly
-    Copy-Item -Path "$RPCLIB_PATH\include" -Destination "$RPCLIB_TARGET_INCLUDE"
+    Copy-Item -Path "${RPCLIB_PATH}\include" -Destination "${RPCLIB_TARGET_INCLUDE}"
     if ( $BUILD_MODE -eq 'Release' ) {
-        Copy-Item -Path "$RPCLIB_PATH\build\Debug" -Destination "$RPCLIB_TARGET_LIB\Debug"
-        Copy-Item -Path "$RPCLIB_PATH\build\Release" -Destination "$RPCLIB_TARGET_LIB\Release"
+        Copy-Item -Path "${RPCLIB_PATH}\build\Debug" -Destination "${RPCLIB_TARGET_LIB}\Debug"
+        Copy-Item -Path "${RPCLIB_PATH}\build\Release" -Destination "${RPCLIB_TARGET_LIB}\Release"
     }
     else {
-        Copy-Item -Path "$RPCLIB_PATH\build\$BUILD_MODE" -Destination "$RPCLIB_TARGET_LIB\$BUILD_MODE"
+        Copy-Item -Path "${RPCLIB_PATH}\build\${BUILD_MODE}" -Destination "${RPCLIB_TARGET_LIB}\$BUILD_MODE"
     }
 }
 
@@ -113,11 +113,11 @@ function Test-RpcLibVersion {
         # Fail if rpclib version path not found
         if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
             Write-Error 'Error: Download and build of rpclib failed. Stopping build.' -ErrorAction SilentlyContinue
-            Invoke-Fail -ErrorMessage "Error: Failed to download and build RCPLib."
+            Invoke-Fail -ErrorMessage "Error: Failed to download and build rpclib."
         }
     }
     else {
-        Write-Output "Existing installation of rpclib version $RPCLIB_VERSION found."
+        Write-Output "Existing installation of rpclib version ${RPCLIB_VERSION} found."
     }
 }
 
