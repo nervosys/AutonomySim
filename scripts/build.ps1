@@ -75,8 +75,8 @@ $SCRIPT_DIR = "$PROJECT_DIR\scripts"
 $BUILD_MODE = "$BuildMode"
 $BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
 $FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
-$DEBUG = if ($SystemDebug) { $true } else { $false }
-$CI_CD = if ($Deploy -eq $true) { $true } else { $false }
+$DEBUG_MODE = if ($SystemDebug) { $true } else { $false }
+$CI_CD_MODE = if ($Deploy -eq $true) { $true } else { $false }
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # Windows only
@@ -167,7 +167,7 @@ function Update-VsUnrealProjectFiles {
 ### Main
 ###
 
-if ( $DEBUG -eq $true ) { Write-Output (Get-WindowsInfo($SYSTEM_INFO)) }
+if ( $DEBUG_MODE -eq $true ) { Write-Output (Get-WindowsInfo($SYSTEM_INFO)) }
 
 Write-Output ''
 Write-Output '-----------------------------------------------------------------------------------------'
@@ -181,6 +181,9 @@ Write-Output " Architecture:          $SYSTEM_ARCHITECTURE"
 Write-Output " Platform:              $SYSTEM_PLATFORM"
 Write-Output " CPU count max:         $SYSTEM_CPU_MAX"
 Write-Output " Build mode:            $BUILD_MODE"
+Write-Output '-----------------------------------------------------------------------------------------'
+Write-Output " Debug mode:            $DEBUG_MODE"
+Write-Output " CI/CD mode:            $CI_CD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output " Windows version:       $SYSTEM_OS_VERSION"
 Write-Output " Visual Studio version: $VS_VERSION"
@@ -196,7 +199,7 @@ Write-Output ''
 Test-WorkingDirectory
 
 # Test Visual Studio version
-Test-VisualStudioVersion -Automate $CI_CD
+Test-VisualStudioVersion -Automate $CI_CD_MODE
 
 # Test CMake version
 Test-CmakeVersion
