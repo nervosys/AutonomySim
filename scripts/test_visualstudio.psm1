@@ -62,10 +62,10 @@ function Set-VsInstance {
         ForEach-Object { $i = 0; $i++; $_ | Add-Member -NotePropertyName "#" -NotePropertyValue $i -PassThru }
     Write-Output "The following Visual Studio installations were found:"
     $Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ }
-    if ($Automate -ne $true) {
-        $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
-    } else {
+    if ($Automate -eq $true) {
         $Selected = 1
+    } else {
+        $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
     }
     if (-not $Selected) {
         Write-Output "No Visual Studio installation selected. Exiting program."
