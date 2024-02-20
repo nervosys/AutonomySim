@@ -40,28 +40,28 @@ function Get-VsInstance {
         $VsWhereArgs
     )
     $VsWherePath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-    $expression = "& `"$VsWherePath`" $VsWhereArgs -format json"
-    Invoke-Expression $expression | ConvertFrom-Json
+    $Expression = "& `"$VsWherePath`" $VsWhereArgs -format json"
+    return Invoke-Expression $Expression | ConvertFrom-Json
 }
 
 function Set-VsInstance {
-    $setupargs = "-all -sort"
-    $configs = Get-VsInstance -VsWhereArgs $setupargs
+    $SetupArgs = "-all -sort"
+    $Configs = Get-VsInstance -VsWhereArgs $SetupArgs
     $DisplayProperties = @("displayName", "instanceId", "installationVersion", "isPrerelease", "installationName", "installDate")
     $DisplayProperties = @("#") + $DisplayProperties
     # Add an incrementing select column
-    $configs = $configs |
+    $Configs = $Configs |
     Sort-Object displayName, installationDate |
     ForEach-Object { $i = 0; $i++; $_ | Add-Member -NotePropertyName "#" -NotePropertyValue $i -PassThru }
     Write-Output "The following Visual Studio installations were found:"
-    $configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Host $_ }
-    $selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
-    if (-not $selected) {
+    $Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ }
+    $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
+    if (-not $Selected) {
         Write-Output "No Visual Studio installation selected. Exiting program."
         Invoke-Fail -ErrorMessage "Error: Failed to select Visual Studio installation."
     }
-    $config = $configs | Where-Object { $_."#" -eq $selected }
-    return $config
+    $Config = $Configs | Where-Object { $_."#" -eq $Selected }
+    return $Config
 }
 
 function Get-VsInstanceVersion {
