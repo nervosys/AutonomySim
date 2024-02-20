@@ -58,16 +58,17 @@ function Set-VsInstance {
     $DisplayProperties = @("#") + $DisplayProperties
     # Add an ID number for each installation
     $Configs = $Configs |
-        Sort-Object displayName, installationDate |
-        ForEach-Object { $i = 0; $i++; $_ | Add-Member -NotePropertyName "#" -NotePropertyValue $i -PassThru }
+    Sort-Object displayName, installationDate |
+    ForEach-Object { $i = 0; $i++; $_ | Add-Member -NotePropertyName "#" -NotePropertyValue $i -PassThru }
     Write-Output "The following Visual Studio installations were found:"
     $Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ }
     if ($Automate -eq $true) {
-        $Selected = 1
-    } else {
+        $Selected = "1"
+    }
+    elseif ($Automate -eq $false) {
         $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
     }
-    if (-not $Selected) {
+    else {
         Write-Output "No Visual Studio installation selected. Exiting program."
         Invoke-Fail -ErrorMessage "Error: Failed to select Visual Studio installation."
     }

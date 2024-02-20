@@ -24,21 +24,21 @@ NOTES:
 ###
 
 param(
-    [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
-    [String]
-    $BuildMode = 'Release',
-    [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
-    [Switch]
-    $BuildDocs = $false,
-    [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
-    [Switch]
-    $FullPolySuv = $false,
-    [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
-    [Switch]
-    $SystemDebug = $false,
-    [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
-    [Switch]
-    $Deploy = $false    
+  [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
+  [String]
+  $BuildMode = 'Release',
+  [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
+  [Switch]
+  $BuildDocs = $false,
+  [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
+  [Switch]
+  $FullPolySuv = $false,
+  [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
+  [Switch]
+  $SystemDebug = $false,
+  [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
+  [Switch]
+  $Deploy = $false    
 )
 
 ###
@@ -94,73 +94,73 @@ $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 ###
 
 function Build-Solution {
-    [OutputType()]
-    param(
-        [Parameter(Mandatory)]
-        [String]
-        $BuildMode,
-        [Parameter(Mandatory)]
-        [String]
-        $SystemPlatform,
-        [Parameter(Mandatory)]
-        [UInt8]
-        $SystemCpuMax
-    )
-    if ( $BuildMode -eq 'Release' ) {
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
-    }
-    else {
-        Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=$BuildMode", 'AutonomySim.sln' -Wait -NoNewWindow
-    }
-    if (!$?) { exit $LASTEXITCODE }  # exit on error
+  [OutputType()]
+  param(
+    [Parameter(Mandatory)]
+    [String]
+    $BuildMode,
+    [Parameter(Mandatory)]
+    [String]
+    $SystemPlatform,
+    [Parameter(Mandatory)]
+    [UInt8]
+    $SystemCpuMax
+  )
+  if ( $BuildMode -eq 'Release' ) {
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
+  }
+  else {
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=$BuildMode", 'AutonomySim.sln' -Wait -NoNewWindow
+  }
+  if (!$?) { exit $LASTEXITCODE }  # exit on error
 }
 
 function Copy-GeneratedBinaries {
-    # Copy binaries and includes for MavLinkCom in deps
-    $MAVLINK_TARGET_LIB = 'AutonomyLib\deps\MavLinkCom\lib'
-    $MAVLINK_TARGET_INCLUDE = 'AutonomyLib\deps\MavLinkCom\include'
-    [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_LIB)
-    [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_INCLUDE)
-    Copy-Item -Path 'MavLinkCom\include' -Destination $MAVLINK_TARGET_INCLUDE
-    Copy-Item -Path 'MavLinkCom\lib' -Destination $MAVLINK_TARGET_LIB
+  # Copy binaries and includes for MavLinkCom in deps
+  $MAVLINK_TARGET_LIB = 'AutonomyLib\deps\MavLinkCom\lib'
+  $MAVLINK_TARGET_INCLUDE = 'AutonomyLib\deps\MavLinkCom\include'
+  [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_LIB)
+  [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_INCLUDE)
+  Copy-Item -Path 'MavLinkCom\include' -Destination $MAVLINK_TARGET_INCLUDE
+  Copy-Item -Path 'MavLinkCom\lib' -Destination $MAVLINK_TARGET_LIB
 
-    # Copy outputs into Unreal/Plugins directory
-    $AUTONOMYLIB_PLUGIN_DIR = 'Unreal\Plugins\AutonomySim\Source\AutonomyLib'
-    [System.IO.Directory]::CreateDirectory($AUTONOMYLIB_PLUGIN_DIR)
-    Copy-Item -Path 'AutonomyLib' -Destination $AUTONOMYLIB_PLUGIN_DIR
-    Copy-Item -Path 'AutonomySim.props' -Destination $AUTONOMYLIB_PLUGIN_DIR
+  # Copy outputs into Unreal/Plugins directory
+  $AUTONOMYLIB_PLUGIN_DIR = 'Unreal\Plugins\AutonomySim\Source\AutonomyLib'
+  [System.IO.Directory]::CreateDirectory($AUTONOMYLIB_PLUGIN_DIR)
+  Copy-Item -Path 'AutonomyLib' -Destination $AUTONOMYLIB_PLUGIN_DIR
+  Copy-Item -Path 'AutonomySim.props' -Destination $AUTONOMYLIB_PLUGIN_DIR
 }
 
 function Get-VsUnrealProjectFiles {
-    param(
-        [Parameter(Mandatory)]
-        [String]
-        $UnrealEnvDir,
-        [Parameter()]
-        [String]
-        $ProjectDir = "$PWD"
-    )
-    Set-Location $UnrealEnvDir
-    Import-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"  # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
-    #Test-DirectoryPath -Path $ProjectDir
-    Copy-UnrealEnvItems -Path $ProjectDir
-    Remove-UnrealEnvItems
-    Invoke-VsUnrealProjectFileGenerator
-    Remove-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"
-    Set-Location $ProjectDir
+  param(
+    [Parameter(Mandatory)]
+    [String]
+    $UnrealEnvDir,
+    [Parameter()]
+    [String]
+    $ProjectDir = "$PWD"
+  )
+  Set-Location $UnrealEnvDir
+  Import-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"  # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
+  #Test-DirectoryPath -Path $ProjectDir
+  Copy-UnrealEnvItems -Path $ProjectDir
+  Remove-UnrealEnvItems
+  Invoke-VsUnrealProjectFileGenerator
+  Remove-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"
+  Set-Location $ProjectDir
 }
 
 function Update-VsUnrealProjectFiles {
-    param(
-        [Parameter()]
-        [String]
-        $ProjectDir = "$PWD"
-    )
-    $UnrealEnvDirs = (Get-ChildItem -Path 'Unreal\Environments' -Directory | Select-Object FullName).FullName  # remove attribute decorator
-    foreach ($UnrealEnvDir in $UnrealEnvDirs) {
-        Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir -ProjectDir $ProjectDir
-    }
+  param(
+    [Parameter()]
+    [String]
+    $ProjectDir = "$PWD"
+  )
+  $UnrealEnvDirs = (Get-ChildItem -Path 'Unreal\Environments' -Directory | Select-Object FullName).FullName  # remove attribute decorator
+  foreach ($UnrealEnvDir in $UnrealEnvDirs) {
+    Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir -ProjectDir $ProjectDir
+  }
 }
 
 ###

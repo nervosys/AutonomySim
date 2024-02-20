@@ -35,5 +35,5 @@ jobs:
       - name: "Build AutonomySim"
         shell: pwsh
         run: |
-          Set-PSDebug -Trace 1
+          # Set-PSDebug -Trace 1
           ./scripts/build.ps1 -BuildMode "Release" -Deploy

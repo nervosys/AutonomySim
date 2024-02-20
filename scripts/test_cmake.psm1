@@ -35,45 +35,47 @@ Import-Module "${PWD}\scripts\utils.psm1"
 ###
 
 function Install-Cmake {
-    param(
-        [Parameter()]
-        [Version]
-        $Version = $CMAKE_VERSION_LATEST
-    )
-    Write-Host -NoNewLine "Download and install CMake v${Version}? [y|N]"
-    $Response = [System.Console]::ReadKey().Key.ToString()  # uses automatic capitalization
-    if ( $Response -eq 'Y' ) {
-        $VersionMajMin = Get-VersionMajorMinor $Version
-        $VersionMajMinBuild = Get-VersionMajorMinorBuild $Version
-        $Installer = "cmake-${VersionMajMinBuild}-x86_64.msi"
-        Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile "temp\${Installer}"
-        Start-Process -FilePath "temp\${Installer}" -Wait
-        Remove-Item -Path "temp\${Installer}"
-    } else {
-        Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Continue
-        Invoke-Fail -ErrorMessage "Error: Failed to install CMake." 
-    }
+  param(
+    [Parameter()]
+    [Version]
+    $Version = $CMAKE_VERSION_LATEST
+  )
+  Write-Host -NoNewLine "Download and install CMake v${Version}? [y|N]"
+  $Response = [System.Console]::ReadKey().Key.ToString()  # uses automatic capitalization
+  if ( $Response -eq 'Y' ) {
+    $VersionMajMin = Get-VersionMajorMinor $Version
+    $VersionMajMinBuild = Get-VersionMajorMinorBuild $Version
+    $Installer = "cmake-${VersionMajMinBuild}-x86_64.msi"
+    Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile "temp\${Installer}"
+    Start-Process -FilePath "temp\${Installer}" -Wait
+    Remove-Item -Path "temp\${Installer}"
+  }
+  else {
+    Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Continue
+    Invoke-Fail -ErrorMessage "Error: Failed to install CMake." 
+  }
 }
 
 function Test-CmakeVersion {
-    [OutputType([Boolean])]
-    param(
-        [Parameter()]
-        [Version]
-        $MinimumVersion = $CMAKE_VERSION_MINIMUM,
-        [Parameter()]
-        [String]
-        $Program = 'cmake'
-    )
-    $CurrentVersion = Get-ProgramVersion -Program $Program
-    if ( $null -eq $CurrentVersion ) { Install-Cmake }  # install CMake if it is missing
-    if ($CurrentVersion -lt $MinimumVersion) {
-        # install CMake if it is less than the required version
-        Write-Error "Error: $($Program) version $($CurrentVersion) is less than the minimum supported." -ErrorAction SilentlyContinue
-        Install-Cmake
-    } else {
-        Write-Output "Success: CMake version ${CurrentVersion} meets the minimum requirements."
-    }
+  [OutputType([Boolean])]
+  param(
+    [Parameter()]
+    [Version]
+    $MinimumVersion = $CMAKE_VERSION_MINIMUM,
+    [Parameter()]
+    [String]
+    $Program = 'cmake'
+  )
+  $CurrentVersion = Get-ProgramVersion -Program $Program
+  if ( $null -eq $CurrentVersion ) { Install-Cmake }  # install CMake if it is missing
+  if ($CurrentVersion -lt $MinimumVersion) {
+    # install CMake if it is less than the required version
+    Write-Error "Error: $($Program) version $($CurrentVersion) is less than the minimum supported." -ErrorAction SilentlyContinue
+    Install-Cmake
+  }
+  else {
+    Write-Output "Success: CMake version ${CurrentVersion} meets the minimum requirements."
+  }
 }
 
 ###
