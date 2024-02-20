@@ -49,9 +49,9 @@ param(
 
 # Common utilities
 Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
-                                                        # Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
-                                                        # Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
-                                                        # Get-ArchitectureWidth, Set-ProcessorCount
+# Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
+# Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
+# Get-ArchitectureWidth, Set-ProcessorCount
 
 # Documentation
 Import-Module "${PWD}\scripts\build_docs.psm1"          # imports: Build-Documentation

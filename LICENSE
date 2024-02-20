@@ -202,6 +202,8 @@
 
 -------------------------------------------------------------------------------
                                  NOTE
-Some of AutonomySim's code is derived from AirSim and AutonomySim.
-Both MIT licenses can be found in the `sublicenses` directory.
+
+Some AutonomySim code is derived from AirSim, Colosseum, and Cosys-Lab AirSim.
+Their MIT licenses can be found in the `sublicenses` directory.
+
 -------------------------------------------------------------------------------
