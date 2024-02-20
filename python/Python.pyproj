@@ -6,12 +6,12 @@
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <SchemaVersion>2.0</SchemaVersion>
         <ProjectGuid>e2049e20-b6dd-474e-8bca-1c8dc54725aa</ProjectGuid>
-        <ProjectHome>.</ProjectHome>
+        <ProjectHome />
         <StartupFile>computer_vision\cv_capture.py</StartupFile>
         <SearchPath />
         <WorkingDirectory>.</WorkingDirectory>
         <OutputPath>.</OutputPath>
-        <Name>PythonClient</Name>
+        <Name>Python</Name>
         <RootNamespace>PythonClient</RootNamespace>
         <InterpreterId>Global|ContinuumAnalytics|Anaconda36-64</InterpreterId>
         <InterpreterVersion />
@@ -104,6 +104,7 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
+        <Folder Include="src\" />
         <Folder Include="src\autonomysim\" />
         <Folder Include="src\car\" />
         <Folder Include="src\computer_vision\" />

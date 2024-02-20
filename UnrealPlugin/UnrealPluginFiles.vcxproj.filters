@@ -18,12 +18,6 @@
     <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomyBlueprintLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomySimGameMode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Unreal\Plugins\AutonomySim\Source\CameraDirector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,15 +105,15 @@
     <ClCompile Include="Unreal\Plugins\AutonomySim\Source\TextureShuffleActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unreal\Plugins\AutonomySim\Source\AutonomySimGameMode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomyBlueprintLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomySimGameMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Unreal\Plugins\AutonomySim\Source\CameraDirector.h">
@@ -212,13 +206,14 @@
     <ClInclude Include="Unreal\Plugins\AutonomySim\Source\UnrealSensors\UnrealLidarSensor.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal\Plugins\AutonomySim\Source\AutonomySimGameMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.Build.4.15.cs">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.Build.cs">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="Unreal\Plugins\AutonomySim\Source\AutonomySim.Build.cs" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ DATE:
 PARAMETERS:
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
-  - FullPolySuv:    Enable for an Unreal Engine full-polycount SUV asset.
+  - HighPolycountSuv:    Enable for an Unreal Engine full-polycount SUV asset.
   - SystemDebug:    Enable for computer system debugging messages.
 NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
@@ -32,7 +32,7 @@ param(
   $BuildDocs = $false,
   [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
   [Switch]
-  $FullPolySuv = $false,
+  $HighPolycountSuv = $false,
   [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
   [Switch]
   $SystemDebug = $false,
@@ -74,7 +74,7 @@ $SCRIPT_DIR = "$PROJECT_DIR\scripts"
 # Command-line arguments
 $BUILD_MODE = "$BuildMode"
 $BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$FULL_POLY_SUV = if ($FullPolySuv) { $true } else { $false }
+$HIGH_POLYCOUNT_SUV = if ($HighPolycountSuv) { $true } else { $false }
 $DEBUG_MODE = if ($SystemDebug) { $true } else { $false }
 $CI_CD_MODE = if ($Deploy -eq $true) { $true } else { $false }
 
@@ -107,11 +107,11 @@ function Build-Solution {
     $SystemCpuMax
   )
   if ( $BuildMode -eq 'Release' ) {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
   }
   else {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:$SystemCpuMax", "/p:Platform=$SystemPlatform", "/p:Configuration=$BuildMode", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow
   }
   if (!$?) { exit $LASTEXITCODE }  # exit on error
 }
@@ -142,7 +142,8 @@ function Get-VsUnrealProjectFiles {
     $ProjectDir = "$PWD"
   )
   Set-Location $UnrealEnvDir
-  Import-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"  # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
+  # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
+  Import-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"
   #Test-DirectoryPath -Path $ProjectDir
   Copy-UnrealEnvItems -Path $ProjectDir
   Remove-UnrealEnvItems
@@ -191,7 +192,7 @@ Write-Output " CMake version:         $CMAKE_VERSION"
 Write-Output " RPClib version:        $RPCLIB_VERSION"
 Write-Output " Eigen version:         $EIGEN_VERSION"
 Write-Output " SUV asset version:     $ASSET_SUV_VERSION"
-Write-Output " Full-polycount SUV:    $FULL_POLY_SUV"
+Write-Output " High-polycount SUV:    $HIGH_POLYCOUNT_SUV"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output ''
 
@@ -211,7 +212,7 @@ Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 Test-RpcLibVersion
 
 # Test high-polycount SUV asset
-Test-AssetSuvVersion -FullPolySuv $FULL_POLY_SUV
+Test-AssetSuvVersion -HighPolycountSuv $HIGH_POLYCOUNT_SUV
 
 # Test Eigen library version
 Test-EigenVersion

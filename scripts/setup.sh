@@ -9,9 +9,9 @@
 #   Microsoft (original)
 #   Adam Erickson (Nervosys)
 # Date
-#   2023-10-18
+#   2024-02-20
 # Usage
-#   `bash setup.sh --no-full-poly-car`
+#   `bash setup.sh --high-polycount-suv`
 # Notes
 # - Required: cmake, rpclib, eigen
 # - Optional: high-poly count SUV asset for Unreal Engine
@@ -23,10 +23,6 @@
 
 set -x # print shell commands before executing (for debugging)
 set -e # exit on error return code
-
-# change into directory containing this script.
-SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
-pushd "${SCRIPT_DIR}" > /dev/null # push script directory onto the stack
 
 ###
 ### Functions
@@ -45,7 +41,12 @@ function version_less_than_equal_to {
 ### Parameters
 ###
 
-FULL_POLYCOUNT_SUV='true' # download high-polycount SUV model
+# change into directory containing this script.
+SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
+pushd "${SCRIPT_DIR}" > /dev/null # push script directory onto the stack
+
+# download high-polycount SUV model
+HIGH_POLYCOUNT_SUV='false'
 
 # Ensure CMake supports CMAKE_APPLE_SILICON_PROCESSOR for MacOS
 if [ "$(uname)" = 'Darwin' ]; then
@@ -60,15 +61,15 @@ DEBUG="${DEBUG:-false}"
 ### Main
 ###
 
-# Parse Command Line Arguments
+# Parse command-line interface (CLI) arguments.
 while [ $# -gt 0 ]; do
     key="$1"
     case "$key" in
     '--debug')
         DEBUG='true'
         ;;
-    '--full-polycount-suv')
-        FULL_POLYCOUNT_SUV='false'
+    '--high-polycount-suv')
+        HIGH_POLYCOUNT_SUV='true'
         shift
         ;;
     esac
@@ -95,14 +96,14 @@ else
     sudo apt-get install -y clang-8 clang++-8 libc++-8-dev libc++abi-8-dev
 fi
 
-# Get/set CMake version
+# Get/set CMake version.
 if [ ! "$(which cmake)" ]; then
     cmake_ver='0'
 else
     cmake_ver="$(cmake --version 2>&1 | head -n1 | cut -d ' ' -f3 | awk '{print $NF}')"
 fi
 
-# Give user permissions to access USB port, not needed if not using PX4 HIL
+# Give user permissions to access USB port, not needed if not using PX4 HIL.
 # TODO: figure out how to do below in travis
 # Install additional tools, CMake if required
 if [ "$(uname)" = 'Darwin' ]; then
@@ -155,30 +156,30 @@ else
     fi
 fi
 
-# Download and unpack rpclib
+# Download and unpack rpclib.
 if [ ! -d "external/rpclib/rpclib-2.3.0" ]; then
     # remove previous versions and create empty directory
     rm -rf "external/rpclib"
     mkdir -p "external/rpclib"
     echo ''
     echo '-----------------------------------------------------------------------------------------'
-    echo "Downloading rpclib..."
+    echo ' Downloading rpclib...'
     echo '-----------------------------------------------------------------------------------------'
     wget https://github.com/rpclib/rpclib/archive/v2.3.0.zip
     unzip -q v2.3.0.zip -d external/rpclib
     rm v2.3.0.zip
 fi
 
-# Download and unpack high-polycount SUV asset for Unreal Engine
-if [ "${FULL_POLYCOUNT_SUV}" = 'true' ]; then
+# Download and unpack high-polycount SUV asset for Unreal Engine.
+if [ "${HIGH_POLYCOUNT_SUV}" = 'true' ]; then
     if [ ! -d "Unreal/Plugins/AutonomySim/Content/VehicleAdv" ]; then
         mkdir -p "Unreal/Plugins/AutonomySim/Content/VehicleAdv"
     fi
     if [ ! -d "Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV/v1.2.0" ]; then
         echo ''
         echo '-----------------------------------------------------------------------------------------'
-        echo 'Downloading high-poly count SUV asset...'
-        echo 'To install without this asset, re-run with `setup.sh --no-full-poly-car`'
+        echo ' Downloading high-polycount SUV asset...'
+        echo ' To install with this asset, re-run with `setup.sh --high-polycount-suv`'
         echo '-----------------------------------------------------------------------------------------'
         if [ -d "suv_download_tmp" ]; then
             rm -rf "suv_download_tmp"
@@ -197,7 +198,7 @@ else
     echo "High-poly count SUV asset download skipped. The default Unreal Engine vehicle will be used."
 fi
 
-# Download and unpack Eigen3 C++ library
+# Download and unpack Eigen3 C++ library.
 if [ ! -d "AutonomyLib/deps/eigen3" ]; then
     echo 'Installing Eigen3 C++ library. Downloading Eigen...'
     wget -O eigen3.zip https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip
@@ -210,11 +211,11 @@ else
     echo "Eigen3 is already installed."
 fi
 
-popd >/dev/null # pop script directory off of the stack
+popd > /dev/null # pop script directory off of the stack
 
 set +x # disable printing shell commands before executing
 
 echo ''
 echo '-----------------------------------------------------------------------------------------'
-echo 'AutonomySim plugin setup successfully.'
+echo ' AutonomySim plugin setup successfully.'
 echo '-----------------------------------------------------------------------------------------'
