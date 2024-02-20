@@ -79,10 +79,10 @@ function Invoke-Fail {
   )
   Set-Location "$ProjectDir"
   if ($RemoveDirs -eq $true) { Remove-Directories }
-  if (Test-VariableDefined -Variable $ErrorMessage -eq $true) {
+  if ((Test-VariableDefined -Variable $ErrorMessage) -eq $true) {
     Write-Error -Exception [System.Exception] -Message "$ErrorMessage" -ErrorAction Continue
   }
-  if (Test-VariableDefined -Variable $Exception -eq $true) {
+  if ((Test-VariableDefined -Variable $Exception) -eq $true) {
     throw $Exception
   }
 }
