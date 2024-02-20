@@ -18,7 +18,7 @@ NOTES:
 ###
 
 function Test-VariableDefined {
-  [OutputType(Boolean)]
+  [OutputType([Boolean])]
   param(
       [Parameter(Mandatory)]
       [String]
@@ -145,6 +145,7 @@ function Get-WindowsInfo {
 }
 
 function Get-WindowsVersion {
+  [OutputType([Version])]
   param(
       [Parameter(Mandatory)]
       [System.Object]
@@ -160,21 +161,21 @@ function Get-Architecture {
       [System.Object]
       $Info
   )
-  $arch = switch ($Info.CsSystemType) {
+  $Arch = switch ($Info.CsSystemType) {
       'x64-based PC' { 'x64' }
       'x86-based PC' { 'x86' }
       $null { $null }
   }
-  return $arch
+  return $Arch
 }
 
 function Get-ArchitectureWidth {
   [OutputType([String])]
-  $archWidth = switch ([intptr]::Size) {
+  $ArchWidth = switch ([intptr]::Size) {
       4 { '32-bit' }
       8 { '64-bit' }
   }
-  return $archWidth
+  return $ArchWidth
 }
 
 function Set-ProcessorCount {
