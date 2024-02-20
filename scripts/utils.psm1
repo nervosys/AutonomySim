@@ -29,6 +29,7 @@ function Test-VariableDefined {
 
 function Test-WorkingDirectory {
   [OutputType()]
+  param()
   $WorkingDirectory = Split-Path "$PWD" -Leaf
   if ($WorkingDirectory -ne 'AutonomySim') {
       Write-Output "Present working directory: ${PWD}"
@@ -50,41 +51,40 @@ function Add-Directories {
 
 function Remove-Directories {
   [OutputType()]
-    param(
-        [Parameter()]
-        [String[]]
-        $Directories = @('temp', 'external')
-    )
-    foreach ($d in $Directories) {
-        Remove-Item -Path "$d" -Force -Recurse
-    }
+  param(
+      [Parameter()]
+      [String[]]
+      $Directories = @('temp', 'external')
+  )
+  foreach ($d in $Directories) {
+      Remove-Item -Path "$d" -Force -Recurse
+  }
 }
 
 function Invoke-Fail {
   [OutputType()]
-    param(
-        [Parameter()]
-        [String]
-        $ProjectDir = "$PWD",
-        [Parameter()]
-        [Switch]
-        $RemoveDirs = $false,
-        [Parameter()]
-        [System.Exception]
-        $Exception,
-        [Parameter()]
-        [String]
-        $ErrorMessage
-    )
-    Set-Location "$ProjectDir"
-    if ($RemoveDirs -eq $true) { Remove-Directories }
-    if (Test-VariableDefined -Variable $ErrorMessage -eq $true) {
-      if (Test-VariableDefined -Variable $Exception -eq $true) {
-        ([$Exception.GetType()]::new("$ErrorMessage"))
-      } else {
-        Write-Error "$ErrorMessage" -ErrorAction Continue
-      }
-    }
+  param(
+    [Parameter()]
+    [String]
+    $ProjectDir = "$PWD",
+    [Parameter()]
+    [Switch]
+    $RemoveDirs = $false,
+    [Parameter()]
+    [System.Exception]
+    $Exception,
+    [Parameter()]
+    [String]
+    $ErrorMessage
+  )
+  Set-Location "$ProjectDir"
+  if ($RemoveDirs -eq $true) { Remove-Directories }
+  if (Test-VariableDefined -Variable $ErrorMessage -eq $true) {
+    Write-Error -Exception [System.Exception] -Message "$ErrorMessage" -ErrorAction Continue
+  }
+  if (Test-VariableDefined -Variable $Exception -eq $true) {
+    throw $Exception
+  }
 }
 
 function Get-Exceptions {
