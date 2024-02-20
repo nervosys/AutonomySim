@@ -90,7 +90,7 @@ function Test-VisualStudioVersion {
     param(
         [Parameter()]
         [Version]
-        $MinimumVersion = $VS_VERSION_MINIMUM
+        $MinimumVersion = $VS_VERSION_MINIMUM,
         [Parameter()]
         [Boolean]
         $Automate = $false
