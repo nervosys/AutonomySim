@@ -22,9 +22,10 @@ function Test-VariableDefined {
   param(
       [Parameter(Mandatory)]
       [String]
-      $Variable
+      $VariableName
   )
-  return Get-Variable $Variable -ErrorAction SilentlyContinue
+  [Boolean]$Exists = Test-Path "Variable:\$VariableName"
+  return $Exists
 }
 
 function Test-WorkingDirectory {
@@ -79,10 +80,10 @@ function Invoke-Fail {
   )
   Set-Location "$ProjectDir"
   if ($RemoveDirs -eq $true) { Remove-Directories }
-  if ((Test-VariableDefined -Variable $ErrorMessage) -eq $true) {
+  if ((Test-VariableDefined -VariableName "ErrorMessage") -eq $true) {
     Write-Error -Exception [System.Exception] -Message "$ErrorMessage" -ErrorAction Continue
   }
-  if ((Test-VariableDefined -Variable $Exception) -eq $true) {
+  if ((Test-VariableDefined -VariableName "Exception") -eq $true) {
     throw $Exception
   }
 }
