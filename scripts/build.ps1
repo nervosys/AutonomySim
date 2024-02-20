@@ -103,7 +103,7 @@ function Build-Solution {
     [String]
     $SystemPlatform,
     [Parameter(Mandatory)]
-    [UInt8]
+    [UInt16]
     $SystemCpuMax
   )
   if ( $BuildMode -eq 'Release' ) {
