@@ -27,6 +27,9 @@ Import-Module "${PWD}\scripts\utils.psm1"
 ### Variables
 ###
 
+[String]$PROJECT_DIR = "$PWD"
+#[String]$SCRIPT_DIR = "${PROJECT_DIR}\scripts"
+
 [Version]$RPCLIB_VERSION = '2.3.0'
 [String]$RCPLIB_VERSION_MAJ_MIN_BUILD = Get-VersionMajorMinorBuild -Version "$RPCLIB_VERSION"
 [String]$RPCLIB_PATH = "external\rpclib\rpclib-${RCPLIB_VERSION_MAJ_MIN_BUILD}"
