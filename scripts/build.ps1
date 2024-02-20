@@ -85,7 +85,7 @@ $SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
 $SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
 $SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
 $SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance
+$VS_INSTANCE = Set-VsInstance -Automate $CI_CD_MODE
 $VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
 $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
