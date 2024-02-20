@@ -18,15 +18,17 @@ NOTES:
 ###
 
 function Test-VariableDefined {
+  [OutputType(Boolean)]
   param(
       [Parameter(Mandatory)]
       [String]
       $Variable
   )
-  return [Boolean](Get-Variable $Variable -ErrorAction SilentlyContinue)
+  return Get-Variable $Variable -ErrorAction SilentlyContinue
 }
 
 function Test-WorkingDirectory {
+  [OutputType()]
   $WorkingDirectory = Split-Path "$PWD" -Leaf
   if ($WorkingDirectory -ne 'AutonomySim') {
       Write-Output "Present working directory: ${PWD}"
@@ -35,6 +37,7 @@ function Test-WorkingDirectory {
 }
 
 function Add-Directories {
+  [OutputType()]
   param(
       [Parameter()]
       [String[]]
@@ -46,6 +49,7 @@ function Add-Directories {
 }
 
 function Remove-Directories {
+  [OutputType()]
     param(
         [Parameter()]
         [String[]]
@@ -57,6 +61,7 @@ function Remove-Directories {
 }
 
 function Invoke-Fail {
+  [OutputType()]
     param(
         [Parameter()]
         [String]
@@ -82,8 +87,20 @@ function Invoke-Fail {
     }
 }
 
-function Get-EnvVariables {
-  return Get-ChildItem 'env:*' | Sort-Object 'Name' | Format-List
+function Get-Exceptions {
+  [OutputType([String[]])]
+  [String[]]$Exceptions = [AppDomain]::CurrentDomain.GetAssemblies() | foreach {
+    try {
+      $_.GetExportedTypes().BaseType | Where { $_.Fullname -Match 'Exception' }
+    } catch {}
+  }
+  return $Exceptions | Sort-Object -Unique
+}
+
+function Get-EnvVars {
+  [OutputType([Object[]])]
+  [Object[]]$EnvVars = Get-ChildItem 'env:*' | Sort-Object 'Name' | Format-List
+  return $EnvVars
 }
 
 function Get-ProgramVersion {
@@ -93,7 +110,7 @@ function Get-ProgramVersion {
       [String]
       $Program
   )
-  return (Get-Command -Name $Program -ErrorAction SilentlyContinue).Version
+  return (Get-Command -Name "$Program" -ErrorAction SilentlyContinue).Version
 }
 
 function Get-VersionMajorMinor {
@@ -117,12 +134,14 @@ function Get-VersionMajorMinorBuild {
 }
 
 function Get-WindowsInfo {
+  [OutputType([PSCustomObject])]
   param(
       [Parameter(Mandatory)]
       [System.Object]
       $Info
   )
-  return $Info | Select-Object WindowsProductName, WindowsVersion, OsHardwareAbstractionLayer
+  [PSCustomObject]$SystemInfo = $Info | Select-Object WindowsProductName, WindowsVersion, OsHardwareAbstractionLayer
+  return $SystemInfo
 }
 
 function Get-WindowsVersion {
