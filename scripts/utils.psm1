@@ -65,17 +65,21 @@ function Invoke-Fail {
         [Switch]
         $RemoveDirs = $false,
         [Parameter()]
-        [ErrorRecord]
-        $ErrorCode,
+        [System.Exception]
+        $Exception,
         [Parameter()]
         [String]
         $ErrorMessage
     )
-    Set-Location $ProjectDir
+    Set-Location "$ProjectDir"
     if ($RemoveDirs -eq $true) { Remove-Directories }
-    if (Test-VariableDefined -Variable $ErrorCode -eq $true) { Write-Error "Error code: ${ErrorCode}" -ErrorAction Continue }
-    if (Test-VariableDefined -Variable $ErrorMessage -eq $true) { Write-Error "$ErrorMessage" -ErrorAction Continue }
-    Write-Error 'Build failed. Exiting Program.' -ErrorAction Stop
+    if (Test-VariableDefined -Variable $ErrorMessage -eq $true) {
+      if (Test-VariableDefined -Variable $Exception -eq $true) {
+        ([$Exception.GetType()]::new("$ErrorMessage"))
+      } else {
+        Write-Error "$ErrorMessage" -ErrorAction Continue
+      }
+    }
 }
 
 function Get-EnvVariables {

@@ -83,9 +83,10 @@ function Update-GitRepositories {
     Start-Process -FilePath 'git.exe' -ArgumentList 'add', '-A' -Wait -NoNewWindow
     Start-Process -FilePath 'git.exe' -ArgumentList 'commit', "-m $CommitMessage" -Wait -NoNewWindow
     Start-Process -FilePath 'git.exe' -ArgumentList 'push' -Wait -NoNewWindow
-    # Exit on error
+    # Exit on error; $LastExitCode = $true || $false
     if (!$?) {
-      Invoke-Fail -ErrorCode $LASTEXITCODE -ErrorMessage "Usage: ${SCRIPT_DIR}\git_commit_all.ps1 <repo root> <commit message>"
+      Write-Error "Usage: ${SCRIPT_DIR}\git_commit_all.ps1 <repo root> <commit message>" -ErrorAction Continue
+      Invoke-Fail -ErrorMessage "Error: Failed to update git repositories."
     }
     Set-Location "$RepoRootDir"
   }
