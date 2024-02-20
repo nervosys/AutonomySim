@@ -47,21 +47,21 @@ param(
 
 # NOTE: Prefer Import-Module to Get-Content for its scoping rules
 
-# Common utilities:
-#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
-#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
-#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\utils.psm1"
+# Common utilities
+Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
+                                                        # Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
+                                                        # Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
+                                                        # Get-ArchitectureWidth, Set-ProcessorCount
 
 # Documentation
-Import-Module "${PWD}\scripts\build_docs.psm1"         # imports: Build-Documentation
+Import-Module "${PWD}\scripts\build_docs.psm1"          # imports: Build-Documentation
 
 # Tests
-Import-Module "${PWD}\scripts\test_visualstudio.psm1"  # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
-Import-Module "${PWD}\scripts\test_cmake.psm1"         # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
-Import-Module "${PWD}\scripts\test_rpclib.psm1"        # imports: RPCLIB_VERSION, Test-RpcLibVersion
-Import-Module "${PWD}\scripts\test_eigen.psm1"         # imports: EIGEN_VERSION, Test-EigenVersion
-Import-Module "${PWD}\scripts\test_unrealasset.psm1"   # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
+Import-Module "${PWD}\scripts\test_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Import-Module "${PWD}\scripts\test_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
+Import-Module "${PWD}\scripts\test_rpclib.psm1"         # imports: RPCLIB_VERSION, Test-RpcLibVersion
+Import-Module "${PWD}\scripts\test_eigen.psm1"          # imports: EIGEN_VERSION, Test-EigenVersion
+Import-Module "${PWD}\scripts\test_unrealasset.psm1"    # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
 
 ###
 ### Variables

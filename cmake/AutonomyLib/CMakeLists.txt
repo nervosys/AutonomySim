@@ -3,8 +3,8 @@ project(AutonomyLib)
 
 LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../cmake-modules") 
 INCLUDE("${CMAKE_CURRENT_LIST_DIR}/../cmake-modules/CommonSetup.cmake")
-CommonSetup()
 
+CommonSetup()
 IncludeEigen()
 
 include_directories(
@@ -26,6 +26,7 @@ file(GLOB_RECURSE ${PROJECT_NAME}_sources
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
 
 CommonTargetLink()
+
 target_link_libraries(${PROJECT_NAME} ${RPC_LIB})
 target_link_libraries(${PROJECT_NAME} MavLinkCom)
 

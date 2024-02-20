@@ -17,11 +17,11 @@ NOTES:
 ### Imports
 ###
 
-# Common utilities:
-#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
-#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
-#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\utils.psm1"
+# Common utilities
+Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
+                                                        # Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
+                                                        # Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
+                                                        # Get-ArchitectureWidth, Set-ProcessorCount
 
 ###
 ### Variables
@@ -47,7 +47,7 @@ function Install-Cmake {
     $VersionMajMinBuild = Get-VersionMajorMinorBuild $Version
     $Installer = "cmake-${VersionMajMinBuild}-x86_64.msi"
     Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile "temp\${Installer}"
-    Start-Process -FilePath "temp\${Installer}" -Wait
+    Start-Process -FilePath "temp\${Installer}" -Wait -NoNewWindow
     Remove-Item -Path "temp\${Installer}"
   }
   else {

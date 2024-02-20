@@ -3,6 +3,7 @@ project(rpclib_wrapper)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../cmake-modules") 
 include("${CMAKE_CURRENT_LIST_DIR}/../cmake-modules/CommonSetup.cmake")
+
 CommonSetup()
 
 if(UNIX)

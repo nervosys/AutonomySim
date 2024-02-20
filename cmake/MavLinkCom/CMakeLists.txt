@@ -5,6 +5,7 @@ add_subdirectory("MavLinkTest")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../cmake-modules") 
 include("${CMAKE_CURRENT_LIST_DIR}/../cmake-modules/CommonSetup.cmake")
+
 CommonSetup()
 
 include_directories(

@@ -3,10 +3,9 @@ project(HelloSpawnedDrones)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../cmake-modules") 
 include("${CMAKE_CURRENT_LIST_DIR}/../cmake-modules/CommonSetup.cmake")
+
 CommonSetup()
-
 IncludeEigen()
-
 SetupConsoleBuild()
 
 ## Specify additional locations of header files
@@ -18,8 +17,8 @@ include_directories(
   ${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils
 )
 
-AddExecutableSource()
-			
+AddExecutableSource()			
 CommonTargetLink()
+
 target_link_libraries(${PROJECT_NAME} AutonomyLib)
 target_link_libraries(${PROJECT_NAME} ${RPC_LIB})
