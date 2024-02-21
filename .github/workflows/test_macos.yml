@@ -47,8 +47,8 @@ jobs:
 
       - name: "Install Dependencies"
         shell: bash
-        run: ./scripts/setup.sh
+        run: bash ./scripts/setup.sh
 
       - name: "Build AutonomySim"
         shell: bash
-        run: ./scripts/build.sh
+        run: bash ./scripts/build.sh

@@ -1,3 +1,18 @@
+---
+#----------------------------------------------------------------------------------------
+# FILENAME:
+#   test_documentation.yml
+# DESCRIPTION:
+#   GitHub Actions configuration for clang-format.
+# AUTHOR:
+#   Adam Erickson (Nervosys)
+# DATE:
+#   2024-02-20
+# NOTES:
+#
+#   Copyright © 2024 Nervosys, LLC
+#----------------------------------------------------------------------------------------
+
 name: "Build and Deploy: Documentation (Doxygen, Sphinx, MkDocs)"
 
 on:
