@@ -309,7 +309,8 @@
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span>
 
-        <span class="k">return</span> <span class="s2">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;&gt; &quot;</span> <span class="o">+</span> <span class="n">pformat</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;&gt; &quot;</span> <span class="o">+</span> \
+            <span class="n">pformat</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MsgpackMixin.to_msgpack">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.MsgpackMixin.to_msgpack">[docs]</a>
@@ -372,10 +373,9 @@
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;DepthPlanner&quot;</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span>
-                <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[31m&quot;</span>
-                <span class="o">+</span> <span class="s2">&quot;DepthPlanner has been (correctly) renamed to DepthPlanar. Please use ImageType.DepthPlanar instead.&quot;</span>
-                <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[0m&quot;</span>
-            <span class="p">)</span>
+                <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[31m&quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;DepthPlanner has been (correctly) renamed to DepthPlanar. Please use ImageType.DepthPlanar instead.&quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span>
 
 
@@ -461,19 +461,23 @@
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Vector3r.containsNan">[docs]</a>
     <span class="k">def</span> <span class="nf">containsNan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span>
-        <span class="p">)</span></div>
+            <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="p">))</span></div>
 
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
-        <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
-        <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span>
@@ -483,7 +487,10 @@
             <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;uint&quot;</span><span class="p">]</span>
             <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;float&quot;</span><span class="p">]</span>
         <span class="p">):</span>
-            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">/</span> <span class="n">other</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                 <span class="s2">&quot;unsupported operand type(s) for /: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
@@ -498,7 +505,10 @@
             <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;uint&quot;</span><span class="p">]</span>
             <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sctypes</span><span class="p">[</span><span class="s2">&quot;float&quot;</span><span class="p">]</span>
         <span class="p">):</span>
-            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                 <span class="s2">&quot;unsupported operand type(s) for *: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
@@ -508,7 +518,7 @@
 <div class="viewcode-block" id="Vector3r.dot">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Vector3r.dot">[docs]</a>
     <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span>
                 <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span>
@@ -524,9 +534,14 @@
 <div class="viewcode-block" id="Vector3r.cross">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Vector3r.cross">[docs]</a>
     <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-            <span class="n">cross_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">())</span>
-            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span><span class="n">cross_product</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cross_product</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cross_product</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
+            <span class="n">cross_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(),</span>
+                <span class="n">other</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">())</span>
+            <span class="k">return</span> <span class="n">Vector3r</span><span class="p">(</span>
+                <span class="n">cross_product</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">cross_product</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">cross_product</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                 <span class="s2">&quot;unsupported operand type(s) for &#39;cross&#39;: </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
@@ -600,7 +615,7 @@
 
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
             <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span>
@@ -614,7 +629,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
             <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span>
             <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">w_val</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">z_val</span>
             <span class="k">return</span> <span class="n">Quaternionr</span><span class="p">(</span>
@@ -630,7 +645,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
             <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
         <span class="k">elif</span> <span class="p">(</span>
             <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
@@ -654,7 +669,7 @@
 <div class="viewcode-block" id="Quaternionr.dot">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Quaternionr.dot">[docs]</a>
     <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">x_val</span>
                 <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">y_val</span>
@@ -671,7 +686,7 @@
 <div class="viewcode-block" id="Quaternionr.cross">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Quaternionr.cross">[docs]</a>
     <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
             <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">*</span> <span class="n">other</span> <span class="o">-</span> <span class="n">other</span> <span class="o">*</span> <span class="bp">self</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
@@ -683,7 +698,7 @@
 <div class="viewcode-block" id="Quaternionr.outer_product">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Quaternionr.outer_product">[docs]</a>
     <span class="k">def</span> <span class="nf">outer_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
             <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span> <span class="o">*</span> <span class="n">other</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
@@ -695,7 +710,7 @@
 <div class="viewcode-block" id="Quaternionr.rotate">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Quaternionr.rotate">[docs]</a>
     <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">other</span> <span class="o">*</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
@@ -734,7 +749,11 @@
 <div class="viewcode-block" id="Quaternionr.get_length">
 <a class="viewcode-back" href="../../api/autonomysim.html#autonomysim.types.Quaternionr.get_length">[docs]</a>
     <span class="k">def</span> <span class="nf">get_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">z_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">w_val</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span></div>
 
 
 <div class="viewcode-block" id="Quaternionr.to_numpy_array">
@@ -871,7 +890,12 @@
     <span class="n">pixels_as_float</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">compress</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">,</span> <span class="n">image_type</span><span class="p">,</span> <span class="n">pixels_as_float</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">camera_name</span><span class="p">,</span>
+            <span class="n">image_type</span><span class="p">,</span>
+            <span class="n">pixels_as_float</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">compress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="c1"># todo: in future remove str(), it&#39;s only for compatibility to pre v1.2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">camera_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">camera_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_type</span> <span class="o">=</span> <span class="n">image_type</span>
