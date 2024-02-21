@@ -1,13 +1,20 @@
 name: "Build: Windows"
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
   build-windows:
     runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
-        # NOTE: Visual Studio 2022 (Build Tools v143; windows-2022) is required
+        # NOTE: Requires Visual Studio 2022 Build Tools v143 (windows-2022)
         os: [windows-2022] # versions: [2019: 10, 2022: 11]
         arch:
           - amd64
