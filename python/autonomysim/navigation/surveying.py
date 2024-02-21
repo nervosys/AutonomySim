@@ -37,13 +37,15 @@ class SurveyNavigator:
         self.client.moveToPositionAsync(0, 0, z, self.velocity).join()
 
         print("flying to first corner of survey box")
-        self.client.moveToPositionAsync(x, -self.boxsize, z, self.velocity).join()
+        self.client.moveToPositionAsync(
+            x, -self.boxsize, z, self.velocity).join()
 
         # let it settle there a bit.
         self.client.hoverAsync().join()
         time.sleep(2)
 
-        # after hovering we need to re-enabled api control for next leg of the trip
+        # after hovering we need to re-enabled api control for next leg of the
+        # trip
         self.client.enableApiControl(True)
 
         # now compute the survey path required to fill the box

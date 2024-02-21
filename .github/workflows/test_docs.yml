@@ -1,6 +1,14 @@
 name: "Build and Deploy: Documentation (Doxygen, Sphinx, MkDocs)"
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened, closed]
+  # workflow_dispatch:
 
 jobs:
   build-deploy-docs:

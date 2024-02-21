@@ -1,6 +1,30 @@
+---
+#----------------------------------------------------------------------------------------
+# FILENAME:
+#   test_macos.yml
+# DESCRIPTION:
+#   GitHub Actions configuration for macOS.
+# AUTHOR:
+#   Adam Erickson (Nervosys)
+# DATE:
+#   2024-02-20
+# NOTES:
+#   - Homebrew is installed by default.
+#
+#   Copyright © 2024 Nervosys, LLC
+#----------------------------------------------------------------------------------------
+
 name: "Build: macOS"
 
-on: [push, pull_request, workflow_dispatch] # triggers
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened, closed]
+  # workflow_dispatch:
 
 jobs:
   build-macos:
@@ -8,12 +32,13 @@ jobs:
     strategy:
       matrix:
         os: [macos-11, macos-12, macos-13, macos-14] # versions: [11: Big Sur, 12: Monterey, 13: Ventura, 14: Sonoma]
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+        # arch:
+        #   - amd64
+        #   - arm64
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Install BASH (newer macOS versions use Zsh by default)"
+      - name: "Install BASH (macOS version > 10.14 uses Zsh by default)"
         run: brew install bash
 
       - name: "Remove Python 3 for Python 3.11 symbolic link"

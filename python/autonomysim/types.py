@@ -7,7 +7,8 @@ class MsgpackMixin:
     def __repr__(self):
         from pprint import pformat
 
-        return "<" + type(self).__name__ + "> " + pformat(vars(self), indent=4, width=1)
+        return "<" + type(self).__name__ + "> " + \
+            pformat(vars(self), indent=4, width=1)
 
     def to_msgpack(self, *args, **kwargs):
         return self.__dict__
@@ -63,10 +64,9 @@ class _ImageType(type):
     def __getattr__(self, key):
         if key == "DepthPlanner":
             print(
-                "\033[31m"
-                + "DepthPlanner has been (correctly) renamed to DepthPlanar. Please use ImageType.DepthPlanar instead."
-                + "\033[0m"
-            )
+                "\033[31m" +
+                "DepthPlanner has been (correctly) renamed to DepthPlanar. Please use ImageType.DepthPlanar instead." +
+                "\033[0m")
             raise AttributeError
 
 
@@ -130,18 +130,22 @@ class Vector3r(MsgpackMixin):
 
     def containsNan(self):
         return (
-            math.isnan(self.x_val) or math.isnan(self.y_val) or math.isnan(self.z_val)
-        )
+            math.isnan(
+                self.x_val) or math.isnan(
+                self.y_val) or math.isnan(
+                self.z_val))
 
     def __add__(self, other):
         return Vector3r(
-            self.x_val + other.x_val, self.y_val + other.y_val, self.z_val + other.z_val
-        )
+            self.x_val + other.x_val,
+            self.y_val + other.y_val,
+            self.z_val + other.z_val)
 
     def __sub__(self, other):
         return Vector3r(
-            self.x_val - other.x_val, self.y_val - other.y_val, self.z_val - other.z_val
-        )
+            self.x_val - other.x_val,
+            self.y_val - other.y_val,
+            self.z_val - other.z_val)
 
     def __truediv__(self, other):
         if (
@@ -151,7 +155,10 @@ class Vector3r(MsgpackMixin):
             + np.sctypes["uint"]
             + np.sctypes["float"]
         ):
-            return Vector3r(self.x_val / other, self.y_val / other, self.z_val / other)
+            return Vector3r(
+                self.x_val / other,
+                self.y_val / other,
+                self.z_val / other)
         else:
             raise TypeError(
                 "unsupported operand type(s) for /: %s and %s"
@@ -166,7 +173,10 @@ class Vector3r(MsgpackMixin):
             + np.sctypes["uint"]
             + np.sctypes["float"]
         ):
-            return Vector3r(self.x_val * other, self.y_val * other, self.z_val * other)
+            return Vector3r(
+                self.x_val * other,
+                self.y_val * other,
+                self.z_val * other)
         else:
             raise TypeError(
                 "unsupported operand type(s) for *: %s and %s"
@@ -174,7 +184,7 @@ class Vector3r(MsgpackMixin):
             )
 
     def dot(self, other):
-        if type(self) == type(other):
+        if isinstance(self, type(other)):
             return (
                 self.x_val * other.x_val
                 + self.y_val * other.y_val
@@ -187,9 +197,14 @@ class Vector3r(MsgpackMixin):
             )
 
     def cross(self, other):
-        if type(self) == type(other):
-            cross_product = np.cross(self.to_numpy_array(), other.to_numpy_array())
-            return Vector3r(cross_product[0], cross_product[1], cross_product[2])
+        if isinstance(self, type(other)):
+            cross_product = np.cross(
+                self.to_numpy_array(),
+                other.to_numpy_array())
+            return Vector3r(
+                cross_product[0],
+                cross_product[1],
+                cross_product[2])
         else:
             raise TypeError(
                 "unsupported operand type(s) for 'cross': %s and %s"
@@ -241,7 +256,7 @@ class Quaternionr(MsgpackMixin):
         )
 
     def __add__(self, other):
-        if type(self) == type(other):
+        if isinstance(self, type(other)):
             return Quaternionr(
                 self.x_val + other.x_val,
                 self.y_val + other.y_val,
@@ -255,7 +270,7 @@ class Quaternionr(MsgpackMixin):
             )
 
     def __mul__(self, other):
-        if type(self) == type(other):
+        if isinstance(self, type(other)):
             t, x, y, z = self.w_val, self.x_val, self.y_val, self.z_val
             a, b, c, d = other.w_val, other.x_val, other.y_val, other.z_val
             return Quaternionr(
@@ -271,7 +286,7 @@ class Quaternionr(MsgpackMixin):
             )
 
     def __truediv__(self, other):
-        if type(other) == type(self):
+        if isinstance(other, type(self)):
             return self * other.inverse()
         elif (
             type(other)
@@ -293,7 +308,7 @@ class Quaternionr(MsgpackMixin):
             )
 
     def dot(self, other):
-        if type(self) == type(other):
+        if isinstance(self, type(other)):
             return (
                 self.x_val * other.x_val
                 + self.y_val * other.y_val
@@ -307,7 +322,7 @@ class Quaternionr(MsgpackMixin):
             )
 
     def cross(self, other):
-        if type(self) == type(other):
+        if isinstance(self, type(other)):
             return (self * other - other * self) / 2
         else:
             raise TypeError(
@@ -316,7 +331,7 @@ class Quaternionr(MsgpackMixin):
             )
 
     def outer_product(self, other):
-        if type(self) == type(other):
+        if isinstance(self, type(other)):
             return (self.inverse() * other - other.inverse() * self) / 2
         else:
             raise TypeError(
@@ -325,7 +340,7 @@ class Quaternionr(MsgpackMixin):
             )
 
     def rotate(self, other):
-        if type(self) == type(other):
+        if isinstance(self, type(other)):
             if other.get_length() == 1:
                 return other * self * other.inverse()
             else:
@@ -349,7 +364,11 @@ class Quaternionr(MsgpackMixin):
         return self / self.get_length()
 
     def get_length(self):
-        return (self.x_val**2 + self.y_val**2 + self.z_val**2 + self.w_val**2) ** 0.5
+        return (
+            self.x_val**2 +
+            self.y_val**2 +
+            self.z_val**2 +
+            self.w_val**2) ** 0.5
 
     def to_numpy_array(self):
         return np.array(
@@ -458,7 +477,12 @@ class ImageRequest(MsgpackMixin):
     pixels_as_float = False
     compress = False
 
-    def __init__(self, camera_name, image_type, pixels_as_float=False, compress=True):
+    def __init__(
+            self,
+            camera_name,
+            image_type,
+            pixels_as_float=False,
+            compress=True):
         # todo: in future remove str(), it's only for compatibility to pre v1.2
         self.camera_name = str(camera_name)
         self.image_type = image_type

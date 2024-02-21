@@ -1,13 +1,11 @@
+from autonomysim.types import ImageRequest, ImageType
+from autonomysim.clients import CarClient, CarControls
+from keras.models import load_model
+import numpy as np
+import time
 import os
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-
-import time
-import numpy as np
-from keras.models import load_model
-
-from autonomysim.clients import CarClient, CarControls
-from autonomysim.types import ImageRequest, ImageType
 
 
 # Trained model path
@@ -28,8 +26,11 @@ class CarAgent:
         image_response = client.simGetImages(
             [ImageRequest("0", ImageType.Scene, False, False)]
         )[0]
-        image1d = np.fromstring(image_response.image_data_uint8, dtype=np.uint8)
-        image_rgb = image1d.reshape(image_response.height, image_response.width, 3)
+        image1d = np.fromstring(
+            image_response.image_data_uint8,
+            dtype=np.uint8)
+        image_rgb = image1d.reshape(
+            image_response.height, image_response.width, 3)
         return image_rgb[78:144, 27:227, 0:2].astype(float)
 
     def load(self, model_path=MODEL_PATH):
@@ -61,7 +62,8 @@ class CarAgent:
         while True:
             # Update throttle value according to steering angle
             if abs(car_controls.steering) <= 1.0:
-                car_controls.throttle = 0.8 - (0.4 * abs(car_controls.steering))
+                car_controls.throttle = 0.8 - \
+                    (0.4 * abs(car_controls.steering))
             else:
                 car_controls.throttle = 0.4
 
@@ -76,7 +78,8 @@ class CarAgent:
             end_time = time.time()
             received_output = model_output[0][0]
 
-            # Rescale prediction to [-1,1] and factor by 0.82 for drive smoothness
+            # Rescale prediction to [-1,1] and factor by 0.82 for drive
+            # smoothness
             car_controls.steering = round(
                 (0.82 * (float((model_output[0][0] * 2.0) - 1))), 2
             )

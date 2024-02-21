@@ -9,7 +9,8 @@ about: Create a report to help us improve
 <!-- Incomplete reports will lead to closing the issue. -->
 <!-- Also, please test using the latest main branch make sure your issue has not already been fixed -->
 
-## Bug report 
+## Bug report
+
 <!-- If any section does not apply, replace its contents with "N/A". -->
 - AutonomySim Version/#commit:
 - Unreal Engine version:
@@ -17,14 +18,17 @@ about: Create a report to help us improve
 - Operating system version:
 
 ### What's the issue you encountered?
+
 <!--  Describe the issue in detail and what you were doing beforehand. -->
 <!-- Attach screenshot if applicable. -->
 
 ### Settings
+
 <!-- If not the default, include the settings.json file you are using -->
 <!-- If it's too large, you can create a [gist](https://gist.github.com/) and past the link here.  -->
 
 ### How can the issue be reproduced?
+
 <!--  Include a detailed step by step process for recreating your issue. -->
 <!-- If your issue includes code, create a [gist](https://gist.github.com/) and past the link here. -->
 

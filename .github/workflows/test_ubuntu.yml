@@ -1,6 +1,29 @@
+---
+#----------------------------------------------------------------------------------------
+# FILENAME:
+#   test_linux.yml
+# DESCRIPTION:
+#   GitHub Actions configuration for Linux.
+# AUTHOR:
+#   Adam Erickson (Nervosys)
+# DATE:
+#   2024-02-20
+# NOTES:
+#
+#   Copyright © 2024 Nervosys, LLC
+#----------------------------------------------------------------------------------------
+
 name: "Build: Linux"
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened, closed]
+  # workflow_dispatch:
 
 jobs:
   build-ubuntu:
@@ -11,8 +34,6 @@ jobs:
         arch:
           - amd64
           # - arm64
-
-    # sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
 
@@ -24,8 +45,8 @@ jobs:
         shell: bash
         run: ./scripts/build.sh
 
-      - name: "Build ROS2 wrapper"
-        # if: matrix.os == 'ubuntu-20.04'
+      - name: "Build ROS2 Wrapper"
+        # if: ${{ matrix.os == 'ubuntu-20.04' }}
         shell: bash
         run: |
           bash ./scripts/install_ros2_deps.sh

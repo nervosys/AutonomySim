@@ -23,7 +23,13 @@ class ReactiveController(AbstractClassGetNextVec):
 
 
 class AvoidLeft(AbstractClassGetNextVec):
-    def __init__(self, hfov=radians(90), coll_thres=5, yaw=0, limit_yaw=5, step=0.1):
+    def __init__(
+            self,
+            hfov=radians(90),
+            coll_thres=5,
+            yaw=0,
+            limit_yaw=5,
+            step=0.1):
         self.hfov = hfov
         self.coll_thres = coll_thres
         self.yaw = yaw
@@ -39,8 +45,8 @@ class AvoidLeft(AbstractClassGetNextVec):
 
         # compute box of interest
         img2d_box = img2d[
-            int((h - roi_h) / 2) : int((h + roi_h) / 2),
-            int((w - roi_w) / 2) : int((w + roi_w) / 2),
+            int((h - roi_h) / 2): int((h + roi_h) / 2),
+            int((w - roi_w) / 2): int((w + roi_w) / 2),
         ]
 
         # scale by weight matrix (optional)
@@ -50,7 +56,8 @@ class AvoidLeft(AbstractClassGetNextVec):
         if np.min(img2d_box) < coll_thres:
             self.yaw = self.yaw - radians(self.limit_yaw)
         else:
-            self.yaw = self.yaw + min(t_angle - self.yaw, radians(self.limit_yaw))
+            self.yaw = self.yaw + \
+                min(t_angle - self.yaw, radians(self.limit_yaw))
 
         pos[0] = pos[0] + self.step * np.cos(self.yaw)
         pos[1] = pos[1] + self.step * np.sin(self.yaw)
@@ -59,7 +66,13 @@ class AvoidLeft(AbstractClassGetNextVec):
 
 
 class AvoidLeftIgonreGoal(AbstractClassGetNextVec):
-    def __init__(self, hfov=radians(90), coll_thres=5, yaw=0, limit_yaw=5, step=0.1):
+    def __init__(
+            self,
+            hfov=radians(90),
+            coll_thres=5,
+            yaw=0,
+            limit_yaw=5,
+            step=0.1):
         self.hfov = hfov
         self.coll_thres = coll_thres
         self.yaw = yaw
@@ -72,8 +85,8 @@ class AvoidLeftIgonreGoal(AbstractClassGetNextVec):
 
         # compute box of interest
         img2d_box = img2d[
-            int((h - roi_h) / 2) : int((h + roi_h) / 2),
-            int((w - roi_w) / 2) : int((w + roi_w) / 2),
+            int((h - roi_h) / 2): int((h + roi_h) / 2),
+            int((w - roi_w) / 2): int((w + roi_w) / 2),
         ]
 
         # detect collision
@@ -89,7 +102,8 @@ class AvoidLeftIgonreGoal(AbstractClassGetNextVec):
 class AvoidLeftRight(AbstractClassGetNextVec):
     def get_next_vec(self, depth, obj_sz, goal, pos):
         print("Some implementation!")
-        # Same as above but decide to go left or right based on average or some metric like that
+        # Same as above but decide to go left or right based on average or some
+        # metric like that
         return
 
 
@@ -112,8 +126,10 @@ def get_local_goal(v, pos, theta):
 # compute bounding box size
 def compute_bb(image_sz, obj_sz, hfov, distance):
     vfov = hfov2vfov(hfov, image_sz)
-    box_h = np.ceil(obj_sz[0] * image_sz[0] / (math.tan(hfov / 2) * distance * 2))
-    box_w = np.ceil(obj_sz[1] * image_sz[1] / (math.tan(vfov / 2) * distance * 2))
+    box_h = np.ceil(obj_sz[0] * image_sz[0] /
+                    (math.tan(hfov / 2) * distance * 2))
+    box_w = np.ceil(obj_sz[1] * image_sz[1] /
+                    (math.tan(vfov / 2) * distance * 2))
     return box_h, box_w
 
 
@@ -129,21 +145,23 @@ def equal_weight_mtx(roi_h, roi_w):
     return np.ones((roi_h, roi_w))
 
 
-# matrix with max weight in center and decreasing linearly with distance from center
+# matrix with max weight in center and decreasing linearly with distance
+# from center
 def linear_weight_mtx(roi_h, roi_w):
     w_mtx = np.ones((roi_h, roi_w))
     for j in range(0, roi_w):
         for i in range(j, roi_h - j):
-            w_mtx[j : roi_h - j, i : roi_w - i] = j + 1
+            w_mtx[j: roi_h - j, i: roi_w - i] = j + 1
     return w_mtx
 
 
-# matrix with max weight in center and decreasing quadratically with distance from center
+# matrix with max weight in center and decreasing quadratically with
+# distance from center
 def square_weight_mtx(roi_h, roi_w):
     w_mtx = np.ones((roi_h, roi_w))
     for j in range(0, roi_w):
         for i in range(j, roi_h - j):
-            w_mtx[j : roi_h - j, i : roi_w - i] = (j + 1) * (j + 1)
+            w_mtx[j: roi_h - j, i: roi_w - i] = (j + 1) * (j + 1)
     return w_mtx
 
 

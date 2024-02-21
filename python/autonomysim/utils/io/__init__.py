@@ -62,7 +62,8 @@ def read_pfm(file):
         if dim_match:
             width, height = map(int, dim_match.groups())
         else:
-            raise Exception("Malformed PFM header: width, height cannot be found")
+            raise Exception(
+                "Malformed PFM header: width, height cannot be found")
 
     scale = float(file.readline().rstrip())
     if scale < 0:  # little-endian
@@ -97,7 +98,8 @@ def write_pfm(file, image, scale=1):
     ):  # greyscale
         color = False
     else:
-        raise Exception("Image must have H x W x 3, H x W x 1 or H x W dimensions.")
+        raise Exception(
+            "Image must have H x W x 3, H x W x 1 or H x W dimensions.")
 
     file.write(bytes("PF\n", "UTF-8") if color else bytes("Pf\n", "UTF-8"))
     temp_str = "%d %d\n" % (image.shape[1], image.shape[0])

@@ -64,7 +64,12 @@ def readImagesFromPath(image_names):
     return returnValue
 
 
-def splitTrainValidationAndTestData(all_data_mappings, split_ratio=(0.7, 0.2, 0.1)):
+def splitTrainValidationAndTestData(
+    all_data_mappings,
+    split_ratio=(
+        0.7,
+        0.2,
+        0.1)):
     """Simple function to create train, validation and test splits on the data.
 
     Inputs:
@@ -108,7 +113,11 @@ def generateDataMapAutonomySim(folders, velocity_max=MAX_SPEED):
     all_mappings = {}
     for folder in folders:
         print("Reading data from {0}...".format(folder))
-        current_df = pd.read_csv(os.path.join(folder, "autonomysim_rec.txt"), sep="\t")
+        current_df = pd.read_csv(
+            os.path.join(
+                folder,
+                "autonomysim_rec.txt"),
+            sep="\t")
 
         for i in range(1, current_df.shape[0] - 1):
             if (
@@ -126,12 +135,16 @@ def generateDataMapAutonomySim(folders, velocity_max=MAX_SPEED):
 
             previous_state = norm_steering + norm_throttle + norm_speed  # Append lists
 
-            # compute average steering over 3 consecutive recorded images, this will serve as the label
+            # compute average steering over 3 consecutive recorded images, this
+            # will serve as the label
 
-            norm_steering0 = (float(current_df.iloc[i][["Steering"]]) + 1) / 2.0
-            norm_steering1 = (float(current_df.iloc[i + 1][["Steering"]]) + 1) / 2.0
+            norm_steering0 = (
+                float(current_df.iloc[i][["Steering"]]) + 1) / 2.0
+            norm_steering1 = (
+                float(current_df.iloc[i + 1][["Steering"]]) + 1) / 2.0
 
-            temp_sum_steering = norm_steering[0] + norm_steering0 + norm_steering1
+            temp_sum_steering = norm_steering[0] + \
+                norm_steering0 + norm_steering1
             average_steering = temp_sum_steering / 3.0
 
             current_label = [average_steering]
@@ -142,8 +155,7 @@ def generateDataMapAutonomySim(folders, velocity_max=MAX_SPEED):
 
             if image_filepath in all_mappings:
                 print(
-                    "Error: attempting to add image {0} twice.".format(image_filepath)
-                )
+                    "Error: attempting to add image {0} twice.".format(image_filepath))
 
             all_mappings[image_filepath] = (current_label, previous_state)
 
@@ -160,7 +172,7 @@ def generatorForH5py(data_mappings, chunk_size=32):
     """
     for chunk_id in range(0, len(data_mappings), chunk_size):
         # Data is expected to be a dict of <image: (label, previousious_state)>
-        data_chunk = data_mappings[chunk_id : chunk_id + chunk_size]
+        data_chunk = data_mappings[chunk_id: chunk_id + chunk_size]
         if len(data_chunk) == chunk_size:
             image_names_chunk = [a for (a, b) in data_chunk]
             labels_chunk = np.asarray([b[0] for (a, b) in data_chunk])
@@ -249,8 +261,12 @@ def cook(folders, output_directory, train_eval_test_split, chunk_size):
         train_eval_test_split: dataset split ratio
     """
     output_files = [
-        os.path.join(output_directory, f) for f in ["train.h5", "eval.h5", "test.h5"]
-    ]
+        os.path.join(
+            output_directory,
+            f) for f in [
+            "train.h5",
+            "eval.h5",
+            "test.h5"]]
     if any([os.path.isfile(f) for f in output_files]):
         print(
             "Preprocessed data already exists at: {0}. Skipping preprocessing.".format(
@@ -279,7 +295,8 @@ def preprocess_data(
     # chunk size for training batches
     chunk_size = 32
 
-    # no test set needed, since testing in our case is running the model on an unseen map in AutonomySim
+    # no test set needed, since testing in our case is running the model on an
+    # unseen map in AutonomySim
     train_eval_test_split = [0.8, 0.2, 0.0]
 
     data_folders = []

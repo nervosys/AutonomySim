@@ -1,3 +1,19 @@
+---
+#----------------------------------------------------------------------------------------
+# FILENAME:
+#   test_windows.yml
+# DESCRIPTION:
+#   GitHub Actions configuration for Windows.
+# AUTHOR:
+#   Adam Erickson (Nervosys)
+# DATE:
+#   2024-02-20
+# NOTES:
+#   - Requires Visual Studio 2022 Build Tools v143 (windows-2022)?
+#
+#   Copyright © 2024 Nervosys, LLC
+#----------------------------------------------------------------------------------------
+
 name: "Build: Windows"
 
 on:
@@ -8,34 +24,42 @@ on:
     branches:
       - master
     types: [opened, synchronize, reopened, closed]
+  # workflow_dispatch:
 
 jobs:
   build-windows:
     runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
-        # NOTE: Requires Visual Studio 2022 Build Tools v143 (windows-2022)
         os: [windows-2022] # versions: [2019: 10, 2022: 11]
         arch:
           - amd64
           # - arm64
     steps:
       - uses: actions/checkout@v4
-      - name: "Add MSBuild to PATH"
-        uses: microsoft/setup-msbuild@v2
+
+      # - name: "Add MSBuild to PATH"
+      #   uses: microsoft/setup-msbuild@v2
+
       # - name: "Enable Developer Command Prompt for Visual Studio"
       #   uses: ilammy/msvc-dev-cmd@v1
-      # - name: "Enable Developer Command Prompt for Visual Studio 2019"
-      #   if: ${{ matrix.os == 'windows-2019' }}
-      #   shell: pwsh
-      #   run: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\Launch-VsDevShell.ps1'
-      # - name: "Enable Developer Command Prompt for Visual Studio 2022"
-      #   if: ${{ matrix.os == 'windows-2022' }}
-      #   shell: pwsh
-      #   run: 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Launch-VsDevShell.ps1'
+
+      - name: "Activate Developer PowerShell for Visual Studio 2019"
+        if: ${{ matrix.os == 'windows-2019' }}
+        shell: pwsh
+        run: |
+          'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Launch-VsDevShell.ps1'
+          $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 16 2019'
+
+      - name: "Activate Developer PowerShell for Visual Studio 2022"
+        if: ${{ matrix.os == 'windows-2022' }}
+        shell: pwsh
+        run: |
+          'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1'
+          $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 17 2022'
+
       - name: "Build AutonomySim"
         shell: pwsh
         run: |
           # Set-PSDebug -Trace 1
-          # $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 17 2022'
           .\scripts\build.ps1 -BuildMode 'Release' -IntegrateDeploy

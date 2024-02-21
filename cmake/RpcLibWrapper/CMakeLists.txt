@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.0)
-project(rpclib_wrapper)
+project(RpcLibWrapper)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../cmake-modules") 
 include("${CMAKE_CURRENT_LIST_DIR}/../cmake-modules/CommonSetup.cmake")

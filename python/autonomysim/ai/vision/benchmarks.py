@@ -34,7 +34,10 @@ def saveImage(response, filename):
         cv2.imwrite(os.path.normpath(filename + ".png"), depth)
 
     elif response.compress:  # png format
-        write_file(os.path.normpath(filename + ".png"), response.image_data_uint8)
+        write_file(
+            os.path.normpath(
+                filename + ".png"),
+            response.image_data_uint8)
 
     else:  # uncompressed array
         img1d = np.fromstring(
@@ -43,7 +46,10 @@ def saveImage(response, filename):
         img_rgb = img1d.reshape(
             response.height, response.width, 3
         )  # reshape array to 3 channel image array H X W X 3
-        cv2.imwrite(os.path.normpath(filename + ".png"), img_rgb)  # write to png
+        cv2.imwrite(
+            os.path.normpath(
+                filename + ".png"),
+            img_rgb)  # write to png
 
 
 class ImageBenchmarker:
@@ -78,7 +84,8 @@ class ImageBenchmarker:
         self.is_image_thread_active = False
 
         if self.save_images:
-            self.tmp_dir = os.path.join(tempfile.gettempdir(), "autonomysim_img_bm")
+            self.tmp_dir = os.path.join(
+                tempfile.gettempdir(), "autonomysim_img_bm")
             print(f"Saving images to {self.tmp_dir}")
             try:
                 os.makedirs(self.tmp_dir)
@@ -98,7 +105,8 @@ class ImageBenchmarker:
             self.is_image_thread_active = False
             self.image_callback_thread.join()
             print("Stopped image callback thread.")
-            print(f"FPS: {self.avg_fps} for {self.image_benchmark_num_images} images")
+            print(
+                f"FPS: {self.avg_fps} for {self.image_benchmark_num_images} images")
 
     def repeat_timer_img(self, task, period):
         while self.is_image_thread_active:
@@ -138,13 +146,11 @@ class ImageBenchmarker:
             if response.pixels_as_float:
                 print(
                     f"Type {response.image_type}, size {len(response.image_data_float)},"
-                    f"height {response.height}, width {response.width}"
-                )
+                    f"height {response.height}, width {response.width}")
             else:
                 print(
                     f"Type {response.image_type}, size {len(response.image_data_uint8)},"
-                    f"height {response.height}, width {response.width}"
-                )
+                    f"height {response.height}, width {response.width}")
 
         if self.viz_image_cv2:
             np_arr = np.frombuffer(response.image_data_uint8, dtype=np.uint8)
@@ -153,7 +159,9 @@ class ImageBenchmarker:
             cv2.waitKey(1)
 
         if self.save_images:
-            filename = os.path.join(self.tmp_dir, str(self.image_benchmark_num_images))
+            filename = os.path.join(
+                self.tmp_dir, str(
+                    self.image_benchmark_num_images))
             saveImage(response, filename)
 
 
@@ -192,8 +200,10 @@ if __name__ == "__main__":
         "--img_type", type=str, choices=cameraTypeMap.keys(), default="scene"
     )
     parser.add_argument(
-        "--time", help="Time in secs to run the benchmark for", type=int, default=30
-    )
+        "--time",
+        help="Time in secs to run the benchmark for",
+        type=int,
+        default=30)
 
     args = parser.parse_args()
     main(args)

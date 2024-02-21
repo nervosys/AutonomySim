@@ -149,7 +149,7 @@ def set_segmentation_ids(segIdDict, tempEmissivityNew, client):
     """
 
     # First set everything to 0.
-    success = client.simSetSegmentationObjectID("[\w]*", 0, True)
+    success = client.simSetSegmentationObjectID("[\\w]*", 0, True)
     if not success:
         print("There was a problem setting all segmentation object IDs to 0. ")
         sys.exit(1)
@@ -157,19 +157,17 @@ def set_segmentation_ids(segIdDict, tempEmissivityNew, client):
     # Next set all objects of interest provided to corresponding object IDs
     # segIdDict values MUST match tempEmissivityNew labels.
     for key in segIdDict:
-        objectID = int(
-            tempEmissivityNew[numpy.where(tempEmissivityNew == segIdDict[key])[0], 1][0]
-        )
+        objectID = int(tempEmissivityNew[numpy.where(
+            tempEmissivityNew == segIdDict[key])[0], 1][0])
 
         success = client.simSetSegmentationObjectID(
-            "[\w]*" + key + "[\w]*", objectID, True
+            "[\\w]*" + key + "[\\w]*", objectID, True
         )
         if not success:
             print(
                 "There was a problem setting {0} segmentation object ID to {1!s}, or no {0} was found.".format(
-                    key, objectID
-                )
-            )
+                    key,
+                    objectID))
 
     time.sleep(0.1)
 
@@ -208,7 +206,8 @@ def project_3d_point_to_screen(
     # Create a rotation matrix from camera pitch, roll, and yaw angles.
     camRotation = rotation_matrix_from_angles(pitchRollYaw)
 
-    # Change coordinates to get subjectXYZ in the camera's local coordinate system.
+    # Change coordinates to get subjectXYZ in the camera's local coordinate
+    # system.
     XYZW = numpy.transpose([subjectXYZ])
     XYZW = numpy.add(XYZW, -camPosition)
     print("XYZW: " + str(XYZW))
@@ -220,7 +219,8 @@ def project_3d_point_to_screen(
     XYZW = numpy.matmul(camProjMatrix4x4, XYZW)
     XYZW = XYZW / XYZW[3]
 
-    # Move origin to the upper-left corner of the screen and multiply by size to get pixel values. Note that screen is in y,-z plane.
+    # Move origin to the upper-left corner of the screen and multiply by size
+    # to get pixel values. Note that screen is in y,-z plane.
     normX = (1 - XYZW[0]) / 2
     normY = (1 + XYZW[1]) / 2
 
@@ -271,7 +271,8 @@ def get_image(x, y, z, pitch, roll, yaw, client):
         Shital Shah
     """
 
-    # Set pose and sleep after to ensure the pose sticks before capturing image.
+    # Set pose and sleep after to ensure the pose sticks before capturing
+    # image.
     client.simSetVehiclePose(
         Pose(Vector3r(x, y, z), to_quaternion(pitch, roll, yaw)), True
     )
@@ -290,7 +291,9 @@ def get_image(x, y, z, pitch, roll, yaw, client):
     img1d = numpy.fromstring(responses[0].image_data_uint8, dtype=numpy.uint8)
     im = img1d.reshape(responses[0].height, responses[0].width, 4)
 
-    img1dscene = numpy.fromstring(responses[1].image_data_uint8, dtype=numpy.uint8)
+    img1dscene = numpy.fromstring(
+        responses[1].image_data_uint8,
+        dtype=numpy.uint8)
     imScene = img1dscene.reshape(responses[1].height, responses[1].width, 4)
 
     return (

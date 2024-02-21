@@ -54,15 +54,18 @@ class WavReader:
         self.actual_channels = self.wav_file.getnchannels()
         self.actual_rate = self.wav_file.getframerate()
         self.sample_width = self.wav_file.getsampwidth()
-        # assumes signed integer used in raw audio, so for example, the max for 16bit is 2^15 (32768)
+        # assumes signed integer used in raw audio, so for example, the max for
+        # 16bit is 2^15 (32768)
         if self.auto_scale:
             self.audio_scale_factor = 1 / pow(2, (8 * self.sample_width) - 1)
 
         if self.requested_rate == 0:
             raise Exception("Requested rate cannot be zero")
         self.buffer_size = int(
-            math.ceil((self.read_size * self.actual_rate) / self.requested_rate)
-        )
+            math.ceil(
+                (self.read_size *
+                 self.actual_rate) /
+                self.requested_rate))
 
         # convert int16 data to scaled floats
         if self.sample_width == 1:
@@ -78,7 +81,10 @@ class WavReader:
         if speaker:
             # configure output stream to match what we are resampling to...
             audio_format = self.audio.get_format_from_width(self.sample_width)
-            speaker.open(audio_format, self.requested_channels, self.requested_rate)
+            speaker.open(
+                audio_format,
+                self.requested_channels,
+                self.requested_rate)
 
     def read_raw(self):
         """Read the next chunk of audio data.
@@ -121,9 +127,9 @@ class WavReader:
             channels = []
             # split into separate channels
             for i in range(self.actual_channels):
-                channels += [data[i :: self.actual_channels]]
+                channels += [data[i:: self.actual_channels]]
             # drop the channels we don't want
-            channels = channels[0 : self.requested_channels]
+            channels = channels[0: self.requested_channels]
             # zip the resulting channels back up.
             data = np.array(list(zip(*channels))).flatten()
             # convert back to packed bytes in PCM 16 format
@@ -144,8 +150,8 @@ class WavReader:
         # deal with any accumulation of tails, if the tail grows to a full
         # buffer then return it!
         if self.tail is not None and len(self.tail) >= self.read_size:
-            data = self.tail[0 : self.read_size]
-            self.tail = self.tail[self.read_size :]
+            data = self.tail[0: self.read_size]
+            self.tail = self.tail[self.read_size:]
             return data
 
         data = self.read_raw()
@@ -161,11 +167,12 @@ class WavReader:
             data = np.concatenate((self.tail, data))
 
         # now the caller needs us to stick to our sample_size contract, but when
-        # rate conversion happens we can't be sure that 'data' is exactly that size.
+        # rate conversion happens we can't be sure that 'data' is exactly that
+        # size.
         if len(data) > self.read_size:
             # usually one byte extra so add this to our accumulating tail
-            self.tail = data[self.read_size :]
-            data = data[0 : self.read_size]
+            self.tail = data[self.read_size:]
+            data = data[0: self.read_size]
 
         if len(data) < self.read_size:
             # might have reached the end of a file, so pad with zeros.

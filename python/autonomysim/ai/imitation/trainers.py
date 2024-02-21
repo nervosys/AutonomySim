@@ -1,15 +1,13 @@
+from autonomysim.ai.imitation.generators import DriveDataGenerator
+from keras_tqdm import TQDMNotebookCallback
+from keras.callbacks import ReduceLROnPlateau, ModelCheckpoint, CSVLogger, EarlyStopping
+from keras.optimizers import Adam
+from keras.layers import Conv2D, Dropout, Flatten, Dense, Input
+from keras.models import Model
+import h5py
 import os
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-
-import h5py
-from keras.models import Model
-from keras.layers import Conv2D, Dropout, Flatten, Dense, Input
-from keras.optimizers import Adam
-from keras.callbacks import ReduceLROnPlateau, ModelCheckpoint, CSVLogger, EarlyStopping
-from keras_tqdm import TQDMNotebookCallback
-
-from autonomysim.ai.imitation.generators import DriveDataGenerator
 
 
 # << The directory containing the cooked data from the previous step >>
@@ -19,7 +17,9 @@ COOKED_DATA_DIR = "./cooked_data/"
 MODEL_OUTPUT_DIR = "./models/"
 
 
-def train_drive_model(input_dir=COOKED_DATA_DIR, output_dir=MODEL_OUTPUT_DIR) -> None:
+def train_drive_model(
+        input_dir=COOKED_DATA_DIR,
+        output_dir=MODEL_OUTPUT_DIR) -> None:
     # Hyper-parameters
     batch_size = 32
     learning_rate = 0.0001
@@ -29,7 +29,8 @@ def train_drive_model(input_dir=COOKED_DATA_DIR, output_dir=MODEL_OUTPUT_DIR) ->
     activation = "relu"
     out_activation = "sigmoid"
 
-    # Stop training if in the last 20 epochs, there was no change of the best recorded validation loss
+    # Stop training if in the last 20 epochs, there was no change of the best
+    # recorded validation loss
     training_patience = 20
 
     train_dataset = h5py.File(os.path.join(input_dir, "train.h5"), "r")
@@ -125,10 +126,17 @@ def train_drive_model(input_dir=COOKED_DATA_DIR, output_dir=MODEL_OUTPUT_DIR) ->
         10, name="fc4", activation=activation, kernel_initializer="he_normal"
     )(img_stack)
     img_stack = Dense(
-        1, name="output", activation=out_activation, kernel_initializer="he_normal"
-    )(img_stack)
+        1,
+        name="output",
+        activation=out_activation,
+        kernel_initializer="he_normal")(img_stack)
 
-    adam = Adam(lr=learning_rate, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
+    adam = Adam(
+        lr=learning_rate,
+        beta_1=0.9,
+        beta_2=0.999,
+        epsilon=1e-08,
+        decay=0.0)
 
     model = Model(inputs=[pic_input], outputs=img_stack)
     model.compile(optimizer=adam, loss="mse")
@@ -136,8 +144,11 @@ def train_drive_model(input_dir=COOKED_DATA_DIR, output_dir=MODEL_OUTPUT_DIR) ->
     model.summary()
 
     plateau_callback = ReduceLROnPlateau(
-        monitor="val_loss", factor=0.5, patience=3, min_lr=learning_rate, verbose=1
-    )
+        monitor="val_loss",
+        factor=0.5,
+        patience=3,
+        min_lr=learning_rate,
+        verbose=1)
     csv_callback = CSVLogger(os.path.join(output_dir, "training_log.csv"))
     checkpoint_filepath = os.path.join(
         output_dir,

@@ -5,9 +5,8 @@ import numpy as np
 from numba import njit, prange  # set_num_threads
 
 
-EVENT_TYPE = np.dtype(
-    [("timestamp", "f8"), ("x", "u2"), ("y", "u2"), ("polarity", "b")], align=True
-)
+EVENT_TYPE = np.dtype([("timestamp", "f8"), ("x", "u2"),
+                       ("y", "u2"), ("polarity", "b")], align=True)
 
 TOL = 0.5
 MINIMUM_CONTRAST_THRESHOLD = 0.01
@@ -96,7 +95,9 @@ class EventCamera:
         self.npix = H * W
 
     def init(self, first_image, first_time):
-        print("Initialized event camera simulator with sensor size:", first_image.shape)
+        print(
+            "Initialized event camera simulator with sensor size:",
+            first_image.shape)
 
         self.resolution = first_image.shape  # The resolution of the image
 

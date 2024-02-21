@@ -115,18 +115,14 @@ class DriveDataGenerator(image.ImageDataGenerator):
             theta = 0
 
         if self.height_shift_range:
-            tx = (
-                np.random.uniform(-self.height_shift_range, self.height_shift_range)
-                * x.shape[img_row_axis]
-            )
+            tx = (np.random.uniform(-self.height_shift_range,
+                                    self.height_shift_range) * x.shape[img_row_axis])
         else:
             tx = 0
 
         if self.width_shift_range:
-            ty = (
-                np.random.uniform(-self.width_shift_range, self.width_shift_range)
-                * x.shape[img_col_axis]
-            )
+            ty = (np.random.uniform(-self.width_shift_range,
+                                    self.width_shift_range) * x.shape[img_col_axis])
         else:
             ty = 0
 
@@ -138,7 +134,8 @@ class DriveDataGenerator(image.ImageDataGenerator):
         if self.zoom_range[0] == 1 and self.zoom_range[1] == 1:
             zx, zy = 1, 1
         else:
-            zx, zy = np.random.uniform(self.zoom_range[0], self.zoom_range[1], 2)
+            zx, zy = np.random.uniform(
+                self.zoom_range[0], self.zoom_range[1], 2)
 
         transform_matrix = None
         if theta != 0:
@@ -278,17 +275,21 @@ class DriveIterator(image.Iterator):
             )
         channels_axis = 3 if data_format == "channels_last" else 1
         if self.x_images.shape[channels_axis] not in {1, 3, 4}:
-            raise ValueError(
-                "NumpyArrayIterator is set to use the "
-                'data format convention "' + data_format + '" '
-                "(channels on axis " + str(channels_axis) + "), i.e. expected "
-                "either 1, 3 or 4 channels on axis " + str(channels_axis) + ". "
-                "However, it was passed an array with shape "
-                + str(self.x_images.shape)
-                + " ("
-                + str(self.x_images.shape[channels_axis])
-                + " channels)."
-            )
+            raise ValueError("NumpyArrayIterator is set to use the "
+                             'data format convention "' +
+                             data_format +
+                             '" '
+                             "(channels on axis " +
+                             str(channels_axis) +
+                             "), i.e. expected "
+                             "either 1, 3 or 4 channels on axis " +
+                             str(channels_axis) +
+                             ". "
+                             "However, it was passed an array with shape " +
+                             str(self.x_images.shape) +
+                             " (" +
+                             str(self.x_images.shape[channels_axis]) +
+                             " channels).")
         if x_prev_states is not None:
             self.x_prev_states = x_prev_states
         else:
@@ -342,7 +343,7 @@ class DriveIterator(image.Iterator):
 
         if self.roi is not None:
             batch_x_images = batch_x_images[
-                :, self.roi[0] : self.roi[1], self.roi[2] : self.roi[3], :
+                :, self.roi[0]: self.roi[1], self.roi[2]: self.roi[3], :
             ]
 
         used_indexes = []
@@ -352,12 +353,11 @@ class DriveIterator(image.Iterator):
 
             if self.roi is not None:
                 x_images = x_images[
-                    self.roi[0] : self.roi[1], self.roi[2] : self.roi[3], :
+                    self.roi[0]: self.roi[1], self.roi[2]: self.roi[3], :
                 ]
 
             transformed = self.image_data_generator.random_transform_with_states(
-                x_images.astype(K.floatx())
-            )
+                x_images.astype(K.floatx()))
             x_images = transformed[0]
             is_horiz_flipped.append(transformed[1])
             x_images = self.image_data_generator.standardize(x_images)
@@ -386,8 +386,7 @@ class DriveIterator(image.Iterator):
                     batch_x_images[i], self.data_format, scale=True
                 )
                 fname = "{prefix}_{index}_{hash}.{format}".format(
-                    prefix=self.save_prefix, index=1, hash=hash, format=self.save_format
-                )
+                    prefix=self.save_prefix, index=1, hash=hash, format=self.save_format)
                 img.save(os.path.join(self.save_to_dir, fname))
 
         batch_y = self.y[list(sorted(used_indexes))]
@@ -401,7 +400,8 @@ class DriveIterator(image.Iterator):
 
                 if np.isclose(batch_y[i], 0.5, rtol=0.005, atol=0.005):
                     num_of_close_samples += 1
-                    if np.random.uniform(low=0, high=1) > self.zero_drop_percentage:
+                    if np.random.uniform(
+                            low=0, high=1) > self.zero_drop_percentage:
                         idx.append(True)
                     else:
                         idx.append(False)
@@ -410,7 +410,8 @@ class DriveIterator(image.Iterator):
                     idx.append(True)
             else:
                 if batch_y[i][int(len(batch_y[i]) / 2)] == 1:
-                    if np.random.uniform(low=0, high=1) > self.zero_drop_percentage:
+                    if np.random.uniform(
+                            low=0, high=1) > self.zero_drop_percentage:
                         idx.append(True)
                     else:
                         idx.append(False)

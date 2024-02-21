@@ -8,7 +8,7 @@ AUTHOR:
 DATE:
   2024-02-20
 NOTES:
-  Assumes: PowerShell version >= 7 and Visual Studio 2022 (version 17).
+  Assumes: PowerShell version >= 7 and Visual Studio >= 2019 (version 16).
 
   Copyright © 2024 Nervosys, LLC
 #>

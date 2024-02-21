@@ -63,6 +63,11 @@ function Get-RpcLib {
 }
 
 function Build-RpcLib {
+    param(
+        [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
+        [String]
+        $CmakeGenerator = "$VS_GENERATOR"
+    )
     Write-Output ''
     Write-Output '-----------------------------------------------------------------------------------------'
     Write-Output " Building rpclib version ${RPCLIB_VERSION} with CMake version ${CMAKE_VERSION}..."
@@ -73,7 +78,9 @@ function Build-RpcLib {
     Set-Location "${RPCLIB_PATH}\build"
     Write-Output "Current directory: ${RPCLIB_PATH}\build"
 
-    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G ${VS_GENERATOR}", '..' -Wait -NoNewWindow
+    # Generate RpcLib build files
+    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G ${CmakeGenerator}", '..' -Wait -NoNewWindow
+    # Build RpcLib
     if ( $BUILD_MODE -eq 'Release' ) {
         Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.' -Wait -NoNewWindow
         Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', '--config Release' -Wait -NoNewWindow
@@ -104,12 +111,17 @@ function Build-RpcLib {
 }
 
 function Test-RpcLibVersion {
+    param(
+        [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
+        [String]
+        $CmakeGenerator = "$VS_GENERATOR"
+    )
     if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
         # Remove previous installations
         Remove-Item 'external\rpclib' -Force -Recurse
         # Download and build rpclib
         Get-RpcLib
-        Build-RpcLib
+        Build-RpcLib -CmakeGenerator "$CmakeGenerator"
         # Fail if rpclib version path not found
         if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
             Write-Error 'Error: Download and build of rpclib failed. Stopping build.' -ErrorAction SilentlyContinue
