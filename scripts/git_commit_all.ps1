@@ -35,16 +35,16 @@ param(
 #   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
 #   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
 #   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\utils.psm1"
+Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###
 ### Variables
 ###
 
 # Static variables
-$PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "${PROJECT_DIR}\scripts"
-$GIT_REPO_DIRS = @(
+[String]$PROJECT_DIR = "$PWD"
+[String]$SCRIPT_DIR = "${PROJECT_DIR}\scripts"
+[String[]]$GIT_REPO_DIRS = @(
   '1919Presentation',
   'Africa',
   'AutonomySimEnvNH',
@@ -76,21 +76,31 @@ function Write-Usage {
 }
 
 function Update-GitRepositories {
+  [OutputType()]
+  param(
+    [Parameter()]
+    [String]
+    $GitRepoDirs = $GIT_REPO_DIRS,
+    [Parameter()]
+    [String]
+    $ProjectDir = $PROJECT_DIR
+  )
   Set-Location "$RepoRootDir"
-  foreach ($RepoDir in $GIT_REPO_DIRS) {
-    Write-Output "Updating git repository directory: $RepoDir"
-    Set-Location $RepoDir
+  foreach ( $d in $GitRepoDirs ) {
+    Write-Output "Updating git repository directory: $d"
+    Set-Location "$d"
     Start-Process -FilePath 'git.exe' -ArgumentList 'add', '-A' -Wait -NoNewWindow
-    Start-Process -FilePath 'git.exe' -ArgumentList 'commit', "-m $CommitMessage" -Wait -NoNewWindow
+    Start-Process -FilePath 'git.exe' -ArgumentList 'commit', "-m ${CommitMessage}" -Wait -NoNewWindow
     Start-Process -FilePath 'git.exe' -ArgumentList 'push' -Wait -NoNewWindow
     # Exit on error; $LastExitCode = $true || $false
     if (!$?) {
       Write-Error "Usage: ${SCRIPT_DIR}\git_commit_all.ps1 <repo root> <commit message>" -ErrorAction Continue
       Invoke-Fail -ErrorMessage "Error: Failed to update git repositories."
     }
-    Set-Location "$RepoRootDir"
+    Set-Location "$d"
   }
-  Set-Location "$PROJECT_DIR"
+  Set-Location "$ProjectDir"
+  return $null
 }
 
 ###

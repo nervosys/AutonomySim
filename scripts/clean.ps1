@@ -15,20 +15,36 @@ NOTES:
 #>
 
 ###
+### Functions
+###
+
+function CleanBuild {
+  [OutputType()]
+  param(
+    [Parameter()]
+    [String[]]
+    $LibPaths = @('AutonomyLib\lib', 'AutonomyLib\deps\MavLinkCom', 'AutonomyLib\deps\rpclib', 'external\rpclib\build')
+  )
+  if ( $Verbose.IsPresent ) {
+    Write-Output '-----------------------------------------------------------------------------------------'
+    Write-Output ' Cleaning up build...'
+    Write-Output '-----------------------------------------------------------------------------------------'
+  }
+  Remove-Item -Path $LibPaths -Force -Recurse
+  # Run MSBuild Clean for Debug and Release.
+  Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", '/p:Configuration=Debug', '/t:Clean', 'AutonomySim.sln' -Wait -NoNewWindow
+  if (!$?) { exit $LASTEXITCODE }  # exit on error
+  Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", '/p:Configuration=Release', '/t:Clean', 'AutonomySim.sln' -Wait -NoNewWindow
+  if (!$?) { exit $LASTEXITCODE }  # exit on error
+  return $null
+}
+
+###
 ### Main
 ###
 
-Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output ' Cleaning'
-Write-Output '-----------------------------------------------------------------------------------------'
+CleanBuild
 
-Remove-Item -Path 'AutonomyLib\lib' -Force -Recurse
-Remove-Item -Path 'AutonomyLib\deps\MavLinkCom' -Force -Recurse
-Remove-Item -Path 'AutonomyLib\deps\rpclib' -Force -Recurse
-Remove-Item -Path 'external\rpclib\build' -Force -Recurse
+Write-Output 'Success: Removed temporary files.'
 
-Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", "/p:Configuration=Debug", "/t:Clean", 'AutonomySim.sln' -Wait -NoNewWindow
-if (!$?) { exit $LASTEXITCODE }  # exit on error
-
-Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", "/p:Configuration=Release", "/t:Clean", 'AutonomySim.sln' -Wait -NoNewWindow
-if (!$?) { exit $LASTEXITCODE }  # exit on error
+exit 0

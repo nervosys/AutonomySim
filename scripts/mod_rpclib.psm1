@@ -1,6 +1,6 @@
 <#
 FILENAME:
-  test_rpclib.psm1
+  mod_rpclib.psm1
 DESCRIPTION:
   PowerShell script to validate RPClib version.
 AUTHOR:
@@ -18,10 +18,10 @@ NOTES:
 ###
 
 # Common utilities
-Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
-                                                        # Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
-                                                        # Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
-                                                        # Get-ArchitectureWidth, Set-ProcessorCount
+# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo,
+#   Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###
 ### Variables
@@ -34,50 +34,50 @@ Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directori
 [String]$RCPLIB_VERSION_MAJ_MIN_BUILD = Get-VersionMajorMinorBuild -Version "$RPCLIB_VERSION"
 [String]$RPCLIB_PATH = "external\rpclib\rpclib-${RCPLIB_VERSION_MAJ_MIN_BUILD}"
 [String]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RCPLIB_VERSION_MAJ_MIN_BUILD}.zip"
-[String]$VS_GENERATOR = 'Visual Studio 17 2022'
+
+[String]$CMAKE_GENERATOR = 'Visual Studio 17 2022'
 
 ###
 ### Functions
 ###
 
-function Get-RpcLib {
-    Write-Output ''
-    Write-Output '-----------------------------------------------------------------------------------------'
-    Write-Output " Downloading rpclib version ${RPCLIB_VERSION}..."
-    Write-Output '-----------------------------------------------------------------------------------------'
-    Write-Output ''
-
+function Install-RpcLib {
+    [OutputType()]
+    param()
+    if ( $Verbose.IsPresent ) {
+        Write-Output '-----------------------------------------------------------------------------------------'
+        Write-Output ' Installing rpclib...'
+        Write-Output '-----------------------------------------------------------------------------------------'
+    }
     # Set security protocol used for web requests and download rpclib
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # TLS v1.2
-    Invoke-WebRequest $RPCLIB_URL -OutFile 'temp\rpclib.zip'
-
+    Invoke-WebRequest "$RPCLIB_URL" -OutFile '.\temp\rpclib.zip' -HttpVersion '2.0'
     # Unpack and remove archive
-    Expand-Archive -Path 'temp\rpclib.zip' -DestinationPath 'external\rpclib'
-    Remove-Item 'temp\rpclib.zip'
-
+    Expand-Archive -Path '.\temp\rpclib.zip' -DestinationPath '.\external\rpclib'
+    Remove-Item '.\temp\rpclib.zip'
     # Fail build if unable to download and/or unpack rpclib
     if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
         Write-Error 'Error: Unable to download rpclib. Stopping build.' -ErrorAction SilentlyContinue
         Invoke-Fail -ErrorMessage "Error: Failed to download and unpack RCPLib."
     }
+    return $null
 }
 
 function Build-RpcLib {
+    [OutputType()]
     param(
         [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
         [String]
-        $CmakeGenerator = "$VS_GENERATOR"
+        $CmakeGenerator = "$CMAKE_GENERATOR"
     )
-    Write-Output ''
-    Write-Output '-----------------------------------------------------------------------------------------'
-    Write-Output " Building rpclib version ${RPCLIB_VERSION} with CMake version ${CMAKE_VERSION}..."
-    Write-Output '-----------------------------------------------------------------------------------------'
-    Write-Output ''
-    
-    [System.IO.Directory]::CreateDirectory("${RPCLIB_PATH}\build")
+    if ( $Verbose.IsPresent ) {
+        Write-Output '-----------------------------------------------------------------------------------------'
+        Write-Output ' Building rpclib...'
+        Write-Output '-----------------------------------------------------------------------------------------'
+    }
+    New-Item -ItemType Directory -Path "${RPCLIB_PATH}\build" -Force | Out-Null
     Set-Location "${RPCLIB_PATH}\build"
-    Write-Output "Current directory: ${RPCLIB_PATH}\build"
-
+    if ( $Verbose.IsPresent ) { Write-Output "Current directory: ${RPCLIB_PATH}\build" }
     # Generate RpcLib build files
     Start-Process -FilePath 'cmake.exe' -ArgumentList "-G ${CmakeGenerator}", '..' -Wait -NoNewWindow
     # Build RpcLib
@@ -88,17 +88,13 @@ function Build-RpcLib {
     else {
         Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', "--config ${BUILD_MODE}" -Wait -NoNewWindow
     }
-    if (!$?) { exit $LASTEXITCODE }  # exit on error
-
+    if (!$?) { exit $LASTEXITCODE }  # exit on subprocess error
     Set-Location "$PROJECT_DIR"
-    Write-Output "Current directory: ${PROJECT_DIR}"
-
+    if ( $Verbose.IsPresent ) { Write-Output "Current directory: ${PROJECT_DIR}" }
     # Copy rpclib binaries and include folder inside AutonomyLib folder
-    $RPCLIB_TARGET_LIB = 'AutonomyLib\deps\rpclib\lib\x64'
-    $RPCLIB_TARGET_INCLUDE = 'AutonomyLib\deps\rpclib\include'
-    [System.IO.Directory]::CreateDirectory($RPCLIB_TARGET_LIB)
-    [System.IO.Directory]::CreateDirectory($RPCLIB_TARGET_INCLUDE)
-
+    [String]$RPCLIB_TARGET_LIB = '.\AutonomyLib\deps\rpclib\lib\x64'
+    [String]$RPCLIB_TARGET_INCLUDE = '.\AutonomyLib\deps\rpclib\include'
+    New-Item -ItemType Directory -Path ("$RPCLIB_TARGET_LIB", "$RPCLIB_TARGET_INCLUDE") -Force | Out-Null
     # copy directories robustly
     Copy-Item -Path "${RPCLIB_PATH}\include" -Destination "${RPCLIB_TARGET_INCLUDE}"
     if ( $BUILD_MODE -eq 'Release' ) {
@@ -108,19 +104,20 @@ function Build-RpcLib {
     else {
         Copy-Item -Path "${RPCLIB_PATH}\build\${BUILD_MODE}" -Destination "${RPCLIB_TARGET_LIB}\$BUILD_MODE"
     }
+    return $null
 }
 
 function Test-RpcLibVersion {
+    [OutputType()]
     param(
         [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
         [String]
-        $CmakeGenerator = "$VS_GENERATOR"
+        $CmakeGenerator = "$CMAKE_GENERATOR"
     )
     if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
         # Remove previous installations
-        Remove-Item 'external\rpclib' -Force -Recurse
-        # Download and build rpclib
-        Get-RpcLib
+        Remove-Item '.\external\rpclib' -Force -Recurse
+        Install-RpcLib
         Build-RpcLib -CmakeGenerator "$CmakeGenerator"
         # Fail if rpclib version path not found
         if ( -not (Test-Path -LiteralPath "$RPCLIB_PATH") ) {
@@ -129,8 +126,9 @@ function Test-RpcLibVersion {
         }
     }
     else {
-        Write-Output "Existing installation of rpclib version ${RPCLIB_VERSION} found."
+        Write-Output "Success: rcplib version test passed."
     }
+    return $null
 }
 
 ###
@@ -138,4 +136,4 @@ function Test-RpcLibVersion {
 ###
 
 Export-ModuleMember -Variable RPCLIB_VERSION
-Export-ModuleMember -Function Test-RpcLibVersion
+Export-ModuleMember -Function Install-RpcLib, Build-RpcLib, Test-RpcLibVersion

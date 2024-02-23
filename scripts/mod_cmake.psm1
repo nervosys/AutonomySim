@@ -1,6 +1,6 @@
 <#
 FILENAME:
-  test_cmake.psm1
+  mod_cmake.psm1
 DESCRIPTION:
   PowerShell script to validate Eigen version.
 AUTHOR:
@@ -18,17 +18,17 @@ NOTES:
 ###
 
 # Common utilities
-Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
-                                                        # Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
-                                                        # Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
-                                                        # Get-ArchitectureWidth, Set-ProcessorCount
+# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo,
+#   Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###
 ### Variables
 ###
 
+[Version]$CMAKE_VERSION = '3.26.4'
 [Version]$CMAKE_VERSION_MINIMUM = '3.14'
-[Version]$CMAKE_VERSION_LATEST = '3.26.4'
 
 ###
 ### Functions
@@ -38,17 +38,29 @@ function Install-Cmake {
   param(
     [Parameter()]
     [Version]
-    $Version = $CMAKE_VERSION_LATEST
+    $Version = $CMAKE_VERSION,
+    [Parameter()]
+    [Switch]
+    $Automate
   )
-  Write-Host -NoNewLine "Download and install CMake v${Version}? [y|N]"
-  $Response = [System.Console]::ReadKey().Key.ToString()  # uses automatic capitalization
+  if ( $Automate.IsPresent ) { $Response = 'N' }
+  else {
+    Write-Host -NoNewLine "Download and install CMake v${Version}? [y|N]"
+    $Response = [System.Console]::ReadKey().Key.ToString()  # uses automatic capitalization
+  }
+  # case insensitive
   if ( $Response -eq 'Y' ) {
+    if ( $Verbose.IsPresent ) {
+      Write-Output '-----------------------------------------------------------------------------------------'
+      Write-Output ' Downloading and installing CMake...'
+      Write-Output '-----------------------------------------------------------------------------------------'
+    }
     $VersionMajMin = Get-VersionMajorMinor $Version
     $VersionMajMinBuild = Get-VersionMajorMinorBuild $Version
     $Installer = "cmake-${VersionMajMinBuild}-x86_64.msi"
-    Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile "temp\${Installer}"
-    Start-Process -FilePath "temp\${Installer}" -Wait -NoNewWindow
-    Remove-Item -Path "temp\${Installer}"
+    Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile ".\temp\${Installer}"
+    Start-Process -FilePath ".\temp\${Installer}" -Wait -NoNewWindow
+    Remove-Item -Path ".\temp\${Installer}"
   }
   else {
     Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Continue
@@ -74,7 +86,7 @@ function Test-CmakeVersion {
     Install-Cmake
   }
   else {
-    Write-Output "Success: CMake version ${CurrentVersion} meets the minimum requirements."
+    Write-Output "Success: CMake version test passed."
   }
 }
 
@@ -82,5 +94,5 @@ function Test-CmakeVersion {
 ### Exports
 ###
 
-Export-ModuleMember -Variable CMAKE_VERSION_MINIMUM
-Export-ModuleMember -Function Test-CmakeVersion
+Export-ModuleMember -Variable CMAKE_VERSION
+Export-ModuleMember -Function Install-Cmake, Test-CmakeVersion

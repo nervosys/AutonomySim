@@ -1,8 +1,8 @@
 <#
 FILENAME:
-  test_visualstudio.psm1
+  mod_visualstudio.psm1
 DESCRIPTION:
-  PowerShell script to validate VS version.
+  PowerShell script to validate Visual Studio version.
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
@@ -18,10 +18,10 @@ NOTES:
 ###
 
 # Common utilities
-Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
-                                                        # Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
-                                                        # Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
-                                                        # Get-ArchitectureWidth, Set-ProcessorCount
+# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
+#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo,
+#   Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###
 ### Variables
@@ -103,7 +103,6 @@ function Test-VisualStudioVersion {
     }
     if ($CurrentVersion -lt $MinimumVersion) {
         # install CMake if it is less than the required version
-        Write-Output ''
         Write-Output "$($Program) version $($CurrentVersion) is less than the minimum supported."
         Write-Output 'AutonomySim supports up to Unreal Engine 5.3 and Visual Studio 2022.'
         Write-Output 'Here are few easy steps to perform the upgrade:'
@@ -111,7 +110,7 @@ function Test-VisualStudioVersion {
         Invoke-Fail -ErrorMessage "Error: Visual Studio version does not meet minimum requirement."
     }
     else {
-        Write-Output "Success: Visual Studio version ${CurrentVersion} meets the minimum requirements."
+        Write-Output "Success: Visual Studio version test passed."
     }
 }
 
@@ -120,4 +119,4 @@ function Test-VisualStudioVersion {
 ###
 
 Export-ModuleMember -Variable VS_VERSION_MINIMUM
-Export-ModuleMember -Function Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Export-ModuleMember -Function Get-VsInstance, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion

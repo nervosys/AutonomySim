@@ -16,51 +16,34 @@ USAGE:
   Copyright © 2024 Nervosys, LLC
 #>
 
-# specify C/C++ project directories to avoid having to scan the entire repository.
-$PROJECT_DIRS = @(
+###
+### Imports
+###
+
+# Formatting
+# imports: Install-ModuleIfMissing, Get-CppFiles, Format-CppRecursive,
+#   Get-PsFiles, Format-PsFile, Format-PsRecursive
+Import-Module "${PWD}\scripts\mod_format.psm1"
+
+###
+### Variables
+###
+
+# Specify C/C++ project directories to avoid scanning the entire repository.
+$CPP_DIR_PATHS = @(
   "AutonomyLib", "AutonomyLibUnitTests", "DroneServer", "DroneShell", "Examples", "HelloCar",
   "HelloDrone", "HelloSpawnedDrones", "MavLinkCom", "ros2", "SemiGlobalMatching", "Unreal"
 )
 
-$FILES_INCLUDE = @("*.c", "*.cpp", "*.cc", "*.hpp", "*.h")
-$FILES_EXCLUDE = @("json.hpp")
-
-$CLANG_FORMAT_EXE = (Get-Command "clang-format.exe" -ErrorAction Stop).Source
-$CLANG_FORMAT_CFG = (Resolve-Path -Path ".clang-format" -ErrorAction Stop).Path
-$CLANG_FORMAT_LOG = ".\format_cpp.log"
-
-function Format-CppRecursive() {
-  param (
-    [Parameter(Mandatory, HelpMessage = 'Path to directory containing C/C++ source code.')]
-    [string]$DirPath,
-    [Parameter(HelpMessage = 'Path to clang-format style configuration file.')]
-    [string]$ConfigFile = ".\.clang-format",
-    [Parameter(HelpMessage = 'File patterns to include.')]
-    [string[]]$Include = @(),
-    [Parameter(HelpMessage = 'File patterns to exclude.')]
-    [string[]]$Exclude = @(),
-    [Parameter(HelpMessage = 'Path to log file.')]
-    [string]$LogFile = ".\clang_format.log"
-  )
-
-  Get-ChildItem -Path "$DirPath" -File -Recurse -Include $Include -Exclude $Exclude | ForEach-Object {
-    Start-Process -FilePath "$CLANG_FORMAT_EXE" -ArgumentList "-i", "--style=file:${ConfigFile}", "--verbose", "$_" -NoNewWindow -Wait -RedirectStandardOutput "$LogFile" -ErrorAction Stop
-  }
-}
+$CPP_FILES_INCLUDE = @("*.c", "*.cpp", "*.cc", "*.hpp", "*.h")
+$CPP_FILES_EXCLUDE = @("json.hpp")
 
 ###
 ### Main
 ###
 
-Write-Output "Found clang-format: ${CLANG_FORMAT_EXE}"
-Write-Output "Found configuration file: ${CLANG_FORMAT_CFG}"
-Write-Output "Writing output to log file: ${CLANG_FORMAT_LOG}"
-Write-Output "Formatting C/C++ files..."
+Format-CppRecursive -ProjectDirs $CPP_DIR_PATHS -Include $CPP_FILES_INCLUDE -Exclude $CPP_FILES_EXCLUDE
 
-foreach ($d in $PROJECT_DIRS) {
-  Format-CppRecursive -DirPath "$d" -ConfigFile "$CLANG_FORMAT_CFG" -Include $FILES_INCLUDE -Exclude $FILES_EXCLUDE -LogFile "$CLANG_FORMAT_LOG"
-}
+Write-Output 'Success: C/C++ files formatted.'
 
-Write-Output "Formatting completed successfully."
-
-Exit 0
+exit 0

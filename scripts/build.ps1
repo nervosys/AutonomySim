@@ -6,14 +6,14 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  2024-02-19
+  2024-02-22
 PARAMETERS:
-  - BuildMode:        [ Debug | Release | RelWithDebInfo ]
-  - CmakeGenerator:   [ 'Visual Studio 17 2022' | 'Visual Studio 16 2019' ]
-  - BuildDocs:        Enable to build and serve AutonomySim documentation.
-  - SystemDebug:      Enable for computer system debugging messages.
-  - IntegrateDeploy:  Enable to automate Visual Studio installation selection.
-  - AssetSuv:         Enable for an Unreal Engine full-polycount SUV asset.
+  - BuildMode:      [ Debug | Release | RelWithDebInfo ]
+  - CmakeGenerator: [ 'Visual Studio 17 2022' | 'Visual Studio 16 2019' ]
+  - SystemDebug:    Enable for computer system debugging messages.
+  - BuildDocs:      Enable to build and serve AutonomySim documentation.
+  - UnrealAsset:    Enable for an Unreal Engine full-polycount SUV asset.
+  - Automate:       Enable to automate Visual Studio installation selection.
 NOTES:
   Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
   Script is intended to run from the 'AutonomySim' base project directory.
@@ -32,18 +32,18 @@ param(
   [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
   [String]
   $CmakeGenerator = 'Visual Studio 17 2022',
-  [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
-  [Switch]
-  $BuildDocs = $false,
   [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
   [Switch]
-  $SystemDebug = $false,
-  [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
+  $SystemDebug,
+  [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
   [Switch]
-  $IntegrateDeploy = $false,
+  $BuildDocs,
   [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
   [Switch]
-  $AssetSuv = $false
+  $UnrealAsset,
+  [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
+  [Switch]
+  $Automate
 )
 
 ###
@@ -53,20 +53,21 @@ param(
 # NOTE: Prefer Import-Module to Get-Content for its scoping rules
 
 # Common utilities
-Import-Module "${PWD}\scripts\utils.psm1"               # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
-# Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
-# Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
-# Get-ArchitectureWidth, Set-ProcessorCount
+# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
+#   Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
+#   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
+#   Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 # Documentation
-Import-Module "${PWD}\scripts\build_docs.psm1"          # imports: Build-Documentation
+Import-Module "${PWD}\scripts\mod_docs.psm1"          # imports: Build-Documentation
 
 # Tests
-Import-Module "${PWD}\scripts\step_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
-Import-Module "${PWD}\scripts\step_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Test-CmakeVersion
-Import-Module "${PWD}\scripts\step_rpclib.psm1"         # imports: RPCLIB_VERSION, Test-RpcLibVersion
-Import-Module "${PWD}\scripts\step_eigen.psm1"          # imports: EIGEN_VERSION, Test-EigenVersion
-Import-Module "${PWD}\scripts\step_unrealasset.psm1"    # imports: ASSET_SUV_VERSION, Test-AssetSuvVersion
+Import-Module "${PWD}\scripts\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Import-Module "${PWD}\scripts\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
+Import-Module "${PWD}\scripts\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
+Import-Module "${PWD}\scripts\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
+Import-Module "${PWD}\scripts\mod_unrealasset.psm1"    # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
 
 ###
 ### Variables
@@ -78,10 +79,10 @@ $SCRIPT_DIR = "${PROJECT_DIR}\scripts"
 
 # Command-line arguments
 $BUILD_MODE = "$BuildMode"
-$BUILD_DOCS = if ($BuildDocs) { $true } else { $false }
-$DEBUG_MODE = if ($SystemDebug) { $true } else { $false }
-$CI_CD_MODE = if ($IntegrateDeploy -eq $true) { $true } else { $false }
-$ASSET_SUV = if ($AssetSuv) { $true } else { $false }
+$DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
+$BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
+$UNREAL_ASSET = if ( $UnrealAsset.IsPresent ) { $true } else { $false }
+$AUTOMATE = if ( $Automate.IsPresent ) { $true } else { $false }
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # WARNING: Windows only
@@ -90,7 +91,7 @@ $SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
 $SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
 $SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
 $SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance -Automate $CI_CD_MODE
+$VS_INSTANCE = Set-VsInstance -Automate $Automate
 $VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
 $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
@@ -119,25 +120,35 @@ function Build-Solution {
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow
   }
   if (!$?) { exit $LASTEXITCODE }  # exit on error
+  return $null
 }
 
 function Copy-GeneratedBinaries {
+  [OutputType()]
+  param(
+    [Parameter()]
+    [String]
+    $MavLinkTargetLib = '.\AutonomyLib\deps\MavLinkCom\lib',
+    [Parameter()]
+    [String]
+    $MavLinkTargetInclude = '.\AutonomyLib\deps\MavLinkCom\include',
+    [Parameter()]
+    [String]
+    $AutonomyLibPluginDir = '.\Unreal\Plugins\AutonomySim\Source\AutonomyLib'
+  )
   # Copy binaries and includes for MavLinkCom in deps
-  $MAVLINK_TARGET_LIB = 'AutonomyLib\deps\MavLinkCom\lib'
-  $MAVLINK_TARGET_INCLUDE = 'AutonomyLib\deps\MavLinkCom\include'
-  [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_LIB)
-  [System.IO.Directory]::CreateDirectory($MAVLINK_TARGET_INCLUDE)
-  Copy-Item -Path 'MavLinkCom\include' -Destination $MAVLINK_TARGET_INCLUDE
-  Copy-Item -Path 'MavLinkCom\lib' -Destination $MAVLINK_TARGET_LIB
-
+  New-Item -ItemType Directory -Path ("$MavLinkTargetLib", "$MavLinkTargetInclude") -Force | Out-Null
+  Copy-Item -Path '.\MavLinkCom\lib' -Destination "$MavLinkTargetLib"
+  Copy-Item -Path '.\MavLinkCom\include' -Destination "$MavLinkTargetInclude"
   # Copy outputs into Unreal/Plugins directory
-  $AUTONOMYLIB_PLUGIN_DIR = 'Unreal\Plugins\AutonomySim\Source\AutonomyLib'
-  [System.IO.Directory]::CreateDirectory($AUTONOMYLIB_PLUGIN_DIR)
-  Copy-Item -Path 'AutonomyLib' -Destination $AUTONOMYLIB_PLUGIN_DIR
-  Copy-Item -Path 'AutonomySim.props' -Destination $AUTONOMYLIB_PLUGIN_DIR
+  New-Item -ItemType Directory -Path "$AutonomyLibPluginDir" -Force | Out-Null
+  Copy-Item -Path '.\AutonomyLib' -Destination "$AutonomyLibPluginDir"
+  Copy-Item -Path '.\AutonomySim.props' -Destination "$AutonomyLibPluginDir"
+  return $null
 }
 
 function Get-VsUnrealProjectFiles {
+  [OutputType()]
   param(
     [Parameter(Mandatory)]
     [String]
@@ -146,34 +157,40 @@ function Get-VsUnrealProjectFiles {
     [String]
     $ProjectDir = "$PWD"
   )
-  Set-Location $UnrealEnvDir
+  Set-Location "$UnrealEnvDir"
   # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
-  Import-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"
+  Import-Module "${UnrealEnvDir}\scripts\update_unreal_env.psm1"
   #Test-DirectoryPath -Path $ProjectDir
-  Copy-UnrealEnvItems -Path $ProjectDir
+  Copy-UnrealEnvItems -Path "$ProjectDir"
   Remove-UnrealEnvItems
   Invoke-VsUnrealProjectFileGenerator
-  Remove-Module "$UnrealEnvDir\scripts\update_unreal_env.psm1"
-  Set-Location $ProjectDir
+  Remove-Module "${UnrealEnvDir}\scripts\update_unreal_env.psm1"
+  Set-Location "$ProjectDir"
+  return $null
 }
 
 function Update-VsUnrealProjectFiles {
+  [OutputType()]
   param(
     [Parameter()]
     [String]
-    $ProjectDir = "$PWD"
+    $ProjectDir = "$PWD",
+    [Parameter()]
+    [String]
+    $UnrealEnvDir = '.\Unreal\Environments'
   )
-  $UnrealEnvDirs = (Get-ChildItem -Path 'Unreal\Environments' -Directory | Select-Object FullName).FullName  # remove attribute decorator
-  foreach ( $UnrealEnvDir in $UnrealEnvDirs ) {
-    Get-VsUnrealProjectFiles -UnrealEnvDir $UnrealEnvDir -ProjectDir $ProjectDir
+  $UnrealEnvDirs = (Get-ChildItem -Path "$UnrealEnvDir" -Directory | Select-Object FullName).FullName
+  foreach ( $d in $UnrealEnvDirs ) {
+    Get-VsUnrealProjectFiles -UnrealEnvDir "$d" -ProjectDir "$ProjectDir"
   }
+  return $null
 }
 
 ###
 ### Main
 ###
 
-if ( $DEBUG_MODE -eq $true ) { Write-Output (Get-WindowsInfo($SYSTEM_INFO)) }
+if ( $DEBUG_MODE -eq $true ) { Write-Output ( Get-WindowsInfo($SYSTEM_INFO) ) }
 
 Write-Output ''
 Write-Output '-----------------------------------------------------------------------------------------'
@@ -189,15 +206,15 @@ Write-Output " CPU count max:           $SYSTEM_CPU_MAX"
 Write-Output " Build mode:              $BUILD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output " Debug mode:              $DEBUG_MODE"
-Write-Output " CI/CD mode:              $CI_CD_MODE"
+Write-Output " CI/CD mode:              $AUTOMATE"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output " Windows version:         $SYSTEM_OS_VERSION"
 Write-Output " Visual Studio version:   $VS_VERSION"
 Write-Output " CMake version:           $CMAKE_VERSION"
 Write-Output " RPClib version:          $RPCLIB_VERSION"
 Write-Output " Eigen version:           $EIGEN_VERSION"
-Write-Output " Asset SUV:               $ASSET_SUV"
-Write-Output " Asset SUV version:       $ASSET_SUV_VERSION"
+Write-Output " Unreal Asset:            $UNREAL_ASSET"
+Write-Output " Unreal Asset version:    $UNREAL_ASSET_VERSION"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output ''
 
@@ -205,7 +222,7 @@ Write-Output ''
 Test-WorkingDirectory
 
 # Test Visual Studio version (optionally automated for CI/CD).
-Test-VisualStudioVersion -Automate $CI_CD_MODE
+Test-VisualStudioVersion -Automate $AUTOMATE
 
 # Test CMake version (downloads and installs CMake).
 Test-CmakeVersion
@@ -220,7 +237,7 @@ Test-EigenVersion
 Test-RpcLibVersion -CmakeGenerator "$CmakeGenerator"
 
 # Test high-polycount SUV asset.
-Test-AssetSuvVersion -HighPolycountSuv $ASSET_SUV
+Test-UnrealAssetVersion -FullPolySuv $UNREAL_ASSET
 
 # Compile AutonomySim.sln including MavLinkCom.
 Build-Solution -BuildMode "$BUILD_MODE" -SystemPlatform "$SYSTEM_PLATFORM" -SystemCpuMax "$SYSTEM_CPU_MAX"
@@ -232,6 +249,6 @@ Copy-GeneratedBinaries
 Update-VsUnrealProjectFiles -ProjectDir "$PROJECT_DIR"
 
 # Build documentation (optional).
-if ($BUILD_DOCS) { Build-Documentation }
+if ( $BUILD_DOCS ) { Build-Documentation }
 
 exit 0

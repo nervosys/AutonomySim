@@ -18,22 +18,36 @@ NOTES:
 ### Variables
 ###
 
-# Static variables
-$PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "$PROJECT_DIR\scripts"
+[String]$SCRIPT_DIR = "${PWD}\scripts"
+
+###
+### Functions
+###
+
+function CleanRebuild {
+  [OutputType()]
+  param()
+  if ( $Verbose.IsPresent ) {
+    Write-Output '-----------------------------------------------------------------------------------------'
+    Write-Output ' Cleaning up build and rebuilding project...'
+    Write-Output '-----------------------------------------------------------------------------------------'
+  }
+  # Remove external directory
+  Remove-Item -Path 'external' -Recurse -Force
+  # Run git-clean and git-pull
+  Start-Process -FilePath 'git.exe' -ArgumentList 'clean', '-ffdx' -Wait -NoNewWindow
+  Start-Process -FilePath 'git.exe' -ArgumentList 'pull' -Wait -NoNewWindow
+  # Run build script
+  . "${SCRIPT_DIR}\build.ps1"
+  return $null
+}
 
 ###
 ### Main
 ###
 
-# Remove external directory
-Remove-Item -Path 'external' -Recurse -Force
+CleanRebuild
 
-# Run git-clean and git-pull
-Start-Process -FilePath 'git.exe' -ArgumentList 'clean', '-ffdx' -Wait -NoNewWindow
-Start-Process -FilePath 'git.exe' -ArgumentList 'pull' -Wait -NoNewWindow
-
-# Run build script
-"$SCRIPT_DIR\build.ps1"
+Write-Output 'Success: Removed temporary files and rebuilt project.'
 
 exit 0

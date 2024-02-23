@@ -28,7 +28,7 @@ on:
 jobs:
   test-formatting-cpp:
     name: "Test C/C++ Formatting"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         path:
@@ -69,10 +69,36 @@ jobs:
           fallback-style: "LLVM" # optional
   test-formatting-python:
     name: "Test Python Code Formatting"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - name: "Run autopep8 style check."
         uses: peter-evans/autopep8@v2
         with:
           args: --recursive --in-place --aggressive --aggressive ./python/
+  test-formatting-powershell:
+    name: "Test PowerShell Code Formatting"
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Run PSScriptAnalyzer style check."
+        shell: pwsh
+        run: |
+          [Hashtable]$Settings = @{
+            IncludeRules = @('PSPlaceOpenBrace', 'PSUseConsistentIndentation')
+            Rules        = @{
+              PSPlaceOpenBrace           = @{
+                Enable     = $true
+                OnSameLine = $true
+              }
+              PSUseConsistentIndentation = @{
+                Enable              = $true
+                IndentationSize     = 2
+                PipelineIndentation = 'IncreaseIndentationForFirstPipeline'
+                Kind                = 'space'
+              }
+            }
+            Severity = @('Error', 'Warning')
+          }
+          Invoke-ScriptAnalyzer -Path "./scripts" -Recurse -Settings $Settings

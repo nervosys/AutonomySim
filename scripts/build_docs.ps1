@@ -18,7 +18,7 @@ NOTES:
 ### Imports
 ###
 
-Import-Module "$SCRIPT_DIR\build_docs.psm1"  # imports: Build-Documentation
+Import-Module "${PWD}\scripts\mod_docs.psm1"  # imports: Build-Documentation
 
 ###
 ### Main
