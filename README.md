@@ -22,14 +22,16 @@
 
 ## Announcements
 
+* UNDER CONSTRUCTION: We are updating the build systems. Expect a few bumps in the road.
+* The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
+* A new documentation system has been rolled out that covers the Python and C++ APIs.
+* `Windows`: all build scripts have been translated from Command/Batch to PowerShell. `Unreal Engine` still generates Batch files and we are still ironing out the bugs.
 * `Unreal Engine` version 5.0 brought powerful new features including [Nanite](https://www.unrealengine.com/en-US/blog/understanding-nanite---unreal-engine-5-s-new-virtualized-geometry-system) and [Lumen](https://www.unrealengine.com/en-US/tech-blog/unreal-engine-5-goes-all-in-on-dynamic-global-illumination-with-lumen), while deprecating support for the [PhysX](https://developer.nvidia.com/physx-sdk) backend.
 * `AutonomySim` supports `Unreal Engine` version 5.03 and above. For version 4.27, you can use the `ue4.27` branch. The `master` branch supports `Unreal Engine` version 5.3 and below.
 * Support for `Unity Engine`, `Gazebo`, and `ROS1` has been deprecated to focus on `Unreal Engine`, `ROS2`, `ArduPilot/PX4`, `qGroundControl`, `PyTorch`, and real-time applications of `AutonomyLib` via software- and hardware-in-the-loop.
-* The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
 * We are researching ways to seemlessly interoperate between `AutonomySim` and `Omniverse/IsaacSim`. The `Omniverse Unreal Engine Connector` makes it possible to sync `Unreal Engine` data with an `Omniverse Nucleus` server, which can then sync with any `Omniverse Connect` application including `IsaacSim`.
-* `Windows`: all build scripts have been translated from Command/Batch to PowerShell. `Unreal Engine` still generates Batch files.
 * `Linux`: added `ROS2` support for `Ubuntu 22.04 LTS` (Jammy Jellyfish).
-* `macOS`: `Unreal Engine` version 5.2 brought native support for the excellent Apple/ARM M-series silicon.
+* `macOS`: `Unreal Engine` version 5.2 brought native support for Apple/ARM M-series silicon.
 
 For a complete list of changes, view the [change log](./docs/CHANGELOG.md).
 
