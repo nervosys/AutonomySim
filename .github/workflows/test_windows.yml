@@ -62,4 +62,4 @@ jobs:
         shell: pwsh
         run: |
           # Set-PSDebug -Trace 1
-          .\scripts\build.ps1 -BuildMode 'Release' -IntegrateDeploy
+          .\scripts\build.ps1 -BuildMode 'Release' -Automate
