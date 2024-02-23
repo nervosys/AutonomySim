@@ -39,11 +39,11 @@ jobs:
 
       - name: "Install Dependencies"
         shell: bash
-        run: ./scripts/setup.sh
+        run: bash ./scripts/setup.sh
 
       - name: "Build AutonomySim"
         shell: bash
-        run: ./scripts/build.sh
+        run: bash ./scripts/build.sh
 
       - name: "Build ROS2 Wrapper"
         # if: ${{ matrix.os == 'ubuntu-20.04' }}
