@@ -49,7 +49,7 @@ function Install-Eigen {
     $EigenDir = "$EIGEN_DIR"
   )
   # Ensure directories exists and remove temporary files.
-  Remove-Item (".\temp\eigen-${EigenVersion}", '.\temp\eigen3.zip', "${EigenDir}\Eigen") -Force -Recurse 2>$null
+  Remove-Item (".\temp\eigen-${EigenVersion}", '.\temp\eigen3.zip', "${EigenDir}\Eigen") -Force -Recurse -ErrorAction SilentlyContinue
   New-Item -ItemType Directory -Path ('.\temp', "$EigenDir") -Force | Out-Null
   if ( $Verbose.IsPresent ) {
     Write-Output '-----------------------------------------------------------------------------------------'
@@ -63,7 +63,7 @@ function Install-Eigen {
   # Move and delete temporary files.
   Move-Item -Path ".\temp\eigen-${EigenVersion}\Eigen" -Destination "${EigenDir}\Eigen" -Force
   # Remove temporary files.
-  Remove-Item (".\temp\eigen-${EigenVersion}", '.\temp\eigen3.zip') -Force -Recurse 2>$null
+  Remove-Item (".\temp\eigen-${EigenVersion}", '.\temp\eigen3.zip') -Force -Recurse -ErrorAction SilentlyContinue
   return $null
 }
 
