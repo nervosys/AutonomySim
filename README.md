@@ -9,8 +9,8 @@
     <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_windows.yml/badge.svg">
   </a>
   <a alt="Linux Build"
-    href="https://github.com/nervosys/AutonomySim/actions/workflows/test_ubuntu.yml">
-    <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_ubuntu.yml/badge.svg">
+    href="https://github.com/nervosys/AutonomySim/actions/workflows/test_linux.yml">
+    <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_linux.yml/badge.svg">
   </a>
   <a alt="macOS Build"
     href="https://github.com/nervosys/AutonomySim/actions/workflows/test_macos.yml">
@@ -35,7 +35,7 @@ For a complete list of changes, view the [change log](./docs/CHANGELOG.md).
 
 ## Vision
 
-> "Physics-based simulation provides an accelerated and safe avenue for developing, verifying, and testing robotic control algorithms and prototype designs. In the quest to leverage machine learning for developing AI-enabled robots, physics-based simulation can generate a wealth of labeled training data in a short amount of time. Physics-based simulation also creates an ideal proving ground for developing intelligent robots that can both learn from their mistakes and be verifiable." [-Liu and Negrut, 2021](https://www.annualreviews.org/doi/full/10.1146/annurev-control-072220-093055)
+> "A central challenge in the branch of artificial intelligence (AI) known as machine learning (ML) is the massive amount of labeled data needed to train supervised models. Datasets for real-world systems are either hand-crafted or automatically labeled using other ML models, introducing biases and errors into data and models, and limiting learning to the offline case. While game engines have long used hardware-accelerated physics engines based on Newtonian dynamics to simulate motion, physics-based rendering (PBR) and related accelerators have made real-time ray-tracing a reality, extending physical realism to the visual domain. Realism is only increasing with the growing use of Earth observation data. For the first time in history, the average user can generate high-fidelity labeled datasets for offline learning or learn physics-based models online. This has revolutioned AI for robotics, where the data and safety requirements are often otherwise intractable." [-Dr. Adam Erickson, 2024](#)
 
 ## Introduction
 
@@ -112,8 +112,8 @@ Mirroring real-world robotic systems, `AutonomySim` supports three different ope
 If you have wired or remote controller, you can manually control vehicles in the simulator as shown below. For ground vehicles, you can use the arrow keys for control inputs (i.e., steering, accelerating, decelerating). See more details [here](https://nervosys.github.io/AutonomySim/remote_control).
 
 <p align="center">
-    <img src="./docs/images/AirSimDroneManual.gif" alt="aerial vehicle" style="width:100%">
-    <img src="./docs/images/AirSimCarManual.gif" alt="ground vehicle" style="width:100%">
+    <img src="./docs/media/images/autonomysim_drone_manual.gif" alt="aerial vehicle" style="width:100%">
+    <img src="./docs/media/images/autonomysim_car_manual.gif" alt="ground vehicle" style="width:100%">
 </p>
 
 ### Machine Operation
@@ -138,7 +138,7 @@ There are two general approaches to generating labeled data with `AutonomySim`:
 The first method, using the `record` button, is the easiest method. Simply press the big red button in the lower right corner to begin recording. This will record the vehicle pose/state and image for each frame. The data logging code is simple and easy to customize to your application.
 
 <p align="center">
-  <img src="./docs/images/record_data.png" alt="record screenshot" style="scale:100%">
+  <img src="./docs/media/images/record_data.png" alt="record screenshot" style="scale:100%">
   <br>
   Human/manual data recording mode.
 </p>
@@ -233,7 +233,7 @@ Coming soon.
 The weather system support human and machine control. Press the `F10` key to see the available weather effect options. You can also control the weather using the APIs, as shown [here](https://nervosys.github.io/AutonomySim/apis#weather-apis).
 
 <p align="center">
-  <img src="./docs/images/weather_menu.png" alt="weather menu" style="scale:100%">
+  <img src="./docs/media/images/weather_menu.png" alt="weather menu" style="scale:100%">
   <br>
   Weather effects menu.
 </p>

@@ -38,28 +38,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Add MSBuild to PATH"
-        uses: microsoft/setup-msbuild@v2
+      - name: "Enable Developer Command Prompt for Visual Studio"
+        uses: ilammy/msvc-dev-cmd@v1
 
-      # - name: "Enable Developer Command Prompt for Visual Studio"
-      #   uses: ilammy/msvc-dev-cmd@v1
+      - name: "Build AutonomyLib"
+        shell: cmd
+        run: build.cmd
 
-      - name: "Activate Developer PowerShell for Visual Studio 2019"
-        if: ${{ matrix.os == 'windows-2019' }}
-        shell: pwsh
-        run: |
-          'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Launch-VsDevShell.ps1'
-          $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 16 2019'
-
-      - name: "Activate Developer PowerShell for Visual Studio 2022"
-        if: ${{ matrix.os == 'windows-2022' }}
-        shell: pwsh
-        run: |
-          'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1'
-          $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 17 2022'
-
-      - name: "Build AutonomySim"
-        shell: pwsh
-        run: |
-          # Set-PSDebug -Trace 1
-          .\scripts\build.ps1 -BuildMode 'Release' -Automate
+      # - name: "Add MSBuild to PATH"
+      #   uses: microsoft/setup-msbuild@v2
+      #
+      # - name: "Activate Developer PowerShell for Visual Studio 2019"
+      #   if: ${{ matrix.os == 'windows-2019' }}
+      #   shell: pwsh
+      #   run: |
+      #     'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Launch-VsDevShell.ps1'
+      #     $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 16 2019'
+      #
+      # - name: "Activate Developer PowerShell for Visual Studio 2022"
+      #   if: ${{ matrix.os == 'windows-2022' }}
+      #   shell: pwsh
+      #   run: |
+      #     'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1'
+      #     $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 17 2022'
+      #
+      # - name: "Build AutonomySim"
+      #   shell: pwsh
+      #   run: |
+      #     # Set-PSDebug -Trace 1
+      #     .\scripts\build.ps1 -BuildMode 'Release' -Automate

@@ -110,14 +110,20 @@ function Build-Solution {
     $SystemPlatform,
     [Parameter(Mandatory)]
     [UInt16]
-    $SystemCpuMax
+    $SystemCpuMax,
+    [Parameter()]
+    [String[]]
+    $IgnoreErrors = @()
   )
+  [String]$IgnoreErrorCodes = $IgnoreErrors -Join ';'
   if ( $BuildMode -eq 'Release' ) {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
+      "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
+      "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
   }
   else {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow
   }
   if (!$?) { exit $LASTEXITCODE }  # exit on error
   return $null
