@@ -169,8 +169,9 @@ REM //---------- Get High-polycount Car Model ------------
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv (
     mkdir Unreal\Plugins\AutonomySim\Content\VehicleAdv
 )
+
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
-    if not defined fullPolyCar or %fullPolyCar% == "" (
+    if not defined fullPolyCar or %fullPolyCar%=="" (
         echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
     ) else if %fullPolyCar% == y or %fullPolyCar% == yes (
         REM //leave some blank lines because %powershell% shows download banner at top of console
