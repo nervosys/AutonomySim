@@ -1,4 +1,9 @@
-REM @echo off
+REM clean_rebuild.cmd
+REM
+REM Updated for Windows 10/11
+REM
+
+@echo on
 
 REM //---------- set up variable ----------
 setlocal

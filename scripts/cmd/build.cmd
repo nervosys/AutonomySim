@@ -1,3 +1,8 @@
+REM build.cmd
+REM
+REM Updated for Windows 10/11
+REM
+
 @echo on
 
 REM //---------- Set variables ----------

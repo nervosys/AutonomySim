@@ -1,3 +1,8 @@
+REM build_all_ue_projects.cmd
+REM
+REM Updated for Windows 10/11
+REM
+
 @echo on
 
 REM //---------- set up variable ----------
@@ -17,17 +22,17 @@ REM path for UE toolset
 set ToolPath=%5
 
 REM set defaults if ars are not supplied
-if %UnrealProjsPath% EQU "" set "UnrealProjsPath=D:\vso\msresearch\Theseus"
-if %AutonomySimPath% EQU "" set "AutonomySimPath=C:\GitHubSrc\AutonomySim"
-if %OutputPath% EQU "" set "OutputPath=%ROOT_DIR%build"
-if %RebuildAutonomySim% EQU "" set "RebuildAutonomySim=true"
+if not defined UnrealProjsPath ( set "UnrealProjsPath=D:\vso\msresearch\Theseus" )
+if not defined AutonomySimPath ( set "AutonomySimPath=C:\GitHubSrc\AutonomySim" )
+if not defined OutputPath ( set "OutputPath=%ROOT_DIR%build" )
+if not defined RebuildAutonomySim ( set "RebuildAutonomySim=true" )
 
 REM re-build AutonomySim
-if %RebuildAutonomySim% EQU true (
+if %RebuildAutonomySim% == true (
   cd /D %AutonomySimPath%
   call clean
   call build
-  if %ERRORLEVEL% EQU 1 goto :failed
+  if %ERRORLEVEL% == 1 goto :failed
   cd /D %ROOT_DIR%
 )
 
@@ -50,20 +55,20 @@ goto :done
 
 :doOneProject
 REM args: OutputPath ToolPath UEVer
-if %~2 == "" (
+if not defined 2 (
   cd /D %UnrealProjsPath%\%~1
 ) else (
   cd /D %UnrealProjsPath%\%~2
 )
-if %ERRORLEVEL% EQU 1 goto :failed
+if %ERRORLEVEL% == 1 ( goto :failed )
 
 robocopy %AutonomySimPath%\Unreal\Environments\Blocks . *.cmd  /njh /njs /ndl /np
 
 call update_from_git.cmd %AutonomySimPath%
-if %ERRORLEVEL% EQU 1 goto :failed
+if %ERRORLEVEL% == 1 ( goto :failed )
 
 call package.cmd %OutputPath% %ToolPath% %~3
-if %ERRORLEVEL% EQU 1 goto :failed
+if %ERRORLEVEL% == 1 ( goto :failed )
 
 goto :done
 
@@ -73,4 +78,4 @@ exit /b 1
 
 :done
 cd %ROOT_DIR%
-if %1 EQU "" pause
+if not defined 1 ( pause )

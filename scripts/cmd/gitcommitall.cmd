@@ -1,3 +1,8 @@
+REM gitcommmitall.cmd
+REM
+REM Updated for Windows 10/11
+REM
+
 @echo on
 
 REM //---------- set up variable ----------
@@ -9,12 +14,12 @@ REM root folder for repos
 set RepoRoot=%1
 set CommitMessage=%2
 
-if %CommitMessage% EQU "" (
+if not defined CommitMessage (
 	echo "CommitMessage needs to be provided"
 	goto :failed
 )
 
-if not exist %RepoRoot% (
+if not defined RepoRoot (
 	echo "RepoRoot needs to be provided"
 	goto :failed
 )
@@ -59,4 +64,4 @@ exit /b 1
 
 :done
 cd %ROOT_DIR%
-if %1 EQU "" pause
+if not defined 1 ( pause )

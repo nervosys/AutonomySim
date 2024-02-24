@@ -1,3 +1,8 @@
+REM build_docs.cmd
+REM
+REM Updated for Windows 10/11
+REM
+
 @echo on
 
 REM //---------- set up variable ----------
@@ -26,7 +31,7 @@ REM )
 
 cd /d %BUILD_DIR%
 
-if %1 EQU no_serve goto :PromptYN
+if %1 EQU no_serve ( goto :PromptYN )
 mkdocs serve
 
 :PromptYN

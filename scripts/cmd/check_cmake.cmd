@@ -1,16 +1,23 @@
+REM check_cmake.cmd
+REM
+REM Updated for Windows 10/11
+REM
+
 @echo on
 
 REM //---------- set up variable ----------
 setlocal
 
 REM set ROOT_DIR=%~dp0
-set cmake_minversion_majmin=3.14
-set cmake_version=
+set cmake_min_majmin=3.14
+REM set cmake_version=
 
 where /q cmake
-if %ERRORLEVEL% EQU 0 (
-	for /F tokens=3 %%a in ('cmake --version ^| find cmake version') do set cmake_version=%%a
-	if %cmake_version% EQU "" (
+if %ERRORLEVEL% == 0 (
+	for /F "tokens=3" %%a in ('cmake --version ^| find cmake version') do (
+		set cmake_version=%%a
+	)
+	if not defined cmake_version (
 	  echo "Unable to get version of cmake." >&2
 	  exit /b 2
 	)
@@ -19,16 +26,21 @@ if %ERRORLEVEL% EQU 0 (
   goto :download_install
 )
 
-set cmake_ver_major=
-set cmake_ver_minor=
-for /F tokens=1,2 delims=. %%a in (%cmake_version%) do (
+for /F "tokens=1,2 delims=." %%a in (%cmake_version%) do (
   set "cmake_ver_major=%%a"
   set "cmake_ver_minor=%%b"
 )
-set cmake_ver_minmaj=%cmake_ver_major:~-4%.%cmake_ver_minor:~-4%
-if %cmake_ver_minmaj% LSS %cmake_minversion_majmin% (
+
+if not defined cmake_ver_major or not defined cmake_ver_minor (
+	echo "CMake version variables not defined. Exiting."
+	exit /b 1
+)
+
+set cmake_majmin=%cmake_ver_major:~-4%.%cmake_ver_minor:~-4%
+
+if %cmake_majmin% lss %cmake_min_majmin% (
   echo.
-  echo "Newer AutonomySim requires cmake verion %cmake_minversion_majmin% but you have %cmake_ver_minmaj% which is older." >&2
+  echo "Newer AutonomySim requires cmake verion %cmake_min_majmin% but you have %cmake_majmin% which is older." >&2
   goto :download_install
 )
 

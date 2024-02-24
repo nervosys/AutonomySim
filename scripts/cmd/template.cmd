@@ -1,3 +1,8 @@
+REM template.cmd
+REM
+REM Updated for Windows 10/11
+REM
+
 @echo on
 
 REM //---------- set up variable ----------
