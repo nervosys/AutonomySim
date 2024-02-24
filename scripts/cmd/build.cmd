@@ -16,9 +16,9 @@ set RPCLIB_VERSION=2.3.0
 set CPU_COUNT_MAX=12
 set PLATFORM=x64
 
-REM // Check command line arguments
-REM set fullPolyCar=
-REM set buildMode=
+REM // Set CLI argument defaults
+set fullPolyCar=false
+set buildMode=Release
 
 REM // Check Visual Studio version
 if not defined VisualStudioVersion (
@@ -37,7 +37,7 @@ if %VisualStudioVersion% lss 17.0 (
 
 REM //---------- Parse arguments ----------
 if not defined 1 goto :noargs
-if %1==--full-poly-car ( set "fullPolyCar=y" )
+if %1==--full-poly-car ( set "fullPolyCar=true" )
 if %1==--Debug ( set "buildMode=Debug" )
 if %1==--Release ( set "buildMode=Release" )
 if %1==--RelWithDebInfo ( set "buildMode=RelWithDebInfo" )
@@ -135,7 +135,7 @@ if not exist external\rpclib\rpclib-%RPCLIB_VERSION%\build (
 cd external\rpclib\rpclib-%RPCLIB_VERSION%\build
 
 cmake -G"Visual Studio 17 2022" ..
-if not defined buildMode (
+if %buildMode%==Release (
     cmake --build .
     cmake --build . --config Release
 ) else (
@@ -171,46 +171,43 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv (
 )
 
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
-    if not defined fullPolyCar (
-        echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
-    ) else (
-        if "%fullPolyCar%"=="y" (
-            REM //leave some blank lines because %powershell% shows download banner at top of console
-            echo.
-            echo "-----------------------------------------------------------------------------------------"
-            echo " Downloading ~37MB of high-poly car assets..."
-            echo " To perform the installation without these assets, run `build.cmd --no-full-poly-car`"
-            echo "-----------------------------------------------------------------------------------------"
-            echo.
+    if %fullPolyCar%==true (
+        REM //leave some blank lines because %powershell% shows download banner at top of console
+        echo.
+        echo "-----------------------------------------------------------------------------------------"
+        echo " Downloading ~37MB of high-poly car assets..."
+        echo " To perform the installation without these assets, run `build.cmd --no-full-poly-car`"
+        echo "-----------------------------------------------------------------------------------------"
+        echo.
 
-            if exist tmp\suv_download ( rmdir tmp\suv_download /q /s )
-            mkdir tmp\suv_download
-            REM @echo on
-            REM %powershell% -command "& { Start-BitsTransfer -Source https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip -Destination tmp\suv_download\car_assets.zip }"
-            REM %powershell% -command "& { (New-Object System.Net.WebClient).DownloadFile('https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip', tmp\suv_download\car_assets.zip) }"
-            if not defined PWSHV7 (
-                %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip }"
-            ) else (
-                %powershell% -command "iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip"
-            )
-            REM @echo off
-            rmdir Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV /q /s
-            %powershell% -command "Expand-Archive -Path tmp\suv_download\car_assets.zip -DestinationPath Unreal\Plugins\AutonomySim\Content\VehicleAdv"
-            rmdir tmp\suv_download /q /s
-
-            REM //Don't fail the build if the high-poly car is unable to be downloaded
-            REM //Instead, just notify users that the gokart will be used.
-            if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV (
-                echo "Download of high-polycount SUV failed. Your AutonomySim build will use the default vehicle instead."
-            )
+        if exist tmp\suv_download ( rmdir tmp\suv_download /q /s )
+        mkdir tmp\suv_download
+        REM @echo on
+        REM %powershell% -command "& { Start-BitsTransfer -Source https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip -Destination tmp\suv_download\car_assets.zip }"
+        REM %powershell% -command "& { (New-Object System.Net.WebClient).DownloadFile('https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip', tmp\suv_download\car_assets.zip) }"
+        if not defined PWSHV7 (
+            %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip }"
+        ) else (
+            %powershell% -command "iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip"
         )
+        REM @echo off
+        rmdir Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV /q /s
+        %powershell% -command "Expand-Archive -Path tmp\suv_download\car_assets.zip -DestinationPath Unreal\Plugins\AutonomySim\Content\VehicleAdv"
+        rmdir tmp\suv_download /q /s
+
+        REM //Don't fail the build if the high-poly car is unable to be downloaded
+        REM //Instead, just notify users that the gokart will be used.
+        if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV (
+            echo "Download of high-polycount SUV failed. Your AutonomySim build will use the default vehicle instead."
+        )
+    ) else (
+        echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
     )
 )
 
 REM //---------- Get Eigen library ----------
-if not exist AutonomyLib\deps (
-    mkdir AutonomyLib\deps
-)
+if not exist AutonomyLib\deps ( mkdir AutonomyLib\deps )
+
 if not exist AutonomyLib\deps\eigen3 (
     if not defined PWSHV7 (
         %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip -OutFile tmp\eigen3.zip }"
