@@ -16,13 +16,13 @@ set fullPolyCar=
 set buildMode=
 
 REM // Check Visual Studio version
-if %VisualStudioVersion% EQU "" (
+if %VisualStudioVersion%=="" (
     echo.
     echo "ERROR: command must be run from VS2022 Developer Command Prompt or Developer PowerShell."
     goto :buildfailed_nomsg
 )
 
-if %VisualStudioVersion% LSS 17.0 (
+if %VisualStudioVersion% lss 17.0 (
     echo.
     echo "AutonomySim supports up to Unreal Engine 5.3 and Visual Studio 2022."
     echo "Here are few easy steps to perform the upgrade:"
@@ -31,27 +31,27 @@ if %VisualStudioVersion% LSS 17.0 (
 )
 
 REM //---------- Parse arguments ----------
-if %1 EQU "" goto :noargs
-if %1 EQU --full-poly-car set "fullPolyCar=y"
-if %1 EQU --Debug set "buildMode=Debug"
-if %1 EQU --Release set "buildMode=Release"
-if %1 EQU --RelWithDebInfo set "buildMode=RelWithDebInfo"
+if %1=="" goto :noargs
+if %1==--full-poly-car set "fullPolyCar=y"
+if %1==--Debug set "buildMode=Debug"
+if %1==--Release set "buildMode=Release"
+if %1==--RelWithDebInfo set "buildMode=RelWithDebInfo"
 
-if %2 EQU "" goto :noargs
-if %2 EQU --Debug set "buildMode=Debug"
-if %2 EQU --Release set "buildMode=Release"
-if %2 EQU --RelWithDebInfo set "buildMode=RelWithDebInfo"
+if %2=="" goto :noargs
+if %2==--Debug set "buildMode=Debug"
+if %2==--Release set "buildMode=Release"
+if %2==--RelWithDebInfo set "buildMode=RelWithDebInfo"
 
 :noargs
 set powershell=powershell
 where powershell > nul 2>&1
-if %ERRORLEVEL% EQU 1 goto :pwsh
+if %ERRORLEVEL%==1 goto :pwsh
 echo "Found `powershell` command." && goto :start
 
 :pwsh
 set powershell=pwsh
 where pwsh > nul 2>&1
-if %ERRORLEVEL% EQU 1 goto :nopwsh
+if %ERRORLEVEL%==1 goto :nopwsh
 set PWSHV7=1
 echo "Found `pwsh` command." && goto :start
 
@@ -78,9 +78,9 @@ echo.
 
 REM //---------- Check cmake version ----------
 call scripts\cmd\check_cmake.cmd
-if %ERRORLEVEL% EQU 1 (
+if %ERRORLEVEL%==1 (
   call scripts\cmd\check_cmake.cmd
-  if %ERRORLEVEL% EQU 1 (
+  if %ERRORLEVEL%==1 (
     echo.
     echo "ERROR: CMake not installed correctly."
     goto :buildfailed
@@ -103,7 +103,7 @@ if not exist external\rpclib\rpclib-%RPCLIB_VERSION% (
     echo.
 
     @echo on
-    if %PWSHV7% EQU "" (
+    if %PWSHV7%=="" (
         %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/rpclib/rpclib/archive/v2.3.0.zip -OutFile tmp\rpclib.zip }"
     ) else (
         %powershell% -command "iwr https://github.com/rpclib/rpclib/archive/v2.3.0.zip -OutFile tmp\rpclib.zip"
@@ -130,14 +130,14 @@ cd external\rpclib\rpclib-%RPCLIB_VERSION%\build
 
 cmake -G"Visual Studio 17 2022" ..
 
-if %buildMode% EQU "" (
+if %buildMode%=="" (
     cmake --build .
     cmake --build . --config Release
 ) else (
     cmake --build . --config %buildMode%
 )
 
-if %ERRORLEVEL% EQU 1 goto :buildfailed
+if %ERRORLEVEL%==1 goto :buildfailed
 cd %PROJECT_DIR%
 echo "Current directory: %PROJECT_DIR%"
 
@@ -148,7 +148,7 @@ set RPCLIB_TARGET_INCLUDE=AutonomyLib\deps\rpclib\include
 if not exist %RPCLIB_TARGET_INCLUDE% mkdir %RPCLIB_TARGET_INCLUDE%
 robocopy /MIR external\rpclib\rpclib-%RPCLIB_VERSION%\include %RPCLIB_TARGET_INCLUDE%
 
-if %buildMode% EQU "" (
+if %buildMode%=="" (
     robocopy /MIR external\rpclib\rpclib-%RPCLIB_VERSION%\build\Debug %RPCLIB_TARGET_LIB%\Debug
     robocopy /MIR external\rpclib\rpclib-%RPCLIB_VERSION%\build\Release %RPCLIB_TARGET_LIB%\Release
 ) else (
@@ -158,7 +158,7 @@ if %buildMode% EQU "" (
 REM //---------- Get High-polycount Car Model ------------
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv mkdir Unreal\Plugins\AutonomySim\Content\VehicleAdv
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
-    if %fullPolyCar% EQU y or %fullPolyCar% EQU yes (
+    if %fullPolyCar%==y or %fullPolyCar%==yes (
         REM //leave some blank lines because %powershell% shows download banner at top of console
         echo.
         echo "-----------------------------------------------------------------------------------------"
@@ -172,7 +172,7 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
         @echo on
         REM %powershell% -command "& { Start-BitsTransfer -Source https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip -Destination tmp\suv_download\car_assets.zip }"
         REM %powershell% -command "& { (New-Object System.Net.WebClient).DownloadFile('https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip', tmp\suv_download\car_assets.zip) }"
-        if %PWSHV7% EQU "" (
+        if %PWSHV7%=="" (
             %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip }"
         ) else (
             %powershell% -command "iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip"
@@ -195,7 +195,7 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
 REM //---------- Get Eigen library ----------
 if not exist AutonomyLib\deps mkdir AutonomyLib\deps
 if not exist AutonomyLib\deps\eigen3 (
-    if %PWSHV7% EQU "" (
+    if %PWSHV7%=="" (
         %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip -OutFile tmp\eigen3.zip }"
     ) else (
         %powershell% -command "iwr https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip -OutFile tmp\eigen3.zip"
@@ -211,14 +211,14 @@ if not exist AutonomyLib\deps\eigen3 (
 if not exist AutonomyLib\deps\eigen3 goto :buildfailed
 
 REM //---------- We now have all dependencies to compile AutonomySim.sln, which will also compile MavLinkCom ----------
-if %buildMode% EQU "" (
+if %buildMode%=="" (
     msbuild -maxcpucount:%CPU_COUNT_MAX% /p:Platform=%PLATFORM% /p:Configuration=Debug AutonomySim.sln
-    if %ERRORLEVEL% EQU 1 goto :buildfailed
+    if %ERRORLEVEL%==1 goto :buildfailed
     msbuild -maxcpucount:%CPU_COUNT_MAX% /p:Platform=%PLATFORM% /p:Configuration=Release AutonomySim.sln
-    if %ERRORLEVEL% EQU 1 goto :buildfailed
+    if %ERRORLEVEL%==1 goto :buildfailed
 ) else (
     msbuild -maxcpucount:%CPU_COUNT_MAX% /p:Platform=%PLATFORM% /p:Configuration=%buildMode% AutonomySim.sln
-    if %ERRORLEVEL% EQU 1 goto :buildfailed
+    if %ERRORLEVEL%==1 goto :buildfailed
 )
 
 REM //---------- Copy binaries and includes for MavLinkCom in deps ----------
