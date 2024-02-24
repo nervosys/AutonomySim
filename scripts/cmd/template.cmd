@@ -8,11 +8,11 @@ REM pushd %~dp0
 
 :success
 @echo "Task completed."
-goto end
+goto :end
 
 :failed
 @echo "Task has failed."
-goto end
+goto :end
 
 :end
 popd

@@ -27,7 +27,7 @@ if %RebuildAutonomySim% == true (
   cd /D %AutonomySimPath%
   call clean
   call build
-  if errorlevel 1 goto :failed
+  if %ERRORLEVEL% == 1 goto :failed
   cd /D %ROOT_DIR%
 )
 

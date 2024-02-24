@@ -56,7 +56,6 @@ goto :done
 echo "Error occured"
 echo "Usage: gitcommitall <repo root> <commit message>"
 cd %ROOT_DIR%
-
 exit /b 1
 
 :done

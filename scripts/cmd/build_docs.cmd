@@ -26,7 +26,7 @@ REM )
 
 cd /d %BUILD_DIR%
 
-if %1 == no_serve goto PromptYN
+if %1 == no_serve goto :PromptYN
 mkdocs serve
 
 :PromptYN
@@ -61,19 +61,19 @@ echo " 3. Push gh-pages"
 REM batch file will get deleted so must execute commands in one line
 REM git checkout gh-pages && cd /d %BUILD_DIR% && robocopy "%BUILD_DIR%\build" "%ROOT_DIR%docs" /MIR /njh /njs /ndl /np /nfl /r:0
 
-goto success
+goto :success
 
 :AnswerNo
 echo "No commits were done."
-goto success
+goto :success
 
 :success
 echo "Task completed."
-goto end
+goto :end
 
 :failed
 echo "Task has failed."
-goto end
+goto :end
 
 :end
 popd

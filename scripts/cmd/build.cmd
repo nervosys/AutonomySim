@@ -31,13 +31,13 @@ if %VisualStudioVersion% lss 17.0 (
 )
 
 REM //---------- Parse arguments ----------
-if %1 == "" goto noargs
+if %1 == "" goto :noargs
 if %1 == --full-poly-car set "fullPolyCar=y"
 if %1 == --Debug set "buildMode=Debug"
 if %1 == --Release set "buildMode=Release"
 if %1 == --RelWithDebInfo set "buildMode=RelWithDebInfo"
 
-if %2 == "" goto noargs
+if %2 == "" goto :noargs
 if %2 == --Debug set "buildMode=Debug"
 if %2 == --Release set "buildMode=Release"
 if %2 == --RelWithDebInfo set "buildMode=RelWithDebInfo"
@@ -46,14 +46,14 @@ if %2 == --RelWithDebInfo set "buildMode=RelWithDebInfo"
 set powershell=powershell
 where powershell > nul 2>&1
 if %ERRORLEVEL% == 1 goto :pwsh
-echo "Found `powershell` command." && goto start
+echo "Found `powershell` command." && goto :start
 
 :pwsh
 set powershell=pwsh
 where pwsh > nul 2>&1
 if %ERRORLEVEL% == 1 goto :nopwsh
 set PWSHV7=1
-echo "Found `pwsh` command." && goto start
+echo "Found `pwsh` command." && goto :start
 
 :nopwsh
 echo "PowerShell or `pwsh` not found, please install it: `winget install --id Microsoft.Powershell --source winget`"
@@ -61,7 +61,6 @@ goto :eof
 
 :start
 cd %PROJECT_DIR%
-
 echo.
 echo "-----------------------------------------------------------------------------------------"
 echo " Parameters"
