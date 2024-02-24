@@ -9,7 +9,7 @@ REM root folder for repos
 set RepoRoot=%1
 set CommitMessage=%2
 
-if %CommitMessage% == "" (
+if %CommitMessage% EQU "" (
 	echo "CommitMessage needs to be provided"
 	goto :failed
 )
@@ -49,7 +49,6 @@ for %%x in (
   git push
   cd ..
 )
-
 goto :done
 
 :failed
@@ -60,4 +59,4 @@ exit /b 1
 
 :done
 cd %ROOT_DIR%
-if %1 == "" pause
+if %1 EQU "" pause

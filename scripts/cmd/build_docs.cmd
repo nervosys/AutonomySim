@@ -26,7 +26,7 @@ REM )
 
 cd /d %BUILD_DIR%
 
-if %1 == no_serve goto :PromptYN
+if %1 EQU no_serve goto :PromptYN
 mkdocs serve
 
 :PromptYN
