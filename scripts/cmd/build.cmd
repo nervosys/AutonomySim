@@ -107,13 +107,13 @@ if not exist external\rpclib\rpclib-%RPCLIB_VERSION% (
     echo "-----------------------------------------------------------------------------------------"
     echo.
 
-    @echo on
-    if %PWSHV7% == "" (
+    REM @echo on
+    if not defined PWSHV7 (
         %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/rpclib/rpclib/archive/v2.3.0.zip -OutFile tmp\rpclib.zip }"
     ) else (
         %powershell% -command "iwr https://github.com/rpclib/rpclib/archive/v2.3.0.zip -OutFile tmp\rpclib.zip"
     )
-    @echo off
+    REM @echo off
     
     REM // Remove any previous versions
     rmdir external\rpclib /q /s
@@ -130,7 +130,9 @@ if not exist external\rpclib\rpclib-%RPCLIB_VERSION% (
 
 REM //---------- Build rpclib binaries ------------
 echo "Building rpclib with CMake..."
-if not exist external\rpclib\rpclib-%RPCLIB_VERSION%\build ( mkdir external\rpclib\rpclib-%RPCLIB_VERSION%\build )
+if not exist external\rpclib\rpclib-%RPCLIB_VERSION%\build (
+    mkdir external\rpclib\rpclib-%RPCLIB_VERSION%\build
+)
 cd external\rpclib\rpclib-%RPCLIB_VERSION%\build
 
 cmake -G"Visual Studio 17 2022" ..
@@ -148,9 +150,13 @@ echo "Current directory: %PROJECT_DIR%"
 
 REM //---------- Copy rpclib binaries and include folder inside AutonomyLib folder ----------
 set RPCLIB_TARGET_LIB=AutonomyLib\deps\rpclib\lib\x64
-if not exist %RPCLIB_TARGET_LIB% ( mkdir %RPCLIB_TARGET_LIB% )
+if not exist %RPCLIB_TARGET_LIB% (
+    mkdir %RPCLIB_TARGET_LIB%
+)
 set RPCLIB_TARGET_INCLUDE=AutonomyLib\deps\rpclib\include
-if not exist %RPCLIB_TARGET_INCLUDE% ( mkdir %RPCLIB_TARGET_INCLUDE% )
+if not exist %RPCLIB_TARGET_INCLUDE% (
+    mkdir %RPCLIB_TARGET_INCLUDE%
+)
 robocopy /MIR external\rpclib\rpclib-%RPCLIB_VERSION%\include %RPCLIB_TARGET_INCLUDE%
 
 if not defined buildMode (
@@ -161,7 +167,9 @@ if not defined buildMode (
 )
 
 REM //---------- Get High-polycount Car Model ------------
-if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv mkdir Unreal\Plugins\AutonomySim\Content\VehicleAdv
+if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv (
+    mkdir Unreal\Plugins\AutonomySim\Content\VehicleAdv
+)
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
     if not defined fullPolyCar (
         echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
@@ -173,18 +181,17 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
         echo " To perform the installation without these assets, run `build.cmd --no-full-poly-car`"
         echo "-----------------------------------------------------------------------------------------"
         echo.
-        REM 
         if exist tmp\suv_download rmdir tmp\suv_download /q /s
         mkdir tmp\suv_download
-        @echo on
+        REM @echo on
         REM %powershell% -command "& { Start-BitsTransfer -Source https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip -Destination tmp\suv_download\car_assets.zip }"
         REM %powershell% -command "& { (New-Object System.Net.WebClient).DownloadFile('https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip', tmp\suv_download\car_assets.zip) }"
-        if %PWSHV7% == "" (
+        if not defined PWSHV7 (
             %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip }"
         ) else (
             %powershell% -command "iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip"
         )
-        @echo off
+        REM @echo off
         rmdir Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV /q /s
         %powershell% -command "Expand-Archive -Path tmp\suv_download\car_assets.zip -DestinationPath Unreal\Plugins\AutonomySim\Content\VehicleAdv"
         rmdir tmp\suv_download /q /s
@@ -201,7 +208,9 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
 )
 
 REM //---------- Get Eigen library ----------
-if not exist AutonomyLib\deps ( mkdir AutonomyLib\deps )
+if not exist AutonomyLib\deps (
+    mkdir AutonomyLib\deps
+)
 if not exist AutonomyLib\deps\eigen3 (
     if not defined PWSHV7 (
         %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip -OutFile tmp\eigen3.zip }"
@@ -238,7 +247,9 @@ robocopy /MIR MavLinkCom\include %MAVLINK_TARGET_INCLUDE%
 robocopy /MIR MavLinkCom\lib %MAVLINK_TARGET_LIB%
 
 REM //---------- All of our outputs go to Unreal/Plugins folder ----------
-if not exist Unreal\Plugins\AutonomySim\Source\AutonomyLib ( mkdir Unreal\Plugins\AutonomySim\Source\AutonomyLib )
+if not exist Unreal\Plugins\AutonomySim\Source\AutonomyLib (
+    mkdir Unreal\Plugins\AutonomySim\Source\AutonomyLib
+)
 robocopy /MIR AutonomyLib Unreal\Plugins\AutonomySim\Source\AutonomyLib  /XD temp *. /njh /njs /ndl /np
 copy /y AutonomySim.props Unreal\Plugins\AutonomySim\Source\AutonomyLib
 
