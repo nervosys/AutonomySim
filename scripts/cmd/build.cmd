@@ -173,7 +173,8 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv (
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
     if not defined fullPolyCar (
         echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
-    ) else if %fullPolyCar%==y (
+    ) else (
+        if "%fullPolyCar%"=="y" (
             REM //leave some blank lines because %powershell% shows download banner at top of console
             echo.
             echo "-----------------------------------------------------------------------------------------"
@@ -201,9 +202,8 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
             REM //Instead, just notify users that the gokart will be used.
             if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV (
                 echo "Download of high-polycount SUV failed. Your AutonomySim build will use the default vehicle instead."
-    ) else (
-        echo "Value for fullPolyCar not recognized: %fullPolyCar%. Aborting."
-        exit /b 1
+            )
+        )
     )
 )
 
