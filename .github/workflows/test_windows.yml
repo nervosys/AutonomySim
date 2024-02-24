@@ -43,7 +43,7 @@ jobs:
 
       - name: "Build AutonomyLib"
         shell: cmd
-        run: build.cmd
+        run: scripts\cmd\build.cmd
 
       # - name: "Add MSBuild to PATH"
       #   uses: microsoft/setup-msbuild@v2
