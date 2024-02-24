@@ -19,6 +19,6 @@ set OLD=.bat
 set NEW=.cmd
 
 REM where p=path,n=name,i=filename; removed "delims="
-for /f %%i in (dir /b /s *%OLD%) do call ren %%i %%~ni%NEW%
+for /f %%i in ( dir /b /s *%OLD% ) do call ren %%i %%~ni%NEW%
 
 exit /b 0

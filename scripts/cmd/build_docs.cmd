@@ -12,7 +12,7 @@ set ROOT_DIR=%cd%
 REM pushd %cd
 
 set BUILD_DIR=%ROOT_DIR%temp\docs_build
-rem mdir /s /q %BUILD_DIR%
+REM mdir /s /q %BUILD_DIR%
 robocopy docs %BUILD_DIR%\doc_root\docs /MIR /njh /njs /ndl /np /nfl /r:0
 robocopy . %BUILD_DIR%\doc_root *.md /njh /njs /ndl /np /nfl /r:0
 robocopy %BUILD_DIR%\doc_root\docs %BUILD_DIR% mkdocs.yml /MOV /njh /njs /ndl /np /nfl /r:0
@@ -31,7 +31,7 @@ REM )
 
 cd /d %BUILD_DIR%
 
-if %1 EQU no_serve ( goto :PromptYN )
+if %1==no_serve ( goto :PromptYN )
 mkdocs serve
 
 :PromptYN

@@ -13,16 +13,16 @@ set cmake_min_majmin=3.14
 REM set cmake_version=
 
 where /q cmake
-if %ERRORLEVEL% == 0 (
+if %ERRORLEVEL%==0 (
 	for /F "tokens=3" %%a in ('cmake --version ^| find cmake version') do (
 		set cmake_version=%%a
 	)
 	if not defined cmake_version (
-	  echo "Unable to get version of cmake." >&2
+	  echo "Unable to get version of CMake." >&2
 	  exit /b 2
 	)
 ) else (
-  echo "cmake was not found in path."
+  echo "CMake was not found in path."
   goto :download_install
 )
 
@@ -31,8 +31,12 @@ for /F "tokens=1,2 delims=." %%a in (%cmake_version%) do (
   set "cmake_ver_minor=%%b"
 )
 
-if not defined cmake_ver_major or not defined cmake_ver_minor (
-	echo "CMake version variables not defined. Exiting."
+if not defined cmake_ver_major (
+	echo "CMake major version not defined. Exiting."
+	exit /b 1
+)
+if not defined cmake_ver_minor (
+	echo "CMake minor version not defined. Exiting."
 	exit /b 1
 )
 
@@ -44,15 +48,15 @@ if %cmake_majmin% lss %cmake_min_majmin% (
   goto :download_install
 )
 
-echo "Found cmake version: %cmake_version%"
+echo "Found CMake version: %cmake_version%"
 exit /b 0
 
 :download_install
 set /p choice="Press any key to download and install cmake (make sure to add it in path in install options)"
 if not exist %temp%\cmake-3.14.7-win64-x64.msi (
-	@echo on
+	REM @echo on
 	powershell -command "& { iwr https://cmake.org/files/v3.14/cmake-3.14.7-win64-x64.msi -OutFile %temp%\cmake-3.14.7-win64-x64.msi }"
-	@echo off
+	REM @echo off
 )
 msiexec.exe /i %temp%\cmake-3.14.7-win64-x64.msi
 exit /b 1

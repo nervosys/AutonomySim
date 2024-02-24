@@ -28,7 +28,7 @@ if not defined OutputPath ( set "OutputPath=%ROOT_DIR%build" )
 if not defined RebuildAutonomySim ( set "RebuildAutonomySim=true" )
 
 REM re-build AutonomySim
-if %RebuildAutonomySim% == true (
+if %RebuildAutonomySim%==true (
   cd /D %AutonomySimPath%
   call clean
   call build
@@ -36,7 +36,7 @@ if %RebuildAutonomySim% == true (
   cd /D %ROOT_DIR%
 )
 
-if not exist %OutputPath% mkdir %OutputPath%
+if not exist %OutputPath% ( mkdir %OutputPath% )
 
 call:doOneProject "TalkingHeads"
 call:doOneProject "ZhangJiaJie"
@@ -60,15 +60,15 @@ if not defined 2 (
 ) else (
   cd /D %UnrealProjsPath%\%~2
 )
-if %ERRORLEVEL% == 1 ( goto :failed )
+if %ERRORLEVEL%==1 ( goto :failed )
 
 robocopy %AutonomySimPath%\Unreal\Environments\Blocks . *.cmd  /njh /njs /ndl /np
 
 call update_from_git.cmd %AutonomySimPath%
-if %ERRORLEVEL% == 1 ( goto :failed )
+if %ERRORLEVEL%==1 ( goto :failed )
 
 call package.cmd %OutputPath% %ToolPath% %~3
-if %ERRORLEVEL% == 1 ( goto :failed )
+if %ERRORLEVEL%==1 ( goto :failed )
 
 goto :done
 

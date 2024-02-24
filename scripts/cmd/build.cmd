@@ -37,26 +37,26 @@ if %VisualStudioVersion% lss 17.0 (
 
 REM //---------- Parse arguments ----------
 if not defined 1 goto :noargs
-if %1 == --full-poly-car set "fullPolyCar=y"
-if %1 == --Debug set "buildMode=Debug"
-if %1 == --Release set "buildMode=Release"
-if %1 == --RelWithDebInfo set "buildMode=RelWithDebInfo"
+if %1==--full-poly-car ( set "fullPolyCar=y" )
+if %1==--Debug ( set "buildMode=Debug" )
+if %1==--Release ( set "buildMode=Release" )
+if %1==--RelWithDebInfo ( set "buildMode=RelWithDebInfo" )
 
 if not defined 2 goto :noargs
-if %2 == --Debug set "buildMode=Debug"
-if %2 == --Release set "buildMode=Release"
-if %2 == --RelWithDebInfo set "buildMode=RelWithDebInfo"
+if %2==--Debug ( set "buildMode=Debug" )
+if %2==--Release ( set "buildMode=Release" )
+if %2==--RelWithDebInfo ( set "buildMode=RelWithDebInfo" )
 
 :noargs
 set powershell=powershell
 where powershell > nul 2>&1
-if %ERRORLEVEL% == 1 ( goto :pwsh )
+if %ERRORLEVEL%==1 ( goto :pwsh )
 echo "Found `powershell` command." && goto :start
 
 :pwsh
 set powershell=pwsh
 where pwsh > nul 2>&1
-if %ERRORLEVEL% == 1 ( goto :nopwsh )
+if %ERRORLEVEL%==1 ( goto :nopwsh )
 set PWSHV7=1
 echo "Found `pwsh` command." && goto :start
 
@@ -83,9 +83,9 @@ echo.
 
 REM //---------- Check cmake version ----------
 call scripts\cmd\check_cmake.cmd
-if %ERRORLEVEL% == 1 (
+if %ERRORLEVEL%==1 (
   call scripts\cmd\check_cmake.cmd
-  if %ERRORLEVEL% == 1 (
+  if %ERRORLEVEL%==1 (
     echo.
     echo "ERROR: CMake not installed correctly."
     goto :buildfailed
@@ -99,7 +99,7 @@ if not exist external ( mkdir external )
 REM //---------- Get rpclib ----------
 REM if not exist external\rpclib mkdir external\rpclib
 if not exist external\rpclib\rpclib-%RPCLIB_VERSION% (
-
+    
     REM // Leave some blank lines because %powershell% shows download banner at top of console
     echo.
     echo "-----------------------------------------------------------------------------------------"
@@ -135,7 +135,6 @@ if not exist external\rpclib\rpclib-%RPCLIB_VERSION%\build (
 cd external\rpclib\rpclib-%RPCLIB_VERSION%\build
 
 cmake -G"Visual Studio 17 2022" ..
-
 if not defined buildMode (
     cmake --build .
     cmake --build . --config Release
@@ -143,7 +142,7 @@ if not defined buildMode (
     cmake --build . --config %buildMode%
 )
 
-if %ERRORLEVEL% == 1 ( goto :buildfailed )
+if %ERRORLEVEL%==1 ( goto :buildfailed )
 cd %PROJECT_DIR%
 echo "Current directory: %PROJECT_DIR%"
 
@@ -156,6 +155,7 @@ set RPCLIB_TARGET_INCLUDE=AutonomyLib\deps\rpclib\include
 if not exist %RPCLIB_TARGET_INCLUDE% (
     mkdir %RPCLIB_TARGET_INCLUDE%
 )
+
 robocopy /MIR external\rpclib\rpclib-%RPCLIB_VERSION%\include %RPCLIB_TARGET_INCLUDE%
 
 if not defined buildMode (
@@ -171,42 +171,41 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv (
 )
 
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
-
     if not defined fullPolyCar (
         echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
-    ) else if %fullPolyCar% == y or %fullPolyCar% == yes (
-
-        REM //leave some blank lines because %powershell% shows download banner at top of console
-        echo.
-        echo "-----------------------------------------------------------------------------------------"
-        echo " Downloading ~37MB of high-poly car assets..."
-        echo " To perform the installation without these assets, run `build.cmd --no-full-poly-car`"
-        echo "-----------------------------------------------------------------------------------------"
-        echo.
-
-        if exist tmp\suv_download rmdir tmp\suv_download /q /s
-        mkdir tmp\suv_download
-        REM @echo on
-        REM %powershell% -command "& { Start-BitsTransfer -Source https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip -Destination tmp\suv_download\car_assets.zip }"
-        REM %powershell% -command "& { (New-Object System.Net.WebClient).DownloadFile('https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip', tmp\suv_download\car_assets.zip) }"
-        if not defined PWSHV7 (
-            %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip }"
-        ) else (
-            %powershell% -command "iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip"
-        )
-        REM @echo off
-        rmdir Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV /q /s
-        %powershell% -command "Expand-Archive -Path tmp\suv_download\car_assets.zip -DestinationPath Unreal\Plugins\AutonomySim\Content\VehicleAdv"
-        rmdir tmp\suv_download /q /s
-        
-        REM //Don't fail the build if the high-poly car is unable to be downloaded
-        REM //Instead, just notify users that the gokart will be used.
-        if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV (
-            echo "Download of high-polycount SUV failed. Your AutonomySim build will use the default vehicle instead."
-        )
     ) else (
-        echo "Input not recognized. Aborting."
-        exit /b 1
+        if %fullPolyCar%==y or %fullPolyCar%==yes (
+            REM //leave some blank lines because %powershell% shows download banner at top of console
+            echo.
+            echo "-----------------------------------------------------------------------------------------"
+            echo " Downloading ~37MB of high-poly car assets..."
+            echo " To perform the installation without these assets, run `build.cmd --no-full-poly-car`"
+            echo "-----------------------------------------------------------------------------------------"
+            echo.
+
+            if exist tmp\suv_download rmdir tmp\suv_download /q /s
+            mkdir tmp\suv_download
+            REM @echo on
+            REM %powershell% -command "& { Start-BitsTransfer -Source https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip -Destination tmp\suv_download\car_assets.zip }"
+            REM %powershell% -command "& { (New-Object System.Net.WebClient).DownloadFile('https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip', tmp\suv_download\car_assets.zip) }"
+            if not defined PWSHV7 (
+                %powershell% -command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip }"
+            ) else (
+                %powershell% -command "iwr https://github.com/nervosys/AutonomySim/releases/download/v2.0.0-beta.0/car_assets.zip -OutFile tmp\suv_download\car_assets.zip"
+            )
+            REM @echo off
+            rmdir Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV /q /s
+            %powershell% -command "Expand-Archive -Path tmp\suv_download\car_assets.zip -DestinationPath Unreal\Plugins\AutonomySim\Content\VehicleAdv"
+            rmdir tmp\suv_download /q /s
+
+            REM //Don't fail the build if the high-poly car is unable to be downloaded
+            REM //Instead, just notify users that the gokart will be used.
+            if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV (
+                echo "Download of high-polycount SUV failed. Your AutonomySim build will use the default vehicle instead."
+        ) else (
+            echo "Input not recognized. Aborting."
+            exit /b 1
+        )
     )
 )
 
@@ -233,12 +232,12 @@ if not exist AutonomyLib\deps\eigen3 ( goto :buildfailed )
 REM //---------- We now have all dependencies to compile AutonomySim.sln, which will also compile MavLinkCom ----------
 if not defined buildMode (
     msbuild -maxcpucount:%CPU_COUNT_MAX% /p:Platform=%PLATFORM% /p:Configuration=Debug AutonomySim.sln
-    if %ERRORLEVEL% == 1 ( goto :buildfailed )
+    if %ERRORLEVEL%==1 ( goto :buildfailed )
     msbuild -maxcpucount:%CPU_COUNT_MAX% /p:Platform=%PLATFORM% /p:Configuration=Release AutonomySim.sln
-    if %ERRORLEVEL% == 1 ( goto :buildfailed )
+    if %ERRORLEVEL%==1 ( goto :buildfailed )
 ) else (
     msbuild -maxcpucount:%CPU_COUNT_MAX% /p:Platform=%PLATFORM% /p:Configuration=%buildMode% AutonomySim.sln
-    if %ERRORLEVEL% == 1 ( goto :buildfailed )
+    if %ERRORLEVEL%==1 ( goto :buildfailed )
 )
 
 REM //---------- Copy binaries and includes for MavLinkCom in deps ----------
@@ -253,7 +252,7 @@ REM //---------- All of our outputs go to Unreal/Plugins folder ----------
 if not exist Unreal\Plugins\AutonomySim\Source\AutonomyLib (
     mkdir Unreal\Plugins\AutonomySim\Source\AutonomyLib
 )
-robocopy /MIR AutonomyLib Unreal\Plugins\AutonomySim\Source\AutonomyLib  /XD temp *. /njh /njs /ndl /np
+robocopy /MIR AutonomyLib Unreal\Plugins\AutonomySim\Source\AutonomyLib /XD temp *. /njh /njs /ndl /np
 copy /y AutonomySim.props Unreal\Plugins\AutonomySim\Source\AutonomyLib
 
 REM //---------- Update all Unreal environments ----------
