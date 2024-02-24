@@ -1,4 +1,4 @@
-@echo off
+@echo on
 REM ----------------------------------------------------------------------------------------
 REM  Filename
 REM    recursive_rename.cmd

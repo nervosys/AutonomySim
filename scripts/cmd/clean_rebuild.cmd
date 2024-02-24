@@ -1,4 +1,4 @@
-@echo off
+REM @echo off
 
 REM //---------- set up variable ----------
 setlocal
