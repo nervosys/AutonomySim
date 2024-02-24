@@ -173,8 +173,7 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv (
 if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
     if not defined fullPolyCar (
         echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
-    ) else (
-        (if %fullPolyCar%==y) || (if %fullPolyCar%==yes) (
+    ) else if %fullPolyCar%==y (
             REM //leave some blank lines because %powershell% shows download banner at top of console
             echo.
             echo "-----------------------------------------------------------------------------------------"
@@ -183,7 +182,7 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
             echo "-----------------------------------------------------------------------------------------"
             echo.
 
-            if exist tmp\suv_download rmdir tmp\suv_download /q /s
+            if exist tmp\suv_download ( rmdir tmp\suv_download /q /s )
             mkdir tmp\suv_download
             REM @echo on
             REM %powershell% -command "& { Start-BitsTransfer -Source https://github.com/nervosys/AutonomySim/releases/download/v1.2.0/car_assets.zip -Destination tmp\suv_download\car_assets.zip }"
@@ -202,10 +201,9 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
             REM //Instead, just notify users that the gokart will be used.
             if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV (
                 echo "Download of high-polycount SUV failed. Your AutonomySim build will use the default vehicle instead."
-        ) else (
-            echo "Input not recognized. Aborting."
-            exit /b 1
-        )
+    ) else (
+        echo "Value for fullPolyCar not recognized: %fullPolyCar%. Aborting."
+        exit /b 1
     )
 )
 
