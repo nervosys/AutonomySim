@@ -99,7 +99,7 @@ if not exist external ( mkdir external )
 REM //---------- Get rpclib ----------
 REM if not exist external\rpclib mkdir external\rpclib
 if not exist external\rpclib\rpclib-%RPCLIB_VERSION% (
-    
+
     REM // Leave some blank lines because %powershell% shows download banner at top of console
     echo.
     echo "-----------------------------------------------------------------------------------------"
@@ -174,7 +174,7 @@ if not exist Unreal\Plugins\AutonomySim\Content\VehicleAdv\SUV\v1.2.0 (
     if not defined fullPolyCar (
         echo "Skipping download of high-poly car asset. Default Unreal Engine vehicle will be used."
     ) else (
-        if %fullPolyCar%==y or %fullPolyCar%==yes (
+        (if %fullPolyCar%==y) || (if %fullPolyCar%==yes) (
             REM //leave some blank lines because %powershell% shows download banner at top of console
             echo.
             echo "-----------------------------------------------------------------------------------------"
