@@ -16,7 +16,7 @@ set fullPolyCar=
 set buildMode=
 
 REM // Check Visual Studio version
-if %VisualStudioVersion% EQU "" (
+if %VisualStudioVersion% == "" (
     echo.
     echo "ERROR: command must be run from VS2022 Developer Command Prompt or Developer PowerShell."
     goto :buildfailed_nomsg
