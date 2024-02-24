@@ -14,7 +14,7 @@ REM set cmake_version=
 
 where /q cmake
 if %ERRORLEVEL%==0 (
-	for /F "tokens=3" %%a in ('cmake --version ^| find cmake version') do (
+	for /F "tokens=3" %%a in ('cmake --version ^| find "cmake version"') do (
 		set cmake_version=%%a
 	)
 	if not defined cmake_version (
