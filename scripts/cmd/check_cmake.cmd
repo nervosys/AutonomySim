@@ -14,8 +14,9 @@ REM set cmake_version=
 
 where /q cmake
 if %ERRORLEVEL%==0 (
-	for /F "tokens=3" %%a in ('cmake --version ^| find "cmake version"') do (
+	for /F "tokens=3" %%a in ( 'cmake --version ^| find "cmake version"' ) do (
 		set cmake_version=%%a
+		echo "CMake version: %%a"
 	)
 	if not defined cmake_version (
 	  echo "Unable to get version of CMake." >&2
@@ -26,21 +27,18 @@ if %ERRORLEVEL%==0 (
   goto :download_install
 )
 
-for /F "tokens=1,2 delims=." %%a in (%cmake_version%) do (
+for /F "tokens=1,2 delims=." %%a in ( "%cmake_version%" ) do (
   set "cmake_ver_major=%%a"
   set "cmake_ver_minor=%%b"
 )
 
-if not defined cmake_ver_major (
-	echo "CMake major version not defined. Exiting."
-	exit /b 1
-)
-if not defined cmake_ver_minor (
-	echo "CMake minor version not defined. Exiting."
+if not defined cmake_ver_major or not defined cmake_ver_minor (
+	echo "CMake version not defined. Exiting."
 	exit /b 1
 )
 
 set cmake_majmin=%cmake_ver_major:~-4%.%cmake_ver_minor:~-4%
+echo "CMake version major,minor: %cmake_majmin%"
 
 if %cmake_majmin% lss %cmake_min_majmin% (
   echo.
