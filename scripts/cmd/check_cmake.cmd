@@ -32,8 +32,12 @@ for /F "tokens=1,2 delims=." %%a in ( "%cmake_version%" ) do (
   set "cmake_ver_minor=%%b"
 )
 
-if not defined cmake_ver_major or not defined cmake_ver_minor (
-	echo "CMake version not defined. Exiting."
+if not defined cmake_ver_major (
+	echo "CMake version major not defined. Exiting."
+	exit /b 1
+)
+if not defined cmake_ver_minor (
+	echo "CMake version minor not defined. Exiting."
 	exit /b 1
 )
 
