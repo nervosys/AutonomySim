@@ -54,7 +54,7 @@ jobs:
         run: |
           set WorkingDir=%cd%
           echo "Current directory: %WorkingDir%"
-          "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\LaunchDevCmd.bat"
+          cmd /c "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\LaunchDevCmd.bat"
           cd %WorkingDir%
           scripts\cmd\build.cmd
 
