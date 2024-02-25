@@ -50,7 +50,7 @@ param(
 ### Imports
 ###
 
-# NOTE: Prefer Import-Module to Get-Content for its scoping rules
+# NOTE: Prefer Import-Module to Get-Content for its scoping rules.
 
 # Common utilities
 # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
@@ -102,9 +102,9 @@ $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 function Build-Solution {
   [OutputType()]
   param(
-    [Parameter(Mandatory)]
+    [Parameter()]
     [String]
-    $BuildMode,
+    $BuildMode = 'Release',
     [Parameter(Mandatory)]
     [String]
     $SystemPlatform,
@@ -118,12 +118,12 @@ function Build-Solution {
   [String]$IgnoreErrorCodes = $IgnoreErrors -Join ';'
   if ( $BuildMode -eq 'Release' ) {
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-      "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow
+    "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Continue
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-      "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow
+    "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Continue
   }
   else {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Continue
   }
   if (!$?) { exit $LASTEXITCODE }  # exit on error
   return $null
@@ -144,12 +144,12 @@ function Copy-GeneratedBinaries {
   )
   # Copy binaries and includes for MavLinkCom in deps
   New-Item -ItemType Directory -Path ("$MavLinkTargetLib", "$MavLinkTargetInclude") -Force | Out-Null
-  Copy-Item -Path '.\MavLinkCom\lib' -Destination "$MavLinkTargetLib"
-  Copy-Item -Path '.\MavLinkCom\include' -Destination "$MavLinkTargetInclude"
+  Copy-Item -Path '.\MavLinkCom\lib' -Destination "$MavLinkTargetLib" -Recurse -Verbose
+  Copy-Item -Path '.\MavLinkCom\include' -Destination "$MavLinkTargetInclude" -Recurse -Verbose
   # Copy outputs into Unreal/Plugins directory
   New-Item -ItemType Directory -Path "$AutonomyLibPluginDir" -Force | Out-Null
-  Copy-Item -Path '.\AutonomyLib' -Destination "$AutonomyLibPluginDir"
-  Copy-Item -Path '.\AutonomySim.props' -Destination "$AutonomyLibPluginDir"
+  Copy-Item -Path '.\AutonomyLib' -Destination "$AutonomyLibPluginDir" -Recurse -Verbose
+  Copy-Item -Path '.\AutonomySim.props' -Destination "$AutonomyLibPluginDir" -Recurse -Verbose
   return $null
 }
 

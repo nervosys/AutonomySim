@@ -96,13 +96,13 @@ function Build-RpcLib {
     [String]$RPCLIB_TARGET_INCLUDE = '.\AutonomyLib\deps\rpclib\include'
     New-Item -ItemType Directory -Path ("$RPCLIB_TARGET_LIB", "$RPCLIB_TARGET_INCLUDE") -Force | Out-Null
     # copy directories robustly
-    Copy-Item -Path "${RPCLIB_PATH}\include" -Destination "${RPCLIB_TARGET_INCLUDE}"
+    Copy-Item -Path "${RPCLIB_PATH}\include" -Destination "${RPCLIB_TARGET_INCLUDE}" -Recurse -Force
     if ( $BUILD_MODE -eq 'Release' ) {
-        Copy-Item -Path "${RPCLIB_PATH}\build\Debug" -Destination "${RPCLIB_TARGET_LIB}\Debug"
-        Copy-Item -Path "${RPCLIB_PATH}\build\Release" -Destination "${RPCLIB_TARGET_LIB}\Release"
+        Copy-Item -Path "${RPCLIB_PATH}\build\Debug" -Destination "${RPCLIB_TARGET_LIB}\Debug" -Recurse -Force
+        Copy-Item -Path "${RPCLIB_PATH}\build\Release" -Destination "${RPCLIB_TARGET_LIB}\Release" -Recurse -Force
     }
     else {
-        Copy-Item -Path "${RPCLIB_PATH}\build\${BUILD_MODE}" -Destination "${RPCLIB_TARGET_LIB}\$BUILD_MODE"
+        Copy-Item -Path "${RPCLIB_PATH}\build\${BUILD_MODE}" -Destination "${RPCLIB_TARGET_LIB}\$BUILD_MODE" -Recurse -Force
     }
     return $null
 }

@@ -30,7 +30,7 @@ function Build-Documentation {
   param()
   # Create and copy docs into build directory
   New-Item -ItemType Directory -Path "$BUILD_DIR" -Force | Out-Null
-  Copy-Item -Path "docs" -Destination "${BUILD_DIR}\docs_root\docs" -Container -Force -Recurse  # -Exclude @("temp")
+  Copy-Item -Path "docs" -Destination "${BUILD_DIR}\docs_root\docs" -Force -Recurse  # -Exclude @("temp")
   Copy-Item -Path ".\*.md" -Destination "${BUILD_DIR}\docs_root" -Force
   Move-Item -Path "${BUILD_DIR}\docs_root\docs\mkdocs.yml" -Destination "$BUILD_DIR" -Force
   if ( $Verbose.IsPresent ) {
@@ -43,9 +43,9 @@ function Build-Documentation {
   Start-Process -FilePath "mkdocs.exe" -ArgumentList "build" -Wait -NoNewWindow
   Set-Location "$PROJECT_DIR"
   # Copy docs_root into docs_build
-  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\images" -Destination "${BUILD_DIR}\build\images" -Container -Force -Recurse
-  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\misc"   -Destination "${BUILD_DIR}\build\misc"   -Container -Force -Recurse
-  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\paper"  -Destination "${BUILD_DIR}\build\paper"  -Container -Force -Recurse
+  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\images" -Destination "${BUILD_DIR}\build\images" -Force -Recurse
+  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\misc"   -Destination "${BUILD_DIR}\build\misc"   -Force -Recurse
+  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\paper"  -Destination "${BUILD_DIR}\build\paper"  -Force -Recurse
   if ( $Verbose.IsPresent ) {
     Write-Output 'Next Steps:'
     Write-Output '  1. git checkout gh-pages'
