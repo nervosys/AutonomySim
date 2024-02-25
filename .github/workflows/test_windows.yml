@@ -76,11 +76,11 @@ jobs:
         shell: pwsh
         run: |
           # Initialize Visual Studio 2022 Developer Command Prompt and prepend MSBuild to PATH.
-          [String]$WorkingDir = $PWD.Path
+          $WorkingDir = $PWD.Path
           Write-Output "Current directory: $WorkingDir"
           . 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -Latest
           Set-Location "$WorkingDir"
           # $ENV:Path += ";C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin"
           # $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 17 2022'
-          Set-PSDebug -Trace 1
+          # Set-PSDebug -Trace 1
           .\scripts\build.ps1 -BuildMode 'Release' -Automate
