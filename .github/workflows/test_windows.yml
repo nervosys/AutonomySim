@@ -37,25 +37,24 @@ jobs:
           # - arm64
     steps:
       - uses: actions/checkout@v4
-      #
-      # - name: "Enable Developer Command Prompt for Visual Studio"
-      #   uses: ilammy/msvc-dev-cmd@v1
-      #
-      # - name: "Add MSBuild to PATH"
-      #   uses: microsoft/setup-msbuild@v2
-      #
-      # REM Initialize Visual Studio 2022 Developer Command Prompt and prepend MSBuild to PATH.
-      # REM setx PATH "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\;%PATH%"
-      # REM set CMAKE_GENERATOR_PLATFORM = "Visual Studio 17 2022"
-      #
+
+      - name: "Enable Developer Command Prompt for Visual Studio"
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: "Add MSBuild to PATH"
+        uses: microsoft/setup-msbuild@v2
+
       - name: "Build AutonomyLib"
         if: ${{ matrix.os == 'windows-2022' }}
         shell: cmd
         run: |
-          set WorkingDir=%cd%
-          echo "Current directory: %WorkingDir%"
-          "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\vsdevcmd.bat"
-          cd %WorkingDir%
+          REM Initialize Visual Studio 2022 Developer Command Prompt and prepend MSBuild to PATH.
+          REM set WorkingDir=%cd%
+          REM echo "Current directory: %WorkingDir%"
+          REM "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\vsdevcmd.bat"
+          REM setx PATH "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\;%PATH%"
+          REM cd %WorkingDir%
+          REM set CMAKE_GENERATOR_PLATFORM = "Visual Studio 17 2022"
           scripts\cmd\build.cmd
 
   build-windows-pwsh:
