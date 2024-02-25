@@ -79,7 +79,7 @@ function Build-RpcLib {
     Set-Location "${RPCLIB_PATH}\build"
     if ( $Verbose.IsPresent ) { Write-Output "Current directory: ${RPCLIB_PATH}\build" }
     # Generate RpcLib build files
-    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G ${CmakeGenerator}", '..' -Wait -NoNewWindow
+    Start-Process -FilePath 'cmake.exe' -ArgumentList "-G '${CmakeGenerator}'", '..' -Wait -NoNewWindow
     # Build RpcLib
     if ( $BUILD_MODE -eq 'Release' ) {
         Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.' -Wait -NoNewWindow
