@@ -52,25 +52,28 @@ function Set-VsInstance {
         [Boolean]
         $Automate = $false
     )
-    $SetupArgs = "-all -sort"
+    [String]$SetupArgs = "-all -sort"
     $Configs = Get-VsInstance -VsWhereArgs $SetupArgs
-    $DisplayProperties = @("displayName", "instanceId", "installationVersion", "isPrerelease", "installationName", "installDate")
-    $DisplayProperties = @("#") + $DisplayProperties
-    # Add an ID number for each installation
-    $Configs = $Configs |
-    Sort-Object displayName, installationDate |
-    ForEach-Object { $i = 0; $i++; $_ | Add-Member -NotePropertyName "#" -NotePropertyValue $i -PassThru }
-    Write-Output "The following Visual Studio installations were found:"
-    $Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ }
+    # Sort by version: highest to lowest
+    $Configs = $Configs | Sort-Object installationVersion -Descending
+    # Add ID number to each installation
+    for ($i = 0; $i -lt $Configs.count; $i++) {
+        $Configs[$i] | Add-Member -NotePropertyName "#" -NotePropertyValue "$i"
+    }
+    $DisplayProperties = @('displayName', 'instanceId', 'installationVersion', 'isPrerelease', 'installationName', 'installDate')
+    $DisplayProperties = @('#') + $DisplayProperties
+    Write-Output 'The following Visual Studio installations were found:'
+    Write-Output ($Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ })
+    # If automation is enabled: select the latest version
+    [String]$Selected = $null
     if ($Automate -eq $true) {
-        $Selected = "1"
-    }
-    elseif ($Automate -eq $false) {
+        $Selected = "0"
+    } elseif ($Automate -eq $false) {
         $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
-    }
-    else {
-        Write-Output "No Visual Studio installation selected. Exiting program."
-        Invoke-Fail -ErrorMessage "Error: Failed to select Visual Studio installation."
+        if ( $Selected -eq '' ) { Invoke-Fail -ErrorMessage 'Error: Visual Studio instance not selected.' }
+    } else {
+        Write-Output 'No Visual Studio installation selected. Exiting program.'
+        Invoke-Fail -ErrorMessage 'Error: Failed to select Visual Studio installation.'
     }
     $Config = $Configs | Where-Object { $_."#" -eq $Selected }
     return $Config
@@ -81,13 +84,13 @@ function Get-VsInstanceVersion {
     param(
         [Parameter(Mandatory)]
         [System.Object]
-        $Config  # configuration output by Get-VsInstance or Set-VsInstance
+        $Config     # object output by Get-VsInstance or Set-VsInstance
     )
     return [Version]::new($Config.installationVersion)
 }
 
-function Test-VisualStudioVersion {
-    [OutputType([Boolean])]
+function Test-VsInstanceVersion {
+    [OutputType()]
     param(
         [Parameter()]
         [Version]
@@ -108,10 +111,10 @@ function Test-VisualStudioVersion {
         Write-Output 'Here are few easy steps to perform the upgrade:'
         Write-Output '  https://github.com/nervosys/AutonomySim/blob/master/docs/unreal_upgrade.md'
         Invoke-Fail -ErrorMessage "Error: Visual Studio version does not meet minimum requirement."
-    }
-    else {
+    } else {
         Write-Output "Success: Visual Studio version test passed."
     }
+    return $null
 }
 
 ###
@@ -119,4 +122,4 @@ function Test-VisualStudioVersion {
 ###
 
 Export-ModuleMember -Variable VS_VERSION_MINIMUM
-Export-ModuleMember -Function Get-VsInstance, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
+Export-ModuleMember -Function Get-VsInstance, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion

@@ -52,7 +52,7 @@ param(
 
 # NOTE: Prefer Import-Module to Get-Content for its scoping rules.
 
-# Common utilities
+# Utilities
 # imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
 #   Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
 #   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
@@ -63,11 +63,11 @@ Import-Module "${PWD}\scripts\mod_utils.psm1"
 Import-Module "${PWD}\scripts\mod_docs.psm1"          # imports: Build-Documentation
 
 # Tests
-Import-Module "${PWD}\scripts\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VisualStudioVersion
 Import-Module "${PWD}\scripts\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
-Import-Module "${PWD}\scripts\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
 Import-Module "${PWD}\scripts\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
+Import-Module "${PWD}\scripts\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
 Import-Module "${PWD}\scripts\mod_unrealasset.psm1"    # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
+Import-Module "${PWD}\scripts\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
 
 ###
 ### Variables
@@ -122,8 +122,7 @@ function Build-Solution {
     "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
     "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
-  }
-  else {
+  } else {
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
   }
   if ( ! $? ) { exit $LastExitCode }  # exit on error
@@ -229,7 +228,7 @@ Write-Output ''
 Test-WorkingDirectory
 
 # Test Visual Studio version (optionally automated for CI/CD).
-Test-VisualStudioVersion -Automate $AUTOMATE
+Test-VsInstanceVersion -Automate $AUTOMATE
 
 # Test CMake version (downloads and installs CMake).
 Test-CmakeVersion
