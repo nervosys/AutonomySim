@@ -99,6 +99,7 @@ $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 ### Functions
 ###
 
+# Compile AutonomySim.sln, which will also compile MavLinkCom.
 function Build-Solution {
   [OutputType()]
   param(
@@ -118,14 +119,14 @@ function Build-Solution {
   [String]$IgnoreErrorCodes = $IgnoreErrors -Join ';'
   if ( $BuildMode -eq 'Release' ) {
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-    "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Continue
+    "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-    "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Continue
+    "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
   }
   else {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Continue
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
   }
-  if (!$?) { exit $LASTEXITCODE }  # exit on error
+  if ( ! $? ) { exit $LastExitCode }  # exit on error
   return $null
 }
 

@@ -33,9 +33,9 @@ function CleanBuild {
   Remove-Item -Path $LibPaths -Force -Recurse
   # Run MSBuild Clean for Debug and Release.
   Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", '/p:Configuration=Debug', '/t:Clean', 'AutonomySim.sln' -Wait -NoNewWindow
-  if (!$?) { exit $LASTEXITCODE }  # exit on error
+  if ( ! $? ) { exit $LastExitCode }  # exit on error
   Start-Process -FilePath 'msbuild.exe' -ArgumentList "/p:Platform=x64", '/p:Configuration=Release', '/t:Clean', 'AutonomySim.sln' -Wait -NoNewWindow
-  if (!$?) { exit $LASTEXITCODE }  # exit on error
+  if ( ! $? ) { exit $LastExitCode }  # exit on error
   return $null
 }
 

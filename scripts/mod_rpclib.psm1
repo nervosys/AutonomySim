@@ -90,7 +90,7 @@ function Build-RpcLib {
     else {
         Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', "--config ${BUILD_MODE}" -Wait -NoNewWindow
     }
-    if (!$?) { exit $LASTEXITCODE }  # exit on subprocess error
+    if ( ! $? ) { exit $LastExitCode }  # exit on subprocess error
     Set-Location "$PROJECT_DIR"
     if ( $Verbose.IsPresent ) { Write-Output "Current directory: ${PROJECT_DIR}" }
     # Copy rpclib binaries and include folder inside AutonomyLib folder
