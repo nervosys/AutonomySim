@@ -15,8 +15,11 @@ PARAMETERS:
   - UnrealAsset:    Enable for an Unreal Engine full-polycount SUV asset.
   - Automate:       Enable to automate Visual Studio installation selection.
 NOTES:
-  Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
-  Script is intended to run from the 'AutonomySim' base project directory.
+  - Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
+  - Script is intended to run from the 'AutonomySim' base project directory.
+WARNINGS:
+  - PowerShell variables are case-insensitive.
+  - POwerShell module names are case-insensitive (with exceptions).
 
   Copyright © 2024 Nervosys, LLC
 #>
@@ -78,11 +81,11 @@ $PROJECT_DIR = "$PWD"
 $SCRIPT_DIR = "${PROJECT_DIR}\scripts"
 
 # Command-line arguments
+$AUTOMATE_MODE = if ( $Automate.IsPresent ) { $true } else { $false }
 $BUILD_MODE = "$BuildMode"
 $DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
 $BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
 $UNREAL_ASSET = if ( $UnrealAsset.IsPresent ) { $true } else { $false }
-$AUTOMATE = if ( $Automate.IsPresent ) { $true } else { $false }
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # WARNING: Windows only
@@ -212,7 +215,7 @@ Write-Output " CPU count max:           $SYSTEM_CPU_MAX"
 Write-Output " Build mode:              $BUILD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output " Debug mode:              $DEBUG_MODE"
-Write-Output " CI/CD mode:              $AUTOMATE"
+Write-Output " CI/CD mode:              $AUTOMATE_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output " Windows version:         $SYSTEM_OS_VERSION"
 Write-Output " Visual Studio version:   $VS_VERSION"
@@ -228,7 +231,7 @@ Write-Output ''
 Test-WorkingDirectory
 
 # Test Visual Studio version (optionally automated for CI/CD).
-Test-VsInstanceVersion -Automate $AUTOMATE
+Test-VsInstanceVersion -Automate $AUTOMATE_MODE
 
 # Test CMake version (downloads and installs CMake).
 Test-CmakeVersion
