@@ -9,9 +9,9 @@ DATE:
   2024-02-22
 PARAMETERS:
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
+  - BuildDocs:      Enable to build and serve AutonomySim documentation.
   - CmakeGenerator: [ 'Visual Studio 17 2022' | 'Visual Studio 16 2019' ]
   - SystemDebug:    Enable for computer system debugging messages.
-  - BuildDocs:      Enable to build and serve AutonomySim documentation.
   - UnrealAsset:    Enable for an Unreal Engine full-polycount SUV asset.
   - Automate:       Enable to automate Visual Studio installation selection.
 NOTES:
@@ -19,7 +19,7 @@ NOTES:
   - Script is intended to run from the 'AutonomySim' base project directory.
 WARNINGS:
   - PowerShell variables are case-insensitive.
-  - POwerShell module names are case-insensitive (with exceptions).
+  - PowerShell module names are case-insensitive (with exceptions).
 
   Copyright © 2024 Nervosys, LLC
 #>
@@ -32,15 +32,15 @@ param(
   [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
   [String]
   $BuildMode = 'Release',
+  [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
+  [Switch]
+  $BuildDocs,
   [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
   [String]
   $CmakeGenerator = 'Visual Studio 17 2022',
   [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
   [Switch]
   $SystemDebug,
-  [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
-  [Switch]
-  $BuildDocs,
   [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
   [Switch]
   $UnrealAsset,
@@ -83,6 +83,7 @@ $SCRIPT_DIR = "${PROJECT_DIR}\scripts"
 # Command-line arguments
 $AUTOMATE_MODE = if ( $Automate.IsPresent ) { $true } else { $false }
 $BUILD_MODE = "$BuildMode"
+$CMAKE_GENERATOR = "$CmakeGenerator"
 $DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
 $BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
 $UNREAL_ASSET = if ( $UnrealAsset.IsPresent ) { $true } else { $false }
@@ -243,7 +244,7 @@ Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 Test-EigenVersion
 
 # Test RpcLib version (downloads and builds rpclib).
-Test-RpcLibVersion -CmakeGenerator "$CmakeGenerator"
+Test-RpcLibVersion -CmakeGenerator "$CMAKE_GENERATOR"
 
 # Test high-polycount SUV asset.
 Test-UnrealAssetVersion -FullPolySuv $UNREAL_ASSET
