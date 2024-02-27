@@ -44,10 +44,10 @@ Import-Module "${PWD}\scripts\mod_utils.psm1"
 function Install-RpcLib {
     [OutputType()]
     param(
-        [Parameter(HelpMessage='')]
+        [Parameter()]
         [String]
         $RpcLibPath = $RPCLIB_PATH,
-        [Parameter(HelpMessage='')]
+        [Parameter()]
         [String]
         $RpcLibUrl = $RPCLIB_URL
     )
@@ -73,7 +73,7 @@ function Install-RpcLib {
 function Build-RpcLib {
     [OutputType()]
     param(
-        [Parameter(HelpMessage='')]
+        [Parameter()]
         [String]
         $RpcLibPath = $RPCLIB_PATH,
         [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
@@ -122,7 +122,7 @@ function Build-RpcLib {
 function Test-RpcLibVersion {
     [OutputType()]
     param(
-        [Parameter(HelpMessage='')]
+        [Parameter()]
         [String]
         $RpcLibPath = $RPCLIB_PATH,
         [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
