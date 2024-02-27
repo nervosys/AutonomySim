@@ -93,8 +93,7 @@ function Get-Exceptions {
   [String[]]$Exceptions = [AppDomain]::CurrentDomain.GetAssemblies() | foreach {
     try {
       $_.GetExportedTypes().BaseType | Where { $_.Fullname -Match 'Exception' }
-    }
-    catch {}
+    } catch {}
   }
   return $Exceptions | Sort-Object -Unique
 }
@@ -103,6 +102,18 @@ function Get-EnvVars {
   [OutputType([Object[]])]
   [Object[]]$EnvVars = Get-ChildItem 'env:*' | Sort-Object 'Name' | Format-List
   return $EnvVars
+}
+
+function Test-Program {
+  [OutputType([Boolean])]
+  param(
+    [Parameter(Mandatory)]
+    [String]
+    $Program
+  )
+  $ProgramResult = (Get-Command -Name "$Program" -ErrorAction SilentlyContinue)
+  [Boolean]$ProgramExists = if ( $null -eq $ProgramResult ) { $false } else { $true }
+  return $ProgramExists
 }
 
 function Get-ProgramVersion {

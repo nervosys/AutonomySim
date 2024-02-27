@@ -61,11 +61,13 @@ function Set-VsInstance {
     for ($i = 0; $i -lt $Configs.count; $i++) {
         $Configs[$i] | Add-Member -NotePropertyName "#" -NotePropertyValue "$i"
     }
-    $DisplayProperties = @('displayName', 'instanceId', 'installationVersion', 'isPrerelease', 'installationName', 'installDate')
-    $DisplayProperties = @('#') + $DisplayProperties
-    $VsVersionTable = ($Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ })
-    Write-Output 'The following Visual Studio installations were found:'
-    Write-Output $VsVersionTable
+    if ( $Verbose.IsPresent ) {
+        $DisplayProperties = @('displayName', 'instanceId', 'installationVersion', 'isPrerelease', 'installationName', 'installDate')
+        $DisplayProperties = @('#') + $DisplayProperties
+        $VsVersionTable = ($Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ })
+        Write-Output 'The following Visual Studio installations were found:'
+        Write-Output $VsVersionTable
+    }
     # If automation is enabled: select the latest version
     if ($Automate -eq $true) {
         $Selected = '0'

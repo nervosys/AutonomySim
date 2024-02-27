@@ -81,12 +81,12 @@ $PROJECT_DIR = "$PWD"
 $SCRIPT_DIR = "${PROJECT_DIR}\scripts"
 
 # Command-line arguments
-$AUTOMATE = if ( $Automate.IsPresent ) { $true } else { $false }
 $BUILD_MODE = "$BuildMode"
 $CMAKE_GENERATOR = "$CmakeGenerator"
 $DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
 $UNREAL_ASSET = if ( $UnrealAsset.IsPresent ) { $true } else { $false }
 $BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
+$AUTOMATE_MODE = if ( $Automate.IsPresent ) { $true } else { $false }
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # WARNING: Windows only
@@ -95,7 +95,7 @@ $SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
 $SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
 $SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
 $SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance -Automate $AUTOMATE
+$VS_INSTANCE = Set-VsInstance -Automate $AUTOMATE_MODE
 $VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
 $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
@@ -104,31 +104,31 @@ $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 ###
 
 # Compile AutonomySim.sln, which will also compile MavLinkCom.
-function Build-Solution {
+function Build-AutonomySim {
   [OutputType()]
   param(
     [Parameter()]
     [String]
-    $BuildMode = $BUILD_MODE,
-    [Parameter(Mandatory)]
+    $BuildMode = "$BUILD_MODE",
+    [Parameter()]
     [String]
-    $SystemPlatform,
-    [Parameter(Mandatory)]
+    $SystemPlatform = "$SYSTEM_PLATFORM",
+    [Parameter()]
     [UInt16]
-    $SystemCpuMax,
+    $SystemCpuMax = $SYSTEM_CPU_MAX,
     [Parameter()]
     [String[]]
     $IgnoreErrors = @()
   )
-  [String]$IgnoreErrorCodes = if ( $IgnoreErrors.Count -gt 0 ) { ($IgnoreErrors -Join ';') } else { '' }
-  if ( $BuildMode -eq 'Release' ) {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-      "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-      "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+  [String]$IgnoreErrorCodes = if ( $IgnoreErrors.Count -gt 0 ) { '-noerr:' + ($IgnoreErrors -Join ';') } else { '' }
+  if ( "$BuildMode" -eq 'Release' ) {
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
+    "/p:Platform=${SystemPlatform}", '/p:Configuration=Debug', 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
+    "/p:Platform=${SystemPlatform}", '/p:Configuration=Release', 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
   } else {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-      "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
+    "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
   }
   if ( ! $? ) { exit $LastExitCode }  # exit on error
   return $null
@@ -149,24 +149,24 @@ function Copy-GeneratedBinaries {
   )
   # Copy binaries and includes for MavLinkCom in deps
   New-Item -ItemType Directory -Path ("$MavLinkTargetLib", "$MavLinkTargetInclude") -Force | Out-Null
-  Copy-Item -Path '.\MavLinkCom\lib' -Destination "$MavLinkTargetLib" -Recurse -Verbose
-  Copy-Item -Path '.\MavLinkCom\include' -Destination "$MavLinkTargetInclude" -Recurse -Verbose
+  Copy-Item -Path '.\MavLinkCom\lib' -Destination "$MavLinkTargetLib" -Recurse
+  Copy-Item -Path '.\MavLinkCom\include' -Destination "$MavLinkTargetInclude" -Recurse
   # Copy outputs into Unreal/Plugins directory
   New-Item -ItemType Directory -Path "$AutonomyLibPluginDir" -Force | Out-Null
-  Copy-Item -Path '.\AutonomyLib' -Destination "$AutonomyLibPluginDir" -Recurse -Verbose
-  Copy-Item -Path '.\AutonomySim.props' -Destination "$AutonomyLibPluginDir" -Recurse -Verbose
+  Copy-Item -Path '.\AutonomyLib' -Destination "$AutonomyLibPluginDir" -Recurse
+  Copy-Item -Path '.\AutonomySim.props' -Destination "$AutonomyLibPluginDir" -Recurse
   return $null
 }
 
 function Get-VsUnrealProjectFiles {
   [OutputType()]
   param(
-    [Parameter(Mandatory)]
-    [String]
-    $UnrealEnvDir,
     [Parameter()]
     [String]
-    $ProjectDir = "$PROJECT_DIR"
+    $ProjectDir = "$PROJECT_DIR",
+    [Parameter(Mandatory)]
+    [String]
+    $UnrealEnvDir
   )
   Set-Location "$UnrealEnvDir"
   # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
@@ -188,9 +188,9 @@ function Update-VsUnrealProjectFiles {
     $ProjectDir = "$PROJECT_DIR",
     [Parameter()]
     [String]
-    $UnrealEnvDir = '.\Unreal\Environments'
+    $UnrealEnvBaseDir = '.\UnrealPlugin\Unreal\Environments'
   )
-  $UnrealEnvDirs = (Get-ChildItem -Path "$UnrealEnvDir" -Directory | Select-Object FullName).FullName
+  $UnrealEnvDirs = (Get-ChildItem -Path "$UnrealEnvBaseDir" -Directory | Select-Object FullName).FullName
   foreach ( $d in $UnrealEnvDirs ) {
     Get-VsUnrealProjectFiles -UnrealEnvDir "$d" -ProjectDir "$ProjectDir"
   }
@@ -220,7 +220,7 @@ if ( $Verbose.IsPresent ) {
   Write-Output " Build mode:              $BUILD_MODE"
   Write-Output '-----------------------------------------------------------------------------------------'
   Write-Output " Debug mode:              $DEBUG_MODE"
-  Write-Output " CI/CD mode:              $AUTOMATE"
+  Write-Output " CI/CD mode:              $AUTOMATE_MODE"
   Write-Output " Build docs:              $BUILD_DOCS"
   Write-Output '-----------------------------------------------------------------------------------------'
   Write-Output " Windows version:         $SYSTEM_OS_VERSION"
@@ -241,7 +241,7 @@ Test-WorkingDirectory
 Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 
 # Test Visual Studio version (optionally automated for CI/CD).
-Test-VsInstanceVersion -Automate $AUTOMATE
+Test-VsInstanceVersion -Automate $AUTOMATE_MODE
 
 # Test CMake version (downloads and installs CMake).
 Test-CmakeVersion
@@ -250,13 +250,13 @@ Test-CmakeVersion
 Test-EigenVersion
 
 # Test RpcLib version (downloads and builds rpclib).
-Test-RpcLibVersion -CmakeGenerator "$CMAKE_GENERATOR"
+Test-RpcLibVersion -BuildMode "$BUILD_MODE" -CmakeGenerator "$CMAKE_GENERATOR"
 
 # Test high-polycount SUV asset.
 Test-UnrealAssetVersion -FullPolySuv $UNREAL_ASSET
 
 # Compile AutonomySim.sln including MavLinkCom.
-Build-Solution -BuildMode "$BUILD_MODE" -SystemPlatform "$SYSTEM_PLATFORM" -SystemCpuMax "$SYSTEM_CPU_MAX"
+Build-AutonomySim -BuildMode "$BUILD_MODE" -SystemPlatform "$SYSTEM_PLATFORM" -SystemCpuMax "$SYSTEM_CPU_MAX"
 
 # Copy binaries and includes for MavLinkCom and Unreal/Plugins.
 Copy-GeneratedBinaries
