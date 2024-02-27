@@ -76,7 +76,7 @@ function Build-RpcLib {
         [Parameter()]
         [String]
         $RpcLibPath = $RPCLIB_PATH,
-        [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
+        [Parameter(HelpMessage = 'Options: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]')]
         [String]
         $CmakeGenerator = "$CMAKE_GENERATOR"
     )

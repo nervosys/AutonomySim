@@ -83,4 +83,4 @@ jobs:
           # $ENV:Path += ";C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin"
           # $CMAKE_GENERATOR_PLATFORM = 'Visual Studio 17 2022'
           # Set-PSDebug -Trace 1
-          .\scripts\build.ps1 -BuildMode 'Release' -Automate
+          .\scripts\build.ps1 -BuildMode 'Release' -CmakeGenerator 'Visual Studio 17 2022' -Automate -Verbose

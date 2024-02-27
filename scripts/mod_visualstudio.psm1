@@ -28,6 +28,7 @@ Import-Module "${PWD}\scripts\mod_utils.psm1"
 ###
 
 [Version]$VS_VERSION_MINIMUM = '16.0'  # versions: [2019 = 16, 2022 = 17]
+[Boolean]$AUTOMATE_MODE = $false
 
 ###
 ### Functions
@@ -50,7 +51,7 @@ function Set-VsInstance {
     param(
         [Parameter()]
         [Boolean]
-        $Automate = $false
+        $Automate = $AUTOMATE_MODE
     )
     [String]$SetupArgs = "-all -sort"
     $Configs = Get-VsInstance -VsWhereArgs $SetupArgs
@@ -62,12 +63,12 @@ function Set-VsInstance {
     }
     $DisplayProperties = @('displayName', 'instanceId', 'installationVersion', 'isPrerelease', 'installationName', 'installDate')
     $DisplayProperties = @('#') + $DisplayProperties
+    $VsVersionTable = ($Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ })
     Write-Output 'The following Visual Studio installations were found:'
-    Write-Output ($Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ })
+    Write-Output $VsVersionTable
     # If automation is enabled: select the latest version
-    [String]$Selected = $null
     if ($Automate -eq $true) {
-        $Selected = "0"
+        $Selected = '0'
     } elseif ($Automate -eq $false) {
         $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
         if ( $Selected -eq '' ) { Invoke-Fail -ErrorMessage 'Error: Visual Studio instance not selected.' }
@@ -97,10 +98,10 @@ function Test-VsInstanceVersion {
         $MinimumVersion = $VS_VERSION_MINIMUM,
         [Parameter()]
         [Boolean]
-        $Automate = $false
+        $Automate = $AUTOMATE_MODE
     )
     $VsInstance = Set-VsInstance -Automate $Automate
-    $CurrentVersion = Get-VsInstanceVersion($VsInstance)
+    $CurrentVersion = Get-VsInstanceVersion -Config $VsInstance
     if ( $null -eq $CurrentVersion ) {
         Invoke-Fail -ErrorMessage "Error: Failed to locate a Visual Studio instance."
     }

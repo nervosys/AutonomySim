@@ -9,8 +9,8 @@ DATE:
   2024-02-22
 PARAMETERS:
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
+  - CmakeGenerator: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
-  - CmakeGenerator: [ 'Visual Studio 17 2022' | 'Visual Studio 16 2019' ]
   - SystemDebug:    Enable for computer system debugging messages.
   - UnrealAsset:    Enable for an Unreal Engine full-polycount SUV asset.
   - Automate:       Enable to automate Visual Studio installation selection.
@@ -32,12 +32,12 @@ param(
   [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
   [String]
   $BuildMode = 'Release',
+  [Parameter(HelpMessage = 'Options: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]')]
+  [String]
+  $CmakeGenerator = 'Visual Studio 17 2022',
   [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
   [Switch]
   $BuildDocs,
-  [Parameter(HelpMessage = 'Options: [ "Visual Studio 17 2022" | "Visual Studio 16 2019" ]')]
-  [String]
-  $CmakeGenerator = 'Visual Studio 17 2022',
   [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
   [Switch]
   $SystemDebug,
@@ -62,15 +62,15 @@ param(
 #   Get-ArchitectureWidth, Set-ProcessorCount
 Import-Module "${PWD}\scripts\mod_utils.psm1"
 
-# Documentation
-Import-Module "${PWD}\scripts\mod_docs.psm1"          # imports: Build-Documentation
-
-# Tests
+# Build
 Import-Module "${PWD}\scripts\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
 Import-Module "${PWD}\scripts\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
 Import-Module "${PWD}\scripts\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
 Import-Module "${PWD}\scripts\mod_unrealasset.psm1"    # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
 Import-Module "${PWD}\scripts\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
+
+# Documentation
+Import-Module "${PWD}\scripts\mod_docs.psm1"          # imports: Build-Documentation
 
 ###
 ### Variables
@@ -81,12 +81,12 @@ $PROJECT_DIR = "$PWD"
 $SCRIPT_DIR = "${PROJECT_DIR}\scripts"
 
 # Command-line arguments
-$AUTOMATE_MODE = if ( $Automate.IsPresent ) { $true } else { $false }
+$AUTOMATE = if ( $Automate.IsPresent ) { $true } else { $false }
 $BUILD_MODE = "$BuildMode"
 $CMAKE_GENERATOR = "$CmakeGenerator"
 $DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
-$BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
 $UNREAL_ASSET = if ( $UnrealAsset.IsPresent ) { $true } else { $false }
+$BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # WARNING: Windows only
@@ -95,7 +95,7 @@ $SYSTEM_ARCHITECTURE = "${env:PROCESSOR_ARCHITECTURE}"
 $SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
 $SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
 $SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
-$VS_INSTANCE = Set-VsInstance -Automate $Automate
+$VS_INSTANCE = Set-VsInstance -Automate $AUTOMATE
 $VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
 $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
@@ -205,38 +205,40 @@ if ( $DEBUG_MODE -eq $true ) {
   Write-Output (Get-WindowsInfo -Info $SYSTEM_INFO)
 }
 
-Write-Output ''
-Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output ' Parameters'
-Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Project directory:       $PROJECT_DIR"
-Write-Output " Script directory:        $SCRIPT_DIR"
-Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Processor:               $SYSTEM_PROCESSOR"
-Write-Output " Architecture:            $SYSTEM_ARCHITECTURE"
-Write-Output " Platform:                $SYSTEM_PLATFORM"
-Write-Output " CPU count max:           $SYSTEM_CPU_MAX"
-Write-Output " Build mode:              $BUILD_MODE"
-Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Debug mode:              $DEBUG_MODE"
-Write-Output " CI/CD mode:              $AUTOMATE_MODE"
-Write-Output " Build docs:              $BUILD_DOCS"
-Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output " Windows version:         $SYSTEM_OS_VERSION"
-Write-Output " Visual Studio version:   $VS_VERSION"
-Write-Output " CMake version:           $CMAKE_VERSION"
-Write-Output " RPClib version:          $RPCLIB_VERSION"
-Write-Output " Eigen version:           $EIGEN_VERSION"
-Write-Output " Unreal Asset:            $UNREAL_ASSET"
-Write-Output " Unreal Asset version:    $UNREAL_ASSET_VERSION"
-Write-Output '-----------------------------------------------------------------------------------------'
-Write-Output ''
+if ( $Verbose.IsPresent ) {
+  Write-Output ''
+  Write-Output '-----------------------------------------------------------------------------------------'
+  Write-Output ' Parameters'
+  Write-Output '-----------------------------------------------------------------------------------------'
+  Write-Output " Project directory:       $PROJECT_DIR"
+  Write-Output " Script directory:        $SCRIPT_DIR"
+  Write-Output '-----------------------------------------------------------------------------------------'
+  Write-Output " Processor:               $SYSTEM_PROCESSOR"
+  Write-Output " Architecture:            $SYSTEM_ARCHITECTURE"
+  Write-Output " Platform:                $SYSTEM_PLATFORM"
+  Write-Output " CPU count max:           $SYSTEM_CPU_MAX"
+  Write-Output " Build mode:              $BUILD_MODE"
+  Write-Output '-----------------------------------------------------------------------------------------'
+  Write-Output " Debug mode:              $DEBUG_MODE"
+  Write-Output " CI/CD mode:              $AUTOMATE"
+  Write-Output " Build docs:              $BUILD_DOCS"
+  Write-Output '-----------------------------------------------------------------------------------------'
+  Write-Output " Windows version:         $SYSTEM_OS_VERSION"
+  Write-Output " Visual Studio version:   $VS_VERSION"
+  Write-Output " CMake version:           $CMAKE_VERSION"
+  Write-Output " RPClib version:          $RPCLIB_VERSION"
+  Write-Output " Eigen version:           $EIGEN_VERSION"
+  Write-Output " Unreal Asset:            $UNREAL_ASSET"
+  Write-Output " Unreal Asset version:    $UNREAL_ASSET_VERSION"
+  Write-Output '-----------------------------------------------------------------------------------------'
+  Write-Output ''
+}
 
 # Ensure script is run from `AutonomySim` project directory.
 Test-WorkingDirectory
 
 # Test Visual Studio version (optionally automated for CI/CD).
-Test-VsInstanceVersion -Automate $AUTOMATE_MODE
+Test-VsInstanceVersion -Automate $AUTOMATE
 
 # Test CMake version (downloads and installs CMake).
 Test-CmakeVersion
