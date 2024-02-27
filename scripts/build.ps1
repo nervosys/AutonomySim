@@ -120,14 +120,15 @@ function Build-Solution {
     [String[]]
     $IgnoreErrors = @()
   )
-  [String]$IgnoreErrorCodes = $IgnoreErrors -Join ';'
+  [String]$IgnoreErrorCodes = if ( $IgnoreErrors.Count -gt 0 ) { ($IgnoreErrors -Join ';') } else { '' }
   if ( $BuildMode -eq 'Release' ) {
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-    "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+      "/p:Platform=${SystemPlatform}", "/p:Configuration=Debug", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
-    "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+      "/p:Platform=${SystemPlatform}", "/p:Configuration=Release", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
   } else {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}", "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "-noerr:${IgnoreErrorCodes}",
+      "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
   }
   if ( ! $? ) { exit $LastExitCode }  # exit on error
   return $null
@@ -200,7 +201,9 @@ function Update-VsUnrealProjectFiles {
 ### Main
 ###
 
-if ( $DEBUG_MODE -eq $true ) { Write-Output ( Get-WindowsInfo($SYSTEM_INFO) ) }
+if ( $DEBUG_MODE -eq $true ) {
+  Write-Output (Get-WindowsInfo -Info $SYSTEM_INFO)
+}
 
 Write-Output ''
 Write-Output '-----------------------------------------------------------------------------------------'
@@ -217,6 +220,7 @@ Write-Output " Build mode:              $BUILD_MODE"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output " Debug mode:              $DEBUG_MODE"
 Write-Output " CI/CD mode:              $AUTOMATE_MODE"
+Write-Output " Build docs:              $BUILD_DOCS"
 Write-Output '-----------------------------------------------------------------------------------------'
 Write-Output " Windows version:         $SYSTEM_OS_VERSION"
 Write-Output " Visual Studio version:   $VS_VERSION"
