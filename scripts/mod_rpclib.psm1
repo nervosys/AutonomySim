@@ -31,7 +31,7 @@ Import-Module "${PWD}\scripts\mod_utils.psm1"
 [String]$SCRIPT_DIR = "${PROJECT_DIR}\scripts"
 
 [Version]$RPCLIB_VERSION = '2.3.0'
-[String]$RCPLIB_VERSION_MAJ_MIN_BUILD = Get-VersionMajorMinorBuild -Version "$RPCLIB_VERSION"
+[String]$RCPLIB_VERSION_MAJ_MIN_BUILD = Get-VersionMajorMinorBuild -Version $RPCLIB_VERSION
 [String]$RPCLIB_PATH = "external\rpclib\rpclib-${RCPLIB_VERSION_MAJ_MIN_BUILD}"
 [String]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RCPLIB_VERSION_MAJ_MIN_BUILD}.zip"
 
@@ -129,7 +129,6 @@ function Test-RpcLibVersion {
         [String]
         $CmakeGenerator = "$CMAKE_GENERATOR"
     )
-    Set-PSDebug -Trace 2
     if ( -not (Test-Path -LiteralPath "$RpcLibPath") ) {
         # Remove previous installations
         Remove-Item '.\external\rpclib' -Force -Recurse
@@ -144,7 +143,6 @@ function Test-RpcLibVersion {
     else {
         Write-Output "Success: rcplib version test passed."
     }
-    Set-PSDebug -Off
     return $null
 }
 

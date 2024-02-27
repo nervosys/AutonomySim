@@ -46,7 +46,7 @@ function Add-Directories {
     $Directories = @('temp', 'external', 'external\rpclib')
   )
   foreach ($d in $Directories) {
-    [System.IO.Directory]::CreateDirectory("$d")
+    [System.IO.Directory]::CreateDirectory("$d") | Out-Null
   }
 }
 

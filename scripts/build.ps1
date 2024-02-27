@@ -109,7 +109,7 @@ function Build-Solution {
   param(
     [Parameter()]
     [String]
-    $BuildMode = 'Release',
+    $BuildMode = $BUILD_MODE,
     [Parameter(Mandatory)]
     [String]
     $SystemPlatform,
@@ -166,7 +166,7 @@ function Get-VsUnrealProjectFiles {
     $UnrealEnvDir,
     [Parameter()]
     [String]
-    $ProjectDir = "$PWD"
+    $ProjectDir = "$PROJECT_DIR"
   )
   Set-Location "$UnrealEnvDir"
   # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
@@ -185,7 +185,7 @@ function Update-VsUnrealProjectFiles {
   param(
     [Parameter()]
     [String]
-    $ProjectDir = "$PWD",
+    $ProjectDir = "$PROJECT_DIR",
     [Parameter()]
     [String]
     $UnrealEnvDir = '.\Unreal\Environments'
@@ -237,14 +237,14 @@ if ( $Verbose.IsPresent ) {
 # Ensure script is run from `AutonomySim` project directory.
 Test-WorkingDirectory
 
+# Create temporary directories if they do not exist.
+Add-Directories -Directories @('temp', 'external', 'external\rpclib')
+
 # Test Visual Studio version (optionally automated for CI/CD).
 Test-VsInstanceVersion -Automate $AUTOMATE
 
 # Test CMake version (downloads and installs CMake).
 Test-CmakeVersion
-
-# Create temporary directories if they do not exist.
-Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 
 # Test Eigen library version.
 Test-EigenVersion
