@@ -129,6 +129,7 @@ function Test-RpcLibVersion {
         [String]
         $CmakeGenerator = "$CMAKE_GENERATOR"
     )
+    Set-PSDebug -Trace 2
     if ( -not (Test-Path -LiteralPath "$RpcLibPath") ) {
         # Remove previous installations
         Remove-Item '.\external\rpclib' -Force -Recurse
@@ -143,6 +144,7 @@ function Test-RpcLibVersion {
     else {
         Write-Output "Success: rcplib version test passed."
     }
+    Set-PSDebug -Off
     return $null
 }
 

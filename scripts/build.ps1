@@ -249,9 +249,6 @@ Add-Directories -Directories @('temp', 'external', 'external\rpclib')
 # Test Eigen library version.
 Test-EigenVersion
 
-### DEBUGGING ###
-Set-PSDebug -Trace 1
-
 # Test RpcLib version (downloads and builds rpclib).
 Test-RpcLibVersion -CmakeGenerator "$CMAKE_GENERATOR"
 
