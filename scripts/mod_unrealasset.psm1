@@ -80,6 +80,7 @@ function Test-UnrealAssetVersion {
       New-Item -ItemType Directory -Path "$AdvancedVehicleDir" -Force | Out-Null
       # Download SUV asset.
       Install-UnrealAsset -UnrealAssetUrl "$UnrealAssetUrl" -AdvancedVehicleDir "$AdvancedVehicleDir"
+      Write-Output 'Success: Unreal asset version test passed.'
       # If high-polycount SUV is unable to download, notify users that gokart will be used.
       if ( -not (Test-Path -LiteralPath "${AdvancedVehicleDir}\SUV") ) {
         Write-Output 'Download of high-polycount SUV failed. AutonomySim will use the default vehicle.'
