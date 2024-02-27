@@ -91,7 +91,7 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_MultirotorRpcLibAdaptors_8hpp_1a4ad96bb0b0fd837d8132bf284f81932c`
-
 - :ref:`exhale_function_MultirotorRpcLibAdaptors_8hpp_1abfcd08d1e6f1840d131bdd83c3ace4eb`
+
+- :ref:`exhale_function_MultirotorRpcLibAdaptors_8hpp_1a4ad96bb0b0fd837d8132bf284f81932c`
 
