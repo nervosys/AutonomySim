@@ -21,7 +21,7 @@ function Remove-ItemSilent {
   [OutputType()]
   param(
     [Parameter(HelpMessage = 'Path to the object for removal.')]
-    [String]
+    [String[]]
     $Path,
     [Parameter(HelpMessage = 'Optional filters for pattern matching.')]
     [String]
@@ -32,15 +32,15 @@ function Remove-ItemSilent {
   )
   if ( $Recurse.IsPresent ) {
     if ( $PSBoundParameters.ContainsKey('Filter') ) {
-      Remove-Item -Path "$Path" -Filter "$Filter" -Recurse -Force -ErrorAction SilentlyContinue
+      Remove-Item -Path $Path -Filter "$Filter" -Recurse -Force -ErrorAction SilentlyContinue
     } else {
-      Remove-Item -Path "$Path" -Recurse -Force -ErrorAction SilentlyContinue
+      Remove-Item -Path $Path -Recurse -Force -ErrorAction SilentlyContinue
     }
   } else {
     if ( $PSBoundParameters.ContainsKey('Filter') ) {
-      Remove-Item -Path "$Path" -Filter "$Filter" -Force -ErrorAction SilentlyContinue
+      Remove-Item -Path $Path -Filter "$Filter" -Force -ErrorAction SilentlyContinue
     } else {
-      Remove-Item -Path "$Path" -Force -ErrorAction SilentlyContinue
+      Remove-Item -Path $Path -Force -ErrorAction SilentlyContinue
     }
   }
   return $null

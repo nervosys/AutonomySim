@@ -58,7 +58,7 @@ function Install-Eigen {
     Write-Output '-----------------------------------------------------------------------------------------'
   }
   # Download and unpack library.
-  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12  # TLS v1.2
+  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # TLS v1.2
   Invoke-WebRequest "$EigenUrl" -OutFile '.\temp\eigen3.zip' -HttpVersion '2.0'
   Expand-Archive -Path '.\temp\eigen3.zip' -DestinationPath '.\temp' -Force
   # Move and delete temporary files.

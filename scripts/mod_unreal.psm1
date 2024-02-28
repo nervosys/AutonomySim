@@ -118,7 +118,7 @@ function Install-UnrealAsset {
     Write-Output '-----------------------------------------------------------------------------------------'
   }
   Remove-ItemSilent -Path "${ProjectDir}\temp\car_assets.zip"
-  [System.Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # TLS v1.2
+  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # TLS v1.2
   Invoke-WebRequest "$UnrealAssetUrl" -OutFile "${ProjectDir}\temp\car_assets.zip" -HttpVersion '2.0'
   # Unpack archive.
   Remove-ItemSilent -Path "${AdvancedVehicleDir}\SUV" -Recurse
