@@ -257,8 +257,8 @@ function Set-ProcessorCount {
 ### Exports
 ###
 
-Export-ModuleMember -Function Add-Directories, Remove-TempDirectories, Invoke-Fail, Test-WorkingDirectory, Test-DirectoryExists
+Export-ModuleMember -Function Remove-ItemSilent, Get-Modules, Test-VariableDefined, Test-DirectoryExists
+Export-ModuleMember -Function Test-WorkingDirectory, Add-Directories, Remove-TempDirectories, Invoke-Fail
 Export-ModuleMember -Function Test-VariableDefined, Get-EnvVariables, Test-Program, Get-ProgramVersion
 Export-ModuleMember -Function Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo
-Export-ModuleMember -Function Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Get-Modules
-Export-ModuleMember -Function Set-ProcessorCount
+Export-ModuleMember -Function Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
