@@ -26,4 +26,6 @@ Import-Module "${PWD}\scripts\mod_docs.psm1"  # imports: Build-Documentation
 
 Build-Documentation
 
+Write-Output 'Success: Building C++ API, Python API, and AutonomySim project documentation complete.'
+
 exit 0

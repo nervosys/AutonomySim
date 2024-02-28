@@ -33,6 +33,13 @@ param(
 )
 
 ###
+### Imports
+###
+
+# Utilities
+Import-Module "${PWD}\scripts\mod_utils.psm1"
+
+###
 ### Variables
 ###
 
@@ -107,7 +114,7 @@ function Build-UnrealProject {
     #   '-build', '-stage', '-NoCompile', '-nocompileeditor', '-pak', '-archive', "-archivedirectory=${ProjectOutputsDir}"
     #   -Wait -NoNewWindow -ErrorAction Stop
     
-    Remove-Item -Path "${PACKAGE_OUTPUTS_DIR}\${ProjectName}" -Recurse -Force
+    Remove-ItemSilent -Path "${PACKAGE_OUTPUTS_DIR}\${ProjectName}" -Recurse
 
     Start-Process -FilePath "$UNREAL_BUILDTOOLS_DIR\RunUAT.bat" -ArgumentList 'BuildCookRun',"-project=${WORKING_DIR}\${ProjectFile}",
       '-noP4','-platform=Win64','-clientconfig=Development','-cook','-build','-stage','-pak','-archive',"-archivedirectory=${PACKAGE_OUTPUTS_DIR}",

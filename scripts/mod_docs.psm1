@@ -15,10 +15,10 @@ NOTES:
 #>
 
 # Utilities
-# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
-#   Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
-#   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
-#   Get-ArchitectureWidth, Set-ProcessorCount
+# imports: Add-Directories, Remove-ItemSilent, Remove-TempDirectories, Invoke-Fail,
+#   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
+#   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
+#   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
 Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###

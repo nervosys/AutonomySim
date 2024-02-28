@@ -17,6 +17,11 @@ USAGE:
   Copyright © 2024 Nervosys, LLC
 #>
 
+###
+### Imports
+###
+
+# Utilities
 Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###
@@ -102,15 +107,15 @@ function Restore-UnrealEnv {
     [String]
     $UnrealEnvDir = "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments\Blocks"
   )
-  Remove-Item -Path "${UnrealEnvDir}\Build" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Binaries" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Intermediate" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Saved" -Recurse -Force 2>$null
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Build" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Binaries" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Intermediate" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Saved" -Recurse
   [System.IO.Directory]::CreateDirectory("${UnrealEnvDir}\Saved\logs") | Out-Null
-  Remove-Item -Path "${UnrealEnvDir}\Plugins\AutonomySim\Binaries" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Plugins\AutonomySim\Intermediate" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Plugins\AutonomySim\Saved" -Recurse -Force 2>$null
-  Remove-Item -Path *.sln -Force 2>$null
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Plugins\AutonomySim\Binaries" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Plugins\AutonomySim\Intermediate" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Plugins\AutonomySim\Saved" -Recurse
+  Remove-ItemSilent -Path "$UnrealEnvDir" -Filter '*.sln' -Recurse
   return $null
 }
 

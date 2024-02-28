@@ -31,10 +31,11 @@ param(
 ### Imports
 ###
 
-# Common utilities:
-#   Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
-#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild,
-#   Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+# Utilities
+# imports: Add-Directories, Remove-ItemSilent, Remove-TempDirectories, Invoke-Fail,
+#   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
+#   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
+#   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
 Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###
@@ -85,6 +86,9 @@ function Update-GitRepositories {
     [String]
     $ProjectDir = $PROJECT_DIR
   )
+  if ( -not (Test-Program -Program 'git.exe') ) {
+    Invoke-Fail -ErrorMessage 'Error: Program not found: git.exe'
+  }
   Set-Location "$RepoRootDir"
   foreach ( $d in $GitRepoDirs ) {
     Write-Output "Updating git repository directory: $d"
@@ -108,5 +112,7 @@ function Update-GitRepositories {
 ###
 
 Update-GitRepositories
+
+Write-Output 'Success: Updated git repositories.'
 
 exit 0

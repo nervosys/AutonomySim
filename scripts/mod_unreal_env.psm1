@@ -24,7 +24,6 @@ Import-Module "${PWD}\scripts\mod_utils.psm1"
 ###
 
 [String]$PROJECT_DIR = "$PWD"
-
 [Version]$UNREAL_VERSION = '5.3'
 
 ###
@@ -56,14 +55,15 @@ function Copy-UnrealEnvItems {
       [String]
       $UnrealEnvDir = "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments\Blocks"
   )
+  # New-Item -Path "${UnrealEnvDir}\scripts" -Directory -ErrorAction SilentlyContinue
   # Copy generated VS project files
   # NOTES:
   #   - Ensure all files in source directory make it to destination directory.
   #   - Remove all destination files not present in source directory.
-  Copy-Item -Path "${ProjectDir}\UnrealPlugin\Unreal\Plugins\AutonomySim" -Filter '*' -Destination '.\Plugins\AutonomySim' -Exclude @("${ProjectDir}\temp") -Recurse -Force
-  Copy-Item -Path "${ProjectDir}\AutonomyLib" -Destination "${ProjectDir}\Plugins\AutonomySim\Source\AutonomyLib" -Exclude @("${ProjectDir}\temp") -Recurse -Force
-  Copy-Item -Path "${UnrealEnvDir}" -Filter '*.cmd' -Destination '.' -Recurse -Force
-  Copy-Item -Path "${UnrealEnvDir}" -Filter '*.sh' -Destination '.' -Recurse -Force
+  Copy-Item -Path "${ProjectDir}\UnrealPlugin\Unreal\Plugins\AutonomySim" -Filter '*' -Destination "${UnrealEnvDir}\Plugins\AutonomySim" -Exclude @("${ProjectDir}\temp") -Recurse -Force
+  Copy-Item -Path "${ProjectDir}\AutonomyLib" -Destination "${UnrealEnvDir}\Plugins\AutonomySim\Source\AutonomyLib" -Exclude @("${ProjectDir}\temp") -Recurse -Force
+  Copy-Item -Path "${ProjectDir}\scripts" -Filter '*.cmd' -Destination "${UnrealEnvDir}\scripts" -Recurse -Force
+  Copy-Item -Path "${ProjectDir}\scripts" -Filter '*.sh' -Destination "${UnrealEnvDir}\scripts" -Recurse -Force
   return $null
 }
 
@@ -74,15 +74,15 @@ function Restore-UnrealEnv {
     [String]
     $UnrealEnvDir = "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments\Blocks"
   )
-  Remove-Item -Path "${UnrealEnvDir}\Build" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Binaries" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Intermediate" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Saved" -Recurse -Force 2>$null
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Build" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Binaries" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Intermediate" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Saved" -Recurse
   [System.IO.Directory]::CreateDirectory("${UnrealEnvDir}\Saved\logs") | Out-Null
-  Remove-Item -Path "${UnrealEnvDir}\Plugins\AutonomySim\Binaries" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Plugins\AutonomySim\Intermediate" -Recurse -Force 2>$null
-  Remove-Item -Path "${UnrealEnvDir}\Plugins\AutonomySim\Saved" -Recurse -Force 2>$null
-  Remove-Item -Path *.sln -Force 2>$null
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Plugins\AutonomySim\Binaries" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Plugins\AutonomySim\Intermediate" -Recurse
+  Remove-ItemSilent -Path "${UnrealEnvDir}\Plugins\AutonomySim\Saved" -Recurse
+  Remove-ItemSilent -Path "$UnrealEnvDir" -Filter '*.sln' -Recurse
   return $null
 }
 
@@ -100,7 +100,7 @@ function Invoke-UnrealVsProjectFileGenerator {
     $Automate = $true
   )
   # Visual Studio Unreal Engine Project File Generator
-  #   Remove-Item -Path 'gen_temp.txt'
+  #   Remove-Item -Path 'gen_temp.txt' -Force -ErrorAction SilentlyContinue
   # Get absolute path to Unreal Version Selector from `rungenproj` registry entry and save to single-line text file.
   # The `rungenproj` program, `UnrealVersionSelector.exe`, generates Visual Studio project files.
   # NOTE: Set Out-File (>) encoding to ASCII for consistency with older Set-Content command
@@ -116,7 +116,7 @@ function Invoke-UnrealVsProjectFileGenerator {
   # (Get-ItemProperty 'Registry::HKEY_CLASSES_ROOT\Unreal.ProjectFile\shell\rungenproj' -Name 'Icon').Icon |
   #   Out-File -Encoding 'ascii' -FilePath 'gen_temp.txt'
   # $gen_bin = Get-Content 'gen_temp.txt' -Encoding 'ascii' -ReadCount 1  # `UnrealVersionSelector.exe` path
-  # Remove-Item -Path 'gen_temp.txt'  # remove temporary file
+  # Remove-Item -Path 'gen_temp.txt' -Force -ErrorAction SilentlyContinue  # remove temporary file
   # $gen_bin /projectfiles "$PWD\$Project"
   $ProjectFiles = (Get-ChildItem -Path "${UnrealEnvDir}" -Filter '*.uproject' -File).FullName
   foreach ( $ProjectFile in $ProjectFiles ) {

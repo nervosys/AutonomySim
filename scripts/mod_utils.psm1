@@ -17,6 +17,35 @@ NOTES:
 ### Functions
 ###
 
+function Remove-ItemSilent {
+  [OutputType()]
+  param(
+    [Parameter(HelpMessage = 'Path to the object for removal.')]
+    [String]
+    $Path,
+    [Parameter(HelpMessage = 'Optional filters for pattern matching.')]
+    [String]
+    $Filter,
+    [Parameter(HelpMessage = 'Optional switch for recursion.')]
+    [Switch]
+    $Recurse
+  )
+  if ( $Recurse.IsPresent ) {
+    if ( $PSBoundParameters.ContainsKey('Filter') ) {
+      Remove-Item -Path "$Path" -Filter "$Filter" -Recurse -Force -ErrorAction SilentlyContinue
+    } else {
+      Remove-Item -Path "$Path" -Recurse -Force -ErrorAction SilentlyContinue
+    }
+  } else {
+    if ( $PSBoundParameters.ContainsKey('Filter') ) {
+      Remove-Item -Path "$Path" -Filter "$Filter" -Force -ErrorAction SilentlyContinue
+    } else {
+      Remove-Item -Path "$Path" -Force -ErrorAction SilentlyContinue
+    }
+  }
+  return $null
+}
+
 function Get-Modules {
   [OutputType([String])]
   param()
@@ -70,7 +99,7 @@ function Add-Directories {
   }
 }
 
-function Remove-Directories {
+function Remove-TempDirectories {
   [OutputType()]
   param(
     [Parameter()]
@@ -78,7 +107,7 @@ function Remove-Directories {
     $Directories = @('temp', 'external')
   )
   foreach ($d in $Directories) {
-    Remove-Item -Path "$d" -Force -Recurse
+    Remove-ItemSilent -Path "$d" -Recurse
   }
 }
 
@@ -90,7 +119,7 @@ function Invoke-Fail {
     $ProjectDir = "$PWD",
     [Parameter()]
     [Switch]
-    $RemoveDirs = $false,
+    $RemoveTempDirs = $false,
     [Parameter()]
     [System.Exception]
     $Exception,
@@ -99,7 +128,7 @@ function Invoke-Fail {
     $ErrorMessage
   )
   Set-Location "$ProjectDir"
-  if ($RemoveDirs -eq $true) { Remove-Directories }
+  if ($RemoveTempDirs -eq $true) { Remove-TempDirectories }
   if ((Test-VariableDefined -VariableName "ErrorMessage") -eq $true) {
     Write-Error -Exception [System.Exception] -Message "$ErrorMessage" -ErrorAction Continue
   }
@@ -228,7 +257,7 @@ function Set-ProcessorCount {
 ### Exports
 ###
 
-Export-ModuleMember -Function Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-DirectoryExists
+Export-ModuleMember -Function Add-Directories, Remove-TempDirectories, Invoke-Fail, Test-WorkingDirectory, Test-DirectoryExists
 Export-ModuleMember -Function Test-VariableDefined, Get-EnvVariables, Test-Program, Get-ProgramVersion
 Export-ModuleMember -Function Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo
 Export-ModuleMember -Function Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Get-Modules

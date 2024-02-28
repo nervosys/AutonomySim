@@ -21,8 +21,8 @@ USAGE:
 ###
 
 # Formatting
-# imports: Install-ModuleIfMissing, Get-CppFiles, Format-CppRecursive,
-#   Get-PsFiles, Format-PsFile, Format-PsRecursive
+# imports: Install-ModuleIfMissing, Get-CppFiles, Format-CppRecursive, Get-PsFiles,
+#   Format-PsFile, Format-PsRecursive
 Import-Module "${PWD}\scripts\mod_format.psm1"
 
 ###

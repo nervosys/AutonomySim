@@ -18,9 +18,10 @@ NOTES:
 ###
 
 # Utilities
-# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined,
-#   Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo,
-#   Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+# imports: Add-Directories, Remove-TempDirectories, Invoke-Fail, Test-WorkingDirectory, Test-Program,
+#   Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
+#   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
+#   Get-ArchitectureWidth, Set-ProcessorCount
 Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 # Unreal Environments
@@ -93,7 +94,7 @@ function Update-UnrealVsProjectFiles {
   )
   $UnrealEnvDirs = (Get-ChildItem -Path "$UnrealEnvBaseDir" -Directory | Select-Object FullName).FullName
   foreach ( $d in $UnrealEnvDirs ) {
-    Get-UnrealVsProjectFiles -UnrealEnvDir "$d" -ProjectDir "$ProjectDir" -UnrealVersion $UnrealVersion -Automate $Automate
+    Get-UnrealVsProjectFiles -ProjectDir "$ProjectDir" -UnrealEnvDir "$d" -UnrealVersion $UnrealVersion -Automate $Automate
   }
   return $null
 }
@@ -101,6 +102,9 @@ function Update-UnrealVsProjectFiles {
 function Install-UnrealAsset {
   [OutputType()]
   param(
+    [Parameter()]
+    [String]
+    $ProjectDir = "$PROJECT_DIR",
     [Parameter()]
     [String]
     $UnrealAssetUrl = "$UNREAL_ASSET_URL",
@@ -113,13 +117,13 @@ function Install-UnrealAsset {
     Write-Output ' Downloading 37-MB Unreal high-polycount SUV asset...'
     Write-Output '-----------------------------------------------------------------------------------------'
   }
-  Remove-Item -Path '.\temp\car_assets.zip' -Force 2>$null
+  Remove-ItemSilent -Path "${ProjectDir}\temp\car_assets.zip"
   [System.Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # TLS v1.2
-  Invoke-WebRequest "$UnrealAssetUrl" -OutFile '.\temp\car_assets.zip' -HttpVersion '2.0'
+  Invoke-WebRequest "$UnrealAssetUrl" -OutFile "${ProjectDir}\temp\car_assets.zip" -HttpVersion '2.0'
   # Unpack archive.
-  Remove-Item "${AdvancedVehicleDir}\SUV" -Force -Recurse 2>$null
-  Expand-Archive -Path '.\temp\car_assets.zip' -DestinationPath "$AdvancedVehicleDir"
-  Remove-Item -Path '.\temp\car_assets.zip' -Force -Recurse 2>$null
+  Remove-ItemSilent -Path "${AdvancedVehicleDir}\SUV" -Recurse
+  Expand-Archive -Path "${ProjectDir}\temp\car_assets.zip" -DestinationPath "$AdvancedVehicleDir"
+  Remove-ItemSilent -Path "${ProjectDir}\temp\car_assets.zip" -Recurse
   return $null
 }
 

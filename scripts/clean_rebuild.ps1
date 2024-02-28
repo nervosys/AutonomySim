@@ -15,9 +15,21 @@ NOTES:
 #>
 
 ###
+### Imports
+###
+
+# Utilities
+# imports: Add-Directories, Remove-ItemSilent, Remove-TempDirectories, Invoke-Fail,
+#   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
+#   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
+#   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\mod_utils.psm1"
+
+###
 ### Variables
 ###
 
+[String]$PROJECT_DIR = "$PWD"
 [String]$SCRIPT_DIR = "${PWD}\scripts"
 
 ###
@@ -33,12 +45,15 @@ function CleanRebuild {
     Write-Output '-----------------------------------------------------------------------------------------'
   }
   # Remove external directory
-  Remove-Item -Path 'external' -Recurse -Force
+  Remove-ItemSilent -Path "${PROJECT_DIR}\external" -Recurse
   # Run git-clean and git-pull
+  if ( -not (Test-Program -Program "git.exe") ) {
+    Invoke-Fail -ErrorMessage 'Error: Program not found: git.exe'
+  }
   Start-Process -FilePath 'git.exe' -ArgumentList 'clean', '-ffdx' -Wait -NoNewWindow
   Start-Process -FilePath 'git.exe' -ArgumentList 'pull' -Wait -NoNewWindow
   # Run build script
-  . "${SCRIPT_DIR}\build.ps1"
+  "${SCRIPT_DIR}\build.ps1"
   return $null
 }
 
@@ -48,6 +63,6 @@ function CleanRebuild {
 
 CleanRebuild
 
-Write-Output 'Success: Removed temporary files and rebuilt project.'
+Write-Output 'Success: Removed temporary files and rebuilt AutonomyLib.'
 
 exit 0

@@ -17,11 +17,11 @@ NOTES:
 ### Imports
 ###
 
-# Common utilities
-# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
-#   Test-VariableDefined, Get-EnvVariables, Test-Program, Get-ProgramVersion,
-#   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
-#   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+# Utilities
+# imports: Add-Directories, Remove-TempDirectories, Invoke-Fail, Test-Program, Test-WorkingDirectory,
+#   Test-VariableDefined, Get-EnvVariables, Test-Program, Get-ProgramVersion, Get-VersionMajorMinor,
+#   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
+#   Get-ArchitectureWidth, Set-ProcessorCount
 Import-Module "${PWD}\scripts\mod_utils.psm1"
 
 ###
@@ -58,13 +58,13 @@ function Install-RpcLib {
         Write-Output ' Installing rpclib...'
         Write-Output '-----------------------------------------------------------------------------------------'
     }
-    Remove-Item '.\temp\rpclib.zip' -Force -ErrorAction Continue 2>$null
+    Remove-ItemSilent -Path '.\temp\rpclib.zip'
     # Set security protocol used for web requests and download rpclib
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # TLS v1.2
     Invoke-WebRequest "$RpcLibUrl" -OutFile '.\temp\rpclib.zip' -HttpVersion '2.0'
     # Unpack and remove archive
     Expand-Archive -Path '.\temp\rpclib.zip' -DestinationPath '.\external\rpclib'
-    Remove-Item '.\temp\rpclib.zip' -Force -ErrorAction Continue 2>$null
+    Remove-ItemSilent -Path '.\temp\rpclib.zip'
     # Fail build if unable to download and/or unpack rpclib
     if ( -not (Test-Path -LiteralPath "$RpcLibPath") ) {
         Write-Error 'Error: Unable to download rpclib. Stopping build.' -ErrorAction SilentlyContinue
@@ -148,7 +148,7 @@ function Test-RpcLibVersion {
     )
     if ( -not (Test-Path -LiteralPath "$RpcLibPath") ) {
         # Remove previous installations
-        Remove-Item '.\external\rpclib' -Force -Recurse -ErrorAction Continue 2>$null
+        Remove-ItemSilent -Path '.\external\rpclib' -Recurse
         Install-RpcLib
         Build-RpcLib -BuildMode "$BuildMode" -CmakeGenerator "$CmakeGenerator"
         # Fail if rpclib version path not found
