@@ -33,7 +33,7 @@ jobs:
       matrix:
         path:
           - check: "AutonomyLib"
-            exclude: ".*(json.hpp)$" # exclude file paths ending in "json.hpp"
+            exclude: ".*(json.hpp)\n" # exclude file paths ending in "json.hpp"
           - check: "AutonomyLibUnitTests"
             exclude: ""
           - check: "DroneServer"
@@ -51,7 +51,7 @@ jobs:
           - check: "LogViewer"
             exclude: ""
           - check: "MavLinkCom"
-            exclude: ".*(json.hpp)$" # exclude file paths ending in "json.hpp"
+            exclude: ".*(json.hpp)\n" # exclude file paths ending in "json.hpp"
           - check: "ros2"
             exclude: ""
           - check: "SemiGlobalMatching"
