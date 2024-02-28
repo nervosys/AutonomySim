@@ -17,6 +17,12 @@ NOTES:
 ### Functions
 ###
 
+function Get-Modules {
+  [OutputType([String])]
+  param()
+  return (Get-Module | Format-Table | Out-String)
+}
+
 function Test-VariableDefined {
   [OutputType([Boolean])]
   param(
@@ -26,6 +32,20 @@ function Test-VariableDefined {
   )
   [Boolean]$Exists = Test-Path "Variable:\$VariableName"
   return $Exists
+}
+
+function Test-DirectoryExists {
+  [OutputType()]
+  param(
+      [Parameter()]
+      [String]
+      $Dir = "$PROJECT_DIR"
+  )
+  Write-Output "Testing directory path: ${Dir}"
+  if ( -not (Test-Path -Path "$Dir") ) {
+  	Write-Error "Error: Path not found." -ErrorAction Stop
+  }
+  return $null
 }
 
 function Test-WorkingDirectory {
@@ -98,7 +118,7 @@ function Get-Exceptions {
   return $Exceptions | Sort-Object -Unique
 }
 
-function Get-EnvVars {
+function Get-EnvVariables {
   [OutputType([Object[]])]
   [Object[]]$EnvVars = Get-ChildItem 'env:*' | Sort-Object 'Name' | Format-List
   return $EnvVars
@@ -133,7 +153,7 @@ function Get-VersionMajorMinor {
     [Version]
     $Version
   )
-  return $Version.Major, $Version.Minor -join '.'
+  return ($Version.Major, $Version.Minor) -Join '.'
 }
 
 function Get-VersionMajorMinorBuild {
@@ -143,7 +163,7 @@ function Get-VersionMajorMinorBuild {
     [Version]
     $Version
   )
-  return $Version.Major, $Version.Minor, $Version.Build -join '.'
+  return ($Version.Major, $Version.Minor, $Version.Build) -Join '.'
 }
 
 function Get-WindowsInfo {
@@ -208,6 +228,8 @@ function Set-ProcessorCount {
 ### Exports
 ###
 
-Export-ModuleMember -Function Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-VariableDefined
-Export-ModuleMember -Function Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor, Get-VersionMajorMinorBuild
-Export-ModuleMember -Function Get-WindowsInfo, Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
+Export-ModuleMember -Function Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory, Test-DirectoryExists
+Export-ModuleMember -Function Test-VariableDefined, Get-EnvVariables, Test-Program, Get-ProgramVersion
+Export-ModuleMember -Function Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo
+Export-ModuleMember -Function Get-WindowsVersion, Get-Architecture, Get-ArchitectureWidth, Get-Modules
+Export-ModuleMember -Function Set-ProcessorCount

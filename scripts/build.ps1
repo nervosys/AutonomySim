@@ -6,7 +6,7 @@ DESCRIPTION:
 AUTHOR:
   Adam Erickson (Nervosys)
 DATE:
-  2024-02-22
+  2024-02-27
 PARAMETERS:
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - CmakeGenerator: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]
@@ -35,6 +35,9 @@ param(
   [Parameter(HelpMessage = 'Options: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]')]
   [String]
   $CmakeGenerator = 'Visual Studio 17 2022',
+  [Parameter(HelpMessage = 'Path to Unreal Environment directory.')]
+  [String]
+  $UnrealEnvDir,
   [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
   [Switch]
   $BuildDocs,
@@ -66,7 +69,7 @@ Import-Module "${PWD}\scripts\mod_utils.psm1"
 Import-Module "${PWD}\scripts\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
 Import-Module "${PWD}\scripts\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
 Import-Module "${PWD}\scripts\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
-Import-Module "${PWD}\scripts\mod_unrealasset.psm1"    # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
+Import-Module "${PWD}\scripts\mod_unreal.psm1"         # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
 Import-Module "${PWD}\scripts\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
 
 # Documentation
@@ -79,6 +82,11 @@ Import-Module "${PWD}\scripts\mod_docs.psm1"          # imports: Build-Documenta
 # Static variables
 $PROJECT_DIR = "$PWD"
 $SCRIPT_DIR = "${PROJECT_DIR}\scripts"
+$UNREAL_ENV_DIR = if ( $PSBoundParameters.ContainsKey('UnrealEnvDir') ) {
+  "$UnrealEnvDir"
+} else {
+  "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments"
+}
 
 # Command-line arguments
 $BUILD_MODE = "$BuildMode"
@@ -109,6 +117,9 @@ function Build-AutonomySim {
   param(
     [Parameter()]
     [String]
+    $ProjectDir = "$PROJECT_DIR",
+    [Parameter()]
+    [String]
     $BuildMode = "$BUILD_MODE",
     [Parameter()]
     [String]
@@ -123,12 +134,12 @@ function Build-AutonomySim {
   [String]$IgnoreErrorCodes = if ( $IgnoreErrors.Count -gt 0 ) { '-noerr:' + ($IgnoreErrors -Join ';') } else { '' }
   if ( "$BuildMode" -eq 'Release' ) {
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
-    "/p:Platform=${SystemPlatform}", '/p:Configuration=Debug', 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+    "/p:Platform=${SystemPlatform}", '/p:Configuration=Debug', "${ProjectDir}\AutonomySim.sln" -Wait -NoNewWindow -ErrorAction Stop
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
-    "/p:Platform=${SystemPlatform}", '/p:Configuration=Release', 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+    "/p:Platform=${SystemPlatform}", '/p:Configuration=Release', "${ProjectDir}\AutonomySim.sln" -Wait -NoNewWindow -ErrorAction Stop
   } else {
     Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
-    "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", 'AutonomySim.sln' -Wait -NoNewWindow -ErrorAction Stop
+    "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", "${ProjectDir}\AutonomySim.sln" -Wait -NoNewWindow -ErrorAction Stop
   }
   if ( ! $? ) { exit $LastExitCode }  # exit on error
   return $null
@@ -139,61 +150,25 @@ function Copy-GeneratedBinaries {
   param(
     [Parameter()]
     [String]
-    $MavLinkTargetLib = '.\AutonomyLib\deps\MavLinkCom\lib',
+    $ProjectDir = "$PROJECT_DIR",
     [Parameter()]
     [String]
-    $MavLinkTargetInclude = '.\AutonomyLib\deps\MavLinkCom\include',
+    $MavLinkTargetLib = "${PROJECT_DIR}\AutonomyLib\deps\MavLinkCom\lib",
     [Parameter()]
     [String]
-    $AutonomyLibPluginDir = '.\Unreal\Plugins\AutonomySim\Source\AutonomyLib'
+    $MavLinkTargetInclude = "${PROJECT_DIR}\AutonomyLib\deps\MavLinkCom\include",
+    [Parameter()]
+    [String]
+    $AutonomyLibPluginDir = "${PROJECT_DIR}\UnrealPlugin\Unreal\Plugins\AutonomySim\Source\AutonomyLib"
   )
   # Copy binaries and includes for MavLinkCom in deps
   New-Item -ItemType Directory -Path ("$MavLinkTargetLib", "$MavLinkTargetInclude") -Force | Out-Null
-  Copy-Item -Path '.\MavLinkCom\lib' -Destination "$MavLinkTargetLib" -Recurse
-  Copy-Item -Path '.\MavLinkCom\include' -Destination "$MavLinkTargetInclude" -Recurse
+  Copy-Item -Path "${ProjectDir}\MavLinkCom\lib" -Destination "$MavLinkTargetLib" -Recurse -Force
+  Copy-Item -Path "${ProjectDir}\MavLinkCom\include" -Destination "$MavLinkTargetInclude" -Recurse -Force
   # Copy outputs into Unreal/Plugins directory
   New-Item -ItemType Directory -Path "$AutonomyLibPluginDir" -Force | Out-Null
-  Copy-Item -Path '.\AutonomyLib' -Destination "$AutonomyLibPluginDir" -Recurse
-  Copy-Item -Path '.\AutonomySim.props' -Destination "$AutonomyLibPluginDir" -Recurse
-  return $null
-}
-
-function Get-VsUnrealProjectFiles {
-  [OutputType()]
-  param(
-    [Parameter()]
-    [String]
-    $ProjectDir = "$PROJECT_DIR",
-    [Parameter(Mandatory)]
-    [String]
-    $UnrealEnvDir
-  )
-  Set-Location "$UnrealEnvDir"
-  # imports: Test-DirectoryPath, Copy-UnrealEnvItems, Remove-UnrealEnvItems, Invoke-VsUnrealProjectFileGenerator
-  Import-Module "${UnrealEnvDir}\scripts\update_unreal_env.psm1"
-  #Test-DirectoryPath -Path $ProjectDir
-  Copy-UnrealEnvItems -Path "$ProjectDir"
-  Remove-UnrealEnvItems
-  Invoke-VsUnrealProjectFileGenerator
-  Remove-Module "${UnrealEnvDir}\scripts\update_unreal_env.psm1"
-  Set-Location "$ProjectDir"
-  return $null
-}
-
-function Update-VsUnrealProjectFiles {
-  [OutputType()]
-  param(
-    [Parameter()]
-    [String]
-    $ProjectDir = "$PROJECT_DIR",
-    [Parameter()]
-    [String]
-    $UnrealEnvBaseDir = '.\UnrealPlugin\Unreal\Environments'
-  )
-  $UnrealEnvDirs = (Get-ChildItem -Path "$UnrealEnvBaseDir" -Directory | Select-Object FullName).FullName
-  foreach ( $d in $UnrealEnvDirs ) {
-    Get-VsUnrealProjectFiles -UnrealEnvDir "$d" -ProjectDir "$ProjectDir"
-  }
+  Copy-Item -Path "${ProjectDir}\AutonomyLib" -Destination "$AutonomyLibPluginDir" -Recurse -Force
+  Copy-Item -Path "${ProjectDir}\AutonomySim.props" -Destination "$AutonomyLibPluginDir" -Recurse -Force
   return $null
 }
 
@@ -253,7 +228,7 @@ Test-EigenVersion
 Test-RpcLibVersion -BuildMode "$BUILD_MODE" -CmakeGenerator "$CMAKE_GENERATOR"
 
 # Test high-polycount SUV asset.
-Test-UnrealAssetVersion -FullPolySuv $UNREAL_ASSET
+# Test-UnrealAssetVersion -FullPolySuv $UNREAL_ASSET
 
 # Compile AutonomySim.sln including MavLinkCom.
 Build-AutonomySim -BuildMode "$BUILD_MODE" -SystemPlatform "$SYSTEM_PLATFORM" -SystemCpuMax "$SYSTEM_CPU_MAX"
@@ -261,8 +236,11 @@ Build-AutonomySim -BuildMode "$BUILD_MODE" -SystemPlatform "$SYSTEM_PLATFORM" -S
 # Copy binaries and includes for MavLinkCom and Unreal/Plugins.
 Copy-GeneratedBinaries
 
-# Update all Unreal Engine environments under AutonomySim\Unreal\Environments.
-Update-VsUnrealProjectFiles -ProjectDir "$PROJECT_DIR"
+# Test Unreal SUV asset version
+Test-UnrealAssetVersion -FullPolySuv $UNREAL_ASSET
+
+# Update all Unreal Engine environments under AutonomySim\UnrealProject\Unreal\Environments.
+Update-UnrealVsProjectFiles -ProjectDir "$PROJECT_DIR" -UnrealEnvRootDir "$UNREAL_ENV_DIR" -UnrealVersion $UNREAL_VERSION -Automate $AUTOMATE_MODE
 
 # Build documentation (optional).
 if ( $BUILD_DOCS ) { Build-Documentation }

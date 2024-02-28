@@ -24,25 +24,12 @@ Import-Module "${PWD}\scripts\mod_utils.psm1"
 ###
 
 [String]$PROJECT_DIR = "$PWD"
+
 [Version]$UNREAL_VERSION = '5.3'
 
 ###
 ### Functions
 ###
-
-function Test-ProjectDirPath {
-  [OutputType()]
-  param(
-      [Parameter()]
-      [String]
-      $ProjectDir = "$PROJECT_DIR"
-  )
-  Write-Output "Testing directory path: ${ProjectDir}"
-  if ( -not (Test-Path -Path "$ProjectDir") ) {
-  	Write-Error "Error: Path not found." -ErrorAction Stop
-  }
-  return $null
-}
 
 function Get-UnrealVersion {
   [OutputType([String])]
@@ -52,9 +39,9 @@ function Get-UnrealVersion {
     $UnrealVersion = $UNREAL_VERSION
   )
   if ($UnrealVersion.Build -eq -1) {
-    [String]$Result = ($UnrealVersion.Major, $UnrealVersion.Minor) -Join '.'
+    [String]$Result = Get-VersionMajorMinor -Version $UnrealVersion
   } else {
-    [String]$Result = ($UnrealVersion.Major, $UnrealVersion.Minor, $UnrealVersion.Build) -Join '.'
+    [String]$Result = Get-VersionMajorMinorBuild -Version $UnrealVersion
   }
   return $Result
 }
@@ -70,34 +57,19 @@ function Copy-UnrealEnvItems {
       $UnrealEnvDir = "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments\Blocks"
   )
   # Copy generated VS project files
-  # NOTE:
-  #   - Ensure all files in source directory make it to destination directory
-  #   - Remove all destination files not present in source directory
-  # Robust Copy (robocopy) flags:
-  #   *.:  all files
-  #   MIR: mirror directory
-  #   XD:  exclude directory
-  #   NJH: no job header
-  #   NJS: no job summary
-  #   NDL: no directory listing
-  #   NP:  no progress
-  #robocopy /MIR "$AUTONOMYSIM_PATH\Unreal\Plugins\AutonomySim" 'Plugins\AutonomySim' /XD 'temp' *. /NJH /NJS /NDL /NP
-  #robocopy /MIR "$AUTONOMYSIM_PATH\AutonomyLib" 'Plugins\AutonomySim\Source\AutonomyLib' /XD 'temp' *. /NJH /NJS /NDL /NP
-  #robocopy  /NJH /NJS /NDL /NP "$AUTONOMYSIM_PATH\Unreal\Environments\Blocks" '.' *.cmd 
-  #robocopy  /NJH /NJS /NDL /NP "$AUTONOMYSIM_PATH\Unreal\Environments\Blocks" '.' *.sh 
-  Copy-Item -Path "${ProjectDir}\UnrealPlugin\Unreal\Plugins\AutonomySim\*" -Destination '.\Plugins\AutonomySim' -Exclude @("temp") -Recurse -Force
-  Copy-Item -Path "${ProjectDir}\AutonomyLib" -Destination '.\Plugins\AutonomySim\Source\AutonomyLib' -Exclude @("temp") -Recurse -Force
-  Copy-Item -Path "${UnrealEnvDir}\*.cmd" -Destination '.' -Recurse -Force
-  Copy-Item -Path "${UnrealEnvDir}\*.sh" -Destination '.' -Recurse -Force
+  # NOTES:
+  #   - Ensure all files in source directory make it to destination directory.
+  #   - Remove all destination files not present in source directory.
+  Copy-Item -Path "${ProjectDir}\UnrealPlugin\Unreal\Plugins\AutonomySim" -Filter '*' -Destination '.\Plugins\AutonomySim' -Exclude @("${ProjectDir}\temp") -Recurse -Force
+  Copy-Item -Path "${ProjectDir}\AutonomyLib" -Destination "${ProjectDir}\Plugins\AutonomySim\Source\AutonomyLib" -Exclude @("${ProjectDir}\temp") -Recurse -Force
+  Copy-Item -Path "${UnrealEnvDir}" -Filter '*.cmd' -Destination '.' -Recurse -Force
+  Copy-Item -Path "${UnrealEnvDir}" -Filter '*.sh' -Destination '.' -Recurse -Force
   return $null
 }
 
 function Restore-UnrealEnv {
   [OutputType()]
   param(
-    [Parameter()]
-    [String]
-    $ProjectDir = "$PROJECT_DIR",
     [Parameter()]
     [String]
     $UnrealEnvDir = "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments\Blocks"
@@ -117,6 +89,9 @@ function Restore-UnrealEnv {
 function Invoke-UnrealVsProjectFileGenerator {
   [OutputType()]
   param(
+    [Parameter()]
+    [String]
+    $UnrealEnvDir = "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments\Blocks",
     [Parameter()]
     [String]
     $UnrealVersion = (Get-UnrealVersion -UnrealVersion $UNREAL_VERSION),
@@ -143,7 +118,7 @@ function Invoke-UnrealVsProjectFileGenerator {
   # $gen_bin = Get-Content 'gen_temp.txt' -Encoding 'ascii' -ReadCount 1  # `UnrealVersionSelector.exe` path
   # Remove-Item -Path 'gen_temp.txt'  # remove temporary file
   # $gen_bin /projectfiles "$PWD\$Project"
-  $ProjectFiles = (Get-ChildItem -Path *.uproject -File).FullName
+  $ProjectFiles = (Get-ChildItem -Path "${UnrealEnvDir}" -Filter '*.uproject' -File).FullName
   foreach ( $ProjectFile in $ProjectFiles ) {
     [String]$ProjectName = [System.IO.Path]::GetFileNameWithoutExtension("$ProjectFile")
     Write-Output "Generating Visual Studio build files: ${ProjectName}"
@@ -160,5 +135,4 @@ function Invoke-UnrealVsProjectFileGenerator {
 ### Exports
 ###
 
-Export-ModuleMember -Function Get-UnrealVersion, Copy-UnrealEnvItems, Restore-UnrealEnv
-Export-ModuleMember -Function Invoke-UnrealVsProjectFileGenerator
+Export-ModuleMember -Function Get-UnrealVersion, Copy-UnrealEnvItems, Restore-UnrealEnv, Invoke-UnrealVsProjectFileGenerator

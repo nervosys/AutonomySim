@@ -14,12 +14,18 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+# Utilities
+# imports: Add-Directories, Remove-Directories, Invoke-Fail, Test-WorkingDirectory,
+#   Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
+#   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
+#   Get-ArchitectureWidth, Set-ProcessorCount
+Import-Module "${PWD}\scripts\mod_utils.psm1"
+
 ###
 ### Variables
 ###
 
 [String]$PROJECT_DIR = "$PWD"
-[String]$BUILD_DIR = "${PROJECT_DIR}\temp\docs_build"
 
 ###
 ### Functions
@@ -27,31 +33,65 @@ NOTES:
 
 function Build-Documentation {
   [OutputType()]
-  param()
-  # Create and copy docs into build directory
-  New-Item -ItemType Directory -Path "$BUILD_DIR" -Force | Out-Null
-  Copy-Item -Path "docs" -Destination "${BUILD_DIR}\docs_root\docs" -Force -Recurse  # -Exclude @("temp")
-  Copy-Item -Path ".\*.md" -Destination "${BUILD_DIR}\docs_root" -Force
-  Move-Item -Path "${BUILD_DIR}\docs_root\docs\mkdocs.yml" -Destination "$BUILD_DIR" -Force
-  if ( $Verbose.IsPresent ) {
-    Write-Output '-----------------------------------------------------------------------------------------'
-    Write-Output ' Building and serving documentation...'
-    Write-Output '-----------------------------------------------------------------------------------------'
+  param(
+    [Parameter()]
+    [String]
+    $ProjectDir = "$PROJECT_DIR",
+    [Parameter()]
+    [String]
+    $MakeExe = 'C:\Program Files (x86)\GnuWin32\bin\make.exe',
+    [Parameter()]
+    [Boolean]
+    $ServeDocs = $false
+  )
+
+  if ( -not (Test-Program -Program "mkdocs.exe") ) {
+    Invoke-Fail -ErrorMessage 'Error: Program not found: mkdocs.exe'
   }
-  Set-Location "$BUILD_DIR"
-  Start-Process -FilePath "mkdocs.exe" -ArgumentList "serve" -Wait -NoNewWindow
-  Start-Process -FilePath "mkdocs.exe" -ArgumentList "build" -Wait -NoNewWindow
-  Set-Location "$PROJECT_DIR"
-  # Copy docs_root into docs_build
-  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\images" -Destination "${BUILD_DIR}\build\images" -Force -Recurse
-  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\misc"   -Destination "${BUILD_DIR}\build\misc"   -Force -Recurse
-  Copy-Item -Path "${BUILD_DIR}\docs_root\docs\paper"  -Destination "${BUILD_DIR}\build\paper"  -Force -Recurse
+  if ( -not (Test-Program -Program "$MakeExe") ) {
+    Invoke-Fail -ErrorMessage 'Error: Program not found: make.exe'
+  }
+
+  # Ensure Python environment is properly configured.
+  # python3 -m venv .env  # virtual environment to avoid dependecy issues
+  # source ./.env/bin/activate
+  # python3 -m pip install --upgrade pip
+  # pip install mkdocs mkdocs-material pymdown-extensions  # mkdocstrings[python]
+  # pip install sphinx sphinx-immaterial numpy msgpack-rpc-python
+  # pip install breathe exhale  # for doxygen -> sphinx -> html conversion
+
+  if ( $Verbose.IsPresent ) {
+    Write-Output '-------------------------------------------------------------------------------'
+    Write-Output ' Building documentation...'
+    Write-Output '-------------------------------------------------------------------------------'
+  }
+  
+  # Generate C++ API documentation.
+  Set-Location "${PROJECT_DIR}\AutonomyLib\docs"
+  Start-Process -FilePath "$MakeExe" -ArgumentList 'html' -Wait -NoNewWindow
+  Copy-Item -Path "${PROJECT_DIR}\AutonomyLib\docs\_build" -Filter '*' -Destination "${PROJECT_DIR}\docs\api\cpp" -Recurse -Force
+  
+  # Generate Python API documentation.
+  Set-Location "${PROJECT_DIR}\python\docs"
+  Start-Process -FilePath "$MakeExe" -ArgumentList 'html' -Wait -NoNewWindow
+  Copy-Item -Path "${PROJECT_DIR}\python\docs\_build" -Filter '*' -Destination "${PROJECT_DIR}\docs\api\python" -Recurse -Force
+
+  # Build main project documentation.
+  Set-Location "${PROJECT_DIR}"
+  Copy-Item -Path "${ProjectDir}\README.md" -Destination "${ProjectDir}\docs" -Force
+  Start-Process -FilePath 'mkdocs.exe' -ArgumentList 'build' -Wait -NoNewWindow
+
+  if ( $ServeDocs ) {
+    Start-Process -FilePath 'mkdocs.exe' -ArgumentList 'serve' -NoNewWind
+  }
+
   if ( $Verbose.IsPresent ) {
     Write-Output 'Next Steps:'
     Write-Output '  1. git checkout gh-pages'
-    Write-Output '  2. Copy $BUILD_DIR\build to root'
+    Write-Output '  2. Copy $BuildDir\build to root'
     Write-Output '  3. git push gh-pages'
   }
+  
   return $null
 }
 
