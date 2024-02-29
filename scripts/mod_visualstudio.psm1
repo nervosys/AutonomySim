@@ -13,6 +13,9 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Imports
 ###
@@ -22,7 +25,7 @@ NOTES:
 #   Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion, Get-VersionMajorMinor,
 #   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
 #   Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\mod_utils.psm1"
+Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 
 ###
 ### Variables
@@ -65,21 +68,21 @@ function Set-VsInstance {
     if ( $Verbose.IsPresent ) {
         $DisplayProperties = @('displayName', 'instanceId', 'installationVersion', 'isPrerelease', 'installationName', 'installDate')
         $DisplayProperties = @('#') + $DisplayProperties
-        $VsVersionTable = ($Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ })
+        $VsVersionTable = ( $Configs | Format-Table -Property $DisplayProperties | Out-String | ForEach-Object { Write-Output $_ } )
         Write-Output 'The following Visual Studio installations were found:'
         Write-Output $VsVersionTable
     }
     # If automation is enabled: select the latest version
-    if ($Automate -eq $true) {
+    if ( $Automate -eq $true ) {
         $Selected = '0'
-    } elseif ($Automate -eq $false) {
+    } elseif ( $Automate -eq $false ) {
         $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
         if ( $Selected -eq '' ) { Invoke-Fail -ErrorMessage 'Error: Visual Studio instance not selected.' }
     } else {
         Write-Output 'No Visual Studio installation selected. Exiting program.'
         Invoke-Fail -ErrorMessage 'Error: Failed to select Visual Studio installation.'
     }
-    $Config = $Configs | Where-Object { $_."#" -eq $Selected }
+    $Config = ( $Configs | Where-Object { $_."#" -eq $Selected } )
     return $Config
 }
 
@@ -88,7 +91,7 @@ function Get-VsInstanceVersion {
     param(
         [Parameter(Mandatory)]
         [System.Object]
-        $Config     # object output by Get-VsInstance or Set-VsInstance
+        $Config  # object output by Get-VsInstance or Set-VsInstance
     )
     return [Version]::new($Config.installationVersion)
 }
@@ -108,7 +111,7 @@ function Test-VsInstanceVersion {
     if ( $null -eq $CurrentVersion ) {
         Invoke-Fail -ErrorMessage "Error: Failed to locate a Visual Studio instance."
     }
-    if ($CurrentVersion -lt $MinimumVersion) {
+    if ( $CurrentVersion -lt $MinimumVersion ) {
         # install CMake if it is less than the required version
         Write-Output "$($Program) version $($CurrentVersion) is less than the minimum supported."
         Write-Output 'AutonomySim supports up to Unreal Engine 5.3 and Visual Studio 2022.'

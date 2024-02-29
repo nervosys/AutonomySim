@@ -18,23 +18,27 @@ NOTES:
 ### Variables
 ###
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 # Specify PowerShell script directories to avoid scanning the entire repository.
-$PS_DIR_PATHS = @("${PWD}\scripts")
+$PS_DIR_PATHS = @("$SCRIPT_DIR")
 
 $PS_FILES_INCLUDE = @('*.ps1', '*.psm1', '*.psd1')
 $PS_FILES_EXCLUDE = @()
 
 # Specify C/C++ project directories to avoid scanning the entire repository.
 $CPP_DIR_PATHS = @(
-  "AutonomyLib", "AutonomyLibUnitTests", "DroneServer", "DroneShell", "Examples", "HelloCar",
-  "HelloDrone", "HelloSpawnedDrones", "MavLinkCom", "ros2", "SemiGlobalMatching", "Unreal"
+  'AutonomyLib', 'AutonomyLibUnitTests', 'DroneServer', 'DroneShell', 'Examples', 'HelloCar',
+  'HelloDrone', 'HelloSpawnedDrones', 'MavLinkCom', 'ros2', 'SemiGlobalMatching', 'UnrealPlugin'
 )
+$CPP_DIR_PATHS = $CPP_DIR_PATHS | % { Join-Path $PROJECT_DIR $_ }
 
-$CPP_FILES_INCLUDE = @("*.c", "*.cpp", "*.cc", "*.hpp", "*.h")
-$CPP_FILES_EXCLUDE = @("json.hpp")
+$CPP_FILES_INCLUDE = @('*.c', '*.cpp', '*.cc', '*.hpp', '*.h')
+$CPP_FILES_EXCLUDE = @('json.hpp')
 
-$CPP_FORMAT_EXE = (Get-Command "clang-format.exe" -ErrorAction Stop).Source
-$CPP_FORMAT_CFG = (Resolve-Path -Path ".clang-format" -ErrorAction Stop).Path
+$CPP_FORMAT_EXE = (Get-Command 'clang-format.exe' -ErrorAction Stop).Source
+$CPP_FORMAT_CFG = (Resolve-Path -Path '.clang-format' -ErrorAction Stop).Path
 # $CPP_FORMAT_LOG = ".\format_cpp.log"
 
 ###

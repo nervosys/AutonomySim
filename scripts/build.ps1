@@ -8,7 +8,6 @@ AUTHOR:
 DATE:
   2024-02-27
 PARAMETERS:
-  - ProjectDir:     AutonomySim base directory.
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - CmakeGenerator: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
@@ -26,14 +25,14 @@ WARNINGS:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Command-line interface (CLI) arguments
 ###
 
 param(
-  [Parameter(HelpMessage = 'AutonomySim base directory.')]
-  [String]
-  $ProjectDir = "$PWD",
   [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
   [String]
   $BuildMode = 'Release',
@@ -68,25 +67,25 @@ param(
 #   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
 #   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
 #   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\mod_utils.psm1"
+Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 
 # Build
-Import-Module "${PWD}\scripts\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
-Import-Module "${PWD}\scripts\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
-Import-Module "${PWD}\scripts\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
-Import-Module "${PWD}\scripts\mod_unreal.psm1"         # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
-Import-Module "${PWD}\scripts\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
+Import-Module "${SCRIPT_DIR}\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
+Import-Module "${SCRIPT_DIR}\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
+Import-Module "${SCRIPT_DIR}\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
+Import-Module "${SCRIPT_DIR}\mod_unreal.psm1"         # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
+Import-Module "${SCRIPT_DIR}\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
 
 # Documentation
-Import-Module "${PWD}\scripts\mod_docs.psm1"          # imports: Build-Documentation
+Import-Module "${SCRIPT_DIR}\mod_docs.psm1"          # imports: Build-Documentation
 
 ###
 ### Variables
 ###
 
 # Static variables
-$PROJECT_DIR = "$ProjectDir"
-$SCRIPT_DIR = "${ProjectDir}\scripts"
+#$PROJECT_DIR = "$ProjectDir"
+#$SCRIPT_DIR = "${ProjectDir}\scripts"
 $UNREAL_ENV_DIR = if ( $PSBoundParameters.ContainsKey('UnrealEnvDir') ) {
   "$UnrealEnvDir"
 } else {

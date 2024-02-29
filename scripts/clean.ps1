@@ -14,6 +14,9 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Imports
 ###
@@ -23,15 +26,17 @@ NOTES:
 #   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
 #   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
 #   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\mod_utils.psm1"
+Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 
 ###
 ### Variables
 ###
 
-[String]$PROJECT_DIR = "$PWD"
 [String]$PLATFORM = 'x86'
-[String[]]$LIBRARY_PATHS = @("${PWD}\AutonomyLib\lib", "${PWD}\AutonomyLib\deps\MavLinkCom", "${$PWD}\AutonomyLib\deps\rpclib", "${PWD}\external\rpclib\build")
+[String[]]$LIBRARY_PATHS = @(
+  "${PROJECT_DIR}\AutonomyLib\lib", "${PROJECT_DIR}\AutonomyLib\deps\MavLinkCom",
+  "${$PROJECT_DIR}\AutonomyLib\deps\rpclib", "${PROJECT_DIR}\external\rpclib\build"
+)
 
 ###
 ### Functions

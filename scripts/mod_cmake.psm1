@@ -13,6 +13,9 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Imports
 ###
@@ -22,7 +25,8 @@ NOTES:
 #   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
 #   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
 #   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\mod_utils.psm1"
+Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
+
 ###
 ### Variables
 ###
@@ -78,7 +82,7 @@ function Test-CmakeVersion {
     [String]
     $Program = 'cmake'
   )
-  $CurrentVersion = Get-ProgramVersion -Program $Program
+  $CurrentVersion = Get-ProgramVersion -Program "$Program"
   if ( $null -eq $CurrentVersion ) { Install-Cmake }  # install CMake if it is missing
   if ($CurrentVersion -lt $MinimumVersion) {
     # install CMake if it is less than the required version

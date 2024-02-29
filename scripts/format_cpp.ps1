@@ -16,6 +16,9 @@ USAGE:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Imports
 ###
@@ -23,7 +26,7 @@ USAGE:
 # Formatting
 # imports: Install-ModuleIfMissing, Get-CppFiles, Format-CppRecursive, Get-PsFiles,
 #   Format-PsFile, Format-PsRecursive
-Import-Module "${PWD}\scripts\mod_format.psm1"
+Import-Module "${SCRIPT_DIR}\mod_format.psm1"
 
 ###
 ### Variables
@@ -31,12 +34,13 @@ Import-Module "${PWD}\scripts\mod_format.psm1"
 
 # Specify C/C++ project directories to avoid scanning the entire repository.
 $CPP_DIR_PATHS = @(
-  "AutonomyLib", "AutonomyLibUnitTests", "DroneServer", "DroneShell", "Examples", "HelloCar",
-  "HelloDrone", "HelloSpawnedDrones", "MavLinkCom", "ros2", "SemiGlobalMatching", "Unreal"
+  'AutonomyLib', 'AutonomyLibUnitTests', 'DroneServer', 'DroneShell', 'Examples', 'HelloCar',
+  'HelloDrone', 'HelloSpawnedDrones', 'MavLinkCom', 'ros2', 'SemiGlobalMatching', 'UnrealPlugin'
 )
+$CPP_DIR_PATHS = $CPP_DIR_PATHS | % { Join-Path $PROJECT_DIR $_ }
 
-$CPP_FILES_INCLUDE = @("*.c", "*.cpp", "*.cc", "*.hpp", "*.h")
-$CPP_FILES_EXCLUDE = @("json.hpp")
+$CPP_FILES_INCLUDE = @('*.c', '*.cpp', '*.cc', '*.hpp', '*.h')
+$CPP_FILES_EXCLUDE = @('json.hpp')
 
 ###
 ### Main

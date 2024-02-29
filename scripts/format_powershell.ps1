@@ -16,6 +16,9 @@ USAGE:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Imports
 ###
@@ -23,14 +26,14 @@ USAGE:
 # Formatting
 # imports: Install-ModuleIfMissing, Get-CppFiles, Format-CppRecursive,
 #   Get-PsFiles, Format-PsFile, Format-PsRecursive
-Import-Module "${PWD}\scripts\mod_format.psm1"
+Import-Module "${SCRIPT_DIR}\mod_format.psm1"
 
 ###
 ### Variables
 ###
 
 # Specify PowerShell directories to avoid scanning the entire repository.
-$PS_DIR_PATHS = @(".\scripts")
+$PS_DIR_PATHS = @('.\scripts')
 
 $PS_FILES_INCLUDE = @('*.ps1', '*.psm1', '*.psd1')
 $PS_FILES_EXCLUDE = @()

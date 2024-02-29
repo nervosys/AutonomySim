@@ -14,18 +14,15 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 # Utilities
 # imports: Add-Directories, Remove-ItemSilent, Remove-TempDirectories, Invoke-Fail,
 #   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
 #   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
 #   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\mod_utils.psm1"
-
-###
-### Variables
-###
-
-[String]$PROJECT_DIR = "$PWD"
+Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 
 ###
 ### Functions
@@ -37,14 +34,13 @@ function Build-Documentation {
     [Parameter()]
     [String]
     $ProjectDir = "$PROJECT_DIR",
-    [Parameter()]
+    [Parameter(HelpMessage = 'Path to `make.exe` program. Set to Windows 10/11 default path.')]
     [String]
     $MakeExe = 'C:\Program Files (x86)\GnuWin32\bin\make.exe',
     [Parameter()]
     [Boolean]
     $ServeDocs = $false
   )
-
   if ( -not (Test-Program -Program "mkdocs.exe") ) {
     Invoke-Fail -ErrorMessage 'Error: Program not found: mkdocs.exe'
   }

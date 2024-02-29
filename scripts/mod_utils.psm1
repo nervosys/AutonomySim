@@ -13,9 +13,25 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Functions
 ###
+
+function Path-Prepend {
+  [OutputType([String[]])]
+  param(
+    [Parameter(Mandatory)]
+    [String[]]
+    $Path,
+    [Parameter()]
+    [String]
+    $Prepend = "$PROJECT_DIR"
+  )
+  return ( $Path | % { Join-Path $Prepend $_ } )
+}
 
 function Remove-ItemSilent {
   [OutputType()]
@@ -49,7 +65,7 @@ function Remove-ItemSilent {
 function Get-Modules {
   [OutputType([String])]
   param()
-  return (Get-Module | Format-Table | Out-String)
+  return ( Get-Module | Format-Table | Out-String )
 }
 
 function Test-VariableDefined {
@@ -79,10 +95,14 @@ function Test-DirectoryExists {
 
 function Test-WorkingDirectory {
   [OutputType()]
-  param()
-  $WorkingDirectory = Split-Path "$PWD" -Leaf
-  if ($WorkingDirectory -ne 'AutonomySim') {
-    Write-Output "Present working directory: ${PWD}"
+  param(
+    [Parameter()]
+    [String]
+    $ProjectDir = "$PROJECT_DIR"
+  )
+  $WorkingDirectory = Split-Path "$ProjectDir" -Leaf
+  if ( $WorkingDirectory -ne 'AutonomySim' ) {
+    Write-Output "Present working directory: ${ProjectDir}"
     Write-Error "Error: Script must be run from 'AutonomySim' project directory." -ErrorAction Stop
   }
 }
@@ -91,10 +111,14 @@ function Add-Directories {
   [OutputType()]
   param(
     [Parameter()]
+    [String]
+    $ProjectDir = "$PROJECT_DIR",
+    [Parameter()]
     [String[]]
     $Directories = @('temp', 'external', 'external\rpclib')
   )
-  foreach ($d in $Directories) {
+  $FullPaths = Path-Prepend -Path $Directories -Prepend "$ProjectDir"
+  foreach ( $d in $FullPaths ) {
     [System.IO.Directory]::CreateDirectory("$d") | Out-Null
   }
 }
@@ -103,10 +127,14 @@ function Remove-TempDirectories {
   [OutputType()]
   param(
     [Parameter()]
+    [String]
+    $ProjectDir = "$PROJECT_DIR",
+    [Parameter()]
     [String[]]
     $Directories = @('temp', 'external')
   )
-  foreach ($d in $Directories) {
+  $FullPaths = Path-Prepend -Path $Directories -Prepend "$ProjectDir"
+  foreach ($d in $FullPaths) {
     Remove-ItemSilent -Path "$d" -Recurse
   }
 }
@@ -116,7 +144,7 @@ function Invoke-Fail {
   param(
     [Parameter()]
     [String]
-    $ProjectDir = "$PWD",
+    $ProjectDir = "$PROJECT_DIR",
     [Parameter()]
     [Switch]
     $RemoveTempDirs = $false,

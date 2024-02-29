@@ -13,6 +13,9 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Imports
 ###
@@ -22,18 +25,15 @@ NOTES:
 #   Test-VariableDefined, Get-EnvVariables, Test-Program, Get-ProgramVersion, Get-VersionMajorMinor,
 #   Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion, Get-Architecture,
 #   Get-ArchitectureWidth, Set-ProcessorCount
-Import-Module "${PWD}\scripts\mod_utils.psm1"
+Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 
 ###
 ### Variables
 ###
 
-[String]$PROJECT_DIR = "$PWD"
-#[String]$SCRIPT_DIR = "${PROJECT_DIR}\scripts"
-
 [Version]$RPCLIB_VERSION = '2.3.0'
 [String]$RCPLIB_VERSION_MAJ_MIN_BUILD = Get-VersionMajorMinorBuild -Version $RPCLIB_VERSION
-[String]$RPCLIB_PATH = ".\external\rpclib\rpclib-${RCPLIB_VERSION_MAJ_MIN_BUILD}"
+[String]$RPCLIB_PATH = "${PROJECT_DIR}\external\rpclib\rpclib-${RCPLIB_VERSION_MAJ_MIN_BUILD}"
 [String]$RPCLIB_URL = "https://github.com/rpclib/rpclib/archive/v${RCPLIB_VERSION_MAJ_MIN_BUILD}.zip"
 
 [String]$BUILD_MODE = 'Release'
@@ -58,13 +58,13 @@ function Install-RpcLib {
         Write-Output ' Installing rpclib...'
         Write-Output '-----------------------------------------------------------------------------------------'
     }
-    Remove-ItemSilent -Path '.\temp\rpclib.zip'
+    Remove-ItemSilent -Path "${PROJECT_DIR}\temp\rpclib.zip"
     # Set security protocol used for web requests and download rpclib
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # TLS v1.2
-    Invoke-WebRequest "$RpcLibUrl" -OutFile '.\temp\rpclib.zip' -HttpVersion '2.0'
+    Invoke-WebRequest "$RpcLibUrl" -OutFile "${PROJECT_DIR}\temp\rpclib.zip" -HttpVersion '2.0'
     # Unpack and remove archive
-    Expand-Archive -Path '.\temp\rpclib.zip' -DestinationPath '.\external\rpclib'
-    Remove-ItemSilent -Path '.\temp\rpclib.zip'
+    Expand-Archive -Path "${PROJECT_DIR}\temp\rpclib.zip" -DestinationPath "${PROJECT_DIR}\external\rpclib"
+    Remove-ItemSilent -Path "${PROJECT_DIR}\temp\rpclib.zip"
     # Fail build if unable to download and/or unpack rpclib
     if ( -not (Test-Path -LiteralPath "$RpcLibPath") ) {
         Write-Error 'Error: Unable to download rpclib. Stopping build.' -ErrorAction SilentlyContinue
@@ -87,10 +87,10 @@ function Build-RpcLib {
         $CmakeGenerator = "$CMAKE_GENERATOR",
         [Parameter()]
         [String]
-        $RpcLibTargetLib = '.\AutonomyLib\deps\rpclib\lib\x64',
+        $RpcLibTargetLib = "${PROJECT_DIR}\AutonomyLib\deps\rpclib\lib\x64",
         [Parameter()]
         [String]
-        $RpcLibTargetInclude = '.\AutonomyLib\deps\rpclib\include'
+        $RpcLibTargetInclude = "${PROJECT_DIR}\AutonomyLib\deps\rpclib\include"
     )
     if ( $Verbose.IsPresent ) {
         Write-Output '-----------------------------------------------------------------------------------------'
@@ -109,13 +109,13 @@ function Build-RpcLib {
     # Generate RpcLib build files
     ${env:CMAKE_GENERATOR} = "$CmakeGenerator"  # [System.Environment]::GetEnvironmentVariables()
     # Generate build files
-    Start-Process -FilePath 'cmake.exe' -ArgumentList '-G', "`"$CmakeGenerator`"", '..' -Wait -NoNewWindow
+    Start-Process -FilePath 'cmake.exe' -ArgumentList @('-G', "`"$CmakeGenerator`"", '..') -Wait -NoNewWindow
     # Build RpcLib
     if ( "$BuildMode" -eq 'Release' ) {
-        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.' -Wait -NoNewWindow
-        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', '--config', 'Release' -Wait -NoNewWindow
+        Start-Process -FilePath 'cmake.exe' -ArgumentList @('--build', '.') -Wait -NoNewWindow
+        Start-Process -FilePath 'cmake.exe' -ArgumentList @('--build', '.', '--config', 'Release') -Wait -NoNewWindow
     } else {
-        Start-Process -FilePath 'cmake.exe' -ArgumentList '--build', '.', "--config ${BuildMode}" -Wait -NoNewWindow
+        Start-Process -FilePath 'cmake.exe' -ArgumentList @('--build', '.', "--config ${BuildMode}") -Wait -NoNewWindow
     }
     if ( ! $? ) { exit $LastExitCode }  # exit on subprocess error
     Set-Location "$PROJECT_DIR"
@@ -148,7 +148,7 @@ function Test-RpcLibVersion {
     )
     if ( -not (Test-Path -LiteralPath "$RpcLibPath") ) {
         # Remove previous installations
-        Remove-ItemSilent -Path '.\external\rpclib' -Recurse
+        Remove-ItemSilent -Path "${PROJECT_DIR}\external\rpclib" -Recurse
         Install-RpcLib
         Build-RpcLib -BuildMode "$BuildMode" -CmakeGenerator "$CmakeGenerator"
         # Fail if rpclib version path not found

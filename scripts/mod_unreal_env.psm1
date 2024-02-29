@@ -17,13 +17,19 @@ USAGE:
   Copyright © 2024 Nervosys, LLC
 #>
 
-Import-Module "${PWD}\scripts\mod_utils.psm1"
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
+###
+### Imports
+###
+
+Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 
 ###
 ### Variables
 ###
 
-[String]$PROJECT_DIR = "$PWD"
 [Version]$UNREAL_VERSION = '5.3'
 
 ###
@@ -37,7 +43,7 @@ function Get-UnrealVersion {
     [Version]
     $UnrealVersion = $UNREAL_VERSION
   )
-  if ($UnrealVersion.Build -eq -1) {
+  if ( $UnrealVersion.Build -eq -1 ) {
     [String]$Result = Get-VersionMajorMinor -Version $UnrealVersion
   } else {
     [String]$Result = Get-VersionMajorMinorBuild -Version $UnrealVersion
@@ -123,9 +129,9 @@ function Invoke-UnrealVsProjectFileGenerator {
     [String]$ProjectName = [System.IO.Path]::GetFileNameWithoutExtension("$ProjectFile")
     Write-Output "Generating Visual Studio build files: ${ProjectName}"
     if ( $Automate ) {
-      Start-Process -FilePath "$Generator" -ArgumentList '-projectfiles',"-project=${ProjectFile}",'-progress' -Wait -NoNewWindow
+      Start-Process -FilePath "$Generator" -ArgumentList @('-projectfiles', "-project=${ProjectFile}", '-progress') -Wait -NoNewWindow
     } else {
-      Start-Process -FilePath "$Generator" -ArgumentList '/projectfiles',"${ProjectFile}" -Wait -NoNewWindow
+      Start-Process -FilePath "$Generator" -ArgumentList @('/projectfiles', "${ProjectFile}") -Wait -NoNewWindow
     }
   }
   return $null

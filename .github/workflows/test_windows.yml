@@ -80,4 +80,4 @@ jobs:
           ${env:CMAKE_GENERATOR} = 'Visual Studio 17 2022'
           . "${VisualStudioDir}\Common7\Tools\Launch-VsDevShell.ps1" -Latest
           # Set-PSDebug -Trace 1
-          . "${ProjectDir}\scripts\build.ps1" -ProjectDir "$ProjectDir" -BuildMode 'Release' -CmakeGenerator "${env:CMAKE_GENERATOR}" -UnrealAsset -Automate -Verbose
+          . "${ProjectDir}\scripts\build.ps1" -BuildMode 'Release' -CmakeGenerator "${env:CMAKE_GENERATOR}" -UnrealAsset -Automate -Verbose

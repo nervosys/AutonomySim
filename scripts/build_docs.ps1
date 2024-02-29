@@ -14,11 +14,14 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
+[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
+[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
+
 ###
 ### Imports
 ###
 
-Import-Module "${PWD}\scripts\mod_docs.psm1"  # imports: Build-Documentation
+Import-Module "${SCRIPT_DIR}\mod_docs.psm1"  # imports: Build-Documentation
 
 ###
 ### Main
