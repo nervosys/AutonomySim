@@ -32,7 +32,7 @@ WARNINGS:
 param(
   [Parameter()]
   [String]
-  $ProjectDir = (Split-Path -Path (Split-Path -Path "$PSScriptRoot" -Parent) -Parent),
+  $ProjectDir = "$PWD",
   [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
   [String]
   $BuildMode = 'Release',
