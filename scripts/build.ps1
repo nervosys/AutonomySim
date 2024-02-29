@@ -82,16 +82,16 @@ Import-Module "${ProjectDir}\scripts\mod_docs.psm1"          # imports: Build-Do
 # Static variables
 $PROJECT_DIR = "$ProjectDir"
 $SCRIPT_DIR = "${ProjectDir}\scripts"
+
+# Command-line interface (CLI) arguments
+$BUILD_MODE = "$BuildMode"
+$CMAKE_GENERATOR = "$CmakeGenerator"
+$DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
 $UNREAL_ENV_DIR = if ($PSBoundParameters.ContainsKey('UnrealEnvDir')) {
   "$UnrealEnvDir"
 } else {
   "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments"
 }
-
-# Command-line arguments
-$BUILD_MODE = "$BuildMode"
-$CMAKE_GENERATOR = "$CmakeGenerator"
-$DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
 $UNREAL_ASSET = if ( $UnrealAsset.IsPresent ) { $true } else { $false }
 $BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
 $AUTOMATE_MODE = if ( $Automate.IsPresent ) { $true } else { $false }

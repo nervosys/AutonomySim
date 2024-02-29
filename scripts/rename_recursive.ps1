@@ -14,9 +14,37 @@ NOTES:
   Copyright © 2024 Nervosys, LLC
 #>
 
-$OLD = '.bat'
-$NEW = '.cmd'
+# Static variables
+$PROJECT_DIR = "$PWD"
+$SCRIPT_DIR = "${PWD}\scripts"
 
-Get-ChildItem -File -Recurse | ForEach-Object { Rename-Item -Path $_.PSPath -NewName $_.Name.replace($OLD, $NEW) }
+###
+### Functions
+###
+
+function Rename-FileExtensions {
+  [OutputType()]
+  param(
+    [Parameter()]
+    [String]
+    $Path = "$PROJECT_DIR",
+    [Parameter()]
+    [String]
+    $Old = '.bat',
+    [Parameter()]
+    [String]
+    $New = '.cmd'
+  )
+  Get-ChildItem -File -Recurse | ForEach-Object {
+    Rename-Item -Path "$Path" -NewName $_.Name.replace("$Old", "$New")
+  }
+  return $null
+}
+
+###
+### Main
+###
+
+Rename-FileExtensions -Old '.bat' -New '.cmd'
 
 exit 0
