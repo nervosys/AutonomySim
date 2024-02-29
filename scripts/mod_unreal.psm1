@@ -66,7 +66,7 @@ function Get-UnrealVsProjectFiles {
   # Test-DirectoryPath -Path $ProjectDir
   Copy-UnrealEnvItems -ProjectDir "$ProjectDir" -UnrealEnvDir "$UnrealEnvDir"
   Restore-UnrealEnv -UnrealEnvDir "$UnrealEnvDir"
-  Invoke-UnrealVsProjectFileGenerator -UnrealVersion $UnrealVersion -Automate $Automate
+  Invoke-UnrealVsProjectFileGenerator -UnrealEnvDir "$UnrealEnvDir" -UnrealVersion $UnrealVersion -Automate $Automate
   # Remove-Module -Name 'update_unreal_env'  # Get-Module
   # Set-Location "$ProjectDir"
   return $null
@@ -88,7 +88,7 @@ function Update-UnrealVsProjectFiles {
     [Boolean]
     $Automate = $true
   )
-  $UnrealEnvDirs = (Get-ChildItem -Path "$UnrealEnvBaseDir" -Directory | Select-Object FullName).FullName
+  $UnrealEnvDirs = (Get-ChildItem -Path "$UnrealEnvRootDir" -Directory | Select-Object FullName).FullName
   foreach ( $d in $UnrealEnvDirs ) {
     Get-UnrealVsProjectFiles -ProjectDir "$ProjectDir" -UnrealEnvDir "$d" -UnrealVersion $UnrealVersion -Automate $Automate
   }
