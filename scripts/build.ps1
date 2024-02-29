@@ -60,13 +60,9 @@ param(
 ### Imports
 ###
 
-# NOTE: Prefer Import-Module to Get-Content for its scoping rules.
+# NOTE: Prefer `Import-Module` to `Get-Content` for its scoping rules.
 
 # Utilities
-# imports: Add-Directories, Remove-ItemSilent, Remove-TempDirectories, Invoke-Fail,
-#   Test-WorkingDirectory, Test-VariableDefined, Get-EnvVariables, Get-ProgramVersion,
-#   Get-VersionMajorMinor, Get-VersionMajorMinorBuild, Get-WindowsInfo, Get-WindowsVersion,
-#   Get-Architecture, Get-ArchitectureWidth, Set-ProcessorCount
 Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 
 # Build
@@ -84,8 +80,8 @@ Import-Module "${SCRIPT_DIR}\mod_docs.psm1"          # imports: Build-Documentat
 ###
 
 # Static variables
-#$PROJECT_DIR = "$ProjectDir"
-#$SCRIPT_DIR = "${ProjectDir}\scripts"
+# $PROJECT_DIR = "$ProjectDir"
+# $SCRIPT_DIR = "${ProjectDir}\scripts"
 $UNREAL_ENV_DIR = if ( $PSBoundParameters.ContainsKey('UnrealEnvDir') ) {
   "$UnrealEnvDir"
 } else {
@@ -180,9 +176,7 @@ function Copy-GeneratedBinaries {
 ### Main
 ###
 
-if ( $DEBUG_MODE -eq $true ) {
-  Write-Output (Get-WindowsInfo -Info $SYSTEM_INFO)
-}
+if ( $DEBUG_MODE -eq $true ) { Write-Output (Get-WindowsInfo -Info $SYSTEM_INFO) }
 
 if ( $Verbose.IsPresent ) {
   Write-Output ''
