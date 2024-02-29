@@ -25,14 +25,14 @@ WARNINGS:
   Copyright © 2024 Nervosys, LLC
 #>
 
-[String]$PROJECT_DIR = (Split-Path -Parent -Path (Split-Path -Parent -Path "$PSScriptRoot"))
-[String]$SCRIPT_DIR = (Split-Path -Parent -Path "$PSScriptRoot")
-
 ###
 ### Command-line interface (CLI) arguments
 ###
 
 param(
+  [Parameter()]
+  [String]
+  $ProjectDir = (Split-Path -Path (Split-Path -Path "$PSScriptRoot" -Parent) -Parent),
   [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
   [String]
   $BuildMode = 'Release',
@@ -63,26 +63,26 @@ param(
 # NOTE: Prefer `Import-Module` to `Get-Content` for its scoping rules.
 
 # Utilities
-Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
+Import-Module "${ProjectDir}\scripts\mod_utils.psm1"
 
 # Build
-Import-Module "${SCRIPT_DIR}\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
-Import-Module "${SCRIPT_DIR}\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
-Import-Module "${SCRIPT_DIR}\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
-Import-Module "${SCRIPT_DIR}\mod_unreal.psm1"         # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
-Import-Module "${SCRIPT_DIR}\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
+Import-Module "${ProjectDir}\scripts\mod_cmake.psm1"          # imports: CMAKE_VERSION_MINIMUM, Install-Cmake, Test-CmakeVersion
+Import-Module "${ProjectDir}\scripts\mod_eigen.psm1"          # imports: EIGEN_VERSION, Install-Eigen, Test-EigenVersion
+Import-Module "${ProjectDir}\scripts\mod_rpclib.psm1"         # imports: RPCLIB_VERSION, Install-RpcLib, Test-RpcLibVersion
+Import-Module "${ProjectDir}\scripts\mod_unreal.psm1"         # imports: UNREAL_ASSET_VERSION, Install-UnrealAsset, Test-UnrealAssetVersion
+Import-Module "${ProjectDir}\scripts\mod_visualstudio.psm1"   # imports: VS_VERSION_MINIMUM, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
 
 # Documentation
-Import-Module "${SCRIPT_DIR}\mod_docs.psm1"          # imports: Build-Documentation
+Import-Module "${ProjectDir}\scripts\mod_docs.psm1"          # imports: Build-Documentation
 
 ###
 ### Variables
 ###
 
 # Static variables
-# $PROJECT_DIR = "$ProjectDir"
-# $SCRIPT_DIR = "${ProjectDir}\scripts"
-$UNREAL_ENV_DIR = if ( $PSBoundParameters.ContainsKey('UnrealEnvDir') ) {
+$PROJECT_DIR = "$ProjectDir"
+$SCRIPT_DIR = "${ProjectDir}\scripts"
+$UNREAL_ENV_DIR = if ($PSBoundParameters.ContainsKey('UnrealEnvDir')) {
   "$UnrealEnvDir"
 } else {
   "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments"
