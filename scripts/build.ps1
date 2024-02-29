@@ -8,11 +8,13 @@ AUTHOR:
 DATE:
   2024-02-27
 PARAMETERS:
+  - ProjectDir:     AutonomySim base directory.
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - CmakeGenerator: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
-  - SystemDebug:    Enable for computer system debugging messages.
+  - UnrealEnvDir:   Path to Unreal Environment directory.
   - UnrealAsset:    Enable for an Unreal Engine full-polycount SUV asset.
+  - SystemDebug:    Enable for computer system debugging messages.
   - Automate:       Enable to automate Visual Studio installation selection.
 NOTES:
   - Assumes: PowerShell version >= 7, Unreal Engine >= 5, CMake >= 3.14, Visual Studio 2022.
@@ -29,24 +31,27 @@ WARNINGS:
 ###
 
 param(
+  [Parameter(HelpMessage = 'AutonomySim base directory.')]
+  [String]
+  $ProjectDir = "$PWD",
   [Parameter(HelpMessage = 'Options: [ Debug | Release | RelWithDebInfo ]')]
   [String]
   $BuildMode = 'Release',
   [Parameter(HelpMessage = 'Options: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]')]
   [String]
   $CmakeGenerator = 'Visual Studio 17 2022',
-  [Parameter(HelpMessage = 'Path to Unreal Environment directory.')]
-  [String]
-  $UnrealEnvDir,
   [Parameter(HelpMessage = 'Enable to build and serve AutonomySim documentation.')]
   [Switch]
   $BuildDocs,
-  [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
-  [Switch]
-  $SystemDebug,
+  [Parameter(HelpMessage = 'Path to Unreal Environment directory.')]
+  [String]
+  $UnrealEnvDir,
   [Parameter(HelpMessage = 'Enable for an Unreal Engine full-polycount SUV asset.')]
   [Switch]
   $UnrealAsset,
+  [Parameter(HelpMessage = 'Enable for computer system debugging messages.')]
+  [Switch]
+  $SystemDebug,
   [Parameter(HelpMessage = 'Enable for CI/CD mode (e.g., GitHub Actions).')]
   [Switch]
   $Automate
@@ -80,8 +85,8 @@ Import-Module "${PWD}\scripts\mod_docs.psm1"          # imports: Build-Documenta
 ###
 
 # Static variables
-$PROJECT_DIR = "$PWD"
-$SCRIPT_DIR = "${PROJECT_DIR}\scripts"
+$PROJECT_DIR = "$ProjectDir"
+$SCRIPT_DIR = "${ProjectDir}\scripts"
 $UNREAL_ENV_DIR = if ( $PSBoundParameters.ContainsKey('UnrealEnvDir') ) {
   "$UnrealEnvDir"
 } else {
