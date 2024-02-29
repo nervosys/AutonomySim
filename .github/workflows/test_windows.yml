@@ -74,7 +74,8 @@ jobs:
         shell: pwsh
         run: |
           # Initialize Visual Studio 2022 Developer Command Prompt and prepend MSBuild to PATH.
-          # . 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -Latest
-          # ${env:PATH} += ";C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin"
+          [String]$VisualStudioDir = 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
+          . "${VisualStudioDir}\Common7\Tools\Launch-VsDevShell.ps1" -Latest
+          ${env:PATH} += ";${VisualStudioDir}\MSBuild\Current\Bin"
           # Set-PSDebug -Trace 1
           .\scripts\build.ps1 -BuildMode 'Release' -CmakeGenerator 'Visual Studio 17 2022' -UnrealAsset -Automate -Verbose
