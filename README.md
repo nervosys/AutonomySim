@@ -29,6 +29,33 @@
     href="https://github.com/nervosys/AutonomySim/actions/workflows/test_docs.yml">
     <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_docs.yml/badge.svg">
   </a>
+  <a alt="License"
+    href="https://opensource.org/licenses/Apache-2.0">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
+  </a>
+</p>
+
+<p align="center" width="100%">
+  <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white">
+  <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white">
+  <img src="https://img.shields.io/badge/macOS-313131?style=for-the-badge&logo=apple&logoColor=white">
+</p>
+
+<p align="center" width="100%">
+  <img src="https://img.shields.io/badge/Unreal-313131.svg?style=for-the-badge&logo=unrealengine&logoColor=white">
+  <img src="https://img.shields.io/badge/PowerShell-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white">
+  <img src="https://img.shields.io/badge/BASH-313131?style=for-the-badge&logo=gnu-bash&logoColor=white">
+  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white">
+  <img src="https://img.shields.io/badge/Rust-313131?style=for-the-badge&logo=rust&logoColor=white">
+</p>
+
+<p align="center" width="100%">
+  <a alt="Sponsor"
+    href="https://github.com/sponsors/nervosys">
+    <img src="https://img.shields.io/badge/sponsor-313131?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white">
+  </a>
 </p>
 
 ## Announcements
