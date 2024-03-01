@@ -43,7 +43,7 @@
 
 <p align="center" width="100%">
   <img src="https://img.shields.io/badge/Unreal-313131.svg?style=for-the-badge&logo=unrealengine&logoColor=white">
-  <img src="https://img.shields.io/badge/PowerShell-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white">
+  <img src="https://img.shields.io/badge/PWSH-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white">
   <img src="https://img.shields.io/badge/BASH-313131?style=for-the-badge&logo=gnu-bash&logoColor=white">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">

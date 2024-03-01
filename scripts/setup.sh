@@ -32,6 +32,7 @@ function brew_install {
     brew list "$1" &>/dev/null || brew install "$1"
 }
 
+# check version compatability
 function version_less_than_equal_to {
     test "$(printf '%s\n' "$@" | sort -V | head -n 1)" = "$1"
 }
@@ -40,7 +41,8 @@ function version_less_than_equal_to {
 ### Variables
 ###
 
-# Script directory.
+# Directory paths.
+PROJECT_DIR="$(realpath $PWD)"
 SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
 
 # Ensure CMake supports CMAKE_APPLE_SILICON_PROCESSOR for MacOS.
@@ -58,6 +60,7 @@ UNREAL_ASSET_VERSION='1.2.0'
 
 # download high-polycount SUV model.
 HIGH_POLYCOUNT_SUV='false'
+HIGH_POLYCOUNT_SUV_URL='https://github.com/microsoft/AirSim/releases/download/v1.2.0/car_assets.zip'
 
 DEBUG="${DEBUG:-false}"
 
@@ -93,15 +96,16 @@ else
         rsync \
         software-properties-common \
         wget \
-        vulkan \
-        vulkan-utils \
+        vulkan-tools \
         libvulkan1
-    VERSION=$(lsb_release -rs | cut -d. -f1)
-    if [ "$VERSION" -lt '20' ]; then
-        wget -O - 'http://apt.llvm.org/llvm-snapshot.gpg.key' | sudo apt-key add -
-        sudo apt-get update -y
-    fi
-    sudo apt-get install -y clang-17 clang++-17 libc++-17-dev libc++abi-17-dev
+        # vulkan vulkan-utils
+    VERSION=$(lsb_release -rs | cut -d '.' -f1)
+    #if [ "$VERSION" -lt '20' ]; then
+    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    sudo apt-get update -y
+    #fi
+    CLANG_VERSION='14'
+    sudo apt-get install -y clang-${CLANG_VERSION} libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev
 fi
 
 # Get/set CMake version.
@@ -112,8 +116,7 @@ else
 fi
 
 # Give user permissions to access USB port, not needed if not using PX4 HIL.
-# TODO: figure out how to do below in travis.
-# Install additional tools, CMake if required.
+# TODO: figure out how to do below in travis. Install additional tools, CMake if required.
 if [ "$(uname)" = 'Darwin' ]; then
     if [ -n "${whoami}" ]; then # travis
         sudo dseditgroup -o edit -a "$(whoami)" -t user dialout
@@ -134,28 +137,8 @@ else
     fi
     sudo apt-get install -y build-essential unzip
     if version_less_than_equal_to "$cmake_ver" "$CMAKE_VERSION_MIN"; then
-        if [ "$(lsb_release -rs)" = "18.04" ]; then
-            sudo apt-get -y install apt-transport-https ca-certificates gnupg
-            wget -O - 'https://apt.kitware.com/keys/kitware-archive-latest.asc' 2>/dev/null |
-                gpg --dearmor - |
-                sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-            sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-            sudo apt-get -y install --no-install-recommends make cmake
-        else
-            # If CMake binary not found, build it from source.
-            if [ ! -d './cmake_build/bin' ]; then
-                echo 'Downloading CMake...'
-                wget "https://cmake.org/files/v${CMAKE_VERSION_MIN_MAJ_MIN}/cmake-${CMAKE_VERSION}.tar.gz" -O cmake.tar.gz
-                tar -xzf ./cmake.tar.gz
-                rm ./cmake.tar.gz
-                rm -rf ./cmake_build
-                mv "./cmake-${CMAKE_VERSION}" ./cmake_build
-                pushd cmake_build # push directory onto stack
-                ./bootstrap
-                make
-                popd # pop directory from stack
-            fi
-        fi
+        sudo apt-get -y install apt-transport-https ca-certificates gnupg
+        sudo apt-get -y install --no-install-recommends make cmake
     else
         echo "Compatible version of CMake already installed: $cmake_ver"
     fi
@@ -176,25 +159,23 @@ fi
 
 # Download and unpack high-polycount SUV asset for Unreal Engine.
 if [ "${HIGH_POLYCOUNT_SUV}" = 'true' ]; then
-    if [ ! -d './Unreal/Plugins/AutonomySim/Content/VehicleAdv' ]; then
-        mkdir -p './Unreal/Plugins/AutonomySim/Content/VehicleAdv'
+    if [ ! -d ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv ]; then
+        mkdir -p ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv
     fi
-    if [ ! -d "./Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV/v${UNREAL_ASSET_VERSION}" ]; then
+    if [ ! -d "./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV/v${UNREAL_ASSET_VERSION}" ]; then
         echo '-----------------------------------------------------------------------------------------'
         echo ' Downloading Unreal high-polycount SUV asset...'
         echo '-----------------------------------------------------------------------------------------'
-        if [ -d ./suv_download_tmp ]; then
-            rm -rf ./suv_download_tmp
+        if [ -d ./temp/suv ]; then
+            rm -rf ./temp/suv
         fi
-        mkdir -p ./suv_download_tmp
-        cd suv_download_tmp
-        wget 'https://github.com/microsoft/AirSim/releases/download/v2.0.0-beta.0/car_assets.zip'
-        if [ -d '../Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV' ]; then
-            rm -rf ../Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV
+        mkdir -p ./temp/suv
+        wget "$HIGH_POLYCOUNT_SUV_URL" -P ./temp/suv
+        if [ -d ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV ]; then
+            rm -rf ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV
         fi
-        unzip -q ./car_assets.zip -d ../Unreal/Plugins/ASim/Content/VehicleAdv
-        cd ..
-        rm -rf ./suv_download_tmp
+        unzip -q ./temp/suv/car_assets.zip -d ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv
+        rm -rf ./temp/suv
     fi
 else
     echo "Skipped: Download of Unreal high-polycount SUV asset. The default Unreal Engine vehicle will be used."
@@ -202,13 +183,13 @@ fi
 
 # Download and unpack Eigen3 C++ library.
 if [ ! -d './AutonomyLib/deps/eigen3' ]; then
-    echo 'Installing Eigen3 C++ library. Downloading Eigen...'
-    wget -O eigen3.zip "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_VERSION}/eigen-${EIGEN_VERSION}.zip"
-    unzip -q eigen3.zip -d ./temp_eigen
+    echo 'Installing Eigen C++ library...'
+    mkdir -p ./temp/eigen
+    wget "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_VERSION}/eigen-${EIGEN_VERSION}.zip" -P ./temp/eigen
+    unzip -q "./temp/eigen/eigen-${EIGEN_VERSION}.zip" -d ./temp/eigen
     mkdir -p ./AutonomyLib/deps/eigen3
-    mv ./temp_eigen/eigen*/Eigen ./AutonomyLib/deps/eigen3
-    rm -rf temp_eigen
-    rm eigen3.zip
+    mv "./temp/eigen/eigen-${EIGEN_VERSION}/Eigen" ./AutonomyLib/deps/eigen3
+    rm -rf ./temp/eigen
 else
     echo "Skipped: Eigen is already installed."
 fi
