@@ -3,6 +3,8 @@
     <img src="./media/images/autonomysim_simple_bw_1000w.png" width="600vw" alt="AutonomySim logo">
 </p>
 
+<h1 align="center">The simulation engine for autonomous systems</h1>
+
 <p align="center" width="100%">
   <a alt="Windows Build"
     href="https://github.com/nervosys/AutonomySim/actions/workflows/test_windows.yml">
@@ -28,8 +30,6 @@
     <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_docs.yml/badge.svg">
   </a>
 </p>
-
-<h1 align="center">The simulation engine for autonomous systems</h1>
 
 ## Announcements
 
