@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 #----------------------------------------------------------------------------------------
 # Filename
 #   setup.sh
@@ -87,20 +86,22 @@ if [ "$(uname)" = 'Darwin' ]; then
     brew update
     brew install llvm
 else
-    sudo apt-get update
-    sudo apt-get -y install --no-install-recommends \
+    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo apt-get update -y
+    sudo apt-get install -y --no-install-recommends \
         lsb-release \
         rsync \
         software-properties-common \
         wget \
-        libvulkan1 \
-        vulkan-utils
+        vulkan \
+        vulkan-utils \
+        libvulkan1
     VERSION=$(lsb_release -rs | cut -d. -f1)
-    if [ "$VERSION" -lt '17' ]; then
+    if [ "$VERSION" -lt '20' ]; then
         wget -O - 'http://apt.llvm.org/llvm-snapshot.gpg.key' | sudo apt-key add -
-        sudo apt-get update
+        sudo apt-get update -y
     fi
-    sudo apt-get install -y clang-8 clang++-8 libc++-8-dev libc++abi-8-dev
+    sudo apt-get install -y clang-17 clang++-17 libc++-17-dev libc++abi-17-dev
 fi
 
 # Get/set CMake version.
