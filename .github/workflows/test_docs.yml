@@ -13,7 +13,7 @@
 #   Copyright © 2024 Nervosys, LLC
 #----------------------------------------------------------------------------------------
 
-name: "Build and Deploy: Documentation (Doxygen, Sphinx, MkDocs)"
+name: "Build and Deploy: Documentation"
 
 on:
   push:

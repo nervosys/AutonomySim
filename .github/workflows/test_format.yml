@@ -13,7 +13,7 @@
 #   Copyright © 2024 Nervosys, LLC
 #----------------------------------------------------------------------------------------
 
-name: "Test: Source Code Formatting"
+name: "Format: Source Code"
 
 on:
   push:

@@ -3,7 +3,7 @@
     <img src="./media/images/autonomysim_simple_bw_1000w.png" width="600vw" alt="AutonomySim logo">
 </p>
 
-<p align="center" width="100%">  
+<p align="center" width="100%">
   <a alt="Windows Build"
     href="https://github.com/nervosys/AutonomySim/actions/workflows/test_windows.yml">
     <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_windows.yml/badge.svg">
@@ -18,11 +18,22 @@
   </a>
 </p>
 
+<p align="center" width="100%">
+  <a alt="Source Formatting"
+    href="https://github.com/nervosys/AutonomySim/actions/workflows/test_format.yml">
+    <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_format.yml/badge.svg">
+  </a>
+  <a alt="Documentation Build"
+    href="https://github.com/nervosys/AutonomySim/actions/workflows/test_docs.yml">
+    <img src="https://github.com/nervosys/AutonomySim/actions/workflows/test_docs.yml/badge.svg">
+  </a>
+</p>
+
 <h1 align="center">The simulation engine for autonomous systems</h1>
 
 ## Announcements
 
-* UNDER CONSTRUCTION: We are updating the build systems. Expect a few bumps in the road.
+* Windows now has separate Batch/Command and PowerShell build systems.
 * The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
 * A new documentation system has been rolled out that covers the Python and C++ APIs.
 * `Windows`: all build scripts have been translated from Command/Batch to PowerShell. `Unreal Engine` still generates Batch files and we are still ironing out the bugs.
