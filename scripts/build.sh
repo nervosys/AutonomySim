@@ -24,21 +24,20 @@ set -e  # exit on error return code
 ### Functions
 ###
 
+# System information.
 function system_info {
     uname -a && lscpu
 }
 
-function system_architecture {
+# System architecture.
+function system_arch {
     # unreliable: uname -m
     lscpu | grep 'Architecture' | awk {'print $2'}
 }
 
-function system_os_version {
+# System OS version.
+function system_os {
     uname -r
-}
-
-function version_less_than_equal_to {
-    test "$(printf '%s\n' "$@" | sort -V | head -n 1)" = "$1"
 }
 
 ###
@@ -54,7 +53,7 @@ DEBUG='false'
 GCC='false'
 
 GCC_VERSION='11'
-CLANG_VERSION='14'
+CLANG_VERSION='12'
 CMAKE_VERSION='3.10.2'
 EIGEN_VERSION='3.4.0'
 RPCLIB_VERSION='2.3.0'
@@ -62,9 +61,9 @@ UNREAL_ASSET_VERSION='1.2.0'
 
 # Dynamic variables.
 SYSTEM_INFO="$(system_info)"
-SYSTEM_PLATFORM="$(system_architecture)"
+SYSTEM_PLATFORM="$(system_arch)"
 SYSTEM_CPU_MAX="$(( $(nproc) - 2 ))"
-SYSTEM_OS_VERSION="$(system_os_version)"
+SYSTEM_OS_VERSION="$(system_os)"
 
 ###
 ### Main
@@ -121,8 +120,8 @@ elif [ "$(uname)" = 'Linux' ]; then
         export CC="gcc"
         export CXX="g++"
     else
-        export CC="clang"
-        export CXX="clang++"
+        export CC="clang-${CLANG_VERSION}"
+        export CXX="clang++-${CLANG_VERSION}"
     fi
 else
     echo 'ERROR: This build script only supports Linux and MacOS.'
@@ -135,15 +134,14 @@ if [ ! -d "./AutonomyLib/deps/eigen3/Eigen" ]; then
     exit 1
 fi
 
-echo "Moving build into directory: ${build_dir}"
-
 # Ensure CMake files will be built in our build directory.
 [ -f "./cmake/CMakeCache.txt" ] && rm "./cmake/CMakeCache.txt"
 [ -d "./cmake/CMakeFiles" ] && rm -rf "./cmake/CMakeFiles"
-[ ! -d "$build_dir" ] && mkdir -p "$build_dir"
+[ ! -d "./cmake/${build_dir}" ] && mkdir -p "./cmake/${build_dir}"
 
 # Enter build directory.
-pushd "$build_dir"
+echo "Moving into build directory: ./cmake/${build_dir}"
+pushd "./cmake/${build_dir}"
 
 # Fix for Unreal on Apple/ARM silicon using x86_64 (Rosetta).
 CMAKE_VARS=''
@@ -151,10 +149,10 @@ CMAKE_VARS=''
 
 if [ "${DEBUG}" = 'true' ]; then
     folder_name='Debug'
-    "$CMAKE" ../cmake -DCMAKE_BUILD_TYPE=Debug $CMAKE_VARS || (cd .. && rm -r "$build_dir" && exit 1)
+    "$CMAKE" -DCMAKE_BUILD_TYPE=Debug "$CMAKE_VARS" .. || (popd && rm -rf "./$build_dir" && exit 1)
 else
     folder_name='Release'
-    "$CMAKE" ../cmake -DCMAKE_BUILD_TYPE=Release $CMAKE_VARS || (cd .. && rm -r "$build_dir" && exit 1)
+    "$CMAKE" -DCMAKE_BUILD_TYPE=Release "$CMAKE_VARS" .. || (popd && rm -rf "./$build_dir" && exit 1)
 fi
 
 # Final linking of the binaries can fail due to a missing libc++abi library
@@ -169,12 +167,12 @@ mkdir -p "./AutonomyLib/lib/x64/${folder_name}"
 mkdir -p './AutonomyLib/deps/rpclib/lib'
 mkdir -p './AutonomyLib/deps/MavLinkCom/lib'
 
-cp "./${build_dir}/output/lib/libAutonomyLib.a" ./AutonomyLib/lib
-cp "./${build_dir}/output/lib/libMavLinkCom.a" ./AutonomyLib/deps/MavLinkCom/lib
-cp "./${build_dir}/output/lib/librpc.a" ./AutonomyLib/deps/rpclib/lib/librpc.a
+cp "./cmake/${build_dir}/output/lib/libAutonomyLib.a" ./AutonomyLib/lib
+cp "./cmake/${build_dir}/output/lib/libMavLinkCom.a" ./AutonomyLib/deps/MavLinkCom/lib
+cp "./cmake/${build_dir}/output/lib/librpc.a" ./AutonomyLib/deps/rpclib/lib/librpc.a
 
 # Update AutonomyLib/lib, AutonomyLib/deps, Plugins folders with new binaries
-rsync -a --delete "./${build_dir}/output/lib/" "./AutonomyLib/lib/x64/${folder_name}"
+rsync -a --delete "./cmake/${build_dir}/output/lib/" "./AutonomyLib/lib/x64/${folder_name}"
 rsync -a --delete "./external/rpclib/rpclib-${RPCLIB_VERSION}/include" ./AutonomyLib/deps/rpclib
 rsync -a --delete ./MavLinkCom/include ./AutonomyLib/deps/MavLinkCom
 rsync -a --delete ./AutonomyLib ./UnrealPlugin/Unreal/Plugins/AutonomySim/Source

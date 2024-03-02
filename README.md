@@ -35,11 +35,13 @@
   </a>
 </p>
 
+<!---
 <p align="center" width="100%">
   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white">
   <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white">
   <img src="https://img.shields.io/badge/macOS-313131?style=for-the-badge&logo=apple&logoColor=white">
 </p>
+--->
 
 <p align="center" width="100%">
   <img src="https://img.shields.io/badge/Unreal-313131.svg?style=for-the-badge&logo=unrealengine&logoColor=white">

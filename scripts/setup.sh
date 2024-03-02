@@ -27,12 +27,19 @@ set -e  # exit on error return code
 ### Functions
 ###
 
-# silence brew error if package is already installed.
+# Silence brew error if package is already installed.
 function brew_install {
     brew list "$1" &>/dev/null || brew install "$1"
 }
 
-# check version compatability
+# Numeric comparator. A more robust version checker.
+# USAGE: if ( numeric_comparison '3.3' '<=' '3.4' ); then ...; else ...; fi
+# WARNING: cannot handle version numbers.
+# function numeric_comparison {
+#     test "$(echo $1 $2 $3 | bc --mathlib)" = '1'
+# }
+
+# Check version compatability.
 function version_less_than_equal_to {
     test "$(printf '%s\n' "$@" | sort -V | head -n 1)" = "$1"
 }
@@ -89,22 +96,28 @@ if [ "$(uname)" = 'Darwin' ]; then
     brew update
     brew install llvm
 else
-    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
     sudo apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        ca-certificates \
+        gnupg \
+        software-properties-common \
+        build-essential \
+        unzip \
+        coreutils \
         lsb-release \
         rsync \
-        software-properties-common \
         wget \
         vulkan-tools \
         libvulkan1
         # vulkan vulkan-utils
     VERSION=$(lsb_release -rs | cut -d '.' -f1)
     #if [ "$VERSION" -lt '20' ]; then
-    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc >/dev/null
     sudo apt-get update -y
     #fi
-    CLANG_VERSION='14'
+    CLANG_VERSION='12'  # requires ubuntu >= 20
     sudo apt-get install -y clang-${CLANG_VERSION} libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev
 fi
 
@@ -125,7 +138,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     brew_install wget
     brew_install coreutils
     # Conditionally install lower CMake version.
-    if version_less_than_equal_to "$cmake_ver" "$CMAKE_VERSION_MIN"; then
+    if ( version_less_than_equal_to "$cmake_ver" "$CMAKE_VERSION_MIN" ); then
         brew install cmake
     else
         echo "Compatible version of CMake already installed: $cmake_ver"
@@ -135,9 +148,7 @@ else
         sudo /usr/sbin/useradd -G dialout "$USER"
         sudo usermod -a -G dialout "$USER"
     fi
-    sudo apt-get install -y build-essential unzip
-    if version_less_than_equal_to "$cmake_ver" "$CMAKE_VERSION_MIN"; then
-        sudo apt-get -y install apt-transport-https ca-certificates gnupg
+    if ( version_less_than_equal_to "$cmake_ver" "$CMAKE_VERSION_MIN" ); then
         sudo apt-get -y install --no-install-recommends make cmake
     else
         echo "Compatible version of CMake already installed: $cmake_ver"
