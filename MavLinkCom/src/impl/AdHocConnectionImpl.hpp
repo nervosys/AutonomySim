@@ -53,10 +53,13 @@ class AdHocConnectionImpl {
     void unsubscribe(int id);
 
   private:
-    static std::shared_ptr<AdHocConnection> createConnection(const std::string &nodeName, std::shared_ptr<Port> port);
+    template <typename PortType>
+    static std::shared_ptr<AdHocConnection> createConnection(const std::string &nodeName,
+                                                             std::shared_ptr<PortType> port);
     void publishPackets();
     void readPackets();
     void drainQueue();
+
     std::string name;
     std::shared_ptr<Port> port;
     std::shared_ptr<AdHocConnection> con_;
@@ -71,6 +74,7 @@ class AdHocConnectionImpl {
         int id;
         AdHocMessageHandler handler;
     };
+
     std::vector<MessageHandlerEntry> listeners;
     std::vector<MessageHandlerEntry> snapshot;
     bool snapshot_stale;
@@ -88,6 +92,7 @@ class AdHocConnectionImpl {
     std::mutex telemetry_mutex_;
     std::unordered_set<uint8_t> ignored_messageids;
 };
+
 } // namespace mavlinkcom_impl
 
 #endif

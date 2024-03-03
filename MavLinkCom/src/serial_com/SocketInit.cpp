@@ -10,6 +10,7 @@
 #endif
 
 using namespace mavlink_utils;
+
 bool SocketInit::socket_initialized_ = false;
 
 SocketInit::SocketInit() {

@@ -11,6 +11,7 @@
 using namespace mavlink_utils;
 
 using namespace mavlinkcom_impl;
+
 //================================= CLIENT ==============================================================
 
 MavLinkVideoClientImpl::MavLinkVideoClientImpl(int localSystemId, int localComponentId)

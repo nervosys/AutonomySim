@@ -3,6 +3,7 @@
 
 #ifndef PORT_H
 #define PORT_H
+
 #include <stdint.h>
 
 class Port {
@@ -23,4 +24,5 @@ class Port {
 
     virtual ~Port() = default;
 };
+
 #endif // !PORT_H
