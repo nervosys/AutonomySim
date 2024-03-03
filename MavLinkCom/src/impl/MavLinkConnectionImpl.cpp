@@ -34,9 +34,8 @@ MavLinkConnectionImpl::~MavLinkConnectionImpl() {
     close();
 }
 
-template <typename PortType>
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::createConnection(const std::string &nodeName,
-                                                                           std::shared_ptr<PortType> port) {
+                                                                           std::shared_ptr<Port> port) {
     // std::shared_ptr<MavLinkCom> owner, const std::string& nodeName
     std::shared_ptr<MavLinkConnection> con = std::make_shared<MavLinkConnection>();
     con->startListening(nodeName, port);
@@ -47,7 +46,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectLocalUdp(const 
                                                                           const std::string &localAddr, int localPort) {
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(localAddr, localPort, "", 0);
-    return createConnection<UdpClientPort>(nodeName, socket);
+    return createConnection(nodeName, socket);
 }
 
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectRemoteUdp(const std::string &nodeName,
@@ -61,7 +60,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectRemoteUdp(const
     }
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(local, 0, remoteAddr, remotePort);
-    return createConnection<UdpClientPort>(nodeName, socket);
+    return createConnection(nodeName, socket);
 }
 
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectTcp(const std::string &nodeName,
@@ -74,7 +73,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectTcp(const std::
     }
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
     socket->connect(local, 0, remoteIpAddr, remotePort);
-    return createConnection<TcpClientPort>(nodeName, socket);
+    return createConnection(nodeName, socket);
 }
 
 std::string MavLinkConnectionImpl::acceptTcp(std::shared_ptr<MavLinkConnection> parent, const std::string &nodeName,
@@ -109,7 +108,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectSerial(const st
         serial->write(reinterpret_cast<const uint8_t *>(initString.c_str()), static_cast<int>(initString.size()));
     }
 
-    return createConnection<SerialPort>(nodeName, serial);
+    return createConnection(nodeName, serial);
 }
 
 void MavLinkConnectionImpl::startListening(std::shared_ptr<MavLinkConnection> parent, const std::string &nodeName,
@@ -144,7 +143,6 @@ void MavLinkConnectionImpl::close() {
         port->close();
         port = nullptr;
     }
-
     if (read_thread.joinable()) {
         read_thread.join();
     }
@@ -159,6 +157,7 @@ void MavLinkConnectionImpl::close() {
 bool MavLinkConnectionImpl::isOpen() { return !closed; }
 
 int MavLinkConnectionImpl::getTargetComponentId() { return this->other_component_id; }
+
 int MavLinkConnectionImpl::getTargetSystemId() { return this->other_system_id; }
 
 uint8_t MavLinkConnectionImpl::getNextSequence() {
@@ -169,8 +168,9 @@ uint8_t MavLinkConnectionImpl::getNextSequence() {
 void MavLinkConnectionImpl::ignoreMessage(uint8_t message_id) { ignored_messageids.insert(message_id); }
 
 void MavLinkConnectionImpl::sendMessage(const MavLinkMessage &m) {
-    if (ignored_messageids.find(m.msgid) != ignored_messageids.end())
+    if (ignored_messageids.find(m.msgid) != ignored_messageids.end()) {
         return;
+    }
 
     if (closed) {
         return;

@@ -67,9 +67,7 @@ class MavLinkConnectionImpl {
     bool isPublishThread() const;
 
   private:
-    template <typename PortType>
-    static std::shared_ptr<MavLinkConnection> createConnection(const std::string &nodeName,
-                                                               std::shared_ptr<PortType> port);
+    static std::shared_ptr<MavLinkConnection> createConnection(const std::string &nodeName, std::shared_ptr<Port> port);
     void joinLeftSubscriber(std::shared_ptr<MavLinkConnection> remote, std::shared_ptr<MavLinkConnection> con,
                             const MavLinkMessage &msg);
     void joinRightSubscriber(std::shared_ptr<MavLinkConnection> con, const MavLinkMessage &msg);

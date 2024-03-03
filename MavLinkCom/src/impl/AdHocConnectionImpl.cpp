@@ -25,9 +25,8 @@ AdHocConnectionImpl::~AdHocConnectionImpl() {
     close();
 }
 
-template <typename PortType>
 std::shared_ptr<AdHocConnection> AdHocConnectionImpl::createConnection(const std::string &nodeName,
-                                                                       std::shared_ptr<PortType> port) {
+                                                                       std::shared_ptr<Port> port) {
     // std::shared_ptr<MavLinkCom> owner, const std::string& nodeName
     std::shared_ptr<AdHocConnection> con = std::make_shared<AdHocConnection>();
     con->startListening(nodeName, port);
@@ -38,7 +37,7 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectLocalUdp(const std:
                                                                       std::string localAddr, int localPort) {
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(localAddr, localPort, "", 0);
-    return createConnection<UdpClientPort>(nodeName, socket);
+    return createConnection(nodeName, socket);
 }
 
 std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectRemoteUdp(const std::string &nodeName,
@@ -52,7 +51,7 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectRemoteUdp(const std
 
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(local, 0, remoteAddr, remotePort);
-    return createConnection<UdpClientPort>(nodeName, socket);
+    return createConnection(nodeName, socket);
 }
 
 std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectTcp(const std::string &nodeName, std::string localAddr,
@@ -65,7 +64,7 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectTcp(const std::stri
 
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
     socket->connect(local, 0, remoteIpAddr, remotePort);
-    return createConnection<TcpClientPort>(nodeName, socket);
+    return createConnection(nodeName, socket);
 }
 
 std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectSerial(const std::string &nodeName, std::string name,
@@ -81,7 +80,7 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectSerial(const std::s
         serial->write(reinterpret_cast<const uint8_t *>(initString.c_str()), static_cast<int>(initString.size()));
     }
 
-    return createConnection<SerialPort>(nodeName, serial);
+    return createConnection(nodeName, serial);
 }
 
 void AdHocConnectionImpl::startListening(std::shared_ptr<AdHocConnection> parent, const std::string &nodeName,

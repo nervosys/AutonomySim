@@ -53,9 +53,7 @@ class AdHocConnectionImpl {
     void unsubscribe(int id);
 
   private:
-    template <typename PortType>
-    static std::shared_ptr<AdHocConnection> createConnection(const std::string &nodeName,
-                                                             std::shared_ptr<PortType> port);
+    static std::shared_ptr<AdHocConnection> createConnection(const std::string &nodeName, std::shared_ptr<Port> port);
     void publishPackets();
     void readPackets();
     void drainQueue();
