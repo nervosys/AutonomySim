@@ -5,6 +5,8 @@
 #define SERIAL_COM_TCPCLIENTPORT_HPP
 
 #include "Port.h"
+#include <memory>
+#include <string>
 
 class TcpClientPort : public Port {
   public:

@@ -34,8 +34,9 @@ MavLinkConnectionImpl::~MavLinkConnectionImpl() {
     close();
 }
 
+template <typename PortType>
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::createConnection(const std::string &nodeName,
-                                                                           std::shared_ptr<Port> port) {
+                                                                           std::shared_ptr<PortType> port) {
     // std::shared_ptr<MavLinkCom> owner, const std::string& nodeName
     std::shared_ptr<MavLinkConnection> con = std::make_shared<MavLinkConnection>();
     con->startListening(nodeName, port);
@@ -45,10 +46,8 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::createConnection(const
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectLocalUdp(const std::string &nodeName,
                                                                           const std::string &localAddr, int localPort) {
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
-
     socket->connect(localAddr, localPort, "", 0);
-
-    return createConnection(nodeName, socket);
+    return createConnection<UdpClientPort>(nodeName, socket);
 }
 
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectRemoteUdp(const std::string &nodeName,
@@ -60,12 +59,9 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectRemoteUdp(const
     if (remoteAddr == "127.0.0.1") {
         local = "127.0.0.1";
     }
-
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
-
     socket->connect(local, 0, remoteAddr, remotePort);
-
-    return createConnection(nodeName, socket);
+    return createConnection<UdpClientPort>(nodeName, socket);
 }
 
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectTcp(const std::string &nodeName,
@@ -76,12 +72,9 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectTcp(const std::
     if (remoteIpAddr == "127.0.0.1") {
         local = "127.0.0.1";
     }
-
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
-
     socket->connect(local, 0, remoteIpAddr, remotePort);
-
-    return createConnection(nodeName, socket);
+    return createConnection<TcpClientPort>(nodeName, socket);
 }
 
 std::string MavLinkConnectionImpl::acceptTcp(std::shared_ptr<MavLinkConnection> parent, const std::string &nodeName,
@@ -90,7 +83,7 @@ std::string MavLinkConnectionImpl::acceptTcp(std::shared_ptr<MavLinkConnection> 
     close();
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
 
-    port = socket; // this is so that a call to close() can cancel this blocking accept call.
+    port = std::make_shared<Port>(*socket); // this is so that a call to close() can cancel this blocking accept call.
     socket->accept(localAddr, listeningPort);
 
     std::string remote = socket->remoteAddress();
@@ -116,7 +109,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectSerial(const st
         serial->write(reinterpret_cast<const uint8_t *>(initString.c_str()), static_cast<int>(initString.size()));
     }
 
-    return createConnection(nodeName, serial);
+    return createConnection<SerialPort>(nodeName, serial);
 }
 
 void MavLinkConnectionImpl::startListening(std::shared_ptr<MavLinkConnection> parent, const std::string &nodeName,
