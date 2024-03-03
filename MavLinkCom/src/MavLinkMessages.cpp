@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 #include "MavLinkMessages.hpp"
 #include <sstream>
+
 using namespace mavlinkcom;
 
 int MavLinkHeartbeat::pack(char *buffer) const {

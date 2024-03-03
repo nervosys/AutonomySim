@@ -10,6 +10,7 @@
 using namespace mavlinkcom;
 
 namespace mavlinkcom_impl {
+
 class MavLinkVideoClientImpl : public MavLinkNodeImpl {
   public:
     MavLinkVideoClientImpl(int localSystemId, int localComponentId);

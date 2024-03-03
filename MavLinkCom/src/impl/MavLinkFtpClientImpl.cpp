@@ -10,6 +10,7 @@
 using namespace mavlink_utils;
 using namespace mavlinkcom;
 using namespace mavlinkcom_impl;
+
 using milliseconds = std::chrono::milliseconds;
 
 #define MAXIMUM_ROUND_TRIP_TIME 200 // 200 milliseconds should be plenty of time for single round trip to remote node.

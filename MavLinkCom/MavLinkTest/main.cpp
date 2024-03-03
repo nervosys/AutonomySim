@@ -24,6 +24,7 @@ STRICT_MODE_ON
 #include "UnitTests.h"
 
 #include <filesystem>
+
 using namespace std::filesystem;
 
 /* enable math defines on Windows */
@@ -46,6 +47,7 @@ static const int pixhawkFMUV2OldBootloaderProductId = 22; ///< Product ID for Bo
 typedef mavlink_utils::Utils Utils;
 typedef mavlink_utils::FileSystem FileSystem;
 typedef unsigned int uint;
+
 using namespace mavlinkcom;
 
 struct FlagName {

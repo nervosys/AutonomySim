@@ -16,6 +16,7 @@
 
 typedef int socklen_t;
 static bool socket_initialized_ = false;
+
 #else
 
 // posix

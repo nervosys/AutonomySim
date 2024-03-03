@@ -37,7 +37,8 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectLocalUdp(const std:
                                                                       std::string localAddr, int localPort) {
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(localAddr, localPort, "", 0);
-    return createConnection(nodeName, socket);
+    std::shared_ptr<Port> port = socket;
+    return createConnection(nodeName, port);
 }
 
 std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectRemoteUdp(const std::string &nodeName,
@@ -51,7 +52,8 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectRemoteUdp(const std
 
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(local, 0, remoteAddr, remotePort);
-    return createConnection(nodeName, socket);
+    std::shared_ptr<Port> port = socket;
+    return createConnection(nodeName, port);
 }
 
 std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectTcp(const std::string &nodeName, std::string localAddr,
@@ -64,7 +66,8 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectTcp(const std::stri
 
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
     socket->connect(local, 0, remoteIpAddr, remotePort);
-    return createConnection(nodeName, socket);
+    std::shared_ptr<Port> port = socket;
+    return createConnection(nodeName, port);
 }
 
 std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectSerial(const std::string &nodeName, std::string name,
@@ -79,8 +82,8 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectSerial(const std::s
     if (initString.size() > 0) {
         serial->write(reinterpret_cast<const uint8_t *>(initString.c_str()), static_cast<int>(initString.size()));
     }
-
-    return createConnection(nodeName, serial);
+    std::shared_ptr<Port> port = serial;
+    return createConnection(nodeName, port);
 }
 
 void AdHocConnectionImpl::startListening(std::shared_ptr<AdHocConnection> parent, const std::string &nodeName,

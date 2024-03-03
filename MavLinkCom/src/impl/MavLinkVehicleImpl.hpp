@@ -22,6 +22,7 @@
 using namespace mavlinkcom;
 
 namespace mavlinkcom_impl {
+
 class MavLinkVehicleImpl : public MavLinkNodeImpl {
   public:
     MavLinkVehicleImpl(int localSystemId, int localComponentId);
