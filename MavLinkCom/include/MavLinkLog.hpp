@@ -13,6 +13,7 @@
 #define MAVLINK_STX_MAVLINK1 0xFE // marker for old protocol
 
 namespace mavlinkcom {
+
 // This abstract class defines the interface for logging MavLinkMessages.
 class MavLinkLog {
   public:

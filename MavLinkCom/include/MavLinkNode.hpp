@@ -11,8 +11,10 @@
 #include <vector>
 
 namespace mavlinkcom_impl {
+
 class MavLinkNodeImpl;
 }
+
 namespace mavlinkcom {
 
 struct MavLinkParameter {

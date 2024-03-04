@@ -46,8 +46,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectLocalUdp(const 
                                                                           const std::string &localAddr, int localPort) {
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(localAddr, localPort, "", 0);
-    std::shared_ptr<Port> port = socket;
-    return createConnection(nodeName, port);
+    return createConnection(nodeName, std::shared_ptr<Port>(socket));
 }
 
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectRemoteUdp(const std::string &nodeName,
@@ -61,8 +60,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectRemoteUdp(const
     }
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(local, 0, remoteAddr, remotePort);
-    std::shared_ptr<Port> port = socket;
-    return createConnection(nodeName, port);
+    return createConnection(nodeName, std::shared_ptr<Port>(socket));
 }
 
 std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectTcp(const std::string &nodeName,
@@ -75,8 +73,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectTcp(const std::
     }
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
     socket->connect(local, 0, remoteIpAddr, remotePort);
-    std::shared_ptr<Port> port = socket;
-    return createConnection(nodeName, port);
+    return createConnection(nodeName, std::shared_ptr<Port>(socket));
 }
 
 std::string MavLinkConnectionImpl::acceptTcp(std::shared_ptr<MavLinkConnection> parent, const std::string &nodeName,
@@ -110,8 +107,7 @@ std::shared_ptr<MavLinkConnection> MavLinkConnectionImpl::connectSerial(const st
     if (initString.size() > 0) {
         serial->write(reinterpret_cast<const uint8_t *>(initString.c_str()), static_cast<int>(initString.size()));
     }
-    std::shared_ptr<Port> port = serial;
-    return createConnection(nodeName, port);
+    return createConnection(nodeName, std::shared_ptr<Port>(serial));
 }
 
 void MavLinkConnectionImpl::startListening(std::shared_ptr<MavLinkConnection> parent, const std::string &nodeName,

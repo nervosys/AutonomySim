@@ -12,6 +12,7 @@
 #include <vector>
 
 namespace mavlinkcom_impl {
+
 class MavLinkVehicleImpl;
 }
 

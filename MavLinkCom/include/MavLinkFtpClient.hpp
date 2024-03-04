@@ -10,6 +10,7 @@
 #include <vector>
 
 namespace mavlinkcom_impl {
+
 class MavLinkFtpClientImpl;
 }
 

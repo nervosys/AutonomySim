@@ -8,6 +8,7 @@
 #include <vector>
 
 namespace mavlinkcom {
+
 typedef struct _VehicleState {
     typedef unsigned long long uint64_t;
     typedef unsigned char uint8_t;

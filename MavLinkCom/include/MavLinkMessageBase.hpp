@@ -9,9 +9,11 @@
 #include <stdint.h>
 #include <string>
 namespace mavlinkcom_impl {
+
 class MavLinkConnectionImpl;
 class MavLinkNodeImpl;
 } // namespace mavlinkcom_impl
+
 namespace mavlinkcom {
 class MavLinkConnection;
 

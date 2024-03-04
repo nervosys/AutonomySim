@@ -16,6 +16,7 @@
 class Port;
 
 namespace mavlinkcom_impl {
+
 class AdHocConnectionImpl;
 }
 

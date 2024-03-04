@@ -21,6 +21,7 @@
 class Port;
 
 namespace mavlinkcom_impl {
+
 class MavLinkConnectionImpl;
 class MavLinkTcpServerImpl;
 class MavLinkNodeImpl;

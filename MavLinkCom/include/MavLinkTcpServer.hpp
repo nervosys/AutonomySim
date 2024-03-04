@@ -9,6 +9,7 @@
 #include <string>
 
 namespace mavlinkcom_impl {
+
 class MavLinkTcpServerImpl;
 }
 

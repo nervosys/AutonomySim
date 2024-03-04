@@ -11,9 +11,11 @@
 #include <vector>
 
 namespace mavlinkcom_impl {
+
 class MavLinkVideoClientImpl;
 class MavLinkVideoServerImpl;
 } // namespace mavlinkcom_impl
+
 namespace mavlinkcom {
 
 // This class implements the client side of a video stream request

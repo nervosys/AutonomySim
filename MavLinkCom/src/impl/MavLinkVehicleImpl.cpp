@@ -12,7 +12,6 @@
 #define PACKET_PAYLOAD 253 // hard coded in MavLink code - do not change
 
 using namespace mavlink_utils;
-
 using namespace mavlinkcom_impl;
 
 void mavlink_euler_to_quaternion(float roll, float pitch, float yaw, float quaternion[4]) {

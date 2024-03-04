@@ -8,7 +8,6 @@
 #include "Utils.hpp"
 
 using namespace mavlink_utils;
-
 using namespace mavlinkcom_impl;
 
 const int heartbeatMilliseconds = 1000;

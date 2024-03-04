@@ -8,6 +8,7 @@
 #include <string>
 
 namespace mavlinkcom {
+
 class MavLinkDebugLog {
   public:
     virtual void log(int level, const std::string &message) {
