@@ -82,7 +82,7 @@ std::string MavLinkConnectionImpl::acceptTcp(std::shared_ptr<MavLinkConnection> 
     close();
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
 
-    port = std::make_shared<Port>(*socket); // this is so that a call to close() can cancel this blocking accept call.
+    port = std::make_shared<Port>(socket); // this is so that a call to close() can cancel this blocking accept call.
     socket->accept(localAddr, listeningPort);
 
     std::string remote = socket->remoteAddress();
