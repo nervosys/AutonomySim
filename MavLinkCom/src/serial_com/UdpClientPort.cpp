@@ -5,8 +5,8 @@
 #include "SocketInit.hpp"
 #include "Utils.hpp"
 #include "wifi.h"
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 using namespace mavlink_utils;
 

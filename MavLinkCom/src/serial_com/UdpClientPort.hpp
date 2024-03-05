@@ -5,6 +5,8 @@
 #define SERIAL_COM_UDPCLIENTPORT_HPP
 
 #include "Port.h"
+#include <memory>
+#include <string>
 
 class UdpClientPort : public Port {
   public:
