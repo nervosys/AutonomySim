@@ -22,6 +22,7 @@ class Port {
 
     virtual int getRssi(const char *ifaceName){};
 
+    Port() = default;
     virtual ~Port() = default;
 };
 
