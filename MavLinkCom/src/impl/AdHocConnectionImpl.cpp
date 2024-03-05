@@ -48,7 +48,6 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectRemoteUdp(const std
     if (remoteAddr == "127.0.0.1") {
         local = "127.0.0.1";
     }
-
     std::shared_ptr<UdpClientPort> socket = std::make_shared<UdpClientPort>();
     socket->connect(local, 0, remoteAddr, remotePort);
     return createConnection(nodeName, std::static_pointer_cast<Port>(socket));
@@ -61,7 +60,6 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectTcp(const std::stri
     if (remoteIpAddr == "127.0.0.1") {
         local = "127.0.0.1";
     }
-
     std::shared_ptr<TcpClientPort> socket = std::make_shared<TcpClientPort>();
     socket->connect(local, 0, remoteIpAddr, remotePort);
     return createConnection(nodeName, std::static_pointer_cast<Port>(socket));
@@ -71,10 +69,9 @@ std::shared_ptr<AdHocConnection> AdHocConnectionImpl::connectSerial(const std::s
                                                                     int baudRate, const std::string initString) {
     std::shared_ptr<SerialPort> serial = std::make_shared<SerialPort>();
     int hr = serial->connect(name.c_str(), baudRate);
-
-    if (hr != 0)
+    if (hr != 0) {
         throw std::runtime_error(Utils::stringf("Could not open the serial port %s, error=%d", name.c_str(), hr));
-
+    }
     // send this right away just in case serial link is not already configured
     if (initString.size() > 0) {
         serial->write(reinterpret_cast<const uint8_t *>(initString.c_str()), static_cast<int>(initString.size()));
@@ -102,7 +99,6 @@ void AdHocConnectionImpl::close() {
         port->close();
         port = nullptr;
     }
-
     if (read_thread.joinable()) {
         read_thread.join();
     }
@@ -122,7 +118,6 @@ void AdHocConnectionImpl::sendMessage(const std::vector<uint8_t> &msg) {
     if (closed) {
         return;
     }
-
     try {
         port->write(msg.data(), static_cast<int>(msg.size()));
     } catch (std::exception &e) {
@@ -166,24 +161,19 @@ void AdHocConnectionImpl::readPackets() {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             continue;
         }
-
         int count = safePort->read(buffer, MAXBUFFER);
         if (count <= 0) {
             // error? well let's try again, but we should be careful not to spin too fast and kill the CPU
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
             continue;
         }
-
         if (count >= MAXBUFFER) {
-
             std::cerr << "GAH KM911 message size (" << std::to_string(count)
                       << ") is bigger than max buffer size! Time to support frame breaks, Moffitt" << std::endl;
-
             // error? well let's try again, but we should be careful not to spin too fast and kill the CPU
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
             continue;
         }
-
         // queue event for publishing.
         {
             std::lock_guard<std::mutex> guard(msg_queue_mutex_);
@@ -191,15 +181,11 @@ void AdHocConnectionImpl::readPackets() {
             memcpy(message.data(), buffer, count);
             msg_queue_.push(message);
         }
-
         if (waiting_for_msg_) {
             msg_available_.post();
         }
-
     } // while
-
     delete[] buffer;
-
 } // readPackets
 
 void AdHocConnectionImpl::drainQueue() {
@@ -231,7 +217,6 @@ void AdHocConnectionImpl::drainQueue() {
             snapshot_stale = false;
         }
         auto end = snapshot.end();
-
         auto startTime = std::chrono::system_clock::now();
         std::shared_ptr<AdHocConnection> sharedPtr = std::shared_ptr<AdHocConnection>(this->con_);
         for (auto ptr = snapshot.begin(); ptr != end; ptr++) {
@@ -250,9 +235,7 @@ void AdHocConnectionImpl::publishPackets() {
     // CurrentThread::setMaximumPriority();
     CurrentThread::setThreadName("MavLinkThread");
     while (!closed) {
-
         drainQueue();
-
         waiting_for_msg_ = true;
         msg_available_.wait();
         waiting_for_msg_ = false;

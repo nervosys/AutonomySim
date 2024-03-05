@@ -9,6 +9,7 @@
 #include <Wbemidl.h>
 #include <comdef.h>
 #include <string>
+
 #ifndef ONECORE
 #pragma comment(lib, "wbemuuid.lib")
 #endif
