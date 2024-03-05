@@ -161,7 +161,6 @@ class TcpClientPort::TcpSocketImpl {
         ::close(fd);
 #endif
         accept_sock = INVALID_SOCKET;
-
         closed_ = false;
     }
 

@@ -109,6 +109,7 @@ else
         lsb-release \
         rsync \
         wget \
+        zlib1g-dev \
         vulkan-tools \
         libvulkan1
         # vulkan vulkan-utils
