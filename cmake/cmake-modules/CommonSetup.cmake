@@ -18,14 +18,14 @@ endmacro(AddExecutableSource)
 macro(SetupConsoleBuild)
     if(UNIX)
     else()
-        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_CONSOLE ")
-        set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_CONSOLE ")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")
     endif()
 endmacro(SetupConsoleBuild)
 
 macro(CommonSetup)
     find_package(Threads REQUIRED)
-    find_path(AUTONOMYSIM_ROOT NAMES AutonomySim.sln PATHS ".." "../.." "../../.." "../../../.." "../../../../.." "../../../../../.." REQUIRED)
+    find_path(AUTONOMYSIM_ROOT NAMES "AutonomySim.sln" PATHS ".." "../.." "../../.." "../../../.." "../../../../.." "../../../../../.." REQUIRED)
 
     # Setup output paths
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/lib)
@@ -33,10 +33,10 @@ macro(CommonSetup)
     set(LIBRARY_OUTPUT_PATH ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
     # Setup include and lib for rpclib which will be referenced by other projects
-    set(RPCLIB_VERSION_FOLDER rpclib-2.3.0)
-    set(RPC_LIB_INCLUDES " ${AUTONOMYSIM_ROOT}/external/rpclib/${RPCLIB_VERSION_FOLDER}/include")
+    set(RPCLIB_VERSION "2.3.0")
+    set(RPC_LIB_INCLUDES " ${AUTONOMYSIM_ROOT}/external/rpclib/rpclib-${RPCLIB_VERSION}/include")
     #name of .a file with lib prefix
-    set(RPC_LIB rpc)
+    set(RPC_LIB "rpc")
 
     # What is our build type debug or release?
     string(TOLOWER "${CMAKE_BUILD_TYPE}" BUILD_TYPE)
@@ -44,7 +44,7 @@ macro(CommonSetup)
     if(UNIX)
         set(RPC_LIB_DEFINES "-D MSGPACK_PP_VARIADICS_MSVC=0")
         set(BUILD_TYPE "linux")
-        set(CMAKE_CXX_STANDARD 17)
+        set(CMAKE_CXX_STANDARD 20)
 
         if(APPLE)
             set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wstrict-aliasing -D__CLANG__")
@@ -67,7 +67,7 @@ macro(CommonSetup)
 
         set(BUILD_PLATFORM "x64")
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-        if(CMAKE_BUILD_TYPE MATCHES Release)
+        if(CMAKE_BUILD_TYPE MATCHES "Release")
             set(CMAKE_CXX_FLAGS "-O3 ${CMAKE_CXX_FLAGS}")
         endif()
     else()
