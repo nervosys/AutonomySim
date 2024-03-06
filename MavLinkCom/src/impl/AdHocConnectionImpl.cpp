@@ -6,8 +6,8 @@
 #include "../serial_com/SerialPort.hpp"
 #include "../serial_com/TcpClientPort.hpp"
 #include "../serial_com/UdpClientPort.hpp"
-#include "ThreadUtils.hpp"
-#include "Utils.hpp"
+#include "common/utils/ThreadUtils.hpp"
+#include "common/utils/Utils.hpp"
 
 using namespace mavlink_utils;
 using namespace mavlinkcom_impl;

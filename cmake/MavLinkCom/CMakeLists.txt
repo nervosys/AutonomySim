@@ -14,8 +14,8 @@ include_directories(
   ${AUTONOMYSIM_ROOT}/MavLinkCom/include
 )
 
-list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils/FileSystem.cpp")
-list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils/ThreadUtils.cpp")
+list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils/FileSystem.cpp")
+list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils/ThreadUtils.cpp")
 list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/src/AdHocConnection.cpp") 
 list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/src/MavLinkConnection.cpp") 
 list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/src/MavLinkFtpClient.cpp") 

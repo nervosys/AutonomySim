@@ -6,7 +6,7 @@
 
 #include "UpdatableObject.hpp"
 #include "common/Common.hpp"
-#include "common_utils/RandomGenerator.hpp"
+#include "common/utils/RandomGenerator.hpp"
 #include <list>
 
 namespace nervosys {

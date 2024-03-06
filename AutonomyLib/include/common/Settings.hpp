@@ -4,17 +4,17 @@
 #ifndef autonomylib_common_Settings_hpp
 #define autonomylib_common_Settings_hpp
 
-#include "common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 
 STRICT_MODE_OFF
 // this json library is not strict clean
 // TODO: HACK!! below are added temporariliy because something is defining min, max macros
 // #undef max
 #undef min
-#include "common_utils/json.hpp"
+#include "common/utils/json.hpp"
 STRICT_MODE_ON
 
-#include "common_utils/FileSystem.hpp"
+#include "common/utils/FileSystem.hpp"
 #include <mutex>
 #include <string>
 

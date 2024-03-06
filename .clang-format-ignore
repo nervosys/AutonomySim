@@ -1,4 +1,4 @@
 # Skip json.hpp since it is copied directly from external repo
 AutonomyLib/include/common/utils/json.hpp
-AutonomySim/MavLinkCom/common_utils/json.hpp
+AutonomySim/MavLinkCom/common/utils/json.hpp
 mkdocs.yml

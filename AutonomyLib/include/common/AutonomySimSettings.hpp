@@ -7,7 +7,7 @@
 #include "CommonStructs.hpp"
 #include "ImageCaptureBase.hpp"
 #include "Settings.hpp"
-#include "common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include "sensors/SensorBase.hpp"
 #include <exception>
 #include <functional>

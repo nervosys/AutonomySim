@@ -2,7 +2,7 @@
 #define MavLinkCom_UdpSocketImpl_hpp
 
 #include "UdpSocket.hpp"
-#include "Utils.hpp"
+#include "common/utils/Utils.hpp"
 #ifdef _WIN32
 // windows
 #ifndef WIN32_LEAN_AND_MEAN

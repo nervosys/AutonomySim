@@ -3,7 +3,7 @@
 
 #if defined(linux) | defined(__linux)
 
-#include "common_utils/Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include <linux/wireless.h>
 #include <stdlib.h>
 #include <string.h>

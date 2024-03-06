@@ -12,7 +12,7 @@ STRICT_MODE_ON
 
 #include "MavLinkConnection.hpp"
 #include "MavLinkMessageBase.hpp"
-#include "Utils.hpp"
+#include "common/utils/Utils.hpp"
 #include <cmath>
 #include <sstream>
 

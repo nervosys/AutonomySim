@@ -8,7 +8,7 @@
 #include "UpdatableObject.hpp"
 #include "common/Common.hpp"
 #include "common/FrequencyLimiter.hpp"
-#include "common_utils/OnlineStats.hpp"
+#include "common/utils/OnlineStats.hpp"
 #include <iomanip>
 #include <sstream>
 #include <string>
