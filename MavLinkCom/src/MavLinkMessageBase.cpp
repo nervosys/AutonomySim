@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-#include "StrictMode.hpp"
+#include "common/utils/StrictMode.hpp"
 
 STRICT_MODE_OFF
 #define MAVLINK_PACKED

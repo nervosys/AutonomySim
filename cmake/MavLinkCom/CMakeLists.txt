@@ -10,7 +10,7 @@ CommonSetup()
 
 include_directories(
   ${AUTONOMYSIM_ROOT}/MavLinkCom
-  ${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils
   ${AUTONOMYSIM_ROOT}/MavLinkCom/include
 )
 

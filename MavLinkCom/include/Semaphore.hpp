@@ -3,6 +3,7 @@
 
 #ifndef common_utils_Semaphore_hpp
 #define common_utils_Semaphore_hpp
+
 #include <memory>
 
 namespace mavlink_utils {

@@ -14,7 +14,7 @@ include_directories(
   ${AUTONOMYSIM_ROOT}/AutonomyLib/include
   ${RPC_LIB_INCLUDES}
   ${AUTONOMYSIM_ROOT}/MavLinkCom/include
-  ${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils
 )
 
 AddExecutableSource()			

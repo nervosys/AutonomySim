@@ -8,7 +8,7 @@
 #include "MavLinkConnection.hpp"
 #include "MavLinkMessageBase.hpp"
 #include "Semaphore.hpp"
-#include "StrictMode.hpp"
+#include "common/utils/StrictMode.hpp"
 #include <memory>
 #include <mutex>
 #include <queue>

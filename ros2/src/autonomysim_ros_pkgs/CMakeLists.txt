@@ -45,7 +45,7 @@ set(INCLUDE_DIRS include
   ${AUTONOMYSIM_ROOT}/AutonomyLib/include
   ${RPC_LIB_INCLUDES}
   ${AUTONOMYSIM_ROOT}/MavLinkCom/include
-  ${AUTONOMYSIM_ROOT}/MavLinkCom/common_utils
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils
   ${OpenCV_INCLUDE_DIRS}
   )
 include_directories(${INCLUDE_DIRS})

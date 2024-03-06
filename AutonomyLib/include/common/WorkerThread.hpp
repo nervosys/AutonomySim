@@ -5,8 +5,8 @@
 #define autonomylib_common_WorkerThread_hpp
 
 #include "CancelToken.hpp"
-#include "ClockFactory.hpp" //TODO: move this out of common_utils
-#include "common/utilshpp"
+#include "ClockFactory.hpp" //TODO: move this out of common\utils
+#include "common/utils/Utils.hpp"
 #include <atomic>
 #include <exception>
 #include <functional>
