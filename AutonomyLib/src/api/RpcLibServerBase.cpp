@@ -7,7 +7,7 @@
 #ifndef AUTONOMYLIB_NO_RPC
 // if using Unreal Build system then include precompiled header file first
 
-#include "api/RpcLibServerBase.hpp"
+#include "RpcLibServerBase.hpp"
 
 #include "common/Common.hpp"
 STRICT_MODE_OFF
@@ -15,7 +15,7 @@ STRICT_MODE_OFF
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
 #endif // !RPCLIB_MSGPACK
-#include "common/utilsDefines.hpp"
+#include "common/utils/MinWinDefines.hpp"
 #undef NOUSER
 
 #include "common/utils/WindowsApisCommonPre.hpp"
