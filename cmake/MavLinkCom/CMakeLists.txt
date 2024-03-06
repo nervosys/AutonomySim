@@ -9,9 +9,9 @@ include("${CMAKE_CURRENT_LIST_DIR}/../cmake-modules/CommonSetup.cmake")
 CommonSetup()
 
 include_directories(
-  "${AUTONOMYSIM_ROOT}/MavLinkCom"
-  "${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils"
-  "${AUTONOMYSIM_ROOT}/MavLinkCom/include"
+  ${AUTONOMYSIM_ROOT}/MavLinkCom
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/include
 )
 
 list(APPEND MAVLINK_SOURCES "${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils/FileSystem.cpp")

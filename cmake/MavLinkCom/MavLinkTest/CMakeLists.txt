@@ -8,9 +8,9 @@ CommonSetup()
 SetupConsoleBuild()
 
 include_directories(
-  "${AUTONOMYSIM_ROOT}/MavLinkCom/MavLinkTest"
-  "${AUTONOMYSIM_ROOT}/MavLinkCom/include"
-  "${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils"
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/MavLinkTest
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/include
+  ${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils
 )
 
 set(PROJECT_CPP "${PROJECT_NAME}_sources")

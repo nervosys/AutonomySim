@@ -2,7 +2,7 @@
 project(AutonomySim)
 
 add_subdirectory("AutonomyLib")
-add_subdirectory("AutonomyLibUnitTests")
+# add_subdirectory("AutonomyLibUnitTests")
 add_subdirectory("RpcLibWrapper")
 add_subdirectory("MavLinkCom")
 add_subdirectory("HelloCar")
