@@ -4,13 +4,13 @@
 // PX4.cpp : Defines the entry point for the console application.
 
 #include "Commands.h"
-#include "FileSystem.hpp"
 #include "MavLinkConnection.hpp"
 #include "MavLinkLog.hpp"
 #include "MavLinkMessages.hpp"
 #include "MavLinkTcpServer.hpp"
 #include "MavLinkVehicle.hpp"
-#include "Utils.hpp"
+#include "common/utils/FileSystem.hpp"
+#include "common/utils/Utils.hpp"
 #include <ctime>
 #include <functional>
 #include <iostream>
@@ -19,7 +19,7 @@
 #include <string.h>
 #include <vector>
 STRICT_MODE_OFF
-#include "json.hpp"
+#include "common/utils/json.hpp"
 STRICT_MODE_ON
 #include "UnitTests.h"
 

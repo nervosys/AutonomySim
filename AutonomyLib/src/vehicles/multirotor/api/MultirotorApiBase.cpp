@@ -506,7 +506,7 @@ bool MultirotorApiBase::moveByManual(float vx_max, float vy_max, float z_min, fl
                                      const YawMode &yaw_mode) {
     SingleTaskCall lock(this);
     const float kMaxMessageAge = 0.1f; // 0.1 sec
-    const float kMaxRCValue = 10000f;
+    const float kMaxRCValue = 10000.0f;
     if (duration <= 0) {
         return true;
     }
