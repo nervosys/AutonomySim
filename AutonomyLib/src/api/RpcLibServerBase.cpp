@@ -7,7 +7,7 @@
 #ifndef AUTONOMYLIB_NO_RPC
 // if using Unreal Build system then include precompiled header file first
 
-#include "RpcLibServerBase.hpp"
+#include "api/RpcLibServerBase.hpp"
 
 #include "common/Common.hpp"
 STRICT_MODE_OFF
