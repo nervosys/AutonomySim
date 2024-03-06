@@ -30,9 +30,9 @@ Includes
 --------
 
 
-- ``RpcLibServerBase.hpp`` (:ref:`file_AutonomyLib_include_api_RpcLibServerBase.hpp`)
-
 - ``api/RpcLibAdaptorsBase.hpp`` (:ref:`file_AutonomyLib_include_api_RpcLibAdaptorsBase.hpp`)
+
+- ``api/RpcLibServerBase.hpp`` (:ref:`file_AutonomyLib_include_api_RpcLibServerBase.hpp`)
 
 - ``common/Common.hpp``
 
