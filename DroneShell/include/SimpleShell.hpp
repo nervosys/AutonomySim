@@ -4,7 +4,7 @@
 #ifndef autonomylib_SimpleShell_hpp
 #define autonomylib_SimpleShell_hpp
 
-#include "common/utilsMode.hpp"
+#include "common/common_utils/StrictMode.hpp"
 STRICT_MODE_OFF
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
