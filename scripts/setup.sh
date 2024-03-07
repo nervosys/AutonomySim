@@ -100,8 +100,13 @@ if [ "$(uname)" = 'Darwin' ]; then
 export PATH="/usr/local/bin:\${PATH}"
 EOT
     source "${HOME}/.bash_profile"
+    # remove existing Homebrew Python installs.
+    sudo rm '/usr/local/bin/2to3'
+    sudo rm '/usr/local/bin/2to3-3.11'
     brew update
-    brew install azure-cli coreutils
+    # brew upgrade
+    brew install curl wget coreutils
+    brew install azure-cli
     brew install "llvm@${CLANG_VERSION}"
 else
     echo 'Installing dependencies...'
@@ -145,8 +150,6 @@ if [ "$(uname)" = 'Darwin' ]; then
         sudo dseditgroup -o edit -a "$(whoami)" -t user dialout
     fi
     brew update
-    brew_install wget
-    brew_install coreutils
     # Conditionally install lower CMake version.
     if ( version_less_than_equal_to "$cmake_ver" "$CMAKE_VERSION_MIN" ); then
         brew install cmake
