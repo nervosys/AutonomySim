@@ -13,7 +13,7 @@ set -x
 
 # DISTRO="$(lsb_release -sc)"
 ARCH="$(dpkg --print-architecture)"
-GCC_VERSION='11'
+CLANG_VERSION='12'
 source /etc/os-release  # UBUNTU_CODENAME
 
 ###
@@ -63,7 +63,7 @@ echo 'Building AutonomySim ROS2 Wrapper...'
 
 source "/opt/ros/${ROS_DISTRO}/setup.bash"
 pushd ./ros2
-colcon build --cmake-args "-DCMAKE_C_COMPILER=/usr/bin/gcc-${GCC_VERSION}" --cmake-args "-DCMAKE_CXX_COMPILER=/usr/bin/g++-${GCC_VERSION}"
+colcon build --cmake-args -DCMAKE_C_COMPILER="/usr/bin/clang-${CLANG_VERSION}" --cmake-args -DCMAKE_CXX_COMPILER="/usr/bin/clang++-${CLANG_VERSION}"
 popd
 
 echo '-------------------------------------------------------------------------------'
