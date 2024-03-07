@@ -95,6 +95,7 @@ done
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'export PATH="/usr/local/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
     # remove existing Homebrew Python installs.
     sudo rm -rf '/usr/local/bin/2to3'
     sudo rm -rf '/usr/local/bin/2to3-3.11'
