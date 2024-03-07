@@ -101,8 +101,11 @@ if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing latest cURL version and configuring Homebrew to use it...'
     brew install curl
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
-    echo 'export PATH="/usr/local/opt/curl/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
-    echo 'export PATH="/usr/local/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
+    tee -a "${HOME}/.bash_profile" << EOM
+export HOMEBREW_CURL_PATH='/usr/local/opt/curl/bin/curl'
+export PATH="/usr/local/bin:\${PATH}"
+export PATH="/usr/local/opt/curl/bin:\${PATH}"
+EOM
     source "${HOME}/.bash_profile"
     brew install wget coreutils lscpu azure-cli "llvm@${CLANG_VERSION}"
 else
