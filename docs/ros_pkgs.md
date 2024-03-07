@@ -50,7 +50,7 @@ catkin build;  # or catkin_make
 If your default `gcc` version is less than 8 (see `gcc --version` output), compilation will fail. In that case, use `gcc-11` explicitly as follows:
 
 ```shell
-catkin build -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11
+catkin build -DCMAKE_C_COMPILER=/usr/bin/gcc-11 -DCMAKE_CXX_COMPILER=/usr/bin/g++-11
 ```
 
 ## Running `autonomysim_ros_pkgs`

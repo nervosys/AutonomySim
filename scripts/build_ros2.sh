@@ -13,6 +13,7 @@ set -x
 
 # DISTRO="$(lsb_release -sc)"
 ARCH="$(dpkg --print-architecture)"
+GCC_VERSION='11'
 source /etc/os-release  # UBUNTU_CODENAME
 
 ###
@@ -50,7 +51,21 @@ sudo apt-get install -y "ros-${ROS_DISTRO}-vision-opencv" "ros-${ROS_DISTRO}-ima
 sudo apt-get install -y "ros-${ROS_DISTRO}-tf2-sensor-msgs" "ros-${ROS_DISTRO}-tf2-geometry-msgs" "ros-${ROS_DISTRO}-mavros*"
 sudo apt-get install -y python3-pip python3-yaml python3-setuptools python3-colcon-common-extensions
 
+echo 'Adding ROS2 initialization to BASH RC file...'
 echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 source "/opt/ros/${ROS_DISTRO}/setup.bash"
 
-echo 'Success: ROS2 dependencies installed.'
+echo '-------------------------------------------------------------------------------'
+echo 'Success: AutonomySim ROS2 wrapper dependencies installed.'
+echo '-------------------------------------------------------------------------------'
+echo ''
+echo 'Building AutonomySim ROS2 Wrapper...'
+
+source "/opt/ros/${ROS_DISTRO}/setup.bash"
+pushd ./ros2
+colcon build --cmake-args "-DCMAKE_C_COMPILER=/usr/bin/gcc-${GCC_VERSION}" --cmake-args "-DCMAKE_CXX_COMPILER=/usr/bin/g++-${GCC_VERSION}"
+popd
+
+echo '-------------------------------------------------------------------------------'
+echo 'Success: AutonomySim ROS2 wrapper built.'
+echo '-------------------------------------------------------------------------------'

@@ -48,8 +48,4 @@ jobs:
       - name: "Build ROS2 Wrapper"
         # if: ${{ matrix.os == 'ubuntu-20.04' }}
         shell: bash
-        run: |
-          bash ./scripts/install_ros2_deps.sh
-          source /opt/ros/*/setup.bash
-          cd ./ros2
-          colcon build --cmake-args -DCMAKE_C_COMPILER=gcc-11 --cmake-args -DCMAKE_CXX_COMPILER=g++-11
+        run: bash ./scripts/build_ros2.sh

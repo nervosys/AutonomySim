@@ -17,7 +17,7 @@ catkin build autonomysim_tutorial_pkgs
 If your default `gcc` is less than or equal to version 8 (see `gcc --version` output), compilation will fail. In that case, use `gcc-11` explicitly as follows:
 
 ```shell
-catkin build autonomysim_tutorial_pkgs -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11
+catkin build autonomysim_tutorial_pkgs -DCMAKE_C_COMPILER=/usr/bin/gcc-11 -DCMAKE_CXX_COMPILER=/usr/bin/g++-11
 ```
 
 !!! note
