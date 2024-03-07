@@ -93,15 +93,14 @@ done
 
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
-    echo 'Updating XCode Command Line Tools...'
-    sudo softwareupdate --all --install --force --agree-to-license -aR
+    # echo 'Updating XCode Command Line Tools...'
+    # sudo softwareupdate --all --install --force --agree-to-license -aR
     echo 'Installing dependencies...'
     tee -a "${HOME}/.bash_profile" << EOT
 export PATH="/usr/local/bin:\${PATH}"
 EOT
     source "${HOME}/.bash_profile"
     brew update
-    brew upgrade
     brew install azure-cli coreutils
     brew install "llvm@${CLANG_VERSION}"
 else
