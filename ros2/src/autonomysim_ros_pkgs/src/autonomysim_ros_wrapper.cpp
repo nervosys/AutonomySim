@@ -1,8 +1,8 @@
 // autonomysim_ros_wrapper.cpp
 
-#include "common/AutonomySimSettings.hpp"
-#include <autonomysim_ros_wrapper.h>
-#include <tf2_sensor_msgs/tf2_sensor_msgs.h>
+#include "autonomysim_ros_wrapper.h"
+#include "common/AutonomySimSettings.hpp" // AutonomyLib
+#include "tf2_sensor_msgs/tf2_sensor_msgs.h"
 
 using namespace std::placeholders;
 
@@ -758,8 +758,9 @@ AutonomySimROSWrapper::get_lidar_msg_from_autonomysim(const nervosys::autonomyli
         if (isENU_) {
             try {
                 sensor_msgs::msg::PointCloud2 lidar_msg_enu;
-                auto transformStampedENU = tf_buffer_->lookupTransform(
-                    AUTONOMYSIM_FRAME_ID, vehicle_name, rclcpp::Time(0), rclcpp::Duration::from_nanoseconds(1));
+                auto transformStampedENU =
+                    tf_buffer_->lookupTransform(AUTONOMYSIM_FRAME_ID, vehicle_name, rclcpp::Time(0),
+                                                rclcpp::Duration::to_chrono<std::chrono::nanoseconds>(1));
                 tf2::doTransform(lidar_msg, lidar_msg_enu, transformStampedENU);
 
                 lidar_msg_enu.header.stamp = lidar_msg.header.stamp;
