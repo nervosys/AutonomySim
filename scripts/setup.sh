@@ -93,16 +93,21 @@ done
 
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
+    echo 'Updating XCode Command Line Tools...'
+    # softwareupdate --all --install --force
+    sudo rm -rf /Library/Developer/CommandLineTools
+    sudo xcode-select --install
+    echo 'Installing dependencies...'
     tee -a "${HOME}/.bash_profile" << EOT
 export PATH="/usr/local/bin:\${PATH}"
 EOT
     source "${HOME}/.bash_profile"
-    softwareupdate --all --install --force
     brew update
     brew upgrade
     brew install azure-cli coreutils
     brew install "llvm@${CLANG_VERSION}"
 else
+    echo 'Installing dependencies...'
     wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' \
         | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
