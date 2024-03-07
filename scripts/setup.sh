@@ -52,7 +52,7 @@ PROJECT_DIR="$(cd $(dirname ${PWD}); pwd -P)"
 SCRIPT_DIR="$(cd $(dirname ${BASH_SOURCE[0]}); pwd -P)"
 
 CMAKE_VERSION='3.10.2'
-CLANG_VERSION='12'
+CLANG_VERSION='12'  # requires ubuntu >= 20
 EIGEN_VERSION='3.4.0'
 RPCLIB_VERSION='2.3.0'
 UNREAL_ASSET_VERSION='1.2.0'
@@ -101,10 +101,11 @@ EOT
     source "${HOME}/.bash_profile"
     brew update
     brew upgrade
-    brew install curl
-    brew install wget coreutils
+    brew install azure-cli coreutils
     brew install "llvm@${CLANG_VERSION}"
 else
+    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' \
+        | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
     sudo apt-get install -y --no-install-recommends \
@@ -121,15 +122,12 @@ else
         libunwind-dev \
         zlib1g-dev \
         vulkan-tools \
-        libvulkan1
+        libvulkan1 \
         # vulkan vulkan-utils
-    VERSION=$(lsb_release -rs | cut -d '.' -f1)
-    #if [ "$VERSION" -lt '20' ]; then
-    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc >/dev/null
-    sudo apt-get update -y
-    #fi
-    CLANG_VERSION='12'  # requires ubuntu >= 20
-    sudo apt-get install -y clang-${CLANG_VERSION} libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev
+        "clang-${CLANG_VERSION}" \
+        "clang++-${CLANG_VERSION}" \
+        "libc++-${CLANG_VERSION}-dev" \
+        "libc++abi-${CLANG_VERSION}-dev" 
 fi
 
 # Get/set CMake version.
