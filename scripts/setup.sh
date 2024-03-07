@@ -93,19 +93,17 @@ done
 
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
-    # echo 'Updating XCode Command Line Tools...'
-    # sudo softwareupdate --all --install --force --agree-to-license -aR
     echo 'Installing dependencies...'
-    tee -a "${HOME}/.bash_profile" << EOT
-export PATH="/usr/local/bin:\${PATH}"
-EOT
-    source "${HOME}/.bash_profile"
     # remove existing Homebrew Python installs.
     sudo rm -rf '/usr/local/bin/2to3'
     sudo rm -rf '/usr/local/bin/2to3-3.11'
     brew update
-    # brew upgrade
-    brew_install curl wget coreutils
+    echo 'Installing latest cURL version and configuring Homebrew to use it...'
+    brew_install curl
+    HOMEBREW_FORCE_BREWED_CURL=1 brew config
+    echo 'export PATH="/usr/local/opt/curl/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
+    source "${HOME}/.bash_profile"
+    brew_install wget coreutils lscpu
     brew_install azure-cli
     brew_install "llvm@${CLANG_VERSION}"
 else
