@@ -93,9 +93,12 @@ done
 
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
+    echo 'export PATH="/usr/local/bin:${PATH}"' | tee -a "${HOME}/.bashrc"
+    source "${HOME}/.bashrc"
     brew update
     brew upgrade
-    brew install curl coreutils "llvm@${CLANG_VERSION}"
+    brew install curl wget coreutils
+    brew install "llvm@${CLANG_VERSION}"
 else
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
