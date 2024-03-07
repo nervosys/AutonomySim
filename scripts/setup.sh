@@ -101,15 +101,11 @@ if [ "$(uname)" = 'Darwin' ]; then
     sudo rm -rf '/usr/local/bin/2to3-3.11'
     brew update
     echo 'Installing latest cURL version and configuring Homebrew to use it...'
-    brew_install curl
+    brew install curl
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
     echo 'export PATH="/usr/local/opt/curl/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
     source "${HOME}/.bash_profile"
-    brew_install wget
-    brew_install coreutils
-    brew_install lscpu
-    brew_install azure-cli
-    brew_install "llvm@${CLANG_VERSION}"
+    brew install wget coreutils lscpu azure-cli "llvm@${CLANG_VERSION}"
 else
     echo 'Installing dependencies...'
     wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' \
