@@ -95,15 +95,14 @@ done
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'export PATH="/usr/local/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
     # remove existing Homebrew Python installs.
-    sudo rm -rf '/usr/local/bin/2to3'
-    sudo rm -rf '/usr/local/bin/2to3-3.11'
+    sudo rm -rf '/usr/local/bin/2to3' '/usr/local/bin/2to3-3.11'
     brew update
     echo 'Installing latest cURL version and configuring Homebrew to use it...'
     brew install curl
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
     echo 'export PATH="/usr/local/opt/curl/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
+    echo 'export PATH="/usr/local/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
     source "${HOME}/.bash_profile"
     brew install wget coreutils lscpu azure-cli "llvm@${CLANG_VERSION}"
 else
