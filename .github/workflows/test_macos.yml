@@ -53,6 +53,6 @@ jobs:
         shell: bash
         run: bash ./scripts/build.sh
 
-      - name: "Build AutonomySim ROS2 Wrapper"
-        shell: bash
-        run: bash ./scripts/build_ros2_macos.sh
+      # - name: "Build AutonomySim ROS2 Wrapper"
+      #   shell: bash
+      #   run: bash ./scripts/build_ros2_macos.sh
