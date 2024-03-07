@@ -94,9 +94,7 @@ done
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Updating XCode Command Line Tools...'
-    # softwareupdate --all --install --force
-    sudo rm -rf /Library/Developer/CommandLineTools
-    sudo xcode-select --install
+    softwareupdate --all --install --force --agree-to-license -aR
     echo 'Installing dependencies...'
     tee -a "${HOME}/.bash_profile" << EOT
 export PATH="/usr/local/bin:\${PATH}"
