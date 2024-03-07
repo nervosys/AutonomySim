@@ -2825,8 +2825,8 @@
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>PATH_TO/AutonomySim/ros
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>catkin<span class="w"> </span>build<span class="w"> </span>autonomysim_tutorial_pkgs
 </span></code></pre></div>
-<p>If your default <code>gcc</code> is less than or equal to version 8 (see <code>gcc --version</code> output), compilation will fail. In that case, use <code>gcc-8</code> explicitly as follows:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>catkin<span class="w"> </span>build<span class="w"> </span>autonomysim_tutorial_pkgs<span class="w"> </span>-DCMAKE_C_COMPILER<span class="o">=</span>gcc-8<span class="w"> </span>-DCMAKE_CXX_COMPILER<span class="o">=</span>g++-8
+<p>If your default <code>gcc</code> is less than or equal to version 8 (see <code>gcc --version</code> output), compilation will fail. In that case, use <code>gcc-11</code> explicitly as follows:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>catkin<span class="w"> </span>build<span class="w"> </span>autonomysim_tutorial_pkgs<span class="w"> </span>-DCMAKE_C_COMPILER<span class="o">=</span>gcc-11<span class="w"> </span>-DCMAKE_CXX_COMPILER<span class="o">=</span>g++-11
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
