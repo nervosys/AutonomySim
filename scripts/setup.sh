@@ -95,10 +95,9 @@ done
 if [ "$(uname)" = 'Darwin' ]; then
     tee -a "${HOME}/.bash_profile" << EOT
 export PATH="/usr/local/bin:\${PATH}"
-export HOMEBREW_FORCE_BREWED_CURL="1"
-export CURL_CA_BUNDLE=/etc/ssl/certs/ca-bundle.crt
 EOT
     source "${HOME}/.bash_profile"
+    softwareupdate --all --install --force
     brew update
     brew upgrade
     brew install azure-cli coreutils
