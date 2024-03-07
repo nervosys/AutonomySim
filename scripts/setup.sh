@@ -96,11 +96,13 @@ if [ "$(uname)" = 'Darwin' ]; then
     tee -a "${HOME}/.bash_profile" << EOT
 export PATH="/usr/local/bin:\${PATH}"
 export HOMEBREW_FORCE_BREWED_CURL="1"
+export CURL_CA_BUNDLE=/etc/ssl/certs/ca-bundle.crt
 EOT
     source "${HOME}/.bash_profile"
     brew update
     brew upgrade
-    # brew install curl wget coreutils
+    brew install curl
+    brew install wget coreutils
     brew install "llvm@${CLANG_VERSION}"
 else
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
