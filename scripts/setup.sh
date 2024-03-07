@@ -214,3 +214,5 @@ set +x  # disable printing shell commands before executing
 echo '-----------------------------------------------------------------------------------------'
 echo ' Success: AutonomySim setup complete.'
 echo '-----------------------------------------------------------------------------------------'
+
+exit 0

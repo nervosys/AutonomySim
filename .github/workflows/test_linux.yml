@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Install Dependencies"
+      - name: "Install AutonomySim Dependencies"
         shell: bash
         run: bash ./scripts/setup.sh
 
@@ -45,7 +45,7 @@ jobs:
         shell: bash
         run: bash ./scripts/build.sh
 
-      - name: "Build ROS2 Wrapper"
+      - name: "Build AutonomySim ROS2 Wrapper"
         # if: ${{ matrix.os == 'ubuntu-20.04' }}
         shell: bash
-        run: bash ./scripts/build_ros2.sh
+        run: bash ./scripts/build_ros2_ubuntu.sh

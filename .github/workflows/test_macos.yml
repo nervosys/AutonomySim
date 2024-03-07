@@ -38,17 +38,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Remove Python 3 for Python 3.11 symbolic link"
-        shell: bash
-        run: brew unlink python@3.11 && brew link --overwrite python@3.11 && brew unlink python@3.10 && brew link --overwrite python@3.10
+      # - name: "Remove Python 3 for Python 3.11 symbolic link"
+      #   shell: bash
+      #   run: brew unlink python@3.11 && brew link --overwrite python@3.11 && brew unlink python@3.10 && brew link --overwrite python@3.10
 
       # - name: "Install BASH (macOS version > 10.14 uses Zsh by default)"
       #   run: brew install bash
 
-      - name: "Install Dependencies"
+      - name: "Install AutonomySim Dependencies"
         shell: bash
         run: bash ./scripts/setup.sh
 
       - name: "Build AutonomySim"
         shell: bash
         run: bash ./scripts/build.sh
+
+      - name: "Build AutonomySim ROS2 Wrapper"
+        shell: bash
+        run: bash ./scripts/build_ros2_macos.sh

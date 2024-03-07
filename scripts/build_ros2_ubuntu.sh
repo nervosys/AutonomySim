@@ -1,11 +1,23 @@
 #!/bin/bash
-#
-# Installs ROS2 dependencies on Ubuntu 20.04 (focal) or 22.04 (jammy)
-#
-# NOTE: This script is meant to be run for CI, otherwise it can break existing setups
-#
+#----------------------------------------------------------------------------------------
+# Filename
+#   build_ros2.sh
+# Description
+#   BASH script to installs ROS2 dependencies on Ubuntu Linux.
+# Authors
+#   Adam Erickson (Nervosys)
+# Date
+#   2024-03-07
+# Usage
+#   `bash build_ros2.sh`
+# Notes
+# - Ubuntu/ROS2 support: 20.04/foxy, 22.04/humble
+# - This script is meant to be run for CI, otherwise it can break existing setups.
+# TODO
+#----------------------------------------------------------------------------------------
 
-set -x
+set -x  # print shell commands before executing (for debugging)
+set -e  # exit on error return code
 
 ###
 ### Variables
@@ -51,21 +63,21 @@ sudo apt-get install -y "ros-${ROS_DISTRO}-vision-opencv" "ros-${ROS_DISTRO}-ima
 sudo apt-get install -y "ros-${ROS_DISTRO}-tf2-sensor-msgs" "ros-${ROS_DISTRO}-tf2-geometry-msgs" "ros-${ROS_DISTRO}-mavros*"
 sudo apt-get install -y python3-pip python3-yaml python3-setuptools python3-colcon-common-extensions
 
-echo 'Adding ROS2 initialization to BASH RC file...'
-echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
+echo 'Initializing ROS2 environment...'
+echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> "${HOME}/.bashrc"
 source "/opt/ros/${ROS_DISTRO}/setup.bash"
 
 echo '-------------------------------------------------------------------------------'
 echo 'Success: AutonomySim ROS2 wrapper dependencies installed.'
 echo '-------------------------------------------------------------------------------'
 echo ''
-echo 'Building AutonomySim ROS2 Wrapper...'
+echo 'Building AutonomySim ROS2 wrapper...'
 
-source "/opt/ros/${ROS_DISTRO}/setup.bash"
 pushd ./ros2
 colcon build --cmake-args -DCMAKE_C_COMPILER="/usr/bin/clang-${CLANG_VERSION}" --cmake-args -DCMAKE_CXX_COMPILER="/usr/bin/clang++-${CLANG_VERSION}"
 popd
 
-echo '-------------------------------------------------------------------------------'
+echo ''
 echo 'Success: AutonomySim ROS2 wrapper built.'
-echo '-------------------------------------------------------------------------------'
+
+exit 0
