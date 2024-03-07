@@ -103,7 +103,9 @@ if [ "$(uname)" = 'Darwin' ]; then
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
     echo 'export PATH="/usr/local/opt/curl/bin:\${PATH}"' | tee -a "${HOME}/.bash_profile"
     source "${HOME}/.bash_profile"
-    brew_install wget coreutils lscpu
+    brew_install wget
+    brew_install coreutils
+    brew_install lscpu
     brew_install azure-cli
     brew_install "llvm@${CLANG_VERSION}"
 else
