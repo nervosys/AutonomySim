@@ -31,7 +31,7 @@ function brew_install {
     brew list "$1" &>/dev/null || brew install "$1"
 }
 
-# Numeric comparator. A more robust version checker.
+# Numeric comparator. A robust version checker.
 # USAGE: if ( numeric_comparison '3.3' '<=' '3.4' ); then ...; else ...; fi
 # WARNING: cannot handle version numbers.
 # function numeric_comparison {
@@ -43,13 +43,23 @@ function version_less_than_equal_to {
     test "$(printf '%s\n' "$@" | sort -V | head -n 1)" = "$1"
 }
 
+# Get the absolute path on Linux and macOS.
+# NOTE: We emulate `realpath`, as we cannot use it or GNU `coreutils:readlink` because macOS.
+function abspath {
+    if [ "$1" = '.' ]; then
+        echo "$(cd $(dirname $1); pwd -P)"
+    else
+        echo "$(cd $(dirname $1); pwd -P)/$(basename $1)"
+    fi
+}
+
 ###
 ### Variables
 ###
 
-# Directory paths. We cannot use realpath or readlink from GNU coreutils because macOS.
-PROJECT_DIR="$(cd $(dirname ${PWD}); pwd -P)"
-SCRIPT_DIR="$(cd $(dirname ${BASH_SOURCE[0]}); pwd -P)"
+# Directory paths. 
+PROJECT_DIR="$(abspath $PWD)"
+SCRIPT_DIR="$(dirname $(abspath ${BASH_SOURCE[0]}))"
 
 CMAKE_VERSION='3.10.2'
 CLANG_VERSION='12'  # requires ubuntu >= 20
@@ -107,7 +117,7 @@ export PATH="/usr/local/bin:\${PATH}"
 export PATH="/usr/local/opt/curl/bin:\${PATH}"
 EOM
     source "${HOME}/.bash_profile"
-    brew install wget coreutils lscpu azure-cli "llvm@${CLANG_VERSION}"
+    brew install wget coreutils azure-cli "llvm@${CLANG_VERSION}"
 else
     echo 'Installing dependencies...'
     wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' \

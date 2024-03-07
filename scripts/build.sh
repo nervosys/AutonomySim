@@ -60,8 +60,13 @@ RPCLIB_VERSION='2.3.0'
 UNREAL_ASSET_VERSION='1.2.0'
 
 # Dynamic variables.
-SYSTEM_INFO="$(system_info)"
-SYSTEM_PLATFORM="$(system_arch)"
+if [ "$(uname)" = 'Darwin' ]; then
+    SYSTEM_INFO="$(sw_vers)"
+    SYSTEM_PLATFORM="$(uname -p)"
+else
+    SYSTEM_INFO="$(system_info)"
+    SYSTEM_PLATFORM="$(system_arch)"
+fi
 SYSTEM_CPU_MAX="$(( $(nproc) - 2 ))"
 SYSTEM_OS_VERSION="$(system_os)"
 
