@@ -23,7 +23,7 @@ set -x  # print shell commands before executing (for debugging)
 set -e  # exit on error return code
 
 # macOS: Ensure GNU coreutils is installed.
-[ "$(uname)" = 'Darwin' ] && brew update && brew install coreutils
+[ "$(uname)" = 'Darwin' ] && brew update && brew install curl coreutils
 
 ###
 ### Functions
