@@ -7,8 +7,8 @@
 The below steps are for Linux. If you're running `AutonomySim` on Windows, you can use Windows Subsystem for Linux (WSL) to run the ROS wrapper. See the instructions [below](#setting-up-the-build-environment-on-windows10-using-wsl1-or-wsl2). If you are unable or prefer not to install ROS and related tools on your host Linux machine, you can also try it using Docker. See the steps [below](#using-docker-for-ros).
 
 * If your default `gcc` version is less than 8 (see `gcc --version` output)
-  * Install `gcc` >= 8.0.0: `sudo apt-get install gcc-8 g++-8`
-  * Verify installation by `gcc-8 --version`
+  * Install `gcc` >= 8.0.0: `sudo apt-get install gcc-11 g++-11`
+  * Verify installation by `gcc-11 --version`
 * Ubuntu 16.04
     * Install [ROS kinetic](https://wiki.ros.org/kinetic/Installation/Ubuntu)
     * Install `tf2-sensor` and `mavros` packages: `sudo apt-get install ros-kinetic-tf2-sensor-msgs ros-kinetic-tf2-geometry-msgs ros-kinetic-mavros*`
@@ -47,10 +47,10 @@ cd ros;
 catkin build;  # or catkin_make
 ```
 
-If your default `gcc` version is less than 8 (see `gcc --version` output), compilation will fail. In that case, use `gcc-8` explicitly as follows:
+If your default `gcc` version is less than 8 (see `gcc --version` output), compilation will fail. In that case, use `gcc-11` explicitly as follows:
 
 ```shell
-catkin build -DCMAKE_C_COMPILER=gcc-8 -DCMAKE_CXX_COMPILER=g++-8
+catkin build -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11
 ```
 
 ## Running `autonomysim_ros_pkgs`

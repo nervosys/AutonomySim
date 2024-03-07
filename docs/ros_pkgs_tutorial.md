@@ -14,10 +14,10 @@ cd PATH_TO/AutonomySim/ros
 catkin build autonomysim_tutorial_pkgs
 ```
 
-If your default `gcc` is less than or equal to version 8 (see `gcc --version` output), compilation will fail. In that case, use `gcc-8` explicitly as follows:
+If your default `gcc` is less than or equal to version 8 (see `gcc --version` output), compilation will fail. In that case, use `gcc-11` explicitly as follows:
 
 ```shell
-catkin build autonomysim_tutorial_pkgs -DCMAKE_C_COMPILER=gcc-8 -DCMAKE_CXX_COMPILER=g++-8
+catkin build autonomysim_tutorial_pkgs -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11
 ```
 
 !!! note
