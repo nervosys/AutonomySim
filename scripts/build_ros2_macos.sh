@@ -59,13 +59,13 @@ echo "XCode Command Line Tools path: $(sudo xcode-select -p)"
 
 # Install Homebrew dependencies.
 echo 'Installing Homebrew dependencies...'
-brew install asio assimp bison bullet cmake console_bridge cppcheck \
-    cunit eigen freetype graphviz opencv openssl orocos-kdl pcre poco \
-    pyqt5 python qt@5 sip spdlog osrf/simulation/tinyxml1 tinyxml2
+brew install curl coreutils asio assimp bison bullet cmake console_bridge \
+    cppcheck cunit eigen freetype graphviz opencv openssl orocos-kdl pcre \
+    poco pyqt5 python qt@5 sip spdlog osrf/simulation/tinyxml1 tinyxml2
 
 # Install a specific clang version.
 echo "Installing LLVM/Clang version: ${CLANG_VERSION}"
-brew tap homebrew/versions
+#brew tap homebrew/versions
 brew install "llvm@${CLANG_VERSION}"
 
 # Add OPENSSL_ROOT_DIR for DDS-Security.

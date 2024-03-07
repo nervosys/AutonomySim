@@ -22,9 +22,6 @@
 set -x  # print shell commands before executing (for debugging)
 set -e  # exit on error return code
 
-# macOS: Ensure GNU coreutils is installed.
-[ "$(uname)" = 'Darwin' ] && brew update && brew install curl coreutils
-
 ###
 ### Functions
 ###
@@ -51,8 +48,8 @@ function version_less_than_equal_to {
 ###
 
 # Directory paths.
-PROJECT_DIR="$(realpath $PWD)"
-SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
+PROJECT_DIR="$(readlink -e ${PWD})"
+SCRIPT_DIR="$(readlink -e ${BASH_SOURCE[0]})"
 
 CMAKE_VERSION='3.10.2'
 CLANG_VERSION='12'
@@ -96,7 +93,9 @@ done
 
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
-    brew install "llvm@${CLANG_VERSION}"
+    brew update
+    brew upgrade
+    brew install curl coreutils "llvm@${CLANG_VERSION}"
 else
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
