@@ -94,6 +94,7 @@ done
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     # remove existing Homebrew Python installs.
     sudo rm -rf '/usr/local/bin/2to3'
     sudo rm -rf '/usr/local/bin/2to3-3.11'
