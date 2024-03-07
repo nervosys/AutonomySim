@@ -15,13 +15,15 @@
 # - Required: cmake, rpclib, eigen
 # - Optional: high-poly count SUV asset for Unreal Engine
 # - This script is a cleaned up version of the original AirSim script.
-# - Assumes Unreal Engine is installed on Ubuntu 18 or MacOS 11.
 # TODO
 # - Update: ensure script runs on recent Linux distributions, MacOS, Windows.
 #----------------------------------------------------------------------------------------
 
 set -x  # print shell commands before executing (for debugging)
 set -e  # exit on error return code
+
+# macOS: Ensure GNU coreutils is installed.
+[ "$(uname)" = 'Darwin' ] && brew update && brew install coreutils
 
 ###
 ### Functions
@@ -52,6 +54,12 @@ function version_less_than_equal_to {
 PROJECT_DIR="$(realpath $PWD)"
 SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
 
+CMAKE_VERSION='3.10.2'
+CLANG_VERSION='12'
+EIGEN_VERSION='3.4.0'
+RPCLIB_VERSION='2.3.0'
+UNREAL_ASSET_VERSION='1.2.0'
+
 # Ensure CMake supports CMAKE_APPLE_SILICON_PROCESSOR for MacOS.
 if [ "$(uname)" = 'Darwin' ]; then
     CMAKE_VERSION_MIN='3.19.2'
@@ -59,11 +67,6 @@ else
     CMAKE_VERSION_MIN='3.10.0'
 fi
 CMAKE_VERSION_MIN_MAJ_MIN='3.10'
-
-CMAKE_VERSION='3.10.2'
-EIGEN_VERSION='3.4.0'
-RPCLIB_VERSION='2.3.0'
-UNREAL_ASSET_VERSION='1.2.0'
 
 # download high-polycount SUV model.
 HIGH_POLYCOUNT_SUV='false'
@@ -93,8 +96,7 @@ done
 
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
-    brew update
-    brew install llvm
+    brew install "llvm${CLANG_VERSION}"
 else
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
