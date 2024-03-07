@@ -105,9 +105,9 @@ EOT
     sudo rm '/usr/local/bin/2to3-3.11'
     brew update
     # brew upgrade
-    brew install curl wget coreutils
-    brew install azure-cli
-    brew install "llvm@${CLANG_VERSION}"
+    brew_install curl wget coreutils
+    brew_install azure-cli
+    brew_install "llvm@${CLANG_VERSION}"
 else
     echo 'Installing dependencies...'
     wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' \
