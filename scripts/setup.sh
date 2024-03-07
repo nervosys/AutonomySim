@@ -47,9 +47,9 @@ function version_less_than_equal_to {
 ### Variables
 ###
 
-# Directory paths.
-PROJECT_DIR="$(readlink -e ${PWD})"
-SCRIPT_DIR="$(readlink -e ${BASH_SOURCE[0]})"
+# Directory paths. We cannot use realpath or readlink from GNU coreutils because macOS.
+PROJECT_DIR="$(cd $(dirname ${PWD}); pwd -P)"
+SCRIPT_DIR="$(cd $(dirname ${BASH_SOURCE[0]}); pwd -P)"
 
 CMAKE_VERSION='3.10.2'
 CLANG_VERSION='12'
