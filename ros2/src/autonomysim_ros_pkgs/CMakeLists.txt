@@ -25,7 +25,7 @@ find_package(OpenCV REQUIRED)
 
 set(AUTONOMYSIM_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../../)
 
-add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/rpclib_wrapper" rpclib_wrapper)
+add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/RpcLibWrapper" RpcLibWrapper)
 add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/AutonomyLib" AutonomyLib)
 add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/MavLinkCom" MavLinkCom)
 
