@@ -101,8 +101,8 @@ export PATH="/usr/local/bin:\${PATH}"
 EOT
     source "${HOME}/.bash_profile"
     # remove existing Homebrew Python installs.
-    sudo rm '/usr/local/bin/2to3'
-    sudo rm '/usr/local/bin/2to3-3.11'
+    sudo rm -rf '/usr/local/bin/2to3'
+    sudo rm -rf '/usr/local/bin/2to3-3.11'
     brew update
     # brew upgrade
     brew_install curl wget coreutils
