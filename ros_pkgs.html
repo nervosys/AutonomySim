@@ -3028,7 +3028,7 @@
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>catkin<span class="w"> </span>build<span class="p">;</span><span class="w">  </span><span class="c1"># or catkin_make</span>
 </span></code></pre></div>
 <p>If your default <code>gcc</code> version is less than 8 (see <code>gcc --version</code> output), compilation will fail. In that case, use <code>gcc-11</code> explicitly as follows:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>catkin<span class="w"> </span>build<span class="w"> </span>-DCMAKE_C_COMPILER<span class="o">=</span>gcc-11<span class="w"> </span>-DCMAKE_CXX_COMPILER<span class="o">=</span>g++-11
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>catkin<span class="w"> </span>build<span class="w"> </span>-DCMAKE_C_COMPILER<span class="o">=</span>/usr/bin/gcc-11<span class="w"> </span>-DCMAKE_CXX_COMPILER<span class="o">=</span>/usr/bin/g++-11
 </span></code></pre></div>
 <h2 id="running-autonomysim_ros_pkgs">Running <code>autonomysim_ros_pkgs</code><a class="headerlink" href="#running-autonomysim_ros_pkgs" title="Permanent link">#</a></h2>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>devel/setup.bash<span class="p">;</span>
