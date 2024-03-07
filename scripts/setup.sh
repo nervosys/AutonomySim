@@ -96,7 +96,7 @@ done
 
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
-    brew install "llvm${CLANG_VERSION}"
+    brew install "llvm@${CLANG_VERSION}"
 else
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
