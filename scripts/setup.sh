@@ -117,8 +117,6 @@ EOM
     brew install wget coreutils azure-cli "llvm@${CLANG_VERSION}"
 else
     echo 'Installing dependencies...'
-    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' \
-        | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
     sudo apt-get install -y --no-install-recommends \
@@ -137,6 +135,8 @@ else
         vulkan-tools \
         libvulkan1 \
         # vulkan vulkan-utils
+    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    sudo apt-get install -y \
         "clang-${CLANG_VERSION}" \
         "clang++-${CLANG_VERSION}" \
         "libc++-${CLANG_VERSION}-dev" \
