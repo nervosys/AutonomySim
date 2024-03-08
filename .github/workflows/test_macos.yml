@@ -41,7 +41,9 @@ jobs:
       - name: "Update Homebrew and Install Azure CLI"
         shell: bash
         run: |
-          brew unlink python@3.11 && brew link --overwrite python@3.11 && brew unlink python@3.10 && brew link --overwrite python@3.10
+          brew unlink python@3.12 && brew link --overwrite python@3.12
+          brew unlink python@3.11 && brew link --overwrite python@3.11
+          brew unlink python@3.10 && brew link --overwrite python@3.10
           brew update && brew upgrade
           brew install azure-cli
 
