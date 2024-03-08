@@ -38,12 +38,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # - name: "Remove Python 3 for Python 3.11 symbolic link"
-      #   shell: bash
-      #   run: brew unlink python@3.11 && brew link --overwrite python@3.11 && brew unlink python@3.10 && brew link --overwrite python@3.10
-
-      # - name: "Install BASH (macOS version > 10.14 uses Zsh by default)"
-      #   run: brew install bash
+      - name: "Update Homebrew and Install latest BASH, cURL, Azure CLI"
+        shell: bash
+        run: |
+          # brew unlink python@3.11 && brew link --overwrite python@3.11 && brew unlink python@3.10 && brew link --overwrite python@3.10
+          brew update && brew upgrade
+          brew install bash curl azure-cli
 
       - name: "Install AutonomySim Dependencies"
         shell: bash
