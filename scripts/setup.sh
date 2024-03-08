@@ -101,20 +101,20 @@ done
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+    sudo rm -rf '/usr/local/bin/2to3' '/usr/local/bin/2to3-3.11'  # remove Python installs
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    # remove existing Homebrew Python installs.
-    sudo rm -rf '/usr/local/bin/2to3' '/usr/local/bin/2to3-3.11'
-    brew update
-    echo 'Installing latest cURL version and configuring Homebrew to use it...'
-    brew install curl
-    HOMEBREW_FORCE_BREWED_CURL=1 brew config
-    #tee -a "${HOME}/.bash_profile" << EOM
-    export HOMEBREW_CURL_PATH='/usr/local/opt/curl/bin/curl'
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     export PATH="/usr/local/bin:${PATH}"
+    brew update
+    brew upgrade
+    brew install curl
+    export HOMEBREW_CURL_PATH='/usr/local/opt/curl/bin/curl'
     export PATH="/usr/local/opt/curl/bin:${PATH}"
-    #EOM
-    #source "${HOME}/.bash_profile"
-    brew install wget coreutils azure-cli "llvm@${CLANG_VERSION}"
+    HOMEBREW_FORCE_BREWED_CURL=1 brew config
+    echo 'Installing latest cURL version and configuring Homebrew to use it...'
+    brew install python@3.11 azure-cli
+    brew install wget coreutils "llvm@${CLANG_VERSION}"
 else
     echo 'Installing dependencies...'
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
