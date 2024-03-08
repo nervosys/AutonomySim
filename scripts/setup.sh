@@ -108,8 +108,8 @@ if [ "$(uname)" = 'Darwin' ]; then
         /usr/local/Caskroom/ \
         /usr/local/Cellar/ \
         /usr/local/bin
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    # eval "$(/opt/homebrew/bin/brew shellenv)"
     export PATH="/usr/local/bin:${PATH}"
     brew update
     brew upgrade
