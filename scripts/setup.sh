@@ -101,9 +101,13 @@ done
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
-    sudo NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-    sudo rm -rf /Users/runner/Library/Caches/Homebrew
-    sudo rm -rf '/usr/local/bin/2to3' '/usr/local/bin/2to3-3.11'  # remove Python installs
+    # Reinstall Homebrew
+    sudo rm -rf \
+        /Users/runner/Library/Caches/Homebrew/ \
+        /Users/runner/Library/Logs/Homebrew/ \
+        /usr/local/Caskroom/ \
+        /usr/local/Cellar/ \
+        /usr/local/bin
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export PATH="/usr/local/bin:${PATH}"
@@ -111,8 +115,8 @@ if [ "$(uname)" = 'Darwin' ]; then
     brew upgrade
     brew install curl
     export HOMEBREW_CURL_PATH='/usr/local/opt/curl/bin/curl'
-    export PATH="/usr/local/opt/curl/bin:${PATH}"
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
+    export PATH="/usr/local/opt/curl/bin:${PATH}"
     echo 'Installing latest cURL version and configuring Homebrew to use it...'
     brew install python@3.11 azure-cli
     brew install wget coreutils "llvm@${CLANG_VERSION}"
