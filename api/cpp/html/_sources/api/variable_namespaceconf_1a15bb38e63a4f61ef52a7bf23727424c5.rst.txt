@@ -1,0 +1,14 @@
+.. _exhale_variable_namespaceconf_1a15bb38e63a4f61ef52a7bf23727424c5:
+
+Variable conf::sphinx_immaterial_external_resource_cache_dir
+============================================================
+
+- Defined in :ref:`file_AutonomyLib_docs_conf.py`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: conf::sphinx_immaterial_external_resource_cache_dir
+   :project: AutonomyLib
