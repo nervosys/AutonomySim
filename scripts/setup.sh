@@ -85,12 +85,9 @@ DEBUG="${DEBUG:-false}"
 ### Main
 ###
 
-# pushd "${SCRIPT_DIR}" >/dev/null # push script directory onto the stack
-
 # Parse command-line interface (CLI) arguments.
 while [ $# -gt 0 ]; do
-    key="$1"
-    case "$key" in
+    case "$1" in
     '--debug')
         DEBUG='true'
         ;;
