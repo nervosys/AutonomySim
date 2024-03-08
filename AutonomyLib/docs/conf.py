@@ -145,6 +145,9 @@ html_theme = "sphinx_immaterial"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
+# Output file base name for HTML help builder.
+sphinx_immaterial_external_resource_cache_dir = "_static/fonts"
+
 # custom CSS file
 html_css_files = [
     "css/extra.css",
