@@ -45,7 +45,7 @@ jobs:
         shell: bash
         run: bash ./scripts/build.sh
 
-      - name: "Build AutonomySim ROS2 Wrapper"
-        # if: ${{ matrix.os == 'ubuntu-20.04' }}
-        shell: bash
-        run: bash ./scripts/build_ros2_ubuntu.sh
+      # - name: "Build AutonomySim ROS2 Wrapper"
+      #   # if: ${{ matrix.os == 'ubuntu-20.04' }}
+      #   shell: bash
+      #   run: bash ./scripts/build_ros2_ubuntu.sh

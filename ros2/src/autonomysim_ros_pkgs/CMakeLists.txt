@@ -38,6 +38,7 @@ set(CXX_EXP_LIB "-nostdinc++ -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gn
 -lstdc++fs -fmax-errors=10")
 set(RPC_LIB_INCLUDES " ${AUTONOMYSIM_ROOT}/external/rpclib/rpclib-2.3.0/include")
 set(RPC_LIB rpc)
+
 message(STATUS "found RPC_LIB_INCLUDES=${RPC_LIB_INCLUDES}")
 
 set(INCLUDE_DIRS include 

@@ -65,7 +65,8 @@ STRICT_MODE_OFF // todo what does this do?
 #include <tf2_ros/transform_listener.h>
 #include <unordered_map>
 
-    struct SimpleMatrix {
+
+struct SimpleMatrix {
     int rows;
     int cols;
     double *data;
