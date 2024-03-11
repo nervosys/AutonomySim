@@ -102,17 +102,15 @@ done
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
     # Reinstall Homebrew
-    sudo rm -rf \
-        /Users/runner/Library/Caches/Homebrew/ \
-        /Users/runner/Library/Logs/Homebrew/ \
-        /usr/local/Caskroom/ \
-        /usr/local/Cellar/ \
-        /usr/local/bin
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> "${HOME}/.bash_profile"
-    eval "$(/usr/local/bin/brew shellenv)"
-    # eval "$(/opt/homebrew/bin/brew shellenv)"
-    # export PATH="/usr/local/bin:${PATH}"
+    # sudo rm -rf \
+    #     /Users/runner/Library/Caches/Homebrew/ \
+    #     /Users/runner/Library/Logs/Homebrew/ \
+    #     /usr/local/Caskroom/ \
+    #     /usr/local/Cellar/ \
+    #     /usr/local/bin
+    # NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    # (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> "${HOME}/.bash_profile"
+    # eval "$(/usr/local/bin/brew shellenv)"
     # brew update
     # brew upgrade
     brew install curl
