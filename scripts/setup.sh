@@ -113,7 +113,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     eval "$(/usr/local/bin/brew shellenv)"
     # eval "$(/opt/homebrew/bin/brew shellenv)"
     # export PATH="/usr/local/bin:${PATH}"
-    brew update
+    # brew update
     # brew upgrade
     brew install curl
     export HOMEBREW_CURL_PATH='/usr/local/opt/curl/bin/curl'
