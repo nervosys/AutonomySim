@@ -48,10 +48,14 @@ jobs:
       #     brew install azure-cli
 
       - name: "Install AutonomySim Dependencies"
+        env:
+          GITHUB_ACTIONS_RUNNER_DEBUG: true
         shell: bash
         run: bash ./scripts/setup.sh
 
       - name: "Build AutonomySim"
+        env:
+          GITHUB_ACTIONS_RUNNER_DEBUG: true
         shell: bash
         run: bash ./scripts/build.sh
 
