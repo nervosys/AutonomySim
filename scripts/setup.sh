@@ -121,7 +121,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     brew install python@3.11
     brew install coreutils
     brew install "llvm@${CLANG_VERSION}"
-    brew install azure-cli
+    # brew install azure-cli
 else
     echo 'Installing dependencies...'
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
