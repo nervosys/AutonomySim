@@ -118,8 +118,10 @@ if [ "$(uname)" = 'Darwin' ]; then
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
     export PATH="/usr/local/opt/curl/bin:${PATH}"
     echo 'Installing latest cURL version and configuring Homebrew to use it...'
-    brew install python@3.11 azure-cli
-    brew install wget coreutils "llvm@${CLANG_VERSION}"
+    brew install python@3.11
+    brew install coreutils
+    brew install "llvm@${CLANG_VERSION}"
+    brew install azure-cli
 else
     echo 'Installing dependencies...'
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
