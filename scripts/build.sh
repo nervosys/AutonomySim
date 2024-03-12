@@ -100,7 +100,7 @@ fi
 
 # Check for local cmake build created by setup.sh.
 if [ -d "./cmake_build" ]; then
-    if [ "$(uname)" = "Darwin" ]; then
+    if [ "$(uname)" = 'Darwin' ]; then
         CMAKE="$(greadlink -f cmake_build/bin/cmake)"
     else
         CMAKE="$(readlink -f cmake_build/bin/cmake)"
@@ -108,6 +108,9 @@ if [ -d "./cmake_build" ]; then
 else
     CMAKE="$(which cmake)"
 fi
+
+CMAKE_C_COMPILER="$CMAKE"
+CMAKE_CXX_COMPILER="$CMAKE"
 
 # Variable for build output.
 if [ "${DEBUG}" = 'true' ]; then
