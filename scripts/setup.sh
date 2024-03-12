@@ -102,8 +102,8 @@ done
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
     # Install XCode CLI tools
-    sudo rm -rf /Library/Developer/CommandLineTools
-    sudo xcode-select --install
+    # sudo rm -rf /Library/Developer/CommandLineTools
+    # sudo xcode-select --install
     # Reinstall Homebrew
     # sudo rm -rf \
     #     /Users/runner/Library/Caches/Homebrew/ \
