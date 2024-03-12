@@ -99,7 +99,7 @@ if [ ! -d "./external/rpclib/rpclib-${RPCLIB_VERSION}" ]; then
 fi
 
 # Check for local cmake build created by setup.sh.
-if [ -d "./cmake_build" ]; then
+if [ -d './cmake_build' ]; then
     if [ "$(uname)" = 'Darwin' ]; then
         CMAKE="$(greadlink -f cmake_build/bin/cmake)"
     else
@@ -108,7 +108,6 @@ if [ -d "./cmake_build" ]; then
 else
     CMAKE="$(which cmake)"
 fi
-
 CMAKE_C_COMPILER="$CMAKE"
 CMAKE_CXX_COMPILER="$CMAKE"
 

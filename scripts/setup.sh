@@ -166,7 +166,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     brew update
     # Conditionally install lower CMake version.
     if ( version_less_than_equal_to "$cmake_ver" "$CMAKE_VERSION_MIN" ); then
-        brew install cmake
+        brew install "cmake@${CMAKE_VERSION}"
     else
         echo "Compatible version of CMake already installed: $cmake_ver"
     fi
