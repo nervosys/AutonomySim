@@ -101,6 +101,9 @@ done
 # Ensure LLVM and Vulkan are installed.
 if [ "$(uname)" = 'Darwin' ]; then
     echo 'Installing dependencies...'
+    # Install XCode CLI tools
+    sudo rm -rf /Library/Developer/CommandLineTools
+    sudo xcode-select --install
     # Reinstall Homebrew
     # sudo rm -rf \
     #     /Users/runner/Library/Caches/Homebrew/ \
@@ -118,7 +121,9 @@ if [ "$(uname)" = 'Darwin' ]; then
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
     export PATH="/usr/local/opt/curl/bin:${PATH}"
     echo 'Installing latest cURL version and configuring Homebrew to use it...'
-    brew install python@3.11
+    brew install python@3.11 python@3.12
+    brew link --overwrite python@3.11
+    brew link --overwrite python@3.12
     brew install coreutils
     brew install "llvm@${CLANG_VERSION}"
     # brew install azure-cli

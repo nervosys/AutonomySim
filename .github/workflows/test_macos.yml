@@ -38,6 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Setup specific XCode version
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
       # - name: "Update Homebrew and Install Azure CLI"
       #   shell: bash
       #   run: |
@@ -48,14 +53,14 @@ jobs:
       #     brew install azure-cli
 
       - name: "Install AutonomySim Dependencies"
-        env:
-          GITHUB_ACTIONS_RUNNER_DEBUG: true
+        #env:
+        #  GITHUB_ACTIONS_RUNNER_DEBUG: true
         shell: bash
         run: bash ./scripts/setup.sh
 
       - name: "Build AutonomySim"
-        env:
-          GITHUB_ACTIONS_RUNNER_DEBUG: true
+        #env:
+        #  GITHUB_ACTIONS_RUNNER_DEBUG: true
         shell: bash
         run: bash ./scripts/build.sh
 
