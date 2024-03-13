@@ -27,7 +27,7 @@ on:
   # workflow_dispatch:
 
 jobs:
-  build-windows-cmd:
+  build-windows-2022-cmd:
     runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
@@ -57,7 +57,7 @@ jobs:
           REM set CMAKE_GENERATOR_PLATFORM = "Visual Studio 17 2022"
           scripts\cmd\build.cmd
 
-  build-windows-pwsh:
+  build-windows-2022-pwsh:
     runs-on: ${{ matrix.os }} # windows-latest
     strategy:
       matrix:
