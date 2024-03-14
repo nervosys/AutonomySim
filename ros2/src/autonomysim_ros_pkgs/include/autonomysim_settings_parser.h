@@ -1,5 +1,8 @@
 // autonomysim_settings_parser.h
 
+#include <chrono>
+#include <iostream>
+
 #include "common/utils/StrictMode.hpp"
 STRICT_MODE_OFF
 #ifndef RPCLIB_MSGPACK
@@ -11,8 +14,6 @@ STRICT_MODE_ON
 #include "common/AutonomySimSettings.hpp"
 #include "common/utils/FileSystem.hpp"
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
-#include <chrono>
-#include <iostream>
 
 // a minimal AutonomySim settings parser
 // adapted from Unreal/Plugins/AutonomySim/SimHUD/SimHUD.h

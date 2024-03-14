@@ -4,16 +4,17 @@
 #ifndef autonomylib_common_AutonomySimSettings_hpp
 #define autonomylib_common_AutonomySimSettings_hpp
 
-#include "CommonStructs.hpp"
-#include "ImageCaptureBase.hpp"
-#include "Settings.hpp"
-#include "common/utils/Utils.hpp"
-#include "sensors/SensorBase.hpp"
 #include <exception>
 #include <functional>
 #include <map>
 #include <string>
 #include <vector>
+
+#include "CommonStructs.hpp"
+#include "ImageCaptureBase.hpp"
+#include "Settings.hpp"
+#include "common/utils/Utils.hpp"
+#include "sensors/SensorBase.hpp"
 
 namespace nervosys {
 namespace autonomylib {

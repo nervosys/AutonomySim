@@ -1,5 +1,11 @@
 // autonomysim_ros_wrapper.h
 
+#include <chrono>
+#include <iostream>
+#include <math.h>
+#include <memory>
+#include <unordered_map>
+
 #include "common/utils/StrictMode.hpp"
 STRICT_MODE_OFF // todo what does this do?
 #ifndef RPCLIB_MSGPACK
@@ -8,62 +14,57 @@ STRICT_MODE_OFF // todo what does this do?
 #include "rpc/rpc_error.h"
     STRICT_MODE_ON
 
+#include "autonomysim_interfaces/msg/altimeter.hpp" //hector_uav_msgs defunct?
+#include "autonomysim_interfaces/msg/car_controls.hpp"
+#include "autonomysim_interfaces/msg/car_state.hpp"
+#include "autonomysim_interfaces/msg/environment.hpp"
+#include "autonomysim_interfaces/msg/gimbal_angle_euler_cmd.hpp"
+#include "autonomysim_interfaces/msg/gimbal_angle_quat_cmd.hpp"
+#include "autonomysim_interfaces/msg/gps_yaw.hpp"
+#include "autonomysim_interfaces/msg/vel_cmd.hpp"
+#include "autonomysim_interfaces/msg/vel_cmd_group.hpp"
+#include "autonomysim_interfaces/srv/land.hpp"
+#include "autonomysim_interfaces/srv/land_group.hpp"
+#include "autonomysim_interfaces/srv/reset.hpp"
+#include "autonomysim_interfaces/srv/takeoff.hpp"
+#include "autonomysim_interfaces/srv/takeoff_group.hpp"
 #include "autonomysim_settings_parser.h"
 #include "common/AutonomySimSettings.hpp"
 #include "common/utils/FileSystem.hpp"
+#include "cv_bridge/cv_bridge.h"
+#include "geometry_msgs/msg/pose_stamped.hpp"
+#include "geometry_msgs/msg/transform_stamped.hpp"
+#include "geometry_msgs/msg/twist.hpp"
+#include "image_transport/image_transport.hpp"
+#include "math_common.h"
+#include "mavros_msgs/msg/state.hpp"
+#include "nav_msgs/msg/odometry.hpp"
+#include "opencv2/opencv.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include "rosgraph_msgs/msg/clock.hpp"
+#include "sensor_msgs/distortion_models.hpp"
+#include "sensor_msgs/image_encodings.hpp"
+#include "sensor_msgs/msg/camera_info.hpp"
+#include "sensor_msgs/msg/image.hpp"
+#include "sensor_msgs/msg/imu.hpp"
+#include "sensor_msgs/msg/magnetic_field.hpp"
+#include "sensor_msgs/msg/nav_sat_fix.hpp"
+#include "sensor_msgs/msg/point_cloud2.hpp"
+#include "sensor_msgs/msg/range.hpp"
 #include "sensors/imu/ImuBase.hpp"
 #include "sensors/lidar/LidarSimpleParams.hpp"
+#include "std_srvs/srv/empty.hpp"
+#include "tf2/LinearMath/Matrix3x3.h"
+#include "tf2/LinearMath/Quaternion.h"
+#include "tf2/convert.h"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+#include "tf2_ros/buffer.h"
+#include "tf2_ros/static_transform_broadcaster.h"
+#include "tf2_ros/transform_broadcaster.h"
+#include "tf2_ros/transform_listener.h"
 #include "vehicles/car/api/CarRpcLibClient.hpp"
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
 #include "yaml-cpp/yaml.h"
-#include <autonomysim_interfaces/msg/altimeter.hpp> //hector_uav_msgs defunct?
-#include <autonomysim_interfaces/msg/car_controls.hpp>
-#include <autonomysim_interfaces/msg/car_state.hpp>
-#include <autonomysim_interfaces/msg/environment.hpp>
-#include <autonomysim_interfaces/msg/gimbal_angle_euler_cmd.hpp>
-#include <autonomysim_interfaces/msg/gimbal_angle_quat_cmd.hpp>
-#include <autonomysim_interfaces/msg/gps_yaw.hpp>
-#include <autonomysim_interfaces/msg/vel_cmd.hpp>
-#include <autonomysim_interfaces/msg/vel_cmd_group.hpp>
-#include <autonomysim_interfaces/srv/land.hpp>
-#include <autonomysim_interfaces/srv/land_group.hpp>
-#include <autonomysim_interfaces/srv/reset.hpp>
-#include <autonomysim_interfaces/srv/takeoff.hpp>
-#include <autonomysim_interfaces/srv/takeoff_group.hpp>
-#include <chrono>
-#include <cv_bridge/cv_bridge.h>
-#include <geometry_msgs/msg/pose_stamped.hpp>
-#include <geometry_msgs/msg/transform_stamped.hpp>
-#include <geometry_msgs/msg/twist.hpp>
-#include <image_transport/image_transport.hpp>
-#include <iostream>
-#include <math.h>
-#include <math_common.h>
-#include <mavros_msgs/msg/state.hpp>
-#include <memory>
-#include <nav_msgs/msg/odometry.hpp>
-#include <opencv2/opencv.hpp>
-#include <rosgraph_msgs/msg/clock.hpp>
-#include <sensor_msgs/distortion_models.hpp>
-#include <sensor_msgs/image_encodings.hpp>
-#include <sensor_msgs/msg/camera_info.hpp>
-#include <sensor_msgs/msg/image.hpp>
-#include <sensor_msgs/msg/imu.hpp>
-#include <sensor_msgs/msg/magnetic_field.hpp>
-#include <sensor_msgs/msg/nav_sat_fix.hpp>
-#include <sensor_msgs/msg/point_cloud2.hpp>
-#include <sensor_msgs/msg/range.hpp>
-#include <std_srvs/srv/empty.hpp>
-#include <tf2/LinearMath/Matrix3x3.h>
-#include <tf2/LinearMath/Quaternion.h>
-#include <tf2/convert.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-#include <tf2_ros/buffer.h>
-#include <tf2_ros/static_transform_broadcaster.h>
-#include <tf2_ros/transform_broadcaster.h>
-#include <tf2_ros/transform_listener.h>
-#include <unordered_map>
 
     struct SimpleMatrix {
     int rows;
