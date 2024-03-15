@@ -48,7 +48,7 @@ set(INCLUDE_DIRS include
   ${AUTONOMYSIM_ROOT}/MavLinkCom/include
   ${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils
   ${OpenCV_INCLUDE_DIRS}
-  )
+)
 include_directories(${INCLUDE_DIRS})
 
 add_library(autonomysim_settings_parser src/autonomysim_settings_parser.cpp)

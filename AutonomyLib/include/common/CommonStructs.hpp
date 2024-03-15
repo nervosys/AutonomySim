@@ -4,8 +4,9 @@
 #ifndef autonomylib_common_CommonStructs_hpp
 #define autonomylib_common_CommonStructs_hpp
 
-#include "common/Common.hpp"
 #include <ostream>
+
+#include "common/Common.hpp"
 
 namespace nervosys {
 namespace autonomylib {

@@ -4,9 +4,6 @@
 #ifndef autonomylib_common_Common_hpp
 #define autonomylib_common_Common_hpp
 
-#include "VectorMath.hpp"
-#include "common/utils/RandomGenerator.hpp"
-#include "common/utils/Utils.hpp"
 #include <cstdint>
 #include <iostream>
 #include <memory>
@@ -14,6 +11,10 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#include "VectorMath.hpp"
+#include "common/utils/RandomGenerator.hpp"
+#include "common/utils/Utils.hpp"
 
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS 1

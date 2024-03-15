@@ -4,6 +4,9 @@
 #ifndef autonomylib_common_Settings_hpp
 #define autonomylib_common_Settings_hpp
 
+#include <mutex>
+#include <string>
+
 #include "common/utils/Utils.hpp"
 
 STRICT_MODE_OFF
@@ -15,8 +18,6 @@ STRICT_MODE_OFF
 STRICT_MODE_ON
 
 #include "common/utils/FileSystem.hpp"
-#include <mutex>
-#include <string>
 
 namespace nervosys {
 namespace autonomylib {
