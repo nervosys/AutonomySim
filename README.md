@@ -62,7 +62,7 @@
 
 ## Announcements
 
-* We are currently adding support for [Unreal Engine 5.4](https://www.epicgames.com/site/en-US/news/state-of-unreal-roundup-unreal-engine-5-4-metahumans-in-uefn-and-lego-elements-for-fortnite-creators)!
+* We are currently adding support for [Unreal Engine 5.4](https://www.unrealengine.com/en-US/blog/all-the-big-news-from-the-state-of-unreal-at-gdc-24)!
 * Windows: We now provide separate Batch/Command and PowerShell build systems.
 * The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
 * A new documentation system has been rolled out that covers the Python and C++ APIs.
