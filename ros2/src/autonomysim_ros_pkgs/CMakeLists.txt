@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.5)
 project(autonomysim_ros_pkgs)
 
+set(AUTONOMYSIM_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../../)
+
+# default to C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra -Wnoexcept -Wstrict-null-sentinel")
+set(CXX_EXP_LIB "-nostdinc++ -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -nodefaultlibs 
+-l/usr/lib/x86_64-linux-gnu/libc++.so -l/usr/lib/x86_64-linux-gnu/libc++abi.so
+-lm -lc -lgcc_s -lgcc
+-lstdc++fs -fmax-errors=10")
+
 find_package(rclcpp REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geographic_msgs REQUIRED)
@@ -23,25 +33,7 @@ find_package(rosidl_default_runtime REQUIRED)
 find_package(autonomysim_interfaces REQUIRED)
 find_package(OpenCV REQUIRED)
 
-set(AUTONOMYSIM_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../../)
-
-add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/RpcLibWrapper" RpcLibWrapper)
-add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/AutonomyLib" AutonomyLib)
-add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/MavLinkCom" MavLinkCom)
-
-# default to C++14
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra -Wnoexcept -Wstrict-null-sentinel")
-set(CXX_EXP_LIB "-nostdinc++ -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -nodefaultlibs 
--l/usr/lib/x86_64-linux-gnu/libc++.so -l/usr/lib/x86_64-linux-gnu/libc++abi.so
--lm -lc -lgcc_s -lgcc
--lstdc++fs -fmax-errors=10")
-set(RPC_LIB_INCLUDES " ${AUTONOMYSIM_ROOT}/external/rpclib/rpclib-2.3.0/include")
-set(RPC_LIB rpc)
-
-message(STATUS "found RPC_LIB_INCLUDES=${RPC_LIB_INCLUDES}")
-
-set(INCLUDE_DIRS include 
+include_directories(
   ${AUTONOMYSIM_ROOT}/AutonomyLib/deps/eigen3
   ${AUTONOMYSIM_ROOT}/AutonomyLib/include
   ${RPC_LIB_INCLUDES}
@@ -49,7 +41,14 @@ set(INCLUDE_DIRS include
   ${AUTONOMYSIM_ROOT}/MavLinkCom/common/utils
   ${OpenCV_INCLUDE_DIRS}
 )
-include_directories(${INCLUDE_DIRS})
+
+add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/RpcLibWrapper" RpcLibWrapper)
+add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/AutonomyLib" AutonomyLib)
+add_subdirectory("${AUTONOMYSIM_ROOT}/cmake/MavLinkCom" MavLinkCom)
+
+set(RPC_LIB_INCLUDES " ${AUTONOMYSIM_ROOT}/external/rpclib/rpclib-2.3.0/include")
+set(RPC_LIB rpc)
+message(STATUS "found RPC_LIB_INCLUDES=${RPC_LIB_INCLUDES}")
 
 add_library(autonomysim_settings_parser src/autonomysim_settings_parser.cpp)
 target_link_libraries(autonomysim_settings_parser AutonomyLib)
