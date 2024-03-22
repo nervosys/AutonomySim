@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 class MavLinkDebugLog {
   public:
@@ -32,6 +32,6 @@ class MavLinkDebugLog {
 
     virtual ~MavLinkDebugLog() = default;
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

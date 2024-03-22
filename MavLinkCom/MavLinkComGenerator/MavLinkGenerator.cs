@@ -34,7 +34,7 @@ namespace MavLinkComGenerator
                     header.WriteLine("#include <string>");
                     header.WriteLine("#include \"MavLinkMessageBase.hpp\"");
                     header.WriteLine("");
-                    header.WriteLine("namespace mavlinkcom");
+                    header.WriteLine("namespace mavlink_comm");
                     header.WriteLine("{");
                     header.WriteLine("");
 
@@ -42,7 +42,7 @@ namespace MavLinkComGenerator
                     impl.WriteLine("// Licensed under the MIT License.");
                     impl.WriteLine("#include \"MavLinkMessages.hpp\""); ;
                     impl.WriteLine("#include <sstream>");
-                    impl.WriteLine("using namespace mavlinkcom;");
+                    impl.WriteLine("using namespace mavlink_comm;");
                     impl.WriteLine("");
 
                     GenerateEnums();
@@ -435,7 +435,7 @@ namespace MavLinkComGenerator
                     {
                         impl.Write(" << float_tostring(this->{0})", field.name);
                     }
-                    else 
+                    else
                     {
                         impl.Write(" << this->{0}", field.name);
                     }
@@ -483,7 +483,7 @@ namespace MavLinkComGenerator
             impl.WriteLine("}");
         }
 
-        public Tuple<string,int> ParseArrayType(string type)
+        public Tuple<string, int> ParseArrayType(string type)
         {
             int i = type.IndexOf('[');
             int k = type.IndexOf(']', i);

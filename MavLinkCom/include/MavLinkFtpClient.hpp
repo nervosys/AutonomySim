@@ -14,7 +14,7 @@ namespace mavlinkcom_impl {
 class MavLinkFtpClientImpl;
 }
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 struct MavLinkFileInfo {
   public:
@@ -52,6 +52,6 @@ class MavLinkFtpClient : public MavLinkNode {
 
     void cancel(); // cancel any pending operation.
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

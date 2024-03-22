@@ -1,7 +1,7 @@
 #include "AdHocConnection.hpp"
 #include "impl/AdHocConnectionImpl.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 AdHocConnection::AdHocConnection() { pImpl.reset(new AdHocConnectionImpl()); }

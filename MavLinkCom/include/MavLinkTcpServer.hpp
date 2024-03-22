@@ -13,7 +13,7 @@ namespace mavlinkcom_impl {
 class MavLinkTcpServerImpl;
 }
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 class MavLinkTcpServer {
   public:
@@ -33,6 +33,6 @@ class MavLinkTcpServer {
   private:
     std::shared_ptr<mavlinkcom_impl::MavLinkTcpServerImpl> impl_;
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

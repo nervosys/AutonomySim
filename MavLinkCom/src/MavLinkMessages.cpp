@@ -3,7 +3,7 @@
 #include "MavLinkMessages.hpp"
 #include <sstream>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 int MavLinkHeartbeat::pack(char *buffer) const {
     pack_uint32_t(buffer, reinterpret_cast<const uint32_t *>(&this->custom_mode), 0);

@@ -272,7 +272,7 @@ class ArduCopterApi : public MultirotorApiBase {
                                   connection_info_.local_host_ip.c_str(), ip_.c_str()),
                    Utils::kLogLevelInfo);
 
-        udp_socket_ = std::make_unique<mavlinkcom::UdpSocket>();
+        udp_socket_ = std::make_unique<mavlink_comm::UdpSocket>();
         udp_socket_->bind(connection_info_.local_host_ip, connection_info_.control_port_local);
     }
 
@@ -447,7 +447,7 @@ class ArduCopterApi : public MultirotorApiBase {
         uint16_t pwm[kArduCopterRotorControlCount];
     };
 
-    std::unique_ptr<mavlinkcom::UdpSocket> udp_socket_;
+    std::unique_ptr<mavlink_comm::UdpSocket> udp_socket_;
 
     AutonomySimSettings::MavLinkConnectionInfo connection_info_;
     uint16_t port_;

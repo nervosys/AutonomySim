@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <string>
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 enum class MavLinkMessageIds {
     MAVLINK_MSG_ID_HEARTBEAT = 0,
@@ -10679,6 +10679,6 @@ class MavCmdUser5 : public MavLinkCommand {
     virtual void pack();
     virtual void unpack();
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

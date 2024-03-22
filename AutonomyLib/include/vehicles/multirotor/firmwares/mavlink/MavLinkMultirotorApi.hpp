@@ -335,7 +335,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
                     auto fullpath = common_utils::FileSystem::combine(path, filename);
                     addStatusMessage(Utils::stringf("Opening log file: %s", fullpath.c_str()));
                     log_file_name_ = fullpath;
-                    log_ = std::make_shared<mavlinkcom::MavLinkFileLog>();
+                    log_ = std::make_shared<mavlink_comm::MavLinkFileLog>();
                     log_->openForWriting(fullpath, false);
                     con->startLoggingSendMessage(log_);
                     con->startLoggingReceiveMessage(log_);
@@ -474,14 +474,14 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
         // save current manual, cruise, and max velocity parameters
         bool result = false;
-        mavlinkcom::MavLinkParameter manual_velocity_parameter, cruise_velocity_parameter, max_velocity_parameter;
+        mavlink_comm::MavLinkParameter manual_velocity_parameter, cruise_velocity_parameter, max_velocity_parameter;
         result = mav_vehicle_->getParameter("MPC_VEL_MANUAL").wait(1000, &manual_velocity_parameter);
         result = result && mav_vehicle_->getParameter("MPC_XY_CRUISE").wait(1000, &cruise_velocity_parameter);
         result = result && mav_vehicle_->getParameter("MPC_XY_VEL_MAX").wait(1000, &max_velocity_parameter);
 
         if (result) {
             // set max velocity parameter
-            mavlinkcom::MavLinkParameter p;
+            mavlink_comm::MavLinkParameter p;
             p.name = "MPC_XY_VEL_MAX";
             p.value = velocity;
             mav_vehicle_->setParameter(p).wait(1000, &result);
@@ -529,7 +529,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
         bool rc = false;
         checkValidVehicle();
-        mavlinkcom::AsyncResult<bool> result = mav_vehicle_->loiter();
+        mavlink_comm::AsyncResult<bool> result = mav_vehicle_->loiter();
         // auto start_time = std::chrono::system_clock::now();
         while (!getCancelToken().isCancelled()) {
             if (result.wait(100, &rc)) {
@@ -560,7 +560,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
 
         // This method is called at high frequence from MultirotorPawnSimApi::updateRendering.
-        mavlinkcom::MavLinkTelemetry data;
+        mavlink_comm::MavLinkTelemetry data;
         connection_->getTelemetry(data);
         if (data.messages_received == 0) {
             if (!hil_message_timer_.started()) {
@@ -582,13 +582,13 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
             return;
         }
 
-        mavlinkcom::MavLinkTelemetry data;
+        mavlink_comm::MavLinkTelemetry data;
         connection_->getTelemetry(data);
 
         // listen to the other mavlink connection also
         auto mavcon = mav_vehicle_->getConnection();
         if (mavcon != connection_) {
-            mavlinkcom::MavLinkTelemetry gcs;
+            mavlink_comm::MavLinkTelemetry gcs;
             mavcon->getTelemetry(gcs);
 
             data.handler_microseconds += gcs.handler_microseconds;
@@ -636,7 +636,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
 
         if (log != nullptr) {
-            mavlinkcom::MavLinkMessage msg;
+            mavlink_comm::MavLinkMessage msg;
             msg.magic = MAVLINK_STX_MAVLINK1;
             data.encode(msg);
             msg.update_checksum();
@@ -780,17 +780,17 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
     virtual void afterTask() override { endOffboardMode(); }
 
   public:
-    class MavLinkLogViewerLog : public mavlinkcom::MavLinkLog {
+    class MavLinkLogViewerLog : public mavlink_comm::MavLinkLog {
       public:
-        MavLinkLogViewerLog(std::shared_ptr<mavlinkcom::MavLinkNode> proxy) { proxy_ = proxy; }
+        MavLinkLogViewerLog(std::shared_ptr<mavlink_comm::MavLinkNode> proxy) { proxy_ = proxy; }
 
         ~MavLinkLogViewerLog() { proxy_ = nullptr; }
 
-        void write(const mavlinkcom::MavLinkMessage &msg, uint64_t timestamp = 0) override {
+        void write(const mavlink_comm::MavLinkMessage &msg, uint64_t timestamp = 0) override {
             if (proxy_ != nullptr) {
                 unused(timestamp);
-                mavlinkcom::MavLinkMessage copy;
-                ::memcpy(&copy, &msg, sizeof(mavlinkcom::MavLinkMessage));
+                mavlink_comm::MavLinkMessage copy;
+                ::memcpy(&copy, &msg, sizeof(mavlink_comm::MavLinkMessage));
                 try {
                     proxy_->sendMessage(copy);
                 } catch (std::exception &) {
@@ -804,7 +804,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
 
       private:
-        std::shared_ptr<mavlinkcom::MavLinkNode> proxy_;
+        std::shared_ptr<mavlink_comm::MavLinkNode> proxy_;
         int failures = 0;
     };
 
@@ -917,12 +917,12 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
     void sendCollision(float normalX, float normalY, float normalZ) {
         checkValidVehicle();
 
-        mavlinkcom::MavLinkCollision collision{};
+        mavlink_comm::MavLinkCollision collision{};
         collision.src = 1; // provider of data is MavLink system in id field
         collision.id = mav_vehicle_->getLocalSystemId();
-        collision.action = static_cast<uint8_t>(mavlinkcom::MAV_COLLISION_ACTION::MAV_COLLISION_ACTION_REPORT);
+        collision.action = static_cast<uint8_t>(mavlink_comm::MAV_COLLISION_ACTION::MAV_COLLISION_ACTION_REPORT);
         collision.threat_level =
-            static_cast<uint8_t>(mavlinkcom::MAV_COLLISION_THREAT_LEVEL::MAV_COLLISION_THREAT_LEVEL_NONE);
+            static_cast<uint8_t>(mavlink_comm::MAV_COLLISION_THREAT_LEVEL::MAV_COLLISION_THREAT_LEVEL_NONE);
         // we are abusing these fields, passing the angle of the object we hit, so that jMAVSim knows how to bounce off.
         collision.time_to_minimum_delta = normalX;
         collision.altitude_minimum_delta = normalY;
@@ -932,7 +932,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
     // TODO: do we still need this method?
     bool hasVideoRequest() {
-        mavlinkcom::MavLinkVideoServer::MavLinkVideoRequest image_req;
+        mavlink_comm::MavLinkVideoServer::MavLinkVideoRequest image_req;
         return video_server_->hasVideoRequest(image_req);
     }
 
@@ -949,10 +949,10 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
             // remove MAV_MODE_FLAG_HIL_ENABLED flag from current mode
             std::lock_guard<std::mutex> guard(set_mode_mutex_);
             int mode = mav_vehicle_->getVehicleState().mode;
-            mode &= ~static_cast<int>(mavlinkcom::MAV_MODE_FLAG::MAV_MODE_FLAG_HIL_ENABLED);
+            mode &= ~static_cast<int>(mavlink_comm::MAV_MODE_FLAG::MAV_MODE_FLAG_HIL_ENABLED);
 
-            mavlinkcom::MavCmdDoSetMode cmd;
-            cmd.command = static_cast<uint16_t>(mavlinkcom::MAV_CMD::MAV_CMD_DO_SET_MODE);
+            mavlink_comm::MavCmdDoSetMode cmd;
+            cmd.command = static_cast<uint16_t>(mavlink_comm::MAV_CMD::MAV_CMD_DO_SET_MODE);
             cmd.Mode = static_cast<float>(mode);
             mav_vehicle_->sendCommand(cmd);
 
@@ -970,10 +970,10 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         // add MAV_MODE_FLAG_HIL_ENABLED flag to current mode
         std::lock_guard<std::mutex> guard(set_mode_mutex_);
         int mode = mav_vehicle_->getVehicleState().mode;
-        mode |= static_cast<int>(mavlinkcom::MAV_MODE_FLAG::MAV_MODE_FLAG_HIL_ENABLED);
+        mode |= static_cast<int>(mavlink_comm::MAV_MODE_FLAG::MAV_MODE_FLAG_HIL_ENABLED);
 
-        mavlinkcom::MavCmdDoSetMode cmd;
-        cmd.command = static_cast<uint16_t>(mavlinkcom::MAV_CMD::MAV_CMD_DO_SET_MODE);
+        mavlink_comm::MavCmdDoSetMode cmd;
+        cmd.command = static_cast<uint16_t>(mavlink_comm::MAV_CMD::MAV_CMD_DO_SET_MODE);
         cmd.Mode = static_cast<float>(mode);
         mav_vehicle_->sendCommand(cmd);
 
@@ -1002,7 +1002,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
     void ensureSafeMode() {
         if (mav_vehicle_ != nullptr) {
-            const mavlinkcom::VehicleState &state = mav_vehicle_->getVehicleState();
+            const mavlink_comm::VehicleState &state = mav_vehicle_->getVehicleState();
             if (state.controls.landed || !state.controls.armed) {
                 return;
             }
@@ -1045,12 +1045,12 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
     }
 
-    bool sendTestMessage(std::shared_ptr<mavlinkcom::MavLinkNode> node) {
+    bool sendTestMessage(std::shared_ptr<mavlink_comm::MavLinkNode> node) {
         try {
             // try and send a test message.
-            mavlinkcom::MavLinkHeartbeat test;
-            test.autopilot = static_cast<int>(mavlinkcom::MAV_AUTOPILOT::MAV_AUTOPILOT_PX4);
-            test.type = static_cast<uint8_t>(mavlinkcom::MAV_TYPE::MAV_TYPE_GCS);
+            mavlink_comm::MavLinkHeartbeat test;
+            test.autopilot = static_cast<int>(mavlink_comm::MAV_AUTOPILOT::MAV_AUTOPILOT_PX4);
+            test.type = static_cast<uint8_t>(mavlink_comm::MAV_TYPE::MAV_TYPE_GCS);
             test.base_mode = 0;
             test.custom_mode = 0;
             test.mavlink_version = 3;
@@ -1065,7 +1065,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
     bool connectToLogViewer() {
         // set up logviewer proxy
         if (connection_info_.logviewer_ip_address.size() > 0) {
-            std::shared_ptr<mavlinkcom::MavLinkConnection> connection;
+            std::shared_ptr<mavlink_comm::MavLinkConnection> connection;
             createProxy("LogViewer", connection_info_.logviewer_ip_address, connection_info_.logviewer_ip_port,
                         connection_info_.local_host_ip, logviewer_proxy_, connection);
             if (!sendTestMessage(logviewer_proxy_)) {
@@ -1074,7 +1074,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
                 logviewer_proxy_ = nullptr;
             }
 
-            std::shared_ptr<mavlinkcom::MavLinkConnection> out_connection;
+            std::shared_ptr<mavlink_comm::MavLinkConnection> out_connection;
             createProxy("LogViewerOut", connection_info_.logviewer_ip_address, connection_info_.logviewer_ip_sport,
                         connection_info_.local_host_ip, logviewer_out_proxy_, out_connection);
             if (!sendTestMessage(logviewer_out_proxy_)) {
@@ -1096,7 +1096,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
     bool connectToQGC() {
         if (connection_info_.qgc_ip_address.size() > 0) {
-            std::shared_ptr<mavlinkcom::MavLinkConnection> connection;
+            std::shared_ptr<mavlink_comm::MavLinkConnection> connection;
             createProxy("QGC", connection_info_.qgc_ip_address, connection_info_.qgc_ip_port,
                         connection_info_.local_host_ip, qgc_proxy_, connection);
             if (!sendTestMessage(qgc_proxy_)) {
@@ -1104,8 +1104,8 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
                 qgc_proxy_->getConnection()->close();
                 qgc_proxy_ = nullptr;
             } else {
-                connection->subscribe([=](std::shared_ptr<mavlinkcom::MavLinkConnection> connection_val,
-                                          const mavlinkcom::MavLinkMessage &msg) {
+                connection->subscribe([=](std::shared_ptr<mavlink_comm::MavLinkConnection> connection_val,
+                                          const mavlink_comm::MavLinkMessage &msg) {
                     unused(connection_val);
                     processQgcMessages(msg);
                 });
@@ -1115,18 +1115,18 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
     }
 
     void createProxy(std::string name, std::string ip, int port, string local_host_ip,
-                     std::shared_ptr<mavlinkcom::MavLinkNode> &node,
-                     std::shared_ptr<mavlinkcom::MavLinkConnection> &connection) {
+                     std::shared_ptr<mavlink_comm::MavLinkNode> &node,
+                     std::shared_ptr<mavlink_comm::MavLinkConnection> &connection) {
         if (connection_ == nullptr)
             throw std::domain_error(
                 "MavLinkMultirotorApi requires connection object to be set before createProxy call");
 
-        connection = mavlinkcom::MavLinkConnection::connectRemoteUdp(
+        connection = mavlink_comm::MavLinkConnection::connectRemoteUdp(
             "Proxy to: " + name + " at " + ip + ":" + std::to_string(port), local_host_ip, ip, port);
 
         // it is ok to reuse the simulator sysid and compid here because this node is only used to send a few messages
         // directly to this endpoint and all other messages are funneled through from PX4 via the Join method below.
-        node = std::make_shared<mavlinkcom::MavLinkNode>(connection_info_.sim_sysid, connection_info_.sim_compid);
+        node = std::make_shared<mavlink_comm::MavLinkNode>(connection_info_.sim_sysid, connection_info_.sim_compid);
         node->connect(connection);
 
         // now join the main connection to this one, this causes all PX4 messages to be sent to the proxy and all
@@ -1141,9 +1141,9 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
     }
 
     static std::string findPX4() {
-        auto result = mavlinkcom::MavLinkConnection::findSerialPorts(0, 0);
+        auto result = mavlink_comm::MavLinkConnection::findSerialPorts(0, 0);
         for (auto iter = result.begin(); iter != result.end(); iter++) {
-            mavlinkcom::SerialPortInfo info = *iter;
+            mavlink_comm::SerialPortInfo info = *iter;
             if (((info.vid == pixhawkVendorId) &&
                  (info.pid == pixhawkFMUV4ProductId || info.pid == pixhawkFMUV2ProductId ||
                   info.pid == pixhawkFMUV2OldBootloaderProductId || info.pid == pixhawkFMUV5ProductId)) ||
@@ -1189,7 +1189,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
                                       connection_info_.local_host_ip.c_str());
             addStatusMessage(msg);
             try {
-                connection_ = std::make_shared<mavlinkcom::MavLinkConnection>();
+                connection_ = std::make_shared<mavlink_comm::MavLinkConnection>();
                 remoteIpAddr = connection_->acceptTcp("hil", connection_info_.local_host_ip, connection_info.tcp_port);
             } catch (std::exception &e) {
                 addStatusMessage("Accepting TCP socket failed, is another instance running?");
@@ -1201,7 +1201,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
                 throw std::invalid_argument("UdpPort setting has an invalid value.");
             }
 
-            connection_ = mavlinkcom::MavLinkConnection::connectRemoteUdp(
+            connection_ = mavlink_comm::MavLinkConnection::connectRemoteUdp(
                 "hil", connection_info_.local_host_ip, connection_info.udp_address, connection_info.udp_port);
         } else {
             throw std::invalid_argument("Please provide valid connection info for your drone.");
@@ -1209,12 +1209,13 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
         // start listening to the SITL connection.
         connection_->subscribe(
-            [=](std::shared_ptr<mavlinkcom::MavLinkConnection> connection, const mavlinkcom::MavLinkMessage &msg) {
+            [=](std::shared_ptr<mavlink_comm::MavLinkConnection> connection, const mavlink_comm::MavLinkMessage &msg) {
                 unused(connection);
                 processMavMessages(msg);
             });
 
-        hil_node_ = std::make_shared<mavlinkcom::MavLinkNode>(connection_info_.sim_sysid, connection_info_.sim_compid);
+        hil_node_ =
+            std::make_shared<mavlink_comm::MavLinkNode>(connection_info_.sim_sysid, connection_info_.sim_compid);
         hil_node_->connect(connection_);
 
         if (connection_info.use_tcp) {
@@ -1223,8 +1224,8 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
             addStatusMessage(std::string("Connected to SITL over UDP."));
         }
 
-        mav_vehicle_ = std::make_shared<mavlinkcom::MavLinkVehicle>(connection_info_.vehicle_sysid,
-                                                                    connection_info_.vehicle_compid);
+        mav_vehicle_ = std::make_shared<mavlink_comm::MavLinkVehicle>(connection_info_.vehicle_sysid,
+                                                                      connection_info_.vehicle_compid);
 
         if (connection_info_.control_ip_address != "") {
             if (connection_info_.control_port_local == 0) {
@@ -1247,17 +1248,17 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
             // if we try and connect the UDP port too quickly it doesn't work, bug in PX4 ?
             for (int retries = 60; retries >= 0 && connecting_; retries--) {
                 try {
-                    std::shared_ptr<mavlinkcom::MavLinkConnection> gcsConnection;
+                    std::shared_ptr<mavlink_comm::MavLinkConnection> gcsConnection;
                     if (remoteIpAddr == "127.0.0.1") {
-                        gcsConnection = mavlinkcom::MavLinkConnection::connectLocalUdp(
+                        gcsConnection = mavlink_comm::MavLinkConnection::connectLocalUdp(
                             "gcs", connection_info_.local_host_ip, connection_info_.control_port_local);
                     } else {
-                        gcsConnection = mavlinkcom::MavLinkConnection::connectRemoteUdp(
+                        gcsConnection = mavlink_comm::MavLinkConnection::connectRemoteUdp(
                             "gcs", connection_info_.local_host_ip, remoteIpAddr, connection_info_.control_port_remote);
                     }
                     mav_vehicle_->connect(gcsConnection);
                     // need to try and send something to make sure the connection is good.
-                    mav_vehicle_->setMessageInterval(mavlinkcom::MavLinkHomePosition::kMessageId, 1);
+                    mav_vehicle_->setMessageInterval(mavlink_comm::MavLinkHomePosition::kMessageId, 1);
                     break;
                 } catch (std::exception &) {
                     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -1284,7 +1285,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
     }
 
-    void processControlMessages(const mavlinkcom::MavLinkMessage &msg) {
+    void processControlMessages(const mavlink_comm::MavLinkMessage &msg) {
         // Utils::log(Utils::stringf("Control msg %d", msg.msgid));
         // PX4 usually sends the following on the control channel.
         // If nothing is arriving here it means our control channel UDP connection isn't working.
@@ -1313,11 +1314,11 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         // listen to this UDP mavlink connection also
         auto mavcon = mav_vehicle_->getConnection();
         if (mavcon != nullptr && mavcon != connection_) {
-            mavcon->subscribe(
-                [=](std::shared_ptr<mavlinkcom::MavLinkConnection> connection, const mavlinkcom::MavLinkMessage &msg) {
-                    unused(connection);
-                    processControlMessages(msg);
-                });
+            mavcon->subscribe([=](std::shared_ptr<mavlink_comm::MavLinkConnection> connection,
+                                  const mavlink_comm::MavLinkMessage &msg) {
+                unused(connection);
+                processControlMessages(msg);
+            });
         } else {
             mav_vehicle_->connect(connection_);
         }
@@ -1325,7 +1326,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         connected_ = true;
 
         // Also request home position messages
-        mav_vehicle_->setMessageInterval(mavlinkcom::MavLinkHomePosition::kMessageId, 1);
+        mav_vehicle_->setMessageInterval(mavlink_comm::MavLinkHomePosition::kMessageId, 1);
 
         // now we can start our heartbeats.
         mav_vehicle_->startHeartbeat();
@@ -1375,24 +1376,24 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
         while (connecting_) {
             try {
-                connection_ = mavlinkcom::MavLinkConnection::connectSerial("hil", port_name_auto, baud_rate);
+                connection_ = mavlink_comm::MavLinkConnection::connectSerial("hil", port_name_auto, baud_rate);
                 connection_->ignoreMessage(
-                    mavlinkcom::MavLinkAttPosMocap::kMessageId); // TODO: find better way to communicate debug pose
-                                                                 // instead of using fake Mo-cap messages
-                hil_node_ =
-                    std::make_shared<mavlinkcom::MavLinkNode>(connection_info_.sim_sysid, connection_info_.sim_compid);
+                    mavlink_comm::MavLinkAttPosMocap::kMessageId); // TODO: find better way to communicate debug pose
+                                                                   // instead of using fake Mo-cap messages
+                hil_node_ = std::make_shared<mavlink_comm::MavLinkNode>(connection_info_.sim_sysid,
+                                                                        connection_info_.sim_compid);
                 hil_node_->connect(connection_);
                 addStatusMessage(Utils::stringf("Connected to PX4 over serial port: %s", port_name_auto.c_str()));
 
                 // start listening to the HITL connection.
-                connection_->subscribe([=](std::shared_ptr<mavlinkcom::MavLinkConnection> connection,
-                                           const mavlinkcom::MavLinkMessage &msg) {
+                connection_->subscribe([=](std::shared_ptr<mavlink_comm::MavLinkConnection> connection,
+                                           const mavlink_comm::MavLinkMessage &msg) {
                     unused(connection);
                     processMavMessages(msg);
                 });
 
-                mav_vehicle_ = std::make_shared<mavlinkcom::MavLinkVehicle>(connection_info_.vehicle_sysid,
-                                                                            connection_info_.vehicle_compid);
+                mav_vehicle_ = std::make_shared<mavlink_comm::MavLinkVehicle>(connection_info_.vehicle_sysid,
+                                                                              connection_info_.vehicle_compid);
 
                 connectVehicle();
                 return;
@@ -1408,17 +1409,17 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
     }
 
-    mavlinkcom::MavLinkHilSensor getLastSensorMessage() {
+    mavlink_comm::MavLinkHilSensor getLastSensorMessage() {
         std::lock_guard<std::mutex> guard(last_message_mutex_);
         return last_sensor_message_;
     }
 
-    mavlinkcom::MavLinkDistanceSensor getLastDistanceMessage() {
+    mavlink_comm::MavLinkDistanceSensor getLastDistanceMessage() {
         std::lock_guard<std::mutex> guard(last_message_mutex_);
         return last_distance_message_;
     }
 
-    mavlinkcom::MavLinkHilGps getLastGpsMessage() {
+    mavlink_comm::MavLinkHilGps getLastGpsMessage() {
         std::lock_guard<std::mutex> guard(last_message_mutex_);
         return last_gps_message_;
     }
@@ -1430,7 +1431,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
                 for (auto iter : connection_info_.params) {
                     auto key = iter.first;
                     auto value = iter.second;
-                    mavlinkcom::MavLinkParameter p;
+                    mavlink_comm::MavLinkParameter p;
                     p.name = key;
                     p.value = value;
                     bool result = false;
@@ -1466,7 +1467,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
     }
 
-    void processQgcMessages(const mavlinkcom::MavLinkMessage &msg) {
+    void processQgcMessages(const mavlink_comm::MavLinkMessage &msg) {
         if (msg.msgid == MocapPoseMessage.msgid) {
             std::lock_guard<std::mutex> guard(mocap_pose_mutex_);
             MocapPoseMessage.decode(msg);
@@ -1508,21 +1509,22 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         }
     }
 
-    void processMavMessages(const mavlinkcom::MavLinkMessage &msg) {
+    void processMavMessages(const mavlink_comm::MavLinkMessage &msg) {
         if (msg.msgid == HeartbeatMessage.msgid) {
             std::lock_guard<std::mutex> guard_heartbeat(heartbeat_mutex_);
 
             HeartbeatMessage.decode(msg);
 
             bool armed = (HeartbeatMessage.base_mode &
-                          static_cast<uint8_t>(mavlinkcom::MAV_MODE_FLAG::MAV_MODE_FLAG_SAFETY_ARMED)) > 0;
+                          static_cast<uint8_t>(mavlink_comm::MAV_MODE_FLAG::MAV_MODE_FLAG_SAFETY_ARMED)) > 0;
             setArmed(armed);
             if (!got_first_heartbeat_) {
                 Utils::log("received first heartbeat");
 
                 got_first_heartbeat_ = true;
-                if (HeartbeatMessage.autopilot == static_cast<uint8_t>(mavlinkcom::MAV_AUTOPILOT::MAV_AUTOPILOT_PX4) &&
-                    HeartbeatMessage.type == static_cast<uint8_t>(mavlinkcom::MAV_TYPE::MAV_TYPE_FIXED_WING)) {
+                if (HeartbeatMessage.autopilot ==
+                        static_cast<uint8_t>(mavlink_comm::MAV_AUTOPILOT::MAV_AUTOPILOT_PX4) &&
+                    HeartbeatMessage.type == static_cast<uint8_t>(mavlink_comm::MAV_TYPE::MAV_TYPE_FIXED_WING)) {
                     // PX4 will scale fixed wing servo outputs to -1 to 1
                     // and it scales multi rotor servo output to 0 to 1.
                     is_controls_0_1_ = false;
@@ -1536,7 +1538,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
             addStatusMessage(std::string(StatusTextMessage.text));
         } else if (msg.msgid == CommandLongMessage.msgid) {
             CommandLongMessage.decode(msg);
-            if (CommandLongMessage.command == static_cast<int>(mavlinkcom::MAV_CMD::MAV_CMD_SET_MESSAGE_INTERVAL)) {
+            if (CommandLongMessage.command == static_cast<int>(mavlink_comm::MAV_CMD::MAV_CMD_SET_MESSAGE_INTERVAL)) {
                 int msg_id = static_cast<int>(CommandLongMessage.param1 + 0.5);
                 if (msg_id == 115) { // HIL_STATE_QUATERNION
                     hil_state_freq_ = static_cast<int>(CommandLongMessage.param2 + 0.5);
@@ -1580,9 +1582,9 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
             handleLockStep();
         } else if (msg.msgid == MavLinkGpsRawInt.msgid) {
             MavLinkGpsRawInt.decode(msg);
-            auto fix_type = static_cast<mavlinkcom::GPS_FIX_TYPE>(MavLinkGpsRawInt.fix_type);
-            auto locked = (fix_type != mavlinkcom::GPS_FIX_TYPE::GPS_FIX_TYPE_NO_GPS &&
-                           fix_type != mavlinkcom::GPS_FIX_TYPE::GPS_FIX_TYPE_NO_FIX);
+            auto fix_type = static_cast<mavlink_comm::GPS_FIX_TYPE>(MavLinkGpsRawInt.fix_type);
+            auto locked = (fix_type != mavlink_comm::GPS_FIX_TYPE::GPS_FIX_TYPE_NO_GPS &&
+                           fix_type != mavlink_comm::GPS_FIX_TYPE::GPS_FIX_TYPE_NO_FIX);
             if (locked && !has_gps_lock_) {
                 addStatusMessage("Got GPS lock");
                 has_gps_lock_ = true;
@@ -1592,25 +1594,25 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
                 has_home_ = true;
             }
             send_params_ = true;
-        } else if (msg.msgid == mavlinkcom::MavLinkLocalPositionNed::kMessageId) {
+        } else if (msg.msgid == mavlink_comm::MavLinkLocalPositionNed::kMessageId) {
             // we are getting position information... so we can use this to check the stability of the z coordinate
             // before takeoff.
             if (current_state_.controls.landed) {
                 monitorGroundAltitude();
             }
-        } else if (msg.msgid == mavlinkcom::MavLinkExtendedSysState::kMessageId) {
+        } else if (msg.msgid == mavlink_comm::MavLinkExtendedSysState::kMessageId) {
             // check landed state.
             getLandedState();
             send_params_ = true;
-        } else if (msg.msgid == mavlinkcom::MavLinkHomePosition::kMessageId) {
-            mavlinkcom::MavLinkHomePosition home;
+        } else if (msg.msgid == mavlink_comm::MavLinkHomePosition::kMessageId) {
+            mavlink_comm::MavLinkHomePosition home;
             home.decode(msg);
             // this is a good time to send the params
             send_params_ = true;
-        } else if (msg.msgid == mavlinkcom::MavLinkSysStatus::kMessageId) {
+        } else if (msg.msgid == mavlink_comm::MavLinkSysStatus::kMessageId) {
             // this is a good time to send the params
             send_params_ = true;
-        } else if (msg.msgid == mavlinkcom::MavLinkAutopilotVersion::kMessageId) {
+        } else if (msg.msgid == mavlink_comm::MavLinkAutopilotVersion::kMessageId) {
             // this is a good time to send the params
             send_params_ = true;
         } else {
@@ -1624,7 +1626,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         if (!is_simulation_mode_)
             throw std::logic_error("Attempt to send simulated sensor messages while not in simulation mode");
 
-        mavlinkcom::MavLinkHilSensor hil_sensor;
+        mavlink_comm::MavLinkHilSensor hil_sensor;
         hil_sensor.time_usec = last_hil_sensor_time_ = getSimTime();
 
         hil_sensor.xacc = acceleration.x();
@@ -1672,7 +1674,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         uint32_t ms = (uint32_t)(tu / 1000);
         if (ms != last_sys_time_) {
             last_sys_time_ = ms;
-            mavlinkcom::MavLinkSystemTime msg_system_time;
+            mavlink_comm::MavLinkSystemTime msg_system_time;
             msg_system_time.time_unix_usec = tu;
             msg_system_time.time_boot_ms = last_sys_time_;
             if (hil_node_ != nullptr) {
@@ -1686,7 +1688,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         if (!is_simulation_mode_)
             throw std::logic_error("Attempt to send simulated distance sensor messages while not in simulation mode");
 
-        mavlinkcom::MavLinkDistanceSensor distance_sensor;
+        mavlink_comm::MavLinkDistanceSensor distance_sensor;
         distance_sensor.time_boot_ms = static_cast<uint32_t>(getSimTime() / 1000);
         distance_sensor.min_distance = static_cast<uint16_t>(min_distance);
         distance_sensor.max_distance = static_cast<uint16_t>(max_distance);
@@ -1721,7 +1723,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         if (!is_simulation_mode_)
             throw std::logic_error("Attempt to send simulated GPS messages while not in simulation mode");
 
-        mavlinkcom::MavLinkHilGps hil_gps;
+        mavlink_comm::MavLinkHilGps hil_gps;
         hil_gps.time_usec = getSimTime();
         hil_gps.lat = static_cast<int32_t>(geo_point.latitude * 1E7);
         hil_gps.lon = static_cast<int32_t>(geo_point.longitude * 1E7);
@@ -1756,7 +1758,7 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
         hil_state_freq_ = -1;
         actuators_message_supported_ = false;
         state_version_ = 0;
-        current_state_ = mavlinkcom::VehicleState();
+        current_state_ = mavlink_comm::VehicleState();
         target_height_ = 0;
         got_first_heartbeat_ = false;
         is_armed_ = false;
@@ -1815,28 +1817,28 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
     static const int pixhawkFMUV1ProductId = 16;              ///< Product ID for PX4 FMU V1 board
     static const int messageReceivedTimeout = 10;             ///< Seconds
 
-    std::shared_ptr<mavlinkcom::MavLinkNode> logviewer_proxy_, logviewer_out_proxy_, qgc_proxy_;
+    std::shared_ptr<mavlink_comm::MavLinkNode> logviewer_proxy_, logviewer_out_proxy_, qgc_proxy_;
 
     size_t status_messages_MaxSize = 5000;
 
-    std::shared_ptr<mavlinkcom::MavLinkNode> hil_node_;
-    std::shared_ptr<mavlinkcom::MavLinkConnection> connection_;
-    std::shared_ptr<mavlinkcom::MavLinkVideoServer> video_server_;
+    std::shared_ptr<mavlink_comm::MavLinkNode> hil_node_;
+    std::shared_ptr<mavlink_comm::MavLinkConnection> connection_;
+    std::shared_ptr<mavlink_comm::MavLinkVideoServer> video_server_;
     std::shared_ptr<MultirotorApiBase> mav_vehicle_control_;
 
-    mavlinkcom::MavLinkAttPosMocap MocapPoseMessage;
-    mavlinkcom::MavLinkHeartbeat HeartbeatMessage;
-    mavlinkcom::MavLinkSetMode SetModeMessage;
-    mavlinkcom::MavLinkStatustext StatusTextMessage;
-    mavlinkcom::MavLinkHilControls HilControlsMessage;
-    mavlinkcom::MavLinkHilActuatorControls HilActuatorControlsMessage;
-    mavlinkcom::MavLinkGpsRawInt MavLinkGpsRawInt;
-    mavlinkcom::MavLinkCommandLong CommandLongMessage;
-    mavlinkcom::MavLinkLocalPositionNed MavLinkLocalPositionNed;
+    mavlink_comm::MavLinkAttPosMocap MocapPoseMessage;
+    mavlink_comm::MavLinkHeartbeat HeartbeatMessage;
+    mavlink_comm::MavLinkSetMode SetModeMessage;
+    mavlink_comm::MavLinkStatustext StatusTextMessage;
+    mavlink_comm::MavLinkHilControls HilControlsMessage;
+    mavlink_comm::MavLinkHilActuatorControls HilActuatorControlsMessage;
+    mavlink_comm::MavLinkGpsRawInt MavLinkGpsRawInt;
+    mavlink_comm::MavLinkCommandLong CommandLongMessage;
+    mavlink_comm::MavLinkLocalPositionNed MavLinkLocalPositionNed;
 
-    mavlinkcom::MavLinkHilSensor last_sensor_message_;
-    mavlinkcom::MavLinkDistanceSensor last_distance_message_;
-    mavlinkcom::MavLinkHilGps last_gps_message_;
+    mavlink_comm::MavLinkHilSensor last_sensor_message_;
+    mavlink_comm::MavLinkDistanceSensor last_distance_message_;
+    mavlink_comm::MavLinkHilGps last_gps_message_;
 
     std::mutex mocap_pose_mutex_, heartbeat_mutex_, set_mode_mutex_, status_text_mutex_, last_message_mutex_,
         telemetry_mutex_;
@@ -1881,20 +1883,20 @@ class MavLinkMultirotorApi : public MultirotorApiBase {
 
     // additional variables required for MultirotorApiBase implementation
     // this is optional for methods that might not use vehicle commands
-    std::shared_ptr<mavlinkcom::MavLinkVehicle> mav_vehicle_;
+    std::shared_ptr<mavlink_comm::MavLinkVehicle> mav_vehicle_;
     float target_height_;
     bool is_api_control_enabled_;
     PidController thrust_controller_;
     common_utils::Timer hil_message_timer_;
     common_utils::Timer gcs_message_timer_;
-    std::shared_ptr<mavlinkcom::MavLinkFileLog> log_;
+    std::shared_ptr<mavlink_comm::MavLinkFileLog> log_;
     std::string log_file_name_;
     World *world_;
 
     // every time we return status update, we need to check if we have new data
     // this is why below two variables are marked as mutable
     mutable int state_version_;
-    mutable mavlinkcom::VehicleState current_state_;
+    mutable mavlink_comm::VehicleState current_state_;
 };
 
 } // namespace autonomylib

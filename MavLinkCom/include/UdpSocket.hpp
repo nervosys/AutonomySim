@@ -9,7 +9,7 @@ namespace mavlinkcom_impl {
 class UdpSocketImpl;
 }
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 class UdpSocket;
 
@@ -51,6 +51,6 @@ class UdpSocket {
     std::unique_ptr<mavlinkcom_impl::UdpSocketImpl> pImpl;
     friend class mavlinkcom_impl::UdpSocketImpl;
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

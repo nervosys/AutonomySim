@@ -8,9 +8,11 @@
 #include <valarray>
 
 namespace mavlink_utils {
+
 namespace type_utils {
 // from: https://raw.githubusercontent.com/louisdx/cxx-prettyprint/master/prettyprint.hpp
 // also see https://gist.github.com/louisdx/1076849
+
 namespace detail {
 // SFINAE type trait to detect whether T::const_iterator exists.
 

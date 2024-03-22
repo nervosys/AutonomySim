@@ -21,7 +21,7 @@ class UnitTests {
 
   private:
     void RunTest(const std::string &name, TestHandler handler);
-    void VerifyFile(mavlinkcom::MavLinkFtpClient &ftp, const std::string &dir, const std::string &name, bool exists,
+    void VerifyFile(mavlink_comm::MavLinkFtpClient &ftp, const std::string &dir, const std::string &name, bool exists,
                     bool isdir);
     ImageServer *server_;
     std::string com_port_;

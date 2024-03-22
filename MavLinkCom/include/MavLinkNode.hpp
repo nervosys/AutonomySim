@@ -15,7 +15,7 @@ namespace mavlinkcom_impl {
 class MavLinkNodeImpl;
 }
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 struct MavLinkParameter {
   public:
@@ -105,6 +105,6 @@ class MavLinkNode {
   protected:
     std::unique_ptr<mavlinkcom_impl::MavLinkNodeImpl> pImpl;
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

@@ -7,6 +7,7 @@
 #include "MavLinkDebugLog.hpp"
 #include "StrictMode.hpp"
 #include "type_utils.hpp"
+
 #include <array>
 #include <chrono>
 #include <cstdarg>
@@ -115,7 +116,7 @@ class Utils {
     static constexpr int kLogLevelWarn = -1;
     static constexpr int kLogLevelError = -2;
     static void log(std::string message, int level = kLogLevelInfo) {
-        mavlinkcom::MavLinkDebugLog::getSetLogger()->log(level, message);
+        mavlink_comm::MavLinkDebugLog::getSetLogger()->log(level, message);
     }
 
     template <typename T> static int sign(T val) { return T(0) < val ? 1 : (T(0) > val ? -1 : 0); }

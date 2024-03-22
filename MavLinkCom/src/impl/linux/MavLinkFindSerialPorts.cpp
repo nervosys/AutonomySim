@@ -11,7 +11,7 @@
 #include <memory>
 #include <sstream>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 std::vector<SerialPortInfo> MavLinkConnection::findSerialPorts(int vid, int pid) {

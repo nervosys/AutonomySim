@@ -30,7 +30,7 @@ Apart from these, [`PIPCamera`](https://github.com/nervosys/AutonomySim/blob/mas
 
 ## MavLinkCom
 
-This is the library developed by our own team member [Chris Lovett](https://github.com/lovettchris) that provides C++ classes to talk to the MavLink devices. This library is stand alone and can be used in any project. See [MavLinkCom](mavlinkcom.md) for more info.
+This is the library developed by our own team member [Chris Lovett](https://github.com/lovettchris) that provides C++ classes to talk to the MavLink devices. This library is stand alone and can be used in any project. See [MavLinkCom](mavlink_comm.md) for more info.
 
 ## Sample Programs
 

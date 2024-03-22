@@ -40,7 +40,7 @@ const int SOCKET_ERROR = -1;
 #endif
 
 using namespace mavlink_utils;
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 namespace mavlinkcom_impl {
 

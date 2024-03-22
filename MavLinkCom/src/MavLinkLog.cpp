@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 #include "MavLinkLog.hpp"
-#include "common/utils/Utils.hpp"
+#include "../common/utils/Utils.hpp"
 #include <chrono>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlink_utils;
 
 #define MAVLINK_STX_MAVLINK1 0xFE // marker for old protocol
@@ -80,7 +80,7 @@ uint64_t FlipEndianness(uint64_t v) {
     return result;
 }
 
-void MavLinkFileLog::write(const mavlinkcom::MavLinkMessage &msg, uint64_t timestamp) {
+void MavLinkFileLog::write(const mavlink_comm::MavLinkMessage &msg, uint64_t timestamp) {
     if (ptr_ != nullptr) {
         if (reading_) {
             throw std::runtime_error("Log file was opened for reading");
@@ -137,7 +137,7 @@ void MavLinkFileLog::write(const mavlinkcom::MavLinkMessage &msg, uint64_t times
     }
 }
 
-bool MavLinkFileLog::read(mavlinkcom::MavLinkMessage &msg, uint64_t &timestamp) {
+bool MavLinkFileLog::read(mavlink_comm::MavLinkMessage &msg, uint64_t &timestamp) {
     if (ptr_ != nullptr) {
         if (writing_) {
             throw std::runtime_error("Log file was opened for writing");

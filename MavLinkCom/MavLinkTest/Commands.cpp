@@ -12,7 +12,7 @@
 
 using namespace std::filesystem;
 using namespace mavlink_utils;
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 static std::vector<Command *> const *all_commands_;
 std::vector<Command *> const *Command::getAllCommand() { return all_commands_; }

@@ -5,7 +5,7 @@
 #include "AsyncResult.hpp"
 #include "impl/MavLinkNodeImpl.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 MavLinkNode::MavLinkNode(int localSystemId, int localComponentId)

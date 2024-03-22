@@ -17,7 +17,7 @@
 #include <string>
 #include <vector>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 // from main.cpp
 void DebugOutput(const char *message, ...);

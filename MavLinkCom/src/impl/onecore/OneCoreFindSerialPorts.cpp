@@ -9,7 +9,7 @@
 #include <propkey.h>
 #include <string>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 // {4d36e978-e325-11ce-bfc1-08002be10318}

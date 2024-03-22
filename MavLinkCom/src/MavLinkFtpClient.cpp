@@ -4,7 +4,7 @@
 #include "MavLinkFtpClient.hpp"
 #include "impl/MavLinkFtpClientImpl.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 MavLinkFtpClient::MavLinkFtpClient(int localSystemId, int localComponentId)

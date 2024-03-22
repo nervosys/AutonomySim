@@ -5,7 +5,7 @@
 #include "impl/MavLinkVehicleImpl.hpp"
 #include <memory>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 MavLinkVehicle::MavLinkVehicle(int localSystemId, int localComponentId) {

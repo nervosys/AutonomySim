@@ -16,7 +16,7 @@ namespace mavlinkcom_impl {
 class MavLinkVehicleImpl;
 }
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 // This class represents a MavLinkNode that can be controlled, hence a "vehicle" of some sort.
 // It also keeps certain state about the vehicle position so you can query it any time.
@@ -77,6 +77,6 @@ class MavLinkVehicle : public MavLinkNode {
     ~MavLinkVehicle();
     // MavLinkVehicle(MavLinkVehicle&&);
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

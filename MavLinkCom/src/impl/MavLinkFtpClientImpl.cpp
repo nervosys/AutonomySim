@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 
 using namespace mavlink_utils;
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 using milliseconds = std::chrono::milliseconds;

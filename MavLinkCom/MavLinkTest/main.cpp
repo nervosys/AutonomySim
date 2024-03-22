@@ -48,7 +48,7 @@ typedef mavlink_utils::Utils Utils;
 typedef mavlink_utils::FileSystem FileSystem;
 typedef unsigned int uint;
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 struct FlagName {
   public:
@@ -1123,8 +1123,8 @@ void connectSitl(std::shared_ptr<MavLinkVehicle> mavLinkVehicle) {
     // need a retry loop here because we don't know how quickly px4 will start accepting these connections...
     for (int retries = 60; retries >= 0; retries--) {
         try {
-            auto gcsConnection = mavlinkcom::MavLinkConnection::connectRemoteUdp("gcs", localEndPoint.addr,
-                                                                                 sitlEndPoint.addr, sitlEndPoint.port);
+            auto gcsConnection = mavlink_comm::MavLinkConnection::connectRemoteUdp(
+                "gcs", localEndPoint.addr, sitlEndPoint.addr, sitlEndPoint.port);
             mavLinkVehicle->connect(gcsConnection);
         } catch (std::exception &) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -1151,7 +1151,7 @@ bool setupDrone() {
     if (sitl) {
         // then we need 2 mavlink channels, one for sending/receiving HIL_* messages and the other
         // for controlling the drone.
-        hilNode = std::make_shared<mavlinkcom::MavLinkNode>(sim_sysid, sim_compid);
+        hilNode = std::make_shared<mavlink_comm::MavLinkNode>(sim_sysid, sim_compid);
         hilNode->connect(droneConnection);
         hilNode->startHeartbeat();
 

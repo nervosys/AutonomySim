@@ -12,7 +12,7 @@
 #include <chrono>
 #include <thread>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 void CheckResult(NPRESULT result) {
     if (result != NPRESULT_SUCCESS) {

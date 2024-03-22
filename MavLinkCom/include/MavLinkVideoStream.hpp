@@ -16,7 +16,7 @@ class MavLinkVideoClientImpl;
 class MavLinkVideoServerImpl;
 } // namespace mavlinkcom_impl
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 // This class implements the client side of a video stream request
 class MavLinkVideoClient : public MavLinkNode {
@@ -59,5 +59,5 @@ class MavLinkVideoServer : public MavLinkNode {
     void sendFrame(uint8_t data[], uint32_t data_size, uint16_t width, uint16_t height, uint8_t image_type,
                    uint8_t image_quality);
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 #endif

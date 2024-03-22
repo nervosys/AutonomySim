@@ -12,12 +12,12 @@
 
 #define MAVLINK_STX_MAVLINK1 0xFE // marker for old protocol
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 // This abstract class defines the interface for logging MavLinkMessages.
 class MavLinkLog {
   public:
-    virtual void write(const mavlinkcom::MavLinkMessage &msg, uint64_t timestamp = 0) = 0;
+    virtual void write(const mavlink_comm::MavLinkMessage &msg, uint64_t timestamp = 0) = 0;
     virtual ~MavLinkLog() = default;
 };
 
@@ -37,10 +37,10 @@ class MavLinkFileLog : public MavLinkLog {
     void openForReading(const std::string &filename);
     void openForWriting(const std::string &filename, bool json = false);
     void close();
-    virtual void write(const mavlinkcom::MavLinkMessage &msg, uint64_t timestamp = 0) override;
-    bool read(mavlinkcom::MavLinkMessage &msg, uint64_t &timestamp);
+    virtual void write(const mavlink_comm::MavLinkMessage &msg, uint64_t timestamp = 0) override;
+    bool read(mavlink_comm::MavLinkMessage &msg, uint64_t &timestamp);
     static uint64_t getTimeStamp();
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

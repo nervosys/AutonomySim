@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 class TcpClientPort;
 

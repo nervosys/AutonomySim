@@ -4,7 +4,7 @@
 #include "MavLinkTcpServer.hpp"
 #include "impl/MavLinkTcpServerImpl.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 MavLinkTcpServer::MavLinkTcpServer(const std::string &local_addr, int local_port)

@@ -90,7 +90,7 @@ class MavLinkFtpClientImpl : public MavLinkNodeImpl {
     MavLinkFileTransferProtocol last_message_;
     bool watch_dog_running_ = false;
     std::mutex mutex_;
-    std::vector<mavlinkcom::MavLinkFileInfo> *files_ = nullptr;
+    std::vector<mavlink_comm::MavLinkFileInfo> *files_ = nullptr;
     MavLinkFtpProgress *progress_ = nullptr;
 };
 } // namespace mavlinkcom_impl

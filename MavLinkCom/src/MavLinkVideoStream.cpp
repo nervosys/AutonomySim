@@ -4,7 +4,7 @@
 #include "MavLinkVideoStream.hpp"
 #include "impl/MavLinkVideoStreamImpl.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 // ============================== CLIENT ============================================

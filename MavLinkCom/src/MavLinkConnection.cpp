@@ -4,7 +4,7 @@
 #include "MavLinkConnection.hpp"
 #include "impl/MavLinkConnectionImpl.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 MavLinkConnection::MavLinkConnection() { pImpl.reset(new MavLinkConnectionImpl()); }

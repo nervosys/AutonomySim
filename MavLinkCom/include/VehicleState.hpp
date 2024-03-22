@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 typedef struct _VehicleState {
     typedef unsigned long long uint64_t;
@@ -103,6 +103,6 @@ typedef struct _VehicleState {
 
     int mode = 0; // MAV_MODE_FLAG
 } VehicleState;
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

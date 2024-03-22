@@ -14,7 +14,7 @@ class MavLinkConnectionImpl;
 class MavLinkNodeImpl;
 } // namespace mavlinkcom_impl
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 class MavLinkConnection;
 
 #define PayloadSize ((255 + 2 + 7) / 8)
@@ -180,6 +180,6 @@ class MavLinkTelemetry : public MavLinkMessageBase {
     virtual int pack(char *buffer) const;
     virtual int unpack(const char *buffer);
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

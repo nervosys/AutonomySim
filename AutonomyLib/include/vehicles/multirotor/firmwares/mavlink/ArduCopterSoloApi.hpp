@@ -111,12 +111,12 @@ class ArduCopterSoloApi : public MavLinkMultirotorApi {
                                       ip.c_str()),
                        Utils::kLogLevelInfo);
 
-            udpSocket_ = mavlinkcom::AdHocConnection::connectLocalUdp("ArduCopterSoloConnector", ip,
-                                                                      connection_info_.control_port_local);
-            mavlinkcom::AdHocMessageHandler handler = [this](std::shared_ptr<mavlinkcom::AdHocConnection> connection,
-                                                             const std::vector<uint8_t> &msg) {
-                this->rotorPowerMessageHandler(connection, msg);
-            };
+            udpSocket_ = mavlink_comm::AdHocConnection::connectLocalUdp("ArduCopterSoloConnector", ip,
+                                                                        connection_info_.control_port_local);
+            mavlink_comm::AdHocMessageHandler handler =
+                [this](std::shared_ptr<mavlink_comm::AdHocConnection> connection, const std::vector<uint8_t> &msg) {
+                    this->rotorPowerMessageHandler(connection, msg);
+                };
 
             rotorSubscriptionId_ = udpSocket_->subscribe(handler);
         }
@@ -155,7 +155,7 @@ class ArduCopterSoloApi : public MavLinkMultirotorApi {
         uint16_t speed, direction, turbulance;
     };
 
-    std::shared_ptr<mavlinkcom::AdHocConnection> udpSocket_;
+    std::shared_ptr<mavlink_comm::AdHocConnection> udpSocket_;
     int rotorSubscriptionId_;
 
     virtual void normalizeRotorControls() {
@@ -165,7 +165,7 @@ class ArduCopterSoloApi : public MavLinkMultirotorApi {
         }
     }
 
-    void rotorPowerMessageHandler(std::shared_ptr<mavlinkcom::AdHocConnection> connection,
+    void rotorPowerMessageHandler(std::shared_ptr<mavlink_comm::AdHocConnection> connection,
                                   const std::vector<uint8_t> &msg) {
         if (msg.size() != sizeof(RotorControlMessage)) {
             Utils::log("Got rotor control message of size " + std::to_string(msg.size()) +

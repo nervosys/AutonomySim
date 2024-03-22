@@ -23,7 +23,7 @@ STRICT_MODE_OFF
 #include "../mavlink/mavlink_types.h"
 STRICT_MODE_ON
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 namespace mavlinkcom_impl {
 

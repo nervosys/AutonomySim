@@ -27,7 +27,7 @@ class MavLinkTcpServerImpl;
 class MavLinkNodeImpl;
 } // namespace mavlinkcom_impl
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 class MavLinkConnection;
 class MavLinkNode;
@@ -161,6 +161,6 @@ class MavLinkConnection : public std::enable_shared_from_this<MavLinkConnection>
     friend class mavlinkcom_impl::MavLinkConnectionImpl;
     friend class mavlinkcom_impl::MavLinkTcpServerImpl;
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

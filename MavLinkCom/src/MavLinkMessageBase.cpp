@@ -17,7 +17,7 @@ STRICT_MODE_ON
 #include <sstream>
 
 using namespace mavlink_utils;
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 int MavLinkMessage::update_checksum() {
     bool mavlink1 = protocol_version != 2;

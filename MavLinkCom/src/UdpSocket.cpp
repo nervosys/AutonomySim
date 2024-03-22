@@ -4,7 +4,7 @@
 #include "UdpSocket.hpp"
 #include "impl/UdpSocketImpl.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 using namespace mavlinkcom_impl;
 
 UdpSocket::UdpSocket() { pImpl.reset(new UdpSocketImpl()); }

@@ -11,7 +11,7 @@
 #include <memory>
 #include <string>
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 template <class T> class AsyncResultState {
   public:
@@ -123,6 +123,6 @@ template <class T> class AsyncResult {
 
     std::shared_ptr<AsyncResultState<T>> state_;
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif

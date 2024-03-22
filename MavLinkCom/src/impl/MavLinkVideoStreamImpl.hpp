@@ -7,7 +7,7 @@
 #include "MavLinkNodeImpl.hpp"
 #include "MavLinkVideoStream.hpp"
 
-using namespace mavlinkcom;
+using namespace mavlink_comm;
 
 namespace mavlinkcom_impl {
 

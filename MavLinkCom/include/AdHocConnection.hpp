@@ -20,7 +20,7 @@ namespace mavlinkcom_impl {
 class AdHocConnectionImpl;
 }
 
-namespace mavlinkcom {
+namespace mavlink_comm {
 
 class AdHocConnection;
 
@@ -78,6 +78,6 @@ class AdHocConnection : public std::enable_shared_from_this<AdHocConnection> {
     friend class MavLinkNode;
     friend class mavlinkcom_impl::AdHocConnectionImpl;
 };
-} // namespace mavlinkcom
+} // namespace mavlink_comm
 
 #endif
