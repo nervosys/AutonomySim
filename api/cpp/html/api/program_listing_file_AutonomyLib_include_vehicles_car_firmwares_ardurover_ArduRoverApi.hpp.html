@@ -385,7 +385,7 @@
 <span class="w">                                  </span><span class="n">connection_info_</span><span class="p">.</span><span class="n">local_host_ip</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">ip_</span><span class="p">.</span><span class="n">c_str</span><span class="p">()),</span>
 <span class="w">                   </span><span class="n">Utils</span><span class="o">::</span><span class="n">kLogLevelInfo</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">udp_socket_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">mavlinkcom</span><span class="o">::</span><span class="n">UdpSocket</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="n">udp_socket_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">mavlink_comm</span><span class="o">::</span><span class="n">UdpSocket</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="w">        </span><span class="n">udp_socket_</span><span class="o">-&gt;</span><span class="n">bind</span><span class="p">(</span><span class="n">connection_info_</span><span class="p">.</span><span class="n">local_host_ip</span><span class="p">,</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">.</span><span class="n">control_port_local</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -542,7 +542,7 @@
 
 <span class="w">    </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkConnectionInfo</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">mavlinkcom</span><span class="o">::</span><span class="n">UdpSocket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">udp_socket_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">mavlink_comm</span><span class="o">::</span><span class="n">UdpSocket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">udp_socket_</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">port_</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">ip_</span><span class="p">;</span>

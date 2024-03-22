@@ -18,7 +18,7 @@ Inheritance Relationships
 Base Type
 *********
 
-- ``public mavlinkcom::MavLinkLog``
+- ``public mavlink_comm::MavLinkLog``
 
 
 Class Documentation
