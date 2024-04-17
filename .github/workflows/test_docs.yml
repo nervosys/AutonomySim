@@ -52,7 +52,7 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install mkdocs mkdocs-material pymdown-extensions  # mkdocstrings[python]
           pip install sphinx numpy msgpack-rpc-python
-          pip install --upgrade https://github.com/nervosys/sphinx-immaterial/tarball/master
+          pip install --upgrade https://github.com/jbms/sphinx-immaterial/tarball/master
           pip install breathe exhale  # for doxygen -> sphinx -> html conversion
 
       - name: "Generate C++ API documentation: Doxygen -> Sphinx -> HTML"
