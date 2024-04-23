@@ -131,7 +131,10 @@ if [ "$(uname)" = 'Darwin' ]; then
     # brew install azure-cli
 else
     echo 'Installing dependencies...'
-    wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+    wget https://apt.llvm.org/llvm.sh
+    chmod +x llvm.sh
+    sudo ./llvm.sh "$CLANG_VERSION"
+    #wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
     sudo add-apt-repository -y ppa:graphics-drivers/ppa
     sudo apt-get update -y
     sudo apt-get install -y --no-install-recommends \
@@ -152,12 +155,9 @@ else
         # vulkan vulkan-utils
     sudo apt-get install -y \
         "gcc-${GCC_VERSION}" \
-        "clang-${CLANG_VERSION}" \
-        "lldb-${CLANG_VERSION}" \
-        "lld-${CLANG_VERSION}"
-        #"clang++-${CLANG_VERSION}" \
-        #"libc++-${CLANG_VERSION}-dev" \
-        #"libc++abi-${CLANG_VERSION}-dev" 
+        #"clang-${CLANG_VERSION}" \
+        #"lldb-${CLANG_VERSION}" \
+        #"lld-${CLANG_VERSION}"
 fi
 
 # Get/set CMake version.
