@@ -62,7 +62,7 @@ UNREAL_ASSET_VERSION='1.2.0'
 # Dynamic variables.
 if [ "$(uname)" = 'Darwin' ]; then
     SYSTEM_INFO="$(sw_vers)"
-    SYSTEM_PLATFORM="$(uname -p)"
+    SYSTEM_PLATFORM="$(uname -m)"  # `uname -p` only return arm/x86
 else
     SYSTEM_INFO="$(system_info)"
     SYSTEM_PLATFORM="$(system_arch)"
@@ -120,8 +120,8 @@ fi
 
 # Configure compiler.
 if [ "$(uname)" = 'Darwin' ]; then
-    export CC="$(brew --prefix)/opt/llvm/bin/clang"
-    export CXX="$(brew --prefix)/opt/llvm/bin/clang++"
+    export CC="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang"
+    export CXX="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang++"
 elif [ "$(uname)" = 'Linux' ]; then
     if [ "${GCC}" = 'true' ]; then
         export CC="gcc"
@@ -150,9 +150,11 @@ fi
 echo "Moving into build directory: ./cmake/${build_dir}"
 pushd "./cmake/${build_dir}"
 
-# Fix for Unreal on Apple/ARM silicon using x86_64 (Rosetta).
+# Set CMake variables.
 CMAKE_VARS=''
-[ "$(uname)" = 'Darwin' ] && CMAKE_VARS='-DCMAKE_APPLE_SILICON_PROCESSOR=x86_64'
+if [ "$(uname)" = 'Darwin' ]; then
+    CMAKE_VARS="-DCMAKE_APPLE_SILICON_PROCESSOR=${SYSTEM_PLATFORM}"
+fi
 
 if [ "${DEBUG}" = 'true' ]; then
     folder_name='Debug'
