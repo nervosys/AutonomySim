@@ -91,7 +91,7 @@ Robotics companies interested in having Nervosys model their hardware and/or sof
 
 ## Supported Operating Systems
 
-Below is a list of officially supported operating systems. We recommend using Windows until Linux support improves.
+Below is a list of officially supported operating systems.
 
 ### Windows
 
@@ -106,7 +106,7 @@ Below is a list of officially supported operating systems. We recommend using Wi
 - Ubuntu 22.04 LTS (Jammy Jellyfish) - Vulkan incompatibility, Docker recommended
 - Ubuntu Server 22.04 LTS (untested)
 - Ubuntu Core 22 (untested)
-- [Botnix 1.0](https://github.com/nervosys/Botnix/) (in development)
+- [Botnix 1.0](https://github.com/nervosys/Botnix/) (coming soon!)
 
 ### macOS
 
@@ -117,6 +117,10 @@ Below is a list of officially supported operating systems. We recommend using Wi
 - macOS 12 (Monterey)
 - macOS 13 (Ventura)
 - macOS 14 (Sonoma)
+
+### Other: BSD/Mach/Hurd
+
+- Untested
 
 ## Getting Started
 

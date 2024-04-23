@@ -153,9 +153,9 @@ else
     sudo apt-get install -y \
         "gcc-${GCC_VERSION}" \
         "clang-${CLANG_VERSION}" \
-        "clang++-${CLANG_VERSION}" \
-        "libc++-${CLANG_VERSION}-dev" \
-        "libc++abi-${CLANG_VERSION}-dev" 
+        #"clang++-${CLANG_VERSION}" \
+        #"libc++-${CLANG_VERSION}-dev" \
+        #"libc++abi-${CLANG_VERSION}-dev" 
 fi
 
 # Get/set CMake version.
