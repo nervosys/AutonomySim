@@ -44,22 +44,21 @@ function system_os {
 ### Variables
 ###
 
-# Directory paths.
+# Static variables.
+DEBUG='false'
+USE_GCC='false'
+
+CMAKE_VERSION='3.29.2'
+GCC_VERSION='13'
+CLANG_VERSION='17'
+PYTHON_VERSION='3.12'
+EIGEN_VERSION='3.4.0'
+RPCLIB_VERSION='2.3.0'
+
+# Dynamic variables.
 PROJECT_DIR="$(realpath $PWD)"
 SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
 
-# Static variables.
-DEBUG='false'
-GCC='false'
-
-GCC_VERSION='11'
-CLANG_VERSION='12'
-CMAKE_VERSION='3.10.2'
-EIGEN_VERSION='3.4.0'
-RPCLIB_VERSION='2.3.0'
-UNREAL_ASSET_VERSION='1.2.0'
-
-# Dynamic variables.
 if [ "$(uname)" = 'Darwin' ]; then
     SYSTEM_INFO="$(sw_vers)"
     SYSTEM_PLATFORM="$(uname -m)"  # `uname -p` only return arm/x86
@@ -85,7 +84,7 @@ while [ $# -gt 0 ]; do
         shift
         ;;
     '--gcc')
-        GCC='true'
+        USE_GCC='true'
         shift
         ;;
     esac
@@ -123,9 +122,9 @@ if [ "$(uname)" = 'Darwin' ]; then
     export CC="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang"
     export CXX="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang++"
 elif [ "$(uname)" = 'Linux' ]; then
-    if [ "${GCC}" = 'true' ]; then
-        export CC="gcc"
-        export CXX="g++"
+    if [ "${USE_GCC}" = 'true' ]; then
+        export CC="gcc-${GCC_VERSION}"
+        export CXX="g++-${GCC_VERSION}"
     else
         export CC="clang-${CLANG_VERSION}"
         export CXX="clang++-${CLANG_VERSION}"

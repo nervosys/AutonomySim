@@ -57,28 +57,30 @@ function abspath {
 ### Variables
 ###
 
-# Directory paths. 
-PROJECT_DIR="$(abspath $PWD)"
-SCRIPT_DIR="$(dirname $(abspath ${BASH_SOURCE[0]}))"
-
-CMAKE_VERSION='3.10.2'
-CLANG_VERSION='12'  # requires ubuntu >= 20
+# Static variables.
+CMAKE_VERSION='3.29.2'
+GCC_VERSION='13'
+CLANG_VERSION='17'
 PYTHON_VERSION='3.12'
 EIGEN_VERSION='3.4.0'
 RPCLIB_VERSION='2.3.0'
-UNREAL_ASSET_VERSION='1.2.0'
 
-# Ensure CMake supports CMAKE_APPLE_SILICON_PROCESSOR for MacOS.
+# Unreal Engine variables.
+GET_UNREAL_ASSET='false'
+UNREAL_ASSET_VERSION='1.2.0'
+UNREAL_ASSET_URL="https://github.com/microsoft/AirSim/releases/download/v${UNREAL_ASSET_VERSION}/car_assets.zip"
+
+# Dynamic variables.
+PROJECT_DIR="$(abspath $PWD)"
+SCRIPT_DIR="$(dirname $(abspath ${BASH_SOURCE[0]}))"
+
+# Ensure CMAKE_APPLE_SILICON_PROCESSOR support for MacOS.
 if [ "$(uname)" = 'Darwin' ]; then
     CMAKE_VERSION_MIN='3.19.2'
 else
     CMAKE_VERSION_MIN='3.10.0'
 fi
 CMAKE_VERSION_MIN_MAJ_MIN='3.10'
-
-# download high-polycount SUV model.
-HIGH_POLYCOUNT_SUV='false'
-HIGH_POLYCOUNT_SUV_URL='https://github.com/microsoft/AirSim/releases/download/v1.2.0/car_assets.zip'
 
 DEBUG="${DEBUG:-false}"
 
@@ -93,7 +95,7 @@ while [ $# -gt 0 ]; do
         DEBUG='true'
         ;;
     '--high-polycount-suv')
-        HIGH_POLYCOUNT_SUV='true'
+        GET_UNREAL_ASSET='true'
         shift
         ;;
     esac
@@ -149,6 +151,7 @@ else
         libvulkan1 \
         # vulkan vulkan-utils
     sudo apt-get install -y \
+        "gcc-${GCC_VERSION}" \
         "clang-${CLANG_VERSION}" \
         "clang++-${CLANG_VERSION}" \
         "libc++-${CLANG_VERSION}-dev" \
@@ -201,7 +204,7 @@ if [ ! -d "./external/rpclib/rpclib-${RPCLIB_VERSION}" ]; then
 fi
 
 # Download and unpack high-polycount SUV asset for Unreal Engine.
-if [ "${HIGH_POLYCOUNT_SUV}" = 'true' ]; then
+if [ "${GET_UNREAL_ASSET}" = 'true' ]; then
     if [ ! -d ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv ]; then
         mkdir -p ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv
     fi
@@ -213,7 +216,7 @@ if [ "${HIGH_POLYCOUNT_SUV}" = 'true' ]; then
             rm -rf ./temp/suv
         fi
         mkdir -p ./temp/suv
-        wget "$HIGH_POLYCOUNT_SUV_URL" -P ./temp/suv
+        wget "$UNREAL_ASSET_URL" -P ./temp/suv
         if [ -d ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV ]; then
             rm -rf ./UnrealPlugin/Unreal/Plugins/AutonomySim/Content/VehicleAdv/SUV
         fi
