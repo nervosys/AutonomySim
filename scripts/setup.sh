@@ -114,8 +114,8 @@ if [ "$(uname)" = 'Darwin' ]; then
     # NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     # (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> "${HOME}/.bash_profile"
     # eval "$(/usr/local/bin/brew shellenv)"
-    brew update
-    brew upgrade
+    #brew update
+    #brew upgrade
     brew install curl
     export HOMEBREW_CURL_PATH='/usr/local/opt/curl/bin/curl'
     HOMEBREW_FORCE_BREWED_CURL=1 brew config

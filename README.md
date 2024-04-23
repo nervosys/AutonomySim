@@ -67,17 +67,17 @@
 * `Windows`: We now provide separate Batch/Command and PowerShell build systems. Both are tested in CI/CD.
 * A new documentation system has been rolled out that covers the Python and C++ APIs.
 * `Unreal Engine` version 5.0 brought powerful new features including [Nanite](https://www.unrealengine.com/en-US/blog/understanding-nanite---unreal-engine-5-s-new-virtualized-geometry-system) and [Lumen](https://www.unrealengine.com/en-US/tech-blog/unreal-engine-5-goes-all-in-on-dynamic-global-illumination-with-lumen), while deprecating support for the [PhysX](https://developer.nvidia.com/physx-sdk) backend.
+* `macOS`: `Unreal Engine` version 5.2 brought native support for Apple/ARM M-series silicon.
 * The `master` branch supports `Unreal Engine` version 5.03 and above. For version 4.27, you can use the `ue4.27` branch.
 * Support for `Unity Engine`, `Gazebo`, and `ROS1` has been deprecated to focus on `Unreal Engine`, `ROS2`, `ArduPilot/PX4`, `qGroundControl`, `PyTorch`, and real-time applications of `AutonomyLib` via software- and hardware-in-the-loop.
-* The `Omniverse Unreal Engine Connector` makes it possible to sync `Unreal Engine` data with an `Omniverse Nucleus` server, which can then sync with any `Omniverse Connect` application including `IsaacSim`.
 * `Linux`: added `ROS2` support for `Ubuntu 22.04 LTS` (Jammy Jellyfish).
-* `macOS`: `Unreal Engine` version 5.2 brought native support for Apple/ARM M-series silicon.
+* The `Omniverse Unreal Engine Connector` makes it possible to sync `Unreal Engine` data with an `Omniverse Nucleus` server, which can then sync with any `Omniverse Connect` application including `IsaacSim`.
 
 For a complete list of changes, view the [change log](./docs/CHANGELOG.md).
 
 ## Vision
 
-> "A central challenge in the branch of artificial intelligence (AI) known as machine learning (ML) is the massive amount of labeled data needed to train supervised models. Datasets for real-world systems are either hand-crafted or automatically labeled using other ML models, introducing biases and errors into data and models, and limiting learning to the offline case. While game engines have long used hardware-accelerated physics engines based on Newtonian dynamics to simulate motion, physics-based rendering (PBR) and related accelerators have made real-time ray-tracing a reality, extending physical realism to the visual domain. Realism is only increasing with the growing use of Earth observation data. For the first time in history, the average user can generate high-fidelity labeled datasets for offline learning or learn physics-based models online. This has revolutioned AI for robotics, where the data and safety requirements are often otherwise intractable." [-Dr. Adam Erickson, 2024](#)
+> "A central challenge in machine learning (ML), a branch of artificial intelligence (AI), is the massive amount of high-fidelity data needed to train models. Datasets for real-world systems are either hand-crafted or automatically labeled using other models, introducing biases and errors into data and downstream models, while limiting learning to the offline case. Although game engines have long provided hardware-accelerated physics engines for Newtonian dynamics, dedicated accelerators for physics-based rendering (PBR) have only recently made real-time ray-tracing a reality, extending physical realism to the visual domain. Realism continues to improve with the rapid growth of Earth observation data. For the first time in history, an average user can generate high-fidelity labeled datasets for offline or online learning of physics-based models. This will revolutionize AI for robotics, where the data and safety requirements are often otherwise intractable. We invite you to join us in our quest to develop physical AI by contributing to AutonomySim." [-Dr. Adam Erickson, 2024](#)
 
 ## Introduction
 
