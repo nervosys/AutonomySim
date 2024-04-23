@@ -87,7 +87,7 @@ After an exhaustive analysis of existing solutions, [Nervosys](https://nervosys.
 
 ## Professional Services
 
-Robotics companies interested in having Nervosys model their hardware and/or software in `AutonomySim` can us directly [here](mailto:info@nervosys.ai). We would be delighted to offer our services! That way, we can continue to support and improve this project.
+Robotics companies interested in having Nervosys model their hardware and/or software in `AutonomySim` and develop new AI models can contact via e-mail [here](mailto:info@nervosys.ai). We are delighted to offer our services. That way, we can continue to support and improve this wonderful project.
 
 ## Supported Operating Systems
 
