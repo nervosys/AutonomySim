@@ -63,6 +63,7 @@ SCRIPT_DIR="$(dirname $(abspath ${BASH_SOURCE[0]}))"
 
 CMAKE_VERSION='3.10.2'
 CLANG_VERSION='12'  # requires ubuntu >= 20
+PYTHON_VERSION='3.12'
 EIGEN_VERSION='3.4.0'
 RPCLIB_VERSION='2.3.0'
 UNREAL_ASSET_VERSION='1.2.0'
@@ -116,14 +117,13 @@ if [ "$(uname)" = 'Darwin' ]; then
     # eval "$(/usr/local/bin/brew shellenv)"
     #brew update
     #brew upgrade
+    echo 'Installing latest cURL version and configuring Homebrew to use it...'
     brew install curl
     export HOMEBREW_CURL_PATH='/usr/local/opt/curl/bin/curl'
     HOMEBREW_FORCE_BREWED_CURL=1 brew config
     export PATH="/usr/local/opt/curl/bin:${PATH}"
-    echo 'Installing latest cURL version and configuring Homebrew to use it...'
-    brew install python@3.11 python@3.12
-    brew link --overwrite python@3.11
-    brew link --overwrite python@3.12
+    brew install "python@${PYTHON_VERSION}"
+    brew link --overwrite "python@${PYTHON_VERSION}"
     brew install coreutils
     brew install "llvm@${CLANG_VERSION}"
     # brew install azure-cli
