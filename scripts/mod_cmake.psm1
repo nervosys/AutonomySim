@@ -27,7 +27,7 @@ Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 ### Variables
 ###
 
-[Version]$CMAKE_VERSION = '3.26.4'
+[Version]$CMAKE_VERSION = '3.29.2'
 [Version]$CMAKE_VERSION_MINIMUM = '3.14'
 
 ###
@@ -61,8 +61,7 @@ function Install-Cmake {
     Invoke-WebRequest "https://cmake.org/files/v${VersionMajMin}/${Installer}" -OutFile ".\temp\${Installer}"
     Start-Process -FilePath ".\temp\${Installer}" -Wait -NoNewWindow
     Remove-ItemSilent -Path ".\temp\${Installer}"
-  }
-  else {
+  } else {
     Write-Error "Error: CMake version ${CMAKE_VERSION_MINIMUM} or greater is required, but was neither found nor installed." -ErrorAction Continue
     Invoke-Fail -ErrorMessage "Error: Failed to install CMake." 
   }
@@ -84,8 +83,7 @@ function Test-CmakeVersion {
     # install CMake if it is less than the required version
     Write-Error "Error: $($Program) version $($CurrentVersion) is less than the minimum supported." -ErrorAction SilentlyContinue
     Install-Cmake
-  }
-  else {
+  } else {
     Write-Output "Success: CMake version test passed."
   }
 }
