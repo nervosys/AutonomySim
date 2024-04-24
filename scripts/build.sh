@@ -122,9 +122,7 @@ fi
 if [ "$(uname)" = 'Darwin' ]; then
     export CC="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang"
     export CXX="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang++"
-    CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}
-        -DCMAKE_CXX_FLAGS=-stdlib=libc++
-        -DCMAKE_APPLE_SILICON_PROCESSOR=${SYSTEM_PLATFORM}"
+    CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD} -DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_APPLE_SILICON_PROCESSOR=${SYSTEM_PLATFORM}"
 elif [ "$(uname)" = 'Linux' ]; then
     if [ "${USE_GCC}" = 'true' ]; then
         export CC="gcc-${GCC_VERSION}"
@@ -133,10 +131,7 @@ elif [ "$(uname)" = 'Linux' ]; then
     else
         export CC="clang-${CLANG_VERSION}"
         export CXX="clang++-${CLANG_VERSION}"
-        CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}
-            -DCMAKE_CXX_FLAGS=-stdlib=libc++
-            -I/usr/include/c++/${CLANG_VERSION}
-            -I/usr/include/x86_64-linux-gnu/c++/${CLANG_VERSION}"
+        CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD} -DCMAKE_CXX_FLAGS=-stdlib=libc++ -I/usr/include/c++/${CLANG_VERSION} -I/usr/include/x86_64-linux-gnu/c++/${CLANG_VERSION}"
     fi
 else
     echo 'ERROR: This build script only supports Linux and MacOS.'
