@@ -53,7 +53,7 @@
   <img src="https://img.shields.io/badge/PWSH-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white">
 </p>
 
-<p align="center" width="100%">
+<p align="center" width="100vw">
   <a alt="Sponsor"
     href="https://github.com/sponsors/nervosys">
     <img src="https://img.shields.io/badge/sponsor-313131?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white">
@@ -61,7 +61,7 @@
 </p>
 
 <p align="center">
-    <img src="./docs/media/images/autonomysim_drone_manual.gif" alt="aerial vehicle" style="width:100%">
+    <img src="./docs/media/images/autonomysim_drone_manual.gif" alt="aerial vehicle" style="width:100vw">
 </p>
 
 ## Announcements
