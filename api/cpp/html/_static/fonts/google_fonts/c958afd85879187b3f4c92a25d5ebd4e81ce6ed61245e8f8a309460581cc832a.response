@@ -10468,7 +10468,7 @@
       "dateAdded": "2017-10-26",
       "popularity": 39,
       "trending": 455,
-      "defaultSort": 41,
+      "defaultSort": 39,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -14222,9 +14222,9 @@
       ],
       "lastModified": "2023-08-25",
       "dateAdded": "2012-11-15",
-      "popularity": 1137,
+      "popularity": 1136,
       "trending": 248,
-      "defaultSort": 1116,
+      "defaultSort": 1115,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -21178,9 +21178,9 @@
       ],
       "lastModified": "2023-08-25",
       "dateAdded": "2015-01-28",
-      "popularity": 1136,
+      "popularity": 1137,
       "trending": 727,
-      "defaultSort": 1115,
+      "defaultSort": 1116,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -26618,8 +26618,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 38928,
       "subsets": [
@@ -26661,8 +26661,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 45788,
       "subsets": [
@@ -26704,8 +26704,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 43800,
       "subsets": [
@@ -33560,7 +33560,7 @@
       "dateAdded": "2018-03-11",
       "popularity": 46,
       "trending": 1557,
-      "defaultSort": 48,
+      "defaultSort": 47,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -36428,7 +36428,7 @@
       "dateAdded": "2024-04-10",
       "popularity": 1387,
       "trending": 13,
-      "defaultSort": 40,
+      "defaultSort": 41,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -43070,8 +43070,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 22380,
       "subsets": [
@@ -43109,8 +43109,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 48056,
       "subsets": [
@@ -43148,8 +43148,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 14800,
       "subsets": [
@@ -43187,8 +43187,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 17396,
       "subsets": [
@@ -43226,8 +43226,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 35280,
       "subsets": [
@@ -43265,8 +43265,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 22984,
       "subsets": [
@@ -43304,8 +43304,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 72692,
       "subsets": [
@@ -43969,8 +43969,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 134384,
       "subsets": [
@@ -46704,7 +46704,7 @@
       "dateAdded": "2019-10-02",
       "popularity": 45,
       "trending": 817,
-      "defaultSort": 47,
+      "defaultSort": 46,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -48589,7 +48589,7 @@
       "dateAdded": "2024-04-10",
       "popularity": 1395,
       "trending": 12,
-      "defaultSort": 39,
+      "defaultSort": 40,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -57530,9 +57530,9 @@
       ],
       "lastModified": "2022-11-09",
       "dateAdded": "2020-11-19",
-      "popularity": 1710,
+      "popularity": 1711,
       "trending": 498,
-      "defaultSort": 1577,
+      "defaultSort": 1578,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -61179,9 +61179,9 @@
       ],
       "lastModified": "2022-11-09",
       "dateAdded": "2020-11-19",
-      "popularity": 1711,
+      "popularity": 1710,
       "trending": 843,
-      "defaultSort": 1578,
+      "defaultSort": 1577,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -68318,7 +68318,7 @@
       "dateAdded": "2011-02-09",
       "popularity": 47,
       "trending": 837,
-      "defaultSort": 49,
+      "defaultSort": 48,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -70326,7 +70326,7 @@
       "dateAdded": "2024-04-10",
       "popularity": 1321,
       "trending": 14,
-      "defaultSort": 46,
+      "defaultSort": 49,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -74945,8 +74945,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 15920,
       "subsets": [
@@ -92143,8 +92143,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 95348,
       "subsets": [
@@ -93107,8 +93107,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 89304,
       "subsets": [
@@ -93148,8 +93148,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 146960,
       "subsets": [
@@ -93189,8 +93189,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 192612,
       "subsets": [
@@ -93230,8 +93230,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Display",
-        "Symbols"
+        "Symbols",
+        "Display"
       ],
       "size": 303268,
       "subsets": [
