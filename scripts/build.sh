@@ -47,6 +47,7 @@ function system_os {
 # Static variables.
 DEBUG='false'
 USE_GCC='false'
+CXX_STANDARD='20'
 
 CMAKE_VERSION='3.29.2'
 GCC_VERSION='12'
@@ -121,13 +122,16 @@ fi
 if [ "$(uname)" = 'Darwin' ]; then
     export CC="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang"
     export CXX="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang++"
+    export CFLAGS="-stdlib=libc++ -std=c++${CXX_STANDARD}"
 elif [ "$(uname)" = 'Linux' ]; then
     if [ "${USE_GCC}" = 'true' ]; then
         export CC="gcc-${GCC_VERSION}"
         export CXX="g++-${GCC_VERSION}"
+        export CFLAGS="-std=c++${CXX_STANDARD}"
     else
         export CC="clang-${CLANG_VERSION}"
         export CXX="clang++-${CLANG_VERSION}"
+        export CFLAGS="-stdlib=libc++ -std=c++${CXX_STANDARD}"
     fi
 else
     echo 'ERROR: This build script only supports Linux and MacOS.'
