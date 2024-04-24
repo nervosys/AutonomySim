@@ -135,13 +135,13 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1a4f4b3060c8be9db77d0cbd4d342023ab`
-
-- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1aa48460dda401d585625e850d035669c3`
-
 - :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1a46cd14d414e8fc72032ef2edc817fca7`
 
 - :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1afb001b2ca995cc726f581621db317400`
+
+- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1aa48460dda401d585625e850d035669c3`
+
+- :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1a4f4b3060c8be9db77d0cbd4d342023ab`
 
 - :ref:`exhale_function_RpcLibAdaptorsBase_8hpp_1abb33b0231861928bba288833a2c05173`
 
