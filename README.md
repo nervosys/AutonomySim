@@ -45,12 +45,12 @@
 
 <p align="center" width="100%">
   <img src="https://img.shields.io/badge/Unreal-313131.svg?style=for-the-badge&logo=unrealengine&logoColor=white">
-  <img src="https://img.shields.io/badge/PWSH-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white">
-  <img src="https://img.shields.io/badge/BASH-313131?style=for-the-badge&logo=gnu-bash&logoColor=white">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
   <img src="https://img.shields.io/badge/Rust-313131?style=for-the-badge&logo=rust&logoColor=white">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
   <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white">
+  <img src="https://img.shields.io/badge/BASH-313131?style=for-the-badge&logo=gnu-bash&logoColor=white">
+  <img src="https://img.shields.io/badge/PWSH-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white">
 </p>
 
 <p align="center" width="100%">
@@ -60,38 +60,45 @@
   </a>
 </p>
 
+<p align="center">
+    <img src="./docs/media/images/autonomysim_drone_manual.gif" alt="aerial vehicle" style="width:100%">
+</p>
+
 ## Announcements
 
-* We are currently adding support for [Unreal Engine 5.4](https://www.unrealengine.com/en-US/blog/all-the-big-news-from-the-state-of-unreal-at-gdc-24)!
-* The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
-* `Windows`: We now provide separate Batch/Command and PowerShell build systems. Both are tested in CI/CD.
-* A new documentation system has been rolled out that covers the Python and C++ APIs.
-* `Unreal Engine` version 5.0 brought powerful new features including [Nanite](https://www.unrealengine.com/en-US/blog/understanding-nanite---unreal-engine-5-s-new-virtualized-geometry-system) and [Lumen](https://www.unrealengine.com/en-US/tech-blog/unreal-engine-5-goes-all-in-on-dynamic-global-illumination-with-lumen), while deprecating support for the [PhysX](https://developer.nvidia.com/physx-sdk) backend.
-* `macOS`: `Unreal Engine` version 5.2 brought native support for Apple/ARM M-series silicon.
-* The `master` branch supports `Unreal Engine` version 5.03 and above. For version 4.27, you can use the `ue4.27` branch.
-* Support for `Unity Engine`, `Gazebo`, and `ROS1` has been deprecated to focus on `Unreal Engine`, `ROS2`, `ArduPilot/PX4`, `qGroundControl`, `PyTorch`, and real-time applications of `AutonomyLib` via software- and hardware-in-the-loop.
-* `Linux`: added `ROS2` support for `Ubuntu 22.04 LTS` (Jammy Jellyfish).
-* The `Omniverse Unreal Engine Connector` makes it possible to sync `Unreal Engine` data with an `Omniverse Nucleus` server, which can then sync with any `Omniverse Connect` application including `IsaacSim`.
+### AutonomySim
+
+- `Build systems`: updated to C++20 standard, `CMake` 3.29.2, `Clang` 17, `GCC` 13, `Python` 3.12
+- The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
+- `Windows`: we now provide separate Batch/Command and PowerShell build systems. Both are tested in CI/CD.
+- `Documentation`: a new system has been rolled out that also generates Python and C++ API docs.
+- Support for `Unity Engine`, `Gazebo`, and `ROS1` has been deprecated to focus on `Unreal Engine`, `ROS2`, `ArduPilot/PX4`, `qGroundControl`, `PyTorch`, and real-time applications of `AutonomyLib` via software- and hardware-in-the-loop.
+- The `master` branch supports `Unreal Engine` version 5.03 and above. For version 4.27, you can use the `ue4.27` branch.
+
+### Unreal Engine and Omniverse
+
+- `Unreal Engine` version 5.4 brought [new features](https://www.unrealengine.com/en-US/blog/all-the-big-news-from-the-state-of-unreal-at-gdc-24) including animation and sequencing.
+- `Unreal Engine` version 5.2 brought native support for Apple/ARM M-series silicon.
+- `Unreal Engine` version 5.0 brought powerful new features including [Nanite](https://www.unrealengine.com/en-US/blog/understanding-nanite---unreal-engine-5-s-new-virtualized-geometry-system) and [Lumen](https://www.unrealengine.com/en-US/tech-blog/unreal-engine-5-goes-all-in-on-dynamic-global-illumination-with-lumen), while deprecating support for the [PhysX](https://developer.nvidia.com/physx-sdk) backend.
+- The `Omniverse Unreal Engine Connector` enables you to sync `Unreal Engine` data with an `Omniverse Nucleus` server, which can then sync with any `Omniverse Connect` application including `IsaacSim`.
 
 For a complete list of changes, view the [change log](./docs/CHANGELOG.md).
 
-## Vision
+## Preface: Toward Robotic General Intelligence (RGI)
 
-> "A central challenge in machine learning (ML), a branch of artificial intelligence (AI), is the massive amount of high-fidelity data needed to train models. Datasets for real-world systems are either hand-crafted or automatically labeled using other models, introducing biases and errors into data and downstream models while limiting learning to the offline case. Although game engines have long used hardware-accelerated physics engines of Newtonian dynamics for motion, new accelerators for physics-based rendering (PBR) have made real-time ray-tracing a reality, extending physical realism to the visual domain. Realism only continues to improve with the rapid growth of Earth observation data. For the first time in history, the average user can generate high-fidelity labeled datasets with known physics for offline or online learning. This is revolutionizing AI for robotics, where the data and safety requirements are often otherwise intractable. We invite you to join us in our quest to develop physical AI by contributing to AutonomySim." [-Dr. Adam Erickson, 2024](#)
+> "A central challenge in the branch of artificial intelligence (AI) known as machine learning (ML) is the massive amount of high-fidelity labeled data needed to train models. Datasets for real-world systems are either hand-crafted or automatically labeled using other models, introducing biases and errors into data and downstream models, and limiting learning to the offline case. While game engines have long used hardware-accelerated physics engines of Newtonian dynamics, accelerators for physics-based rendering (PBR) have recently made real-time ray-tracing a reality, extending physical realism to the visual domain. In parallel, physical fidelity with the real world has skyrocketed with the rapid growth and falling cost of Earth observation data. For the first time in history, the average user can generate high-fidelity robotic system models and real-world labeled datasets with known physics for offline or online learning of intelligent agents. This will revolutionize AI for robotics, where the data and safety requirements are otherwise intractable, while enabling low-cost hardware prototyping _in silico_." [-Dr. Adam Erickson, 2024](#)
 
 ## Introduction
 
-`AutonomySim` is a high-fidelity, photorealistic simulator for *multi-agent and -domain autonomous systems*, *intelligent robotic systems*, or *embodiment* as it is known in the AI community. `AutonomySim` is built on [`Unreal Engine`](https://www.unrealengine.com/) and based on Microsoft [`AirSim`](https://github.com/microsoft/AirSim/). It is an open-source, cross-platform, modular simulator for AI in robotics that supports software-in-the-loop (SITL) and hardware-in-the-loop (HITL) operational modes for popular flight controllers (e.g., `Pixhawk/PX4`, `APM/ArduPilot`). Future support is planned for ground control software (GCS) including `qGroundControl`. `AutonomySim` is developed as an `Unreal Engine` plugin that can be dropped into any Unreal environment or downloaded from the Epic Marketplace. The goal of `AutonomySim` is to provide physically realistic multi-modal simulations with popular built-in libraries and application programming interfaces (APIs) for the development of new sensing, communication, actuation, and AI systems in physically realistic environments.
+`AutonomySim` is a high-fidelity, photorealistic simulator for _multi-agent and -domain autonomous systems_, _intelligent robotic systems_, or _embodiment_ as it is known in the AI research community. `AutonomySim` is based on [`Unreal Engine`](https://www.unrealengine.com/) and Microsoft's former [`AirSim`](https://github.com/microsoft/AirSim/). `AutonomySim` is an open-source, cross-platform, modular simulator for robotic intelligence that supports software-in-the-loop (SITL) and hardware-in-the-loop (HITL) operational modes for popular robotics controllers (e.g., `Pixhawk/PX4`, `APM/ArduPilot`). Future support is planned for SITL and HITL ground control software (GCS) such as `qGroundControl`. `AutonomySim` is developed as an `Unreal Engine` plugin that can be dropped into any Unreal environment or downloaded from the [Unreal Engine Marketplace](https://www.unrealengine.com/marketplace/). The aim of `AutonomySim` is to provide physically realistic multi-modal simulations of robotic systems with first-class support for popular AI and control systems libraries in order to develop new perception, actuation, communication, navigation, and coordination AI models for diverse real-world environments.
 
-After an exhaustive analysis of existing solutions, [Nervosys](https://nervosys.ai/) created  `AutonomySim` for the development of physical AI models that can be deployed on real-world robotic systems. Like many companies, we chose to build in software first for its increased speed and reduced cost of development. We would love it if you found `AutonomySim` useful for your needs as well. Unlike `AirSim` and related projects, we intend to make public any and all improvements to the software framework. We ask that you share your improvements in return, although you are not obligated in any way to do so. Our goal is simply to provide the most advanced simulator for intelligent robotic systems.
+We hope that you find `AutonomySim` enjoyable to use and develop. Unlike other projects, we intend to make public any and all improvements to the software framework. We merely ask that you share your improvements in return, although you are not obligated to do so in any way. Together, we will build a foundation for robotic general intelligence (RGI) by providing the best simulation system for AI in robotics.
 
 ## Professional Services
 
-Robotics companies interested in having Nervosys model their hardware and/or software in `AutonomySim` and develop new AI models can contact via e-mail [here](mailto:info@nervosys.ai). We are delighted to offer our services. That way, we can continue to support and improve this wonderful project.
+Robotics companies interested in having [Nervosys](https://nervosys.ai/) model their hardware/software and develop related AI models in `AutonomySim` can reach us directly via [e-mail](mailto:info@nervosys.ai). We would be delighted to offer our services, so that we may continue to support and improve this critical open-source robotics project.
 
 ## Supported Operating Systems
-
-Below is a list of officially supported operating systems.
 
 ### Windows
 
@@ -106,191 +113,49 @@ Below is a list of officially supported operating systems.
 - Ubuntu 22.04 LTS (Jammy Jellyfish)
 - Ubuntu Server 22.04 LTS (untested)
 - Ubuntu Core 22 (untested)
-- [Botnix 1.0](https://github.com/nervosys/Botnix/) (coming soon!)
+- Botnix 1.0 (Torbjörn) ([coming soon!](https://github.com/nervosys/Botnix/))
 
 ### macOS
 
 > [!NOTE]
-> `Unreal Engine` version 5.2 and up provide native support for Apple/ARM M-series silicon
+> `Unreal Engine` versions 5.2 and up natively support Apple/ARM M-series silicon.
 
 - macOS 11 (Big Sur)
 - macOS 12 (Monterey)
 - macOS 13 (Ventura)
 - macOS 14 (Sonoma)
 
-### Other: (e.g., Unix, BSD, Solaris, GNU Mach/Hurd, L4, unikernels, OS/2 Warp)
-
-- Untested
-
 ## Getting Started
 
-Coming soon.
-
-[](https://nervosys.github.io/AutonomySim/apis/)
-[](https://nervosys.github.io/AutonomySim/dev_workflow/)
+- [Project structure](https://nervosys.github.io/AutonomySim/project_structure.html)
+- [Development workflow](https://nervosys.github.io/AutonomySim/development_workflow.html)
+- [Settings](https://nervosys.github.io/AutonomySim/settings.html)
+- [API examples](https://nervosys.github.io/AutonomySim/apis.html)
+- [Image APIs](https://nervosys.github.io/AutonomySim/apis_image.html)
+- [C++ API usage](https://nervosys.github.io/AutonomySim/apis_cpp.html)
+- [Camera views](https://nervosys.github.io/AutonomySim/camera_views.html)
+- [Sensors](https://nervosys.github.io/AutonomySim/sensors.html)
+- [Voxel grids](https://nervosys.github.io/AutonomySim/voxel_grid.html)
+- [Robot controllers](https://nervosys.github.io/AutonomySim/controller_robot.html)
+- [Radio controllers](https://nervosys.github.io/AutonomySim/controller_remote.html)
+- [Wired controllers](https://nervosys.github.io/AutonomySim/controller_wired.html)
+- [Adding new APIs](https://nervosys.github.io/AutonomySim/apis_new.html)
+- [Simple flight controller](https://nervosys.github.io/AutonomySim/simple_flight.html)
+- [ROS](https://nervosys.github.io/AutonomySim/ros_pkgs.html)
 
 ## Documentation
 
-For details on all aspects of `AutonomySim`, view the [documentation](https://nervosys.github.io/AutonomySim/).
+- [Main documentation](https://nervosys.github.io/AutonomySim/)
+- [C++ API documentation](https://nervosys.github.io/AutonomySim/api/cpp/html/index.html)
+- [Python API documentation](https://nervosys.github.io/AutonomySim/api/python/html/index.html)
 
-For an overview of the simulation architecture, see the below figure.
+Figure 1 below provides an overview of the simulation architecture:
 
 <p align="center">
-  <img src="./media/images/shah2018_architecture.png" width="65%" alt="architecture">
+  <img src="./media/images/shah2018_architecture.png" width="80%" alt="architecture">
   <br>
-  Overview of the simulation architecuture from <a href="https://arxiv.org/abs/1705.05065">Shah et al. (2017)</a>.
+  Figure 1. Overview of the simulation architecuture from <a href="https://arxiv.org/abs/1705.05065">Shah et al. (2017)</a>.
 </p>
-
-## Demonstrations
-
-Coming soon.
-
-[](https://youtube.com/)
-
-## Operational Modes
-
-Mirroring real-world robotic systems, `AutonomySim` will support three different operational modes:
-
-1. Human operation
-2. Machine operation
-3. Hybrid human-machine operation
-
-### Human Operation
-
-If you have wired or remote controller, you can manually control vehicles in the simulator as shown below. For ground vehicles, you can use the arrow keys for control inputs (i.e., steering, accelerating, decelerating). See more details [here](https://nervosys.github.io/AutonomySim/remote_control).
-
-<p align="center">
-    <img src="./docs/media/images/autonomysim_drone_manual.gif" alt="aerial vehicle" style="width:100%">
-    <img src="./docs/media/images/autonomysim_car_manual.gif" alt="ground vehicle" style="width:100%">
-</p>
-
-### Machine Operation
-
-`AutonomySim` exposes Application Programming Interfaces (APIs) for progammatic interaction with the simulation vehicles and environment. These APIs can be used to control vehicles and the environment (e.g., weather), generate imagery, audio, or video, record control inputs along with vehicle and environment state, _et cetera_. The APIs are exposed through a remote procedure call (RPC) interface and are accessible through a variety of languages, including C++, Python, C#, and Java.
-
-The APIs are also available as part of a separate, independent, cross-platform library, so that they can be deployed on a real-time embedded system on your vehicle. That way, you can write and test your code in simulation, where mistakes are relatively cheap, before deploying it to real-world systems. Moreover, a core focal area of `AutonomySim` is the development of simulation-to-real (sim2real) domain adaptation AI models, a form of transfer learning. These metamodels map from models of simulations to models of real-world systems, leveraging the universal function approximation abilities of artificial neural networks to _implicitly_ represent real-world processes not _explicitly_ represented in simulations.
-
-Note that you can use [Sim Mode](https://nervosys.github.io/AutonomySim/settings#simmode) setting to specify the default vehicle or the new [Computer Vision](https://nervosys.github.io/AutonomySim/apis_image#computer-vision-mode-1) mode, so you don't get prompted each time you start `AutonomySim`. See [this](https://nervosys.github.io/AutonomySim/apis) for more details.
-
-### Hybrid Human-Machine Operation
-
-Using a form of hardware-in-the-loop (HITL), `AutonomySim` is capable of operating in hybrid human-machine mode. The classical example is a semi-autonomous aircraft stabilization program, which maps human control inputs (or lack thereof) into optimal control outputs.
-
-## Generating Labeled Data for Offline Machine Learning
-
-There are two general approaches to generating labeled data with `AutonomySim`:
-
-1. Using the `record` button manually
-2. Using the APIs programmatically
-
-The first method, using the `record` button, is the easiest method. Simply press the big red button in the lower right corner to begin recording. This will record the vehicle pose/state and image for each frame. The data logging code is simple and easy to customize to your application.
-
-<p align="center">
-  <img src="./docs/media/images/record_data.png" alt="record screenshot" style="scale:100%">
-  <br>
-  Human/manual data recording mode.
-</p>
-
-The second method, using the APIs, is a more precise and repeatable method for generating labeled data. The APIs allow you to be in full control of the _how_, _what_, _where_, and _when_ of data logging.
-
-### Computer Vision Mode
-
-It is also possible to use `AutonomySim` with vehicles and physics disabled. This is known as Computer Vision Mode and it supports both human and machine control. In this mode, you can use the keyboard or APIs to position cameras in arbitrary poses and collect imagery including depth, disparity, surface normals, or object segmentation masks. As the name implies, this is useful for generating labeled data for learning computer vision models. See [this](https://nervosys.github.io/AutonomySim/apis_image) for more details.
-
-## Labeled Data Modalities
-
-The following [sensors](https://nervosys.github.io/AutonomySim/sensors/) and data modalities are either available or planned:
-
-* RGB imagery
-* Depth
-* Disparity
-* Surface normals
-* Object panoptic, semantic, and instance segmentation masks
-* Object bounding boxes (coming soon)
-* Audio (coming soon)
-* Video (coming soon)
-* Short- or long-wavelength infrared imagery ([see](https://nervosys.github.io/AutonomySim/InfraredCamera/))
-* Multi- and Hyper-spectral (coming soon)
-* LiDAR ([see](https://github.com/nervosys/AutonomySim/blob/master/docs/lidar.md); GPU acceleration coming soon)
-* RaDAR (coming soon)
-* SoNAR (coming soon)
-
-Autolabeling systems may be added in the future.
-
-## Vehicles
-
-### Ground
-
-* Automobile
-* BoxCar (coming soon)
-* ClearPath Husky (coming soon)
-* Pioneer P3DX (coming soon)
-
-### Air
-
-* Quadcopter
-
-## Machine Learning Applications
-
-### Learning Perception, Communication, Planning, and Control Models
-
-Coming soon.
-
-### Imitation or Apprenticeship Learning
-
-Coming soon. An example of recording control inputs and vehicle state for learning control systems.
-
-### Neural Radiance Fields
-
-Coming soon. Learning compressed 3-D radiative transfer models.
-
-### Large Language Models
-
-Coming soon. An example of using a large language model (LLM) to parse text commands into planning and control inputs for robotic systems. See [Eureka](https://eureka-research.github.io/).
-
-### Learning Surrogate Models or Emulators
-
-Coming soon.
-
-### Learning World Models
-
-Coming soon.
-
-## Other Applications
-
-### Sensor System Development
-
-Coming soon.
-
-### Locomotion System Development
-
-Coming soon. An example of learning structure, actuator, and locomotion models. This is useful, for example, for developing robotic systems that are robust to major structural failures, such as the loss of motors or legs.
-
-### Communication System Development
-
-Coming soon.
-
-### Simulating Specific or General Environments
-
-Coming soon.
-
-## Environmental Dynamics
-
-### Weather
-
-The weather system support human and machine control. Press the `F10` key to see the available weather effect options. You can also control the weather using the APIs, as shown [here](https://nervosys.github.io/AutonomySim/apis#weather-apis).
-
-<p align="center">
-  <img src="./docs/media/images/weather_menu.png" alt="weather menu" style="scale:100%">
-  <br>
-  Weather effects menu.
-</p>
-
-Press the `F1` key to see other available options.
-
-### Procedural Terrain Generation
-
-Coming soon.
 
 ## Tutorials
 
@@ -336,6 +201,155 @@ For more information, see the following pages:
 * [Code Structure](https://nervosys.github.io/AutonomySim/code_structure)
 * [Contribution Guidelines](CONTRIBUTING.md)
 
+## Operational Modes
+
+Mirroring real-world robotic systems, `AutonomySim` will support three different operational modes:
+
+1. Human operation
+2. Machine operation
+3. Hybrid human-machine operation
+
+### Human Operation
+
+If you have wired or remote controller, you can manually control vehicles in the simulator as shown below. For ground vehicles, you can use the arrow keys for control inputs (i.e., steering, accelerating, decelerating). See more details [here](https://nervosys.github.io/AutonomySim/remote_control).
+
+<p align="center">
+    <img src="./docs/media/images/autonomysim_drone_manual.gif" alt="aerial vehicle" style="scale:100%">
+    <img src="./docs/media/images/autonomysim_car_manual.gif" alt="ground vehicle" style="scale:100%">
+</p>
+
+### Machine Operation
+
+`AutonomySim` exposes Application Programming Interfaces (APIs) for progammatic interaction with the simulation vehicles and environment. These APIs can be used to control vehicles and the environment (e.g., weather), generate imagery, audio, or video, record control inputs along with vehicle and environment state, _et cetera_. The APIs are exposed through a remote procedure call (RPC) interface and are accessible through a variety of languages, including C++, Python, and Rust.
+
+The APIs are also available as part of a separate, independent, cross-platform library, so that they can be deployed on embedded systems running on your vehicle. That way, you can write and test your code in simulation, where mistakes are relatively cheap, before deploying it to real-world systems. Moreover, a core focus of `AutonomySim` is the development of simulation-to-real (sim2real) domain adaptation AI models, a form of transfer learning. These metamodels map from models of simulations to models of real-world systems, leveraging the universal function approximation abilities of artificial neural networks (ANNs) to _implicitly_ represent real-world processes not _explicitly_ represented in simulation.
+
+> [!NOTE]
+> The [Sim Mode](https://nervosys.github.io/AutonomySim/settings#simmode) setting or the new [Computer Vision](https://nervosys.github.io/AutonomySim/apis_image#computer-vision-mode-1) mode can be used to specify the default vehicle, so you don't get prompted each time you start `AutonomySim`. See [this](https://nervosys.github.io/AutonomySim/apis) for more details.
+
+### Hybrid Human-Machine Operation
+
+Using a form of hardware-in-the-loop (HITL), `AutonomySim` is capable of operating in hybrid human-machine mode. The classical example is a semi-autonomous aircraft stabilization program, which maps human control inputs (or lack thereof) into optimal control outputs to provide level flight.
+
+## Generating Labeled Data for Offline Machine Learning
+
+There are two general approaches to generating labeled data with `AutonomySim`:
+
+1. Manual: using the `record` button
+2. Programmatic: using the APIs
+
+The first method, using the `record` button, is the easiest method. Simply press _the big red button_ in the lower right corner to begin recording. This will record the vehicle pose/state and image for each frame. The data logging code is simple and easy to customize to your application.
+
+<p align="center">
+  <img src="./docs/media/images/record_data.png" alt="record screenshot" style="scale:100%">
+  <br>
+  Human/manual data recording mode.
+</p>
+
+The second method, using the APIs, is a more precise and repeatable method for generating labeled data. The APIs allow you to be in full control of the _how_, _what_, _where_, and _when_ of data logging.
+
+### Computer Vision Mode
+
+It is possible to use `AutonomySim` with vehicles and physics disabled. This is known as `Computer Vision Mode` and it supports both human and machine control. In this mode, you can use the keyboard or APIs to position cameras in arbitrary poses and collect imagery including depth, disparity, surface normals, or object segmentation masks. As the name implies, this is useful for generating labeled data for learning computer vision models. See [this](https://nervosys.github.io/AutonomySim/apis_image) for more details.
+
+## Labeled Data Modalities
+
+We plan on supporting the following [sensors](https://nervosys.github.io/AutonomySim/sensors/) and data modalities:
+
+- RGB imagery
+- Depth
+- Disparity
+- Surface normals
+- Object panoptic, semantic, and instance segmentation masks
+- Object bounding boxes (coming soon)
+- Audio (coming soon)
+- Video (coming soon)
+- Short- or long-wavelength infrared imagery ([see](https://nervosys.github.io/AutonomySim/InfraredCamera/))
+- Multi- and hyper-spectral (TBD)
+- LiDAR ([see](https://github.com/nervosys/AutonomySim/blob/master/docs/lidar.md); GPU acceleration coming soon)
+- RaDAR (TBD)
+- SoNAR (TBD)
+
+We also plan on providing autolabeling systems in the future.
+
+## Vehicles
+
+### Ground
+
+- Automobile
+- BoxCar (coming soon)
+- ClearPath Husky (coming soon)
+- Pioneer P3DX (coming soon)
+
+### Air
+
+- Multirotor aircraft: Quadcopter
+- Rotor-wing aircraft (TBD)
+- Fixed-wing aircraft (TBD)
+- Hybrid aircraft (TBD)
+
+## Environmental Dynamics
+
+### Weather
+
+The weather system support human and machine control. Press the `F10` key to see the available weather effect options. You can also control the weather using the APIs, as shown [here](https://nervosys.github.io/AutonomySim/apis#weather-apis).
+
+<p align="center">
+  <img src="./docs/media/images/weather_menu.png" alt="weather menu" style="scale:100%">
+  <br>
+  Weather effects menu.
+</p>
+
+Press the `F1` key to see other available options.
+
+### Procedural Terrain Generation
+
+Unreal Engine includes built-in support.
+
+## Machine Learning Applications
+
+### Learning Perception, Communication, Planning, and Control Models
+
+Coming soon.
+
+### Imitation or Apprenticeship Learning
+
+Coming soon. An example of recording control inputs and vehicle state for learning control systems.
+
+### Neural Radiance Fields
+
+Coming soon. Learning compressed 3-D radiative transfer models.
+
+### Large Language Models
+
+Coming soon. An example of using a large language model (LLM) to parse text commands into planning and control inputs for robotic systems. See [Eureka](https://eureka-research.github.io/).
+
+### Learning Surrogate Models or Emulators
+
+Coming soon.
+
+### Learning World Models
+
+Coming soon.
+
+## Other Applications
+
+### Sensor System Development
+
+Coming soon.
+
+### Locomotion System Development
+
+Coming soon. An example of learning structure, actuator, and locomotion models. This is useful, for example, for developing robotic systems that are robust to major structural failures, such as the loss of motors or legs.
+
+### Communication System Development
+
+Coming soon.
+
+### Data Randomization via Procedural Modeling
+
+Coming soon. A class of data augmentation to generate large amounts of diverse training data.
+
 ## Current and Past Users
 
 A subset of the organizations, people, and projects that have used `AutonomySim` or its predecessor, `AirSim`, are listed [here](https://nervosys.github.io/AutonomySim/who_is_using).
@@ -375,20 +389,6 @@ If you would like to be featured on this list, please submit a request [here](ht
 Linux Foundation and countless contributors to related projects.
 
 We need your support to ensure the success of `AutonomySim` development. Reach out to us at opensource@nervosys.ai to learn how you can support this project.
-
-## Background
-
-`AutonomySim` began as an update to the open-source `AirSim` project, which Microsoft
-shutdown in July of 2022 to focus on their closed-source cloud software-as-a-service (SaaS)
-version. Our first task was to update `AirSim` to support `Unreal Engine` 5, which we soon
-discovered was in already in development at other organizations. Unfortunately, these
-organizations only seemed to be interested in creating closed-source cloud SaaS platforms
-similar to Microsoft, which had resulted in the `AirSim` project being archived. Fearing a repeat of this outcome, we wanted to take the project in a new, open, multi-agent, -domain, and -modal direction. We are not very interested in cloud platforms, which are simply other peoples' computers,
-but rather on running `AutonomySim` in our own secure enclaves. It is, after all, a game engine. We want to see it in all its glory and think you will too.
-
-While `Unreal Engine` is well-suited to simulating the terrestrial domain due to its classical Newtonian physics engine, the aerial domain is better represented by dedicated flight dynamics models (FDMs). These small models approximate much larger computational fluid dynamics (CFD) models that are too expensive to run in real-time. Thus, it makes little sense to limit `AutonomySim` to the aerial domain and individual agents, given that multi-agent, -domain, and -modal simulation capabilities are needed to operate in complex real-world systems. We hope that we, as a community, can bring the marine and aerial domains to parity with dedicated simulators.
-
-Are you a fluid dynamics expert? We would love to have your input.
 
 ### Comparison with Related Projects
 

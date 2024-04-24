@@ -63,7 +63,7 @@ macro(CommonSetup)
                 set(CXX_EXP_LIB "-lstdc++fs -fmax-errors=10 -Wnoexcept -Wstrict-null-sentinel")
             endif()
         endif()
-
+  
         set(BUILD_PLATFORM "x64")
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
         if(CMAKE_BUILD_TYPE MATCHES "Release")
