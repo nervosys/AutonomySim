@@ -152,12 +152,13 @@ else
         unzip \
         coreutils \
         lsb-release \
+        bc \
         rsync \
         wget \
         libunwind-dev \
         zlib1g-dev \
         vulkan-tools \
-        libvulkan1 \
+        libvulkan1
         # vulkan vulkan-utils
 fi
 
