@@ -56,7 +56,7 @@ macro(CommonSetup)
                 ${RPC_LIB_DEFINES} ${CMAKE_CXX_FLAGS}")
 
             if(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
-                set(CMAKE_CXX_FLAGS "-stdlib=libc++ -Wno-documentation -Wno-unknown-warning-option ${CMAKE_CXX_FLAGS}")
+                set(CMAKE_CXX_FLAGS "-Wno-documentation -Wno-unknown-warning-option ${CMAKE_CXX_FLAGS}")  # -stdlib=libc++
                 find_package(LLVM REQUIRED CONFIG)
                 set(CXX_EXP_LIB "-L${LLVM_LIBRARY_DIRS} -lc++fs -ferror-limit=10")
             else()

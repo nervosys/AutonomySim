@@ -130,14 +130,9 @@ elif [ "$(uname)" = 'Linux' ]; then
         export CXX="g++-${GCC_VERSION}"
         CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}"
     else
-        if (( $(echo "${VERSION_ID} < 22.04" | bc -l) )); then
-            CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD} -DCMAKE_CXX_FLAGS=-stdlib=libc++"
-        else
-            CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}"
-        fi
         export CC="clang-${CLANG_VERSION}"
         export CXX="clang++-${CLANG_VERSION}"
-        
+        CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}"  # not needed: -DCMAKE_CXX_FLAGS=-stdlib=libc++
     fi
 else
     echo 'ERROR: This build script only supports Linux and MacOS.'
