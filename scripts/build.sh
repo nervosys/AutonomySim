@@ -133,7 +133,7 @@ elif [ "$(uname)" = 'Linux' ]; then
         export CXX="clang++-${CLANG_VERSION}"
         CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}
         -DCMAKE_CXX_FLAGS=-stdlib=libc++
-        -DCMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES=/usr/include/c++/${GCC_VERSION}:/usr/include/x86_64-linux-gnu/c++/${GCC_VERSION}"
+        -DCMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES=/usr/include/c++/12:/usr/include/x86_64-linux-gnu/c++/12"
     fi
 else
     echo 'ERROR: This build script only supports Linux and MacOS.'
