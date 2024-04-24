@@ -138,9 +138,10 @@ else
     sudo ./llvm.sh "$CLANG_VERSION"
     sudo apt-get install -y \
         "libc++-${CLANG_VERSION}-dev" \
-        "libstdc++-${CLANG_VERSION}-dev" \
         "libc++abi-${CLANG_VERSION}-dev"
-    sudo apt-get install -y "gcc-${GCC_VERSION}"
+    sudo apt-get install -y \
+        "gcc-${GCC_VERSION}" \
+        "libstdc++-${GCC_VERSION}-dev"
     #wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc    
     sudo apt-get install -y --no-install-recommends \
         apt-transport-https \
