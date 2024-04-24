@@ -59,7 +59,7 @@ function abspath {
 
 # Static variables.
 CMAKE_VERSION='3.29.2'
-GCC_VERSION='12'
+GCC_VERSION='13'
 CLANG_VERSION='17'
 PYTHON_VERSION='3.12'
 EIGEN_VERSION='3.4.0'
