@@ -103,7 +103,7 @@ Below is a list of officially supported operating systems.
 ### Linux
 
 - Ubuntu 20.04 LTS (Focal Fossa)
-- Ubuntu 22.04 LTS (Jammy Jellyfish) - Vulkan incompatibility, Docker recommended
+- Ubuntu 22.04 LTS (Jammy Jellyfish)
 - Ubuntu Server 22.04 LTS (untested)
 - Ubuntu Core 22 (untested)
 - [Botnix 1.0](https://github.com/nervosys/Botnix/) (coming soon!)
@@ -118,7 +118,7 @@ Below is a list of officially supported operating systems.
 - macOS 13 (Ventura)
 - macOS 14 (Sonoma)
 
-### Other: BSD/Mach/Hurd
+### Other: (e.g., Unix, BSD, Solaris, GNU Mach/Hurd, L4, unikernels, OS/2 Warp)
 
 - Untested
 

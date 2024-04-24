@@ -44,7 +44,6 @@ macro(CommonSetup)
     if(UNIX)
         set(RPC_LIB_DEFINES "-D MSGPACK_PP_VARIADICS_MSVC=0")
         set(BUILD_TYPE "linux")
-        set(CMAKE_CXX_STANDARD 17)
 
         if(APPLE)
             set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wstrict-aliasing -D__CLANG__")
@@ -86,9 +85,9 @@ macro(CommonSetup)
     
     # TODO: We are not using Boost anymore so the below should not be needed.
     # Use common boost settings for consistency.
-    #set(Boost_USE_STATIC_LIBS ON)
-    #set(Boost_USE_MULTITHREADED ON)
-    #set(Boost_USE_STATIC_RUNTIME ON)
+    # set(Boost_USE_STATIC_LIBS ON)
+    # set(Boost_USE_MULTITHREADED ON)
+    # set(Boost_USE_STATIC_RUNTIME ON)
 
     ## TODO: probably should set x64 explicitly
     ## strip x64 from /machine:x64 from CMAKE_STATIC_LINKER_FLAGS and set in BUILD_PLATFORM

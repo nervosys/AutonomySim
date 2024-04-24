@@ -46,8 +46,8 @@ function system_os {
 
 # Static variables.
 DEBUG='false'
-USE_GCC='false'
 CXX_STANDARD='20'
+USE_GCC='false'
 
 CMAKE_VERSION='3.29.2'
 GCC_VERSION='12'
@@ -122,16 +122,17 @@ fi
 if [ "$(uname)" = 'Darwin' ]; then
     export CC="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang"
     export CXX="$(brew --prefix)/opt/llvm@${CLANG_VERSION}/bin/clang++"
-    export CFLAGS="-stdlib=libc++ -std=c++${CXX_STANDARD}"
+    CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD} -DCMAKE_CXX_FLAGS=-stdlib=libc++
+        -DCMAKE_APPLE_SILICON_PROCESSOR=${SYSTEM_PLATFORM}"
 elif [ "$(uname)" = 'Linux' ]; then
     if [ "${USE_GCC}" = 'true' ]; then
         export CC="gcc-${GCC_VERSION}"
         export CXX="g++-${GCC_VERSION}"
-        export CFLAGS="-std=c++${CXX_STANDARD}"
+        CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}"
     else
         export CC="clang-${CLANG_VERSION}"
         export CXX="clang++-${CLANG_VERSION}"
-        export CFLAGS="-stdlib=libc++ -std=c++${CXX_STANDARD}"
+        CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD} -DCMAKE_CXX_FLAGS=-stdlib=libc++"
     fi
 else
     echo 'ERROR: This build script only supports Linux and MacOS.'
@@ -153,12 +154,7 @@ fi
 echo "Moving into build directory: ./cmake/${build_dir}"
 pushd "./cmake/${build_dir}"
 
-# Set CMake variables.
-CMAKE_VARS=''
-if [ "$(uname)" = 'Darwin' ]; then
-    CMAKE_VARS="-DCMAKE_APPLE_SILICON_PROCESSOR=${SYSTEM_PLATFORM}"
-fi
-
+# Build project.
 if [ "${DEBUG}" = 'true' ]; then
     folder_name='Debug'
     "$CMAKE" -DCMAKE_BUILD_TYPE=Debug "$CMAKE_VARS" .. || (popd && rm -rf "./$build_dir" && exit 1)
