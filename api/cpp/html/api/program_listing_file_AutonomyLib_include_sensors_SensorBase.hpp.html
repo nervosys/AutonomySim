@@ -289,6 +289,12 @@
 <span class="cm">*/</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SensorBase</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UpdatableObject</span><span class="w"> </span><span class="p">{</span>
 
+<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">GroundTruth</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics</span><span class="p">;</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SensorType</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Barometer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Imu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">Gps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">Magnetometer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Lidar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">};</span>
 
@@ -303,12 +309,6 @@
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GroundTruth</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getGroundTruth</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ground_truth_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">name_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">GroundTruth</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics</span><span class="p">;</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment</span><span class="p">;</span>
-<span class="w">    </span><span class="p">};</span>
 
 <span class="w">  </span><span class="k">private</span><span class="o">:</span>
 <span class="w">    </span><span class="c1">// ground truth can be shared between many sensors</span>
