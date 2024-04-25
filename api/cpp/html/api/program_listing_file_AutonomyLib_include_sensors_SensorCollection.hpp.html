@@ -284,10 +284,6 @@
 
 <span class="k">class</span><span class="w"> </span><span class="nc">SensorCollection</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UpdatableObject</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">UpdatableContainer</span><span class="o">&lt;</span><span class="n">SensorBasePtr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SensorBaseContainer</span><span class="p">;</span>
-<span class="w">    </span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">SensorBaseContainer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">sensors_</span><span class="p">;</span>
-
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">SensorBase</span><span class="w"> </span><span class="o">*</span><span class="n">SensorBasePtr</span><span class="p">;</span>
 
@@ -353,6 +349,10 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="c1">//*** End: UpdatableState implementation ***//</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">UpdatableContainer</span><span class="o">&lt;</span><span class="n">SensorBasePtr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SensorBaseContainer</span><span class="p">;</span>
+<span class="w">    </span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">SensorBaseContainer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">sensors_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>
