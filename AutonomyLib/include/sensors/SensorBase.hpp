@@ -20,6 +20,12 @@ set the sensor in good-to-use state by call to reset.
 */
 class SensorBase : public UpdatableObject {
 
+  protected:
+    struct GroundTruth {
+        const Kinematics::State *kinematics;
+        const Environment *environment;
+    };
+
   public:
     enum class SensorType : uint { Barometer = 1, Imu = 2, Gps = 3, Magnetometer = 4, Distance = 5, Lidar = 6 };
 
@@ -34,12 +40,6 @@ class SensorBase : public UpdatableObject {
     const GroundTruth &getGroundTruth() const { return ground_truth_; }
 
     const std::string &getName() const { return name_; }
-
-  protected:
-    struct GroundTruth {
-        const Kinematics::State *kinematics;
-        const Environment *environment;
-    };
 
   private:
     // ground truth can be shared between many sensors
