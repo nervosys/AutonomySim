@@ -1,20 +1,21 @@
 #!/bin/bash
 
-# get path of current script: https://stackoverflow.com/a/39340259/207661
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-pushd "$SCRIPT_DIR"  >/dev/null
-
 set -e
 set -x
 
+# get path of current script: https://stackoverflow.com/a/39340259/207661
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+pushd "$SCRIPT_DIR"
+
 # get Unreal install directory
-UnrealDir=$1
+UnrealDir="$1"
 if [ ! -d "$UnrealDir" ]; then
-    UnrealDir="$SCRIPT_DIR/UnrealEngine"
+    UnrealDir="${SCRIPT_DIR}/UnrealEngine"
 fi
 
 # install Unreal Engine
-./install_unreal.sh $1
+./install_unreal.sh "$UnrealDir"
 
 # install AutonomySim
 ./setup.sh
@@ -28,5 +29,5 @@ else
     Engine/Binaries/Linux/UE4Editor "$SCRIPT_DIR/Unreal/Environments/Blocks/Blocks.uproject" -game -log
 fi
 
-popd > /dev/null
-popd > /dev/null
+popd
+popd

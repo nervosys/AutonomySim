@@ -59,7 +59,7 @@ function abspath {
 
 # Static variables.
 CMAKE_VERSION='3.29.2'
-GCC_VERSION='13'
+GCC_VERSION='13.2.0'
 CLANG_VERSION='17'
 PYTHON_VERSION='3.12'
 EIGEN_VERSION='3.4.0'
@@ -93,10 +93,15 @@ while [ $# -gt 0 ]; do
     case "$1" in
     '--debug')
         DEBUG='true'
+        shift
         ;;
     '--high-polycount-suv')
         GET_UNREAL_ASSET='true'
         shift
+        ;;
+    ?)
+        echo "Error: unknown argument: $1"
+        exit 1
         ;;
     esac
 done
@@ -139,9 +144,11 @@ else
     sudo apt-get install -y \
         "libc++-${CLANG_VERSION}-dev" \
         "libc++abi-${CLANG_VERSION}-dev"
-    sudo apt-get install -y \
-        "gcc-${GCC_VERSION}" \
-        "libstdc++-${GCC_VERSION}-dev"
+    # Download and build GCC from source
+    source "${SCRIPT_DIR}/build_gcc.sh" --version "$GCC_VERSION"
+    #sudo apt-get install -y \
+    #    "gcc-${GCC_VERSION}" \
+    #    "libstdc++-${GCC_VERSION}-dev"
     #wget -qO- 'https://apt.llvm.org/llvm-snapshot.gpg.key' | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc    
     sudo apt-get install -y --no-install-recommends \
         apt-transport-https \

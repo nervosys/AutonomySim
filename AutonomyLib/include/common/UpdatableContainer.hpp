@@ -12,10 +12,8 @@ namespace autonomylib {
 
 template <typename TUpdatableObjectPtr> class UpdatableContainer : public UpdatableObject {
 
-  private:
-    MembersContainer members_;
-
-  public: // limited container interface
+  public:
+    // limited container interface
     typedef vector<TUpdatableObjectPtr> MembersContainer;
     typedef typename MembersContainer::iterator iterator;
     typedef typename MembersContainer::const_iterator const_iterator;
@@ -27,6 +25,7 @@ template <typename TUpdatableObjectPtr> class UpdatableContainer : public Updata
     uint size() const { return static_cast<uint>(members_.size()); }
     const TUpdatableObjectPtr &at(uint index) const { members_.at(index); }
     TUpdatableObjectPtr &at(uint index) { return members_.at(index); }
+
     // allow to override membership modifications
     virtual void clear() {
         for (auto m : members_) {
@@ -34,10 +33,12 @@ template <typename TUpdatableObjectPtr> class UpdatableContainer : public Updata
         }
         members_.clear();
     }
+
     virtual void insert(TUpdatableObjectPtr member) {
         member->setParent(this);
         members_.push_back(member);
     }
+
     virtual void erase_remove(TUpdatableObjectPtr member) {
         member->setParent(nullptr);
         members_.erase(std::remove(members_.begin(), members_.end(), member), members_.end());
@@ -63,6 +64,9 @@ template <typename TUpdatableObjectPtr> class UpdatableContainer : public Updata
 
     //*** End: UpdatableState implementation ***//
     virtual ~UpdatableContainer() = default;
+
+  private:
+    MembersContainer members_;
 };
 
 } // namespace autonomylib

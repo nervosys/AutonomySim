@@ -13,11 +13,8 @@ namespace autonomylib {
 // This is an abstraction for cameras associated with a vehicle.  Each camera has a unique id.
 class ImageCaptureBase {
 
-  public: // methods
-    virtual void getImages(const std::vector<ImageRequest> &requests, std::vector<ImageResponse> &responses) const = 0;
-    virtual ~ImageCaptureBase() = default;
-
-  public:                        // types
+  public:
+    // types
     enum class ImageType : int { // this indexes to array, -1 is special to indicate main camera
         Scene = 0,
         DepthPlanar,
@@ -60,6 +57,10 @@ class ImageCaptureBase {
         int width = 0, height = 0;
         ImageType image_type;
     };
+
+    // methods
+    virtual void getImages(const std::vector<ImageRequest> &requests, std::vector<ImageResponse> &responses) const = 0;
+    virtual ~ImageCaptureBase() = default;
 };
 
 } // namespace autonomylib

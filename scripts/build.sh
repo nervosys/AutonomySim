@@ -50,7 +50,7 @@ CXX_STANDARD='20'
 USE_GCC='false'
 
 CMAKE_VERSION='3.29.2'
-GCC_VERSION='13'
+GCC_VERSION='13.2.0'
 CLANG_VERSION='17'
 PYTHON_VERSION='3.12'
 EIGEN_VERSION='3.4.0'
@@ -59,6 +59,8 @@ RPCLIB_VERSION='2.3.0'
 # Dynamic variables.
 PROJECT_DIR="$(realpath $PWD)"
 SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
+
+GCC_VERSION_MAJOR="${GCC_VERSION%%.*}"
 
 if [ "$(uname)" = 'Darwin' ]; then
     SYSTEM_INFO="$(sw_vers)"
@@ -79,8 +81,7 @@ SYSTEM_OS_VERSION="$(system_os)"
 
 # Parse command line arguments.
 while [ $# -gt 0 ]; do
-    key="$1"
-    case $key in
+    case "$1" in
     '--debug')
         DEBUG='true'
         shift
@@ -88,6 +89,10 @@ while [ $# -gt 0 ]; do
     '--gcc')
         USE_GCC='true'
         shift
+        ;;
+    ?)
+        echo "Error: unknown argument: $1"
+        exit 1
         ;;
     esac
 done
@@ -126,8 +131,8 @@ if [ "$(uname)" = 'Darwin' ]; then
     CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD} -DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_APPLE_SILICON_PROCESSOR=${SYSTEM_PLATFORM}"
 elif [ "$(uname)" = 'Linux' ]; then
     if [ "$USE_GCC" = 'true' ]; then
-        export CC="gcc-${GCC_VERSION}"
-        export CXX="g++-${GCC_VERSION}"
+        export CC="gcc-${GCC_VERSION_MAJOR}"
+        export CXX="g++-${GCC_VERSION_MAJOR}"
         CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}"
     else
         export CC="clang-${CLANG_VERSION}"

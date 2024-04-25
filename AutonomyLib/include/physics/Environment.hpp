@@ -15,34 +15,6 @@ namespace autonomylib {
 
 class Environment : public UpdatableObject {
 
-  private:
-    State initial_, current_;
-    HomeGeoPoint home_geo_point_;
-    GeodeticConverter geodetic_converter_;
-
-    void updateState(State &state) {
-        geodetic_converter_.ned2Geodetic(state.position, state.geo_point);
-
-        real_T geo_pot = EarthUtils::getGeopotential(state.geo_point.altitude / 1000.0f);
-        state.temperature = EarthUtils::getStandardTemperature(geo_pot);
-        state.air_pressure = EarthUtils::getStandardPressure(geo_pot, state.temperature);
-        state.air_density = EarthUtils::getAirDensity(state.air_pressure, state.temperature);
-
-        // TODO: avoid recalculating square roots
-        state.gravity = Vector3r(0, 0, EarthUtils::getGravity(state.geo_point.altitude));
-    }
-
-  protected:
-    virtual void resetImplementation() override { current_ = initial_; }
-
-    virtual void failResetUpdateOrdering(std::string err) override {
-        unused(err);
-        // Do nothing.
-        // The environment gets reset() twice without an update() inbetween,
-        // via MultirotorPawnSimApi::reset() and CarSimApi::reset(), because
-        // those functions directly reset an environment, and also call other reset()s that reset the same environment.
-    }
-
   public:
     struct State {
         // these fields must be set at initialization time
@@ -87,6 +59,34 @@ class Environment : public UpdatableObject {
     State &getState() { return current_; }
 
     virtual void update() override { updateState(current_); }
+
+  protected:
+    virtual void resetImplementation() override { current_ = initial_; }
+
+    virtual void failResetUpdateOrdering(std::string err) override {
+        unused(err);
+        // Do nothing.
+        // The environment gets reset() twice without an update() inbetween,
+        // via MultirotorPawnSimApi::reset() and CarSimApi::reset(), because
+        // those functions directly reset an environment, and also call other reset()s that reset the same environment.
+    }
+
+  private:
+    State initial_, current_;
+    HomeGeoPoint home_geo_point_;
+    GeodeticConverter geodetic_converter_;
+
+    void updateState(State &state) {
+        geodetic_converter_.ned2Geodetic(state.position, state.geo_point);
+
+        real_T geo_pot = EarthUtils::getGeopotential(state.geo_point.altitude / 1000.0f);
+        state.temperature = EarthUtils::getStandardTemperature(geo_pot);
+        state.air_pressure = EarthUtils::getStandardPressure(geo_pot, state.temperature);
+        state.air_density = EarthUtils::getAirDensity(state.air_pressure, state.temperature);
+
+        // TODO: avoid recalculating square roots
+        state.gravity = Vector3r(0, 0, EarthUtils::getGravity(state.geo_point.altitude));
+    }
 };
 
 } // namespace autonomylib

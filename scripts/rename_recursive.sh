@@ -27,6 +27,7 @@ echo 'Batch renaming files...'
 # - modifying directory names first and then file names
 # - starting at the working directory and walking down the directory tree
 MAXDEPTH=$(find . -type d -printf '%d\n' | sort -rn | head -1)
+
 for depth in $(seq 1 $MAXDEPTH); do
   find . -maxdepth "$depth" -type 'd' -name "*${OLD}*" -print0 | sed -ze "p;s/${OLD}/${NEW}/g" | xargs -0 -n2 mv 2>/dev/null
 done
@@ -35,4 +36,5 @@ done
 find . -type 'f' -name "*${OLD}*" -print0 | sed -ze "p;s/${OLD}/${NEW}/g" | xargs -0 -n2 mv 2>/dev/null
 
 echo 'Batch file renaming complete.'
+
 exit 0
