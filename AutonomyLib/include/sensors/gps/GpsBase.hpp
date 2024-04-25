@@ -12,12 +12,6 @@ namespace autonomylib {
 
 class GpsBase : public SensorBase {
 
-  private:
-    Output output_;
-
-  protected:
-    void setOutput(const Output &output) { output_ = output; }
-
   public:
     GpsBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
 
@@ -29,7 +23,6 @@ class GpsBase : public SensorBase {
         int health;
 
         GpsPoint() {}
-
         GpsPoint(double latitude_val, double longitude_val, float altitude_val, int health_val = -1,
                  float height_val = std::numeric_limits<float>::quiet_NaN()) {
             latitude = latitude_val;
@@ -109,6 +102,12 @@ class GpsBase : public SensorBase {
     }
 
     const Output &getOutput() const { return output_; }
+
+  protected:
+    void setOutput(const Output &output) { output_ = output; }
+
+  private:
+    Output output_;
 };
 
 } // namespace autonomylib

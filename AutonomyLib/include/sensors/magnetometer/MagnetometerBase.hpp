@@ -11,12 +11,6 @@ namespace autonomylib {
 
 class MagnetometerBase : public SensorBase {
 
-  private:
-    Output output_;
-
-  protected:
-    void setOutput(const Output &output) { output_ = output; }
-
   public:
     struct Output { // same fields as ROS message
         TTimePoint time_stamp;
@@ -34,6 +28,12 @@ class MagnetometerBase : public SensorBase {
     }
 
     const Output &getOutput() const { return output_; }
+
+  protected:
+    void setOutput(const Output &output) { output_ = output; }
+
+  private:
+    Output output_;
 };
 
 } // namespace autonomylib

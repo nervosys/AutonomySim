@@ -20,21 +20,11 @@ set the sensor in good-to-use state by call to reset.
 */
 class SensorBase : public UpdatableObject {
 
-  private:
-    // ground truth can be shared between many sensors
-    GroundTruth ground_truth_ = {nullptr, nullptr};
-    std::string name_ = "";
-
-  protected:
-    struct GroundTruth {
-        const Kinematics::State *kinematics;
-        const Environment *environment;
-    };
-
   public:
     enum class SensorType : uint { Barometer = 1, Imu = 2, Gps = 3, Magnetometer = 4, Distance = 5, Lidar = 6 };
 
     SensorBase(const std::string &sensor_name = "") : name_(sensor_name) {}
+    virtual ~SensorBase() = default;
 
     virtual void initialize(const Kinematics::State *kinematics, const Environment *environment) {
         ground_truth_.kinematics = kinematics;
@@ -45,7 +35,16 @@ class SensorBase : public UpdatableObject {
 
     const std::string &getName() const { return name_; }
 
-    virtual ~SensorBase() = default;
+  protected:
+    struct GroundTruth {
+        const Kinematics::State *kinematics;
+        const Environment *environment;
+    };
+
+  private:
+    // ground truth can be shared between many sensors
+    GroundTruth ground_truth_ = {nullptr, nullptr};
+    std::string name_ = "";
 };
 
 } // namespace autonomylib

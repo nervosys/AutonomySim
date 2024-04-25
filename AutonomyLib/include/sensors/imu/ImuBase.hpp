@@ -11,12 +11,6 @@ namespace autonomylib {
 
 class ImuBase : public SensorBase {
 
-  private:
-    Output output_;
-
-  protected:
-    void setOutput(const Output &output) { output_ = output; }
-
   public:
     ImuBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
 
@@ -37,6 +31,12 @@ class ImuBase : public SensorBase {
     }
 
     const Output &getOutput() const { return output_; }
+
+  protected:
+    void setOutput(const Output &output) { output_ = output; }
+
+  private:
+    Output output_;
 };
 
 } // namespace autonomylib
