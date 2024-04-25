@@ -281,11 +281,25 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/ICommLink.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IFirmware.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IStateEstimator.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">simple_flight</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Firmware</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IFirmware</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// objects we use</span>
+<span class="w">    </span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">IBoard</span><span class="w"> </span><span class="o">*</span><span class="n">board_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ICommLink</span><span class="w"> </span><span class="o">*</span><span class="n">comm_link_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">OffboardApi</span><span class="w"> </span><span class="n">offboard_api_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Mixer</span><span class="w"> </span><span class="n">mixer_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IController</span><span class="o">&gt;</span><span class="w"> </span><span class="n">controller_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">motor_outputs_</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">Firmware</span><span class="p">(</span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">IBoard</span><span class="w"> </span><span class="o">*</span><span class="n">board</span><span class="p">,</span><span class="w"> </span><span class="n">ICommLink</span><span class="w"> </span><span class="o">*</span><span class="n">comm_link</span><span class="p">,</span><span class="w"> </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator</span><span class="p">)</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">params_</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="w"> </span><span class="n">board_</span><span class="p">(</span><span class="n">board</span><span class="p">),</span><span class="w"> </span><span class="n">comm_link_</span><span class="p">(</span><span class="n">comm_link</span><span class="p">),</span><span class="w"> </span><span class="n">state_estimator_</span><span class="p">(</span><span class="n">state_estimator</span><span class="p">),</span>
@@ -343,19 +357,6 @@
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">IOffboardApi</span><span class="w"> </span><span class="o">&amp;</span><span class="n">offboardApi</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">offboard_api_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// objects we use</span>
-<span class="w">    </span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">IBoard</span><span class="w"> </span><span class="o">*</span><span class="n">board_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ICommLink</span><span class="w"> </span><span class="o">*</span><span class="n">comm_link_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">OffboardApi</span><span class="w"> </span><span class="n">offboard_api_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Mixer</span><span class="w"> </span><span class="n">mixer_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IController</span><span class="o">&gt;</span><span class="w"> </span><span class="n">controller_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">motor_outputs_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace simple_flight</span>

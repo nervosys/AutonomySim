@@ -278,12 +278,57 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/Common.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/DelayLine.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/FrequencyLimiter.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">nervosys</span><span class="w"> </span><span class="p">{</span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">LidarSimple</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">LidarBase</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">LidarSimpleParams</span><span class="w"> </span><span class="n">params_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">real_T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">point_cloud_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">segmentation_cloud_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">FrequencyLimiter</span><span class="w"> </span><span class="n">freq_limiter_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">TTimePoint</span><span class="w"> </span><span class="n">last_time_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateOutput</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TTimeDelta</span><span class="w"> </span><span class="n">delta_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">updateSince</span><span class="p">(</span><span class="n">last_time_</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">point_cloud_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">GroundTruth</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ground_truth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getGroundTruth</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// calculate the pose before obtaining the point-cloud. Before/after is a bit arbitrary</span>
+<span class="w">        </span><span class="c1">// decision here. If the pose can change while obtaining the point-cloud (could happen for drones)</span>
+<span class="w">        </span><span class="c1">// then the pose won&#39;t be very accurate either way.</span>
+<span class="w">        </span><span class="c1">//</span>
+<span class="w">        </span><span class="c1">// TODO: Seems like pose is in vehicle inertial-frame (NOT in Global NED frame).</span>
+<span class="w">        </span><span class="c1">//    That could be a bit unintuitive but seems consistent with the position/orientation returned as part of</span>
+<span class="w">        </span><span class="c1">//    ImageResponse for cameras and pose returned by getCameraInfo API.</span>
+<span class="w">        </span><span class="c1">//    Do we need to convert pose to Global NED frame before returning to clients?</span>
+<span class="w">        </span><span class="n">Pose</span><span class="w"> </span><span class="n">lidar_pose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">relative_pose</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">kinematics</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">;</span>
+<span class="w">        </span><span class="n">getPointCloud</span><span class="p">(</span><span class="n">params_</span><span class="p">.</span><span class="n">relative_pose</span><span class="p">,</span><span class="w">         </span><span class="c1">// relative lidar pose</span>
+<span class="w">                      </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">kinematics</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">,</span><span class="w"> </span><span class="c1">// relative vehicle pose</span>
+<span class="w">                      </span><span class="n">delta_time</span><span class="p">,</span><span class="w"> </span><span class="n">point_cloud_</span><span class="p">,</span><span class="w"> </span><span class="n">segmentation_cloud_</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">LidarData</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">point_cloud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">point_cloud_</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">();</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">pose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lidar_pose</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">segmentation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">segmentation_cloud_</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">last_time_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">setOutput</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">getPointCloud</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Pose</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lidar_pose</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Pose</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_pose</span><span class="p">,</span><span class="w"> </span><span class="n">TTimeDelta</span><span class="w"> </span><span class="n">delta_time</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">real_T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">point_cloud</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">segmentation_cloud</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">LidarSimple</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">LidarSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">LidarSetting</span><span class="p">())</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">LidarBase</span><span class="p">(</span><span class="n">setting</span><span class="p">.</span><span class="n">sensor_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -326,50 +371,6 @@
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">LidarSimple</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LidarSimpleParams</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getParams</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">params_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">getPointCloud</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Pose</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lidar_pose</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Pose</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_pose</span><span class="p">,</span><span class="w"> </span><span class="n">TTimeDelta</span><span class="w"> </span><span class="n">delta_time</span><span class="p">,</span>
-<span class="w">                               </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">real_T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">point_cloud</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">segmentation_cloud</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span><span class="w"> </span><span class="c1">// methods</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">updateOutput</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">TTimeDelta</span><span class="w"> </span><span class="n">delta_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">updateSince</span><span class="p">(</span><span class="n">last_time_</span><span class="p">);</span>
-
-<span class="w">        </span><span class="n">point_cloud_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">GroundTruth</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ground_truth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getGroundTruth</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// calculate the pose before obtaining the point-cloud. Before/after is a bit arbitrary</span>
-<span class="w">        </span><span class="c1">// decision here. If the pose can change while obtaining the point-cloud (could happen for drones)</span>
-<span class="w">        </span><span class="c1">// then the pose won&#39;t be very accurate either way.</span>
-<span class="w">        </span><span class="c1">//</span>
-<span class="w">        </span><span class="c1">// TODO: Seems like pose is in vehicle inertial-frame (NOT in Global NED frame).</span>
-<span class="w">        </span><span class="c1">//    That could be a bit unintuitive but seems consistent with the position/orientation returned as part of</span>
-<span class="w">        </span><span class="c1">//    ImageResponse for cameras and pose returned by getCameraInfo API.</span>
-<span class="w">        </span><span class="c1">//    Do we need to convert pose to Global NED frame before returning to clients?</span>
-<span class="w">        </span><span class="n">Pose</span><span class="w"> </span><span class="n">lidar_pose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">relative_pose</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">kinematics</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">;</span>
-<span class="w">        </span><span class="n">getPointCloud</span><span class="p">(</span><span class="n">params_</span><span class="p">.</span><span class="n">relative_pose</span><span class="p">,</span><span class="w">         </span><span class="c1">// relative lidar pose</span>
-<span class="w">                      </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">kinematics</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">,</span><span class="w"> </span><span class="c1">// relative vehicle pose</span>
-<span class="w">                      </span><span class="n">delta_time</span><span class="p">,</span><span class="w"> </span><span class="n">point_cloud_</span><span class="p">,</span><span class="w"> </span><span class="n">segmentation_cloud_</span><span class="p">);</span>
-
-<span class="w">        </span><span class="n">LidarData</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">point_cloud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">point_cloud_</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">();</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">pose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lidar_pose</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">segmentation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">segmentation_cloud_</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">last_time_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">setOutput</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">LidarSimpleParams</span><span class="w"> </span><span class="n">params_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">real_T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">point_cloud_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">segmentation_cloud_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">FrequencyLimiter</span><span class="w"> </span><span class="n">freq_limiter_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">TTimePoint</span><span class="w"> </span><span class="n">last_time_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

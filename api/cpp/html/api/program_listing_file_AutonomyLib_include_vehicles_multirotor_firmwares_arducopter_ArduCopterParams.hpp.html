@@ -282,18 +282,10 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">ArduCopterParams</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MultirotorParams</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="n">ArduCopterParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkVehicleSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_setting</span><span class="p">,</span>
-<span class="w">                     </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory</span><span class="p">)</span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">(</span><span class="n">sensor_factory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">connection_info_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getConnectionInfo</span><span class="p">(</span><span class="n">vehicle_setting</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">ArduCopterParams</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">MultirotorApiBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createMultirotorApi</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">MultirotorApiBase</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArduCopterApi</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">));</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkConnectionInfo</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">;</span>
 
 <span class="w">  </span><span class="k">protected</span><span class="o">:</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">setupParams</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
@@ -312,9 +304,18 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">vehicle_setting</span><span class="p">.</span><span class="n">connection_info</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkConnectionInfo</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">ArduCopterParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkVehicleSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_setting</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">(</span><span class="n">sensor_factory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">connection_info_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getConnectionInfo</span><span class="p">(</span><span class="n">vehicle_setting</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">ArduCopterParams</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">MultirotorApiBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createMultirotorApi</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">MultirotorApiBase</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArduCopterApi</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

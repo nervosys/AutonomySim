@@ -31,10 +31,11 @@ Program Listing for File SensorBase.hpp
    set the sensor in good-to-use state by call to reset.
    */
    class SensorBase : public UpdatableObject {
-     public:
-       enum class SensorType : uint { Barometer = 1, Imu = 2, Gps = 3, Magnetometer = 4, Distance = 5, Lidar = 6 };
    
-       SensorBase(const std::string &sensor_name = "") : name_(sensor_name) {}
+     private:
+       // ground truth can be shared between many sensors
+       GroundTruth ground_truth_ = {nullptr, nullptr};
+       std::string name_ = "";
    
      protected:
        struct GroundTruth {
@@ -43,6 +44,10 @@ Program Listing for File SensorBase.hpp
        };
    
      public:
+       enum class SensorType : uint { Barometer = 1, Imu = 2, Gps = 3, Magnetometer = 4, Distance = 5, Lidar = 6 };
+   
+       SensorBase(const std::string &sensor_name = "") : name_(sensor_name) {}
+   
        virtual void initialize(const Kinematics::State *kinematics, const Environment *environment) {
            ground_truth_.kinematics = kinematics;
            ground_truth_.environment = environment;
@@ -53,11 +58,6 @@ Program Listing for File SensorBase.hpp
        const std::string &getName() const { return name_; }
    
        virtual ~SensorBase() = default;
-   
-     private:
-       // ground truth can be shared between many sensors
-       GroundTruth ground_truth_ = {nullptr, nullptr};
-       std::string name_ = "";
    };
    
    } // namespace autonomylib

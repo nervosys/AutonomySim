@@ -20,11 +20,72 @@ Program Listing for File OffboardApi.hpp
    #include "interfaces/IGoal.hpp"
    #include "interfaces/IOffboardApi.hpp"
    #include "interfaces/IUpdatable.hpp"
+   
    #include <cstdint>
    
    namespace simple_flight {
    
    class OffboardApi : public IUpdatable, public IOffboardApi {
+   
+     private:
+       const TReal kMovementTolerance = (TReal)0.08;
+       const Params *params_;
+       RemoteControl rc_;
+       IStateEstimator *state_estimator_;
+       ICommLink *comm_link_;
+       const IBoardClock *clock_;
+   
+       VehicleState vehicle_state_;
+   
+       Axis4r goal_;
+       GoalMode goal_mode_;
+       uint64_t goal_timestamp_;
+   
+       bool has_api_control_;
+       bool is_api_timedout_;
+       bool landed_, takenoff_;
+   
+       void updateGoalFromRc() {
+           goal_ = rc_.getGoalValue();
+           goal_mode_ = rc_.getGoalMode();
+       }
+   
+       void detectLanding() {
+   
+           // if we are not trying to move by setting motor outputs
+           if (takenoff_) {
+               // if (!isGreaterThanArmedThrottle(goal_.throttle())) {
+               float checkThrottle = rc_.getMotorOutput();
+               if (!isGreaterThanArmedThrottle(checkThrottle)) {
+                   // and we are not currently moving (based on current velocities)
+                   auto angular = state_estimator_->getAngularVelocity();
+                   auto velocity = state_estimator_->getLinearVelocity();
+                   if (isAlmostZero(angular.roll()) && isAlmostZero(angular.pitch()) && isAlmostZero(angular.yaw()) &&
+                       isAlmostZero(velocity.x()) && isAlmostZero(velocity.y()) && isAlmostZero(velocity.z())) {
+                       // then we must be landed...
+                       landed_ = true;
+                       takenoff_ = false;
+                   }
+               }
+           }
+       }
+   
+       void detectTakingOff() {
+           // if we are not trying to move by setting motor outputs
+           if (!takenoff_) {
+               float checkThrottle = rc_.getMotorOutput();
+               // TODO: better handling of landed & takenoff states
+               if (isGreaterThanArmedThrottle(checkThrottle) &&
+                   std::abs(state_estimator_->getLinearVelocity().z()) > 0.01f) {
+                   takenoff_ = true;
+                   landed_ = false;
+               }
+           }
+       }
+   
+       bool isAlmostZero(float v) { return std::abs(v) < kMovementTolerance; }
+       bool isGreaterThanArmedThrottle(float throttle) { return throttle > params_->min_armed_throttle(); }
+   
      public:
        OffboardApi(const Params *params, const IBoardClock *clock, const IBoardInputPins *board_inputs,
                    IStateEstimator *state_estimator, ICommLink *comm_link)
@@ -82,7 +143,9 @@ Program Listing for File OffboardApi.hpp
                return false;
            }
        }
+   
        virtual bool hasApiControl() override { return has_api_control_; }
+   
        virtual bool requestApiControl(std::string &message) override {
            if (canRequestApiControl(message)) {
                has_api_control_ = true;
@@ -98,10 +161,12 @@ Program Listing for File OffboardApi.hpp
                return false;
            }
        }
+   
        virtual void releaseApiControl() override {
            has_api_control_ = false;
            comm_link_->log("releaseApiControl was successful", ICommLink::kLogLevelInfo);
        }
+   
        virtual bool setGoalAndMode(const Axis4r *goal, const GoalMode *goal_mode, std::string &message) override {
            if (has_api_control_) {
                if (goal != nullptr)
@@ -175,66 +240,6 @@ Program Listing for File OffboardApi.hpp
        virtual GeoPoint getGeoPoint() const override { return state_estimator_->getGeoPoint(); }
    
        virtual bool getLandedState() const override { return landed_; }
-   
-     private:
-       void updateGoalFromRc() {
-           goal_ = rc_.getGoalValue();
-           goal_mode_ = rc_.getGoalMode();
-       }
-   
-       void detectLanding() {
-   
-           // if we are not trying to move by setting motor outputs
-           if (takenoff_) {
-               // if (!isGreaterThanArmedThrottle(goal_.throttle())) {
-               float checkThrottle = rc_.getMotorOutput();
-               if (!isGreaterThanArmedThrottle(checkThrottle)) {
-                   // and we are not currently moving (based on current velocities)
-                   auto angular = state_estimator_->getAngularVelocity();
-                   auto velocity = state_estimator_->getLinearVelocity();
-                   if (isAlmostZero(angular.roll()) && isAlmostZero(angular.pitch()) && isAlmostZero(angular.yaw()) &&
-                       isAlmostZero(velocity.x()) && isAlmostZero(velocity.y()) && isAlmostZero(velocity.z())) {
-                       // then we must be landed...
-                       landed_ = true;
-                       takenoff_ = false;
-                   }
-               }
-           }
-       }
-   
-       void detectTakingOff() {
-           // if we are not trying to move by setting motor outputs
-           if (!takenoff_) {
-               float checkThrottle = rc_.getMotorOutput();
-               // TODO: better handling of landed & takenoff states
-               if (isGreaterThanArmedThrottle(checkThrottle) &&
-                   std::abs(state_estimator_->getLinearVelocity().z()) > 0.01f) {
-                   takenoff_ = true;
-                   landed_ = false;
-               }
-           }
-       }
-   
-       bool isAlmostZero(float v) { return std::abs(v) < kMovementTolerance; }
-       bool isGreaterThanArmedThrottle(float throttle) { return throttle > params_->min_armed_throttle(); }
-   
-     private:
-       const TReal kMovementTolerance = (TReal)0.08;
-       const Params *params_;
-       RemoteControl rc_;
-       IStateEstimator *state_estimator_;
-       ICommLink *comm_link_;
-       const IBoardClock *clock_;
-   
-       VehicleState vehicle_state_;
-   
-       Axis4r goal_;
-       GoalMode goal_mode_;
-       uint64_t goal_timestamp_;
-   
-       bool has_api_control_;
-       bool is_api_timedout_;
-       bool landed_, takenoff_;
    };
    
    } // namespace simple_flight

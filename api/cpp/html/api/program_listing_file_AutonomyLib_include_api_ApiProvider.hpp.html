@@ -277,12 +277,20 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;VehicleSimApiBase.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WorldSimApiBase.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/utils/UniqueValueMap.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">nervosys</span><span class="w"> </span><span class="p">{</span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">ApiProvider</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">WorldSimApiBase</span><span class="w"> </span><span class="o">*</span><span class="n">world_sim_api_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">common_utils</span><span class="o">::</span><span class="n">UniqueValueMap</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleApiBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vehicle_apis_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">common_utils</span><span class="o">::</span><span class="n">UniqueValueMap</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleSimApiBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vehicle_sim_apis_</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">ApiProvider</span><span class="p">(</span><span class="n">WorldSimApiBase</span><span class="w"> </span><span class="o">*</span><span class="n">world_sim_api</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">world_sim_api_</span><span class="p">(</span><span class="n">world_sim_api</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">ApiProvider</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
@@ -323,12 +331,6 @@
 <span class="w">        </span><span class="n">vehicle_apis_</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vehicle_apis_</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">vehicle_name</span><span class="p">));</span>
 <span class="w">        </span><span class="n">vehicle_sim_apis_</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vehicle_sim_apis_</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">vehicle_name</span><span class="p">));</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">WorldSimApiBase</span><span class="w"> </span><span class="o">*</span><span class="n">world_sim_api_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">common_utils</span><span class="o">::</span><span class="n">UniqueValueMap</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleApiBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vehicle_apis_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">common_utils</span><span class="o">::</span><span class="n">UniqueValueMap</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleSimApiBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vehicle_sim_apis_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

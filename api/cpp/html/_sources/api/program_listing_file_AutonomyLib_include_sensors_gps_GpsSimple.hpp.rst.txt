@@ -22,12 +22,44 @@ Program Listing for File GpsSimple.hpp
    #include "common/DelayLine.hpp"
    #include "common/FirstOrderFilter.hpp"
    #include "common/FrequencyLimiter.hpp"
+   
    #include <random>
    
    namespace nervosys {
    namespace autonomylib {
    
    class GpsSimple : public GpsBase {
+   
+     private:
+       typedef std::normal_distribution<> NormalDistribution;
+   
+       GpsSimpleParams params_;
+   
+       FirstOrderFilter<real_T> eph_filter, epv_filter;
+       FrequencyLimiter freq_limiter_;
+       DelayLine<Output> delay_line_;
+   
+       void addOutputToDelayLine(real_T eph, real_T epv) {
+           Output output;
+           const GroundTruth &ground_truth = getGroundTruth();
+   
+           // GNSS
+           output.gnss.time_utc = static_cast<uint64_t>(clock()->nowNanos() / 1.0E3);
+           output.gnss.geo_point = ground_truth.environment->getState().geo_point;
+           output.gnss.eph = eph;
+           output.gnss.epv = epv;
+           output.gnss.velocity = ground_truth.kinematics->twist.linear;
+           output.is_valid = true;
+   
+           output.gnss.fix_type = output.gnss.eph <= params_.eph_min_3d   ? GnssFixType::GNSS_FIX_3D_FIX
+                                  : output.gnss.eph <= params_.eph_min_2d ? GnssFixType::GNSS_FIX_2D_FIX
+                                                                          : GnssFixType::GNSS_FIX_NO_FIX;
+   
+           output.time_stamp = clock()->nowNanos();
+   
+           delay_line_.push_back(output);
+       }
+   
      public: // methods
        GpsSimple(const AutonomySimSettings::GpsSetting &setting = AutonomySimSettings::GpsSetting())
            : GpsBase(setting.sensor_name) {
@@ -77,37 +109,6 @@ Program Listing for File GpsSimple.hpp
        //*** End: UpdatableState implementation ***//
    
        virtual ~GpsSimple() = default;
-   
-     private:
-       void addOutputToDelayLine(real_T eph, real_T epv) {
-           Output output;
-           const GroundTruth &ground_truth = getGroundTruth();
-   
-           // GNSS
-           output.gnss.time_utc = static_cast<uint64_t>(clock()->nowNanos() / 1.0E3);
-           output.gnss.geo_point = ground_truth.environment->getState().geo_point;
-           output.gnss.eph = eph;
-           output.gnss.epv = epv;
-           output.gnss.velocity = ground_truth.kinematics->twist.linear;
-           output.is_valid = true;
-   
-           output.gnss.fix_type = output.gnss.eph <= params_.eph_min_3d   ? GnssFixType::GNSS_FIX_3D_FIX
-                                  : output.gnss.eph <= params_.eph_min_2d ? GnssFixType::GNSS_FIX_2D_FIX
-                                                                          : GnssFixType::GNSS_FIX_NO_FIX;
-   
-           output.time_stamp = clock()->nowNanos();
-   
-           delay_line_.push_back(output);
-       }
-   
-     private:
-       typedef std::normal_distribution<> NormalDistribution;
-   
-       GpsSimpleParams params_;
-   
-       FirstOrderFilter<real_T> eph_filter, epv_filter;
-       FrequencyLimiter freq_limiter_;
-       DelayLine<Output> delay_line_;
    };
    
    } // namespace autonomylib

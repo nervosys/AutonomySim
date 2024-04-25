@@ -280,6 +280,7 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">BarometerSimpleParams</span><span class="w"> </span><span class="p">{</span>
+
 <span class="w">    </span><span class="c1">// user specified sea level pressure is specified in hPa units</span>
 <span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">qnh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">SeaLevelPressure</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100.0f</span><span class="p">;</span><span class="w"> </span><span class="c1">// hPa</span>
 
@@ -294,16 +295,16 @@
 <span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">pressure_factor_tau</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3600</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cm">/*</span>
-<span class="cm">Ref: A Stochastic Approach to Noise Modeling for Barometric Altimeters</span>
-<span class="cm">     Angelo Maria Sabatini* and Vincenzo Genovese</span>
-<span class="cm">     Sample values are from Table 1</span>
-<span class="cm">     https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3871085/</span>
-<span class="cm">     This is however not used because numbers mentioned in paper doesn&#39;t match experiments.</span>
+<span class="cm">    Ref: A Stochastic Approach to Noise Modeling for Barometric Altimeters</span>
+<span class="cm">    Angelo Maria Sabatini* and Vincenzo Genovese</span>
+<span class="cm">    Sample values are from Table 1</span>
+<span class="cm">    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3871085/</span>
+<span class="cm">    This is however not used because numbers mentioned in paper doesn&#39;t match experiments.</span>
 
-<span class="cm">     real_T correlated_noise_sigma = 0.27f;</span>
-<span class="cm">     real_T correlated_noise_tau = 0.87f;</span>
-<span class="cm">     real_T uncorrelated_noise_sigma = 0.24f;</span>
-<span class="cm">*/</span>
+<span class="cm">    real_T correlated_noise_sigma = 0.27f;</span>
+<span class="cm">    real_T correlated_noise_tau = 0.87f;</span>
+<span class="cm">    real_T uncorrelated_noise_sigma = 0.24f;</span>
+<span class="cm">    */</span>
 
 <span class="w">    </span><span class="c1">// Experiments for MEAS MS56112 sensor shows 0.021mbar, datasheet has resoultion of 0.027mbar @ 1024</span>
 <span class="w">    </span><span class="c1">// http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&amp;DocNm=MS5611-01BA03&amp;DocType=Data+Sheet&amp;DocLang=English</span>

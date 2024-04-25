@@ -26,6 +26,11 @@ Program Listing for File SimpleFlightEstimator.hpp
    namespace autonomylib {
    
    class SimpleFlightEstimator : public simple_flight::IStateEstimator {
+   
+     private:
+       const Kinematics::State *kinematics_;
+       const Environment *environment_;
+   
      public:
        virtual ~SimpleFlightEstimator() {}
    
@@ -92,10 +97,6 @@ Program Listing for File SimpleFlightEstimator.hpp
    
            return state;
        }
-   
-     private:
-       const Kinematics::State *kinematics_;
-       const Environment *environment_;
    };
    
    } // namespace autonomylib

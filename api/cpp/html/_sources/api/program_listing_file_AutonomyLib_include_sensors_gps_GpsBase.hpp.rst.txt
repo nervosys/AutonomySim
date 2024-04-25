@@ -23,10 +23,16 @@ Program Listing for File GpsBase.hpp
    namespace autonomylib {
    
    class GpsBase : public SensorBase {
+   
+     private:
+       Output output_;
+   
+     protected:
+       void setOutput(const Output &output) { output_ = output; }
+   
      public:
        GpsBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
    
-     public: // types
        // TODO: cleanup GPS structures that are not needed
        struct GpsPoint {
          public:
@@ -104,7 +110,6 @@ Program Listing for File GpsBase.hpp
            bool is_valid = false;
        };
    
-     public:
        virtual void reportState(StateReporter &reporter) override {
            // call base
            UpdatableObject::reportState(reporter);
@@ -116,12 +121,6 @@ Program Listing for File GpsBase.hpp
        }
    
        const Output &getOutput() const { return output_; }
-   
-     protected:
-       void setOutput(const Output &output) { output_ = output; }
-   
-     private:
-       Output output_;
    };
    
    } // namespace autonomylib

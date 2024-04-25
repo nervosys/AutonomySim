@@ -282,6 +282,19 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Px4MultirotorParams</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MultirotorParams</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkConnectionInfo</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkConnectionInfo</span><span class="w"> </span><span class="o">&amp;</span>
+<span class="w">    </span><span class="nf">getConnectionInfo</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkVehicleSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_setting</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">vehicle_setting</span><span class="p">.</span><span class="n">connection_info</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="w"> </span><span class="o">*</span><span class="n">getSensorFactory</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">.</span><span class="n">get</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">Px4MultirotorParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkVehicleSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_setting</span><span class="p">,</span>
 <span class="w">                        </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory</span><span class="p">)</span>
@@ -315,19 +328,6 @@
 <span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="c1">// Generic</span>
 <span class="w">            </span><span class="n">setupFrameGenericQuad</span><span class="p">(</span><span class="n">params</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="w"> </span><span class="o">*</span><span class="n">getSensorFactory</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">.</span><span class="n">get</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkConnectionInfo</span><span class="w"> </span><span class="o">&amp;</span>
-<span class="w">    </span><span class="n">getConnectionInfo</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkVehicleSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_setting</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">vehicle_setting</span><span class="p">.</span><span class="n">connection_info</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">MavLinkConnectionInfo</span><span class="w"> </span><span class="n">connection_info_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

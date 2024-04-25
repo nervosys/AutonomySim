@@ -17,12 +17,27 @@ Program Listing for File PidController.hpp
    #include "StdPidIntegrator.hpp"
    #include "interfaces/CommonStructs.hpp"
    #include "interfaces/IPidIntegrator.hpp"
+   
    #include <algorithm>
    #include <cstdlib>
    
    namespace simple_flight {
    
    template <class T> class PidController : public IUpdatable {
+   
+     private:
+       T goal_, measured_;
+       T output_;
+       uint64_t last_time_;
+       const IBoardClock *clock_;
+       float last_error_;
+       float min_dt_;
+       const PidConfig<T> config_;
+       std::unique_ptr<IPidIntegrator<T>> integrator;
+   
+       // TODO: replace with std::clamp after moving to C++17
+       static T clip(T val, T min_value, T max_value) { return std::max(min_value, std::min(val, max_value)); }
+   
      public:
        PidController(const IBoardClock *clock = nullptr, const PidConfig<T> &config = PidConfig<T>())
            : clock_(clock), config_(config) {
@@ -97,22 +112,6 @@ Program Listing for File PidController.hpp
    
            last_time_ = clock_->millis();
        }
-   
-     private:
-       // TODO: replace with std::clamp after moving to C++17
-       static T clip(T val, T min_value, T max_value) { return std::max(min_value, std::min(val, max_value)); }
-   
-     private:
-       T goal_, measured_;
-       T output_;
-       uint64_t last_time_;
-       const IBoardClock *clock_;
-   
-       float last_error_;
-       float min_dt_;
-       const PidConfig<T> config_;
-   
-       std::unique_ptr<IPidIntegrator<T>> integrator;
    };
    
    } // namespace simple_flight

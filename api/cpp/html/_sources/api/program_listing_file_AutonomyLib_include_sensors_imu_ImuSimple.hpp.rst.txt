@@ -24,37 +24,19 @@ Program Listing for File ImuSimple.hpp
    namespace autonomylib {
    
    class ImuSimple : public ImuBase {
-     public:
-       // constructors
-       ImuSimple(const AutonomySimSettings::ImuSetting &setting = AutonomySimSettings::ImuSetting())
-           : ImuBase(setting.sensor_name) {
-           // initialize params
-           params_.initializeFromSettings(setting);
-   
-           gyro_bias_stability_norm = params_.gyro.bias_stability / sqrt(params_.gyro.tau);
-           accel_bias_stability_norm = params_.accel.bias_stability / sqrt(params_.accel.tau);
-       }
-   
-       //*** Start: UpdatableState implementation ***//
-       virtual void resetImplementation() override {
-           last_time_ = clock()->nowNanos();
-   
-           state_.gyroscope_bias = params_.gyro.turn_on_bias;
-           state_.accelerometer_bias = params_.accel.turn_on_bias;
-           gauss_dist.reset();
-           updateOutput();
-       }
-   
-       virtual void update() override {
-           ImuBase::update();
-   
-           updateOutput();
-       }
-       //*** End: UpdatableState implementation ***//
-   
-       virtual ~ImuSimple() = default;
    
      private: // methods
+       ImuSimpleParams params_;
+       RandomVectorGaussianR gauss_dist = RandomVectorGaussianR(0, 1);
+       // cached calculated values
+       real_T gyro_bias_stability_norm, accel_bias_stability_norm;
+       TTimePoint last_time_;
+   
+       struct State {
+           Vector3r gyroscope_bias;
+           Vector3r accelerometer_bias;
+       } state_;
+   
        void updateOutput() {
            Output output;
            const GroundTruth &ground_truth = getGroundTruth();
@@ -102,19 +84,35 @@ Program Listing for File ImuSimple.hpp
            state_.accelerometer_bias += gauss_dist.next() * accel_sigma_bias;
        }
    
-     private: // fields
-       ImuSimpleParams params_;
-       RandomVectorGaussianR gauss_dist = RandomVectorGaussianR(0, 1);
+     public:
+       // constructors
+       ImuSimple(const AutonomySimSettings::ImuSetting &setting = AutonomySimSettings::ImuSetting())
+           : ImuBase(setting.sensor_name) {
+           // initialize params
+           params_.initializeFromSettings(setting);
    
-       // cached calculated values
-       real_T gyro_bias_stability_norm, accel_bias_stability_norm;
+           gyro_bias_stability_norm = params_.gyro.bias_stability / sqrt(params_.gyro.tau);
+           accel_bias_stability_norm = params_.accel.bias_stability / sqrt(params_.accel.tau);
+       }
    
-       struct State {
-           Vector3r gyroscope_bias;
-           Vector3r accelerometer_bias;
-       } state_;
+       //*** Start: UpdatableState implementation ***//
+       virtual void resetImplementation() override {
+           last_time_ = clock()->nowNanos();
    
-       TTimePoint last_time_;
+           state_.gyroscope_bias = params_.gyro.turn_on_bias;
+           state_.accelerometer_bias = params_.accel.turn_on_bias;
+           gauss_dist.reset();
+           updateOutput();
+       }
+   
+       virtual void update() override {
+           ImuBase::update();
+   
+           updateOutput();
+       }
+       //*** End: UpdatableState implementation ***//
+   
+       virtual ~ImuSimple() = default;
    };
    
    } // namespace autonomylib

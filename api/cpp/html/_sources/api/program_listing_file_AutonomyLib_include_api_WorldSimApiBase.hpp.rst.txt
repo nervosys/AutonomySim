@@ -23,6 +23,7 @@ Program Listing for File WorldSimApiBase.hpp
    namespace autonomylib {
    
    class WorldSimApiBase {
+   
      public:
        enum class WeatherParameter {
            Rain = 0,

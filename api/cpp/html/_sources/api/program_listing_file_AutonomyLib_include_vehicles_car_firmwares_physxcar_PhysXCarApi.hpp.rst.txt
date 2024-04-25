@@ -22,6 +22,16 @@ Program Listing for File PhysXCarApi.hpp
    namespace autonomylib {
    
    class PhysXCarApi : public CarApiBase {
+   
+     private:
+       bool api_control_enabled_ = false;
+       GeoPoint home_geopoint_;
+       CarControls last_controls_;
+       CarState last_car_state_;
+   
+     protected:
+       virtual void resetImplementation() override { CarApiBase::resetImplementation(); }
+   
      public:
        PhysXCarApi(const AutonomySimSettings::VehicleSetting *vehicle_setting,
                    std::shared_ptr<SensorFactory> sensor_factory, const Kinematics::State &state,
@@ -31,10 +41,6 @@ Program Listing for File PhysXCarApi.hpp
    
        ~PhysXCarApi() {}
    
-     protected:
-       virtual void resetImplementation() override { CarApiBase::resetImplementation(); }
-   
-     public:
        virtual void update() override { CarApiBase::update(); }
    
        virtual const SensorCollection &getSensors() const override { return CarApiBase::getSensors(); }
@@ -57,7 +63,6 @@ Program Listing for File PhysXCarApi.hpp
            return true;
        }
    
-     public:
        virtual void setCarControls(const CarControls &controls) override { last_controls_ = controls; }
    
        virtual void updateCarState(const CarState &car_state) override { last_car_state_ = car_state; }
@@ -65,12 +70,6 @@ Program Listing for File PhysXCarApi.hpp
        virtual const CarState &getCarState() const override { return last_car_state_; }
    
        virtual const CarControls &getCarControls() const override { return last_controls_; }
-   
-     private:
-       bool api_control_enabled_ = false;
-       GeoPoint home_geopoint_;
-       CarControls last_controls_;
-       CarState last_car_state_;
    };
    
    } // namespace autonomylib

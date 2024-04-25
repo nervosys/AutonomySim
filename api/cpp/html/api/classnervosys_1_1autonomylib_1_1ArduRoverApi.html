@@ -1748,7 +1748,7 @@
         
           <li class="md-nav__item">
   <a href="#_CPPv4N8nervosys11autonomylib12ArduRoverApiE" class="md-nav__link">
-    <span aria-label="C++ class" class="objinfo-icon objinfo-icon__data" title="C++ class">C</span><span title="nervosys::autonomylib::ArduRoverApi (C++ class) — Public Functions    inline ArduRoverApi(const AutonomySimSettings::VehicleSetting *vehicle_setting, std::shared_ptr&lt;SensorFactory&gt; sensor_factory, const Kinematics::State &amp;state, const Environment &amp;environment)      inline ~ArduRoverApi()      inline virtual void update() override      inline virtual const SensorCollection &amp;getSensors() const override      inline virtual bool isApiControlEnabled() const override      inline virtual void enableApiControl(bool is_enabled) override      inline virtual bool armDisarm(bool arm) override      inline virtual GeoPoint getHomeGeoPoint() const override      inline virtual void getStatusMessages(std::vector&lt;std::string&gt; &amp;messages) override      inline virtual void setCarControls(const CarControls &amp;controls) override      inline virtual void updateCarState(const CarState &amp;car_state) override      inline virtual const CarState &amp;getCarState() const override      inline virtual const CarControls &amp;getCarControls() const override    Protected Functions    inline virtual void resetImplementation() override      inline void closeConnections()      inline void connect()" class="md-ellipsis">Ardu<wbr>Rover<wbr>Api</span>
+    <span aria-label="C++ class" class="objinfo-icon objinfo-icon__data" title="C++ class">C</span><span title="nervosys::autonomylib::ArduRoverApi (C++ class) — Public Functions    inline ArduRoverApi(const AutonomySimSettings::VehicleSetting *vehicle_setting, std::shared_ptr&lt;SensorFactory&gt; sensor_factory, const Kinematics::State &amp;state, const Environment &amp;environment)      inline ~ArduRoverApi()      inline virtual void update() override      inline virtual const SensorCollection &amp;getSensors() const override      inline virtual bool isApiControlEnabled() const override      inline virtual void enableApiControl(bool is_enabled) override      inline virtual bool armDisarm(bool arm) override      inline virtual GeoPoint getHomeGeoPoint() const override      inline virtual void getStatusMessages(std::vector&lt;std::string&gt; &amp;messages) override      inline virtual void setCarControls(const CarControls &amp;controls) override      inline virtual void updateCarState(const CarState &amp;car_state) override      inline virtual const CarState &amp;getCarState() const override      inline virtual const CarControls &amp;getCarControls() const override      inline void sendSensors()    Protected Functions    inline virtual void resetImplementation() override      inline void closeConnections()      inline void connect()" class="md-ellipsis">Ardu<wbr>Rover<wbr>Api</span>
   </a>
   
     <nav class="md-nav" aria-label="ArduRoverApi">
@@ -1848,6 +1848,13 @@
           <li class="md-nav__item">
   <a href="#_CPPv4NK8nervosys11autonomylib12ArduRoverApi14getCarControlsEv" class="md-nav__link">
     <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::ArduRoverApi::getCarControls (C++ function)" class="md-ellipsis">get<wbr>Car<wbr>Controls</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_CPPv4N8nervosys11autonomylib12ArduRoverApi11sendSensorsEv" class="md-nav__link">
+    <span aria-label="C++ function" class="objinfo-icon objinfo-icon__procedure" title="C++ function">F</span><span title="nervosys::autonomylib::ArduRoverApi::sendSensors (C++ function)" class="md-ellipsis">send<wbr>Sensors</span>
   </a>
   
 </li>
@@ -3591,6 +3598,11 @@
 <dl class="cpp function objdesc">
 <dt class="sig sig-object highlight cpp" id="_CPPv4NK8nervosys11autonomylib12ArduRoverApi14getCarControlsEv">
 <span id="_CPPv3NK8nervosys11autonomylib12ArduRoverApi14getCarControlsEv"></span><span id="_CPPv2NK8nervosys11autonomylib12ArduRoverApi14getCarControlsEv"></span><span id="nervosys::autonomylib::ArduRoverApi::getCarControlsC"></span><span class="target" id="classnervosys_1_1autonomylib_1_1ArduRoverApi_1a51399df093b46a7a68b1830f52563399"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="desctype reference internal" href="classnervosys_1_1autonomylib_1_1CarApiBase.html#_CPPv4N8nervosys11autonomylib10CarApiBase11CarControlsE" title="nervosys::autonomylib::CarApiBase::CarControls (C++ class) — Public Functions    inline CarControls()      inline CarControls(float throttle_val, float steering_val, float brake_val, bool handbrake_val, bool is_manual_gear_val, int manual_gear_val, bool gear_immediate_val)      inline void set_throttle(float throttle_val, bool forward)    Public Members    float throttle = 0      float steering = 0      float brake = 0      bool handbrake = false      bool is_manual_gear = false      int manual_gear = 0      bool gear_immediate = true"><span class="n"><span class="pre">CarControls</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getCarControls</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK8nervosys11autonomylib12ArduRoverApi14getCarControlsEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function objdesc">
+<dt class="sig sig-object highlight cpp" id="_CPPv4N8nervosys11autonomylib12ArduRoverApi11sendSensorsEv">
+<span id="_CPPv3N8nervosys11autonomylib12ArduRoverApi11sendSensorsEv"></span><span id="_CPPv2N8nervosys11autonomylib12ArduRoverApi11sendSensorsEv"></span><span id="nervosys::autonomylib::ArduRoverApi::sendSensors"></span><span class="target" id="classnervosys_1_1autonomylib_1_1ArduRoverApi_1ad746501266f5893e0e00e3d86f973452"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sendSensors</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8nervosys11autonomylib12ArduRoverApi11sendSensorsEv" title="Link to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>

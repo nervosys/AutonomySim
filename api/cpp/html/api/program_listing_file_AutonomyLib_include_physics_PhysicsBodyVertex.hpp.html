@@ -281,6 +281,13 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">PhysicsBodyVertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UpdatableObject</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Vector3r</span><span class="w"> </span><span class="n">initial_position_</span><span class="p">,</span><span class="w"> </span><span class="n">position_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Vector3r</span><span class="w"> </span><span class="n">initial_normal_</span><span class="p">,</span><span class="w"> </span><span class="n">normal_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Wrench</span><span class="w"> </span><span class="n">current_wrench_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">drag_factor_</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">protected</span><span class="o">:</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">setWrench</span><span class="p">(</span><span class="n">Wrench</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wrench</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">wrench</span><span class="p">);</span>
@@ -293,9 +300,11 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setDragFactor</span><span class="p">(</span><span class="n">real_T</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">drag_factor_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">PhysicsBodyVertex</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// allow default constructor with later call for initialize</span>
+
 <span class="w">    </span><span class="n">PhysicsBodyVertex</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">normal</span><span class="p">,</span><span class="w"> </span><span class="n">real_T</span><span class="w"> </span><span class="n">drag_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">initialize</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">normal</span><span class="p">,</span><span class="w"> </span><span class="n">drag_factor</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">normal</span><span class="p">,</span><span class="w"> </span><span class="n">real_T</span><span class="w"> </span><span class="n">drag_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">initial_position_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="p">;</span>
 <span class="w">        </span><span class="n">initial_normal_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normal</span><span class="p">;</span>
@@ -325,12 +334,6 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setNormal</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">normal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">normal_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normal</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">Wrench</span><span class="w"> </span><span class="n">getWrench</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">current_wrench_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">Vector3r</span><span class="w"> </span><span class="n">initial_position_</span><span class="p">,</span><span class="w"> </span><span class="n">position_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Vector3r</span><span class="w"> </span><span class="n">initial_normal_</span><span class="p">,</span><span class="w"> </span><span class="n">normal_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Wrench</span><span class="w"> </span><span class="n">current_wrench_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">drag_factor_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

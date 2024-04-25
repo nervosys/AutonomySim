@@ -277,11 +277,72 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IGoal.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IOffboardApi.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IUpdatable.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">simple_flight</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">OffboardApi</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IUpdatable</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IOffboardApi</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">TReal</span><span class="w"> </span><span class="n">kMovementTolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TReal</span><span class="p">)</span><span class="mf">0.08</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RemoteControl</span><span class="w"> </span><span class="n">rc_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ICommLink</span><span class="w"> </span><span class="o">*</span><span class="n">comm_link_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">VehicleState</span><span class="w"> </span><span class="n">vehicle_state_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Axis4r</span><span class="w"> </span><span class="n">goal_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">GoalMode</span><span class="w"> </span><span class="n">goal_mode_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">goal_timestamp_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">has_api_control_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_api_timedout_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">landed_</span><span class="p">,</span><span class="w"> </span><span class="n">takenoff_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateGoalFromRc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">goal_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getGoalValue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">goal_mode_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getGoalMode</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">detectLanding</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// if we are not trying to move by setting motor outputs</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">takenoff_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// if (!isGreaterThanArmedThrottle(goal_.throttle())) {</span>
+<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">checkThrottle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getMotorOutput</span><span class="p">();</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isGreaterThanArmedThrottle</span><span class="p">(</span><span class="n">checkThrottle</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// and we are not currently moving (based on current velocities)</span>
+<span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">angular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getAngularVelocity</span><span class="p">();</span>
+<span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getLinearVelocity</span><span class="p">();</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">angular</span><span class="p">.</span><span class="n">roll</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">angular</span><span class="p">.</span><span class="n">pitch</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">angular</span><span class="p">.</span><span class="n">yaw</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                    </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">velocity</span><span class="p">.</span><span class="n">z</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// then we must be landed...</span>
+<span class="w">                    </span><span class="n">landed_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">takenoff_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">detectTakingOff</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// if we are not trying to move by setting motor outputs</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">takenoff_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">checkThrottle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getMotorOutput</span><span class="p">();</span>
+<span class="w">            </span><span class="c1">// TODO: better handling of landed &amp; takenoff states</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isGreaterThanArmedThrottle</span><span class="p">(</span><span class="n">checkThrottle</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getLinearVelocity</span><span class="p">().</span><span class="n">z</span><span class="p">())</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.01f</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">takenoff_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                </span><span class="n">landed_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isAlmostZero</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">kMovementTolerance</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isGreaterThanArmedThrottle</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">throttle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">throttle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">params_</span><span class="o">-&gt;</span><span class="n">min_armed_throttle</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">OffboardApi</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardInputPins</span><span class="w"> </span><span class="o">*</span><span class="n">board_inputs</span><span class="p">,</span>
 <span class="w">                </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator</span><span class="p">,</span><span class="w"> </span><span class="n">ICommLink</span><span class="w"> </span><span class="o">*</span><span class="n">comm_link</span><span class="p">)</span>
@@ -339,7 +400,9 @@
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">hasApiControl</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">has_api_control_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">requestApiControl</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">canRequestApiControl</span><span class="p">(</span><span class="n">message</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">has_api_control_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
@@ -355,10 +418,12 @@
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">releaseApiControl</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">has_api_control_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">        </span><span class="n">comm_link_</span><span class="o">-&gt;</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;releaseApiControl was successful&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ICommLink</span><span class="o">::</span><span class="n">kLogLevelInfo</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">setGoalAndMode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Axis4r</span><span class="w"> </span><span class="o">*</span><span class="n">goal</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">GoalMode</span><span class="w"> </span><span class="o">*</span><span class="n">goal_mode</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_api_control_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">goal</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span>
@@ -432,66 +497,6 @@
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">GeoPoint</span><span class="w"> </span><span class="n">getGeoPoint</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getGeoPoint</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">getLandedState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">landed_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">updateGoalFromRc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">goal_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getGoalValue</span><span class="p">();</span>
-<span class="w">        </span><span class="n">goal_mode_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getGoalMode</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">detectLanding</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">        </span><span class="c1">// if we are not trying to move by setting motor outputs</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">takenoff_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// if (!isGreaterThanArmedThrottle(goal_.throttle())) {</span>
-<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">checkThrottle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getMotorOutput</span><span class="p">();</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isGreaterThanArmedThrottle</span><span class="p">(</span><span class="n">checkThrottle</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1">// and we are not currently moving (based on current velocities)</span>
-<span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">angular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getAngularVelocity</span><span class="p">();</span>
-<span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getLinearVelocity</span><span class="p">();</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">angular</span><span class="p">.</span><span class="n">roll</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">angular</span><span class="p">.</span><span class="n">pitch</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">angular</span><span class="p">.</span><span class="n">yaw</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">                    </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="n">velocity</span><span class="p">.</span><span class="n">z</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="c1">// then we must be landed...</span>
-<span class="w">                    </span><span class="n">landed_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">                    </span><span class="n">takenoff_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">detectTakingOff</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// if we are not trying to move by setting motor outputs</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">takenoff_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">checkThrottle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rc_</span><span class="p">.</span><span class="n">getMotorOutput</span><span class="p">();</span>
-<span class="w">            </span><span class="c1">// TODO: better handling of landed &amp; takenoff states</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isGreaterThanArmedThrottle</span><span class="p">(</span><span class="n">checkThrottle</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getLinearVelocity</span><span class="p">().</span><span class="n">z</span><span class="p">())</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.01f</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">takenoff_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">                </span><span class="n">landed_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isAlmostZero</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">kMovementTolerance</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isGreaterThanArmedThrottle</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">throttle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">throttle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">params_</span><span class="o">-&gt;</span><span class="n">min_armed_throttle</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">TReal</span><span class="w"> </span><span class="n">kMovementTolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TReal</span><span class="p">)</span><span class="mf">0.08</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">RemoteControl</span><span class="w"> </span><span class="n">rc_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ICommLink</span><span class="w"> </span><span class="o">*</span><span class="n">comm_link_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">VehicleState</span><span class="w"> </span><span class="n">vehicle_state_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">Axis4r</span><span class="w"> </span><span class="n">goal_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">GoalMode</span><span class="w"> </span><span class="n">goal_mode_</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">goal_timestamp_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">has_api_control_</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_api_timedout_</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">landed_</span><span class="p">,</span><span class="w"> </span><span class="n">takenoff_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace simple_flight</span>

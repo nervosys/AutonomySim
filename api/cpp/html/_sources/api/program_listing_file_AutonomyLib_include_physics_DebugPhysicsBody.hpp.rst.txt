@@ -17,6 +17,7 @@ Program Listing for File DebugPhysicsBody.hpp
    #define autonomylib_physics_DebugPhysicsBody_hpp
    
    #include "PhysicsBody.hpp"
+   
    #include <exception>
    #include <iostream>
    
@@ -24,18 +25,69 @@ Program Listing for File DebugPhysicsBody.hpp
    namespace autonomylib {
    
    class DebugPhysicsBody : public PhysicsBody {
+   
      private:
        class WrenchVertex : public PhysicsBodyVertex {
-         public:
-           WrenchVertex(const Vector3r &position, const Vector3r &normal, const Vector3r &force = Vector3r::Zero())
-               : PhysicsBodyVertex(position, normal), force_(force) {}
+   
+         private:
+           Vector3r force_;
    
          protected:
            virtual void setWrench(Wrench &wrench) override { wrench.force = force_; }
    
-         private:
-           Vector3r force_;
+         public:
+           WrenchVertex(const Vector3r &position, const Vector3r &normal, const Vector3r &force = Vector3r::Zero())
+               : PhysicsBodyVertex(position, normal), force_(force) {}
        };
+   
+       Vector3r body_box_ = Vector3r(0.20f, 0.12f, 0.04f);
+       real_T mass_ = 1.0f;
+       real_T restitution_ = 0.5f;
+       real_T friction_ = 0.7f;
+   
+       Matrix3x3r inertia_;
+   
+       vector<PhysicsBodyVertex> drag_vertices_;
+       vector<WrenchVertex> wrench_vertices_;
+   
+       static void createDragVertices(vector<PhysicsBodyVertex> &drag_vertices, real_T drag_coefficient, real_T body_x,
+                                      real_T body_y, real_T body_z) {
+           real_T top_bottom_area = body_x * body_y;
+           real_T left_right_area = body_x * body_z;
+           real_T front_back_area = body_y * body_z;
+           Vector3r drag_factor_unit = Vector3r(front_back_area, left_right_area, top_bottom_area) * drag_coefficient /
+                                       2; // Vector3r drag_factor_unit = Vector3r::Zero();
+   
+           // add six drag vertices representing 6 sides
+           drag_vertices.clear();
+           drag_vertices.emplace_back(Vector3r(0, 0, -body_z), Vector3r(0, 0, -1), drag_factor_unit.z());
+           drag_vertices.emplace_back(Vector3r(0, 0, body_z), Vector3r(0, 0, 1), drag_factor_unit.z());
+           drag_vertices.emplace_back(Vector3r(0, -body_y, 0), Vector3r(0, -1, 0), drag_factor_unit.y());
+           drag_vertices.emplace_back(Vector3r(0, body_y, 0), Vector3r(0, 1, 0), drag_factor_unit.y());
+           drag_vertices.emplace_back(Vector3r(-body_x, 0, 0), Vector3r(-1, 0, 0), drag_factor_unit.x());
+           drag_vertices.emplace_back(Vector3r(body_x, 0, 0), Vector3r(1, 0, 0), drag_factor_unit.x());
+       }
+   
+       static void createWrenchVertices(vector<WrenchVertex> &wrench_vertices, real_T body_x, real_T body_y, real_T body_z,
+                                        real_T mass) {
+           wrench_vertices.clear();
+           wrench_vertices.emplace_back(Vector3r(0, 0, -body_z), Vector3r(0, 0, -1), Vector3r(0, 0, -18 * mass));
+           wrench_vertices.emplace_back(Vector3r(0, 0, body_z), Vector3r(0, 0, 1));
+           wrench_vertices.emplace_back(Vector3r(0, -body_y, 0), Vector3r(0, -1, 0));
+           wrench_vertices.emplace_back(Vector3r(0, body_y, 0), Vector3r(0, 1, 0));
+           wrench_vertices.emplace_back(Vector3r(-body_x, 0, 0), Vector3r(-1, 0, 0));
+           wrench_vertices.emplace_back(Vector3r(body_x, 0, 0), Vector3r(1, 0, 0));
+       }
+   
+       // TODO: put in common place?
+       static void computeInertiaMatrix(Matrix3x3r &inertia, real_T box_mass, const Vector3r &body_box) {
+           inertia = Matrix3x3r::Zero();
+   
+           // http://farside.ph.utexas.edu/teaching/336k/Newtonhtml/node64.html
+           inertia(0, 0) = box_mass / 12.0f * (body_box.y() * body_box.y() + body_box.z() * body_box.z());
+           inertia(1, 1) = box_mass / 12.0f * (body_box.x() * body_box.x() + body_box.z() * body_box.z());
+           inertia(2, 2) = box_mass / 12.0f * (body_box.x() * body_box.x() + body_box.y() * body_box.y());
+       }
    
      public:
        void initialize(Kinematics *kinematics, Environment *environment) {
@@ -80,57 +132,6 @@ Program Listing for File DebugPhysicsBody.hpp
        uint shapeVertexCount() {
            return 8; // for box
        }
-   
-     private:
-       static void createDragVertices(vector<PhysicsBodyVertex> &drag_vertices, real_T drag_coefficient, real_T body_x,
-                                      real_T body_y, real_T body_z) {
-           real_T top_bottom_area = body_x * body_y;
-           real_T left_right_area = body_x * body_z;
-           real_T front_back_area = body_y * body_z;
-           Vector3r drag_factor_unit = Vector3r(front_back_area, left_right_area, top_bottom_area) * drag_coefficient /
-                                       2; // Vector3r drag_factor_unit = Vector3r::Zero();
-   
-           // add six drag vertices representing 6 sides
-           drag_vertices.clear();
-           drag_vertices.emplace_back(Vector3r(0, 0, -body_z), Vector3r(0, 0, -1), drag_factor_unit.z());
-           drag_vertices.emplace_back(Vector3r(0, 0, body_z), Vector3r(0, 0, 1), drag_factor_unit.z());
-           drag_vertices.emplace_back(Vector3r(0, -body_y, 0), Vector3r(0, -1, 0), drag_factor_unit.y());
-           drag_vertices.emplace_back(Vector3r(0, body_y, 0), Vector3r(0, 1, 0), drag_factor_unit.y());
-           drag_vertices.emplace_back(Vector3r(-body_x, 0, 0), Vector3r(-1, 0, 0), drag_factor_unit.x());
-           drag_vertices.emplace_back(Vector3r(body_x, 0, 0), Vector3r(1, 0, 0), drag_factor_unit.x());
-       }
-   
-       static void createWrenchVertices(vector<WrenchVertex> &wrench_vertices, real_T body_x, real_T body_y, real_T body_z,
-                                        real_T mass) {
-           wrench_vertices.clear();
-           wrench_vertices.emplace_back(Vector3r(0, 0, -body_z), Vector3r(0, 0, -1), Vector3r(0, 0, -18 * mass));
-           wrench_vertices.emplace_back(Vector3r(0, 0, body_z), Vector3r(0, 0, 1));
-           wrench_vertices.emplace_back(Vector3r(0, -body_y, 0), Vector3r(0, -1, 0));
-           wrench_vertices.emplace_back(Vector3r(0, body_y, 0), Vector3r(0, 1, 0));
-           wrench_vertices.emplace_back(Vector3r(-body_x, 0, 0), Vector3r(-1, 0, 0));
-           wrench_vertices.emplace_back(Vector3r(body_x, 0, 0), Vector3r(1, 0, 0));
-       }
-   
-       // TODO: put in common place?
-       static void computeInertiaMatrix(Matrix3x3r &inertia, real_T box_mass, const Vector3r &body_box) {
-           inertia = Matrix3x3r::Zero();
-   
-           // http://farside.ph.utexas.edu/teaching/336k/Newtonhtml/node64.html
-           inertia(0, 0) = box_mass / 12.0f * (body_box.y() * body_box.y() + body_box.z() * body_box.z());
-           inertia(1, 1) = box_mass / 12.0f * (body_box.x() * body_box.x() + body_box.z() * body_box.z());
-           inertia(2, 2) = box_mass / 12.0f * (body_box.x() * body_box.x() + body_box.y() * body_box.y());
-       }
-   
-     private:
-       Vector3r body_box_ = Vector3r(0.20f, 0.12f, 0.04f);
-       real_T mass_ = 1.0f;
-       real_T restitution_ = 0.5f;
-       real_T friction_ = 0.7f;
-   
-       Matrix3x3r inertia_;
-   
-       vector<PhysicsBodyVertex> drag_vertices_;
-       vector<WrenchVertex> wrench_vertices_;
    };
    
    } // namespace autonomylib

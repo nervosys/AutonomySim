@@ -282,9 +282,20 @@
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">simple_flight</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">VelocityController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IAxisController</span><span class="p">,</span>
-<span class="w">                           </span><span class="k">public</span><span class="w"> </span><span class="n">IGoal</span><span class="w"> </span><span class="c1">// for internal child controller</span>
-<span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VelocityController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IAxisController</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IGoal</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// for internal child controller</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">axis_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IGoal</span><span class="w"> </span><span class="o">*</span><span class="n">goal_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">GoalMode</span><span class="w"> </span><span class="n">child_mode_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Axis4r</span><span class="w"> </span><span class="n">child_goal_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PidController</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">pid_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IAxisController</span><span class="o">&gt;</span><span class="w"> </span><span class="n">child_controller_</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">VelocityController</span><span class="p">(</span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">params_</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="w"> </span><span class="n">clock_</span><span class="p">(</span><span class="n">clock</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 
@@ -387,21 +398,6 @@
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Axis4r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getGoalValue</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">child_goal_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">GoalMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getGoalMode</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">child_mode_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">axis_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IGoal</span><span class="w"> </span><span class="o">*</span><span class="n">goal_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">GoalMode</span><span class="w"> </span><span class="n">child_mode_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Axis4r</span><span class="w"> </span><span class="n">child_goal_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PidController</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">pid_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IAxisController</span><span class="o">&gt;</span><span class="w"> </span><span class="n">child_controller_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace simple_flight</span>

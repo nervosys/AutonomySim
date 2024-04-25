@@ -23,33 +23,10 @@ Program Listing for File ArduCopterSoloParams.hpp
    
    class ArduCopterSoloParams : public MultirotorParams {
    
-     public:
-       ArduCopterSoloParams(const AutonomySimSettings::MavLinkVehicleSetting &vehicle_settings,
-                            std::shared_ptr<const SensorFactory> sensor_factory)
-           : sensor_factory_(sensor_factory) {
-           connection_info_ = getConnectionInfo(vehicle_settings);
-       }
-   
-       virtual ~ArduCopterSoloParams() = default;
-   
-       virtual std::unique_ptr<MultirotorApiBase> createMultirotorApi() override {
-           unique_ptr<MultirotorApiBase> api(new ArduCopterSoloApi());
-           auto api_ptr = static_cast<ArduCopterSoloApi *>(api.get());
-           api_ptr->initialize(connection_info_, &getSensors(), true);
-   
-           return api;
-       }
-   
-       virtual void setupParams() override {
-           // TODO consider whether we want to make us of the 'connection_info_.model' field (perhaps to indicate different
-           // sensor configs, say?  not sure...)
-   
-           auto &params = getParams();
-   
-           setupSolo(params);
-       }
-   
      private:
+       AutonomySimSettings::MavLinkConnectionInfo connection_info_;
+       std::shared_ptr<const SensorFactory> sensor_factory_;
+   
        void setupSolo(Params &params) {
            // set up arm lengths
            // dimensions are for F450 frame:
@@ -99,9 +76,31 @@ Program Listing for File ArduCopterSoloParams.hpp
      protected:
        virtual const SensorFactory *getSensorFactory() const override { return sensor_factory_.get(); }
    
-     private:
-       AutonomySimSettings::MavLinkConnectionInfo connection_info_;
-       std::shared_ptr<const SensorFactory> sensor_factory_;
+     public:
+       ArduCopterSoloParams(const AutonomySimSettings::MavLinkVehicleSetting &vehicle_settings,
+                            std::shared_ptr<const SensorFactory> sensor_factory)
+           : sensor_factory_(sensor_factory) {
+           connection_info_ = getConnectionInfo(vehicle_settings);
+       }
+   
+       virtual ~ArduCopterSoloParams() = default;
+   
+       virtual std::unique_ptr<MultirotorApiBase> createMultirotorApi() override {
+           unique_ptr<MultirotorApiBase> api(new ArduCopterSoloApi());
+           auto api_ptr = static_cast<ArduCopterSoloApi *>(api.get());
+           api_ptr->initialize(connection_info_, &getSensors(), true);
+   
+           return api;
+       }
+   
+       virtual void setupParams() override {
+           // TODO consider whether we want to make us of the 'connection_info_.model' field (perhaps to indicate different
+           // sensor configs, say?  not sure...)
+   
+           auto &params = getParams();
+   
+           setupSolo(params);
+       }
    };
    
    } // namespace autonomylib

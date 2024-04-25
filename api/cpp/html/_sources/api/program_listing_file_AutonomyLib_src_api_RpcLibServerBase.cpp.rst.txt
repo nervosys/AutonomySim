@@ -38,9 +38,9 @@ Program Listing for File RpcLibServerBase.cpp
    #ifndef check
    #define check(expr) (static_cast<void>((expr)))
    #endif
+   #include "api/RpcLibAdaptorsBase.hpp"
    #include "common/utils/WindowsApisCommonPost.hpp"
    
-   #include "api/RpcLibAdaptorsBase.hpp"
    #include <functional>
    #include <thread>
    

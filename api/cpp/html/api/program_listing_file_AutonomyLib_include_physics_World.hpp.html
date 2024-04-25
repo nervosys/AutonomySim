@@ -279,12 +279,34 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/Common.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/UpdatableContainer.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/utils/ScheduledExecutor.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">nervosys</span><span class="w"> </span><span class="p">{</span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">World</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UpdatableContainer</span><span class="o">&lt;</span><span class="n">UpdatableObject</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PhysicsEngineBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">physics_engine_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">common_utils</span><span class="o">::</span><span class="n">ScheduledExecutor</span><span class="w"> </span><span class="n">executor_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">worldUpdatorAsync</span><span class="p">(</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">dt_nanos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">dt_nanos</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">update</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Utils::DebugBreak();</span>
+<span class="w">            </span><span class="n">Utils</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="n">Utils</span><span class="o">::</span><span class="n">stringf</span><span class="p">(</span><span class="s">&quot;Exception occurred while updating world: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">()),</span><span class="w"> </span><span class="n">Utils</span><span class="o">::</span><span class="n">kLogLevelError</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Utils::DebugBreak();</span>
+<span class="w">            </span><span class="n">Utils</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;Exception occurred while updating world&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Utils</span><span class="o">::</span><span class="n">kLogLevelError</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">World</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PhysicsEngineBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">physics_engine</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">physics_engine_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">physics_engine</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">World</span><span class="o">::</span><span class="n">clear</span><span class="p">();</span>
@@ -369,27 +391,6 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">continueForFrames</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">frames</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">executor_</span><span class="p">.</span><span class="n">continueForFrames</span><span class="p">(</span><span class="n">frames</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setFrameNumber</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">frameNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">executor_</span><span class="p">.</span><span class="n">setFrameNumber</span><span class="p">(</span><span class="n">frameNumber</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">worldUpdatorAsync</span><span class="p">(</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">dt_nanos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">dt_nanos</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">update</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// Utils::DebugBreak();</span>
-<span class="w">            </span><span class="n">Utils</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="n">Utils</span><span class="o">::</span><span class="n">stringf</span><span class="p">(</span><span class="s">&quot;Exception occurred while updating world: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">()),</span><span class="w"> </span><span class="n">Utils</span><span class="o">::</span><span class="n">kLogLevelError</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// Utils::DebugBreak();</span>
-<span class="w">            </span><span class="n">Utils</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;Exception occurred while updating world&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Utils</span><span class="o">::</span><span class="n">kLogLevelError</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PhysicsEngineBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">physics_engine_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
-<span class="w">    </span><span class="n">common_utils</span><span class="o">::</span><span class="n">ScheduledExecutor</span><span class="w"> </span><span class="n">executor_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

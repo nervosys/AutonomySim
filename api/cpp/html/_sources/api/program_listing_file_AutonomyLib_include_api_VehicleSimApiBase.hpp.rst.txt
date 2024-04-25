@@ -27,6 +27,7 @@ Program Listing for File VehicleSimApiBase.hpp
    namespace autonomylib {
    
    class VehicleSimApiBase : public nervosys::autonomylib::UpdatableObject {
+   
      public:
        virtual ~VehicleSimApiBase() = default;
    

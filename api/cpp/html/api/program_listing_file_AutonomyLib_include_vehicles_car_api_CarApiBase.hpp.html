@@ -285,6 +285,13 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">CarApiBase</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">VehicleApiBase</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">resetImplementation</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// reset sensors last after their ground truth has been reset</span>
+<span class="w">        </span><span class="n">getSensors</span><span class="p">().</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">CarControls</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">throttle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 1 to -1 */</span>
@@ -334,7 +341,6 @@
 <span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Quaternionr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getOrientation</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">kinematics_estimated</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">};</span>
 
-<span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="c1">// TODO: Temporary constructor for the Unity implementation which does not use the new Sensor Configuration Settings</span>
 <span class="w">    </span><span class="c1">// implementation.</span>
 <span class="w">    </span><span class="c1">// CarApiBase() {}</span>
@@ -387,12 +393,6 @@
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">SensorFactory</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor_factory_</span><span class="p">;</span>
 <span class="w">    </span><span class="n">SensorCollection</span><span class="w"> </span><span class="n">sensors_</span><span class="p">;</span><span class="w">                      </span><span class="c1">// maintains sensor type indexed collection of sensors</span>
 <span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">SensorBase</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">sensor_storage_</span><span class="p">;</span><span class="w"> </span><span class="c1">// RAII for created sensors</span>
-
-<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">resetImplementation</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// reset sensors last after their ground truth has been reset</span>
-<span class="w">        </span><span class="n">getSensors</span><span class="p">().</span><span class="n">reset</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

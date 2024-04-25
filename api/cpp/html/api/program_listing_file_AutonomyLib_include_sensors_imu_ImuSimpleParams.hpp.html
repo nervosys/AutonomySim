@@ -276,6 +276,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/AutonomySimSettings.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/Common.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/EarthUtils.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">nervosys</span><span class="w"> </span><span class="p">{</span>
@@ -285,13 +286,13 @@
 <span class="c1">// https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model-and-Intrinsics</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">ImuSimpleParams</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="cm">/* ref: Parameter values are for MPU 6000 IMU from InvenSense</span>
-<span class="cm">Design and Characterization of a Low Cost MEMS IMU Cluster for Precision Navigation</span>
-<span class="cm">Daniel R. Greenheck, 2009, sec 2.2, pp 17</span>
-<span class="cm">http://epublications.marquette.edu/cgi/viewcontent.cgi?article=1326&amp;context=theses_open</span>
-<span class="cm">Datasheet:</span>
-<span class="cm">https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf</span>
-<span class="cm">For Allan Variance/Deviation plots see http://www.invensense.com/wp-content/uploads/2015/02/MPU-3300-Datasheet.pdf</span>
-<span class="cm">*/</span>
+<span class="cm">    Design and Characterization of a Low Cost MEMS IMU Cluster for Precision Navigation</span>
+<span class="cm">    Daniel R. Greenheck, 2009, sec 2.2, pp 17</span>
+<span class="cm">    http://epublications.marquette.edu/cgi/viewcontent.cgi?article=1326&amp;context=theses_open</span>
+<span class="cm">    Datasheet:</span>
+<span class="cm">    https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf</span>
+<span class="cm">    For Allan Variance/Deviation plots see http://www.invensense.com/wp-content/uploads/2015/02/MPU-3300-Datasheet.pdf</span>
+<span class="cm">    */</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Gyroscope</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// angular random walk (ARW)</span>
 <span class="w">        </span><span class="n">real_T</span><span class="w"> </span><span class="n">arw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.30f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3600.0f</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PIf</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"> </span><span class="c1">// deg/sqrt(hour) converted to rad/sqrt(sec)</span>
@@ -318,15 +319,18 @@
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isnan</span><span class="p">(</span><span class="n">arw</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">gyro</span><span class="p">.</span><span class="n">arw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arw</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3600.0f</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PIf</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"> </span><span class="c1">// //deg/sqrt(hour) converted to rad/sqrt(sec)</span>
 <span class="w">        </span><span class="p">}</span>
+
 <span class="w">        </span><span class="n">gyro</span><span class="p">.</span><span class="n">tau</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">getFloat</span><span class="p">(</span><span class="s">&quot;GyroBiasStabilityTau&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gyro</span><span class="p">.</span><span class="n">tau</span><span class="p">);</span>
 <span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">bias_stability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">getFloat</span><span class="p">(</span><span class="s">&quot;GyroBiasStability&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Utils</span><span class="o">::</span><span class="n">nan</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">());</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isnan</span><span class="p">(</span><span class="n">bias_stability</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">gyro</span><span class="p">.</span><span class="n">bias_stability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bias_stability</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PIf</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"> </span><span class="c1">// deg/hr converted to rad/sec</span>
 <span class="w">        </span><span class="p">}</span>
+
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">vrw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">getFloat</span><span class="p">(</span><span class="s">&quot;VelocityRandomWalk&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Utils</span><span class="o">::</span><span class="n">nan</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">());</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isnan</span><span class="p">(</span><span class="n">vrw</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">accel</span><span class="p">.</span><span class="n">vrw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vrw</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">Gravity</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1.0E3f</span><span class="p">;</span><span class="w"> </span><span class="c1">// mg converted to m/s^2</span>
 <span class="w">        </span><span class="p">}</span>
+
 <span class="w">        </span><span class="n">accel</span><span class="p">.</span><span class="n">tau</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">getFloat</span><span class="p">(</span><span class="s">&quot;AccelBiasStabilityTau&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">accel</span><span class="p">.</span><span class="n">tau</span><span class="p">);</span>
 <span class="w">        </span><span class="n">bias_stability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">getFloat</span><span class="p">(</span><span class="s">&quot;AccelBiasStability&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Utils</span><span class="o">::</span><span class="n">nan</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">());</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isnan</span><span class="p">(</span><span class="n">bias_stability</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>

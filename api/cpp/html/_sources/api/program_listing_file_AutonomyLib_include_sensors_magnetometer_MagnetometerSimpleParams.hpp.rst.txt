@@ -22,6 +22,7 @@ Program Listing for File MagnetometerSimpleParams.hpp
    namespace autonomylib {
    
    struct MagnetometerSimpleParams {
+   
        enum ReferenceSource { ReferenceSource_Constant, ReferenceSource_DipoleModel };
    
        Vector3r noise_sigma =

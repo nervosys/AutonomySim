@@ -283,6 +283,35 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Environment</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UpdatableObject</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">initial_</span><span class="p">,</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">HomeGeoPoint</span><span class="w"> </span><span class="n">home_geo_point_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">GeodeticConverter</span><span class="w"> </span><span class="n">geodetic_converter_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateState</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">geodetic_converter_</span><span class="p">.</span><span class="n">ned2Geodetic</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">geo_point</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">real_T</span><span class="w"> </span><span class="n">geo_pot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getGeopotential</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">geo_point</span><span class="p">.</span><span class="n">altitude</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000.0f</span><span class="p">);</span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">temperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getStandardTemperature</span><span class="p">(</span><span class="n">geo_pot</span><span class="p">);</span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">air_pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getStandardPressure</span><span class="p">(</span><span class="n">geo_pot</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">air_density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getAirDensity</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">air_pressure</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// TODO: avoid recalculating square roots</span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector3r</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getGravity</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">geo_point</span><span class="p">.</span><span class="n">altitude</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">resetImplementation</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">current_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">failResetUpdateOrdering</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Do nothing.</span>
+<span class="w">        </span><span class="c1">// The environment gets reset() twice without an update() inbetween,</span>
+<span class="w">        </span><span class="c1">// via MultirotorPawnSimApi::reset() and CarSimApi::reset(), because</span>
+<span class="w">        </span><span class="c1">// those functions directly reset an environment, and also call other reset()s that reset the same environment.</span>
+<span class="w">    </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">State</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// these fields must be set at initialization time</span>
@@ -300,11 +329,12 @@
 <span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="n">position</span><span class="p">(</span><span class="n">position_val</span><span class="p">),</span><span class="w"> </span><span class="n">geo_point</span><span class="p">(</span><span class="n">geo_point_val</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 <span class="w">    </span><span class="p">};</span>
 
-<span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">Environment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// allow default constructor with later call for initialize</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="n">Environment</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">initial</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">initial</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">initial</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">initial_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial</span><span class="p">;</span>
 <span class="w">        </span><span class="n">setHomeGeoPoint</span><span class="p">(</span><span class="n">initial_</span><span class="p">.</span><span class="n">geo_point</span><span class="p">);</span>
@@ -326,35 +356,6 @@
 <span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getState</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">updateState</span><span class="p">(</span><span class="n">current_</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">resetImplementation</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">current_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">failResetUpdateOrdering</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
-<span class="w">        </span><span class="c1">// Do nothing.</span>
-<span class="w">        </span><span class="c1">// The environment gets reset() twice without an update() inbetween,</span>
-<span class="w">        </span><span class="c1">// via MultirotorPawnSimApi::reset() and CarSimApi::reset(), because</span>
-<span class="w">        </span><span class="c1">// those functions directly reset an environment, and also call other reset()s that reset the same environment.</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">updateState</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">geodetic_converter_</span><span class="p">.</span><span class="n">ned2Geodetic</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">geo_point</span><span class="p">);</span>
-
-<span class="w">        </span><span class="n">real_T</span><span class="w"> </span><span class="n">geo_pot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getGeopotential</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">geo_point</span><span class="p">.</span><span class="n">altitude</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000.0f</span><span class="p">);</span>
-<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">temperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getStandardTemperature</span><span class="p">(</span><span class="n">geo_pot</span><span class="p">);</span>
-<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">air_pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getStandardPressure</span><span class="p">(</span><span class="n">geo_pot</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
-<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">air_density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getAirDensity</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">air_pressure</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// TODO: avoid recalculating square roots</span>
-<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector3r</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getGravity</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">geo_point</span><span class="p">.</span><span class="n">altitude</span><span class="p">));</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">initial_</span><span class="p">,</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">HomeGeoPoint</span><span class="w"> </span><span class="n">home_geo_point_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">GeodeticConverter</span><span class="w"> </span><span class="n">geodetic_converter_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

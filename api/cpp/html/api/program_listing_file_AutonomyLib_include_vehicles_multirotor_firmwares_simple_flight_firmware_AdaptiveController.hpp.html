@@ -285,53 +285,6 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">simple_flight</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">AdaptiveController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IController</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">IGoal</span><span class="w"> </span><span class="o">*</span><span class="n">goal</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">goal_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">goal</span><span class="p">;</span>
-<span class="w">        </span><span class="n">state_estimator_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Axis4r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getOutput</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Create vectors to store state variables</span>
-<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">angle_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="w">        </span><span class="c1">// Assign state variables to placeholder variables</span>
-<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getAngles</span><span class="p">();</span>
-<span class="w">        </span><span class="n">angle_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getAngularVelocity</span><span class="p">();</span>
-<span class="w">        </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getPosition</span><span class="p">();</span>
-<span class="w">        </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getLinearVelocity</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// Send state variables to the adaptive controller</span>
-<span class="w">        </span><span class="n">update_state_vals</span><span class="p">(</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">velocity</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">velocity</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">position</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">velocity</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="w">                          </span><span class="n">angle_rate</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">angle_rate</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">angle</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">angle_rate</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-
-<span class="w">        </span><span class="n">update_goals</span><span class="p">();</span>
-
-<span class="w">        </span><span class="n">run</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// Replace PID control variables with Adaptive control variables</span>
-<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U1</span><span class="p">();</span>
-<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U2</span><span class="p">();</span>
-<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U3</span><span class="p">();</span>
-<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U4</span><span class="p">();</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">output_controls_</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">isLastGoalModeAllPassthrough</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">is_last_goal_mode_all_passthrough_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Axis4r</span><span class="o">::</span><span class="n">AxisCount</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">axis</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">last_mode_</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">GoalModeType</span><span class="o">::</span><span class="n">Passthrough</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">is_last_goal_mode_all_passthrough_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">is_last_goal_mode_all_passthrough_</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
 
 <span class="w">  </span><span class="k">private</span><span class="o">:</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock_</span><span class="p">;</span>
@@ -545,23 +498,19 @@
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">rungeKutta</span><span class="p">(</span><span class="n">adaptive_y</span><span class="p">,</span><span class="w"> </span><span class="n">adaptive_output</span><span class="p">,</span><span class="w"> </span><span class="n">getTimeU</span><span class="p">(),</span><span class="w"> </span><span class="mf">0.003f</span><span class="p">,</span><span class="w"> </span><span class="n">array_length</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U1</span><span class="p">()</span><span class="w"> </span><span class="c1">// pitch</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// pitch</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">U1</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U2</span><span class="p">()</span><span class="w"> </span><span class="c1">// roll</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// roll</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">U2</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U3</span><span class="p">()</span><span class="w"> </span><span class="c1">// thrust</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U3</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// thrust</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">U3</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U4</span><span class="p">()</span><span class="w"> </span><span class="c1">// yaw</span>
-<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">get_U4</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// yaw</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">U4</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -631,7 +580,6 @@
 <span class="w">    </span><span class="c1">// ---------------------------------------------------------------------------</span>
 <span class="w">    </span><span class="c1">// Local Support Functions</span>
 <span class="w">    </span><span class="c1">// ---------------------------------------------------------------------------</span>
-
 <span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="nf">getTimeU</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">last_time_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">clock_</span><span class="o">-&gt;</span><span class="n">millis</span><span class="p">();</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">last_time_</span><span class="p">;</span>
@@ -888,13 +836,9 @@
 <span class="w">        </span><span class="n">U4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k_yaw</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">S3_R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Iz</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">Iy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Ix</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">PQR</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">PQR</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">delta_yaw</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// Rescale such that the outputs normalize from -1,1</span>
-
 <span class="w">        </span><span class="n">U1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">U1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span><span class="w"> </span><span class="c1">// sqrt(abs(U1)) / 6.20; // I used sqrt to try and allow for smoother signal</span>
-
 <span class="w">        </span><span class="n">U2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">U2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
-
 <span class="w">        </span><span class="n">U3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">U3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
-
 <span class="w">        </span><span class="n">U4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">U4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// Saturations: U1-&gt;.35,1 : U2,U3,U4 -&gt; -.2,.2</span>
@@ -922,6 +866,54 @@
 <span class="w">        </span><span class="n">remapU</span><span class="p">(</span><span class="n">U1</span><span class="p">,</span><span class="w"> </span><span class="n">U2</span><span class="p">,</span><span class="w"> </span><span class="n">U3</span><span class="p">,</span><span class="w"> </span><span class="n">U4</span><span class="p">);</span><span class="w"> </span><span class="c1">// remap to axis4r</span>
 
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// SlidingModeModel */</span>
+
+<span class="w">  </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">IGoal</span><span class="w"> </span><span class="o">*</span><span class="n">goal</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IStateEstimator</span><span class="w"> </span><span class="o">*</span><span class="n">state_estimator</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">goal_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">goal</span><span class="p">;</span>
+<span class="w">        </span><span class="n">state_estimator_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Axis4r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getOutput</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create vectors to store state variables</span>
+<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">angle_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Axis3r</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Assign state variables to placeholder variables</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getAngles</span><span class="p">();</span>
+<span class="w">        </span><span class="n">angle_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getAngularVelocity</span><span class="p">();</span>
+<span class="w">        </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getPosition</span><span class="p">();</span>
+<span class="w">        </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_estimator_</span><span class="o">-&gt;</span><span class="n">getLinearVelocity</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Send state variables to the adaptive controller</span>
+<span class="w">        </span><span class="n">update_state_vals</span><span class="p">(</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">velocity</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">velocity</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">position</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">velocity</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">                          </span><span class="n">angle_rate</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">angle_rate</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">angle</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">angle_rate</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+<span class="w">        </span><span class="n">update_goals</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">run</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Replace PID control variables with Adaptive control variables</span>
+<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U1</span><span class="p">();</span>
+<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U2</span><span class="p">();</span>
+<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U3</span><span class="p">();</span>
+<span class="w">        </span><span class="n">output_controls_</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_U4</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">output_controls_</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">isLastGoalModeAllPassthrough</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">is_last_goal_mode_all_passthrough_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Axis4r</span><span class="o">::</span><span class="n">AxisCount</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">axis</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">last_mode_</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">GoalModeType</span><span class="o">::</span><span class="n">Passthrough</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">is_last_goal_mode_all_passthrough_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">is_last_goal_mode_all_passthrough_</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace simple_flight</span>

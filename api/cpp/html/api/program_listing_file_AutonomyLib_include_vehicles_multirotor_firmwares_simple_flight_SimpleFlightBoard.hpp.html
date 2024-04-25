@@ -278,6 +278,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;firmware/Params.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;firmware/interfaces/IBoard.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;physics/Kinematics.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;exception&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -285,6 +286,21 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">SimpleFlightBoard</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">simple_flight</span><span class="o">::</span><span class="n">IBoard</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// motor outputs</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">motor_output_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">input_channels_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_connected_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">simple_flight</span><span class="o">::</span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">sleep</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">msec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">msec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">ClockBase</span><span class="w"> </span><span class="o">*</span><span class="nf">clock</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ClockFactory</span><span class="o">::</span><span class="n">get</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ClockBase</span><span class="w"> </span><span class="o">*</span><span class="nf">clock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ClockFactory</span><span class="o">::</span><span class="n">get</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">SimpleFlightBoard</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">simple_flight</span><span class="o">::</span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">params_</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 
@@ -303,7 +319,6 @@
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setIsRcConnected</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">is_connected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">is_connected_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">is_connected</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="c1">// Board interface implementation --------------------------------------------------------------------------</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">micros</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
@@ -356,22 +371,6 @@
 
 <span class="w">        </span><span class="c1">// no op for now</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">sleep</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">msec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">msec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">ClockBase</span><span class="w"> </span><span class="o">*</span><span class="n">clock</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ClockFactory</span><span class="o">::</span><span class="n">get</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">ClockBase</span><span class="w"> </span><span class="o">*</span><span class="n">clock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ClockFactory</span><span class="o">::</span><span class="n">get</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// motor outputs</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">motor_output_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">input_channels_</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_connected_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">simple_flight</span><span class="o">::</span><span class="n">Params</span><span class="w"> </span><span class="o">*</span><span class="n">params_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

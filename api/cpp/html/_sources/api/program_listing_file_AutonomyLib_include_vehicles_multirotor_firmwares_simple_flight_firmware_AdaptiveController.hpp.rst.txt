@@ -28,53 +28,6 @@ Program Listing for File AdaptiveController.hpp
    namespace simple_flight {
    
    class AdaptiveController : public IController {
-     public:
-       virtual void initialize(const IGoal *goal, const IStateEstimator *state_estimator) override {
-           goal_ = goal;
-           state_estimator_ = state_estimator;
-       }
-   
-       virtual const Axis4r &getOutput() override {
-           // Create vectors to store state variables
-           Axis3r angle = 0;
-           Axis3r position = 0;
-           Axis3r angle_rate = 0;
-           Axis3r velocity = 0;
-   
-           // Assign state variables to placeholder variables
-           angle = state_estimator_->getAngles();
-           angle_rate = state_estimator_->getAngularVelocity();
-           position = state_estimator_->getPosition();
-           velocity = state_estimator_->getLinearVelocity();
-   
-           // Send state variables to the adaptive controller
-           update_state_vals(position[0], velocity[0], position[1], velocity[1], position[2], velocity[2], angle[0],
-                             angle_rate[0], angle[1], angle_rate[1], angle[2], angle_rate[2]);
-   
-           update_goals();
-   
-           run();
-   
-           // Replace PID control variables with Adaptive control variables
-           output_controls_[0] = get_U1();
-           output_controls_[1] = get_U2();
-           output_controls_[2] = get_U3();
-           output_controls_[3] = get_U4();
-   
-           return output_controls_;
-       }
-   
-       virtual bool isLastGoalModeAllPassthrough() override {
-           is_last_goal_mode_all_passthrough_ = true;
-   
-           for (unsigned int axis = 0; axis < Axis4r::AxisCount(); ++axis) {
-               if (last_mode_[axis] != GoalModeType::Passthrough) {
-                   is_last_goal_mode_all_passthrough_ = false;
-               }
-           }
-   
-           return is_last_goal_mode_all_passthrough_;
-       }
    
      private:
        const IBoardClock *clock_;
@@ -288,23 +241,19 @@ Program Listing for File AdaptiveController.hpp
    
        void run() { rungeKutta(adaptive_y, adaptive_output, getTimeU(), 0.003f, array_length); }
    
-       float get_U1() // pitch
-       {
+       float get_U1() { // pitch
            return static_cast<float>(U1);
        }
    
-       float get_U2() // roll
-       {
+       float get_U2() { // roll
            return static_cast<float>(U2);
        }
    
-       float get_U3() // thrust
-       {
+       float get_U3() { // thrust
            return static_cast<float>(U3);
        }
    
-       float get_U4() // yaw
-       {
+       float get_U4() { // yaw
            return static_cast<float>(U4);
        }
    
@@ -374,7 +323,6 @@ Program Listing for File AdaptiveController.hpp
        // ---------------------------------------------------------------------------
        // Local Support Functions
        // ---------------------------------------------------------------------------
-   
        uint64_t getTimeU() {
            uint64_t last_time_ = clock_ == nullptr ? 0 : clock_->millis();
            return last_time_;
@@ -631,13 +579,9 @@ Program Listing for File AdaptiveController.hpp
            U4 = k_yaw * S3_R * Iz + (Iy - Ix) * PQR[0][0] * PQR[1][0] - delta_yaw;
    
            // Rescale such that the outputs normalize from -1,1
-   
            U1 = U1 / 80; // sqrt(abs(U1)) / 6.20; // I used sqrt to try and allow for smoother signal
-   
            U2 = U2 / 80;
-   
            U3 = U3 / 80;
-   
            U4 = U4 / 80;
    
            // Saturations: U1->.35,1 : U2,U3,U4 -> -.2,.2
@@ -665,6 +609,54 @@ Program Listing for File AdaptiveController.hpp
            remapU(U1, U2, U3, U4); // remap to axis4r
    
        } // SlidingModeModel */
+   
+     public:
+       virtual void initialize(const IGoal *goal, const IStateEstimator *state_estimator) override {
+           goal_ = goal;
+           state_estimator_ = state_estimator;
+       }
+   
+       virtual const Axis4r &getOutput() override {
+           // Create vectors to store state variables
+           Axis3r angle = 0;
+           Axis3r position = 0;
+           Axis3r angle_rate = 0;
+           Axis3r velocity = 0;
+   
+           // Assign state variables to placeholder variables
+           angle = state_estimator_->getAngles();
+           angle_rate = state_estimator_->getAngularVelocity();
+           position = state_estimator_->getPosition();
+           velocity = state_estimator_->getLinearVelocity();
+   
+           // Send state variables to the adaptive controller
+           update_state_vals(position[0], velocity[0], position[1], velocity[1], position[2], velocity[2], angle[0],
+                             angle_rate[0], angle[1], angle_rate[1], angle[2], angle_rate[2]);
+   
+           update_goals();
+   
+           run();
+   
+           // Replace PID control variables with Adaptive control variables
+           output_controls_[0] = get_U1();
+           output_controls_[1] = get_U2();
+           output_controls_[2] = get_U3();
+           output_controls_[3] = get_U4();
+   
+           return output_controls_;
+       }
+   
+       virtual bool isLastGoalModeAllPassthrough() override {
+           is_last_goal_mode_all_passthrough_ = true;
+   
+           for (unsigned int axis = 0; axis < Axis4r::AxisCount(); ++axis) {
+               if (last_mode_[axis] != GoalModeType::Passthrough) {
+                   is_last_goal_mode_all_passthrough_ = false;
+               }
+           }
+   
+           return is_last_goal_mode_all_passthrough_;
+       }
    };
    
    } // namespace simple_flight

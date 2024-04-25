@@ -24,6 +24,7 @@ Program Listing for File PhysicsEngineBase.hpp
    namespace autonomylib {
    
    class PhysicsEngineBase : public UpdatableContainer<PhysicsBody *> {
+   
      public:
        virtual void update() override { UpdatableObject::update(); }
    

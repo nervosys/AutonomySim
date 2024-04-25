@@ -16,21 +16,17 @@ Program Listing for File ArduRoverApi.hpp
    #ifndef autonomylib_vehicles_ArduRoverCarController_hpp
    #define autonomylib_vehicles_ArduRoverCarController_hpp
    
-   #include "sensors/SensorCollection.hpp"
-   #include "vehicles/car/api/CarApiBase.hpp"
-   
+   #include "UdpSocket.hpp"
    #include "common/AutonomySimSettings.hpp"
    #include "common/Common.hpp"
-   
-   // Sensors
+   #include "sensors/SensorCollection.hpp"
    #include "sensors/barometer/BarometerBase.hpp"
    #include "sensors/distance/DistanceSimple.hpp"
    #include "sensors/gps/GpsBase.hpp"
    #include "sensors/imu/ImuBase.hpp"
    #include "sensors/lidar/LidarSimple.hpp"
    #include "sensors/magnetometer/MagnetometerBase.hpp"
-   
-   #include "UdpSocket.hpp"
+   #include "vehicles/car/api/CarApiBase.hpp"
    
    #include <sstream>
    
@@ -38,6 +34,86 @@ Program Listing for File ArduRoverApi.hpp
    namespace autonomylib {
    
    class ArduRoverApi : public CarApiBase {
+   
+     private:
+       struct RoverControlMessage {
+           float throttle;
+           float steering;
+       };
+   
+       AutonomySimSettings::MavLinkConnectionInfo connection_info_;
+   
+       std::unique_ptr<mavlink_comm::UdpSocket> udp_socket_;
+   
+       uint16_t port_;
+       std::string ip_;
+   
+       const SensorCollection *sensors_;
+   
+       CarControls last_controls_;
+       GeoPoint home_geopoint_;
+       CarState last_car_state_;
+   
+       void recvRoverControl() {
+           // Receive motor data
+           RoverControlMessage pkt;
+           int recv_ret = udp_socket_->recv(&pkt, sizeof(pkt), 100);
+           while (recv_ret != sizeof(pkt)) {
+               if (recv_ret <= 0) {
+                   Utils::log(Utils::stringf("Error while receiving rotor control data - ErrorNo: %d", recv_ret),
+                              Utils::kLogLevelInfo);
+               } else {
+                   Utils::log(Utils::stringf("Received %d bytes instead of %zu bytes", recv_ret, sizeof(pkt)),
+                              Utils::kLogLevelInfo);
+               }
+   
+               recv_ret = udp_socket_->recv(&pkt, sizeof(pkt), 100);
+           }
+   
+           last_controls_.throttle = pkt.throttle;
+           last_controls_.steering = pkt.steering;
+   
+           if (pkt.throttle > 0) {
+               last_controls_.is_manual_gear = false;
+               last_controls_.manual_gear = 0;
+           } else {
+               last_controls_.is_manual_gear = true;
+               last_controls_.manual_gear = -1;
+           }
+       }
+   
+     protected:
+       virtual void resetImplementation() override { CarApiBase::resetImplementation(); }
+   
+       void closeConnections() {
+           if (udp_socket_ != nullptr)
+               udp_socket_->close();
+       }
+   
+       void connect() {
+           port_ = static_cast<uint16_t>(connection_info_.udp_port);
+           ip_ = connection_info_.udp_address;
+   
+           closeConnections();
+   
+           if (ip_ == "") {
+               throw std::invalid_argument("UdpIp setting is invalid.");
+           }
+   
+           if (port_ == 0) {
+               throw std::invalid_argument("UdpPort setting has an invalid value.");
+           }
+   
+           Utils::log(Utils::stringf("Using UDP port %d, local IP %s, remote IP %s for sending sensor data", port_,
+                                     connection_info_.local_host_ip.c_str(), ip_.c_str()),
+                      Utils::kLogLevelInfo);
+           Utils::log(Utils::stringf("Using UDP port %d for receiving rotor power", connection_info_.control_port_local,
+                                     connection_info_.local_host_ip.c_str(), ip_.c_str()),
+                      Utils::kLogLevelInfo);
+   
+           udp_socket_ = std::make_unique<mavlink_comm::UdpSocket>();
+           udp_socket_->bind(connection_info_.local_host_ip, connection_info_.control_port_local);
+       }
    
      public:
        ArduRoverApi(const AutonomySimSettings::VehicleSetting *vehicle_setting,
@@ -54,10 +130,6 @@ Program Listing for File ArduRoverApi.hpp
    
        ~ArduRoverApi() { closeConnections(); }
    
-     protected:
-       virtual void resetImplementation() override { CarApiBase::resetImplementation(); }
-   
-     public:
        // Update sensor data & send to Ardupilot
        virtual void update() override {
            CarApiBase::update();
@@ -89,7 +161,6 @@ Program Listing for File ArduRoverApi.hpp
    
        virtual void getStatusMessages(std::vector<std::string> &messages) override { unused(messages); }
    
-     public:
        virtual void setCarControls(const CarControls &controls) override {
            // Currently ArduPilot vehicles don't implement AutonomySim movement APIs
            unused(controls);
@@ -100,66 +171,6 @@ Program Listing for File ArduRoverApi.hpp
        virtual const CarState &getCarState() const override { return last_car_state_; }
    
        virtual const CarControls &getCarControls() const override { return last_controls_; }
-   
-     protected:
-       void closeConnections() {
-           if (udp_socket_ != nullptr)
-               udp_socket_->close();
-       }
-   
-       void connect() {
-           port_ = static_cast<uint16_t>(connection_info_.udp_port);
-           ip_ = connection_info_.udp_address;
-   
-           closeConnections();
-   
-           if (ip_ == "") {
-               throw std::invalid_argument("UdpIp setting is invalid.");
-           }
-   
-           if (port_ == 0) {
-               throw std::invalid_argument("UdpPort setting has an invalid value.");
-           }
-   
-           Utils::log(Utils::stringf("Using UDP port %d, local IP %s, remote IP %s for sending sensor data", port_,
-                                     connection_info_.local_host_ip.c_str(), ip_.c_str()),
-                      Utils::kLogLevelInfo);
-           Utils::log(Utils::stringf("Using UDP port %d for receiving rotor power", connection_info_.control_port_local,
-                                     connection_info_.local_host_ip.c_str(), ip_.c_str()),
-                      Utils::kLogLevelInfo);
-   
-           udp_socket_ = std::make_unique<mavlink_comm::UdpSocket>();
-           udp_socket_->bind(connection_info_.local_host_ip, connection_info_.control_port_local);
-       }
-   
-     private:
-       void recvRoverControl() {
-           // Receive motor data
-           RoverControlMessage pkt;
-           int recv_ret = udp_socket_->recv(&pkt, sizeof(pkt), 100);
-           while (recv_ret != sizeof(pkt)) {
-               if (recv_ret <= 0) {
-                   Utils::log(Utils::stringf("Error while receiving rotor control data - ErrorNo: %d", recv_ret),
-                              Utils::kLogLevelInfo);
-               } else {
-                   Utils::log(Utils::stringf("Received %d bytes instead of %zu bytes", recv_ret, sizeof(pkt)),
-                              Utils::kLogLevelInfo);
-               }
-   
-               recv_ret = udp_socket_->recv(&pkt, sizeof(pkt), 100);
-           }
-   
-           last_controls_.throttle = pkt.throttle;
-           last_controls_.steering = pkt.steering;
-   
-           if (pkt.throttle > 0) {
-               last_controls_.is_manual_gear = false;
-               last_controls_.manual_gear = 0;
-           } else {
-               last_controls_.is_manual_gear = true;
-               last_controls_.manual_gear = -1;
-           }
-       }
    
        void sendSensors() {
            if (sensors_ == nullptr || udp_socket_ == nullptr)
@@ -276,25 +287,6 @@ Program Listing for File ArduRoverApi.hpp
            const std::string sensor_data = buf.str();
            udp_socket_->sendto(sensor_data.c_str(), sensor_data.length(), ip_, port_);
        }
-   
-     private:
-       struct RoverControlMessage {
-           float throttle;
-           float steering;
-       };
-   
-       AutonomySimSettings::MavLinkConnectionInfo connection_info_;
-   
-       std::unique_ptr<mavlink_comm::UdpSocket> udp_socket_;
-   
-       uint16_t port_;
-       std::string ip_;
-   
-       const SensorCollection *sensors_;
-   
-       CarControls last_controls_;
-       GeoPoint home_geopoint_;
-       CarState last_car_state_;
    };
    
    } // namespace autonomylib

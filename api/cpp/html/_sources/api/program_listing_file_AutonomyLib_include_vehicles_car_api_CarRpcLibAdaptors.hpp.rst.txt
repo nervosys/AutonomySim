@@ -30,6 +30,7 @@ Program Listing for File CarRpcLibAdaptors.hpp
    namespace autonomylib_rpclib {
    
    class CarRpcLibAdaptors : public RpcLibAdaptorsBase {
+   
      public:
        struct CarControls {
            float throttle = 0;

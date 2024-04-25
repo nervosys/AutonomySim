@@ -280,12 +280,51 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/EarthUtils.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/FrequencyLimiter.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/GaussianMarkov.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">nervosys</span><span class="w"> </span><span class="p">{</span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">BarometerSimple</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">BarometerBase</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">BarometerSimpleParams</span><span class="w"> </span><span class="n">params_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">GaussianMarkov</span><span class="w"> </span><span class="n">pressure_factor_</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// GaussianMarkov correlated_noise_;</span>
+<span class="w">    </span><span class="n">RandomGeneratorGausianR</span><span class="w"> </span><span class="n">uncorrelated_noise_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">FrequencyLimiter</span><span class="w"> </span><span class="n">freq_limiter_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DelayLine</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delay_line_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="nf">getOutputInternal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Output</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">GroundTruth</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ground_truth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getGroundTruth</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">altitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">environment</span><span class="o">-&gt;</span><span class="n">getState</span><span class="p">().</span><span class="n">geo_point</span><span class="p">.</span><span class="n">altitude</span><span class="p">;</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getStandardPressure</span><span class="p">(</span><span class="n">altitude</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// add drift in pressure, about 10m change per hour using default settings.</span>
+<span class="w">        </span><span class="n">pressure_factor_</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+<span class="w">        </span><span class="n">pressure</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">pressure</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pressure_factor_</span><span class="p">.</span><span class="n">getOutput</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// add noise in pressure (about 0.2m sigma)</span>
+<span class="w">        </span><span class="n">pressure</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">uncorrelated_noise_</span><span class="p">.</span><span class="n">next</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pressure</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">SeaLevelPressure</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">qnh</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.0f</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// apply altimeter formula</span>
+<span class="w">        </span><span class="c1">// https://en.wikipedia.org/wiki/Pressure_altitude</span>
+<span class="w">        </span><span class="c1">// TODO: use same formula as in driver code?</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">altitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">pressure</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">SeaLevelPressure</span><span class="p">,</span><span class="w"> </span><span class="mf">0.190284f</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">145366.45f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.3048f</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">qnh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">qnh</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">BarometerSimple</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">BarometerSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">BarometerSetting</span><span class="p">())</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">BarometerBase</span><span class="p">(</span><span class="n">setting</span><span class="p">.</span><span class="n">sensor_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -333,44 +372,6 @@
 <span class="w">    </span><span class="c1">//*** End: UpdatableState implementation ***//</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">BarometerSimple</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span><span class="w"> </span><span class="c1">// methods</span>
-<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="n">getOutputInternal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Output</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">GroundTruth</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ground_truth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getGroundTruth</span><span class="p">();</span>
-
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">altitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">environment</span><span class="o">-&gt;</span><span class="n">getState</span><span class="p">().</span><span class="n">geo_point</span><span class="p">.</span><span class="n">altitude</span><span class="p">;</span>
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">getStandardPressure</span><span class="p">(</span><span class="n">altitude</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// add drift in pressure, about 10m change per hour using default settings.</span>
-<span class="w">        </span><span class="n">pressure_factor_</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-<span class="w">        </span><span class="n">pressure</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">pressure</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pressure_factor_</span><span class="p">.</span><span class="n">getOutput</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// add noise in pressure (about 0.2m sigma)</span>
-<span class="w">        </span><span class="n">pressure</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">uncorrelated_noise_</span><span class="p">.</span><span class="n">next</span><span class="p">();</span>
-
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pressure</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">SeaLevelPressure</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">qnh</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.0f</span><span class="p">;</span>
-
-<span class="w">        </span><span class="c1">// apply altimeter formula</span>
-<span class="w">        </span><span class="c1">// https://en.wikipedia.org/wiki/Pressure_altitude</span>
-<span class="w">        </span><span class="c1">// TODO: use same formula as in driver code?</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">altitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">pressure</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">EarthUtils</span><span class="o">::</span><span class="n">SeaLevelPressure</span><span class="p">,</span><span class="w"> </span><span class="mf">0.190284f</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">145366.45f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.3048f</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">qnh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">qnh</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">();</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">BarometerSimpleParams</span><span class="w"> </span><span class="n">params_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">GaussianMarkov</span><span class="w"> </span><span class="n">pressure_factor_</span><span class="p">;</span>
-<span class="w">    </span><span class="c1">// GaussianMarkov correlated_noise_;</span>
-<span class="w">    </span><span class="n">RandomGeneratorGausianR</span><span class="w"> </span><span class="n">uncorrelated_noise_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">FrequencyLimiter</span><span class="w"> </span><span class="n">freq_limiter_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">DelayLine</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delay_line_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

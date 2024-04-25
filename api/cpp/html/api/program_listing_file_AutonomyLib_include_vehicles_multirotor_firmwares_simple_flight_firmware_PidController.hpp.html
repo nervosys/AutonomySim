@@ -274,12 +274,27 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;StdPidIntegrator.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/CommonStructs.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IPidIntegrator.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">simple_flight</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">PidController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IUpdatable</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">goal_</span><span class="p">,</span><span class="w"> </span><span class="n">measured_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">last_time_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">last_error_</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">min_dt_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PidConfig</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">config_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IPidIntegrator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">integrator</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// TODO: replace with std::clamp after moving to C++17</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">clip</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">min_value</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">max_value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">max_value</span><span class="p">));</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">PidController</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PidConfig</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PidConfig</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">())</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">clock_</span><span class="p">(</span><span class="n">clock</span><span class="p">),</span><span class="w"> </span><span class="n">config_</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -354,22 +369,6 @@
 
 <span class="w">        </span><span class="n">last_time_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock_</span><span class="o">-&gt;</span><span class="n">millis</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// TODO: replace with std::clamp after moving to C++17</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">clip</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">min_value</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">max_value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">max_value</span><span class="p">));</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">goal_</span><span class="p">,</span><span class="w"> </span><span class="n">measured_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">last_time_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IBoardClock</span><span class="w"> </span><span class="o">*</span><span class="n">clock_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">last_error_</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">min_dt_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PidConfig</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">config_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IPidIntegrator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">integrator</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace simple_flight</span>

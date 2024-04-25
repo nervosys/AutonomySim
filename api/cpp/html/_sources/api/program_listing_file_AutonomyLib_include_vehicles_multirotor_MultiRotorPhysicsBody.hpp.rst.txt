@@ -23,12 +23,84 @@ Program Listing for File MultiRotorPhysicsBody.hpp
    #include "common/Common.hpp"
    #include "common/CommonStructs.hpp"
    #include "physics/PhysicsBody.hpp"
+   
    #include <vector>
    
    namespace nervosys {
    namespace autonomylib {
    
    class MultirotorPhysicsBody : public PhysicsBody {
+   
+     private:
+       MultirotorParams *params_;
+       // let us be the owner of rotors object
+       vector<RotorActuator> rotors_;
+       vector<PhysicsBodyVertex> drag_faces_;
+       std::unique_ptr<Environment> environment_;
+       VehicleApiBase *vehicle_api_;
+   
+       void initialize(Kinematics *kinematics, Environment *environment) {
+           PhysicsBody::initialize(params_->getParams().mass, params_->getParams().inertia, kinematics, environment);
+   
+           createRotors(*params_, rotors_, environment);
+           createDragVertices();
+   
+           initSensors(*params_, getKinematics(), getEnvironment());
+       }
+   
+       static void createRotors(const MultirotorParams &params, vector<RotorActuator> &rotors,
+                                const Environment *environment) {
+           rotors.clear();
+           // for each rotor pose
+           for (uint rotor_index = 0; rotor_index < params.getParams().rotor_poses.size(); ++rotor_index) {
+               const MultirotorParams::RotorPose &rotor_pose = params.getParams().rotor_poses.at(rotor_index);
+               rotors.emplace_back(rotor_pose.position, rotor_pose.normal, rotor_pose.direction,
+                                   params.getParams().rotor_params, environment, rotor_index);
+           }
+       }
+   
+       void reportSensors(MultirotorParams &params, StateReporter &reporter) { params.getSensors().reportState(reporter); }
+   
+       void updateSensors(MultirotorParams &params, const Kinematics::State &state, const Environment &environment) {
+           unused(state);
+           unused(environment);
+           params.getSensors().update();
+       }
+   
+       void initSensors(MultirotorParams &params, const Kinematics::State &state, const Environment &environment) {
+           params.getSensors().initialize(&state, &environment);
+       }
+   
+       void resetSensors() { params_->getSensors().reset(); }
+   
+       void createDragVertices() {
+           const auto &params = params_->getParams();
+   
+           // Drone is seen as central body that is connected to propellers via arm. We approximate central body as box of
+           // size x, y, z. The drag depends on area exposed so we also add area of propellers to approximate drag they may
+           // introduce due to their area. while moving along any axis, we find area that will be exposed in that direction
+           real_T propeller_area = M_PIf * params.rotor_params.propeller_diameter * params.rotor_params.propeller_diameter;
+           real_T propeller_xsection =
+               M_PIf * params.rotor_params.propeller_diameter * params.rotor_params.propeller_height;
+   
+           real_T top_bottom_area = params.body_box.x() * params.body_box.y();
+           real_T left_right_area = params.body_box.x() * params.body_box.z();
+           real_T front_back_area = params.body_box.y() * params.body_box.z();
+           Vector3r drag_factor_unit = Vector3r(front_back_area + rotors_.size() * propeller_xsection,
+                                                left_right_area + rotors_.size() * propeller_xsection,
+                                                top_bottom_area + rotors_.size() * propeller_area) *
+                                       params.linear_drag_coefficient / 2;
+   
+           // add six drag vertices representing 6 sides
+           drag_faces_.clear();
+           drag_faces_.emplace_back(Vector3r(0, 0, -params.body_box.z() / 2.0f), Vector3r(0, 0, -1), drag_factor_unit.z());
+           drag_faces_.emplace_back(Vector3r(0, 0, params.body_box.z() / 2.0f), Vector3r(0, 0, 1), drag_factor_unit.z());
+           drag_faces_.emplace_back(Vector3r(0, -params.body_box.y() / 2.0f, 0), Vector3r(0, -1, 0), drag_factor_unit.y());
+           drag_faces_.emplace_back(Vector3r(0, params.body_box.y() / 2.0f, 0), Vector3r(0, 1, 0), drag_factor_unit.y());
+           drag_faces_.emplace_back(Vector3r(-params.body_box.x() / 2.0f, 0, 0), Vector3r(-1, 0, 0), drag_factor_unit.x());
+           drag_faces_.emplace_back(Vector3r(params.body_box.x() / 2.0f, 0, 0), Vector3r(1, 0, 0), drag_factor_unit.x());
+       }
+   
      public:
        MultirotorPhysicsBody(MultirotorParams *params, VehicleApiBase *vehicle_api, Kinematics *kinematics,
                              Environment *environment)
@@ -115,79 +187,6 @@ Program Listing for File MultiRotorPhysicsBody.hpp
        RotorActuator::Output getRotorOutput(uint rotor_index) const { return rotors_.at(rotor_index).getOutput(); }
    
        virtual ~MultirotorPhysicsBody() = default;
-   
-     private: // methods
-       void initialize(Kinematics *kinematics, Environment *environment) {
-           PhysicsBody::initialize(params_->getParams().mass, params_->getParams().inertia, kinematics, environment);
-   
-           createRotors(*params_, rotors_, environment);
-           createDragVertices();
-   
-           initSensors(*params_, getKinematics(), getEnvironment());
-       }
-   
-       static void createRotors(const MultirotorParams &params, vector<RotorActuator> &rotors,
-                                const Environment *environment) {
-           rotors.clear();
-           // for each rotor pose
-           for (uint rotor_index = 0; rotor_index < params.getParams().rotor_poses.size(); ++rotor_index) {
-               const MultirotorParams::RotorPose &rotor_pose = params.getParams().rotor_poses.at(rotor_index);
-               rotors.emplace_back(rotor_pose.position, rotor_pose.normal, rotor_pose.direction,
-                                   params.getParams().rotor_params, environment, rotor_index);
-           }
-       }
-   
-       void reportSensors(MultirotorParams &params, StateReporter &reporter) { params.getSensors().reportState(reporter); }
-   
-       void updateSensors(MultirotorParams &params, const Kinematics::State &state, const Environment &environment) {
-           unused(state);
-           unused(environment);
-           params.getSensors().update();
-       }
-   
-       void initSensors(MultirotorParams &params, const Kinematics::State &state, const Environment &environment) {
-           params.getSensors().initialize(&state, &environment);
-       }
-   
-       void resetSensors() { params_->getSensors().reset(); }
-   
-       void createDragVertices() {
-           const auto &params = params_->getParams();
-   
-           // Drone is seen as central body that is connected to propellers via arm. We approximate central body as box of
-           // size x, y, z. The drag depends on area exposed so we also add area of propellers to approximate drag they may
-           // introduce due to their area. while moving along any axis, we find area that will be exposed in that direction
-           real_T propeller_area = M_PIf * params.rotor_params.propeller_diameter * params.rotor_params.propeller_diameter;
-           real_T propeller_xsection =
-               M_PIf * params.rotor_params.propeller_diameter * params.rotor_params.propeller_height;
-   
-           real_T top_bottom_area = params.body_box.x() * params.body_box.y();
-           real_T left_right_area = params.body_box.x() * params.body_box.z();
-           real_T front_back_area = params.body_box.y() * params.body_box.z();
-           Vector3r drag_factor_unit = Vector3r(front_back_area + rotors_.size() * propeller_xsection,
-                                                left_right_area + rotors_.size() * propeller_xsection,
-                                                top_bottom_area + rotors_.size() * propeller_area) *
-                                       params.linear_drag_coefficient / 2;
-   
-           // add six drag vertices representing 6 sides
-           drag_faces_.clear();
-           drag_faces_.emplace_back(Vector3r(0, 0, -params.body_box.z() / 2.0f), Vector3r(0, 0, -1), drag_factor_unit.z());
-           drag_faces_.emplace_back(Vector3r(0, 0, params.body_box.z() / 2.0f), Vector3r(0, 0, 1), drag_factor_unit.z());
-           drag_faces_.emplace_back(Vector3r(0, -params.body_box.y() / 2.0f, 0), Vector3r(0, -1, 0), drag_factor_unit.y());
-           drag_faces_.emplace_back(Vector3r(0, params.body_box.y() / 2.0f, 0), Vector3r(0, 1, 0), drag_factor_unit.y());
-           drag_faces_.emplace_back(Vector3r(-params.body_box.x() / 2.0f, 0, 0), Vector3r(-1, 0, 0), drag_factor_unit.x());
-           drag_faces_.emplace_back(Vector3r(params.body_box.x() / 2.0f, 0, 0), Vector3r(1, 0, 0), drag_factor_unit.x());
-       }
-   
-     private: // fields
-       MultirotorParams *params_;
-   
-       // let us be the owner of rotors object
-       vector<RotorActuator> rotors_;
-       vector<PhysicsBodyVertex> drag_faces_;
-   
-       std::unique_ptr<Environment> environment_;
-       VehicleApiBase *vehicle_api_;
    };
    
    } // namespace autonomylib

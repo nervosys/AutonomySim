@@ -279,12 +279,44 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/DelayLine.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/FirstOrderFilter.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/FrequencyLimiter.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">nervosys</span><span class="w"> </span><span class="p">{</span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">GpsSimple</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">GpsBase</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">NormalDistribution</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">GpsSimpleParams</span><span class="w"> </span><span class="n">params_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">FirstOrderFilter</span><span class="o">&lt;</span><span class="n">real_T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eph_filter</span><span class="p">,</span><span class="w"> </span><span class="n">epv_filter</span><span class="p">;</span>
+<span class="w">    </span><span class="n">FrequencyLimiter</span><span class="w"> </span><span class="n">freq_limiter_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DelayLine</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delay_line_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addOutputToDelayLine</span><span class="p">(</span><span class="n">real_T</span><span class="w"> </span><span class="n">eph</span><span class="p">,</span><span class="w"> </span><span class="n">real_T</span><span class="w"> </span><span class="n">epv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Output</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">GroundTruth</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ground_truth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getGroundTruth</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// GNSS</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">time_utc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1.0E3</span><span class="p">);</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">geo_point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">environment</span><span class="o">-&gt;</span><span class="n">getState</span><span class="p">().</span><span class="n">geo_point</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">eph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eph</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">epv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">epv</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">kinematics</span><span class="o">-&gt;</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">fix_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">eph</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">eph_min_3d</span><span class="w">   </span><span class="o">?</span><span class="w"> </span><span class="n">GnssFixType</span><span class="o">::</span><span class="n">GNSS_FIX_3D_FIX</span>
+<span class="w">                               </span><span class="o">:</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">eph</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">eph_min_2d</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">GnssFixType</span><span class="o">::</span><span class="n">GNSS_FIX_2D_FIX</span>
+<span class="w">                                                                       </span><span class="o">:</span><span class="w"> </span><span class="n">GnssFixType</span><span class="o">::</span><span class="n">GNSS_FIX_NO_FIX</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">delay_line_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w"> </span><span class="c1">// methods</span>
 <span class="w">    </span><span class="n">GpsSimple</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">GpsSetting</span><span class="w"> </span><span class="o">&amp;</span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AutonomySimSettings</span><span class="o">::</span><span class="n">GpsSetting</span><span class="p">())</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">GpsBase</span><span class="p">(</span><span class="n">setting</span><span class="p">.</span><span class="n">sensor_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -334,37 +366,6 @@
 <span class="w">    </span><span class="c1">//*** End: UpdatableState implementation ***//</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">GpsSimple</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">addOutputToDelayLine</span><span class="p">(</span><span class="n">real_T</span><span class="w"> </span><span class="n">eph</span><span class="p">,</span><span class="w"> </span><span class="n">real_T</span><span class="w"> </span><span class="n">epv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Output</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">GroundTruth</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ground_truth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getGroundTruth</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// GNSS</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">time_utc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1.0E3</span><span class="p">);</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">geo_point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">environment</span><span class="o">-&gt;</span><span class="n">getState</span><span class="p">().</span><span class="n">geo_point</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">eph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eph</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">epv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">epv</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_truth</span><span class="p">.</span><span class="n">kinematics</span><span class="o">-&gt;</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">is_valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">fix_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">eph</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">eph_min_3d</span><span class="w">   </span><span class="o">?</span><span class="w"> </span><span class="n">GnssFixType</span><span class="o">::</span><span class="n">GNSS_FIX_3D_FIX</span>
-<span class="w">                               </span><span class="o">:</span><span class="w"> </span><span class="n">output</span><span class="p">.</span><span class="n">gnss</span><span class="p">.</span><span class="n">eph</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">params_</span><span class="p">.</span><span class="n">eph_min_2d</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">GnssFixType</span><span class="o">::</span><span class="n">GNSS_FIX_2D_FIX</span>
-<span class="w">                                                                       </span><span class="o">:</span><span class="w"> </span><span class="n">GnssFixType</span><span class="o">::</span><span class="n">GNSS_FIX_NO_FIX</span><span class="p">;</span>
-
-<span class="w">        </span><span class="n">output</span><span class="p">.</span><span class="n">time_stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">nowNanos</span><span class="p">();</span>
-
-<span class="w">        </span><span class="n">delay_line_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">NormalDistribution</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">GpsSimpleParams</span><span class="w"> </span><span class="n">params_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">FirstOrderFilter</span><span class="o">&lt;</span><span class="n">real_T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eph_filter</span><span class="p">,</span><span class="w"> </span><span class="n">epv_filter</span><span class="p">;</span>
-<span class="w">    </span><span class="n">FrequencyLimiter</span><span class="w"> </span><span class="n">freq_limiter_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">DelayLine</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delay_line_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

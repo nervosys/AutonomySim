@@ -20,18 +20,18 @@ Program Listing for File RpcLibAdaptorsBase.hpp
    #include "common/Common.hpp"
    #include "common/CommonStructs.hpp"
    #include "common/ImageCaptureBase.hpp"
-   #include "physics/Environment.hpp"
-   #include "physics/Kinematics.hpp"
-   #include "safety/SafetyEval.hpp"
-   
    #include "common/utils/WindowsApisCommonPost.hpp"
    #include "common/utils/WindowsApisCommonPre.hpp"
+   #include "physics/Environment.hpp"
+   #include "physics/Kinematics.hpp"
    #include "rpc/msgpack.hpp"
+   #include "safety/SafetyEval.hpp"
    
    namespace nervosys {
    namespace autonomylib_rpclib {
    
    class RpcLibAdaptorsBase {
+   
      public:
        template <typename TSrc, typename TDest> static void to(const std::vector<TSrc> &s, std::vector<TDest> &d) {
            d.clear();

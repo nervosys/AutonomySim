@@ -22,14 +22,53 @@ Program Listing for File AngleLevelController.hpp
    #include "interfaces/IBoardClock.hpp"
    #include "interfaces/IGoal.hpp"
    #include "interfaces/IUpdatable.hpp"
+   
    #include <exception>
    #include <string>
    
    namespace simple_flight {
    
-   class AngleLevelController : public IAxisController,
-                                public IGoal // for internal rate controller
-   {
+   class AngleLevelController : public IAxisController, public IGoal { // for internal rate controller
+   
+     private:
+       unsigned int axis_;
+       const IGoal *goal_;
+       const IStateEstimator *state_estimator_;
+   
+       GoalMode rate_mode_;
+       Axis4r rate_goal_;
+   
+       TReal output_;
+   
+       Params *params_;
+       const IBoardClock *clock_;
+       std::unique_ptr<PidController<float>> pid_;
+       std::unique_ptr<AngleRateController> rate_controller_;
+   
+       static void adjustToMinDistanceAngles(TReal &angle1, TReal &angle2) {
+           static constexpr TReal TwoPi = 2 * M_PIf;
+   
+           // first make sure both angles are restricted from -360 to +360
+           angle1 = static_cast<TReal>(std::fmod(angle1, TwoPi));
+           angle2 = static_cast<TReal>(std::fmod(angle2, TwoPi));
+   
+           // now make sure both angles are restricted from 0 to 360
+           if (angle1 < 0)
+               angle1 = TwoPi + angle1;
+           if (angle2 < 0)
+               angle2 = TwoPi + angle2;
+   
+           // measure distance between two angles
+           auto dist = angle1 - angle2;
+   
+           // if its > 180 then invert first angle
+           if (dist > M_PIf)
+               angle1 = angle1 - TwoPi;
+           // if two much on other side then invert second angle
+           else if (dist < -M_PIf)
+               angle2 = angle2 - TwoPi;
+       }
+   
      public:
        AngleLevelController(Params *params, const IBoardClock *clock = nullptr) : params_(params), clock_(clock) {}
    
@@ -94,46 +133,6 @@ Program Listing for File AngleLevelController.hpp
        virtual const Axis4r &getGoalValue() const override { return rate_goal_; }
    
        virtual const GoalMode &getGoalMode() const override { return rate_mode_; }
-   
-     private:
-       static void adjustToMinDistanceAngles(TReal &angle1, TReal &angle2) {
-           static constexpr TReal TwoPi = 2 * M_PIf;
-   
-           // first make sure both angles are restricted from -360 to +360
-           angle1 = static_cast<TReal>(std::fmod(angle1, TwoPi));
-           angle2 = static_cast<TReal>(std::fmod(angle2, TwoPi));
-   
-           // now make sure both angles are restricted from 0 to 360
-           if (angle1 < 0)
-               angle1 = TwoPi + angle1;
-           if (angle2 < 0)
-               angle2 = TwoPi + angle2;
-   
-           // measure distance between two angles
-           auto dist = angle1 - angle2;
-   
-           // if its > 180 then invert first angle
-           if (dist > M_PIf)
-               angle1 = angle1 - TwoPi;
-           // if two much on other side then invert second angle
-           else if (dist < -M_PIf)
-               angle2 = angle2 - TwoPi;
-       }
-   
-     private:
-       unsigned int axis_;
-       const IGoal *goal_;
-       const IStateEstimator *state_estimator_;
-   
-       GoalMode rate_mode_;
-       Axis4r rate_goal_;
-   
-       TReal output_;
-   
-       Params *params_;
-       const IBoardClock *clock_;
-       std::unique_ptr<PidController<float>> pid_;
-       std::unique_ptr<AngleRateController> rate_controller_;
    };
    
    } // namespace simple_flight

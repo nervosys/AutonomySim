@@ -20,6 +20,7 @@ Program Listing for File ExternalPhysicsEngine.hpp
    #include "common/CommonStructs.hpp"
    #include "common/SteppableClock.hpp"
    #include "physics/PhysicsEngineBase.hpp"
+   
    #include <cinttypes>
    #include <fstream>
    #include <iostream>
@@ -30,6 +31,7 @@ Program Listing for File ExternalPhysicsEngine.hpp
    namespace autonomylib {
    
    class ExternalPhysicsEngine : public PhysicsEngineBase {
+   
      public:
        ExternalPhysicsEngine() {}
    

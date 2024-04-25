@@ -279,6 +279,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/Common.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/CommonStructs.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common/UpdatableObject.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;exception&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_set&gt;</span>
 
@@ -286,30 +287,54 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">PhysicsBody</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UpdatableObject</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w"> </span><span class="c1">// interface</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">real_T</span><span class="w"> </span><span class="n">getRestitution</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">mass_</span><span class="p">,</span><span class="w"> </span><span class="n">mass_inv_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Matrix3x3r</span><span class="w"> </span><span class="n">inertia_</span><span class="p">,</span><span class="w"> </span><span class="n">inertia_inv_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Kinematics</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// force is in world frame but torque is not</span>
+<span class="w">    </span><span class="n">Wrench</span><span class="w"> </span><span class="n">wrench_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">CollisionInfo</span><span class="w"> </span><span class="n">collision_info_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">CollisionResponse</span><span class="w"> </span><span class="n">collision_response_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">grounded_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mutex_</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w">                            </span><span class="c1">// interface</span>
+<span class="w">    </span><span class="n">TTimePoint</span><span class="w"> </span><span class="n">last_kinematics_time</span><span class="p">;</span><span class="w"> </span><span class="c1">// for use in physics engine: //TODO: use getter/setter or friend method?</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">real_T</span><span class="w"> </span><span class="nf">getRestitution</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">real_T</span><span class="w"> </span><span class="nf">getFriction</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// derived class may return covariant type</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="nf">wrenchVertexCount</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">PhysicsBodyVertex</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getWrenchVertex</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
 <span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">&quot;no physics vertex are available&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PhysicsBodyVertex</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getWrenchVertex</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
 <span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">&quot;no physics vertex are available&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="nf">dragVertexCount</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">PhysicsBodyVertex</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getDragVertex</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
 <span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">&quot;no physics vertex are available&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PhysicsBodyVertex</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getDragVertex</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">unused</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
 <span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">&quot;no physics vertex are available&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCollisionInfo</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CollisionInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">collision_info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">collision_info_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collision_info</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateKinematics</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -321,16 +346,18 @@
 <span class="w">        </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">setState</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
 <span class="w">        </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateKinematics</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w"> </span><span class="c1">// methods</span>
 <span class="w">    </span><span class="c1">// constructors</span>
 <span class="w">    </span><span class="n">PhysicsBody</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// allow default constructor with later call for initialize</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="n">PhysicsBody</span><span class="p">(</span><span class="n">real_T</span><span class="w"> </span><span class="n">mass</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Matrix3x3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inertia</span><span class="p">,</span><span class="w"> </span><span class="n">Kinematics</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics</span><span class="p">,</span><span class="w"> </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">initialize</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span><span class="w"> </span><span class="n">inertia</span><span class="p">,</span><span class="w"> </span><span class="n">kinematics</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">real_T</span><span class="w"> </span><span class="n">mass</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Matrix3x3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inertia</span><span class="p">,</span><span class="w"> </span><span class="n">Kinematics</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics</span><span class="p">,</span><span class="w"> </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">mass_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mass</span><span class="p">;</span>
 <span class="w">        </span><span class="n">mass_inv_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mass</span><span class="p">;</span>
@@ -387,24 +414,27 @@
 <span class="w">    </span><span class="c1">// getters</span>
 <span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">getMass</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">mass_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">getMassInv</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">mass_inv_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Matrix3x3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getInertia</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">inertia_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Matrix3x3r</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getInertiaInv</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">inertia_inv_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Pose</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getPose</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">getPose</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setPose</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Pose</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">setPose</span><span class="p">(</span><span class="n">pose</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Twist</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getTwist</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">getTwist</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setTwist</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Twist</span><span class="w"> </span><span class="o">&amp;</span><span class="n">twist</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">setTwist</span><span class="p">(</span><span class="n">twist</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getKinematics</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">getState</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getInitialKinematics</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">kinematics_</span><span class="o">-&gt;</span><span class="n">getInitialState</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Environment</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getEnvironment</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">environment_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="n">Environment</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getEnvironment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">environment_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">hasEnvironment</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">environment_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Wrench</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getWrench</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">wrench_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setWrench</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Wrench</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wrench</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">wrench_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wrench</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CollisionInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getCollisionInfo</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">collision_info_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CollisionInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getCollisionInfo</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">collision_info_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CollisionResponse</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getCollisionResponseInfo</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">collision_response_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="n">CollisionResponse</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getCollisionResponseInfo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">collision_response_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
@@ -412,28 +442,7 @@
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setGrounded</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">grounded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">grounded_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grounded</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">lock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutex_</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">unlock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutex_</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// for use in physics engine: //TODO: use getter/setter or friend method?</span>
-<span class="w">    </span><span class="n">TTimePoint</span><span class="w"> </span><span class="n">last_kinematics_time</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">real_T</span><span class="w"> </span><span class="n">mass_</span><span class="p">,</span><span class="w"> </span><span class="n">mass_inv_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Matrix3x3r</span><span class="w"> </span><span class="n">inertia_</span><span class="p">,</span><span class="w"> </span><span class="n">inertia_inv_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">Kinematics</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// force is in world frame but torque is not</span>
-<span class="w">    </span><span class="n">Wrench</span><span class="w"> </span><span class="n">wrench_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">CollisionInfo</span><span class="w"> </span><span class="n">collision_info_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">CollisionResponse</span><span class="w"> </span><span class="n">collision_response_</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">grounded_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mutex_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

@@ -282,14 +282,15 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MultirotorRpcLibServer</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">RpcLibServerBase</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="n">MultirotorRpcLibServer</span><span class="p">(</span><span class="n">ApiProvider</span><span class="w"> </span><span class="o">*</span><span class="n">api_provider</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">server_address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RpcLibPort</span><span class="p">);</span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MultirotorRpcLibServer</span><span class="p">();</span>
 
 <span class="w">  </span><span class="k">protected</span><span class="o">:</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">MultirotorApiBase</span><span class="w"> </span><span class="o">*</span><span class="n">getVehicleApi</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vehicle_name</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">MultirotorApiBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">RpcLibServerBase</span><span class="o">::</span><span class="n">getVehicleApi</span><span class="p">(</span><span class="n">vehicle_name</span><span class="p">));</span>
 <span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">MultirotorRpcLibServer</span><span class="p">(</span><span class="n">ApiProvider</span><span class="w"> </span><span class="o">*</span><span class="n">api_provider</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">server_address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RpcLibPort</span><span class="p">);</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MultirotorRpcLibServer</span><span class="p">();</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

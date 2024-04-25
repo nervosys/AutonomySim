@@ -275,11 +275,19 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/CommonStructs.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IAxisController.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;interfaces/IBoardClock.hpp&quot;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">simple_flight</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">ConstantOutputController</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IAxisController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">axis_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">update_output_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">reset_output_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">ConstantOutputController</span><span class="p">(</span><span class="n">TReal</span><span class="w"> </span><span class="n">update_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TReal</span><span class="p">(),</span><span class="w"> </span><span class="n">TReal</span><span class="w"> </span><span class="n">reset_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TReal</span><span class="p">())</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">update_output_</span><span class="p">(</span><span class="n">update_output</span><span class="p">),</span><span class="w"> </span><span class="n">reset_output_</span><span class="p">(</span><span class="n">reset_output</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
@@ -301,12 +309,6 @@
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">TReal</span><span class="w"> </span><span class="n">getOutput</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">axis_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">update_output_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">reset_output_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">TReal</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace simple_flight</span>

@@ -32,6 +32,7 @@ Program Listing for File MultirotorRpcLibAdaptors.hpp
    namespace autonomylib_rpclib {
    
    class MultirotorRpcLibAdaptors : public RpcLibAdaptorsBase {
+   
      public:
        struct YawMode {
            bool is_rate = true;

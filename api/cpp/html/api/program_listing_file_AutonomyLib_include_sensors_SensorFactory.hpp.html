@@ -272,18 +272,18 @@
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SensorBase.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SensorCollection.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
-
-<span class="c1">// sensors</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sensors/barometer/BarometerSimple.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sensors/gps/GpsSimple.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sensors/imu/ImuSimple.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sensors/magnetometer/MagnetometerSimple.hpp&quot;</span>
 
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+
 <span class="k">namespace</span><span class="w"> </span><span class="nn">nervosys</span><span class="w"> </span><span class="p">{</span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">SensorFactory</span><span class="w"> </span><span class="p">{</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="c1">// creates one sensor from settings</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">SensorBase</span><span class="o">&gt;</span>

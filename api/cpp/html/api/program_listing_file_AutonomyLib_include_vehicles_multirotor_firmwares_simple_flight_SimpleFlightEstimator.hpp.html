@@ -283,6 +283,11 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">autonomylib</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">SimpleFlightEstimator</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">simple_flight</span><span class="o">::</span><span class="n">IStateEstimator</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment_</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">SimpleFlightEstimator</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
@@ -349,10 +354,6 @@
 
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">state</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Kinematics</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="o">*</span><span class="n">kinematics_</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Environment</span><span class="w"> </span><span class="o">*</span><span class="n">environment_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

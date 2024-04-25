@@ -21,20 +21,22 @@ Program Listing for File CarRpcLibServer.hpp
    #include "api/RpcLibServerBase.hpp"
    #include "common/Common.hpp"
    #include "vehicles/car/api/CarApiBase.hpp"
+   
    #include <functional>
    
    namespace nervosys {
    namespace autonomylib {
    
    class CarRpcLibServer : public RpcLibServerBase {
-     public:
-       CarRpcLibServer(ApiProvider *api_provider, string server_address, uint16_t port = RpcLibPort);
-       virtual ~CarRpcLibServer();
    
      protected:
        virtual CarApiBase *getVehicleApi(const std::string &vehicle_name) override {
            return static_cast<CarApiBase *>(RpcLibServerBase::getVehicleApi(vehicle_name));
        }
+   
+     public:
+       CarRpcLibServer(ApiProvider *api_provider, string server_address, uint16_t port = RpcLibPort);
+       virtual ~CarRpcLibServer();
    };
    
    #endif

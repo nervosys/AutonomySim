@@ -20,7 +20,6 @@ Program Listing for File CarRpcLibServer.cpp
    // if using Unreal Build system then include precompiled header file first
    
    #include "vehicles/car/api/CarRpcLibServer.hpp"
-   
    #include "common/Common.hpp"
    STRICT_MODE_OFF
    
@@ -39,7 +38,6 @@ Program Listing for File CarRpcLibServer.cpp
    #define check(expr) (static_cast<void>((expr)))
    #endif
    #include "common/utils/WindowsApisCommonPost.hpp"
-   
    #include "vehicles/car/api/CarRpcLibAdaptors.hpp"
    
    STRICT_MODE_ON
