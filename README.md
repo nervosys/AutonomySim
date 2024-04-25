@@ -84,7 +84,7 @@
 
 For a complete list of changes, view the [change log](./docs/CHANGELOG.md).
 
-## Preface: Toward Robotic General Intelligence (RGI)
+## Toward Robotic General Intelligence (RGI)
 
 > "A central challenge in the branch of artificial intelligence (AI) known as machine learning (ML) is the massive amount of high-fidelity labeled data needed to train models. Datasets for real-world systems are either hand-crafted or automatically labeled using other models, introducing biases and errors into data and downstream models, and limiting learning to the offline case. While game engines have long used hardware-accelerated physics engines of Newtonian dynamics, accelerators for physics-based rendering (PBR) have recently made real-time ray-tracing a reality, extending physical realism to the visual domain. In parallel, physical fidelity with the real world has skyrocketed with the rapid growth and falling cost of Earth observation data. For the first time in history, the average user can generate high-fidelity robotic system models and real-world labeled datasets with known physics for offline or online learning of intelligent agents. This will revolutionize AI for robotics, where the data and safety requirements are otherwise intractable, while enabling low-cost hardware prototyping _in silico_." [-Dr. Adam Erickson, 2024](#)
 
@@ -96,7 +96,7 @@ We hope that you find `AutonomySim` enjoyable to use and develop. Unlike other p
 
 ## Professional Services
 
-Robotics companies interested in having [Nervosys](https://nervosys.ai/) model their hardware/software and develop related AI models in `AutonomySim` can reach us directly via [e-mail](mailto:info@nervosys.ai). We would be delighted to offer our services, so that we may continue to support and improve this critical open-source robotics project.
+Robotics companies interested in having [Nervosys](https://nervosys.ai/) model their hardware/software and develop related AI models in `AutonomySim` can reach us directly via [e-mail](mailto:info@nervosys.ai). We would be delighted to offer our services, so that we may continue to support and improve this essential open-source robotics project.
 
 ## Supported Operating Systems
 
@@ -174,32 +174,6 @@ Figure 1 below provides an overview of the simulation architecture:
 
 - [The Autonomous Driving Cookbook](https://github.com/nervosys/AutonomySim-DrivingCookbook) by Microsoft Deep Learning and Robotics Garage Chapter
 - [Using TensorFlow for simple collision avoidance](https://github.com/nervosys/AutonomySim-TensorFlow) by Simon Levy and WLU team
-
-## Join the Community
-
-For updates or answers to your questions, join our GitHub Discussion group [here](https://github.com/nervosys/AutonomySim/discussions) or our Discord channel [here](https://discord.gg/Mu97ucWa). 
-
-For information on becoming a contributor, see the following section.
-
-## Contributing
-
-Community contributions are *strongly encouraged* via GitHub Issues and Pull Requests. If you are looking for areas to contribute, please take a look at the [open issues](https://github.com/nervosys/AutonomySim/issues). For more information about contributing to the project, please visit the [contributing page](https://github.com/nervosys/AutonomySim/blob/master/CONTRIBUTING.md).
-
-Our [GitHub Insights](https://github.com/nervosys/AutonomySim/pulse/) page provides a sense of the project activity.
-
-### Project Structure
-
-The `AutonomySim` repository consists of multiple projects with a project, the core of which is `AutonomyLib`. Additional projects include `DroneServer`, `DroneShell`, `HelloCar`, `HelloDrone`, `MavLinkCom`, `Examples`, and `LogViewer`.
-
-It provides wrappers for `Unreal Engine`, `Python`, and `ROS2`, as well as build scripts for `Docker` and `Azure`.
-
-The build system uses `Visual Studio 2022` for Windows and `CMake` for cross-platform support. Pre-build scripts are run beforehand to prepare the target project for compilation.
-
-For more information, see the following pages:
-
-* [Project Design](https://nervosys.github.io/AutonomySim/design)
-* [Code Structure](https://nervosys.github.io/AutonomySim/code_structure)
-* [Contribution Guidelines](CONTRIBUTING.md)
 
 ## Operational Modes
 
@@ -350,45 +324,31 @@ Coming soon.
 
 Coming soon. A class of data augmentation to generate large amounts of diverse training data.
 
-## Current and Past Users
+## Join the Community
 
-A subset of the organizations, people, and projects that have used `AutonomySim` or its predecessor, `AirSim`, are listed [here](https://nervosys.github.io/AutonomySim/who_is_using).
+For updates or answers to your questions, join our GitHub Discussion group [here](https://github.com/nervosys/AutonomySim/discussions) or our Discord channel [here](https://discord.gg/Mu97ucWa). 
 
-If you would like to be featured on this list, please submit a request [here](https://github.com/nervosys/AutonomySim/issues).
+For information on becoming a contributor, see the following section.
 
-## Roadmap
+## Contributing
 
-- [x] Focus on Unreal Engine, deprecate support for ROS1, Unity, Gazebo
-- [x] Project reorganization and modernization (restructuring, renaming, refactoring, porting, updating)
-  - [x] Add support for the latest `Unreal Engine` version 5.3
-  - [ ] Add API, RPC support for Rust, deprecate support for Java and C#
-  - [ ] Update automated tests
-- [ ] Add libraries and tools for artificial intelligence (AI)
-  - [ ] CUDA Toolkit, CuDNN, TensorRT
-  - [ ] Python, Mojo, PyTorch, JAX, Flax, MLX, OpenCV
-  - [ ] Generative models: LLaMA 2, Mistral/Mixtral, OpenHermes, SD, LLaVA
-  - [ ] Robotics foundation models
-  - [ ] Multi-modal models
-  - [ ] Interpretability, explainability, and hard bounds or guardrails
-  - [ ] Safety and cybersecurity
-- [ ] Add headless server mode for control via external program, container, virtual machine, or local network
-  - [ ] Add NVIDIA JetPack and Botnix OS support for software-in-the-loop (SITL)
-- [ ] Add the JSBSim flight dynamics model (FDM) plugin for Unreal Engine per [Project Antoinette](https://www.unrealengine.com/en-US/blog/antoinette-project-tools-to-create-the-next-generation-of-flight-simulators/)
-- [ ] Add flight control software (FCS): BetaFlight, OpenPilot, LibrePilot, dRehmFlight, Flightmare/flightlib
-- [ ] Add MavLink-based ground control software (GCS): qGroundControl, Mission Planner, Auterion Mission Control
-- [ ] Add self-driving car (i.e., rover) software: openpilot, Autoware, CARLA, Vista, Aslan, OpenPodcar/ROS
-- [ ] Add NVIDIA Omniverse IsaacSim/Gym interoperability
+Community contributions are *strongly encouraged* via GitHub Issues and Pull Requests. If you are looking for areas to contribute, please take a look at the [open issues](https://github.com/nervosys/AutonomySim/issues). For more information about contributing to the project, please visit the [contributing page](https://github.com/nervosys/AutonomySim/blob/master/CONTRIBUTING.md).
 
-## Sponsors
+Our [GitHub Insights](https://github.com/nervosys/AutonomySim/pulse/) page provides a sense of the project activity.
 
-* [Nervosys](https://nervosys.ai/): *"Accelerating the development of robotic general intelligence"*
+### Project Structure
 
-## Donations
+The `AutonomySim` repository consists of multiple projects with a project, the core of which is `AutonomyLib`. Additional projects include `DroneServer`, `DroneShell`, `HelloCar`, `HelloDrone`, `MavLinkCom`, `Examples`, and `LogViewer`.
 
-`AutonomySim` is made possible by [Nervosys](https://nervosys.ai/), NVIDIA, Epic Games, Microsoft, the
-Linux Foundation and countless contributors to related projects.
+It provides wrappers for `Unreal Engine`, `Python`, and `ROS2`, as well as build scripts for `Docker` and `Azure`.
 
-We need your support to ensure the success of `AutonomySim` development. Reach out to us at opensource@nervosys.ai to learn how you can support this project.
+The build system uses `Visual Studio 2022` for Windows and `CMake` for cross-platform support. Pre-build scripts are run beforehand to prepare the target project for compilation.
+
+For more information, see the following pages:
+
+* [Project Design](https://nervosys.github.io/AutonomySim/design)
+* [Code Structure](https://nervosys.github.io/AutonomySim/code_structure)
+* [Contribution Guidelines](CONTRIBUTING.md)
 
 ### Comparison with Related Projects
 
@@ -406,6 +366,45 @@ Below is a comparison with `AirSim` and its other forks.
 Compared to other simulation engines for robotic systems, `AutonomySim` is open-source and built on top of a state-of-the-art game engine with the best available features and performance. It also has batteries-included support for popular machine learning workflows.
 
 `AutonomySim` has been designed from the ground-up for robotic general intelligence (RGI) or general robotic intelligence (GRI) based on multi-modal, high-dimensional sensing combined with state-of-the-art AI modeling techniques, terms and concepts that Nervosys rightfully [invented](https://blog.nervosys.ai/interview-at-icra/).
+
+## Current and Past Users
+
+A subset of the organizations, people, and projects that have used `AutonomySim` or its predecessor, `AirSim`, are listed [here](https://nervosys.github.io/AutonomySim/who_is_using).
+
+If you would like to be featured on this list, please submit a request [here](https://github.com/nervosys/AutonomySim/issues).
+
+## Sponsors
+
+* [Nervosys](https://nervosys.ai/): *"Accelerating the development of robotic general intelligence"*
+
+`AutonomySim` is made possible by [Nervosys](https://nervosys.ai/), NVIDIA, Epic Games, Microsoft, the Linux Foundation and countless contributors. We need your support to ensure the success of `AutonomySim`.
+
+Reach out to us at opensource@nervosys.ai to learn how you can support this project.
+
+## Roadmap
+
+- [x] Focus on Unreal Engine, deprecate support for ROS1, Unity, Gazebo
+- [x] Project reorganization and modernization
+  - [x] Add support for the latest `Unreal Engine` version 5.4
+  - [x] Updated Python library
+  - [ ] Update C++ library
+  - [ ] Add API, RPC support for Rust, deprecate support for Java and C#
+  - [x] Update automated tests
+- [ ] Add the JSBSim flight dynamics model (FDM) plugin for Unreal Engine per [Project Antoinette](https://www.unrealengine.com/en-US/blog/antoinette-project-tools-to-create-the-next-generation-of-flight-simulators/)
+- [ ] Add libraries and tools for artificial intelligence (AI)
+  - [ ] CUDA Toolkit, CuDNN, TensorRT, JetPack
+  - [ ] Mojo, PyTorch, JAX-Flax, OpenCV
+  - [ ] LLMs: LLaMA 3, Mistral/Mixtral, OpenHermes, SD, LLaVA
+  - [ ] Robotics foundation models (multimodal)
+  - [ ] Interpretability, explainability, and hard bounds or guardrails
+  - [ ] Testing, safety, cybersecurity tools
+- [ ] Add headless server mode for control via external program, container, virtual machine, or local network
+  - [ ] Add support for SITL and HITL of companion computers (NVIDIA JetPack)
+- [ ] Create generic interface for control software
+  - [ ] Add flight control software (FCS): BetaFlight, OpenPilot, LibrePilot, dRehmFlight, Flightmare/flightlib
+  - [ ] Add MavLink-based ground control software (GCS): qGroundControl, Mission Planner, Auterion Mission Control
+  - [ ] Add self-driving car (i.e., rover) software: openpilot, Autoware, CARLA, Vista, Aslan, OpenPodcar/ROS
+- [ ] Add large labeled robotics labeled datasets
 
 ## References
 
