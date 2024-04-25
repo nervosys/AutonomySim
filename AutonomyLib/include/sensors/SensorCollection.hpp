@@ -15,10 +15,6 @@ namespace autonomylib {
 
 class SensorCollection : public UpdatableObject {
 
-  private:
-    typedef UpdatableContainer<SensorBasePtr> SensorBaseContainer;
-    unordered_map<uint, unique_ptr<SensorBaseContainer>> sensors_;
-
   public:
     typedef SensorBase *SensorBasePtr;
 
@@ -84,6 +80,10 @@ class SensorCollection : public UpdatableObject {
         }
     }
     //*** End: UpdatableState implementation ***//
+
+  private:
+    typedef UpdatableContainer<SensorBasePtr> SensorBaseContainer;
+    unordered_map<uint, unique_ptr<SensorBaseContainer>> sensors_;
 };
 
 } // namespace autonomylib
