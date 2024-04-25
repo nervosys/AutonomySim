@@ -33,22 +33,6 @@ Program Listing for File SafetyEval.hpp
    // this class takes all inputs and outputs in NEU world coordinates in metric system
    class SafetyEval {
    
-     private:
-       MultirotorApiParams vehicle_params_;
-       shared_ptr<IGeoFence> fence_ptr_;
-       shared_ptr<ObstacleMap> obs_xy_ptr_;
-       SafetyViolationType enable_reasons_ = SafetyEval::SafetyViolationType_::GeoFence;
-       ObsAvoidanceStrategy obs_strategy_ = SafetyEval::ObsAvoidanceStrategy::RaiseException;
-   
-       void checkFence(const Vector3r &cur_pos, const Vector3r &dest_pos, EvalResult &appendToResult);
-       void isSafeDestination(const Vector3r &dest, const Vector3r &cur_pos, const Quaternionr &quaternion,
-                              SafetyEval::EvalResult &result);
-       Vector3r getDestination(const Vector3r &cur_pos, const Vector3r &velocity) const;
-       bool isThisRiskDistLess(float this_risk_dist, float other_risk_dist) const;
-       void isCurrentSafer(SafetyEval::EvalResult &result);
-       void setSuggestedVelocity(SafetyEval::EvalResult &result, const Quaternionr &quaternion);
-       float adjustClearanceForPrStl(float base_clearance, float obs_confidence);
-   
      public:
        enum class SafetyViolationType_ : uint {
            NoSafetyViolation = 0,
@@ -114,6 +98,22 @@ Program Listing for File SafetyEval.hpp
                       float min_z);
        void setObsAvoidanceStrategy(SafetyEval::ObsAvoidanceStrategy obs_strategy);
        SafetyEval::ObsAvoidanceStrategy getObsAvoidanceStrategy();
+   
+     private:
+       MultirotorApiParams vehicle_params_;
+       shared_ptr<IGeoFence> fence_ptr_;
+       shared_ptr<ObstacleMap> obs_xy_ptr_;
+       SafetyViolationType enable_reasons_ = SafetyEval::SafetyViolationType_::GeoFence;
+       ObsAvoidanceStrategy obs_strategy_ = SafetyEval::ObsAvoidanceStrategy::RaiseException;
+   
+       void checkFence(const Vector3r &cur_pos, const Vector3r &dest_pos, EvalResult &appendToResult);
+       void isSafeDestination(const Vector3r &dest, const Vector3r &cur_pos, const Quaternionr &quaternion,
+                              SafetyEval::EvalResult &result);
+       Vector3r getDestination(const Vector3r &cur_pos, const Vector3r &velocity) const;
+       bool isThisRiskDistLess(float this_risk_dist, float other_risk_dist) const;
+       void isCurrentSafer(SafetyEval::EvalResult &result);
+       void setSuggestedVelocity(SafetyEval::EvalResult &result, const Quaternionr &quaternion);
+       float adjustClearanceForPrStl(float base_clearance, float obs_confidence);
    };
    
    } // namespace autonomylib

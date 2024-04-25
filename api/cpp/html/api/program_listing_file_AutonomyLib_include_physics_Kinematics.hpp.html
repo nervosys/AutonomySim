@@ -282,10 +282,6 @@
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Kinematics</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UpdatableObject</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">private</span><span class="o">:</span><span class="w"> </span><span class="c1">// fields</span>
-<span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">initial_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span>
-
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">State</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Pose</span><span class="w"> </span><span class="n">pose</span><span class="p">;</span>
@@ -337,6 +333,11 @@
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">current_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getInitialState</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">initial_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// fields</span>
+<span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">initial_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>
