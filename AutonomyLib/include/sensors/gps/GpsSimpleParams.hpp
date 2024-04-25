@@ -10,7 +10,7 @@ namespace nervosys {
 namespace autonomylib {
 
 struct GpsSimpleParams {
-    
+
     real_T eph_time_constant = 0.9f, epv_time_constant = 0.9f;
     real_T eph_initial = 100.0f, epv_initial = 100.0f; // initially fully diluted positions
     real_T eph_final = 0.1f, epv_final = 0.1f; // PX4 won't converge GPS sensor fusion until we get to 10% accuracty.
@@ -22,6 +22,7 @@ struct GpsSimpleParams {
 
     void initializeFromSettings(const AutonomySimSettings::GpsSetting &settings) {
         const auto &json = settings.settings;
+
         eph_time_constant = json.getFloat("EPH_TimeConstant", eph_time_constant);
         epv_time_constant = json.getFloat("EPV_TimeConstant", epv_time_constant);
         eph_initial = json.getFloat("EphInitial", eph_initial);
@@ -30,6 +31,7 @@ struct GpsSimpleParams {
         epv_final = json.getFloat("EpvFinal", epv_final);
         eph_min_3d = json.getFloat("EphMin3d", eph_min_3d);
         eph_min_2d = json.getFloat("EphMin2d", eph_min_2d);
+
         update_latency = json.getFloat("UpdateLatency", update_latency);
         update_frequency = json.getFloat("UpdateFrequency", update_frequency);
         startup_delay = json.getFloat("StartupDelay", startup_delay);
