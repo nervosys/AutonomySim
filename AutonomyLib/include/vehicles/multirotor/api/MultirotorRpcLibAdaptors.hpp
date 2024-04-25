@@ -20,6 +20,7 @@ namespace nervosys {
 namespace autonomylib_rpclib {
 
 class MultirotorRpcLibAdaptors : public RpcLibAdaptorsBase {
+
   public:
     struct YawMode {
         bool is_rate = true;

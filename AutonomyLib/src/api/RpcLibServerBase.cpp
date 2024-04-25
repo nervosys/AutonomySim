@@ -26,9 +26,9 @@ STRICT_MODE_OFF
 #ifndef check
 #define check(expr) (static_cast<void>((expr)))
 #endif
+#include "api/RpcLibAdaptorsBase.hpp"
 #include "common/utils/WindowsApisCommonPost.hpp"
 
-#include "api/RpcLibAdaptorsBase.hpp"
 #include <functional>
 #include <thread>
 

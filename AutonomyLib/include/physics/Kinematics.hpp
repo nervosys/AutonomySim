@@ -12,6 +12,11 @@ namespace nervosys {
 namespace autonomylib {
 
 class Kinematics : public UpdatableObject {
+
+  private: // fields
+    State initial_;
+    State current_;
+
   public:
     struct State {
         Pose pose;
@@ -63,10 +68,6 @@ class Kinematics : public UpdatableObject {
     const State &getState() const { return current_; }
     void setState(const State &state) { current_ = state; }
     const State &getInitialState() const { return initial_; }
-
-  private: // fields
-    State initial_;
-    State current_;
 };
 
 } // namespace autonomylib

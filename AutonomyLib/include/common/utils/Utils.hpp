@@ -6,6 +6,7 @@
 
 #include "StrictMode.hpp"
 #include "type_utils.hpp"
+
 #include <array>
 #include <bitset>
 #include <chrono>
@@ -49,10 +50,10 @@
 #define EARTH_RADIUS (6378137.0f)
 
 /*
-    This file is collection of routines that can be included in ANY project just
-    by dropping in common_utils.hpp. Therefore there should not be any dependency
-    in the code below other than STL. The code should be able to compilable on
-    all major platforms.
+This file is collection of routines that can be included in ANY project just
+by dropping in common_utils.hpp. Therefore there should not be any dependency
+in the code below other than STL. The code should be able to compilable on
+all major platforms.
 */
 
 #ifndef _MSC_VER
@@ -74,6 +75,7 @@ template <class T> inline void unused(T const &result) { static_cast<void>(resul
 namespace common_utils {
 
 class Utils {
+
   private:
     typedef std::chrono::system_clock system_clock;
     typedef std::chrono::steady_clock steady_clock;
@@ -147,10 +149,12 @@ class Utils {
     static constexpr int kLogLevelInfo = 0;
     static constexpr int kLogLevelWarn = -1;
     static constexpr int kLogLevelError = -2;
+
     static void log(std::string message, int level = kLogLevelInfo) {
         if (level >= getSetMinLogLevel())
             getSetLogger()->log(level, message);
     }
+
     static int getSetMinLogLevel(bool set_or_get = false, int set_min_log_level = std::numeric_limits<int>::min()) {
         static int min_log_level = std::numeric_limits<int>::min();
         if (set_or_get)
@@ -179,6 +183,7 @@ class Utils {
                                    const string &suffix = ")") {
         return printRange(std::begin(range), std::end(range), delim, prefix, suffix);
     }
+
     template <typename Iterator>
     static const string printRange(Iterator start, Iterator last, const string &delim = ", ",
                                    const string &prefix = "(", const string &suffix = ")") {
@@ -228,9 +233,7 @@ class Utils {
 #else
         vsnprintf_s(buf.get(), size, _TRUNCATE, format, args);
 #endif
-
         va_end(args);
-
         return string(buf.get());
     }
 
@@ -251,6 +254,7 @@ class Utils {
             return "";
         return str.substr(i, j - i + 1);
     }
+
     static std::vector<std::string> split(const string &s, const char *splitChars, int numSplitChars) {
         auto start = s.begin();
         std::vector<string> result;
@@ -377,6 +381,7 @@ class Utils {
         std::ofstream file(file_name, std::ios::binary);
         file.write(data, size);
     }
+
     template <typename Container>
     static typename std::enable_if<type_utils::is_container<Container>::value, void>::type
     append(Container &to, const Container &from) {
@@ -384,6 +389,7 @@ class Utils {
         using std::end;
         to.insert(end(to), begin(from), end(from));
     }
+
     template <typename Container>
     static typename std::enable_if<type_utils::is_container<Container>::value, void>::type copy(const Container &from,
                                                                                                 Container &to) {
@@ -391,6 +397,7 @@ class Utils {
         using std::end;
         std::copy(begin(from), end(from), begin(to));
     }
+
     template <typename T> static void copy(const T *from, T *to, uint count) { std::copy(from, from + count, to); }
 
     static const char *to_string(time_point<steady_clock> t) {
@@ -432,6 +439,7 @@ class Utils {
         else
             return string();
     }
+
     static string getLogFileTimeStamp() { return to_string(now(), "%Y%m%d%H%M%S"); }
     static int to_integer(std::string s) { return atoi(s.c_str()); }
     static string getEnv(const string &var) {
@@ -451,6 +459,7 @@ class Utils {
         using Clock = std::chrono::system_clock; // high res clock has epoch since boot instead of since 1970 for VC++
         return std::chrono::duration<double>((t != nullptr ? *t : Clock::now()).time_since_epoch()).count();
     }
+
     static uint64_t getTimeSinceEpochNanos(std::chrono::system_clock::time_point *t = nullptr) {
         using Clock = std::chrono::system_clock; // high res clock has epoch since boot instead of since 1970 for VC++
         return std::chrono::duration_cast<std::chrono::nanoseconds>(
@@ -513,6 +522,7 @@ class Utils {
 
         return false;
     }
+
     template <typename TReal>
     static bool isDefinitelyGreaterThan(TReal a, TReal b, TReal tolerance = epsilon<TReal>()) {
         TReal diff = a - b;
@@ -548,6 +558,7 @@ class Utils {
     template <typename E> static constexpr typename std::underlying_type<E>::type toNumeric(E e) {
         return static_cast<typename std::underlying_type<E>::type>(e);
     }
+
     template <typename E> static constexpr E toEnum(typename std::underlying_type<E>::type u) {
         return static_cast<E>(u);
     }

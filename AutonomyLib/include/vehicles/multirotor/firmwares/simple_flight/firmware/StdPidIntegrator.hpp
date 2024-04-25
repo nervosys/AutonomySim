@@ -6,6 +6,16 @@
 namespace simple_flight {
 
 template <typename T> class StdPidIntegrator : public IPidIntegrator<T> {
+
+  private:
+    float iterm_int_;
+    const PidConfig<T> config_;
+
+    void clipIterm() { iterm_int_ = clip(iterm_int_, config_.min_output, config_.max_output); }
+
+    // TODO: replace with std::clamp after moving to C++17
+    static T clip(T val, T min_value, T max_value) { return std::max(min_value, std::min(val, max_value)); }
+
   public:
     StdPidIntegrator(const PidConfig<T> &config) : config_(config) {}
 
@@ -30,16 +40,6 @@ template <typename T> class StdPidIntegrator : public IPidIntegrator<T> {
     }
 
     virtual T getOutput() override { return iterm_int_; }
-
-  private:
-    void clipIterm() { iterm_int_ = clip(iterm_int_, config_.min_output, config_.max_output); }
-
-    // TODO: replace with std::clamp after moving to C++17
-    static T clip(T val, T min_value, T max_value) { return std::max(min_value, std::min(val, max_value)); }
-
-  private:
-    float iterm_int_;
-    const PidConfig<T> config_;
 };
 
 } // namespace simple_flight

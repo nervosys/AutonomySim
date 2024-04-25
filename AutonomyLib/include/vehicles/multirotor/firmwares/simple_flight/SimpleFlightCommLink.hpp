@@ -6,13 +6,19 @@
 
 #include "common/Common.hpp"
 #include "firmware/interfaces/ICommLink.hpp"
+
 #include <exception>
 
 namespace nervosys {
 namespace autonomylib {
 
 class SimpleFlightCommLink : public simple_flight::ICommLink {
-  public: // derived class specific methods
+
+  private:
+    std::vector<std::string> messages_;
+
+  public:
+    // derived class specific methods
     void getStatusMessages(std::vector<std::string> &messages) {
         if (messages_.size() > 0) {
             messages.insert(messages.end(), messages_.begin(), messages_.end());
@@ -20,7 +26,7 @@ class SimpleFlightCommLink : public simple_flight::ICommLink {
         }
     }
 
-  public: // implement CommLink interface
+    // implement CommLink interface
     virtual void reset() {
         simple_flight::ICommLink::reset();
 
@@ -35,9 +41,6 @@ class SimpleFlightCommLink : public simple_flight::ICommLink {
         //     Utils::DebugBreak();
         messages_.push_back(std::string(message));
     }
-
-  private:
-    std::vector<std::string> messages_;
 };
 
 } // namespace autonomylib

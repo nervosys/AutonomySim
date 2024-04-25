@@ -9,6 +9,10 @@ namespace simple_flight {
 typedef float TReal;
 
 template <typename T> class Axis3 {
+
+  private:
+    T vals_[3];
+
   public:
     Axis3(const T &x_val = T(), const T &y_val = T(), const T &z_val = T()) : vals_{x_val, y_val, z_val} {}
 
@@ -57,13 +61,15 @@ template <typename T> class Axis3 {
     }
 
     static constexpr unsigned int AxisCount() { return 3; }
-
-  private:
-    T vals_[3];
 };
+
 typedef Axis3<TReal> Axis3r;
 
 template <typename T> class Axis4 : public Axis3<T> {
+
+  private:
+    T val4_ = 0;
+
   public:
     Axis4(const T &x_val = T(), const T &y_val = T(), const T &z_val = T(), const T &val4_val = T())
         : Axis3<T>(x_val, y_val, z_val), val4_(val4_val) {}
@@ -89,6 +95,7 @@ template <typename T> class Axis4 : public Axis3<T> {
     virtual T &operator[](unsigned int index) override {
         return const_cast<T &>((*const_cast<const Axis4<T> *>(this))[index]);
     }
+
     virtual const T &operator[](unsigned int index) const override {
         if (index <= 2)
             return Axis3<T>::operator[](index);
@@ -97,6 +104,7 @@ template <typename T> class Axis4 : public Axis3<T> {
         else
             throw std::out_of_range("index must be <= 3 but it was " + std::to_string(index));
     }
+
     virtual std::string toString() const override {
         return Axis3<T>::toString().append(", ").append(std::to_string(static_cast<float>(val4_)));
     }
@@ -122,14 +130,13 @@ template <typename T> class Axis4 : public Axis3<T> {
     static Axis3<T> axis4ToXyz(const Axis4<T> axis4, bool swap_xy) {
         return Axis3<T>(axis4[swap_xy ? 1 : 0], axis4[swap_xy ? 0 : 1], axis4[3]);
     }
+
     static Axis4<T> xyzToAxis4(const Axis3<T> xyz, bool swap_xy) {
         // TODO: use nan instead 0?
         return Axis4<T>(xyz[swap_xy ? 1 : 0], xyz[swap_xy ? 0 : 1], 0, xyz[2]);
     }
-
-  private:
-    T val4_ = 0;
 };
+
 typedef Axis4<TReal> Axis4r;
 
 struct GeoPoint {
@@ -159,6 +166,11 @@ struct KinematicsState {
 enum class VehicleStateType { Unknown, Inactive, BeingArmed, Armed, Active, BeingDisarmed, Disarmed };
 
 class VehicleState {
+
+  private:
+    VehicleStateType state_ = VehicleStateType::Unknown;
+    GeoPoint home_geo_point_;
+
   public:
     VehicleStateType getState() const { return state_; }
     void setState(VehicleStateType state, const GeoPoint &home_geo_point = GeoPoint::nan()) {
@@ -189,10 +201,6 @@ class VehicleState {
     }
 
     const GeoPoint &getHomeGeoPoint() const { return home_geo_point_; }
-
-  private:
-    VehicleStateType state_ = VehicleStateType::Unknown;
-    GeoPoint home_geo_point_;
 };
 
 enum class GoalModeType : int {
@@ -206,6 +214,7 @@ enum class GoalModeType : int {
 };
 
 class GoalMode : public Axis4<GoalModeType> {
+
   public:
     GoalMode(GoalModeType x_val = GoalModeType::AngleLevel, GoalModeType y_val = GoalModeType::AngleLevel,
              GoalModeType z_val = GoalModeType::AngleRate, GoalModeType val4_val = GoalModeType::Passthrough)

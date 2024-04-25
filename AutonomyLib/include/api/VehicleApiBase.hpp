@@ -17,6 +17,7 @@
 #include "sensors/imu/ImuBase.hpp"
 #include "sensors/lidar/LidarBase.hpp"
 #include "sensors/magnetometer/MagnetometerBase.hpp"
+
 #include <exception>
 #include <string>
 
@@ -31,6 +32,25 @@ The base class defines usually available methods that all vehicle controllers ma
 Some methods may not be applicable to specific vehicle in which case an exception may be raised or call may be ignored.
 */
 class VehicleApiBase : public UpdatableObject {
+
+  private:
+    const SensorBase *findSensorByName(const std::string &sensor_name, const SensorBase::SensorType type) const {
+        const SensorBase *sensor = nullptr;
+
+        // Find sensor with the given name (for empty input name, return the first one found)
+        // Not efficient but should suffice given small number of sensors
+        uint count_sensors = getSensors().size(type);
+        for (uint i = 0; i < count_sensors; i++) {
+            const SensorBase *current_sensor = getSensors().getByType(type, i);
+            if (current_sensor != nullptr && (current_sensor->getName() == sensor_name || sensor_name == "")) {
+                sensor = current_sensor;
+                break;
+            }
+        }
+
+        return sensor;
+    }
+
   public:
     virtual void enableApiControl(bool is_enabled) = 0;
     virtual bool isApiControlEnabled() const = 0;
@@ -173,24 +193,6 @@ class VehicleApiBase : public UpdatableObject {
       public:
         VehicleMoveException(const std::string &message) : VehicleControllerException(message) {}
     };
-
-  private:
-    const SensorBase *findSensorByName(const std::string &sensor_name, const SensorBase::SensorType type) const {
-        const SensorBase *sensor = nullptr;
-
-        // Find sensor with the given name (for empty input name, return the first one found)
-        // Not efficient but should suffice given small number of sensors
-        uint count_sensors = getSensors().size(type);
-        for (uint i = 0; i < count_sensors; i++) {
-            const SensorBase *current_sensor = getSensors().getByType(type, i);
-            if (current_sensor != nullptr && (current_sensor->getName() == sensor_name || sensor_name == "")) {
-                sensor = current_sensor;
-                break;
-            }
-        }
-
-        return sensor;
-    }
 };
 
 } // namespace autonomylib

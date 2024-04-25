@@ -4,11 +4,12 @@
 #ifndef autonomylib_common_StateReporterWrapper_hpp
 #define autonomylib_common_StateReporterWrapper_hpp
 
+#include "Common.hpp"
+#include "FrequencyLimiter.hpp"
 #include "StateReporter.hpp"
 #include "UpdatableObject.hpp"
-#include "common/Common.hpp"
-#include "common/FrequencyLimiter.hpp"
-#include "common/utils/OnlineStats.hpp"
+#include "utils/OnlineStats.hpp"
+
 #include <iomanip>
 #include <sstream>
 #include <string>
@@ -17,6 +18,19 @@ namespace nervosys {
 namespace autonomylib {
 
 class StateReporterWrapper : public UpdatableObject {
+
+  private:
+    typedef common_utils::OnlineStats OnlineStats;
+
+    StateReporter report_;
+
+    OnlineStats dt_stats_;
+
+    FrequencyLimiter report_freq_;
+    bool enabled_;
+    bool is_wait_complete = false;
+    TTimePoint last_time_;
+
   public:
     static constexpr real_T DefaultReportFreq = 3.0f;
 
@@ -90,18 +104,6 @@ class StateReporterWrapper : public UpdatableObject {
             report_freq_.initialize(0);
     }
     bool getEnable() { return enabled_; }
-
-  private:
-    typedef common_utils::OnlineStats OnlineStats;
-
-    StateReporter report_;
-
-    OnlineStats dt_stats_;
-
-    FrequencyLimiter report_freq_;
-    bool enabled_;
-    bool is_wait_complete = false;
-    TTimePoint last_time_;
 };
 
 } // namespace autonomylib

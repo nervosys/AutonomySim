@@ -8,6 +8,7 @@
 #include <valarray>
 
 namespace common_utils {
+
 namespace type_utils {
 // from: https://raw.githubusercontent.com/louisdx/cxx-prettyprint/master/prettyprint.hpp
 // also see https://gist.github.com/louisdx/1076849
@@ -20,6 +21,7 @@ struct sfinae_base {
 };
 
 template <typename T> struct has_const_iterator : private sfinae_base {
+
   private:
     template <typename C> static yes &test(typename C::const_iterator *);
     template <typename C> static no &test(...);
@@ -32,6 +34,7 @@ template <typename T> struct has_const_iterator : private sfinae_base {
 };
 
 template <typename T> struct has_begin_end : private sfinae_base {
+
   private:
     template <typename C>
     static yes &
@@ -75,6 +78,7 @@ template <typename T> struct is_container<std::valarray<T>> : std::true_type {};
 template <typename T1, typename T2> struct is_container<std::pair<T1, T2>> : std::true_type {};
 
 template <typename... Args> struct is_container<std::tuple<Args...>> : std::true_type {};
+
 } // namespace type_utils
 } // namespace common_utils
 #endif

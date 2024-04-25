@@ -14,6 +14,11 @@ namespace nervosys {
 namespace autonomylib {
 
 class SimpleFlightEstimator : public simple_flight::IStateEstimator {
+
+  private:
+    const Kinematics::State *kinematics_;
+    const Environment *environment_;
+
   public:
     virtual ~SimpleFlightEstimator() {}
 
@@ -80,10 +85,6 @@ class SimpleFlightEstimator : public simple_flight::IStateEstimator {
 
         return state;
     }
-
-  private:
-    const Kinematics::State *kinematics_;
-    const Environment *environment_;
 };
 
 } // namespace autonomylib

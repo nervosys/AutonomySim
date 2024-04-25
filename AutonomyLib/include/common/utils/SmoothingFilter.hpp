@@ -13,6 +13,7 @@ namespace common_utils {
 // SmoothingFilter is a filter that removes the outliers that fall outside a given percentage from the min/max
 // range of numbers over a given window size.
 template <typename T> class SmoothingFilter {
+
   private:
     std::vector<T> buffer_;
     int window_size_;

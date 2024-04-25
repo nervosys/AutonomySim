@@ -4,8 +4,9 @@
 #ifndef autonomylib_common_CancelToken_hpp
 #define autonomylib_common_CancelToken_hpp
 
-#include "common/Common.hpp"
-#include "common/utils/Utils.hpp"
+#include "Common.hpp"
+#include "utils/Utils.hpp"
+
 #include <atomic>
 #include <mutex>
 
@@ -13,6 +14,14 @@ namespace nervosys {
 namespace autonomylib {
 
 class CancelToken {
+
+  private:
+    std::atomic<bool> is_cancelled_;
+    std::atomic<bool> is_complete_;
+    std::atomic<int> recursion_count_;
+
+    std::recursive_mutex wait_mutex_;
+
   public:
     CancelToken() : is_cancelled_(false), is_complete_(false), recursion_count_(0) {}
 
@@ -65,13 +74,6 @@ class CancelToken {
         wait_mutex_.lock();
         ++recursion_count_;
     }
-
-  private:
-    std::atomic<bool> is_cancelled_;
-    std::atomic<bool> is_complete_;
-    std::atomic<int> recursion_count_;
-
-    std::recursive_mutex wait_mutex_;
 };
 
 } // namespace autonomylib

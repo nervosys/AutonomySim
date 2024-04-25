@@ -7,6 +7,7 @@
 #include "common/AutonomySimSettings.hpp"
 #include "common/Common.hpp"
 #include "common/EarthUtils.hpp"
+
 #include <cmath>
 
 namespace nervosys {
@@ -16,13 +17,13 @@ namespace autonomylib {
 // https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model-and-Intrinsics
 struct ImuSimpleParams {
     /* ref: Parameter values are for MPU 6000 IMU from InvenSense
-Design and Characterization of a Low Cost MEMS IMU Cluster for Precision Navigation
-Daniel R. Greenheck, 2009, sec 2.2, pp 17
-http://epublications.marquette.edu/cgi/viewcontent.cgi?article=1326&context=theses_open
-Datasheet:
-https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
-For Allan Variance/Deviation plots see http://www.invensense.com/wp-content/uploads/2015/02/MPU-3300-Datasheet.pdf
-*/
+    Design and Characterization of a Low Cost MEMS IMU Cluster for Precision Navigation
+    Daniel R. Greenheck, 2009, sec 2.2, pp 17
+    http://epublications.marquette.edu/cgi/viewcontent.cgi?article=1326&context=theses_open
+    Datasheet:
+    https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
+    For Allan Variance/Deviation plots see http://www.invensense.com/wp-content/uploads/2015/02/MPU-3300-Datasheet.pdf
+    */
     struct Gyroscope {
         // angular random walk (ARW)
         real_T arw = 0.30f / sqrt(3600.0f) * M_PIf / 180; // deg/sqrt(hour) converted to rad/sqrt(sec)
@@ -49,15 +50,18 @@ For Allan Variance/Deviation plots see http://www.invensense.com/wp-content/uplo
         if (!std::isnan(arw)) {
             gyro.arw = arw / sqrt(3600.0f) * M_PIf / 180; // //deg/sqrt(hour) converted to rad/sqrt(sec)
         }
+
         gyro.tau = json.getFloat("GyroBiasStabilityTau", gyro.tau);
         float bias_stability = json.getFloat("GyroBiasStability", Utils::nan<float>());
         if (!std::isnan(bias_stability)) {
             gyro.bias_stability = bias_stability / 3600 * M_PIf / 180; // deg/hr converted to rad/sec
         }
+
         auto vrw = json.getFloat("VelocityRandomWalk", Utils::nan<float>());
         if (!std::isnan(vrw)) {
             accel.vrw = vrw * EarthUtils::Gravity / 1.0E3f; // mg converted to m/s^2
         }
+
         accel.tau = json.getFloat("AccelBiasStabilityTau", accel.tau);
         bias_stability = json.getFloat("AccelBiasStability", Utils::nan<float>());
         if (!std::isnan(bias_stability)) {

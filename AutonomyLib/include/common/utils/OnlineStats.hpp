@@ -9,6 +9,11 @@
 namespace common_utils {
 
 class OnlineStats {
+
+  private:
+    int64_t n; // don't declare as unsigned because we do n-k and if n = 0, we get large number
+    double m1, m2, m3, m4;
+
   public:
     OnlineStats() { clear(); }
 
@@ -76,10 +81,6 @@ class OnlineStats {
         *this = combined;
         return *this;
     }
-
-  private:
-    int64_t n; // don't declare as unsigned because we do n-k and if n = 0, we get large number
-    double m1, m2, m3, m4;
 
 }; // class
 

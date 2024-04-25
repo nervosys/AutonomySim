@@ -7,6 +7,7 @@
 #include "interfaces/CommonStructs.hpp"
 #include "interfaces/IAxisController.hpp"
 #include "interfaces/IBoardClock.hpp"
+
 #include <exception>
 #include <memory>
 #include <string>
@@ -14,6 +15,18 @@
 namespace simple_flight {
 
 class AngleRateController : public IAxisController {
+
+  private:
+    unsigned int axis_;
+    const IGoal *goal_;
+    const IStateEstimator *state_estimator_;
+
+    TReal output_;
+
+    Params *params_;
+    const IBoardClock *clock_;
+    std::unique_ptr<PidController<float>> pid_;
+
   public:
     AngleRateController(Params *params, const IBoardClock *clock) : params_(params), clock_(clock) {}
 
@@ -49,17 +62,6 @@ class AngleRateController : public IAxisController {
     }
 
     virtual TReal getOutput() override { return output_; }
-
-  private:
-    unsigned int axis_;
-    const IGoal *goal_;
-    const IStateEstimator *state_estimator_;
-
-    TReal output_;
-
-    Params *params_;
-    const IBoardClock *clock_;
-    std::unique_ptr<PidController<float>> pid_;
 };
 
 } // namespace simple_flight

@@ -12,6 +12,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class PhysicsEngineBase : public UpdatableContainer<PhysicsBody *> {
+
   public:
     virtual void update() override { UpdatableObject::update(); }
 

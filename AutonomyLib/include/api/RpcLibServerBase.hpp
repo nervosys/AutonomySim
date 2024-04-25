@@ -12,17 +12,12 @@ namespace nervosys {
 namespace autonomylib {
 
 class RpcLibServerBase : public ApiServerBase {
-  public:
-    RpcLibServerBase(ApiProvider *api_provider, const std::string &server_address, uint16_t port = RpcLibPort);
-    virtual ~RpcLibServerBase() override;
 
-    virtual void start(bool block, std::size_t thread_count) override;
-    virtual void stop() override;
+  private:
+    ApiProvider *api_provider_;
 
-    class ApiNotSupported : public std::runtime_error {
-      public:
-        ApiNotSupported(const std::string &message) : std::runtime_error(message) {}
-    };
+    struct impl;
+    std::unique_ptr<impl> pimpl_;
 
   protected:
     void *getServer() const;
@@ -54,11 +49,17 @@ class RpcLibServerBase : public ApiServerBase {
                                   "' is not available. This could be because this is not a simulation");
     }
 
-  private:
-    ApiProvider *api_provider_;
+  public:
+    RpcLibServerBase(ApiProvider *api_provider, const std::string &server_address, uint16_t port = RpcLibPort);
+    virtual ~RpcLibServerBase() override;
 
-    struct impl;
-    std::unique_ptr<impl> pimpl_;
+    virtual void start(bool block, std::size_t thread_count) override;
+    virtual void stop() override;
+
+    class ApiNotSupported : public std::runtime_error {
+      public:
+        ApiNotSupported(const std::string &message) : std::runtime_error(message) {}
+    };
 };
 
 } // namespace autonomylib

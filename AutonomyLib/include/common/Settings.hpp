@@ -7,28 +7,28 @@
 #include <mutex>
 #include <string>
 
-#include "common/utils/Utils.hpp"
+#include "utils/Utils.hpp"
 
 STRICT_MODE_OFF
 // this json library is not strict clean
 // TODO: HACK!! below are added temporariliy because something is defining min, max macros
 // #undef max
 #undef min
-#include "common/utils/json.hpp"
+#include "utils/json.hpp"
 STRICT_MODE_ON
 
-#include "common/utils/FileSystem.hpp"
+#include "utils/FileSystem.hpp"
 
 namespace nervosys {
 namespace autonomylib {
 
 class Settings {
+
   private:
     std::string full_filepath_;
     nlohmann::json doc_;
     bool load_success_ = false;
 
-  private:
     static std::mutex &getFileAccessMutex() {
         static std::mutex file_access;
         return file_access;

@@ -16,6 +16,13 @@ namespace nervosys {
 namespace autonomylib {
 
 class CarApiBase : public VehicleApiBase {
+
+  protected:
+    virtual void resetImplementation() override {
+        // reset sensors last after their ground truth has been reset
+        getSensors().reset();
+    }
+
   public:
     struct CarControls {
         float throttle = 0; /* 1 to -1 */
@@ -65,7 +72,6 @@ class CarApiBase : public VehicleApiBase {
         const Quaternionr &getOrientation() const { return kinematics_estimated.pose.orientation; }
     };
 
-  public:
     // TODO: Temporary constructor for the Unity implementation which does not use the new Sensor Configuration Settings
     // implementation.
     // CarApiBase() {}
@@ -118,12 +124,6 @@ class CarApiBase : public VehicleApiBase {
     std::shared_ptr<const SensorFactory> sensor_factory_;
     SensorCollection sensors_;                      // maintains sensor type indexed collection of sensors
     vector<shared_ptr<SensorBase>> sensor_storage_; // RAII for created sensors
-
-  protected:
-    virtual void resetImplementation() override {
-        // reset sensors last after their ground truth has been reset
-        getSensors().reset();
-    }
 };
 
 } // namespace autonomylib

@@ -18,6 +18,7 @@ namespace nervosys {
 namespace autonomylib_rpclib {
 
 class CarRpcLibAdaptors : public RpcLibAdaptorsBase {
+
   public:
     struct CarControls {
         float throttle = 0;

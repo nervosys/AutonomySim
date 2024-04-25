@@ -11,12 +11,51 @@
 #include "common/EarthUtils.hpp"
 #include "common/FrequencyLimiter.hpp"
 #include "common/GaussianMarkov.hpp"
+
 #include <random>
 
 namespace nervosys {
 namespace autonomylib {
 
 class BarometerSimple : public BarometerBase {
+
+  private:
+    BarometerSimpleParams params_;
+
+    GaussianMarkov pressure_factor_;
+    // GaussianMarkov correlated_noise_;
+    RandomGeneratorGausianR uncorrelated_noise_;
+
+    FrequencyLimiter freq_limiter_;
+    DelayLine<Output> delay_line_;
+
+    Output getOutputInternal() {
+        Output output;
+        const GroundTruth &ground_truth = getGroundTruth();
+
+        auto altitude = ground_truth.environment->getState().geo_point.altitude;
+        auto pressure = EarthUtils::getStandardPressure(altitude);
+
+        // add drift in pressure, about 10m change per hour using default settings.
+        pressure_factor_.update();
+        pressure += pressure * pressure_factor_.getOutput();
+
+        // add noise in pressure (about 0.2m sigma)
+        pressure += uncorrelated_noise_.next();
+
+        output.pressure = pressure - EarthUtils::SeaLevelPressure + params_.qnh * 100.0f;
+
+        // apply altimeter formula
+        // https://en.wikipedia.org/wiki/Pressure_altitude
+        // TODO: use same formula as in driver code?
+        output.altitude = (1 - pow(pressure / EarthUtils::SeaLevelPressure, 0.190284f)) * 145366.45f * 0.3048f;
+        output.qnh = params_.qnh;
+
+        output.time_stamp = clock()->nowNanos();
+
+        return output;
+    }
+
   public:
     BarometerSimple(const AutonomySimSettings::BarometerSetting &setting = AutonomySimSettings::BarometerSetting())
         : BarometerBase(setting.sensor_name) {
@@ -64,44 +103,6 @@ class BarometerSimple : public BarometerBase {
     //*** End: UpdatableState implementation ***//
 
     virtual ~BarometerSimple() = default;
-
-  private: // methods
-    Output getOutputInternal() {
-        Output output;
-        const GroundTruth &ground_truth = getGroundTruth();
-
-        auto altitude = ground_truth.environment->getState().geo_point.altitude;
-        auto pressure = EarthUtils::getStandardPressure(altitude);
-
-        // add drift in pressure, about 10m change per hour using default settings.
-        pressure_factor_.update();
-        pressure += pressure * pressure_factor_.getOutput();
-
-        // add noise in pressure (about 0.2m sigma)
-        pressure += uncorrelated_noise_.next();
-
-        output.pressure = pressure - EarthUtils::SeaLevelPressure + params_.qnh * 100.0f;
-
-        // apply altimeter formula
-        // https://en.wikipedia.org/wiki/Pressure_altitude
-        // TODO: use same formula as in driver code?
-        output.altitude = (1 - pow(pressure / EarthUtils::SeaLevelPressure, 0.190284f)) * 145366.45f * 0.3048f;
-        output.qnh = params_.qnh;
-
-        output.time_stamp = clock()->nowNanos();
-
-        return output;
-    }
-
-  private:
-    BarometerSimpleParams params_;
-
-    GaussianMarkov pressure_factor_;
-    // GaussianMarkov correlated_noise_;
-    RandomGeneratorGausianR uncorrelated_noise_;
-
-    FrequencyLimiter freq_limiter_;
-    DelayLine<Output> delay_line_;
 };
 
 } // namespace autonomylib

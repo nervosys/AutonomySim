@@ -10,10 +10,17 @@ namespace nervosys {
 namespace autonomylib {
 
 class BarometerBase : public SensorBase {
+
+  private:
+    Output output_;
+
+  protected:
+    void setOutput(const Output &output) { output_ = output; }
+
   public:
     BarometerBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
 
-  public:           // types
+    // types
     struct Output { // same fields as ROS message
         TTimePoint time_stamp;
         real_T altitude; // meters
@@ -21,7 +28,6 @@ class BarometerBase : public SensorBase {
         real_T qnh;
     };
 
-  public:
     virtual void reportState(StateReporter &reporter) override {
         // call base
         UpdatableObject::reportState(reporter);
@@ -31,12 +37,6 @@ class BarometerBase : public SensorBase {
     }
 
     const Output &getOutput() const { return output_; }
-
-  protected:
-    void setOutput(const Output &output) { output_ = output; }
-
-  private:
-    Output output_;
 };
 
 } // namespace autonomylib

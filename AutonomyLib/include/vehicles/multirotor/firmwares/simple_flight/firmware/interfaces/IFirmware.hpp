@@ -8,6 +8,7 @@
 namespace simple_flight {
 
 class IFirmware : public IUpdatable {
+
   public:
     virtual IOffboardApi &offboardApi() = 0;
 };

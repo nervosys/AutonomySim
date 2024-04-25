@@ -11,6 +11,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class CarApiFactory {
+
   public:
     static std::unique_ptr<CarApiBase> createApi(const AutonomySimSettings::VehicleSetting *vehicle_setting,
                                                  std::shared_ptr<SensorFactory> sensor_factory,

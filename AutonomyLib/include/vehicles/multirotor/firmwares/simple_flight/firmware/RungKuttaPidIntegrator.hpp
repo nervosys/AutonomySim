@@ -6,33 +6,17 @@
 namespace simple_flight {
 
 template <typename T> class RungKuttaPidIntegrator : public IPidIntegrator<T> {
-  public:
-    RungKuttaPidIntegrator(const PidConfig<T> &config) : config_(config) {}
-
-    virtual ~RungKuttaPidIntegrator() {}
-
-    virtual void reset() override { iterm_int_ = T(); }
-
-    virtual void set(T val) override {
-        iterm_int_ = val;
-        clipIterm();
-    }
-
-    virtual void update(float dt, T error, uint64_t last_time) override {
-        unused(dt);
-
-        error_int = error;
-        y[0] = error_int;
-
-        rungeKutta(y, yp, static_cast<float>(last_time), 0.003f, length);
-
-        // don't let iterm grow beyond limits (integral windup)
-        clipIterm();
-    }
-
-    virtual T getOutput() override { return config_.ki * yp[0]; }
 
   private:
+    float iterm_int_;
+    const PidConfig<T> config_;
+    static constexpr int length = 1;
+    float y_vec[length] = {};
+    float *y = y_vec;
+    float yp_vec[length] = {};
+    float *yp = yp_vec;
+    float error_int = 0;
+
     void clipIterm() { yp[0] = clip(yp[0], config_.min_output, config_.max_output); }
 
     // TODO: replace with std::clamp after moving to C++17
@@ -69,16 +53,31 @@ template <typename T> class RungKuttaPidIntegrator : public IPidIntegrator<T> {
         }
     }
 
-  private:
-    float iterm_int_;
-    const PidConfig<T> config_;
+  public:
+    RungKuttaPidIntegrator(const PidConfig<T> &config) : config_(config) {}
 
-    static constexpr int length = 1;
-    float y_vec[length] = {};
-    float *y = y_vec;
-    float yp_vec[length] = {};
-    float *yp = yp_vec;
-    float error_int = 0;
+    virtual ~RungKuttaPidIntegrator() {}
+
+    virtual void reset() override { iterm_int_ = T(); }
+
+    virtual void set(T val) override {
+        iterm_int_ = val;
+        clipIterm();
+    }
+
+    virtual void update(float dt, T error, uint64_t last_time) override {
+        unused(dt);
+
+        error_int = error;
+        y[0] = error_int;
+
+        rungeKutta(y, yp, static_cast<float>(last_time), 0.003f, length);
+
+        // don't let iterm grow beyond limits (integral windup)
+        clipIterm();
+    }
+
+    virtual T getOutput() override { return config_.ki * yp[0]; }
 };
 
 } // namespace simple_flight

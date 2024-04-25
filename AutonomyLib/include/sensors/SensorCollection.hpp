@@ -7,16 +7,21 @@
 #include "common/Common.hpp"
 #include "common/UpdatableContainer.hpp"
 #include "sensors/SensorBase.hpp"
+
 #include <unordered_map>
 
 namespace nervosys {
 namespace autonomylib {
 
 class SensorCollection : public UpdatableObject {
-  public: // types
-    typedef SensorBase *SensorBasePtr;
+
+  private:
+    typedef UpdatableContainer<SensorBasePtr> SensorBaseContainer;
+    unordered_map<uint, unique_ptr<SensorBaseContainer>> sensors_;
 
   public:
+    typedef SensorBase *SensorBasePtr;
+
     void insert(SensorBasePtr sensor, SensorBase::SensorType type) {
         auto type_int = static_cast<uint>(type);
         const auto &it = sensors_.find(type_int);
@@ -79,10 +84,6 @@ class SensorCollection : public UpdatableObject {
         }
     }
     //*** End: UpdatableState implementation ***//
-
-  private:
-    typedef UpdatableContainer<SensorBasePtr> SensorBaseContainer;
-    unordered_map<uint, unique_ptr<SensorBaseContainer>> sensors_;
 };
 
 } // namespace autonomylib

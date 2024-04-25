@@ -3,18 +3,18 @@
 
 #include "SensorBase.hpp"
 #include "SensorCollection.hpp"
-#include <memory>
-
-// sensors
 #include "sensors/barometer/BarometerSimple.hpp"
 #include "sensors/gps/GpsSimple.hpp"
 #include "sensors/imu/ImuSimple.hpp"
 #include "sensors/magnetometer/MagnetometerSimple.hpp"
 
+#include <memory>
+
 namespace nervosys {
 namespace autonomylib {
 
 class SensorFactory {
+
   public:
     // creates one sensor from settings
     virtual std::shared_ptr<SensorBase>

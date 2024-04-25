@@ -10,6 +10,7 @@
 #include "common/utils/EnumFlags.hpp"
 #include "common/utils/Utils.hpp"
 #include "vehicles/multirotor/api/MultirotorCommon.hpp"
+
 #include <array>
 #include <functional>
 #include <memory>
@@ -19,6 +20,23 @@ namespace autonomylib {
 
 // this class takes all inputs and outputs in NEU world coordinates in metric system
 class SafetyEval {
+
+  private:
+    MultirotorApiParams vehicle_params_;
+    shared_ptr<IGeoFence> fence_ptr_;
+    shared_ptr<ObstacleMap> obs_xy_ptr_;
+    SafetyViolationType enable_reasons_ = SafetyEval::SafetyViolationType_::GeoFence;
+    ObsAvoidanceStrategy obs_strategy_ = SafetyEval::ObsAvoidanceStrategy::RaiseException;
+
+    void checkFence(const Vector3r &cur_pos, const Vector3r &dest_pos, EvalResult &appendToResult);
+    void isSafeDestination(const Vector3r &dest, const Vector3r &cur_pos, const Quaternionr &quaternion,
+                           SafetyEval::EvalResult &result);
+    Vector3r getDestination(const Vector3r &cur_pos, const Vector3r &velocity) const;
+    bool isThisRiskDistLess(float this_risk_dist, float other_risk_dist) const;
+    void isCurrentSafer(SafetyEval::EvalResult &result);
+    void setSuggestedVelocity(SafetyEval::EvalResult &result, const Quaternionr &quaternion);
+    float adjustClearanceForPrStl(float base_clearance, float obs_confidence);
+
   public:
     enum class SafetyViolationType_ : uint {
         NoSafetyViolation = 0,
@@ -27,6 +45,7 @@ class SafetyEval {
         VelocityLimit = 1 << 2,
         All = Utils::max<uint>()
     };
+
     // add bitwise operators for enum
     typedef common_utils::EnumFlags<SafetyViolationType_> SafetyViolationType;
 
@@ -72,23 +91,6 @@ class SafetyEval {
         }
     };
 
-  private:
-    MultirotorApiParams vehicle_params_;
-    shared_ptr<IGeoFence> fence_ptr_;
-    shared_ptr<ObstacleMap> obs_xy_ptr_;
-    SafetyViolationType enable_reasons_ = SafetyEval::SafetyViolationType_::GeoFence;
-    ObsAvoidanceStrategy obs_strategy_ = SafetyEval::ObsAvoidanceStrategy::RaiseException;
-
-    void checkFence(const Vector3r &cur_pos, const Vector3r &dest_pos, EvalResult &appendToResult);
-    void isSafeDestination(const Vector3r &dest, const Vector3r &cur_pos, const Quaternionr &quaternion,
-                           SafetyEval::EvalResult &result);
-    Vector3r getDestination(const Vector3r &cur_pos, const Vector3r &velocity) const;
-    bool isThisRiskDistLess(float this_risk_dist, float other_risk_dist) const;
-    void isCurrentSafer(SafetyEval::EvalResult &result);
-    void setSuggestedVelocity(SafetyEval::EvalResult &result, const Quaternionr &quaternion);
-    float adjustClearanceForPrStl(float base_clearance, float obs_confidence);
-
-  public:
     SafetyEval(MultirotorApiParams vehicle_params, shared_ptr<IGeoFence> fence_ptr, shared_ptr<ObstacleMap> obs_xy);
     EvalResult isSafeVelocity(const Vector3r &cur_pos, const Vector3r &velocity, const Quaternionr &quaternion);
     EvalResult isSafeVelocityZ(const Vector3r &cur_pos, float vx, float vy, float z, const Quaternionr &quaternion);

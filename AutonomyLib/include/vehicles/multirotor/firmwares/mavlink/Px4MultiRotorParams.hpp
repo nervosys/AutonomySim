@@ -13,6 +13,19 @@ namespace nervosys {
 namespace autonomylib {
 
 class Px4MultirotorParams : public MultirotorParams {
+
+  private:
+    AutonomySimSettings::MavLinkConnectionInfo connection_info_;
+    std::shared_ptr<const SensorFactory> sensor_factory_;
+
+    static const AutonomySimSettings::MavLinkConnectionInfo &
+    getConnectionInfo(const AutonomySimSettings::MavLinkVehicleSetting &vehicle_setting) {
+        return vehicle_setting.connection_info;
+    }
+
+  protected:
+    virtual const SensorFactory *getSensorFactory() const override { return sensor_factory_.get(); }
+
   public:
     Px4MultirotorParams(const AutonomySimSettings::MavLinkVehicleSetting &vehicle_setting,
                         std::shared_ptr<const SensorFactory> sensor_factory)
@@ -46,19 +59,6 @@ class Px4MultirotorParams : public MultirotorParams {
         } else // Generic
             setupFrameGenericQuad(params);
     }
-
-  protected:
-    virtual const SensorFactory *getSensorFactory() const override { return sensor_factory_.get(); }
-
-  private:
-    static const AutonomySimSettings::MavLinkConnectionInfo &
-    getConnectionInfo(const AutonomySimSettings::MavLinkVehicleSetting &vehicle_setting) {
-        return vehicle_setting.connection_info;
-    }
-
-  private:
-    AutonomySimSettings::MavLinkConnectionInfo connection_info_;
-    std::shared_ptr<const SensorFactory> sensor_factory_;
 };
 
 } // namespace autonomylib

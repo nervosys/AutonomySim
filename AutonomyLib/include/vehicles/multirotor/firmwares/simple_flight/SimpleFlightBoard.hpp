@@ -9,6 +9,7 @@
 #include "firmware/Params.hpp"
 #include "firmware/interfaces/IBoard.hpp"
 #include "physics/Kinematics.hpp"
+
 #include <exception>
 #include <vector>
 
@@ -16,6 +17,21 @@ namespace nervosys {
 namespace autonomylib {
 
 class SimpleFlightBoard : public simple_flight::IBoard {
+
+  private:
+    // motor outputs
+    std::vector<float> motor_output_;
+    std::vector<float> input_channels_;
+    bool is_connected_;
+    const simple_flight::Params *params_;
+    const Kinematics::State *kinematics_;
+
+    void sleep(double msec) { clock()->sleep_for(msec * 1000.0); }
+
+    const ClockBase *clock() const { return ClockFactory::get(); }
+
+    ClockBase *clock() { return ClockFactory::get(); }
+
   public:
     SimpleFlightBoard(const simple_flight::Params *params) : params_(params) {}
 
@@ -34,7 +50,6 @@ class SimpleFlightBoard : public simple_flight::IBoard {
 
     void setIsRcConnected(bool is_connected) { is_connected_ = is_connected; }
 
-  public:
     // Board interface implementation --------------------------------------------------------------------------
 
     virtual uint64_t micros() const override { return clock()->nowNanos() / 1000; }
@@ -87,22 +102,6 @@ class SimpleFlightBoard : public simple_flight::IBoard {
 
         // no op for now
     }
-
-  private:
-    void sleep(double msec) { clock()->sleep_for(msec * 1000.0); }
-
-    const ClockBase *clock() const { return ClockFactory::get(); }
-
-    ClockBase *clock() { return ClockFactory::get(); }
-
-  private:
-    // motor outputs
-    std::vector<float> motor_output_;
-    std::vector<float> input_channels_;
-    bool is_connected_;
-
-    const simple_flight::Params *params_;
-    const Kinematics::State *kinematics_;
 };
 
 } // namespace autonomylib

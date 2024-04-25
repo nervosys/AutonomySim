@@ -2,11 +2,13 @@
 #define autonomylib_vehicles_simpleflight_firmware_ICommLink_hpp
 
 #include "IUpdatable.hpp"
+
 #include <cstdint>
 
 namespace simple_flight {
 
 class ICommLink : public IUpdatable {
+
   public:
     static constexpr int kLogLevelInfo = 0;
     static constexpr int kLogLevelWarn = 1;

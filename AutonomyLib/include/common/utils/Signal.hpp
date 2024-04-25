@@ -37,6 +37,10 @@ namespace common_utils {
 
 template <typename... Args> class Signal {
 
+  private:
+    mutable std::map<int, std::function<void(Args...)>> slots_;
+    mutable int current_id_;
+
   public:
     Signal() : current_id_(0) {}
 
@@ -74,10 +78,6 @@ template <typename... Args> class Signal {
             (it++)->second(p...);
         }
     }
-
-  private:
-    mutable std::map<int, std::function<void(Args...)>> slots_;
-    mutable int current_id_;
 };
 } // namespace common_utils
 

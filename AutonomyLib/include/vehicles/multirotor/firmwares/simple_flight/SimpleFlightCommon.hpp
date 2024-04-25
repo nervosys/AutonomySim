@@ -11,6 +11,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class SimpleFlightCommon {
+
   public:
     static simple_flight::Axis3r toAxis3r(const Vector3r &vec) {
         simple_flight::Axis3r conv;

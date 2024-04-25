@@ -5,8 +5,8 @@
 #define autonomylib_common_UpdatableObject_hpp
 
 #include "ClockFactory.hpp"
+#include "Common.hpp"
 #include "StateReporter.hpp"
-#include "common/Common.hpp"
 
 namespace nervosys {
 namespace autonomylib {
@@ -26,6 +26,18 @@ init->reset calls for base-derived class that would be incorrect.
 */
 
 class UpdatableObject {
+
+  private:
+    bool reset_called = false;
+    bool update_called = false;
+    bool reset_in_progress = false;
+    UpdatableObject *parent_ = nullptr;
+    std::string name_;
+
+  protected:
+    virtual void resetImplementation() = 0;
+    virtual void failResetUpdateOrdering(std::string err) { throw std::runtime_error(err); }
+
   public:
     virtual ~UpdatableObject() = default;
 
@@ -68,17 +80,6 @@ class UpdatableObject {
 
     std::string getName() { return name_; }
     void setName(const std::string &name) { this->name_ = name; }
-
-  protected:
-    virtual void resetImplementation() = 0;
-    virtual void failResetUpdateOrdering(std::string err) { throw std::runtime_error(err); }
-
-  private:
-    bool reset_called = false;
-    bool update_called = false;
-    bool reset_in_progress = false;
-    UpdatableObject *parent_ = nullptr;
-    std::string name_;
 };
 
 } // namespace autonomylib

@@ -13,18 +13,10 @@ namespace nervosys {
 namespace autonomylib {
 
 class ArduCopterParams : public MultirotorParams {
-  public:
-    ArduCopterParams(const AutonomySimSettings::MavLinkVehicleSetting &vehicle_setting,
-                     std::shared_ptr<const SensorFactory> sensor_factory)
-        : sensor_factory_(sensor_factory) {
-        connection_info_ = getConnectionInfo(vehicle_setting);
-    }
 
-    virtual ~ArduCopterParams() = default;
-
-    virtual std::unique_ptr<MultirotorApiBase> createMultirotorApi() override {
-        return std::unique_ptr<MultirotorApiBase>(new ArduCopterApi(this, connection_info_));
-    }
+  private:
+    AutonomySimSettings::MavLinkConnectionInfo connection_info_;
+    std::shared_ptr<const SensorFactory> sensor_factory_;
 
   protected:
     virtual void setupParams() override {
@@ -43,9 +35,18 @@ class ArduCopterParams : public MultirotorParams {
         return vehicle_setting.connection_info;
     }
 
-  private:
-    AutonomySimSettings::MavLinkConnectionInfo connection_info_;
-    std::shared_ptr<const SensorFactory> sensor_factory_;
+  public:
+    ArduCopterParams(const AutonomySimSettings::MavLinkVehicleSetting &vehicle_setting,
+                     std::shared_ptr<const SensorFactory> sensor_factory)
+        : sensor_factory_(sensor_factory) {
+        connection_info_ = getConnectionInfo(vehicle_setting);
+    }
+
+    virtual ~ArduCopterParams() = default;
+
+    virtual std::unique_ptr<MultirotorApiBase> createMultirotorApi() override {
+        return std::unique_ptr<MultirotorApiBase>(new ArduCopterApi(this, connection_info_));
+    }
 };
 
 } // namespace autonomylib

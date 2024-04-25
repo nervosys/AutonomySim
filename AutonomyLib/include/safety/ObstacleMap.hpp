@@ -5,6 +5,7 @@
 #define autonomylib_safety_ObstacleMap_hpp
 
 #include "common/Common.hpp"
+
 #include <mutex>
 
 namespace nervosys {
@@ -37,6 +38,7 @@ We fully expect one thread to continuously update the obstacles while another to
 */
 
 class ObstacleMap {
+
   private:
     // stores distances for each tick segment
     vector<float> distances_;
@@ -46,6 +48,10 @@ class ObstacleMap {
     int ticks_;
     // blind spots don't get updated so we get its value from neighbours
     vector<bool> blindspots_;
+    // currently we employ simple thread safe model: just serialize queries and updates
+    std::mutex mutex_;
+
+    int wrap(int tick) const;
 
   public:
     // this will be return result of the queries
@@ -62,13 +68,6 @@ class ObstacleMap {
     // private version of hasObstacle doesn't do lock or check inputs
     ObstacleInfo hasObstacle_(int from_tick, int to_tick) const;
 
-  private:
-    int wrap(int tick) const;
-
-    // currently we employ simple thread safe model: just serialize queries and updates
-    std::mutex mutex_;
-
-  public:
     // if odd_blindspots = true then set all odd ticks as blind spots
     ObstacleMap(int ticks, bool odd_blindspots = false);
 

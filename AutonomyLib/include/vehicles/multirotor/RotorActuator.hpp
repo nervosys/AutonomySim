@@ -9,6 +9,7 @@
 #include "common/FirstOrderFilter.hpp"
 #include "physics/Environment.hpp"
 #include "physics/PhysicsBodyVertex.hpp"
+
 #include <limits>
 
 namespace nervosys {
@@ -18,7 +19,42 @@ namespace autonomylib {
 // change in rotation speed and turning direction and ultimately produces force and thrust as
 // output
 class RotorActuator : public PhysicsBodyVertex {
-  public: // types
+
+  private:
+    uint id_; // only used for debug messages
+    RotorTurningDirection turning_direction_;
+    RotorParams params_;
+    FirstOrderFilter<real_T> control_signal_filter_;
+    const Environment *environment_ = nullptr;
+    real_T air_density_sea_level_, air_density_ratio_;
+    Output output_;
+
+    static void setOutput(Output &output, const RotorParams &params,
+                          const FirstOrderFilter<real_T> &control_signal_filter,
+                          RotorTurningDirection turning_direction) {
+        output.control_signal_input = control_signal_filter.getInput();
+        output.control_signal_filtered = control_signal_filter.getOutput();
+        // see relationship of rotation speed with thrust: http://physics.stackexchange.com/a/32013/14061
+        output.speed = sqrt(output.control_signal_filtered * params.max_speed_square);
+        output.thrust = output.control_signal_filtered * params.max_thrust;
+        output.torque_scaler = output.control_signal_filtered * params.max_torque * static_cast<int>(turning_direction);
+        output.turning_direction = turning_direction;
+    }
+
+    void updateEnvironmentalFactors() {
+        // update air density ration - this will affect generated force and torques by rotors
+        air_density_ratio_ = environment_->getState().air_density / air_density_sea_level_;
+    }
+
+  protected:
+    virtual void setWrench(Wrench &wrench) override {
+        Vector3r normal = getNormal();
+        // forces and torques are proportional to air density: http://physics.stackexchange.com/a/32013/14061
+        wrench.force = normal * output_.thrust * air_density_ratio_;
+        wrench.torque = normal * output_.torque_scaler * air_density_ratio_; // TODO: try using filtered control here
+    }
+
+  public:
     struct Output {
         real_T thrust;
         real_T torque_scaler;
@@ -28,14 +64,16 @@ class RotorActuator : public PhysicsBodyVertex {
         real_T control_signal_input;
     };
 
-  public: // methods
+    // methods
     RotorActuator() {
         // allow default constructor with later call for initialize
     }
+
     RotorActuator(const Vector3r &position, const Vector3r &normal, RotorTurningDirection turning_direction,
                   const RotorParams &params, const Environment *environment, uint id = -1) {
         initialize(position, normal, turning_direction, params, environment, id);
     }
+
     void initialize(const Vector3r &position, const Vector3r &normal, RotorTurningDirection turning_direction,
                     const RotorParams &params, const Environment *environment, uint id = -1) {
         id_ = id;
@@ -91,41 +129,6 @@ class RotorActuator : public PhysicsBodyVertex {
         reporter.writeValue("torque", output_.torque_scaler);
     }
     //*** End: UpdatableState implementation ***//
-
-  protected:
-    virtual void setWrench(Wrench &wrench) override {
-        Vector3r normal = getNormal();
-        // forces and torques are proportional to air density: http://physics.stackexchange.com/a/32013/14061
-        wrench.force = normal * output_.thrust * air_density_ratio_;
-        wrench.torque = normal * output_.torque_scaler * air_density_ratio_; // TODO: try using filtered control here
-    }
-
-  private: // methods
-    static void setOutput(Output &output, const RotorParams &params,
-                          const FirstOrderFilter<real_T> &control_signal_filter,
-                          RotorTurningDirection turning_direction) {
-        output.control_signal_input = control_signal_filter.getInput();
-        output.control_signal_filtered = control_signal_filter.getOutput();
-        // see relationship of rotation speed with thrust: http://physics.stackexchange.com/a/32013/14061
-        output.speed = sqrt(output.control_signal_filtered * params.max_speed_square);
-        output.thrust = output.control_signal_filtered * params.max_thrust;
-        output.torque_scaler = output.control_signal_filtered * params.max_torque * static_cast<int>(turning_direction);
-        output.turning_direction = turning_direction;
-    }
-
-    void updateEnvironmentalFactors() {
-        // update air density ration - this will affect generated force and torques by rotors
-        air_density_ratio_ = environment_->getState().air_density / air_density_sea_level_;
-    }
-
-  private:    // fields
-    uint id_; // only used for debug messages
-    RotorTurningDirection turning_direction_;
-    RotorParams params_;
-    FirstOrderFilter<real_T> control_signal_filter_;
-    const Environment *environment_ = nullptr;
-    real_T air_density_sea_level_, air_density_ratio_;
-    Output output_;
 };
 
 } // namespace autonomylib

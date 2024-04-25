@@ -4,13 +4,17 @@
 #ifndef autonomylib_common_UpdatableContainer_hpp
 #define autonomylib_common_UpdatableContainer_hpp
 
+#include "Common.hpp"
 #include "UpdatableObject.hpp"
-#include "common/Common.hpp"
 
 namespace nervosys {
 namespace autonomylib {
 
 template <typename TUpdatableObjectPtr> class UpdatableContainer : public UpdatableObject {
+
+  private:
+    MembersContainer members_;
+
   public: // limited container interface
     typedef vector<TUpdatableObjectPtr> MembersContainer;
     typedef typename MembersContainer::iterator iterator;
@@ -39,7 +43,6 @@ template <typename TUpdatableObjectPtr> class UpdatableContainer : public Updata
         members_.erase(std::remove(members_.begin(), members_.end(), member), members_.end());
     }
 
-  public:
     //*** Start: UpdatableState implementation ***//
     virtual void resetImplementation() override {
         for (TUpdatableObjectPtr &member : members_)
@@ -60,9 +63,6 @@ template <typename TUpdatableObjectPtr> class UpdatableContainer : public Updata
 
     //*** End: UpdatableState implementation ***//
     virtual ~UpdatableContainer() = default;
-
-  private:
-    MembersContainer members_;
 };
 
 } // namespace autonomylib

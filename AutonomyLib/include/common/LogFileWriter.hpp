@@ -4,7 +4,8 @@
 #ifndef autonomylib_common_LogFileWriter_hpp
 #define autonomylib_common_LogFileWriter_hpp
 
-#include "common/Common.hpp"
+#include "Common.hpp"
+
 #include <fstream>
 #include <iostream>
 
@@ -12,6 +13,12 @@ namespace nervosys {
 namespace autonomylib {
 
 class LogFileWriter {
+
+  private:
+    std::ofstream log_file_;
+    string file_name_;
+    bool enabled_ = false;
+
   public:
     LogFileWriter() {}
     LogFileWriter(const string &file_name, bool enabled = true) { open(file_name, enabled); }
@@ -50,11 +57,6 @@ class LogFileWriter {
             log_file_ << std::endl;
         }
     }
-
-  private:
-    std::ofstream log_file_;
-    string file_name_;
-    bool enabled_ = false;
 };
 
 } // namespace autonomylib

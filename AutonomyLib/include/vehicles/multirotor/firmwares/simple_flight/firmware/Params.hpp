@@ -6,6 +6,7 @@
 namespace simple_flight {
 
 struct Params {
+
   public:
     static float min_armed_throttle() {
         static float val = 0.1f;

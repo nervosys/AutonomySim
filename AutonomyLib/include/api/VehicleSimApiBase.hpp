@@ -15,6 +15,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class VehicleSimApiBase : public nervosys::autonomylib::UpdatableObject {
+
   public:
     virtual ~VehicleSimApiBase() = default;
 

@@ -6,6 +6,7 @@
 namespace simple_flight {
 
 class IStateEstimator {
+
   public:
     virtual Axis3r getAngles() const = 0;
     virtual Axis3r getAngularVelocity() const = 0;

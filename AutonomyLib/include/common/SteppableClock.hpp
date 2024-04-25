@@ -6,12 +6,19 @@
 
 #include "ClockBase.hpp"
 #include "Common.hpp"
+
 #include <atomic>
 
 namespace nervosys {
 namespace autonomylib {
 
 class SteppableClock : public ClockBase {
+
+  private:
+    std::atomic<TTimePoint> current_;
+    std::atomic<TTimePoint> start_;
+    TTimeDelta step_;
+
   public:
     static constexpr real_T DefaultStepSize = 20E-3f;
 
@@ -40,12 +47,6 @@ class SteppableClock : public ClockBase {
     TTimeDelta getStepSize() const { return step_; }
     virtual TTimePoint nowNanos() const override { return current_; }
     virtual TTimePoint getStart() const override { return start_; }
-
-  private:
-    std::atomic<TTimePoint> current_;
-    std::atomic<TTimePoint> start_;
-
-    TTimeDelta step_;
 };
 
 } // namespace autonomylib

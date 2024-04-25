@@ -9,118 +9,6 @@ namespace nervosys {
 namespace autonomylib {
 
 class ArduCopterSoloApi : public MavLinkMultirotorApi {
-  public:
-    virtual ~ArduCopterSoloApi() { closeAllConnection(); }
-
-    virtual void update() {
-        if (sensors_ == nullptr)
-            return;
-
-        // send GPS and other sensor updates
-        const uint count_gps_sensors = getSensors().size(SensorBase::SensorType::Gps);
-        if (count_gps_sensors != 0) {
-            const auto &gps_output = getGpsData("");
-            const auto &imu_output = getImuData("");
-
-            SensorMessage packet;
-            packet.timestamp = clock()->nowNanos() / 1000;
-            packet.latitude = gps_output.gnss.geo_point.latitude;
-            packet.longitude = gps_output.gnss.geo_point.longitude;
-            packet.altitude = gps_output.gnss.geo_point.altitude;
-
-            common_utils::Utils::log("Current LLA: " + gps_output.gnss.geo_point.to_string(),
-                                     common_utils::Utils::kLogLevelInfo);
-
-            packet.speedN = gps_output.gnss.velocity[0];
-            packet.speedE = gps_output.gnss.velocity[1];
-            packet.speedD = gps_output.gnss.velocity[2];
-
-            packet.xAccel = imu_output.linear_acceleration[0];
-            packet.yAccel = imu_output.linear_acceleration[1];
-            packet.zAccel = imu_output.linear_acceleration[2];
-
-            float yaw;
-            float pitch;
-            float roll;
-            VectorMath::toEulerianAngle(imu_output.orientation, pitch, roll, yaw);
-            packet.yawDeg = yaw * 180.0 / M_PI;
-            packet.pitchDeg = pitch * 180.0 / M_PI;
-            packet.rollDeg = roll * 180.0 / M_PI;
-
-            Vector3r bodyRPY(roll, pitch, yaw);
-
-            // In the Unreal world, yaw is rotation around Z, so this seems to be RPY, like PySim
-            Vector3r bodyVelocityRPY(imu_output.angular_velocity[0], imu_output.angular_velocity[1],
-                                     imu_output.angular_velocity[2]);
-            Vector3r earthRPY = bodyAnglesToEarthAngles(bodyRPY, bodyVelocityRPY);
-
-            packet.rollRate = earthRPY[0] * 180.0 / M_PI;
-            packet.pitchRate = earthRPY[1] * 180.0 / M_PI;
-            packet.yawRate = earthRPY[2] * 180.0 / M_PI;
-
-            // Heading appears to be unused by AruPilot.  But use yaw for now
-            packet.heading = yaw;
-
-            packet.airspeed = std::sqrt(packet.speedN * packet.speedN + packet.speedE * packet.speedE +
-                                        packet.speedD * packet.speedD);
-
-            packet.magic = 0x4c56414f;
-
-            if (udpSocket_ != nullptr) {
-                std::vector<uint8_t> msg(sizeof(packet));
-                memcpy(msg.data(), &packet, sizeof(packet));
-                udpSocket_->sendMessage(msg);
-            }
-        }
-    }
-
-    virtual void close() {
-        MavLinkMultirotorApi::close();
-
-        if (udpSocket_ != nullptr) {
-            udpSocket_->close();
-            udpSocket_->unsubscribe(rotorSubscriptionId_);
-            udpSocket_ = nullptr;
-        }
-    }
-
-  protected:
-    virtual void connect() {
-        if (!is_simulation_mode_) {
-
-            MavLinkMultirotorApi::connect();
-        } else {
-            const std::string &ip = connection_info_.udp_address;
-            int port = connection_info_.udp_port;
-
-            close();
-
-            if (ip == "") {
-                throw std::invalid_argument("UdpIp setting is invalid.");
-            }
-
-            if (port == 0) {
-                throw std::invalid_argument("UdpPort setting has an invalid value.");
-            }
-
-            Utils::log(Utils::stringf("Using UDP port %d, local IP %s, remote IP %s for sending sensor data", port,
-                                      connection_info_.local_host_ip.c_str(), ip.c_str()),
-                       Utils::kLogLevelInfo);
-            Utils::log(Utils::stringf("Using UDP port %d for receiving rotor power",
-                                      connection_info_.control_port_local, connection_info_.local_host_ip.c_str(),
-                                      ip.c_str()),
-                       Utils::kLogLevelInfo);
-
-            udpSocket_ = mavlink_comm::AdHocConnection::connectLocalUdp("ArduCopterSoloConnector", ip,
-                                                                        connection_info_.control_port_local);
-            mavlink_comm::AdHocMessageHandler handler =
-                [this](std::shared_ptr<mavlink_comm::AdHocConnection> connection, const std::vector<uint8_t> &msg) {
-                    this->rotorPowerMessageHandler(connection, msg);
-                };
-
-            rotorSubscriptionId_ = udpSocket_->subscribe(handler);
-        }
-    }
 
   private:
 #ifdef __linux__
@@ -205,6 +93,119 @@ class ArduCopterSoloApi : public MavLinkMultirotorApi {
         float psiDot = (q * sin(phi) + r * cos(phi)) / cos(theta);
 
         return Vector3r(phiDot, thetaDot, psiDot);
+    }
+
+  protected:
+    virtual void connect() {
+        if (!is_simulation_mode_) {
+
+            MavLinkMultirotorApi::connect();
+        } else {
+            const std::string &ip = connection_info_.udp_address;
+            int port = connection_info_.udp_port;
+
+            close();
+
+            if (ip == "") {
+                throw std::invalid_argument("UdpIp setting is invalid.");
+            }
+
+            if (port == 0) {
+                throw std::invalid_argument("UdpPort setting has an invalid value.");
+            }
+
+            Utils::log(Utils::stringf("Using UDP port %d, local IP %s, remote IP %s for sending sensor data", port,
+                                      connection_info_.local_host_ip.c_str(), ip.c_str()),
+                       Utils::kLogLevelInfo);
+            Utils::log(Utils::stringf("Using UDP port %d for receiving rotor power",
+                                      connection_info_.control_port_local, connection_info_.local_host_ip.c_str(),
+                                      ip.c_str()),
+                       Utils::kLogLevelInfo);
+
+            udpSocket_ = mavlink_comm::AdHocConnection::connectLocalUdp("ArduCopterSoloConnector", ip,
+                                                                        connection_info_.control_port_local);
+            mavlink_comm::AdHocMessageHandler handler =
+                [this](std::shared_ptr<mavlink_comm::AdHocConnection> connection, const std::vector<uint8_t> &msg) {
+                    this->rotorPowerMessageHandler(connection, msg);
+                };
+
+            rotorSubscriptionId_ = udpSocket_->subscribe(handler);
+        }
+    }
+
+  public:
+    virtual ~ArduCopterSoloApi() { closeAllConnection(); }
+
+    virtual void update() {
+        if (sensors_ == nullptr)
+            return;
+
+        // send GPS and other sensor updates
+        const uint count_gps_sensors = getSensors().size(SensorBase::SensorType::Gps);
+        if (count_gps_sensors != 0) {
+            const auto &gps_output = getGpsData("");
+            const auto &imu_output = getImuData("");
+
+            SensorMessage packet;
+            packet.timestamp = clock()->nowNanos() / 1000;
+            packet.latitude = gps_output.gnss.geo_point.latitude;
+            packet.longitude = gps_output.gnss.geo_point.longitude;
+            packet.altitude = gps_output.gnss.geo_point.altitude;
+
+            common_utils::Utils::log("Current LLA: " + gps_output.gnss.geo_point.to_string(),
+                                     common_utils::Utils::kLogLevelInfo);
+
+            packet.speedN = gps_output.gnss.velocity[0];
+            packet.speedE = gps_output.gnss.velocity[1];
+            packet.speedD = gps_output.gnss.velocity[2];
+
+            packet.xAccel = imu_output.linear_acceleration[0];
+            packet.yAccel = imu_output.linear_acceleration[1];
+            packet.zAccel = imu_output.linear_acceleration[2];
+
+            float yaw;
+            float pitch;
+            float roll;
+            VectorMath::toEulerianAngle(imu_output.orientation, pitch, roll, yaw);
+            packet.yawDeg = yaw * 180.0 / M_PI;
+            packet.pitchDeg = pitch * 180.0 / M_PI;
+            packet.rollDeg = roll * 180.0 / M_PI;
+
+            Vector3r bodyRPY(roll, pitch, yaw);
+
+            // In the Unreal world, yaw is rotation around Z, so this seems to be RPY, like PySim
+            Vector3r bodyVelocityRPY(imu_output.angular_velocity[0], imu_output.angular_velocity[1],
+                                     imu_output.angular_velocity[2]);
+            Vector3r earthRPY = bodyAnglesToEarthAngles(bodyRPY, bodyVelocityRPY);
+
+            packet.rollRate = earthRPY[0] * 180.0 / M_PI;
+            packet.pitchRate = earthRPY[1] * 180.0 / M_PI;
+            packet.yawRate = earthRPY[2] * 180.0 / M_PI;
+
+            // Heading appears to be unused by AruPilot.  But use yaw for now
+            packet.heading = yaw;
+
+            packet.airspeed = std::sqrt(packet.speedN * packet.speedN + packet.speedE * packet.speedE +
+                                        packet.speedD * packet.speedD);
+
+            packet.magic = 0x4c56414f;
+
+            if (udpSocket_ != nullptr) {
+                std::vector<uint8_t> msg(sizeof(packet));
+                memcpy(msg.data(), &packet, sizeof(packet));
+                udpSocket_->sendMessage(msg);
+            }
+        }
+    }
+
+    virtual void close() {
+        MavLinkMultirotorApi::close();
+
+        if (udpSocket_ != nullptr) {
+            udpSocket_->close();
+            udpSocket_->unsubscribe(rotorSubscriptionId_);
+            udpSocket_ = nullptr;
+        }
     }
 };
 

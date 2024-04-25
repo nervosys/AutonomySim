@@ -14,6 +14,10 @@ namespace nervosys {
 namespace autonomylib {
 
 class SimpleFlightTest : public TestBase {
+
+  private:
+    std::vector<std::string> messages_;
+
   public:
     virtual void run() override {
 
@@ -73,9 +77,6 @@ class SimpleFlightTest : public TestBase {
             messages_.clear();
         }
     }
-
-  private:
-    std::vector<std::string> messages_;
 };
 
 } // namespace autonomylib

@@ -5,6 +5,7 @@
 #define common_utils_FileSystem_hpp
 
 #include "Utils.hpp"
+
 #include <codecvt>
 #include <fstream>
 #include <string>
@@ -20,7 +21,10 @@
 #endif
 
 namespace common_utils {
+
 class FileSystem {
+
+  private:
     typedef unsigned int uint;
 
   public:

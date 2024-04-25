@@ -10,12 +10,34 @@
 #include "common/Common.hpp"
 #include "common/UpdatableContainer.hpp"
 #include "common/utils/ScheduledExecutor.hpp"
+
 #include <functional>
 
 namespace nervosys {
 namespace autonomylib {
 
 class World : public UpdatableContainer<UpdatableObject *> {
+
+  private:
+    std::unique_ptr<PhysicsEngineBase> physics_engine_ = nullptr;
+    common_utils::ScheduledExecutor executor_;
+
+    bool worldUpdatorAsync(uint64_t dt_nanos) {
+        unused(dt_nanos);
+
+        try {
+            update();
+        } catch (const std::exception &ex) {
+            // Utils::DebugBreak();
+            Utils::log(Utils::stringf("Exception occurred while updating world: %s", ex.what()), Utils::kLogLevelError);
+        } catch (...) {
+            // Utils::DebugBreak();
+            Utils::log("Exception occurred while updating world", Utils::kLogLevelError);
+        }
+
+        return true;
+    }
+
   public:
     World(std::unique_ptr<PhysicsEngineBase> physics_engine) : physics_engine_(std::move(physics_engine)) {
         World::clear();
@@ -100,27 +122,6 @@ class World : public UpdatableContainer<UpdatableObject *> {
     void continueForFrames(uint32_t frames) { executor_.continueForFrames(frames); }
 
     void setFrameNumber(uint32_t frameNumber) { executor_.setFrameNumber(frameNumber); }
-
-  private:
-    bool worldUpdatorAsync(uint64_t dt_nanos) {
-        unused(dt_nanos);
-
-        try {
-            update();
-        } catch (const std::exception &ex) {
-            // Utils::DebugBreak();
-            Utils::log(Utils::stringf("Exception occurred while updating world: %s", ex.what()), Utils::kLogLevelError);
-        } catch (...) {
-            // Utils::DebugBreak();
-            Utils::log("Exception occurred while updating world", Utils::kLogLevelError);
-        }
-
-        return true;
-    }
-
-  private:
-    std::unique_ptr<PhysicsEngineBase> physics_engine_ = nullptr;
-    common_utils::ScheduledExecutor executor_;
 };
 
 } // namespace autonomylib

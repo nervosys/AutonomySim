@@ -6,6 +6,7 @@
 
 #include "Common.hpp"
 #include "UpdatableObject.hpp"
+
 #include <cmath>
 
 namespace nervosys {
@@ -13,17 +14,24 @@ namespace autonomylib {
 
 template <typename T> class FirstOrderFilter : public UpdatableObject {
     /*
-This class can be used to apply a first order filter on a signal.
-It allows different acceleration and deceleration time constants.
+    This class can be used to apply a first order filter on a signal.
+    It allows different acceleration and deceleration time constants.
 
-Short review of discrete time implementation of first order system:
-Laplace:
-X(s)/U(s) = 1/(tau*s + 1)
-continuous time system:
-dx(t) = (-1/tau)*x(t) + (1/tau)*u(t)
-discretized system (ZoH):
-x(k+1) = exp(samplingTime*(-1/tau))*x(k) + (1 - exp(samplingTime*(-1/tau))) * u(k)
-*/
+    Short review of discrete time implementation of first order system:
+    Laplace:
+    X(s)/U(s) = 1/(tau*s + 1)
+    continuous time system:
+    dx(t) = (-1/tau)*x(t) + (1/tau)*u(t)
+    discretized system (ZoH):
+    x(k+1) = exp(samplingTime*(-1/tau))*x(k) + (1 - exp(samplingTime*(-1/tau))) * u(k)
+    */
+
+  private:
+    float timeConstant_;
+    T output_, input_;
+    T initial_output_, initial_input_;
+    TTimePoint last_time_;
+
   public:
     FirstOrderFilter() {
         // allow default constructor with later call for initialize
@@ -61,12 +69,6 @@ x(k+1) = exp(samplingTime*(-1/tau))*x(k) + (1 - exp(samplingTime*(-1/tau))) * u(
     T getInput() const { return input_; }
 
     T getOutput() const { return output_; }
-
-  private:
-    float timeConstant_;
-    T output_, input_;
-    T initial_output_, initial_input_;
-    TTimePoint last_time_;
 };
 
 } // namespace autonomylib

@@ -8,8 +8,8 @@
 // if using Unreal Build system then include precompiled header file first
 
 #include "vehicles/multirotor/api/MultirotorRpcLibClient.hpp"
-
 #include "common/Common.hpp"
+
 #include <thread>
 STRICT_MODE_OFF
 
@@ -30,7 +30,6 @@ STRICT_MODE_OFF
 #define check(expr) (static_cast<void>((expr)))
 #endif
 #include "common/utils/WindowsApisCommonPost.hpp"
-
 #include "vehicles/multirotor/api/MultirotorRpcLibAdaptors.hpp"
 
 STRICT_MODE_ON

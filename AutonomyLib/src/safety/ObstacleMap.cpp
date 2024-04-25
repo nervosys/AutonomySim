@@ -6,6 +6,7 @@
 
 #include "safety/ObstacleMap.hpp"
 #include "common/utils/Utils.hpp"
+
 #include <thread>
 
 namespace nervosys {

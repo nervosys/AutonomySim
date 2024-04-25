@@ -7,6 +7,7 @@
 namespace common_utils {
 
 template <typename TEnum, typename TUnderlying = typename std::underlying_type<TEnum>::type> class EnumFlags {
+
   protected:
     TUnderlying flags_;
 

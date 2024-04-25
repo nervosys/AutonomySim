@@ -6,7 +6,7 @@
 
 #include <ostream>
 
-#include "common/Common.hpp"
+#include "Common.hpp"
 
 namespace nervosys {
 namespace autonomylib {

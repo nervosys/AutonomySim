@@ -11,6 +11,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class WorldSimApiBase {
+
   public:
     enum class WeatherParameter {
         Rain = 0,

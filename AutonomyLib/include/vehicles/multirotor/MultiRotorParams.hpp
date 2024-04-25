@@ -14,68 +14,18 @@ namespace nervosys {
 namespace autonomylib {
 
 class MultirotorParams {
-    // All units are SI
-  public: // types
-    struct RotorPose {
-        Vector3r position; // relative to center of gravity of vehicle body
-        Vector3r normal;
-        RotorTurningDirection direction;
 
-        RotorPose() {}
-        RotorPose(const Vector3r &position_val, const Vector3r &normal_val, RotorTurningDirection direction_val)
-            : position(position_val), normal(normal_val), direction(direction_val) {}
-    };
+  private:
+    Params params_;
+    SensorCollection sensors_;                      // maintains sensor type indexed collection of sensors
+    vector<shared_ptr<SensorBase>> sensor_storage_; // RAII for created sensors
 
-    struct Params {
-        /*********** required parameters ***********/
-        uint rotor_count;
-        vector<RotorPose> rotor_poses;
-        real_T mass;
-        Matrix3x3r inertia;
-        Vector3r body_box;
-
-        /*********** optional parameters with defaults ***********/
-        real_T linear_drag_coefficient = 1.3f / 4.0f;
-        // sample value 1.3 from http://klsin.bpmsg.com/how-fast-can-a-quadcopter-fly/, but divided by 4 to account
-        //  for nice streamlined frame design and allow higher top speed which is more fun.
-        // angular coefficient is usually 10X smaller than linear, however we should replace this with exact number
-        // http://physics.stackexchange.com/q/304742/14061
-        real_T angular_drag_coefficient = linear_drag_coefficient;
-        real_T restitution =
-            0.55f; // value of 1 would result in perfectly elastic collisions, 0 would be completely inelastic.
-        real_T friction = 0.5f;
-        RotorParams rotor_params;
-    };
-
-  protected: // must override by derived class
+  protected:
+    // must override by derived class
     virtual void setupParams() = 0;
     virtual const SensorFactory *getSensorFactory() const = 0;
 
-  public: // interface
-    virtual std::unique_ptr<MultirotorApiBase> createMultirotorApi() = 0;
-
-    virtual ~MultirotorParams() = default;
-    virtual void initialize(const AutonomySimSettings::VehicleSetting *vehicle_setting) {
-        sensor_storage_.clear();
-        sensors_.clear();
-
-        setupParams();
-
-        addSensorsFromSettings(vehicle_setting);
-    }
-
-    const Params &getParams() const { return params_; }
-    Params &getParams() { return params_; }
-    SensorCollection &getSensors() { return sensors_; }
-    const SensorCollection &getSensors() const { return sensors_; }
-
-    void addSensorsFromSettings(const AutonomySimSettings::VehicleSetting *vehicle_setting) {
-        const auto &sensor_settings = vehicle_setting->sensors;
-
-        getSensorFactory()->createSensorsFromSettings(sensor_settings, sensors_, sensor_storage_);
-    }
-
-  protected: // static utility functions for derived classes to use
+    // static utility functions for derived classes to use
     /// Initializes 4 rotors in the usual QuadX pattern:  http://ardupilot.org/copter/_images/MOTORS_QuadX_QuadPlus.jpg
     /// which shows that given an array of 4 motors, the first is placed top right and flies counter clockwise (CCW) and
     /// the second is placed bottom left, and also flies CCW.  The third in the array is placed top left and flies
@@ -495,10 +445,63 @@ class MultirotorParams {
         computeInertiaMatrix(params.inertia, params.body_box, params.rotor_poses, box_mass, motor_assembly_weight);
     }
 
-  private:
-    Params params_;
-    SensorCollection sensors_;                      // maintains sensor type indexed collection of sensors
-    vector<shared_ptr<SensorBase>> sensor_storage_; // RAII for created sensors
+  public:
+    // All units are SI
+    // types
+    struct RotorPose {
+        Vector3r position; // relative to center of gravity of vehicle body
+        Vector3r normal;
+        RotorTurningDirection direction;
+
+        RotorPose() {}
+        RotorPose(const Vector3r &position_val, const Vector3r &normal_val, RotorTurningDirection direction_val)
+            : position(position_val), normal(normal_val), direction(direction_val) {}
+    };
+
+    struct Params {
+        /*********** required parameters ***********/
+        uint rotor_count;
+        vector<RotorPose> rotor_poses;
+        real_T mass;
+        Matrix3x3r inertia;
+        Vector3r body_box;
+
+        /*********** optional parameters with defaults ***********/
+        real_T linear_drag_coefficient = 1.3f / 4.0f;
+        // sample value 1.3 from http://klsin.bpmsg.com/how-fast-can-a-quadcopter-fly/, but divided by 4 to account
+        //  for nice streamlined frame design and allow higher top speed which is more fun.
+        // angular coefficient is usually 10X smaller than linear, however we should replace this with exact number
+        // http://physics.stackexchange.com/q/304742/14061
+        real_T angular_drag_coefficient = linear_drag_coefficient;
+        real_T restitution =
+            0.55f; // value of 1 would result in perfectly elastic collisions, 0 would be completely inelastic.
+        real_T friction = 0.5f;
+        RotorParams rotor_params;
+    };
+
+    // interface
+    virtual std::unique_ptr<MultirotorApiBase> createMultirotorApi() = 0;
+
+    virtual ~MultirotorParams() = default;
+    virtual void initialize(const AutonomySimSettings::VehicleSetting *vehicle_setting) {
+        sensor_storage_.clear();
+        sensors_.clear();
+
+        setupParams();
+
+        addSensorsFromSettings(vehicle_setting);
+    }
+
+    const Params &getParams() const { return params_; }
+    Params &getParams() { return params_; }
+    SensorCollection &getSensors() { return sensors_; }
+    const SensorCollection &getSensors() const { return sensors_; }
+
+    void addSensorsFromSettings(const AutonomySimSettings::VehicleSetting *vehicle_setting) {
+        const auto &sensor_settings = vehicle_setting->sensors;
+
+        getSensorFactory()->createSensorsFromSettings(sensor_settings, sensors_, sensor_storage_);
+    }
 };
 
 } // namespace autonomylib

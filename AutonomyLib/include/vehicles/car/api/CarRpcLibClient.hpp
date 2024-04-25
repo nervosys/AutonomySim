@@ -9,12 +9,14 @@
 #include "common/CommonStructs.hpp"
 #include "common/ImageCaptureBase.hpp"
 #include "vehicles/car/api/CarApiBase.hpp"
+
 #include <functional>
 
 namespace nervosys {
 namespace autonomylib {
 
 class CarRpcLibClient : public RpcLibClientBase {
+
   public:
     CarRpcLibClient(const string &ip_address = "localhost", uint16_t port = RpcLibPort, float timeout_sec = 60);
 

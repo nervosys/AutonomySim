@@ -4,15 +4,23 @@
 #ifndef autonomylib_common_GaussianMarkov_hpp
 #define autonomylib_common_GaussianMarkov_hpp
 
+#include "Common.hpp"
 #include "UpdatableObject.hpp"
-#include "common/Common.hpp"
-#include "common/utils/RandomGenerator.hpp"
+#include "utils/RandomGenerator.hpp"
+
 #include <list>
 
 namespace nervosys {
 namespace autonomylib {
 
 class GaussianMarkov : public UpdatableObject {
+
+  private:
+    RandomGeneratorGausianR rand_;
+    real_T tau_, sigma_;
+    real_T output_, initial_output_;
+    TTimePoint last_time_;
+
   public:
     GaussianMarkov() {}
     GaussianMarkov(real_T tau, real_T sigma, real_T initial_output = 0) { // in seconds
@@ -56,12 +64,6 @@ class GaussianMarkov : public UpdatableObject {
 
     real_T getNextRandom() { return rand_.next(); }
     real_T getOutput() const { return output_; }
-
-  private:
-    RandomGeneratorGausianR rand_;
-    real_T tau_, sigma_;
-    real_T output_, initial_output_;
-    TTimePoint last_time_;
 };
 
 } // namespace autonomylib

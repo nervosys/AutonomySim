@@ -5,6 +5,7 @@
 #define autonomylib_common_ClockBase_hpp
 
 #include "Common.hpp"
+
 #include <chrono>
 #include <thread>
 
@@ -12,6 +13,13 @@ namespace nervosys {
 namespace autonomylib {
 
 class ClockBase {
+
+  private:
+    template <typename T> using duration = std::chrono::duration<T>;
+
+    uint64_t step_count_ = 0;
+    TTimePoint wall_clock_start_;
+
   public:
     // returns value indicating nanoseconds elapsed since some reference timepoint in history
     // typically nanoseconds from Unix epoch
@@ -68,12 +76,6 @@ class ClockBase {
 
         return static_cast<double>(clock_elapsed) / wall_clock_elapsed;
     }
-
-  private:
-    template <typename T> using duration = std::chrono::duration<T>;
-
-    uint64_t step_count_ = 0;
-    TTimePoint wall_clock_start_;
 };
 
 } // namespace autonomylib

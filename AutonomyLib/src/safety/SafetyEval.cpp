@@ -6,6 +6,7 @@
 
 #include "safety/SafetyEval.hpp"
 #include "vehicles/multirotor/api/MultirotorCommon.hpp"
+
 #include <cmath>
 #include <sstream>
 

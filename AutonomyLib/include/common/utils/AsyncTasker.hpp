@@ -5,9 +5,15 @@
 #define common_utils_AsyncTasker_hpp
 
 #include "ctpl_stl.h"
+
 #include <functional>
 
 class AsyncTasker {
+
+  private:
+    ctpl::thread_pool threads_;
+    std::function<void(std::exception &)> error_handler_;
+
   public:
     AsyncTasker(unsigned int thread_count = 4)
         : threads_(thread_count), error_handler_([](std::exception e) { unused(e); }) {}
@@ -41,10 +47,6 @@ class AsyncTasker {
             });
         }
     }
-
-  private:
-    ctpl::thread_pool threads_;
-    std::function<void(std::exception &)> error_handler_;
 };
 
 #endif

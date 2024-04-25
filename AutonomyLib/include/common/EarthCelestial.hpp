@@ -6,8 +6,9 @@ https://github.com/mourner/suncalc
 #ifndef autonomylib_common_EarthCelestial_hpp
 #define autonomylib_common_EarthCelestial_hpp
 
+#include "Common.hpp"
 #include "EarthUtils.hpp"
-#include "common/Common.hpp"
+
 #include <chrono>
 #include <ctime>
 
@@ -15,92 +16,6 @@ namespace nervosys {
 namespace autonomylib {
 
 class EarthCelestial {
-  public:
-    struct CelestialGlobalCoord {
-        double declination;
-        double rightAscension;
-        double distance = Utils::nan<double>();
-        double parallacticAngle = Utils::nan<double>();
-    };
-
-    struct CelestialLocalCoord {
-        double azimuth;
-        double altitude;
-        double distance = Utils::nan<double>();
-        double parallacticAngle = Utils::nan<double>();
-    };
-
-    struct CelestialPhase {
-        double fraction;
-        double phase;
-        double angle;
-    };
-
-  public:
-    static CelestialLocalCoord getSunCoordinates(uint64_t date, double lat, double lng) {
-        double lw = Utils::degreesToRadians(-lng);
-        double phi = Utils::degreesToRadians(lat);
-        double d = toDays(date);
-
-        CelestialGlobalCoord c = getGlobalSunCoords(d);
-        double H = siderealTime(d, lw) - c.rightAscension;
-
-        CelestialLocalCoord coord;
-        coord.azimuth = Utils::radiansToDegrees(azimuth(H, phi, c.declination)) + 180.0;
-        coord.altitude = Utils::radiansToDegrees(altitude(H, phi, c.declination));
-
-        return coord;
-    }
-
-    static CelestialLocalCoord getMoonCoordinates(uint64_t date, double lat, double lng) {
-
-        double lw = Utils::degreesToRadians(-lng);
-        double phi = Utils::degreesToRadians(lat);
-        double d = toDays(date);
-
-        CelestialGlobalCoord c = getGlobalMoonCoords(d);
-        double H = siderealTime(d, lw) - c.rightAscension;
-
-        // formula 14.1 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
-        double pa =
-            std::atan2(std::sin(H), std::tan(phi) * std::cos(c.declination) - std::sin(c.declination) * std::cos(H));
-
-        double h = altitude(H, phi, c.declination);
-        h = h + astroRefraction(h); // altitude correction for refraction
-
-        CelestialLocalCoord coord;
-        coord.azimuth = Utils::radiansToDegrees(azimuth(H, phi, c.declination));
-        coord.altitude = Utils::radiansToDegrees(h);
-        coord.distance = c.distance;
-        coord.parallacticAngle = Utils::radiansToDegrees(pa);
-        return coord;
-    };
-
-    // calculations for illumination parameters of the moon,
-    // based on http://idlastro.gsfc.nasa.gov/ftp/pro/astro/mphase.pro formulas and
-    // Chapter 48 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
-    static CelestialPhase getMoonPhase(uint64_t date) {
-        double d = toDays(date);
-        CelestialGlobalCoord s = getGlobalSunCoords(d);
-        CelestialGlobalCoord m = getGlobalMoonCoords(d);
-
-        double sdist = EarthUtils::DistanceFromSun / 1000; // distance from Earth to Sun in km
-
-        double phi = std::acos(std::sin(s.declination) * std::sin(m.declination) +
-                               std::cos(s.declination) * std::cos(m.declination) *
-                                   std::cos(s.rightAscension - m.rightAscension));
-        double inc = std::atan2(sdist * std::sin(phi), m.distance - sdist * std::cos(phi));
-        double angle = std::atan2(std::cos(s.declination) * std::sin(s.rightAscension - m.rightAscension),
-                                  std::sin(s.declination) * std::cos(m.declination) -
-                                      std::cos(s.declination) * std::sin(m.declination) *
-                                          std::cos(s.rightAscension - m.rightAscension));
-
-        CelestialPhase moonPhase;
-        moonPhase.fraction = (1 + cos(inc)) / 2;
-        moonPhase.phase = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / M_PI;
-        moonPhase.angle = angle;
-        return moonPhase;
-    };
 
   private:
     static double toDays(uint64_t date) {
@@ -181,6 +96,92 @@ class EarthCelestial {
 
         return moonCoords;
     }
+
+  public:
+    struct CelestialGlobalCoord {
+        double declination;
+        double rightAscension;
+        double distance = Utils::nan<double>();
+        double parallacticAngle = Utils::nan<double>();
+    };
+
+    struct CelestialLocalCoord {
+        double azimuth;
+        double altitude;
+        double distance = Utils::nan<double>();
+        double parallacticAngle = Utils::nan<double>();
+    };
+
+    struct CelestialPhase {
+        double fraction;
+        double phase;
+        double angle;
+    };
+
+    static CelestialLocalCoord getSunCoordinates(uint64_t date, double lat, double lng) {
+        double lw = Utils::degreesToRadians(-lng);
+        double phi = Utils::degreesToRadians(lat);
+        double d = toDays(date);
+
+        CelestialGlobalCoord c = getGlobalSunCoords(d);
+        double H = siderealTime(d, lw) - c.rightAscension;
+
+        CelestialLocalCoord coord;
+        coord.azimuth = Utils::radiansToDegrees(azimuth(H, phi, c.declination)) + 180.0;
+        coord.altitude = Utils::radiansToDegrees(altitude(H, phi, c.declination));
+
+        return coord;
+    }
+
+    static CelestialLocalCoord getMoonCoordinates(uint64_t date, double lat, double lng) {
+
+        double lw = Utils::degreesToRadians(-lng);
+        double phi = Utils::degreesToRadians(lat);
+        double d = toDays(date);
+
+        CelestialGlobalCoord c = getGlobalMoonCoords(d);
+        double H = siderealTime(d, lw) - c.rightAscension;
+
+        // formula 14.1 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
+        double pa =
+            std::atan2(std::sin(H), std::tan(phi) * std::cos(c.declination) - std::sin(c.declination) * std::cos(H));
+
+        double h = altitude(H, phi, c.declination);
+        h = h + astroRefraction(h); // altitude correction for refraction
+
+        CelestialLocalCoord coord;
+        coord.azimuth = Utils::radiansToDegrees(azimuth(H, phi, c.declination));
+        coord.altitude = Utils::radiansToDegrees(h);
+        coord.distance = c.distance;
+        coord.parallacticAngle = Utils::radiansToDegrees(pa);
+        return coord;
+    };
+
+    // calculations for illumination parameters of the moon,
+    // based on http://idlastro.gsfc.nasa.gov/ftp/pro/astro/mphase.pro formulas and
+    // Chapter 48 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
+    static CelestialPhase getMoonPhase(uint64_t date) {
+        double d = toDays(date);
+        CelestialGlobalCoord s = getGlobalSunCoords(d);
+        CelestialGlobalCoord m = getGlobalMoonCoords(d);
+
+        double sdist = EarthUtils::DistanceFromSun / 1000; // distance from Earth to Sun in km
+
+        double phi = std::acos(std::sin(s.declination) * std::sin(m.declination) +
+                               std::cos(s.declination) * std::cos(m.declination) *
+                                   std::cos(s.rightAscension - m.rightAscension));
+        double inc = std::atan2(sdist * std::sin(phi), m.distance - sdist * std::cos(phi));
+        double angle = std::atan2(std::cos(s.declination) * std::sin(s.rightAscension - m.rightAscension),
+                                  std::sin(s.declination) * std::cos(m.declination) -
+                                      std::cos(s.declination) * std::sin(m.declination) *
+                                          std::cos(s.rightAscension - m.rightAscension));
+
+        CelestialPhase moonPhase;
+        moonPhase.fraction = (1 + cos(inc)) / 2;
+        moonPhase.phase = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / M_PI;
+        moonPhase.angle = angle;
+        return moonPhase;
+    };
 };
 
 } // namespace autonomylib

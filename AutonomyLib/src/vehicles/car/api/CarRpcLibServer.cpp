@@ -8,7 +8,6 @@
 // if using Unreal Build system then include precompiled header file first
 
 #include "vehicles/car/api/CarRpcLibServer.hpp"
-
 #include "common/Common.hpp"
 STRICT_MODE_OFF
 
@@ -27,7 +26,6 @@ STRICT_MODE_OFF
 #define check(expr) (static_cast<void>((expr)))
 #endif
 #include "common/utils/WindowsApisCommonPost.hpp"
-
 #include "vehicles/car/api/CarRpcLibAdaptors.hpp"
 
 STRICT_MODE_ON

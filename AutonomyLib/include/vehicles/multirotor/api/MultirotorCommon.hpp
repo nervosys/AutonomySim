@@ -9,8 +9,8 @@ namespace nervosys {
 namespace autonomylib {
 
 enum class DrivetrainType { MaxDegreeOfFreedom = 0, ForwardOnly };
-
 enum class LandedState : uint { Landed = 0, Flying = 1 };
+
 // Structs for rotor state API
 struct RotorParameters {
     real_T thrust = 0;
@@ -60,7 +60,6 @@ struct YawMode {
 
 // properties of vehicle
 struct MultirotorApiParams {
-    MultirotorApiParams(){};
     // what is the breaking distance for given velocity?
     // Below is just proportionality constant to convert from velocity to breaking distance
     float vel_to_breaking_dist =
@@ -81,6 +80,8 @@ struct MultirotorApiParams {
     // what is the +/-window we should check on obstacle map?
     // for example 2 means check from ticks -2 to 2
     int obs_window = 0;
+
+    MultirotorApiParams(){};
 };
 
 struct MultirotorState {

@@ -8,12 +8,20 @@
 #include "VehicleSimApiBase.hpp"
 #include "WorldSimApiBase.hpp"
 #include "common/utils/UniqueValueMap.hpp"
+
 #include <map>
 
 namespace nervosys {
 namespace autonomylib {
 
 class ApiProvider {
+
+  private:
+    WorldSimApiBase *world_sim_api_;
+
+    common_utils::UniqueValueMap<std::string, VehicleApiBase *> vehicle_apis_;
+    common_utils::UniqueValueMap<std::string, VehicleSimApiBase *> vehicle_sim_apis_;
+
   public:
     ApiProvider(WorldSimApiBase *world_sim_api) : world_sim_api_(world_sim_api) {}
     virtual ~ApiProvider() = default;
@@ -54,12 +62,6 @@ class ApiProvider {
         vehicle_apis_.insert_or_assign("", vehicle_apis_.at(vehicle_name));
         vehicle_sim_apis_.insert_or_assign("", vehicle_sim_apis_.at(vehicle_name));
     }
-
-  private:
-    WorldSimApiBase *world_sim_api_;
-
-    common_utils::UniqueValueMap<std::string, VehicleApiBase *> vehicle_apis_;
-    common_utils::UniqueValueMap<std::string, VehicleSimApiBase *> vehicle_sim_apis_;
 };
 
 } // namespace autonomylib

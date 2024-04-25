@@ -4,10 +4,10 @@
 #ifndef autonomylib_common_VectorMath_hpp
 #define autonomylib_common_VectorMath_hpp
 
-#include <cmath>
+#include "utils/RandomGenerator.hpp"
+#include "utils/Utils.hpp"
 
-#include "common/utils/RandomGenerator.hpp"
-#include "common/utils/Utils.hpp"
+#include <cmath>
 
 STRICT_MODE_OFF
 // if not using unaligned types then disable vectorization to avoid alignment issues all over the places
@@ -19,6 +19,7 @@ namespace nervosys {
 namespace autonomylib {
 
 template <class Vector3T, class QuaternionT, class RealT> class VectorMathT {
+
   public:
     // IMPORTANT: make sure fixed size vectorization types have no alignment assumption
     // https://eigen.tuxfamily.org/dox/group__TopicUnalignedArrayAssert.html
@@ -86,6 +87,12 @@ template <class Vector3T, class QuaternionT, class RealT> class VectorMathT {
     };
 
     class RandomVectorT {
+
+      private:
+        RandomGeneratorXT rx_;
+        RandomGeneratorYT ry_;
+        RandomGeneratorZT rz_;
+
       public:
         RandomVectorT() {}
         RandomVectorT(RealT min_val, RealT max_val)
@@ -100,14 +107,15 @@ template <class Vector3T, class QuaternionT, class RealT> class VectorMathT {
         }
 
         Vector3T next() { return Vector3T(rx_.next(), ry_.next(), rz_.next()); }
-
-      private:
-        RandomGeneratorXT rx_;
-        RandomGeneratorYT ry_;
-        RandomGeneratorZT rz_;
     };
 
     class RandomVectorGaussianT {
+
+      private:
+        RandomGeneratorGausianXT rx_;
+        RandomGeneratorGausianYT ry_;
+        RandomGeneratorGausianZT rz_;
+
       public:
         RandomVectorGaussianT() {}
         RandomVectorGaussianT(RealT mean, RealT stddev) : rx_(mean, stddev), ry_(mean, stddev), rz_(mean, stddev) {}
@@ -121,11 +129,6 @@ template <class Vector3T, class QuaternionT, class RealT> class VectorMathT {
         }
 
         Vector3T next() { return Vector3T(rx_.next(), ry_.next(), rz_.next()); }
-
-      private:
-        RandomGeneratorGausianXT rx_;
-        RandomGeneratorGausianYT ry_;
-        RandomGeneratorGausianZT rz_;
     };
 
   public:

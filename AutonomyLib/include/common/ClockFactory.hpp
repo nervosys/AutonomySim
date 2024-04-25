@@ -5,12 +5,18 @@
 #define autonomylib_common_ClockFactory_hpp
 
 #include "ScalableClock.hpp"
+
 #include <memory>
 
 namespace nervosys {
 namespace autonomylib {
 
 class ClockFactory {
+
+  private:
+    // disallow instance creation
+    ClockFactory() {}
+
   public:
     // output of this function should not be stored as pointer might change
     static ClockBase *get(std::shared_ptr<ClockBase> val = nullptr) {
@@ -28,10 +34,6 @@ class ClockFactory {
     // don't allow multiple instances of this class
     ClockFactory(ClockFactory const &) = delete;
     void operator=(ClockFactory const &) = delete;
-
-  private:
-    // disallow instance creation
-    ClockFactory() {}
 };
 
 } // namespace autonomylib

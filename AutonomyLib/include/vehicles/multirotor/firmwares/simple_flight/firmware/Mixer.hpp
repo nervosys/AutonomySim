@@ -3,12 +3,35 @@
 
 #include "Params.hpp"
 #include "interfaces/CommonStructs.hpp"
+
 #include <algorithm>
 #include <vector>
 
 namespace simple_flight {
 
 class Mixer {
+
+  private:
+    const int kMotorCount = 4;
+    const Params *params_;
+
+    // Custom mixer data per motor
+    typedef struct motorMixer_t {
+        float throttle;
+        float roll;
+        float pitch;
+        float yaw;
+    } motorMixer_t;
+
+    // only thing that this matrix does is change the sign
+    const motorMixer_t mixerQuadX[4] = {
+        // QuadX config
+        {1.0f, -1.0f, 1.0f, 1.0f},   // FRONT_R
+        {1.0f, 1.0f, -1.0f, 1.0f},   // REAR_L
+        {1.0f, 1.0f, 1.0f, -1.0f},   // FRONT_L
+        {1.0f, -1.0f, -1.0f, -1.0f}, // REAR_R
+    };
+
   public:
     Mixer(const Params *params) : params_(params) {}
 
@@ -43,28 +66,6 @@ class Mixer {
             motor_outputs[motor_index] = std::max(
                 params_->motor.min_motor_output, std::min(motor_outputs[motor_index], params_->motor.max_motor_output));
     }
-
-  private:
-    const int kMotorCount = 4;
-
-    const Params *params_;
-
-    // Custom mixer data per motor
-    typedef struct motorMixer_t {
-        float throttle;
-        float roll;
-        float pitch;
-        float yaw;
-    } motorMixer_t;
-
-    // only thing that this matrix does is change the sign
-    const motorMixer_t mixerQuadX[4] = {
-        // QuadX config
-        {1.0f, -1.0f, 1.0f, 1.0f},   // FRONT_R
-        {1.0f, 1.0f, -1.0f, 1.0f},   // REAR_L
-        {1.0f, 1.0f, 1.0f, -1.0f},   // FRONT_L
-        {1.0f, -1.0f, -1.0f, -1.0f}, // REAR_R
-    };
 };
 
 } // namespace simple_flight

@@ -10,12 +10,56 @@
 #include "common/DelayLine.hpp"
 #include "common/EarthUtils.hpp"
 #include "common/FrequencyLimiter.hpp"
+
 #include <random>
 
 namespace nervosys {
 namespace autonomylib {
 
 class MagnetometerSimple : public MagnetometerBase {
+
+  private:
+    RandomVectorGaussianR noise_vec_;
+    Vector3r bias_vec_;
+    Vector3r magnetic_field_true_;
+    MagnetometerSimpleParams params_;
+    FrequencyLimiter freq_limiter_;
+    DelayLine<Output> delay_line_;
+
+    void updateReference(const GroundTruth &ground_truth) {
+        switch (params_.ref_source) {
+        case MagnetometerSimpleParams::ReferenceSource::ReferenceSource_Constant:
+            // Constant magnetic field for Seattle
+            magnetic_field_true_ = Vector3r(0.34252f, 0.09805f, 0.93438f);
+            break;
+        case MagnetometerSimpleParams::ReferenceSource::ReferenceSource_DipoleModel:
+            magnetic_field_true_ =
+                EarthUtils::getMagField(ground_truth.environment->getState().geo_point) * 1E4f; // Tesla to Gauss
+            break;
+        default:
+            throw std::invalid_argument("magnetic reference source type is not recognized");
+        }
+    }
+
+    Output getOutputInternal() {
+        Output output;
+        const GroundTruth &ground_truth = getGroundTruth();
+
+        if (params_.dynamic_reference_source)
+            updateReference(ground_truth);
+
+        // Calculate the magnetic field noise.
+        output.magnetic_field_body =
+            VectorMath::transformToBodyFrame(magnetic_field_true_, ground_truth.kinematics->pose.orientation, true) *
+                params_.scale_factor +
+            noise_vec_.next() + bias_vec_;
+
+        // todo output.magnetic_field_covariance ?
+        output.time_stamp = clock()->nowNanos();
+
+        return output;
+    }
+
   public:
     MagnetometerSimple(
         const AutonomySimSettings::MagnetometerSetting &setting = AutonomySimSettings::MagnetometerSetting())
@@ -60,51 +104,6 @@ class MagnetometerSimple : public MagnetometerBase {
     //*** End: UpdatableObject implementation ***//
 
     virtual ~MagnetometerSimple() = default;
-
-  private: // methods
-    void updateReference(const GroundTruth &ground_truth) {
-        switch (params_.ref_source) {
-        case MagnetometerSimpleParams::ReferenceSource::ReferenceSource_Constant:
-            // Constant magnetic field for Seattle
-            magnetic_field_true_ = Vector3r(0.34252f, 0.09805f, 0.93438f);
-            break;
-        case MagnetometerSimpleParams::ReferenceSource::ReferenceSource_DipoleModel:
-            magnetic_field_true_ =
-                EarthUtils::getMagField(ground_truth.environment->getState().geo_point) * 1E4f; // Tesla to Gauss
-            break;
-        default:
-            throw std::invalid_argument("magnetic reference source type is not recognized");
-        }
-    }
-
-    Output getOutputInternal() {
-        Output output;
-        const GroundTruth &ground_truth = getGroundTruth();
-
-        if (params_.dynamic_reference_source)
-            updateReference(ground_truth);
-
-        // Calculate the magnetic field noise.
-        output.magnetic_field_body =
-            VectorMath::transformToBodyFrame(magnetic_field_true_, ground_truth.kinematics->pose.orientation, true) *
-                params_.scale_factor +
-            noise_vec_.next() + bias_vec_;
-
-        // todo output.magnetic_field_covariance ?
-        output.time_stamp = clock()->nowNanos();
-
-        return output;
-    }
-
-  private:
-    RandomVectorGaussianR noise_vec_;
-    Vector3r bias_vec_;
-
-    Vector3r magnetic_field_true_;
-    MagnetometerSimpleParams params_;
-
-    FrequencyLimiter freq_limiter_;
-    DelayLine<Output> delay_line_;
 };
 
 } // namespace autonomylib

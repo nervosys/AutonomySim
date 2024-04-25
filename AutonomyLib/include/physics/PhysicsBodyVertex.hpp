@@ -12,6 +12,13 @@ namespace nervosys {
 namespace autonomylib {
 
 class PhysicsBodyVertex : public UpdatableObject {
+
+  private:
+    Vector3r initial_position_, position_;
+    Vector3r initial_normal_, normal_;
+    Wrench current_wrench_;
+    real_T drag_factor_;
+
   protected:
     virtual void setWrench(Wrench &wrench) {
         unused(wrench);
@@ -24,9 +31,11 @@ class PhysicsBodyVertex : public UpdatableObject {
     void setDragFactor(real_T val) { drag_factor_ = val; }
 
     PhysicsBodyVertex() {} // allow default constructor with later call for initialize
+
     PhysicsBodyVertex(const Vector3r &position, const Vector3r &normal, real_T drag_factor = 0) {
         initialize(position, normal, drag_factor);
     }
+
     void initialize(const Vector3r &position, const Vector3r &normal, real_T drag_factor = 0) {
         initial_position_ = position;
         initial_normal_ = normal;
@@ -56,12 +65,6 @@ class PhysicsBodyVertex : public UpdatableObject {
     void setNormal(const Vector3r &normal) { normal_ = normal; }
 
     Wrench getWrench() const { return current_wrench_; }
-
-  private:
-    Vector3r initial_position_, position_;
-    Vector3r initial_normal_, normal_;
-    Wrench current_wrench_;
-    real_T drag_factor_;
 };
 
 } // namespace autonomylib

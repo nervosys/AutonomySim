@@ -4,22 +4,32 @@
 #ifndef autonomylib_common_DelayLine_hpp
 #define autonomylib_common_DelayLine_hpp
 
+#include "Common.hpp"
 #include "UpdatableObject.hpp"
-#include "common/Common.hpp"
+
 #include <list>
 
 namespace nervosys {
 namespace autonomylib {
 
 template <typename T> class DelayLine : public UpdatableObject {
+
+  private:
+    template <typename TItem> using list = std::list<TItem>;
+
+    list<T> values_;
+    list<TTimePoint> times_;
+    TTimeDelta delay_;
+
+    T last_value_;
+    TTimePoint last_time_;
+
   public:
     DelayLine() {}
-    DelayLine(TTimeDelta delay) // in seconds
-    {
+    DelayLine(TTimeDelta delay) { // in seconds
         initialize(delay);
     }
-    void initialize(TTimeDelta delay) // in seconds
-    {
+    void initialize(TTimeDelta delay) { // in seconds
         setDelay(delay);
     }
     void setDelay(TTimeDelta delay) { delay_ = delay; }
@@ -54,16 +64,6 @@ template <typename T> class DelayLine : public UpdatableObject {
         values_.push_back(val);
         times_.push_back(clock()->nowNanos() + time_offset);
     }
-
-  private:
-    template <typename TItem> using list = std::list<TItem>;
-
-    list<T> values_;
-    list<TTimePoint> times_;
-    TTimeDelta delay_;
-
-    T last_value_;
-    TTimePoint last_time_;
 };
 
 } // namespace autonomylib

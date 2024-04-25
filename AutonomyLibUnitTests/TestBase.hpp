@@ -2,6 +2,7 @@
 #define autonomylib_unittests_TestBase_hpp
 
 #include "common/utils/Utils.hpp"
+
 #include <exception>
 #include <string>
 
@@ -9,6 +10,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class TestBase {
+
   public:
     virtual ~TestBase() = default;
     virtual void run() = 0;

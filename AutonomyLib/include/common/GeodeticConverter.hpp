@@ -5,12 +5,61 @@
 #define autonomylib_common_GeodeticConverter_hpp
 
 #include "VectorMath.hpp"
+
 #include <cmath>
 
 namespace nervosys {
 namespace autonomylib {
 
 class GeodeticConverter {
+
+  private:
+    typedef nervosys::autonomylib::VectorMathf VectorMath;
+    typedef VectorMath::Vector3d Vector3d;
+    typedef VectorMath::Matrix3x3d Matrix3x3d;
+
+    // Geodetic system parameters
+    static constexpr double kSemimajorAxis = 6378137;
+    static constexpr double kSemiminorAxis = 6356752.3142;
+    static constexpr double kFirstEccentricitySquared = 6.69437999014 * 0.001;
+    static constexpr double kSecondEccentricitySquared = 6.73949674228 * 0.001;
+    static constexpr double kFlattening = 1 / 298.257223563;
+
+    inline Matrix3x3d nRe(const double lat_radians, const double lon_radians) {
+        const double sLat = sin(lat_radians);
+        const double sLon = sin(lon_radians);
+        const double cLat = cos(lat_radians);
+        const double cLon = cos(lon_radians);
+
+        Matrix3x3d ret;
+        ret(0, 0) = -sLat * cLon;
+        ret(0, 1) = -sLat * sLon;
+        ret(0, 2) = cLat;
+        ret(1, 0) = -sLon;
+        ret(1, 1) = cLon;
+        ret(1, 2) = 0.0;
+        ret(2, 0) = cLat * cLon;
+        ret(2, 1) = cLat * sLon;
+        ret(2, 2) = sLat;
+
+        return ret;
+    }
+
+    inline double rad2Deg(const double radians) { return (radians / M_PI) * 180.0; }
+
+    inline double deg2Rad(const double degrees) { return (degrees / 180.0) * M_PI; }
+
+    double home_latitude_rad_, home_latitude_;
+    double home_longitude_rad_, home_longitude_;
+    float home_altitude_;
+
+    double home_ecef_x_;
+    double home_ecef_y_;
+    double home_ecef_z_;
+
+    Matrix3x3d ecef_to_ned_matrix_;
+    Matrix3x3d ned_to_ecef_matrix_;
+
   public:
     GeodeticConverter(double home_latitude = 0, double home_longitude = 0, float home_altitude = 0) {
         setHome(home_latitude, home_longitude, home_altitude);
@@ -154,53 +203,6 @@ class GeodeticConverter {
         ned2Ecef(aux_north, aux_east, aux_down, &x, &y, &z);
         ecef2Geodetic(x, y, z, latitude, longitude, altitude);
     }
-
-  private:
-    typedef nervosys::autonomylib::VectorMathf VectorMath;
-    typedef VectorMath::Vector3d Vector3d;
-    typedef VectorMath::Matrix3x3d Matrix3x3d;
-
-    // Geodetic system parameters
-    static constexpr double kSemimajorAxis = 6378137;
-    static constexpr double kSemiminorAxis = 6356752.3142;
-    static constexpr double kFirstEccentricitySquared = 6.69437999014 * 0.001;
-    static constexpr double kSecondEccentricitySquared = 6.73949674228 * 0.001;
-    static constexpr double kFlattening = 1 / 298.257223563;
-
-    inline Matrix3x3d nRe(const double lat_radians, const double lon_radians) {
-        const double sLat = sin(lat_radians);
-        const double sLon = sin(lon_radians);
-        const double cLat = cos(lat_radians);
-        const double cLon = cos(lon_radians);
-
-        Matrix3x3d ret;
-        ret(0, 0) = -sLat * cLon;
-        ret(0, 1) = -sLat * sLon;
-        ret(0, 2) = cLat;
-        ret(1, 0) = -sLon;
-        ret(1, 1) = cLon;
-        ret(1, 2) = 0.0;
-        ret(2, 0) = cLat * cLon;
-        ret(2, 1) = cLat * sLon;
-        ret(2, 2) = sLat;
-
-        return ret;
-    }
-
-    inline double rad2Deg(const double radians) { return (radians / M_PI) * 180.0; }
-
-    inline double deg2Rad(const double degrees) { return (degrees / 180.0) * M_PI; }
-
-    double home_latitude_rad_, home_latitude_;
-    double home_longitude_rad_, home_longitude_;
-    float home_altitude_;
-
-    double home_ecef_x_;
-    double home_ecef_y_;
-    double home_ecef_z_;
-
-    Matrix3x3d ecef_to_ned_matrix_;
-    Matrix3x3d ned_to_ecef_matrix_;
 
 }; // class GeodeticConverter
 

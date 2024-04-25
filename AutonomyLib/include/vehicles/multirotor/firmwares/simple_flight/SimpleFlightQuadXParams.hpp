@@ -13,6 +13,21 @@ namespace nervosys {
 namespace autonomylib {
 
 class SimpleFlightQuadXParams : public MultirotorParams {
+
+  private:
+    const AutonomySimSettings::VehicleSetting *vehicle_setting_; // store as pointer because of derived classes
+    std::shared_ptr<const SensorFactory> sensor_factory_;
+
+  protected:
+    virtual void setupParams() override {
+        auto &params = getParams();
+        // Use connection_info_.model for the model name, see Px4MultirotorParams for example
+        // Only Generic for now
+        setupFrameGenericQuad(params);
+    }
+
+    virtual const SensorFactory *getSensorFactory() const override { return sensor_factory_.get(); }
+
   public:
     SimpleFlightQuadXParams(const AutonomySimSettings::VehicleSetting *vehicle_setting,
                             std::shared_ptr<const SensorFactory> sensor_factory)
@@ -23,22 +38,6 @@ class SimpleFlightQuadXParams : public MultirotorParams {
     virtual std::unique_ptr<MultirotorApiBase> createMultirotorApi() override {
         return std::unique_ptr<MultirotorApiBase>(new SimpleFlightApi(this, vehicle_setting_));
     }
-
-  protected:
-    virtual void setupParams() override {
-        auto &params = getParams();
-
-        // Use connection_info_.model for the model name, see Px4MultirotorParams for example
-
-        // Only Generic for now
-        setupFrameGenericQuad(params);
-    }
-
-    virtual const SensorFactory *getSensorFactory() const override { return sensor_factory_.get(); }
-
-  private:
-    const AutonomySimSettings::VehicleSetting *vehicle_setting_; // store as pointer because of derived classes
-    std::shared_ptr<const SensorFactory> sensor_factory_;
 };
 
 } // namespace autonomylib

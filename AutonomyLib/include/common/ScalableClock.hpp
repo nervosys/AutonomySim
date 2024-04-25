@@ -12,6 +12,24 @@ namespace autonomylib {
 
 // ScalableClock is a clock that can be scaled (i.e. slowed down or speeded up)
 class ScalableClock : public ClockBase {
+
+  private:
+    double scale_;
+    TTimeDelta latency_;
+    double offset_;
+    TTimePoint start_;
+
+  protected:
+    // converts time interval for wall clock to current clock
+    // For example, if implementation is scaled clock simulating 5X spped then below
+    // will retun dt*5. This functions are required to translate time to operating system
+    // which only has concept of wall clock. For example, to make thread sleep for specific duration.
+
+    // wall clock to sim clock
+    virtual TTimeDelta fromWallDelta(TTimeDelta dt) const { return dt * scale_; }
+    // sim clock to wall clock
+    virtual TTimeDelta toWallDelta(TTimeDelta dt) const { return dt / scale_; }
+
   public:
     // scale > 1 slows down the clock, < 1 speeds up the clock
     ScalableClock(double scale = 1, TTimeDelta latency = 0) : scale_(scale), latency_(latency) {
@@ -48,23 +66,6 @@ class ScalableClock : public ClockBase {
         } else
             ClockBase::sleep_for(dt);
     }
-
-  protected:
-    // converts time interval for wall clock to current clock
-    // For example, if implementation is scaled clock simulating 5X spped then below
-    // will retun dt*5. This functions are required to translate time to operating system
-    // which only has concept of wall clock. For example, to make thread sleep for specific duration.
-
-    // wall clock to sim clock
-    virtual TTimeDelta fromWallDelta(TTimeDelta dt) const { return dt * scale_; }
-    // sim clock to wall clock
-    virtual TTimeDelta toWallDelta(TTimeDelta dt) const { return dt / scale_; }
-
-  private:
-    double scale_;
-    TTimeDelta latency_;
-    double offset_;
-    TTimePoint start_;
 };
 
 } // namespace autonomylib

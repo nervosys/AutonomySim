@@ -4,13 +4,26 @@
 #ifndef autonomylib_common_FrequencyLimiter_hpp
 #define autonomylib_common_FrequencyLimiter_hpp
 
+#include "Common.hpp"
 #include "UpdatableObject.hpp"
-#include "common/Common.hpp"
 
 namespace nervosys {
 namespace autonomylib {
 
 class FrequencyLimiter : public UpdatableObject {
+
+  private:
+    real_T interval_size_sec_;
+    TTimeDelta elapsed_total_sec_;
+    TTimeDelta elapsed_interval_sec_;
+    TTimeDelta last_elapsed_interval_sec_;
+    uint update_count_;
+    real_T frequency_;
+    real_T startup_delay_;
+    bool interval_complete_;
+    bool startup_complete_;
+    TTimePoint last_time_, first_time_;
+
   public:
     FrequencyLimiter(real_T frequency = Utils::max<float>(), real_T startup_delay = 0) {
         initialize(frequency, startup_delay);
@@ -88,18 +101,6 @@ class FrequencyLimiter : public UpdatableObject {
     bool isStartupComplete() const { return startup_complete_; }
 
     uint getUpdateCount() const { return update_count_; }
-
-  private:
-    real_T interval_size_sec_;
-    TTimeDelta elapsed_total_sec_;
-    TTimeDelta elapsed_interval_sec_;
-    TTimeDelta last_elapsed_interval_sec_;
-    uint update_count_;
-    real_T frequency_;
-    real_T startup_delay_;
-    bool interval_complete_;
-    bool startup_complete_;
-    TTimePoint last_time_, first_time_;
 };
 } // namespace autonomylib
 } // namespace nervosys

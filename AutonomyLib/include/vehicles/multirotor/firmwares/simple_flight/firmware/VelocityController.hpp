@@ -13,9 +13,20 @@
 
 namespace simple_flight {
 
-class VelocityController : public IAxisController,
-                           public IGoal // for internal child controller
-{
+class VelocityController : public IAxisController, public IGoal { // for internal child controller
+
+  private:
+    unsigned int axis_;
+    const IGoal *goal_;
+    const IStateEstimator *state_estimator_;
+    GoalMode child_mode_;
+    Axis4r child_goal_;
+    TReal output_;
+    Params *params_;
+    const IBoardClock *clock_;
+    std::unique_ptr<PidController<float>> pid_;
+    std::unique_ptr<IAxisController> child_controller_;
+
   public:
     VelocityController(Params *params, const IBoardClock *clock = nullptr) : params_(params), clock_(clock) {}
 
@@ -118,21 +129,6 @@ class VelocityController : public IAxisController,
     virtual const Axis4r &getGoalValue() const override { return child_goal_; }
 
     virtual const GoalMode &getGoalMode() const override { return child_mode_; }
-
-  private:
-    unsigned int axis_;
-    const IGoal *goal_;
-    const IStateEstimator *state_estimator_;
-
-    GoalMode child_mode_;
-    Axis4r child_goal_;
-
-    TReal output_;
-
-    Params *params_;
-    const IBoardClock *clock_;
-    std::unique_ptr<PidController<float>> pid_;
-    std::unique_ptr<IAxisController> child_controller_;
 };
 
 } // namespace simple_flight

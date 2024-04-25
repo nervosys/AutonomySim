@@ -11,6 +11,7 @@ namespace nervosys {
 namespace autonomylib {
 
 struct DistanceSimpleParams {
+
     real_T min_distance = 20.0f / 100;   // m
     real_T max_distance = 4000.0f / 100; // m
 
@@ -23,17 +24,17 @@ struct DistanceSimpleParams {
     bool external_controller = true;
 
     /*
-Ref: A Stochastic Approach to Noise Modeling for Barometric Altimeters
- Angelo Maria Sabatini* and Vincenzo Genovese
- Sample values are from Table 1
- https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3871085/
- This is however not used because numbers mentioned in paper doesn't match experiments.
+    Ref: A Stochastic Approach to Noise Modeling for Barometric Altimeters
+    Angelo Maria Sabatini* and Vincenzo Genovese
+    Sample values are from Table 1
+    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3871085/
+    This is however not used because numbers mentioned in paper doesn't match experiments.
 
- real_T correlated_noise_sigma = 0.27f;
- real_T correlated_noise_tau = 0.87f;
- real_T uncorrelated_noise_sigma = 0.24f;
+    real_T correlated_noise_sigma = 0.27f;
+    real_T correlated_noise_tau = 0.87f;
+    real_T uncorrelated_noise_sigma = 0.24f;
+    */
 
-*/
     // TODO: update sigma based on documentation, maybe as a function increasing with measured distance
     real_T uncorrelated_noise_sigma = 0.002f * 100;
     // jMavSim uses below

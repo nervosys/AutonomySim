@@ -10,6 +10,7 @@ namespace nervosys {
 namespace autonomylib {
 
 struct MagnetometerSimpleParams {
+
     enum ReferenceSource { ReferenceSource_Constant, ReferenceSource_DipoleModel };
 
     Vector3r noise_sigma =

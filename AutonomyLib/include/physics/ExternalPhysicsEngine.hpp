@@ -8,6 +8,7 @@
 #include "common/CommonStructs.hpp"
 #include "common/SteppableClock.hpp"
 #include "physics/PhysicsEngineBase.hpp"
+
 #include <cinttypes>
 #include <fstream>
 #include <iostream>
@@ -18,6 +19,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class ExternalPhysicsEngine : public PhysicsEngineBase {
+
   public:
     ExternalPhysicsEngine() {}
 

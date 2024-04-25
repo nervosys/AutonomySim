@@ -13,14 +13,15 @@ namespace nervosys {
 namespace autonomylib {
 
 class MultirotorRpcLibServer : public RpcLibServerBase {
-  public:
-    MultirotorRpcLibServer(ApiProvider *api_provider, string server_address, uint16_t port = RpcLibPort);
-    virtual ~MultirotorRpcLibServer();
 
   protected:
     virtual MultirotorApiBase *getVehicleApi(const std::string &vehicle_name) override {
         return static_cast<MultirotorApiBase *>(RpcLibServerBase::getVehicleApi(vehicle_name));
     }
+
+  public:
+    MultirotorRpcLibServer(ApiProvider *api_provider, string server_address, uint16_t port = RpcLibPort);
+    virtual ~MultirotorRpcLibServer();
 };
 
 } // namespace autonomylib

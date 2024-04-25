@@ -20,7 +20,72 @@ namespace autonomylib {
 
 class MultirotorApiBase : public VehicleApiBase {
 
-  protected: // must be implemented
+  private:
+    // types
+    struct PathPosition {
+        uint seg_index;
+        float offset;
+        Vector3r position;
+    };
+
+    struct PathSegment {
+        Vector3r seg_normalized;
+        Vector3r seg;
+        float seg_length;
+        float seg_velocity;
+        float start_z;
+        float seg_path_length;
+
+        PathSegment(const Vector3r &start, const Vector3r &end, float velocity, float path_length) {
+            seg = end - start;
+            seg_length = seg.norm();
+            seg_normalized = seg.normalized();
+            start_z = start.z();
+            seg_path_length = path_length;
+
+            seg_velocity = velocity;
+        }
+    };
+
+    // variables
+    CancelToken token_;
+    std::recursive_mutex status_mutex_;
+    RCData rc_data_trims_;
+    shared_ptr<SafetyEval> safety_eval_ptr_;
+    float obs_avoidance_vel_ = 0.5f;
+
+    // TODO: make this configurable?
+    float landing_vel_ = 0.2f; // velocity to use for landing
+    float approx_zero_vel_ = 0.05f;
+    float approx_zero_angular_vel_ = 0.01f;
+    RotorStates rotor_states_;
+
+    // RAII
+    class ObsStrategyChanger {
+      private:
+        shared_ptr<SafetyEval> safety_eval_ptr_;
+        SafetyEval::ObsAvoidanceStrategy old_strategy_;
+
+      public:
+        ObsStrategyChanger(shared_ptr<SafetyEval> safety_eval_ptr, SafetyEval::ObsAvoidanceStrategy new_startegy) {
+            safety_eval_ptr_ = safety_eval_ptr;
+            old_strategy_ = safety_eval_ptr_->getObsAvoidanceStrategy();
+            safety_eval_ptr_->setObsAvoidanceStrategy(new_startegy);
+        }
+        ~ObsStrategyChanger() { safety_eval_ptr_->setObsAvoidanceStrategy(old_strategy_); }
+    };
+
+    // methods
+    float setNextPathPosition(const vector<Vector3r> &path, const vector<PathSegment> &path_segs,
+                              const PathPosition &cur_path_loc, float next_dist, PathPosition &next_path_loc);
+    void adjustYaw(const Vector3r &heading, DrivetrainType drivetrain, YawMode &yaw_mode);
+    void adjustYaw(float x, float y, DrivetrainType drivetrain, YawMode &yaw_mode);
+    void moveToPathPosition(const Vector3r &dest, float velocity, DrivetrainType drivetrain,
+                            /* pass by value */ YawMode yaw_mode, float last_z);
+    bool isYawWithinMargin(float yaw_target, float margin) const;
+
+  protected:
+    // must be implemented
     /************************* low level move APIs *********************************/
     virtual void commandMotorPWMs(float front_right_pwm, float rear_left_pwm, float front_left_pwm,
                                   float rear_right_pwm) = 0;
@@ -53,7 +118,7 @@ class MultirotorApiBase : public VehicleApiBase {
     // lower.
     virtual float getDistanceAccuracy() const = 0;
 
-  protected: // optional overrides but recommended, default values may work
+    // optional overrides but recommended, default values may work
     virtual float getAutoLookahead(float velocity, float adaptive_lookahead, float max_factor = 40,
                                    float min_factor = 30) const;
     virtual float getObsAvoidanceVelocity(float risk_dist, float max_obs_avoidance_vel) const;
@@ -63,11 +128,110 @@ class MultirotorApiBase : public VehicleApiBase {
     virtual void beforeTask() {
         // default is do nothing
     }
+
     virtual void afterTask() {
         // default is do nothing
     }
 
-  public: // optional overrides
+    // utility methods
+    typedef std::function<bool()> WaitFunction;
+
+    //*********************************safe wrapper around low level
+    // commands***************************************************
+    virtual void moveByRollPitchYawZInternal(float roll, float pitch, float yaw, float z);
+    virtual void moveByRollPitchYawThrottleInternal(float roll, float pitch, float yaw, float throttle);
+    virtual void moveByRollPitchYawrateThrottleInternal(float roll, float pitch, float yaw_rate, float throttle);
+    virtual void moveByRollPitchYawrateZInternal(float roll, float pitch, float yaw_rate, float z);
+    virtual void moveByAngleRatesZInternal(float roll_rate, float pitch_rate, float yaw_rate, float z);
+    virtual void moveByAngleRatesThrottleInternal(float roll_rate, float pitch_rate, float yaw_rate, float throttle);
+    virtual void moveByVelocityInternal(float vx, float vy, float vz, const YawMode &yaw_mode);
+    virtual void moveByVelocityZInternal(float vx, float vy, float z, const YawMode &yaw_mode);
+    virtual void moveToPositionInternal(const Vector3r &dest, const YawMode &yaw_mode);
+
+    /************* safety checks & emergency maneuvers ************/
+    virtual bool emergencyManeuverIfUnsafe(const SafetyEval::EvalResult &result);
+    virtual bool safetyCheckVelocity(const Vector3r &velocity);
+    virtual bool safetyCheckVelocityZ(float vx, float vy, float z);
+    virtual bool safetyCheckDestination(const Vector3r &dest_loc);
+
+    /************* wait helpers ************/
+    // helper function can wait for anything (as defined by the given function) up to the max_wait duration (in
+    // seconds). returns true if the wait function succeeded, or false if timeout occurred or the timeout is invalid.
+    Waiter waitForFunction(WaitFunction function, float max_wait);
+
+    // useful for derived class to check after takeoff
+    bool waitForZ(float timeout_sec, float z, float margin);
+
+    /************* other short hands ************/
+    virtual Vector3r getPosition() const { return getKinematicsEstimated().pose.position; }
+    virtual Vector3r getVelocity() const { return getKinematicsEstimated().twist.linear; }
+    virtual Quaternionr getOrientation() const { return getKinematicsEstimated().pose.orientation; }
+
+    CancelToken &getCancelToken() { return token_; }
+
+    // types
+    class SingleCall {
+      public:
+        SingleCall(MultirotorApiBase *api) : api_(api) {
+            auto &token = api->getCancelToken();
+
+            // if we can't get lock, cancel previous call
+            if (!token.try_lock()) {
+                // TODO: should we worry about spurious failures in try_lock?
+                token.cancel();
+                token.lock();
+            }
+
+            if (isRootCall())
+                token.reset();
+            // else this is not the start of the call
+        }
+
+        virtual ~SingleCall() {
+            auto &token = api_->getCancelToken();
+
+            if (isRootCall())
+                token.reset();
+            // else this is not the end of the call
+
+            token.unlock();
+        }
+
+      protected:
+        MultirotorApiBase *getVehicleApi() { return api_; }
+
+        bool isRootCall() { return api_->getCancelToken().getRecursionCount() == 1; }
+
+      private:
+        MultirotorApiBase *api_;
+    };
+
+    class SingleTaskCall : public SingleCall {
+      public:
+        SingleTaskCall(MultirotorApiBase *api) : SingleCall(api) {
+            if (isRootCall())
+                api->beforeTask();
+        }
+
+        virtual ~SingleTaskCall() {
+            if (isRootCall())
+                getVehicleApi()->afterTask();
+        }
+    };
+
+    // use this lock for vehicle status APIs
+    struct StatusLock {
+        // this const correctness gymnastic is required because most
+        // status update APIs are const
+        StatusLock(const MultirotorApiBase *api) : lock_(*const_cast<std::recursive_mutex *>(&api->status_mutex_)) {}
+
+      private:
+        // we need mutable here because status APIs are const and shouldn't change data members
+        mutable std::lock_guard<std::recursive_mutex> lock_;
+    };
+
+  public:
+    // optional overrides
     virtual void moveByRC(const RCData &rc_data);
 
     // below method exist for any firmwares that may want to use ground truth for debugging purposes
@@ -78,7 +242,7 @@ class MultirotorApiBase : public VehicleApiBase {
 
     virtual void resetImplementation() override;
 
-  public: // these APIs uses above low level APIs
+    // these APIs uses above low level APIs
     virtual ~MultirotorApiBase() = default;
 
     /************************* high level move APIs *********************************/
@@ -156,43 +320,7 @@ class MultirotorApiBase : public VehicleApiBase {
     /******************* rotors' states setter ********************/
     void setRotorStates(const RotorStates &rotor_states) { rotor_states_ = rotor_states; }
 
-  protected: // utility methods
-    typedef std::function<bool()> WaitFunction;
-
-    //*********************************safe wrapper around low level
-    // commands***************************************************
-    virtual void moveByRollPitchYawZInternal(float roll, float pitch, float yaw, float z);
-    virtual void moveByRollPitchYawThrottleInternal(float roll, float pitch, float yaw, float throttle);
-    virtual void moveByRollPitchYawrateThrottleInternal(float roll, float pitch, float yaw_rate, float throttle);
-    virtual void moveByRollPitchYawrateZInternal(float roll, float pitch, float yaw_rate, float z);
-    virtual void moveByAngleRatesZInternal(float roll_rate, float pitch_rate, float yaw_rate, float z);
-    virtual void moveByAngleRatesThrottleInternal(float roll_rate, float pitch_rate, float yaw_rate, float throttle);
-    virtual void moveByVelocityInternal(float vx, float vy, float vz, const YawMode &yaw_mode);
-    virtual void moveByVelocityZInternal(float vx, float vy, float z, const YawMode &yaw_mode);
-    virtual void moveToPositionInternal(const Vector3r &dest, const YawMode &yaw_mode);
-
-    /************* safety checks & emergency maneuvers ************/
-    virtual bool emergencyManeuverIfUnsafe(const SafetyEval::EvalResult &result);
-    virtual bool safetyCheckVelocity(const Vector3r &velocity);
-    virtual bool safetyCheckVelocityZ(float vx, float vy, float z);
-    virtual bool safetyCheckDestination(const Vector3r &dest_loc);
-
-    /************* wait helpers ************/
-    // helper function can wait for anything (as defined by the given function) up to the max_wait duration (in
-    // seconds). returns true if the wait function succeeded, or false if timeout occurred or the timeout is invalid.
-    Waiter waitForFunction(WaitFunction function, float max_wait);
-
-    // useful for derived class to check after takeoff
-    bool waitForZ(float timeout_sec, float z, float margin);
-
-    /************* other short hands ************/
-    virtual Vector3r getPosition() const { return getKinematicsEstimated().pose.position; }
-    virtual Vector3r getVelocity() const { return getKinematicsEstimated().twist.linear; }
-    virtual Quaternionr getOrientation() const { return getKinematicsEstimated().pose.orientation; }
-
-    CancelToken &getCancelToken() { return token_; }
-
-  public: // types
+    // types
     class UnsafeMoveException : public VehicleMoveException {
       public:
         const SafetyEval::EvalResult result;
@@ -200,130 +328,6 @@ class MultirotorApiBase : public VehicleApiBase {
         UnsafeMoveException(const SafetyEval::EvalResult result_val, const std::string &message = "")
             : VehicleMoveException(message), result(result_val) {}
     };
-
-  protected: // types
-    class SingleCall {
-      public:
-        SingleCall(MultirotorApiBase *api) : api_(api) {
-            auto &token = api->getCancelToken();
-
-            // if we can't get lock, cancel previous call
-            if (!token.try_lock()) {
-                // TODO: should we worry about spurious failures in try_lock?
-                token.cancel();
-                token.lock();
-            }
-
-            if (isRootCall())
-                token.reset();
-            // else this is not the start of the call
-        }
-
-        virtual ~SingleCall() {
-            auto &token = api_->getCancelToken();
-
-            if (isRootCall())
-                token.reset();
-            // else this is not the end of the call
-
-            token.unlock();
-        }
-
-      protected:
-        MultirotorApiBase *getVehicleApi() { return api_; }
-
-        bool isRootCall() { return api_->getCancelToken().getRecursionCount() == 1; }
-
-      private:
-        MultirotorApiBase *api_;
-    };
-
-    class SingleTaskCall : public SingleCall {
-      public:
-        SingleTaskCall(MultirotorApiBase *api) : SingleCall(api) {
-            if (isRootCall())
-                api->beforeTask();
-        }
-
-        virtual ~SingleTaskCall() {
-            if (isRootCall())
-                getVehicleApi()->afterTask();
-        }
-    };
-
-    // use this lock for vehicle status APIs
-    struct StatusLock {
-        // this const correctness gymnastic is required because most
-        // status update APIs are const
-        StatusLock(const MultirotorApiBase *api) : lock_(*const_cast<std::recursive_mutex *>(&api->status_mutex_)) {}
-
-      private:
-        // we need mutable here because status APIs are const and shouldn't change data members
-        mutable std::lock_guard<std::recursive_mutex> lock_;
-    };
-
-  private: // types
-    struct PathPosition {
-        uint seg_index;
-        float offset;
-        Vector3r position;
-    };
-
-    struct PathSegment {
-        Vector3r seg_normalized;
-        Vector3r seg;
-        float seg_length;
-        float seg_velocity;
-        float start_z;
-        float seg_path_length;
-
-        PathSegment(const Vector3r &start, const Vector3r &end, float velocity, float path_length) {
-            seg = end - start;
-            seg_length = seg.norm();
-            seg_normalized = seg.normalized();
-            start_z = start.z();
-            seg_path_length = path_length;
-
-            seg_velocity = velocity;
-        }
-    };
-
-    // RAII
-    class ObsStrategyChanger {
-      private:
-        shared_ptr<SafetyEval> safety_eval_ptr_;
-        SafetyEval::ObsAvoidanceStrategy old_strategy_;
-
-      public:
-        ObsStrategyChanger(shared_ptr<SafetyEval> safety_eval_ptr, SafetyEval::ObsAvoidanceStrategy new_startegy) {
-            safety_eval_ptr_ = safety_eval_ptr;
-            old_strategy_ = safety_eval_ptr_->getObsAvoidanceStrategy();
-            safety_eval_ptr_->setObsAvoidanceStrategy(new_startegy);
-        }
-        ~ObsStrategyChanger() { safety_eval_ptr_->setObsAvoidanceStrategy(old_strategy_); }
-    };
-
-  private: // methods
-    float setNextPathPosition(const vector<Vector3r> &path, const vector<PathSegment> &path_segs,
-                              const PathPosition &cur_path_loc, float next_dist, PathPosition &next_path_loc);
-    void adjustYaw(const Vector3r &heading, DrivetrainType drivetrain, YawMode &yaw_mode);
-    void adjustYaw(float x, float y, DrivetrainType drivetrain, YawMode &yaw_mode);
-    void moveToPathPosition(const Vector3r &dest, float velocity, DrivetrainType drivetrain,
-                            /* pass by value */ YawMode yaw_mode, float last_z);
-    bool isYawWithinMargin(float yaw_target, float margin) const;
-
-  private: // variables
-    CancelToken token_;
-    std::recursive_mutex status_mutex_;
-    RCData rc_data_trims_;
-    shared_ptr<SafetyEval> safety_eval_ptr_;
-    float obs_avoidance_vel_ = 0.5f;
-
-    // TODO: make this configurable?
-    float landing_vel_ = 0.2f; // velocity to use for landing
-    float approx_zero_vel_ = 0.05f;
-    float approx_zero_angular_vel_ = 0.01f;
-    RotorStates rotor_states_;
 };
 
 } // namespace autonomylib

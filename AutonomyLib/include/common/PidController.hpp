@@ -15,6 +15,7 @@ namespace autonomylib {
 // control output needed to achieve the setPoint goal. Integration is done using
 // dt measured using system clock.
 class PidController {
+
   private:
     float set_point_;
     float kProportional_;

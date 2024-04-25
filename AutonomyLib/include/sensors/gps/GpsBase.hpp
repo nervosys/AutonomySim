@@ -11,10 +11,16 @@ namespace nervosys {
 namespace autonomylib {
 
 class GpsBase : public SensorBase {
+
+  private:
+    Output output_;
+
+  protected:
+    void setOutput(const Output &output) { output_ = output; }
+
   public:
     GpsBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
 
-  public: // types
     // TODO: cleanup GPS structures that are not needed
     struct GpsPoint {
       public:
@@ -92,7 +98,6 @@ class GpsBase : public SensorBase {
         bool is_valid = false;
     };
 
-  public:
     virtual void reportState(StateReporter &reporter) override {
         // call base
         UpdatableObject::reportState(reporter);
@@ -104,12 +109,6 @@ class GpsBase : public SensorBase {
     }
 
     const Output &getOutput() const { return output_; }
-
-  protected:
-    void setOutput(const Output &output) { output_ = output; }
-
-  private:
-    Output output_;
 };
 
 } // namespace autonomylib

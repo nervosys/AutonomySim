@@ -4,7 +4,8 @@
 #ifndef autonomylib_common_StateReporter_hpp
 #define autonomylib_common_StateReporter_hpp
 
-#include "common/Common.hpp"
+#include "Common.hpp"
+
 #include <iomanip>
 #include <sstream>
 #include <string>
@@ -20,6 +21,13 @@ version is provided by StateReporterWrapper. We expect everyone to use
 StateReporterWrapper instead of StateReporter directly.
 */
 class StateReporter {
+
+  private:
+    std::stringstream ss_;
+
+    int float_precision_ = 2;
+    bool is_scientific_notation_ = false;
+
   public:
     StateReporter(int float_precision = 3, bool is_scientific_notation = false) {
         initialize(float_precision, is_scientific_notation);
@@ -93,12 +101,6 @@ class StateReporter {
             ss_ << "\t";
     }
     void endl() { ss_ << std::endl; }
-
-  private:
-    std::stringstream ss_;
-
-    int float_precision_ = 2;
-    bool is_scientific_notation_ = false;
 };
 
 } // namespace autonomylib

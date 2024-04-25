@@ -13,24 +13,31 @@
 namespace common_utils {
 
 /*
-    This queue can support multiple producers consumers, but it should be used carefully
-    because its a *blocking* queue after all. Do not treat as black box, read the code for
-    what and how its doing so you know what will happen. There are non-blocking versions available
-    out there but more often than not they are buggy. This one is simpler and effortlessly cross-platform.
+This queue can support multiple producers consumers, but it should be used carefully
+because its a *blocking* queue after all. Do not treat as black box, read the code for
+what and how its doing so you know what will happen. There are non-blocking versions available
+out there but more often than not they are buggy. This one is simpler and effortlessly cross-platform.
 
-    In multi-consumer scenario, ideally the consumer
-    thread that does the pop, should also spend time on working on poped item instead of
-    handing over item to some other thread and going back to another pop right away. If you
-    do that then other consumer threads might starve and become pointless. Similarly
-    in multi-producer scenario, the thread doing the push should not immediately come back to
-    push. So ideally, producer and consumer threads should also perform any time consuming tasks
-    such as I/O so overall throughput of multi-producer/multi-consumer is maximized. You can tune
-    the number of thread so queue size doesn't grow out of bound. If you have
-    only one producer and oner consumer than it might be better idea to do time consuming stuff
-    such as I/O on sepratae threads so queue doesn't become too large.
+In multi-consumer scenario, ideally the consumer
+thread that does the pop, should also spend time on working on poped item instead of
+handing over item to some other thread and going back to another pop right away. If you
+do that then other consumer threads might starve and become pointless. Similarly
+in multi-producer scenario, the thread doing the push should not immediately come back to
+push. So ideally, producer and consumer threads should also perform any time consuming tasks
+such as I/O so overall throughput of multi-producer/multi-consumer is maximized. You can tune
+the number of thread so queue size doesn't grow out of bound. If you have
+only one producer and oner consumer than it might be better idea to do time consuming stuff
+such as I/O on sepratae threads so queue doesn't become too large.
 */
 
 template <typename T> class ProsumerQueue {
+
+  private:
+    std::queue<T> queue_;
+    std::mutex mutex_;
+    std::condition_variable cond_;
+    std::atomic<bool> is_done_;
+
   public:
     ProsumerQueue() { is_done_ = false; }
 
@@ -81,17 +88,13 @@ template <typename T> class ProsumerQueue {
     // is_done_ flag is just convinience flag for external use
     // its not used by this class
     bool getIsDone() { return is_done_; }
+
     void setIsDone(bool val) { is_done_ = val; }
 
     // non-copiable
     ProsumerQueue(const ProsumerQueue &) = delete;
-    ProsumerQueue &operator=(const ProsumerQueue &) = delete;
 
-  private:
-    std::queue<T> queue_;
-    std::mutex mutex_;
-    std::condition_variable cond_;
-    std::atomic<bool> is_done_;
+    ProsumerQueue &operator=(const ProsumerQueue &) = delete;
 };
 } // namespace common_utils
 #endif

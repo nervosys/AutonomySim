@@ -10,10 +10,16 @@ namespace nervosys {
 namespace autonomylib {
 
 class LidarBase : public SensorBase {
+
+  private:
+    LidarData output_;
+
+  protected:
+    void setOutput(const LidarData &output) { output_ = output; }
+
   public:
     LidarBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
 
-  public:
     virtual void reportState(StateReporter &reporter) override {
         // call base
         UpdatableObject::reportState(reporter);
@@ -23,12 +29,6 @@ class LidarBase : public SensorBase {
     }
 
     const LidarData &getOutput() const { return output_; }
-
-  protected:
-    void setOutput(const LidarData &output) { output_ = output; }
-
-  private:
-    LidarData output_;
 };
 
 } // namespace autonomylib

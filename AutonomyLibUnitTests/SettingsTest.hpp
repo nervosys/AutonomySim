@@ -8,6 +8,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class SettingsTest : public TestBase {
+
   public:
     virtual void run() override {
         Settings &settings = Settings::loadJSonFile("settings.json");

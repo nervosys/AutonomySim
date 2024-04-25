@@ -8,9 +8,9 @@
 // if using Unreal Build system then include precompiled header file first
 
 #include "api/RpcLibClientBase.hpp"
-
 #include "common/ClockFactory.hpp"
 #include "common/Common.hpp"
+
 #include <functional>
 #include <thread>
 #include <vector>

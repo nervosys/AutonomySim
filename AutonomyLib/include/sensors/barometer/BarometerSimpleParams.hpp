@@ -11,6 +11,7 @@ namespace nervosys {
 namespace autonomylib {
 
 struct BarometerSimpleParams {
+
     // user specified sea level pressure is specified in hPa units
     real_T qnh = EarthUtils::SeaLevelPressure / 100.0f; // hPa
 
@@ -25,16 +26,16 @@ struct BarometerSimpleParams {
     real_T pressure_factor_tau = 3600;
 
     /*
-Ref: A Stochastic Approach to Noise Modeling for Barometric Altimeters
-     Angelo Maria Sabatini* and Vincenzo Genovese
-     Sample values are from Table 1
-     https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3871085/
-     This is however not used because numbers mentioned in paper doesn't match experiments.
+    Ref: A Stochastic Approach to Noise Modeling for Barometric Altimeters
+    Angelo Maria Sabatini* and Vincenzo Genovese
+    Sample values are from Table 1
+    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3871085/
+    This is however not used because numbers mentioned in paper doesn't match experiments.
 
-     real_T correlated_noise_sigma = 0.27f;
-     real_T correlated_noise_tau = 0.87f;
-     real_T uncorrelated_noise_sigma = 0.24f;
-*/
+    real_T correlated_noise_sigma = 0.27f;
+    real_T correlated_noise_tau = 0.87f;
+    real_T uncorrelated_noise_sigma = 0.24f;
+    */
 
     // Experiments for MEAS MS56112 sensor shows 0.021mbar, datasheet has resoultion of 0.027mbar @ 1024
     // http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=MS5611-01BA03&DocType=Data+Sheet&DocLang=English

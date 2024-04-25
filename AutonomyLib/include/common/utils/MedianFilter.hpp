@@ -11,6 +11,7 @@
 namespace common_utils {
 
 template <typename T> class MedianFilter {
+
   private:
     std::vector<T> buffer_, buffer_copy_;
     int window_size_, window_size_2x_, window_size_half_;

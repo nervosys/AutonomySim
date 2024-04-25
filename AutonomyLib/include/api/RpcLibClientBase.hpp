@@ -21,10 +21,18 @@ namespace autonomylib {
 
 // common methods for RCP clients of different vehicles
 class RpcLibClientBase {
+
+  private:
+    struct impl;
+    std::unique_ptr<impl> pimpl_;
+
+  protected:
+    void *getClient();
+    const void *getClient() const;
+
   public:
     enum class ConnectionState : uint { Initial = 0, Connected, Disconnected, Reset, Unknown };
 
-  public:
     RpcLibClientBase(const string &ip_address = "localhost", uint16_t port = RpcLibPort, float timeout_sec = 60);
     virtual ~RpcLibClientBase(); // required for pimpl
 
@@ -208,14 +216,6 @@ class RpcLibClientBase {
     std::string getSettingsString() const;
 
     std::vector<std::string> simListAssets() const;
-
-  protected:
-    void *getClient();
-    const void *getClient() const;
-
-  private:
-    struct impl;
-    std::unique_ptr<impl> pimpl_;
 };
 
 } // namespace autonomylib

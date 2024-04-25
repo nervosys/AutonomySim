@@ -8,6 +8,7 @@
 #include "common/CommonStructs.hpp"
 #include "common/SteppableClock.hpp"
 #include "physics/PhysicsEngineBase.hpp"
+
 #include <cinttypes>
 #include <fstream>
 #include <iostream>
@@ -18,51 +19,19 @@ namespace nervosys {
 namespace autonomylib {
 
 class FastPhysicsEngine : public PhysicsEngineBase {
-  public:
-    FastPhysicsEngine(bool enable_ground_lock = true, Vector3r wind = Vector3r::Zero(),
-                      Vector3r ext_force = Vector3r::Zero())
-        : enable_ground_lock_(enable_ground_lock), wind_(wind), ext_force_(ext_force) {
-        setName("FastPhysicsEngine");
-    }
-
-    //*** Start: UpdatableState implementation ***//
-    virtual void resetImplementation() override {
-        for (PhysicsBody *body_ptr : *this) {
-            initPhysicsBody(body_ptr);
-        }
-    }
-
-    virtual void insert(PhysicsBody *body_ptr) override {
-        PhysicsEngineBase::insert(body_ptr);
-
-        initPhysicsBody(body_ptr);
-    }
-
-    virtual void update() override {
-        PhysicsEngineBase::update();
-
-        for (PhysicsBody *body_ptr : *this) {
-            updatePhysics(*body_ptr);
-        }
-    }
-    virtual void reportState(StateReporter &reporter) override {
-        for (PhysicsBody *body_ptr : *this) {
-            reporter.writeValue("Phys", debug_string_.str());
-            reporter.writeValue("Is Grounded", body_ptr->isGrounded());
-            reporter.writeValue("Force (world)", body_ptr->getWrench().force);
-            reporter.writeValue("Torque (body)", body_ptr->getWrench().torque);
-        }
-        // call base
-        UpdatableObject::reportState(reporter);
-    }
-    //*** End: UpdatableState implementation ***//
-
-    // Set Wind, for API and Settings implementation
-    void setWind(const Vector3r &wind) override { wind_ = wind; }
-    // Set External Force
-    void setExtForce(const Vector3r &ext_force) override { ext_force_ = ext_force; }
 
   private:
+    static constexpr uint kCollisionResponseCycles = 1;
+    static constexpr float kAxisTolerance = 0.25f;
+    static constexpr float kRestingVelocityMax = 0.1f;
+    static constexpr float kDragMinVelocity = 0.1f;
+
+    std::stringstream debug_string_;
+    bool enable_ground_lock_;
+    TTimePoint last_message_time;
+    Vector3r wind_;
+    Vector3r ext_force_;
+
     void initPhysicsBody(PhysicsBody *body_ptr) { body_ptr->last_kinematics_time = clock()->nowNanos(); }
 
     void updatePhysics(PhysicsBody &body) {
@@ -176,7 +145,7 @@ class FastPhysicsEngine : public PhysicsEngineBase {
         Physics Part 3, Collision Response, Chris Hecker, eq 4(a)
         http://chrishecker.com/images/e/e7/Gdmphys3.pdf
         V(t+1) = V(t) + j*N / m
-    */
+        */
         const real_T impulse_mag_denom =
             1.0f / body.getMass() + (body.getInertiaInv() * r.cross(normal_body)).cross(r).dot(normal_body);
         const real_T impulse_mag = -contact_vel_body.dot(normal_body) * (1 + restitution) / impulse_mag_denom;
@@ -442,17 +411,49 @@ class FastPhysicsEngine : public PhysicsEngineBase {
             next.pose.orientation = current_pose.orientation;
     }
 
-  private:
-    static constexpr uint kCollisionResponseCycles = 1;
-    static constexpr float kAxisTolerance = 0.25f;
-    static constexpr float kRestingVelocityMax = 0.1f;
-    static constexpr float kDragMinVelocity = 0.1f;
+  public:
+    FastPhysicsEngine(bool enable_ground_lock = true, Vector3r wind = Vector3r::Zero(),
+                      Vector3r ext_force = Vector3r::Zero())
+        : enable_ground_lock_(enable_ground_lock), wind_(wind), ext_force_(ext_force) {
+        setName("FastPhysicsEngine");
+    }
 
-    std::stringstream debug_string_;
-    bool enable_ground_lock_;
-    TTimePoint last_message_time;
-    Vector3r wind_;
-    Vector3r ext_force_;
+    //*** Start: UpdatableState implementation ***//
+    virtual void resetImplementation() override {
+        for (PhysicsBody *body_ptr : *this) {
+            initPhysicsBody(body_ptr);
+        }
+    }
+
+    virtual void insert(PhysicsBody *body_ptr) override {
+        PhysicsEngineBase::insert(body_ptr);
+
+        initPhysicsBody(body_ptr);
+    }
+
+    virtual void update() override {
+        PhysicsEngineBase::update();
+
+        for (PhysicsBody *body_ptr : *this) {
+            updatePhysics(*body_ptr);
+        }
+    }
+    virtual void reportState(StateReporter &reporter) override {
+        for (PhysicsBody *body_ptr : *this) {
+            reporter.writeValue("Phys", debug_string_.str());
+            reporter.writeValue("Is Grounded", body_ptr->isGrounded());
+            reporter.writeValue("Force (world)", body_ptr->getWrench().force);
+            reporter.writeValue("Torque (body)", body_ptr->getWrench().torque);
+        }
+        // call base
+        UpdatableObject::reportState(reporter);
+    }
+    //*** End: UpdatableState implementation ***//
+
+    // Set Wind, for API and Settings implementation
+    void setWind(const Vector3r &wind) override { wind_ = wind; }
+    // Set External Force
+    void setExtForce(const Vector3r &ext_force) override { ext_force_ = ext_force; }
 };
 
 } // namespace autonomylib

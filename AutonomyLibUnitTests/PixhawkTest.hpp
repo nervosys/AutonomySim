@@ -8,6 +8,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class PixhawkTest : public TestBase {
+
   public:
     virtual void run() override {
         // Test PX4 based drones

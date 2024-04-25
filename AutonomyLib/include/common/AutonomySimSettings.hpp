@@ -13,451 +13,22 @@
 #include "CommonStructs.hpp"
 #include "ImageCaptureBase.hpp"
 #include "Settings.hpp"
-#include "common/utils/Utils.hpp"
 #include "sensors/SensorBase.hpp"
+#include "utils/Utils.hpp"
 
 namespace nervosys {
 namespace autonomylib {
 
 struct AutonomySimSettings {
+
   private:
     typedef common_utils::Utils Utils;
     typedef ImageCaptureBase::ImageType ImageType;
 
-  public:                                     // types
-    static constexpr int kSubwindowCount = 3; // must be >= 3 for now
-    static constexpr char const *kVehicleTypePX4 = "px4multirotor";
-    static constexpr char const *kVehicleTypeArduCopterSolo = "arducoptersolo";
-    static constexpr char const *kVehicleTypeSimpleFlight = "simpleflight";
-    static constexpr char const *kVehicleTypeArduCopter = "arducopter";
-    static constexpr char const *kVehicleTypePhysXCar = "physxcar";
-    static constexpr char const *kVehicleTypeArduRover = "ardurover";
-    static constexpr char const *kVehicleTypeComputerVision = "computervision";
-
-    static constexpr char const *kVehicleInertialFrame = "VehicleInertialFrame";
-    static constexpr char const *kSensorLocalFrame = "SensorLocalFrame";
-
-    static constexpr char const *kSimModeTypeMultirotor = "Multirotor";
-    static constexpr char const *kSimModeTypeCar = "Car";
-    static constexpr char const *kSimModeTypeComputerVision = "ComputerVision";
-
-    struct SubwindowSetting {
-        int window_index;
-        ImageType image_type;
-        bool visible;
-        std::string camera_name;
-        std::string vehicle_name;
-        bool external;
-
-        SubwindowSetting(int window_index_val = 0, ImageType image_type_val = ImageType::Scene,
-                         bool visible_val = false, const std::string &camera_name_val = "",
-                         const std::string &vehicle_name_val = "", bool external_val = false)
-            : window_index(window_index_val), image_type(image_type_val), visible(visible_val),
-              camera_name(camera_name_val), vehicle_name(vehicle_name_val), external(external_val) {}
-    };
-
-    struct RecordingSetting {
-        bool record_on_move = false;
-        float record_interval = 0.05f;
-        std::string folder = "";
-        bool enabled = false;
-
-        std::map<std::string, std::vector<ImageCaptureBase::ImageRequest>> requests;
-
-        RecordingSetting() {}
-
-        RecordingSetting(bool record_on_move_val, float record_interval_val, const std::string &folder_val,
-                         bool enabled_val)
-            : record_on_move(record_on_move_val), record_interval(record_interval_val), folder(folder_val),
-              enabled(enabled_val) {}
-    };
-
-    struct PawnPath {
-        std::string pawn_bp;
-        std::string slippery_mat;
-        std::string non_slippery_mat;
-
-        PawnPath(const std::string &pawn_bp_val = "",
-                 const std::string &slippery_mat_val = "/AutonomySim/VehicleAdv/PhysicsMaterials/Slippery.Slippery",
-                 const std::string &non_slippery_mat_val =
-                     "/AutonomySim/VehicleAdv/PhysicsMaterials/NonSlippery.NonSlippery")
-            : pawn_bp(pawn_bp_val), slippery_mat(slippery_mat_val), non_slippery_mat(non_slippery_mat_val) {}
-    };
-
-    struct RCSettings {
-        int remote_control_id = -1;
-        bool allow_api_when_disconnected = false;
-    };
-
-    struct Rotation {
-        float yaw = 0;
-        float pitch = 0;
-        float roll = 0;
-
-        Rotation() {}
-
-        Rotation(float yaw_val, float pitch_val, float roll_val) : yaw(yaw_val), pitch(pitch_val), roll(roll_val) {}
-
-        static Rotation nanRotation() noexcept {
-            static const Rotation val(Utils::nan<float>(), Utils::nan<float>(), Utils::nan<float>());
-            return val;
-        }
-    };
-
-    struct GimbalSetting {
-        float stabilization = 0;
-        // bool is_world_frame = false;
-        Rotation rotation = Rotation::nanRotation();
-    };
-
-    struct CaptureSetting {
-        // below settings_json are obtained by using Unreal console command (press ~):
-        //  ShowFlag.VisualizeHDR 1.
-        // to replicate camera settings_json to SceneCapture2D
-        // TODO: should we use UAutonomyBlueprintLib::GetDisplayGamma()?
-        static constexpr float kSceneTargetGamma = 1.4f;
-
-        int image_type = 0;
-
-        unsigned int width = 256, height = 144;                      // 960 X 540
-        float fov_degrees = Utils::nan<float>();                     // 90.0f
-        int auto_exposure_method = -1;                               // histogram
-        float auto_exposure_speed = Utils::nan<float>();             // 100.0f;
-        float auto_exposure_bias = Utils::nan<float>();              // 0;
-        float auto_exposure_max_brightness = Utils::nan<float>();    // 0.64f;
-        float auto_exposure_min_brightness = Utils::nan<float>();    // 0.03f;
-        float auto_exposure_low_percent = Utils::nan<float>();       // 80.0f;
-        float auto_exposure_high_percent = Utils::nan<float>();      // 98.3f;
-        float auto_exposure_histogram_log_min = Utils::nan<float>(); // -8;
-        float auto_exposure_histogram_log_max = Utils::nan<float>(); // 4;
-        float motion_blur_amount = Utils::nan<float>();
-        float target_gamma =
-            Utils::nan<float>(); // 1.0f; //This would be reset to kSceneTargetGamma for scene as default
-        int projection_mode = 0; // ECameraProjectionMode::Perspective
-        float ortho_width = Utils::nan<float>();
-    };
-
-    struct NoiseSetting {
-        int ImageType = 0;
-
-        bool Enabled = false;
-
-        float RandContrib = 0.2f;
-        float RandSpeed = 100000.0f;
-        float RandSize = 500.0f;
-        float RandDensity = 2.0f;
-
-        float HorzWaveContrib = 0.03f;
-        float HorzWaveStrength = 0.08f;
-        float HorzWaveVertSize = 1.0f;
-        float HorzWaveScreenSize = 1.0f;
-
-        float HorzNoiseLinesContrib = 1.0f;
-        float HorzNoiseLinesDensityY = 0.01f;
-        float HorzNoiseLinesDensityXY = 0.5f;
-
-        float HorzDistortionContrib = 1.0f;
-        float HorzDistortionStrength = 0.002f;
-    };
-
-    struct PixelFormatOverrideSetting {
-        int pixel_format = 0;
-    };
-
-    struct UnrealEngineSetting {
-        std::map<int, PixelFormatOverrideSetting> pixel_format_override_settings;
-    };
-
-    using CaptureSettingsMap = std::map<int, CaptureSetting>;
-    using NoiseSettingsMap = std::map<int, NoiseSetting>;
-    struct CameraSetting {
-        // nan means keep the default values set in components
-        Vector3r position = VectorMath::nanVector();
-        Rotation rotation = Rotation::nanRotation();
-
-        GimbalSetting gimbal;
-        CaptureSettingsMap capture_settings;
-        NoiseSettingsMap noise_settings;
-
-        UnrealEngineSetting ue_setting;
-
-        CameraSetting() {
-            initializeCaptureSettings(capture_settings);
-            initializeNoiseSettings(noise_settings);
-        }
-    };
-    using CameraSettingMap = std::map<std::string, CameraSetting>;
-
-    struct CameraDirectorSetting {
-        Vector3r position = VectorMath::nanVector();
-        Rotation rotation = Rotation::nanRotation();
-        float follow_distance = Utils::nan<float>();
-    };
-
-    struct SensorSetting {
-        SensorBase::SensorType sensor_type;
-        std::string sensor_name;
-        bool enabled = true;
-        Settings settings; // imported json data that needs to be parsed by specific sensors.
-    };
-
-    struct BarometerSetting : SensorSetting {};
-
-    struct ImuSetting : SensorSetting {};
-
-    struct GpsSetting : SensorSetting {};
-
-    struct MagnetometerSetting : SensorSetting {};
-
-    struct DistanceSetting : SensorSetting {};
-
-    struct LidarSetting : SensorSetting {
-        enum class DataFrame { VehicleInertialFrame, SensorLocalFrame };
-    };
-
-    struct VehicleSetting {
-        // required
-        std::string vehicle_name;
-        std::string vehicle_type;
-
-        // optional
-        std::string default_vehicle_state;
-        std::string pawn_path;
-        bool allow_api_always = true;
-        bool auto_create = true;
-        bool enable_collision_passthrough = false;
-        bool enable_trace = false;
-        bool enable_collisions = true;
-        bool is_fpv_vehicle = false;
-
-        // nan means use player start
-        Vector3r position = VectorMath::nanVector(); // in global NED
-        Rotation rotation = Rotation::nanRotation();
-
-        CameraSettingMap cameras;
-        std::map<std::string, std::shared_ptr<SensorSetting>> sensors;
-
-        RCSettings rc;
-
-        VehicleSetting() {}
-
-        VehicleSetting(const std::string &vehicle_name_val, const std::string &vehicle_type_val)
-            : vehicle_name(vehicle_name_val), vehicle_type(vehicle_type_val) {}
-    };
-
-    struct MavLinkConnectionInfo {
-        /* Default values are requires so uninitialized instance doesn't have random values */
-
-        bool use_serial = true; // false means use UDP or TCP instead
-
-        // Used to connect via HITL: needed only if use_serial = true
-        std::string serial_port = "*";
-        int baud_rate = 115200;
-
-        // Used to connect to drone over UDP: needed only if use_serial = false and use_tcp == false
-        std::string udp_address = "127.0.0.1";
-        int udp_port = 14560;
-
-        // Used to accept connections from drone over TCP: needed only if use_tcp = true
-        bool lock_step = true;
-        bool use_tcp = false;
-        int tcp_port = 4560;
-
-        // The PX4 SITL app requires receiving drone commands over a different mavlink channel called
-        // the "ground control station" (or GCS) channel.
-        std::string control_ip_address = "127.0.0.1";
-        int control_port_local = 14540;
-        int control_port_remote = 14580;
-
-        // The log viewer can be on a different machine, so you can configure it's ip address and port here.
-        int logviewer_ip_port = 14388;
-        int logviewer_ip_sport = 14389; // for logging all messages we send to the vehicle.
-        std::string logviewer_ip_address = "";
-
-        // The QGroundControl app can be on a different machine, and AutonomySim can act as a proxy to forward
-        // the mavlink stream over to that machine if you configure it's ip address and port here.
-        int qgc_ip_port = 0;
-        std::string qgc_ip_address = "";
-
-        // mavlink vehicle identifiers
-        uint8_t sim_sysid = 142;
-        int sim_compid = 42;
-        uint8_t offboard_sysid = 134;
-        int offboard_compid = 1;
-        uint8_t vehicle_sysid = 135;
-        int vehicle_compid = 1;
-
-        // if you want to select a specific local network adapter so you can reach certain remote machines (e.g. wifi
-        // versus ethernet) then you will want to change the LocalHostIp accordingly.  This default only works when log
-        // viewer and QGC are also on the same machine.  Whatever network you choose it has to be the same one for
-        // external
-        std::string local_host_ip = "127.0.0.1";
-
-        std::string model = "Generic";
-
-        std::map<std::string, float> params;
-        std::string logs;
-    };
-
-    struct MavLinkVehicleSetting : public VehicleSetting {
-        MavLinkConnectionInfo connection_info;
-    };
-
-    struct SegmentationSetting {
-        enum class InitMethodType { None, CommonObjectsRandomIDs };
-
-        enum class MeshNamingMethodType { OwnerName, StaticMeshName };
-
-        InitMethodType init_method = InitMethodType::CommonObjectsRandomIDs;
-        bool override_existing = false;
-        MeshNamingMethodType mesh_naming_method = MeshNamingMethodType::OwnerName;
-    };
-
-    struct TimeOfDaySetting {
-        bool enabled = false;
-        std::string start_datetime = ""; // format: %Y-%m-%d %H:%M:%S
-        bool is_start_datetime_dst = false;
-        float celestial_clock_speed = 1;
-        float update_interval_secs = 60;
-        bool move_sun = true;
-    };
-
-  private: // fields
+    // fields
     float settings_version_actual;
     float settings_version_minimum = 1.2f;
 
-  public: // fields
-    std::string simmode_name = "";
-    std::string level_name = "";
-
-    std::vector<SubwindowSetting> subwindow_settings;
-    RecordingSetting recording_setting;
-    SegmentationSetting segmentation_setting;
-    TimeOfDaySetting tod_setting;
-
-    std::vector<std::string> warning_messages;
-    std::vector<std::string> error_messages;
-
-    bool is_record_ui_visible = false;
-    int initial_view_mode = 2; // ECameraDirectorMode::CAMERA_DIRECTOR_MODE_FLY_WITH_ME
-    bool enable_rpc = true;
-    std::string api_server_address = "";
-    int api_port = RpcLibPort;
-    std::string physics_engine_name = "";
-
-    std::string clock_type = "";
-    float clock_speed = 1.0f;
-    bool engine_sound = false;
-    bool log_messages_visible = true;
-    bool show_los_debug_lines_ = false;
-    HomeGeoPoint origin_geopoint{
-        GeoPoint(47.641468, -122.140165, 122)}; // The geo-coordinate assigned to Unreal coordinate 0,0,0
-    std::map<std::string, PawnPath> pawn_paths; // path for pawn blueprint
-    std::map<std::string, std::unique_ptr<VehicleSetting>> vehicles;
-    CameraSetting camera_defaults;
-    CameraDirectorSetting camera_director;
-    float speed_unit_factor = 1.0f;
-    std::string speed_unit_label = "m\\s";
-    std::map<std::string, std::shared_ptr<SensorSetting>> sensor_defaults;
-    Vector3r wind = Vector3r::Zero();
-    Vector3r ext_force = Vector3r::Zero();
-    CameraSettingMap external_cameras;
-
-    std::string settings_text_ = "";
-
-  public: // methods
-    static AutonomySimSettings &singleton() {
-        static AutonomySimSettings instance;
-        return instance;
-    }
-
-    AutonomySimSettings() {
-        initializeSubwindowSettings(subwindow_settings);
-        initializePawnPaths(pawn_paths);
-    }
-
-    // returns number of warnings
-    void load(std::function<std::string(void)> simmode_getter) {
-        warning_messages.clear();
-        error_messages.clear();
-        const Settings &settings_json = Settings::singleton();
-        checkSettingsVersion(settings_json);
-
-        loadCoreSimModeSettings(settings_json, simmode_getter);
-        loadLevelSettings(settings_json);
-        loadDefaultCameraSetting(settings_json, camera_defaults);
-        loadCameraDirectorSetting(settings_json, camera_director, simmode_name);
-        loadSubWindowsSettings(settings_json, subwindow_settings);
-        loadViewModeSettings(settings_json);
-        loadSegmentationSetting(settings_json, segmentation_setting);
-        loadPawnPaths(settings_json, pawn_paths);
-        loadOtherSettings(settings_json);
-        loadDefaultSensorSettings(simmode_name, settings_json, sensor_defaults);
-        loadVehicleSettings(simmode_name, settings_json, vehicles, sensor_defaults, camera_defaults);
-        loadExternalCameraSettings(settings_json, external_cameras, camera_defaults);
-
-        // this should be done last because it depends on vehicles (and/or their type) we have
-        loadRecordingSetting(settings_json);
-        loadClockSettings(settings_json);
-    }
-
-    static void initializeSettings(const std::string &json_settings_text) {
-        singleton().settings_text_ = json_settings_text;
-        Settings &settings_json = Settings::loadJSonString(json_settings_text);
-        if (!settings_json.isLoadSuccess())
-            throw std::invalid_argument("Cannot parse JSON settings_json string.");
-    }
-
-    static void createDefaultSettingsFile() {
-        initializeSettings("{}");
-
-        Settings &settings_json = Settings::singleton();
-        // write some settings_json in new file otherwise the string "null" is written if all settings_json are empty
-        settings_json.setString("SeeDocsAt", "https://github.com/nervosys/AutonomySim/blob/master/docs/settings.md");
-        settings_json.setDouble("SettingsVersion", 1.2);
-
-        std::string settings_filename = Settings::getUserDirectoryFullPath("settings.json");
-        // TODO: there is a crash in Linux due to settings_json.saveJSonString(). Remove this workaround after we only
-        // support Unreal 4.17
-        // https://answers.unrealengine.com/questions/664905/unreal-crashes-on-two-lines-of-extremely-simple-st.html
-        settings_json.saveJSonFile(settings_filename);
-    }
-
-    // This is for the case when a new vehicle is made on the fly, at runtime
-    void addVehicleSetting(const std::string &vehicle_name, const std::string &vehicle_type, const Pose &pose,
-                           const std::string &pawn_path = "") {
-        // No Mavlink-type vehicles currently
-        auto vehicle_setting = std::unique_ptr<VehicleSetting>(new VehicleSetting(vehicle_name, vehicle_type));
-        vehicle_setting->position = pose.position;
-        vehicle_setting->pawn_path = pawn_path;
-
-        vehicle_setting->sensors = sensor_defaults;
-
-        VectorMath::toEulerianAngle(pose.orientation, vehicle_setting->rotation.pitch, vehicle_setting->rotation.roll,
-                                    vehicle_setting->rotation.yaw);
-
-        vehicles[vehicle_name] = std::move(vehicle_setting);
-    }
-
-    const VehicleSetting *getVehicleSetting(const std::string &vehicle_name) const {
-        auto it = vehicles.find(vehicle_name);
-        if (it == vehicles.end())
-            // pre-existing flying pawns in Unreal Engine don't have name 'SimpleFlight'
-            it = vehicles.find("SimpleFlight");
-        return it->second.get();
-    }
-
-    static Vector3r createVectorSetting(const Settings &settings_json, const Vector3r &default_vec) {
-        return Vector3r(settings_json.getFloat("X", default_vec.x()), settings_json.getFloat("Y", default_vec.y()),
-                        settings_json.getFloat("Z", default_vec.z()));
-    }
-    static Rotation createRotationSetting(const Settings &settings_json, const Rotation &default_rot) {
-        return Rotation(settings_json.getFloat("Yaw", default_rot.yaw),
-                        settings_json.getFloat("Pitch", default_rot.pitch),
-                        settings_json.getFloat("Roll", default_rot.roll));
-    }
-
-  private:
     void checkSettingsVersion(const Settings &settings_json) {
         bool has_default_settings = hasDefaultSettings(settings_json, settings_version_actual);
         bool upgrade_required = settings_version_actual < settings_version_minimum;
@@ -1329,6 +900,436 @@ struct AutonomySimSettings {
                 external_cameras[key] = createCameraSetting(child, camera_defaults);
             }
         }
+    }
+
+  public:
+    // types
+    static constexpr int kSubwindowCount = 3; // must be >= 3 for now
+    static constexpr char const *kVehicleTypePX4 = "px4multirotor";
+    static constexpr char const *kVehicleTypeArduCopterSolo = "arducoptersolo";
+    static constexpr char const *kVehicleTypeSimpleFlight = "simpleflight";
+    static constexpr char const *kVehicleTypeArduCopter = "arducopter";
+    static constexpr char const *kVehicleTypePhysXCar = "physxcar";
+    static constexpr char const *kVehicleTypeArduRover = "ardurover";
+    static constexpr char const *kVehicleTypeComputerVision = "computervision";
+
+    static constexpr char const *kVehicleInertialFrame = "VehicleInertialFrame";
+    static constexpr char const *kSensorLocalFrame = "SensorLocalFrame";
+
+    static constexpr char const *kSimModeTypeMultirotor = "Multirotor";
+    static constexpr char const *kSimModeTypeCar = "Car";
+    static constexpr char const *kSimModeTypeComputerVision = "ComputerVision";
+
+    struct SubwindowSetting {
+        int window_index;
+        ImageType image_type;
+        bool visible;
+        std::string camera_name;
+        std::string vehicle_name;
+        bool external;
+
+        SubwindowSetting(int window_index_val = 0, ImageType image_type_val = ImageType::Scene,
+                         bool visible_val = false, const std::string &camera_name_val = "",
+                         const std::string &vehicle_name_val = "", bool external_val = false)
+            : window_index(window_index_val), image_type(image_type_val), visible(visible_val),
+              camera_name(camera_name_val), vehicle_name(vehicle_name_val), external(external_val) {}
+    };
+
+    struct RecordingSetting {
+        bool record_on_move = false;
+        float record_interval = 0.05f;
+        std::string folder = "";
+        bool enabled = false;
+
+        std::map<std::string, std::vector<ImageCaptureBase::ImageRequest>> requests;
+
+        RecordingSetting() {}
+
+        RecordingSetting(bool record_on_move_val, float record_interval_val, const std::string &folder_val,
+                         bool enabled_val)
+            : record_on_move(record_on_move_val), record_interval(record_interval_val), folder(folder_val),
+              enabled(enabled_val) {}
+    };
+
+    struct PawnPath {
+        std::string pawn_bp;
+        std::string slippery_mat;
+        std::string non_slippery_mat;
+
+        PawnPath(const std::string &pawn_bp_val = "",
+                 const std::string &slippery_mat_val = "/AutonomySim/VehicleAdv/PhysicsMaterials/Slippery.Slippery",
+                 const std::string &non_slippery_mat_val =
+                     "/AutonomySim/VehicleAdv/PhysicsMaterials/NonSlippery.NonSlippery")
+            : pawn_bp(pawn_bp_val), slippery_mat(slippery_mat_val), non_slippery_mat(non_slippery_mat_val) {}
+    };
+
+    struct RCSettings {
+        int remote_control_id = -1;
+        bool allow_api_when_disconnected = false;
+    };
+
+    struct Rotation {
+        float yaw = 0;
+        float pitch = 0;
+        float roll = 0;
+
+        Rotation() {}
+
+        Rotation(float yaw_val, float pitch_val, float roll_val) : yaw(yaw_val), pitch(pitch_val), roll(roll_val) {}
+
+        static Rotation nanRotation() noexcept {
+            static const Rotation val(Utils::nan<float>(), Utils::nan<float>(), Utils::nan<float>());
+            return val;
+        }
+    };
+
+    struct GimbalSetting {
+        float stabilization = 0;
+        // bool is_world_frame = false;
+        Rotation rotation = Rotation::nanRotation();
+    };
+
+    struct CaptureSetting {
+        // below settings_json are obtained by using Unreal console command (press ~):
+        //  ShowFlag.VisualizeHDR 1.
+        // to replicate camera settings_json to SceneCapture2D
+        // TODO: should we use UAutonomyBlueprintLib::GetDisplayGamma()?
+        static constexpr float kSceneTargetGamma = 1.4f;
+
+        int image_type = 0;
+
+        unsigned int width = 256, height = 144;                      // 960 X 540
+        float fov_degrees = Utils::nan<float>();                     // 90.0f
+        int auto_exposure_method = -1;                               // histogram
+        float auto_exposure_speed = Utils::nan<float>();             // 100.0f;
+        float auto_exposure_bias = Utils::nan<float>();              // 0;
+        float auto_exposure_max_brightness = Utils::nan<float>();    // 0.64f;
+        float auto_exposure_min_brightness = Utils::nan<float>();    // 0.03f;
+        float auto_exposure_low_percent = Utils::nan<float>();       // 80.0f;
+        float auto_exposure_high_percent = Utils::nan<float>();      // 98.3f;
+        float auto_exposure_histogram_log_min = Utils::nan<float>(); // -8;
+        float auto_exposure_histogram_log_max = Utils::nan<float>(); // 4;
+        float motion_blur_amount = Utils::nan<float>();
+        float target_gamma =
+            Utils::nan<float>(); // 1.0f; //This would be reset to kSceneTargetGamma for scene as default
+        int projection_mode = 0; // ECameraProjectionMode::Perspective
+        float ortho_width = Utils::nan<float>();
+    };
+
+    struct NoiseSetting {
+        int ImageType = 0;
+
+        bool Enabled = false;
+
+        float RandContrib = 0.2f;
+        float RandSpeed = 100000.0f;
+        float RandSize = 500.0f;
+        float RandDensity = 2.0f;
+
+        float HorzWaveContrib = 0.03f;
+        float HorzWaveStrength = 0.08f;
+        float HorzWaveVertSize = 1.0f;
+        float HorzWaveScreenSize = 1.0f;
+
+        float HorzNoiseLinesContrib = 1.0f;
+        float HorzNoiseLinesDensityY = 0.01f;
+        float HorzNoiseLinesDensityXY = 0.5f;
+
+        float HorzDistortionContrib = 1.0f;
+        float HorzDistortionStrength = 0.002f;
+    };
+
+    struct PixelFormatOverrideSetting {
+        int pixel_format = 0;
+    };
+
+    struct UnrealEngineSetting {
+        std::map<int, PixelFormatOverrideSetting> pixel_format_override_settings;
+    };
+
+    using CaptureSettingsMap = std::map<int, CaptureSetting>;
+    using NoiseSettingsMap = std::map<int, NoiseSetting>;
+    struct CameraSetting {
+        // nan means keep the default values set in components
+        Vector3r position = VectorMath::nanVector();
+        Rotation rotation = Rotation::nanRotation();
+
+        GimbalSetting gimbal;
+        CaptureSettingsMap capture_settings;
+        NoiseSettingsMap noise_settings;
+
+        UnrealEngineSetting ue_setting;
+
+        CameraSetting() {
+            initializeCaptureSettings(capture_settings);
+            initializeNoiseSettings(noise_settings);
+        }
+    };
+    using CameraSettingMap = std::map<std::string, CameraSetting>;
+
+    struct CameraDirectorSetting {
+        Vector3r position = VectorMath::nanVector();
+        Rotation rotation = Rotation::nanRotation();
+        float follow_distance = Utils::nan<float>();
+    };
+
+    struct SensorSetting {
+        SensorBase::SensorType sensor_type;
+        std::string sensor_name;
+        bool enabled = true;
+        Settings settings; // imported json data that needs to be parsed by specific sensors.
+    };
+
+    struct BarometerSetting : SensorSetting {};
+
+    struct ImuSetting : SensorSetting {};
+
+    struct GpsSetting : SensorSetting {};
+
+    struct MagnetometerSetting : SensorSetting {};
+
+    struct DistanceSetting : SensorSetting {};
+
+    struct LidarSetting : SensorSetting {
+        enum class DataFrame { VehicleInertialFrame, SensorLocalFrame };
+    };
+
+    struct VehicleSetting {
+        // required
+        std::string vehicle_name;
+        std::string vehicle_type;
+
+        // optional
+        std::string default_vehicle_state;
+        std::string pawn_path;
+        bool allow_api_always = true;
+        bool auto_create = true;
+        bool enable_collision_passthrough = false;
+        bool enable_trace = false;
+        bool enable_collisions = true;
+        bool is_fpv_vehicle = false;
+
+        // nan means use player start
+        Vector3r position = VectorMath::nanVector(); // in global NED
+        Rotation rotation = Rotation::nanRotation();
+
+        CameraSettingMap cameras;
+        std::map<std::string, std::shared_ptr<SensorSetting>> sensors;
+
+        RCSettings rc;
+
+        VehicleSetting() {}
+
+        VehicleSetting(const std::string &vehicle_name_val, const std::string &vehicle_type_val)
+            : vehicle_name(vehicle_name_val), vehicle_type(vehicle_type_val) {}
+    };
+
+    struct MavLinkConnectionInfo {
+        /* Default values are requires so uninitialized instance doesn't have random values */
+
+        bool use_serial = true; // false means use UDP or TCP instead
+
+        // Used to connect via HITL: needed only if use_serial = true
+        std::string serial_port = "*";
+        int baud_rate = 115200;
+
+        // Used to connect to drone over UDP: needed only if use_serial = false and use_tcp == false
+        std::string udp_address = "127.0.0.1";
+        int udp_port = 14560;
+
+        // Used to accept connections from drone over TCP: needed only if use_tcp = true
+        bool lock_step = true;
+        bool use_tcp = false;
+        int tcp_port = 4560;
+
+        // The PX4 SITL app requires receiving drone commands over a different mavlink channel called
+        // the "ground control station" (or GCS) channel.
+        std::string control_ip_address = "127.0.0.1";
+        int control_port_local = 14540;
+        int control_port_remote = 14580;
+
+        // The log viewer can be on a different machine, so you can configure it's ip address and port here.
+        int logviewer_ip_port = 14388;
+        int logviewer_ip_sport = 14389; // for logging all messages we send to the vehicle.
+        std::string logviewer_ip_address = "";
+
+        // The QGroundControl app can be on a different machine, and AutonomySim can act as a proxy to forward
+        // the mavlink stream over to that machine if you configure it's ip address and port here.
+        int qgc_ip_port = 0;
+        std::string qgc_ip_address = "";
+
+        // mavlink vehicle identifiers
+        uint8_t sim_sysid = 142;
+        int sim_compid = 42;
+        uint8_t offboard_sysid = 134;
+        int offboard_compid = 1;
+        uint8_t vehicle_sysid = 135;
+        int vehicle_compid = 1;
+
+        // if you want to select a specific local network adapter so you can reach certain remote machines (e.g. wifi
+        // versus ethernet) then you will want to change the LocalHostIp accordingly.  This default only works when log
+        // viewer and QGC are also on the same machine.  Whatever network you choose it has to be the same one for
+        // external
+        std::string local_host_ip = "127.0.0.1";
+
+        std::string model = "Generic";
+
+        std::map<std::string, float> params;
+        std::string logs;
+    };
+
+    struct MavLinkVehicleSetting : public VehicleSetting {
+        MavLinkConnectionInfo connection_info;
+    };
+
+    struct SegmentationSetting {
+        enum class InitMethodType { None, CommonObjectsRandomIDs };
+
+        enum class MeshNamingMethodType { OwnerName, StaticMeshName };
+
+        InitMethodType init_method = InitMethodType::CommonObjectsRandomIDs;
+        bool override_existing = false;
+        MeshNamingMethodType mesh_naming_method = MeshNamingMethodType::OwnerName;
+    };
+
+    struct TimeOfDaySetting {
+        bool enabled = false;
+        std::string start_datetime = ""; // format: %Y-%m-%d %H:%M:%S
+        bool is_start_datetime_dst = false;
+        float celestial_clock_speed = 1;
+        float update_interval_secs = 60;
+        bool move_sun = true;
+    };
+
+    // fields
+    std::string simmode_name = "";
+    std::string level_name = "";
+
+    std::vector<SubwindowSetting> subwindow_settings;
+    RecordingSetting recording_setting;
+    SegmentationSetting segmentation_setting;
+    TimeOfDaySetting tod_setting;
+
+    std::vector<std::string> warning_messages;
+    std::vector<std::string> error_messages;
+
+    bool is_record_ui_visible = false;
+    int initial_view_mode = 2; // ECameraDirectorMode::CAMERA_DIRECTOR_MODE_FLY_WITH_ME
+    bool enable_rpc = true;
+    std::string api_server_address = "";
+    int api_port = RpcLibPort;
+    std::string physics_engine_name = "";
+
+    std::string clock_type = "";
+    float clock_speed = 1.0f;
+    bool engine_sound = false;
+    bool log_messages_visible = true;
+    bool show_los_debug_lines_ = false;
+    HomeGeoPoint origin_geopoint{
+        GeoPoint(47.641468, -122.140165, 122)}; // The geo-coordinate assigned to Unreal coordinate 0,0,0
+    std::map<std::string, PawnPath> pawn_paths; // path for pawn blueprint
+    std::map<std::string, std::unique_ptr<VehicleSetting>> vehicles;
+    CameraSetting camera_defaults;
+    CameraDirectorSetting camera_director;
+    float speed_unit_factor = 1.0f;
+    std::string speed_unit_label = "m\\s";
+    std::map<std::string, std::shared_ptr<SensorSetting>> sensor_defaults;
+    Vector3r wind = Vector3r::Zero();
+    Vector3r ext_force = Vector3r::Zero();
+    CameraSettingMap external_cameras;
+
+    std::string settings_text_ = "";
+
+    // methods
+    static AutonomySimSettings &singleton() {
+        static AutonomySimSettings instance;
+        return instance;
+    }
+
+    AutonomySimSettings() {
+        initializeSubwindowSettings(subwindow_settings);
+        initializePawnPaths(pawn_paths);
+    }
+
+    // returns number of warnings
+    void load(std::function<std::string(void)> simmode_getter) {
+        warning_messages.clear();
+        error_messages.clear();
+        const Settings &settings_json = Settings::singleton();
+        checkSettingsVersion(settings_json);
+
+        loadCoreSimModeSettings(settings_json, simmode_getter);
+        loadLevelSettings(settings_json);
+        loadDefaultCameraSetting(settings_json, camera_defaults);
+        loadCameraDirectorSetting(settings_json, camera_director, simmode_name);
+        loadSubWindowsSettings(settings_json, subwindow_settings);
+        loadViewModeSettings(settings_json);
+        loadSegmentationSetting(settings_json, segmentation_setting);
+        loadPawnPaths(settings_json, pawn_paths);
+        loadOtherSettings(settings_json);
+        loadDefaultSensorSettings(simmode_name, settings_json, sensor_defaults);
+        loadVehicleSettings(simmode_name, settings_json, vehicles, sensor_defaults, camera_defaults);
+        loadExternalCameraSettings(settings_json, external_cameras, camera_defaults);
+
+        // this should be done last because it depends on vehicles (and/or their type) we have
+        loadRecordingSetting(settings_json);
+        loadClockSettings(settings_json);
+    }
+
+    static void initializeSettings(const std::string &json_settings_text) {
+        singleton().settings_text_ = json_settings_text;
+        Settings &settings_json = Settings::loadJSonString(json_settings_text);
+        if (!settings_json.isLoadSuccess())
+            throw std::invalid_argument("Cannot parse JSON settings_json string.");
+    }
+
+    static void createDefaultSettingsFile() {
+        initializeSettings("{}");
+
+        Settings &settings_json = Settings::singleton();
+        // write some settings_json in new file otherwise the string "null" is written if all settings_json are empty
+        settings_json.setString("SeeDocsAt", "https://github.com/nervosys/AutonomySim/blob/master/docs/settings.md");
+        settings_json.setDouble("SettingsVersion", 1.2);
+
+        std::string settings_filename = Settings::getUserDirectoryFullPath("settings.json");
+        // TODO: there is a crash in Linux due to settings_json.saveJSonString(). Remove this workaround after we only
+        // support Unreal 4.17
+        // https://answers.unrealengine.com/questions/664905/unreal-crashes-on-two-lines-of-extremely-simple-st.html
+        settings_json.saveJSonFile(settings_filename);
+    }
+
+    // This is for the case when a new vehicle is made on the fly, at runtime
+    void addVehicleSetting(const std::string &vehicle_name, const std::string &vehicle_type, const Pose &pose,
+                           const std::string &pawn_path = "") {
+        // No Mavlink-type vehicles currently
+        auto vehicle_setting = std::unique_ptr<VehicleSetting>(new VehicleSetting(vehicle_name, vehicle_type));
+        vehicle_setting->position = pose.position;
+        vehicle_setting->pawn_path = pawn_path;
+
+        vehicle_setting->sensors = sensor_defaults;
+
+        VectorMath::toEulerianAngle(pose.orientation, vehicle_setting->rotation.pitch, vehicle_setting->rotation.roll,
+                                    vehicle_setting->rotation.yaw);
+
+        vehicles[vehicle_name] = std::move(vehicle_setting);
+    }
+
+    const VehicleSetting *getVehicleSetting(const std::string &vehicle_name) const {
+        auto it = vehicles.find(vehicle_name);
+        if (it == vehicles.end())
+            // pre-existing flying pawns in Unreal Engine don't have name 'SimpleFlight'
+            it = vehicles.find("SimpleFlight");
+        return it->second.get();
+    }
+
+    static Vector3r createVectorSetting(const Settings &settings_json, const Vector3r &default_vec) {
+        return Vector3r(settings_json.getFloat("X", default_vec.x()), settings_json.getFloat("Y", default_vec.y()),
+                        settings_json.getFloat("Z", default_vec.z()));
+    }
+    static Rotation createRotationSetting(const Settings &settings_json, const Rotation &default_rot) {
+        return Rotation(settings_json.getFloat("Yaw", default_rot.yaw),
+                        settings_json.getFloat("Pitch", default_rot.pitch),
+                        settings_json.getFloat("Roll", default_rot.roll));
     }
 };
 

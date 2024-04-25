@@ -4,6 +4,7 @@
 namespace common_utils {
 
 class ColorUtils {
+
   public:
     static void
     valToRGB(double val0To1, unsigned char &r, unsigned char &g,

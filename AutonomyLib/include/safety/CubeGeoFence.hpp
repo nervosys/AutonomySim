@@ -10,9 +10,12 @@ namespace nervosys {
 namespace autonomylib {
 
 class CubeGeoFence : public IGeoFence {
+
   private:
     Vector3r point_min_, point_max_, point_center_;
     float distance_accuracy_;
+
+    void calculateCenter() { point_center_ = (point_max_ + point_min_) / 2; }
 
   public:
     CubeGeoFence(const Vector3r &point_min, const Vector3r &point_max, float distance_accuracy)
@@ -53,9 +56,6 @@ class CubeGeoFence : public IGeoFence {
     }
 
     virtual ~CubeGeoFence(){};
-
-  private:
-    void calculateCenter() { point_center_ = (point_max_ + point_min_) / 2; }
 };
 
 } // namespace autonomylib

@@ -10,17 +10,22 @@ namespace nervosys {
 namespace autonomylib {
 
 class MagnetometerBase : public SensorBase {
-  public:
-    MagnetometerBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
 
-  public:           // types
+  private:
+    Output output_;
+
+  protected:
+    void setOutput(const Output &output) { output_ = output; }
+
+  public:
     struct Output { // same fields as ROS message
         TTimePoint time_stamp;
         Vector3r magnetic_field_body;             // in Gauss
         vector<real_T> magnetic_field_covariance; // 9 elements 3x3 matrix
     };
 
-  public:
+    MagnetometerBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
+
     virtual void reportState(StateReporter &reporter) override {
         // call base
         UpdatableObject::reportState(reporter);
@@ -29,13 +34,8 @@ class MagnetometerBase : public SensorBase {
     }
 
     const Output &getOutput() const { return output_; }
-
-  protected:
-    void setOutput(const Output &output) { output_ = output; }
-
-  private:
-    Output output_;
 };
+
 } // namespace autonomylib
 } // namespace nervosys
 #endif

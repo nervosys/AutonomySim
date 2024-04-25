@@ -12,11 +12,25 @@
 #include "interfaces/ICommLink.hpp"
 #include "interfaces/IFirmware.hpp"
 #include "interfaces/IStateEstimator.hpp"
+
 #include <vector>
 
 namespace simple_flight {
 
 class Firmware : public IFirmware {
+
+  private:
+    // objects we use
+    Params *params_;
+    IBoard *board_;
+    ICommLink *comm_link_;
+    IStateEstimator *state_estimator_;
+
+    OffboardApi offboard_api_;
+    Mixer mixer_;
+    std::unique_ptr<IController> controller_;
+    std::vector<float> motor_outputs_;
+
   public:
     Firmware(Params *params, IBoard *board, ICommLink *comm_link, IStateEstimator *state_estimator)
         : params_(params), board_(board), comm_link_(comm_link), state_estimator_(state_estimator),
@@ -74,19 +88,6 @@ class Firmware : public IFirmware {
     }
 
     virtual IOffboardApi &offboardApi() override { return offboard_api_; }
-
-  private:
-    // objects we use
-    Params *params_;
-    IBoard *board_;
-    ICommLink *comm_link_;
-    IStateEstimator *state_estimator_;
-
-    OffboardApi offboard_api_;
-    Mixer mixer_;
-    std::unique_ptr<IController> controller_;
-
-    std::vector<float> motor_outputs_;
 };
 
 } // namespace simple_flight

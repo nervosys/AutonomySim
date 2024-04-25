@@ -9,6 +9,11 @@
 namespace common_utils {
 
 template <typename TReturn, typename TDistribution, unsigned int Seed = 42> class RandomGenerator {
+
+  private:
+    TDistribution dist_;
+    std::mt19937 rand_;
+
   public:
     // for uniform distribution supply min and max (inclusive)
     // for gaussian distribution supply mean and sigma
@@ -22,10 +27,6 @@ template <typename TReturn, typename TDistribution, unsigned int Seed = 42> clas
         rand_.seed(Seed);
         dist_.reset();
     }
-
-  private:
-    TDistribution dist_;
-    std::mt19937 rand_;
 };
 
 typedef RandomGenerator<double, std::uniform_real_distribution<double>> RandomGeneratorD;

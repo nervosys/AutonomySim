@@ -10,6 +10,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class SphereGeoFence : public IGeoFence {
+
   private:
     Vector3r center_;
     float radius_, distance_accuracy_, min_height_, max_height_;

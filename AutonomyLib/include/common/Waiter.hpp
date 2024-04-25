@@ -4,10 +4,11 @@
 #ifndef autonomylib_common_Waiter_hpp
 #define autonomylib_common_Waiter_hpp
 
-#include "common/CancelToken.hpp"
-#include "common/ClockFactory.hpp"
-#include "common/Common.hpp"
-#include "common/utils/Utils.hpp"
+#include "CancelToken.hpp"
+#include "ClockFactory.hpp"
+#include "Common.hpp"
+#include "utils/Utils.hpp"
+
 #include <chrono>
 #include <iostream>
 
@@ -15,6 +16,16 @@ namespace nervosys {
 namespace autonomylib {
 
 class Waiter {
+
+  private:
+    TTimeDelta sleep_duration_, timeout_sec_;
+    CancelToken &cancelable_action_;
+    bool is_complete_; // each waiter should maintain its own complete status
+    TTimePoint proc_start_;
+    TTimePoint loop_start_;
+
+    static ClockBase *clock() { return ClockFactory::get(); }
+
   public:
     Waiter(TTimeDelta sleep_duration_seconds, TTimeDelta timeout_sec, CancelToken &cancelable_action)
         : sleep_duration_(sleep_duration_seconds), timeout_sec_(timeout_sec), cancelable_action_(cancelable_action),
@@ -50,16 +61,6 @@ class Waiter {
         else
             return clock()->elapsedSince(proc_start_) >= timeout_sec_;
     }
-
-  private:
-    TTimeDelta sleep_duration_, timeout_sec_;
-    CancelToken &cancelable_action_;
-    bool is_complete_; // each waiter should maintain its own complete status
-
-    TTimePoint proc_start_;
-    TTimePoint loop_start_;
-
-    static ClockBase *clock() { return ClockFactory::get(); }
 };
 
 } // namespace autonomylib

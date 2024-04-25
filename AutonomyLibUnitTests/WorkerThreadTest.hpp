@@ -4,13 +4,20 @@
 #include "TestBase.hpp"
 #include "common/WorkerThread.hpp"
 #include "common/utils/Timer.hpp"
+
 #include <chrono>
 
 namespace nervosys {
 namespace autonomylib {
 
 class WorkerThreadTest : public TestBase {
+
+  private:
     class WorkItem : public CancelableAction {
+
+      private:
+        std::atomic<unsigned int> counter_;
+
       public:
         double runTime = 2; // seconds
 
@@ -34,9 +41,6 @@ class WorkerThreadTest : public TestBase {
         }
 
         unsigned int getCount() { return counter_; }
-
-      private:
-        std::atomic<unsigned int> counter_;
     };
 
   public:

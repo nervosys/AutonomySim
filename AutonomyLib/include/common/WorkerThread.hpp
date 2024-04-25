@@ -6,7 +6,8 @@
 
 #include "CancelToken.hpp"
 #include "ClockFactory.hpp" //TODO: move this out of common\utils
-#include "common/utils/Utils.hpp"
+#include "utils/Utils.hpp"
+
 #include <atomic>
 #include <exception>
 #include <functional>
@@ -20,6 +21,10 @@ namespace nervosys {
 namespace autonomylib {
 
 class CancelableAction : public CancelToken {
+
+  private:
+    std::atomic<bool> is_complete_;
+
   protected:
     virtual void executeAction() = 0;
 
@@ -40,14 +45,13 @@ class CancelableAction : public CancelToken {
     }
 
     bool isComplete() const { return is_complete_; }
-
-  private:
-    std::atomic<bool> is_complete_;
 };
 
 // This wraps a condition_variable so we can handle the case where we may signal before wait
 // and implement the semantics that say wait should be a noop in that case.
 class WorkerThreadSignal {
+
+  private:
     std::condition_variable cv_;
     std::mutex mutex_;
     std::atomic<bool> signaled_;
@@ -116,6 +120,85 @@ class WorkerThreadSignal {
 // task before they get canceled, worst case in a tight loop all tasks are starved and
 // nothing executes.
 class WorkerThread {
+
+  private:
+    // this is used to wait until our thread actually gets started
+    WorkerThreadSignal thread_started_;
+    // when new item arrived, we signal this so waiting thread can continue
+    WorkerThreadSignal item_arrived_;
+
+    // thread state
+    std::shared_ptr<CancelableAction> pending_item_;
+    std::mutex mutex_;
+    std::thread thread_;
+    // while run() is in progress this is true
+    std::atomic<bool> thread_running_;
+    // has request to stop this worker thread made?
+    std::atomic<bool> cancel_request_;
+
+    void start() {
+        // if state == not running
+        if (!thread_running_) {
+
+            // make sure C++ previous thread is done
+            {
+                std::unique_lock<std::mutex> lock(mutex_);
+                if (thread_.joinable()) {
+                    thread_.join();
+                }
+            }
+            Utils::cleanupThread(thread_);
+
+            // start the thread
+            cancel_request_ = false;
+            thread_ = std::thread(&WorkerThread::run, this);
+
+            // wait until thread tells us it has started
+            thread_started_.wait([this] { return static_cast<bool>(cancel_request_); });
+        }
+    }
+
+    void run() {
+        thread_running_ = true;
+
+        // tell the thread which started this thread that we are on now
+        {
+            std::unique_lock<std::mutex> lock(mutex_);
+            thread_started_.signal();
+        }
+
+        // until we don't get stopped and have work to do, keep running
+        while (!cancel_request_ && pending_item_ != nullptr) {
+            std::shared_ptr<CancelableAction> pending;
+
+            // get the pending item
+            {
+                std::unique_lock<std::mutex> lock(mutex_);
+                pending = pending_item_;
+            }
+
+            // if pending item is not yet cancelled
+            if (pending != nullptr && !pending->isCancelled()) {
+
+                // execute pending item
+                try {
+                    pending->execute();
+                } catch (std::exception &e) {
+                    // Utils::DebugBreak();
+                    Utils::log(Utils::stringf("WorkerThread caught unhandled exception: %s", e.what()),
+                               Utils::kLogLevelError);
+                }
+            }
+
+            if (!cancel_request_) {
+                // wait for next item to arrive or thread is stopped
+                item_arrived_.wait([this] { return static_cast<bool>(cancel_request_); });
+            }
+        }
+
+        thread_running_ = false;
+    }
+
   public:
     WorkerThread() : thread_running_(false), cancel_request_(false) {}
 
@@ -123,6 +206,7 @@ class WorkerThread {
         cancel_request_ = true;
         cancel();
     }
+
     void enqueue(std::shared_ptr<CancelableAction> item) {
         // cancel previous item
         {
@@ -194,85 +278,6 @@ class WorkerThread {
             thread_.join();
         }
     }
-
-  private:
-    void start() {
-        // if state == not running
-        if (!thread_running_) {
-
-            // make sure C++ previous thread is done
-            {
-                std::unique_lock<std::mutex> lock(mutex_);
-                if (thread_.joinable()) {
-                    thread_.join();
-                }
-            }
-            Utils::cleanupThread(thread_);
-
-            // start the thread
-            cancel_request_ = false;
-            thread_ = std::thread(&WorkerThread::run, this);
-
-            // wait until thread tells us it has started
-            thread_started_.wait([this] { return static_cast<bool>(cancel_request_); });
-        }
-    }
-
-    void run() {
-        thread_running_ = true;
-
-        // tell the thread which started this thread that we are on now
-        {
-            std::unique_lock<std::mutex> lock(mutex_);
-            thread_started_.signal();
-        }
-
-        // until we don't get stopped and have work to do, keep running
-        while (!cancel_request_ && pending_item_ != nullptr) {
-            std::shared_ptr<CancelableAction> pending;
-
-            // get the pending item
-            {
-                std::unique_lock<std::mutex> lock(mutex_);
-                pending = pending_item_;
-            }
-
-            // if pending item is not yet cancelled
-            if (pending != nullptr && !pending->isCancelled()) {
-
-                // execute pending item
-                try {
-                    pending->execute();
-                } catch (std::exception &e) {
-                    // Utils::DebugBreak();
-                    Utils::log(Utils::stringf("WorkerThread caught unhandled exception: %s", e.what()),
-                               Utils::kLogLevelError);
-                }
-            }
-
-            if (!cancel_request_) {
-                // wait for next item to arrive or thread is stopped
-                item_arrived_.wait([this] { return static_cast<bool>(cancel_request_); });
-            }
-        }
-
-        thread_running_ = false;
-    }
-
-  private:
-    // this is used to wait until our thread actually gets started
-    WorkerThreadSignal thread_started_;
-    // when new item arrived, we signal this so waiting thread can continue
-    WorkerThreadSignal item_arrived_;
-
-    // thread state
-    std::shared_ptr<CancelableAction> pending_item_;
-    std::mutex mutex_;
-    std::thread thread_;
-    // while run() is in progress this is true
-    std::atomic<bool> thread_running_;
-    // has request to stop this worker thread made?
-    std::atomic<bool> cancel_request_;
 };
 
 } // namespace autonomylib

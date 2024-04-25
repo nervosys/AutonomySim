@@ -6,11 +6,19 @@
 #include "interfaces/CommonStructs.hpp"
 #include "interfaces/IAxisController.hpp"
 #include "interfaces/IBoardClock.hpp"
+
 #include <memory>
 
 namespace simple_flight {
 
 class ConstantOutputController : public IAxisController {
+
+  private:
+    unsigned int axis_;
+    TReal update_output_;
+    TReal reset_output_;
+    TReal output_;
+
   public:
     ConstantOutputController(TReal update_output = TReal(), TReal reset_output = TReal())
         : update_output_(update_output), reset_output_(reset_output) {}
@@ -32,12 +40,6 @@ class ConstantOutputController : public IAxisController {
     }
 
     virtual TReal getOutput() override { return output_; }
-
-  private:
-    unsigned int axis_;
-    TReal update_output_;
-    TReal reset_output_;
-    TReal output_;
 };
 
 } // namespace simple_flight

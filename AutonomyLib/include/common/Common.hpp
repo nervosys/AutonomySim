@@ -13,8 +13,8 @@
 #include <vector>
 
 #include "VectorMath.hpp"
-#include "common/utils/RandomGenerator.hpp"
-#include "common/utils/Utils.hpp"
+#include "utils/RandomGenerator.hpp"
+#include "utils/Utils.hpp"
 
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS 1

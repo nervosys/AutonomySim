@@ -2,6 +2,7 @@
 #define common_utils_UniqueValueMap_hpp
 
 #include "Utils.hpp"
+
 #include <chrono>
 #include <map>
 #include <set>
@@ -11,11 +12,17 @@ namespace common_utils {
 // This class allows to maintain unique set of values while
 // still allowing key to value maps
 template <class TKey, class TVal> class UniqueValueMap {
+
+  private:
+    std::map<TKey, TVal> map_;
+    std::set<TVal> vals_;
+
   public:
     void insert(const TKey &key, const TVal &val) {
         map_.insert(key, val);
         vals_.insert(val);
     }
+
     void insert_or_assign(const TKey &key, const TVal &val) {
         map_[key] = val;
         vals_.insert(val);
@@ -53,10 +60,6 @@ template <class TKey, class TVal> class UniqueValueMap {
     }
 
     // TODO: add erase methods
-
-  private:
-    std::map<TKey, TVal> map_;
-    std::set<TVal> vals_;
 };
 } // namespace common_utils
 #endif

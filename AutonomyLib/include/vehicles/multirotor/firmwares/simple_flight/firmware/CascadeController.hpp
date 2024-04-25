@@ -12,12 +12,30 @@
 #include "interfaces/IController.hpp"
 #include "interfaces/IGoal.hpp"
 #include "interfaces/IStateEstimator.hpp"
+
 #include <exception>
 #include <string>
 
 namespace simple_flight {
 
 class CascadeController : public IController {
+
+  private:
+    Params *params_;
+    const IBoardClock *clock_;
+
+    const IGoal *goal_;
+    const IStateEstimator *state_estimator_;
+    ICommLink *comm_link_;
+
+    Axis4r output_;
+
+    GoalMode last_goal_mode_;
+    Axis4r last_goal_val_;
+    bool is_last_goal_mode_all_passthrough_;
+
+    std::unique_ptr<IAxisController> axis_controllers_[Axis4r::AxisCount()];
+
   public:
     CascadeController(Params *params, const IBoardClock *clock, ICommLink *comm_link)
         : params_(params), clock_(clock), comm_link_(comm_link) {}
@@ -118,22 +136,6 @@ class CascadeController : public IController {
 
         return is_last_goal_mode_all_passthrough_;
     }
-
-  private:
-    Params *params_;
-    const IBoardClock *clock_;
-
-    const IGoal *goal_;
-    const IStateEstimator *state_estimator_;
-    ICommLink *comm_link_;
-
-    Axis4r output_;
-
-    GoalMode last_goal_mode_;
-    Axis4r last_goal_val_;
-    bool is_last_goal_mode_all_passthrough_;
-
-    std::unique_ptr<IAxisController> axis_controllers_[Axis4r::AxisCount()];
 };
 
 } // namespace simple_flight

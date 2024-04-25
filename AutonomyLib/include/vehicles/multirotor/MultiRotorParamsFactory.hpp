@@ -14,6 +14,7 @@ namespace nervosys {
 namespace autonomylib {
 
 class MultirotorParamsFactory {
+
   public:
     static std::unique_ptr<MultirotorParams> createConfig(const AutonomySimSettings::VehicleSetting *vehicle_setting,
                                                           std::shared_ptr<const SensorFactory> sensor_factory) {

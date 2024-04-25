@@ -5,6 +5,7 @@
 #ifndef AUTONOMYLIB_HEADER_ONLY
 
 #include "vehicles/multirotor/api/MultirotorApiBase.hpp"
+
 #include <exception>
 #include <fstream>
 #include <functional>

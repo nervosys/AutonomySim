@@ -6,11 +6,18 @@
 #include "interfaces/CommonStructs.hpp"
 #include "interfaces/IAxisController.hpp"
 #include "interfaces/IBoardClock.hpp"
+
 #include <memory>
 
 namespace simple_flight {
 
 class PassthroughController : public IAxisController {
+
+  private:
+    unsigned int axis_;
+    const IGoal *goal_;
+    TReal output_;
+
   public:
     virtual void initialize(unsigned int axis, const IGoal *goal, const IStateEstimator *state_estimator) override {
         axis_ = axis;
@@ -29,11 +36,6 @@ class PassthroughController : public IAxisController {
     }
 
     virtual TReal getOutput() override { return output_; }
-
-  private:
-    unsigned int axis_;
-    const IGoal *goal_;
-    TReal output_;
 };
 
 } // namespace simple_flight

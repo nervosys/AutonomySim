@@ -16,6 +16,11 @@ namespace nervosys {
 namespace autonomylib {
 
 class MultirotorRpcLibClient : public RpcLibClientBase {
+
+  private:
+    struct impl;
+    std::unique_ptr<impl> pimpl_;
+
   public:
     MultirotorRpcLibClient(const string &ip_address = "localhost", uint16_t port = RpcLibPort, float timeout_sec = 60);
 
@@ -103,10 +108,6 @@ class MultirotorRpcLibClient : public RpcLibClientBase {
                                                    float timeout_sec = Utils::nan<float>()) override;
 
     virtual ~MultirotorRpcLibClient(); // required for pimpl
-
-  private:
-    struct impl;
-    std::unique_ptr<impl> pimpl_;
 };
 
 } // namespace autonomylib

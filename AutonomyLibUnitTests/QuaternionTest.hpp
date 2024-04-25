@@ -8,12 +8,6 @@ namespace nervosys {
 namespace autonomylib {
 
 class QuaternionTest : public TestBase {
-  public:
-    virtual void run() override {
-        // eulerAngleTest();
-        // lookAtTest();
-        rotationOrderTest();
-    }
 
   private:
     void rotationOrderTest() {
@@ -94,6 +88,13 @@ class QuaternionTest : public TestBase {
 
             testAssert(dw + dx + dy + dz < 1E-5, "quaternion transformations are not symmetric");
         }
+    }
+
+  public:
+    virtual void run() override {
+        // eulerAngleTest();
+        // lookAtTest();
+        rotationOrderTest();
     }
 };
 
