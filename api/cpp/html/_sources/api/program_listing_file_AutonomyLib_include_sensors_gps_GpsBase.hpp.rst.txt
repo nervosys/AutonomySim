@@ -24,12 +24,6 @@ Program Listing for File GpsBase.hpp
    
    class GpsBase : public SensorBase {
    
-     private:
-       Output output_;
-   
-     protected:
-       void setOutput(const Output &output) { output_ = output; }
-   
      public:
        GpsBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
    
@@ -41,7 +35,6 @@ Program Listing for File GpsBase.hpp
            int health;
    
            GpsPoint() {}
-   
            GpsPoint(double latitude_val, double longitude_val, float altitude_val, int health_val = -1,
                     float height_val = std::numeric_limits<float>::quiet_NaN()) {
                latitude = latitude_val;
@@ -121,6 +114,12 @@ Program Listing for File GpsBase.hpp
        }
    
        const Output &getOutput() const { return output_; }
+   
+     protected:
+       void setOutput(const Output &output) { output_ = output; }
+   
+     private:
+       Output output_;
    };
    
    } // namespace autonomylib

@@ -280,12 +280,6 @@
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MagnetometerBase</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SensorBase</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setOutput</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Output</span><span class="w"> </span><span class="o">&amp;</span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">output_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-
 <span class="w">  </span><span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Output</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// same fields as ROS message</span>
 <span class="w">        </span><span class="n">TTimePoint</span><span class="w"> </span><span class="n">time_stamp</span><span class="p">;</span>
@@ -303,6 +297,12 @@
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Output</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getOutput</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setOutput</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Output</span><span class="w"> </span><span class="o">&amp;</span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">output_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="n">output_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace autonomylib</span>

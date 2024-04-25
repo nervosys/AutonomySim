@@ -23,12 +23,6 @@ Program Listing for File MagnetometerBase.hpp
    
    class MagnetometerBase : public SensorBase {
    
-     private:
-       Output output_;
-   
-     protected:
-       void setOutput(const Output &output) { output_ = output; }
-   
      public:
        struct Output { // same fields as ROS message
            TTimePoint time_stamp;
@@ -46,6 +40,12 @@ Program Listing for File MagnetometerBase.hpp
        }
    
        const Output &getOutput() const { return output_; }
+   
+     protected:
+       void setOutput(const Output &output) { output_ = output; }
+   
+     private:
+       Output output_;
    };
    
    } // namespace autonomylib
