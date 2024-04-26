@@ -6447,7 +6447,7 @@
       "dateAdded": "2011-12-07",
       "popularity": 1175,
       "trending": 220,
-      "defaultSort": 1154,
+      "defaultSort": 1153,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -8382,7 +8382,7 @@
       "dateAdded": "2012-03-14",
       "popularity": 1276,
       "trending": 1436,
-      "defaultSort": 1254,
+      "defaultSort": 1253,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -15702,7 +15702,7 @@
       "dateAdded": "2023-06-21",
       "popularity": 1003,
       "trending": 1144,
-      "defaultSort": 992,
+      "defaultSort": 991,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -17210,7 +17210,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1480,
       "trending": 1527,
-      "defaultSort": 1272,
+      "defaultSort": 1275,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -17748,7 +17748,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1721,
       "trending": 350,
-      "defaultSort": 1252,
+      "defaultSort": 1254,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -22172,7 +22172,7 @@
       "dateAdded": "2011-11-30",
       "popularity": 1209,
       "trending": 332,
-      "defaultSort": 1187,
+      "defaultSort": 1186,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -22464,7 +22464,7 @@
       "dateAdded": "2012-07-11",
       "popularity": 1176,
       "trending": 343,
-      "defaultSort": 1155,
+      "defaultSort": 1154,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -26618,8 +26618,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 38928,
       "subsets": [
@@ -26661,8 +26661,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 45788,
       "subsets": [
@@ -26704,8 +26704,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 43800,
       "subsets": [
@@ -35107,7 +35107,7 @@
       "dateAdded": "2023-09-12",
       "popularity": 1483,
       "trending": 1585,
-      "defaultSort": 977,
+      "defaultSort": 979,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -38428,7 +38428,7 @@
       "dateAdded": "2021-05-21",
       "popularity": 986,
       "trending": 1754,
-      "defaultSort": 978,
+      "defaultSort": 977,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -41063,7 +41063,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 1303,
       "trending": 883,
-      "defaultSort": 1282,
+      "defaultSort": 1281,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -43070,8 +43070,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 22380,
       "subsets": [
@@ -43109,8 +43109,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 48056,
       "subsets": [
@@ -43148,8 +43148,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 14800,
       "subsets": [
@@ -43187,8 +43187,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 17396,
       "subsets": [
@@ -43226,8 +43226,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 35280,
       "subsets": [
@@ -43265,8 +43265,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 22984,
       "subsets": [
@@ -43304,8 +43304,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 72692,
       "subsets": [
@@ -43969,8 +43969,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 134384,
       "subsets": [
@@ -47916,9 +47916,9 @@
       ],
       "lastModified": "2022-04-26",
       "dateAdded": "2016-05-31",
-      "popularity": 1116,
+      "popularity": 1115,
       "trending": 1595,
-      "defaultSort": 1094,
+      "defaultSort": 1093,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -50272,7 +50272,7 @@
       "dateAdded": "2023-09-12",
       "popularity": 1477,
       "trending": 620,
-      "defaultSort": 991,
+      "defaultSort": 993,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -51965,7 +51965,7 @@
       "dateAdded": "2023-06-27",
       "popularity": 1712,
       "trending": 553,
-      "defaultSort": 1152,
+      "defaultSort": 1155,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -54592,7 +54592,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1726,
       "trending": 486,
-      "defaultSort": 1608,
+      "defaultSort": 1609,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -54856,7 +54856,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1684,
       "trending": 815,
-      "defaultSort": 1239,
+      "defaultSort": 1240,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -57357,7 +57357,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1208,
       "trending": 1851,
-      "defaultSort": 1186,
+      "defaultSort": 1185,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -57494,7 +57494,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1534,
       "trending": 1801,
-      "defaultSort": 1465,
+      "defaultSort": 1464,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -59471,7 +59471,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1717,
       "trending": 1913,
-      "defaultSort": 1609,
+      "defaultSort": 1608,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -59646,7 +59646,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1716,
       "trending": 253,
-      "defaultSort": 1584,
+      "defaultSort": 1583,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -59684,7 +59684,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1537,
       "trending": 533,
-      "defaultSort": 1468,
+      "defaultSort": 1467,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -59798,7 +59798,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1757,
       "trending": 354,
-      "defaultSort": 1583,
+      "defaultSort": 1584,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -63504,7 +63504,7 @@
       "dateAdded": "2022-05-11",
       "popularity": 1004,
       "trending": 1836,
-      "defaultSort": 993,
+      "defaultSort": 992,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -64179,7 +64179,7 @@
       "dateAdded": "2023-06-27",
       "popularity": 1653,
       "trending": 294,
-      "defaultSort": 1185,
+      "defaultSort": 1187,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -69503,7 +69503,7 @@
       "dateAdded": "2021-10-07",
       "popularity": 1533,
       "trending": 660,
-      "defaultSort": 1463,
+      "defaultSort": 1462,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -73188,7 +73188,7 @@
       "dateAdded": "2021-11-26",
       "popularity": 987,
       "trending": 603,
-      "defaultSort": 979,
+      "defaultSort": 978,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -74945,8 +74945,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 15920,
       "subsets": [
@@ -77837,7 +77837,7 @@
       "dateAdded": "2022-11-24",
       "popularity": 1620,
       "trending": 1530,
-      "defaultSort": 1464,
+      "defaultSort": 1465,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -78444,7 +78444,7 @@
       "dateAdded": "2022-11-24",
       "popularity": 1567,
       "trending": 149,
-      "defaultSort": 1467,
+      "defaultSort": 1468,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -78487,7 +78487,7 @@
       "dateAdded": "2022-11-24",
       "popularity": 1624,
       "trending": 189,
-      "defaultSort": 1462,
+      "defaultSort": 1463,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -78777,7 +78777,7 @@
       "dateAdded": "2012-01-11",
       "popularity": 1266,
       "trending": 581,
-      "defaultSort": 1240,
+      "defaultSort": 1239,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -79212,7 +79212,7 @@
       "dateAdded": "2015-06-17",
       "popularity": 1308,
       "trending": 1795,
-      "defaultSort": 1287,
+      "defaultSort": 1286,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -82683,7 +82683,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1545,
       "trending": 587,
-      "defaultSort": 1281,
+      "defaultSort": 1282,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -82857,7 +82857,7 @@
       "dateAdded": "2021-12-17",
       "popularity": 1296,
       "trending": 1888,
-      "defaultSort": 1274,
+      "defaultSort": 1273,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -84107,7 +84107,7 @@
       "dateAdded": "2022-07-29",
       "popularity": 1295,
       "trending": 609,
-      "defaultSort": 1273,
+      "defaultSort": 1272,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -85214,7 +85214,7 @@
       "dateAdded": "2011-11-23",
       "popularity": 1275,
       "trending": 1431,
-      "defaultSort": 1253,
+      "defaultSort": 1252,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -85997,7 +85997,7 @@
       "dateAdded": "2012-02-15",
       "popularity": 1174,
       "trending": 183,
-      "defaultSort": 1153,
+      "defaultSort": 1152,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -89745,7 +89745,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1490,
       "trending": 940,
-      "defaultSort": 1286,
+      "defaultSort": 1287,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -92126,9 +92126,9 @@
       ],
       "lastModified": "2023-08-25",
       "dateAdded": "2021-11-18",
-      "popularity": 1115,
+      "popularity": 1116,
       "trending": 82,
-      "defaultSort": 1093,
+      "defaultSort": 1094,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -92143,8 +92143,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 95348,
       "subsets": [
@@ -93107,8 +93107,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 89304,
       "subsets": [
@@ -93148,8 +93148,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 146960,
       "subsets": [
@@ -93189,8 +93189,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 192612,
       "subsets": [
@@ -93230,8 +93230,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 303268,
       "subsets": [
@@ -93811,7 +93811,7 @@
       "dateAdded": "2023-04-19",
       "popularity": 1297,
       "trending": 157,
-      "defaultSort": 1275,
+      "defaultSort": 1274,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
