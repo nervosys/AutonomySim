@@ -3,6 +3,9 @@
 # Archive (dead code)
 archive/
 
+# Binaries
+bin/
+
 # User files
 *.suo
 *.user
