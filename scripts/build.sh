@@ -60,6 +60,7 @@ RPCLIB_VERSION='2.3.0'
 PROJECT_DIR="$(realpath $PWD)"
 SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
 
+GCC_DIR="${PROJECT_DIR}/deps/gcc-${GCC_VERSION}/bin"
 GCC_VERSION_MAJOR="${GCC_VERSION%%.*}"
 
 if [ "$(uname)" = 'Darwin' ]; then
@@ -131,8 +132,8 @@ if [ "$(uname)" = 'Darwin' ]; then
     CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD} -DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_APPLE_SILICON_PROCESSOR=${SYSTEM_PLATFORM}"
 elif [ "$(uname)" = 'Linux' ]; then
     if [ "$USE_GCC" = 'true' ]; then
-        export CC="gcc-${GCC_VERSION_MAJOR}"
-        export CXX="g++-${GCC_VERSION_MAJOR}"
+        export CC="${GCC_DIR}/gcc"
+        export CXX="${GCC_DIR}/g++"
         CMAKE_VARS="-DCXX_STANDARD=c++${CXX_STANDARD}"
     else
         export CC="clang-${CLANG_VERSION}"

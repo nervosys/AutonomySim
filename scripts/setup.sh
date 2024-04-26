@@ -144,8 +144,10 @@ else
     sudo apt-get install -y \
         "libc++-${CLANG_VERSION}-dev" \
         "libc++abi-${CLANG_VERSION}-dev"
-    # Download and build GCC from source
-    source "${SCRIPT_DIR}/build_gcc.sh" --version "$GCC_VERSION"
+    # Conditionally download and build GCC from source
+    if [ ! -d "${PROJECT_DIR}/deps/gcc-${GCC_VERSION}/bin" ]; then
+        source "${SCRIPT_DIR}/build_gcc.sh" --version "$GCC_VERSION"
+    fi
     #sudo apt-get install -y \
     #    "gcc-${GCC_VERSION}" \
     #    "libstdc++-${GCC_VERSION}-dev"

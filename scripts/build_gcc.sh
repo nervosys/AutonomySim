@@ -21,6 +21,9 @@ set -e  # exit on error return code
 # NOTE: for the latest release version see: https://mirrors.kernel.org/gnu/gcc/
 GCC_VERSION='13.2.0'
 
+# Script is to be run from base AutonomySim directory.
+PROJECT_DIR="$PWD"
+
 # process command-line interface (CLI) arguments.
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -38,8 +41,9 @@ while [ $# -gt 0 ]; do
 done
 
 # create dependencies directory if it does not exist.
-mkdir -p deps
+mkdir -p deps/gcc_build
 pushd deps
+pushd gcc_build
 
 echo "Downloading GCC from GNU/Linux mirror: GCC ${GCC_VERSION}..."
 wget "https://mirrors.kernel.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.gz.sig"
@@ -59,19 +63,20 @@ source ./contrib/download_prerequisites
 echo 'Building GCC from source...'
 mkdir build
 pushd build
-../configure --prefix="${HOME}/gcc-${GCC_VERSION}" --disable-multilib
+../configure --prefix="${PROJECT_DIR}/deps/gcc-${GCC_VERSION}" --disable-multilib
 make
 make install
 
 echo 'Removing temporary files...'
-popd
-popd
-rm -rf "gcc-${GCC_VERSION}" "gcc-${GCC_VERSION}.tar.gz" "gcc-${GCC_VERSION}.tar.gz.sig"
-popd
+popd  # exit build
+popd  # exit gcc-$GCC_VERSION
+popd  # exit gcc_build
+rm -rf gcc_build
+popd  # exit deps
 
-echo "Prepending GCC ${GCC_VERSION} binary directory path to user PATH variable..."
-echo 'WARNING: This may have undesirable side-effects.'
-echo "export PATH=\$HOME/gcc-${GCC_VERSION}/bin:\$PATH" | tee -a "${HOME}/.bashrc"
+# echo "Prepending GCC ${GCC_VERSION} binary directory path to user PATH variable..."
+# echo 'WARNING: This may have some undesirable side-effects.'
+# echo "export PATH=\$HOME/AutonomySim/deps/gcc-${GCC_VERSION}/bin:\$PATH" | tee -a "${HOME}/.bashrc"
 
 echo 'GCC build completed successfully.'
 
