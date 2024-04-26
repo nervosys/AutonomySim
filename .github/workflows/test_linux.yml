@@ -50,7 +50,7 @@ jobs:
       - name: "Build GCC from source"
         if: steps.cache-gcc.outputs.cache-hit != 'true'
         shell: bash
-        run: bash /scripts/build_gcc.sh --version "$GCC_VERSION"
+        run: bash ./scripts/build_gcc.sh --version "$GCC_VERSION"
 
       - name: "Install AutonomySim Dependencies"
         shell: bash
