@@ -21,6 +21,14 @@ namespace autonomylib {
 
 struct AutonomySimSettings {
 
+  private:
+    typedef common_utils::Utils Utils;
+    typedef ImageCaptureBase::ImageType ImageType;
+
+    // fields
+    float settings_version_actual;
+    float settings_version_minimum = 1.2f;
+
   public:
     // types
     static constexpr int kSubwindowCount = 3; // must be >= 3 for now
@@ -452,13 +460,6 @@ struct AutonomySimSettings {
     }
 
   private:
-    typedef common_utils::Utils Utils;
-    typedef ImageCaptureBase::ImageType ImageType;
-
-    // fields
-    float settings_version_actual;
-    float settings_version_minimum = 1.2f;
-
     void checkSettingsVersion(const Settings &settings_json) {
         bool has_default_settings = hasDefaultSettings(settings_json, settings_version_actual);
         bool upgrade_required = settings_version_actual < settings_version_minimum;

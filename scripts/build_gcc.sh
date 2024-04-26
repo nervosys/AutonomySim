@@ -50,7 +50,7 @@ gpg --recv-keys 6C35B99309B5FA62
 gpg --verify "gcc-${GCC_VERSION}.tar.gz.sig"
 
 echo 'Unpacking GCC tarball...'
-tar -xzf "gcc-${GCC_VERSION}.tar.gz"
+tar -xzvf "gcc-${GCC_VERSION}.tar.gz"
 
 echo 'Downloading prerequisites...'
 pushd "gcc-${GCC_VERSION}"

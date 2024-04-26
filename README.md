@@ -68,7 +68,7 @@
 
 ### AutonomySim
 
-- `Build systems`: updated to C++20 standard, `CMake` 3.29.2, `Clang` 17, `GCC` 13, `Python` 3.12
+- `Build systems`: updated to `C++20` standard, `CMake` 3.29.2, `Clang` 17, `GCC` 13, `Python` 3.12
 - The `autonomysim` Python package has undergone a complete overhaul! `AutonomyLib` is next.
 - `Windows`: we now provide separate Batch/Command and PowerShell build systems. Both are tested in CI/CD.
 - `Documentation`: a new system has been rolled out that also generates Python and C++ API docs.
