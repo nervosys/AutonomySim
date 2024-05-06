@@ -44,13 +44,16 @@ jobs:
         id: cache-gcc
         uses: actions/cache@v4
         with:
-          path: "gcc-${GCC_VERSION}"
-          key: gcc
+          path: |
+            "~/gcc-${GCC_VERSION}"
+          key: ${{ runner.os }}-gcc-${{ hashFiles('**/*gcc-${GCC_VERSION}*') }}
+          restore-keys: |
+            ${{ runner.os }}-gcc-
 
-      - name: "Build GCC from source"
-        if: steps.cache-gcc.outputs.cache-hit != 'true'
-        shell: bash
-        run: bash ./scripts/build_gcc.sh --version "$GCC_VERSION"
+      #- name: "Build GCC from source"
+      #  if: steps.cache-gcc.outputs.cache-hit != 'true'
+      #  shell: bash
+      #  run: bash ./scripts/build_gcc.sh --version "$GCC_VERSION"
 
       - name: "Install AutonomySim Dependencies"
         shell: bash
