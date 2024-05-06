@@ -145,7 +145,7 @@ else
         "libc++-${CLANG_VERSION}-dev" \
         "libc++abi-${CLANG_VERSION}-dev"
     # Conditionally download and build GCC from source
-    if [ ! -d "${PROJECT_DIR}/deps/gcc-${GCC_VERSION}/bin" ]; then
+    if [ ! -d "${PROJECT_DIR}/external/gcc/gcc-${GCC_VERSION}/bin" ]; then
         source "${SCRIPT_DIR}/build_gcc.sh" --version "$GCC_VERSION"
     fi
     #sudo apt-get install -y \

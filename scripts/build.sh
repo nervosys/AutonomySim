@@ -60,7 +60,7 @@ RPCLIB_VERSION='2.3.0'
 PROJECT_DIR="$(realpath $PWD)"
 SCRIPT_DIR="$(realpath ${BASH_SOURCE[0]})"
 
-GCC_DIR="${PROJECT_DIR}/deps/gcc-${GCC_VERSION}/bin"
+GCC_DIR="${PROJECT_DIR}/external/gcc/gcc-${GCC_VERSION}/bin"
 GCC_VERSION_MAJOR="${GCC_VERSION%%.*}"
 
 if [ "$(uname)" = 'Darwin' ]; then

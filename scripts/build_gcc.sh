@@ -41,8 +41,9 @@ while [ $# -gt 0 ]; do
 done
 
 # create dependencies directory if it does not exist.
-mkdir -p deps/gcc_build
-pushd deps
+mkdir -p ./external/gcc
+mkdir -p ./external/gcc_build
+pushd external
 pushd gcc_build
 
 echo "Downloading GCC from GNU/Linux mirror: GCC ${GCC_VERSION}..."
@@ -63,7 +64,7 @@ source ./contrib/download_prerequisites
 echo 'Building GCC from source...'
 mkdir build
 pushd build
-../configure --prefix="${PROJECT_DIR}/deps/gcc-${GCC_VERSION}" --disable-multilib
+../configure --prefix="${PROJECT_DIR}/external/gcc/gcc-${GCC_VERSION}" --disable-multilib
 make
 make install
 
@@ -72,11 +73,11 @@ popd  # exit build
 popd  # exit gcc-$GCC_VERSION
 popd  # exit gcc_build
 rm -rf gcc_build
-popd  # exit deps
+popd  # exit external
 
 # echo "Prepending GCC ${GCC_VERSION} binary directory path to user PATH variable..."
 # echo 'WARNING: This may have some undesirable side-effects.'
-# echo "export PATH=\$HOME/AutonomySim/deps/gcc-${GCC_VERSION}/bin:\$PATH" | tee -a "${HOME}/.bashrc"
+# echo "export PATH=\$HOME/AutonomySim/external/gcc-${GCC_VERSION}/bin:\$PATH" | tee -a "${HOME}/.bashrc"
 
 echo 'GCC build completed successfully.'
 
