@@ -1811,7 +1811,7 @@
       "dateAdded": "2023-06-21",
       "popularity": 1388,
       "trending": 1528,
-      "defaultSort": 1278,
+      "defaultSort": 1281,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -1826,8 +1826,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 47252,
       "subsets": [
@@ -2001,7 +2001,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 1111,
       "trending": 1724,
-      "defaultSort": 1106,
+      "defaultSort": 1105,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -3593,8 +3593,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 143700,
       "subsets": [
@@ -3634,8 +3634,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 246632,
       "subsets": [
@@ -3660,7 +3660,7 @@
       "dateAdded": "2012-02-08",
       "popularity": 296,
       "trending": 996,
-      "defaultSort": 312,
+      "defaultSort": 311,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -4092,7 +4092,7 @@
       "dateAdded": "2022-02-24",
       "popularity": 1299,
       "trending": 1403,
-      "defaultSort": 1285,
+      "defaultSort": 1284,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -5724,7 +5724,7 @@
       "dateAdded": "2024-02-14",
       "popularity": 1578,
       "trending": 1779,
-      "defaultSort": 310,
+      "defaultSort": 315,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -5860,7 +5860,7 @@
       "dateAdded": "2024-02-14",
       "popularity": 1292,
       "trending": 1894,
-      "defaultSort": 344,
+      "defaultSort": 349,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -5932,7 +5932,7 @@
       "dateAdded": "2012-03-14",
       "popularity": 635,
       "trending": 117,
-      "defaultSort": 657,
+      "defaultSort": 656,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -6090,7 +6090,7 @@
       "dateAdded": "2013-03-05",
       "popularity": 291,
       "trending": 1498,
-      "defaultSort": 306,
+      "defaultSort": 305,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -6366,7 +6366,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1186,
       "trending": 148,
-      "defaultSort": 1176,
+      "defaultSort": 1175,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -6816,8 +6816,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 150788,
       "subsets": [
@@ -7135,8 +7135,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 126276,
       "subsets": [
@@ -7256,7 +7256,7 @@
       "dateAdded": "2016-12-06",
       "popularity": 346,
       "trending": 1912,
-      "defaultSort": 363,
+      "defaultSort": 362,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -7709,7 +7709,7 @@
       "dateAdded": "2015-06-17",
       "popularity": 1019,
       "trending": 1044,
-      "defaultSort": 1027,
+      "defaultSort": 1026,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -7878,7 +7878,7 @@
       "dateAdded": "2011-02-16",
       "popularity": 1203,
       "trending": 1244,
-      "defaultSort": 1193,
+      "defaultSort": 1192,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -8230,7 +8230,7 @@
       "dateAdded": "2012-04-04",
       "popularity": 328,
       "trending": 606,
-      "defaultSort": 345,
+      "defaultSort": 344,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -8306,7 +8306,7 @@
       "dateAdded": "2012-03-14",
       "popularity": 631,
       "trending": 557,
-      "defaultSort": 654,
+      "defaultSort": 653,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -8793,7 +8793,7 @@
       "dateAdded": "2018-12-11",
       "popularity": 625,
       "trending": 485,
-      "defaultSort": 647,
+      "defaultSort": 646,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -9055,8 +9055,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 498620,
       "subsets": [
@@ -9119,7 +9119,7 @@
       "dateAdded": "2023-06-21",
       "popularity": 1430,
       "trending": 476,
-      "defaultSort": 1274,
+      "defaultSort": 1276,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -9238,7 +9238,7 @@
       "dateAdded": "2016-12-02",
       "popularity": 1304,
       "trending": 1151,
-      "defaultSort": 1291,
+      "defaultSort": 1290,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -9439,8 +9439,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 134000,
       "subsets": [
@@ -9977,7 +9977,7 @@
       "dateAdded": "2016-01-20",
       "popularity": 734,
       "trending": 763,
-      "defaultSort": 753,
+      "defaultSort": 752,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -10193,7 +10193,7 @@
       "dateAdded": "2016-01-20",
       "popularity": 731,
       "trending": 333,
-      "defaultSort": 749,
+      "defaultSort": 748,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -11320,7 +11320,7 @@
       "dateAdded": "2023-06-21",
       "popularity": 1320,
       "trending": 335,
-      "defaultSort": 1284,
+      "defaultSort": 1287,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -11846,7 +11846,7 @@
       "dateAdded": "2021-01-05",
       "popularity": 565,
       "trending": 193,
-      "defaultSort": 588,
+      "defaultSort": 586,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -12861,8 +12861,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 381092,
       "subsets": [
@@ -12902,8 +12902,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 324558,
       "subsets": [
@@ -13708,8 +13708,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 81772,
       "subsets": [
@@ -13747,8 +13747,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 133728,
       "subsets": [
@@ -13811,7 +13811,7 @@
       "dateAdded": "2011-12-19",
       "popularity": 576,
       "trending": 1330,
-      "defaultSort": 601,
+      "defaultSort": 600,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -13853,7 +13853,7 @@
       "dateAdded": "2023-07-20",
       "popularity": 1366,
       "trending": 581,
-      "defaultSort": 1170,
+      "defaultSort": 1172,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -14870,8 +14870,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 202848,
       "subsets": [
@@ -15421,7 +15421,7 @@
       "dateAdded": "2020-02-11",
       "popularity": 736,
       "trending": 562,
-      "defaultSort": 755,
+      "defaultSort": 754,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -15917,7 +15917,7 @@
       "dateAdded": "2021-08-26",
       "popularity": 1140,
       "trending": 743,
-      "defaultSort": 1135,
+      "defaultSort": 1134,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -17068,7 +17068,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 1353,
       "trending": 1265,
-      "defaultSort": 1341,
+      "defaultSort": 1340,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -17509,7 +17509,7 @@
       "dateAdded": "2016-05-10",
       "popularity": 1354,
       "trending": 1760,
-      "defaultSort": 1342,
+      "defaultSort": 1341,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -17846,7 +17846,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1737,
       "trending": 1547,
-      "defaultSort": 1293,
+      "defaultSort": 1291,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -18356,8 +18356,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 279684,
       "subsets": [
@@ -18398,8 +18398,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 807248,
       "subsets": [
@@ -18494,7 +18494,7 @@
       "dateAdded": "2020-03-12",
       "popularity": 290,
       "trending": 994,
-      "defaultSort": 305,
+      "defaultSort": 304,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -18532,7 +18532,7 @@
       "dateAdded": "2011-01-06",
       "popularity": 564,
       "trending": 1581,
-      "defaultSort": 586,
+      "defaultSort": 585,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -18793,8 +18793,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 43392,
       "subsets": [
@@ -18953,8 +18953,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 43800,
       "subsets": [
@@ -19058,7 +19058,7 @@
       "dateAdded": "2010-12-20",
       "popularity": 566,
       "trending": 879,
-      "defaultSort": 589,
+      "defaultSort": 587,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -19073,8 +19073,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 218854,
       "subsets": [
@@ -19522,7 +19522,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 919,
       "trending": 824,
-      "defaultSort": 932,
+      "defaultSort": 931,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -19599,8 +19599,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 122072,
       "subsets": [
@@ -19681,7 +19681,7 @@
       "dateAdded": "2019-12-05",
       "popularity": 307,
       "trending": 633,
-      "defaultSort": 323,
+      "defaultSort": 322,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -20842,7 +20842,7 @@
       "dateAdded": "2023-07-20",
       "popularity": 1543,
       "trending": 1232,
-      "defaultSort": 1182,
+      "defaultSort": 1185,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -21176,8 +21176,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 65344,
       "subsets": [
@@ -21336,8 +21336,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 74692,
       "subsets": [
@@ -21376,8 +21376,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 77488,
       "subsets": [
@@ -21415,8 +21415,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 63052,
       "subsets": [
@@ -21454,8 +21454,8 @@
       "category": "Handwriting",
       "stroke": "Sans Serif",
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 34512,
       "subsets": [
@@ -21578,8 +21578,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 67240,
       "subsets": [
@@ -21723,7 +21723,7 @@
       "dateAdded": "2023-06-05",
       "popularity": 1536,
       "trending": 992,
-      "defaultSort": 1292,
+      "defaultSort": 1294,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -22230,7 +22230,7 @@
       "dateAdded": "2020-12-15",
       "popularity": 721,
       "trending": 287,
-      "defaultSort": 739,
+      "defaultSort": 738,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -22245,8 +22245,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 39928,
       "subsets": [
@@ -22394,8 +22394,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 53148,
       "subsets": [
@@ -22562,7 +22562,7 @@
       "dateAdded": "2012-07-11",
       "popularity": 1202,
       "trending": 1301,
-      "defaultSort": 1192,
+      "defaultSort": 1191,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -23282,7 +23282,7 @@
       "dateAdded": "2012-12-13",
       "popularity": 1290,
       "trending": 530,
-      "defaultSort": 1275,
+      "defaultSort": 1274,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -23929,8 +23929,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 76408,
       "subsets": [
@@ -23968,8 +23968,8 @@
       "category": "Sans Serif",
       "stroke": "Sans Serif",
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 53048,
       "subsets": [
@@ -24065,8 +24065,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 142188,
       "subsets": [
@@ -24330,8 +24330,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 1470272,
       "subsets": [
@@ -24371,8 +24371,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 38424,
       "subsets": [
@@ -25322,8 +25322,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 213852,
       "subsets": [
@@ -25384,7 +25384,7 @@
       "dateAdded": "2013-06-05",
       "popularity": 730,
       "trending": 1615,
-      "defaultSort": 748,
+      "defaultSort": 747,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -25660,8 +25660,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 1326792,
       "subsets": [
@@ -25937,7 +25937,7 @@
       "dateAdded": "2022-05-13",
       "popularity": 1214,
       "trending": 770,
-      "defaultSort": 1206,
+      "defaultSort": 1204,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -26574,7 +26574,7 @@
       ],
       "lastModified": "2022-09-21",
       "dateAdded": "2011-11-02",
-      "popularity": 793,
+      "popularity": 792,
       "trending": 1916,
       "defaultSort": 808,
       "androidFragment": null,
@@ -26635,8 +26635,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 184784,
       "subsets": [
@@ -26660,7 +26660,7 @@
       "dateAdded": "2011-12-19",
       "popularity": 1204,
       "trending": 95,
-      "defaultSort": 1194,
+      "defaultSort": 1193,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -26675,8 +26675,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 231608,
       "subsets": [
@@ -26716,8 +26716,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 38928,
       "subsets": [
@@ -26759,8 +26759,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 45788,
       "subsets": [
@@ -26802,8 +26802,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 43800,
       "subsets": [
@@ -26942,8 +26942,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 82960,
       "subsets": [
@@ -26973,7 +26973,7 @@
       "dateAdded": "2011-11-16",
       "popularity": 632,
       "trending": 846,
-      "defaultSort": 655,
+      "defaultSort": 654,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -27554,8 +27554,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 235540,
       "subsets": [
@@ -27799,8 +27799,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 734252,
       "subsets": [
@@ -28226,8 +28226,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 187776,
       "subsets": [
@@ -29552,7 +29552,7 @@
       "dateAdded": "2014-12-10",
       "popularity": 1400,
       "trending": 1243,
-      "defaultSort": 1380,
+      "defaultSort": 1379,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -29630,7 +29630,7 @@
       "dateAdded": "2019-12-05",
       "popularity": 1206,
       "trending": 1702,
-      "defaultSort": 1197,
+      "defaultSort": 1196,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -29806,8 +29806,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 59812,
       "subsets": [
@@ -29982,8 +29982,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 349672,
       "subsets": [
@@ -30123,8 +30123,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 37352,
       "subsets": [
@@ -30270,7 +30270,7 @@
       "dateAdded": "2023-01-05",
       "popularity": 572,
       "trending": 1681,
-      "defaultSort": 596,
+      "defaultSort": 595,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -30613,8 +30613,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 65012,
       "subsets": [
@@ -30653,8 +30653,8 @@
       "category": "Serif",
       "stroke": "Serif",
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 2342680,
       "subsets": [
@@ -30695,8 +30695,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 184074,
       "subsets": [
@@ -30846,8 +30846,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 122812,
       "subsets": [
@@ -30925,8 +30925,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 457588,
       "subsets": [
@@ -30969,8 +30969,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 136992,
       "subsets": [
@@ -31245,8 +31245,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 111544,
       "subsets": [
@@ -31582,8 +31582,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 163988,
       "subsets": [
@@ -31666,8 +31666,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 4385624,
       "subsets": [
@@ -32078,7 +32078,7 @@
       "dateAdded": "2023-07-20",
       "popularity": 1475,
       "trending": 1264,
-      "defaultSort": 1105,
+      "defaultSort": 1108,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -32116,7 +32116,7 @@
       "dateAdded": "2011-12-13",
       "popularity": 295,
       "trending": 837,
-      "defaultSort": 311,
+      "defaultSort": 310,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -32500,7 +32500,7 @@
       "dateAdded": "2023-11-20",
       "popularity": 1480,
       "trending": 1448,
-      "defaultSort": 752,
+      "defaultSort": 756,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -32549,7 +32549,7 @@
       "dateAdded": "2023-11-20",
       "popularity": 1531,
       "trending": 1553,
-      "defaultSort": 746,
+      "defaultSort": 750,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -32796,8 +32796,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 46624,
       "subsets": [
@@ -33265,8 +33265,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 110004,
       "subsets": [
@@ -33436,8 +33436,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 377368,
       "subsets": [
@@ -34627,7 +34627,7 @@
       "dateAdded": "2010-05-17",
       "popularity": 1179,
       "trending": 493,
-      "defaultSort": 1171,
+      "defaultSort": 1170,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -35143,8 +35143,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 154824,
       "subsets": [
@@ -35397,8 +35397,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 108196,
       "subsets": [
@@ -35436,8 +35436,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 159820,
       "subsets": [
@@ -35505,7 +35505,7 @@
       "dateAdded": "2012-01-11",
       "popularity": 1265,
       "trending": 1739,
-      "defaultSort": 1252,
+      "defaultSort": 1251,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -35732,8 +35732,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 162296,
       "subsets": [
@@ -36204,8 +36204,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 615340,
       "subsets": [
@@ -36327,7 +36327,7 @@
       "dateAdded": "2012-03-14",
       "popularity": 567,
       "trending": 97,
-      "defaultSort": 590,
+      "defaultSort": 589,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -36382,8 +36382,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 371384,
       "subsets": [
@@ -37467,7 +37467,7 @@
       "dateAdded": "2012-03-14",
       "popularity": 1112,
       "trending": 747,
-      "defaultSort": 1107,
+      "defaultSort": 1106,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -37980,7 +37980,7 @@
       "dateAdded": "2012-10-31",
       "popularity": 1291,
       "trending": 756,
-      "defaultSort": 1276,
+      "defaultSort": 1275,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -38523,7 +38523,7 @@
       "dateAdded": "2023-06-06",
       "popularity": 1529,
       "trending": 307,
-      "defaultSort": 1263,
+      "defaultSort": 1264,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -38917,7 +38917,7 @@
       "dateAdded": "2023-12-05",
       "popularity": 1001,
       "trending": 1009,
-      "defaultSort": 741,
+      "defaultSort": 740,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -39535,8 +39535,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 210672,
       "subsets": [
@@ -39575,8 +39575,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 66324,
       "subsets": [
@@ -39601,7 +39601,7 @@
       "dateAdded": "2016-06-20",
       "popularity": 1215,
       "trending": 355,
-      "defaultSort": 1207,
+      "defaultSort": 1206,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -39952,7 +39952,7 @@
       "dateAdded": "2011-03-02",
       "popularity": 1264,
       "trending": 944,
-      "defaultSort": 1251,
+      "defaultSort": 1250,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -40029,8 +40029,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 270704,
       "subsets": [
@@ -40230,7 +40230,7 @@
       "dateAdded": "2021-06-08",
       "popularity": 633,
       "trending": 1663,
-      "defaultSort": 656,
+      "defaultSort": 655,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -40543,7 +40543,7 @@
       "dateAdded": "2024-02-14",
       "popularity": 1412,
       "trending": 988,
-      "defaultSort": 360,
+      "defaultSort": 364,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -40619,8 +40619,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 268272,
       "subsets": [
@@ -40839,7 +40839,7 @@
       "dateAdded": "2011-03-02",
       "popularity": 329,
       "trending": 408,
-      "defaultSort": 346,
+      "defaultSort": 345,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -40960,8 +40960,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 47440,
       "subsets": [
@@ -41411,7 +41411,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 1301,
       "trending": 1426,
-      "defaultSort": 1287,
+      "defaultSort": 1286,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -41511,7 +41511,7 @@
       "dateAdded": "2020-07-22",
       "popularity": 292,
       "trending": 590,
-      "defaultSort": 307,
+      "defaultSort": 306,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -41566,8 +41566,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 59364,
       "subsets": [
@@ -41590,7 +41590,7 @@
       "dateAdded": "2011-06-08",
       "popularity": 573,
       "trending": 1109,
-      "defaultSort": 597,
+      "defaultSort": 596,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -41738,7 +41738,7 @@
       "dateAdded": "2023-01-18",
       "popularity": 1308,
       "trending": 201,
-      "defaultSort": 1297,
+      "defaultSort": 1296,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -41921,7 +41921,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 318,
       "trending": 575,
-      "defaultSort": 335,
+      "defaultSort": 334,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -42181,8 +42181,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 150132,
       "subsets": [
@@ -42271,8 +42271,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 69292,
       "subsets": [
@@ -42404,8 +42404,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 43212,
       "subsets": [
@@ -43420,8 +43420,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 22380,
       "subsets": [
@@ -43459,8 +43459,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 48056,
       "subsets": [
@@ -43498,8 +43498,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 14800,
       "subsets": [
@@ -43537,8 +43537,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 17396,
       "subsets": [
@@ -43576,8 +43576,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 35280,
       "subsets": [
@@ -43598,7 +43598,7 @@
       ],
       "lastModified": "2023-08-25",
       "dateAdded": "2017-08-21",
-      "popularity": 792,
+      "popularity": 793,
       "trending": 41,
       "defaultSort": 554,
       "androidFragment": null,
@@ -43615,8 +43615,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 22984,
       "subsets": [
@@ -43654,8 +43654,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 72692,
       "subsets": [
@@ -44065,8 +44065,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 154512,
       "subsets": [
@@ -44260,7 +44260,7 @@
       "dateAdded": "2011-05-25",
       "popularity": 571,
       "trending": 882,
-      "defaultSort": 595,
+      "defaultSort": 594,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -44319,8 +44319,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 134384,
       "subsets": [
@@ -44537,7 +44537,7 @@
       "dateAdded": "2023-07-20",
       "popularity": 1627,
       "trending": 744,
-      "defaultSort": 1174,
+      "defaultSort": 1176,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -44697,8 +44697,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 4951804,
       "subsets": [
@@ -45266,8 +45266,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 168004,
       "subsets": [
@@ -45307,8 +45307,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 271924,
       "subsets": [
@@ -45347,8 +45347,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 28252,
       "subsets": [
@@ -45386,8 +45386,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 110424,
       "subsets": [
@@ -45427,8 +45427,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 73320,
       "subsets": [
@@ -45714,8 +45714,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 387952,
       "subsets": [
@@ -46317,8 +46317,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 48776,
       "subsets": [
@@ -46356,8 +46356,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 33016,
       "subsets": [
@@ -46660,7 +46660,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 570,
       "trending": 1461,
-      "defaultSort": 594,
+      "defaultSort": 593,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -46919,7 +46919,7 @@
       "dateAdded": "2014-12-10",
       "popularity": 308,
       "trending": 300,
-      "defaultSort": 324,
+      "defaultSort": 323,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -47296,8 +47296,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 83664,
       "subsets": [
@@ -47433,7 +47433,7 @@
       "dateAdded": "2022-10-06",
       "popularity": 1305,
       "trending": 874,
-      "defaultSort": 1294,
+      "defaultSort": 1292,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -48089,8 +48089,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 162232,
       "subsets": [
@@ -48130,8 +48130,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 128264,
       "subsets": [
@@ -48154,7 +48154,7 @@
       "dateAdded": "2011-02-02",
       "popularity": 737,
       "trending": 1677,
-      "defaultSort": 756,
+      "defaultSort": 755,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -48169,8 +48169,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 148712,
       "subsets": [
@@ -48781,7 +48781,7 @@
       "dateAdded": "2011-12-07",
       "popularity": 720,
       "trending": 110,
-      "defaultSort": 738,
+      "defaultSort": 737,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -48899,7 +48899,7 @@
       "dateAdded": "2024-02-14",
       "popularity": 1598,
       "trending": 196,
-      "defaultSort": 320,
+      "defaultSort": 325,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -49154,8 +49154,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 45824,
       "subsets": [
@@ -49222,7 +49222,7 @@
       "dateAdded": "2016-06-20",
       "popularity": 624,
       "trending": 1160,
-      "defaultSort": 646,
+      "defaultSort": 645,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -49386,7 +49386,7 @@
       "dateAdded": "2016-06-15",
       "popularity": 288,
       "trending": 401,
-      "defaultSort": 303,
+      "defaultSort": 302,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -49722,7 +49722,7 @@
       "dateAdded": "2023-06-05",
       "popularity": 1506,
       "trending": 337,
-      "defaultSort": 1295,
+      "defaultSort": 1297,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -49774,8 +49774,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 50964,
       "subsets": [
@@ -49975,8 +49975,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 54288,
       "subsets": [
@@ -50140,8 +50140,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 393456,
       "subsets": [
@@ -50181,8 +50181,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 77132,
       "subsets": [
@@ -50638,8 +50638,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 276360,
       "subsets": [
@@ -50664,7 +50664,7 @@
       "dateAdded": "2021-11-18",
       "popularity": 1192,
       "trending": 1385,
-      "defaultSort": 1183,
+      "defaultSort": 1182,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -50994,8 +50994,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 42384,
       "subsets": [
@@ -51281,7 +51281,7 @@
       "dateAdded": "2017-02-13",
       "popularity": 297,
       "trending": 1031,
-      "defaultSort": 313,
+      "defaultSort": 312,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -51766,8 +51766,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 145468,
       "subsets": [
@@ -51807,8 +51807,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 279224,
       "subsets": [
@@ -52031,7 +52031,7 @@
       "dateAdded": "2024-02-14",
       "popularity": 1628,
       "trending": 1734,
-      "defaultSort": 331,
+      "defaultSort": 336,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -52316,7 +52316,7 @@
       "dateAdded": "2023-06-27",
       "popularity": 1676,
       "trending": 1465,
-      "defaultSort": 1204,
+      "defaultSort": 1202,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -52331,8 +52331,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 276228,
       "subsets": [
@@ -52897,7 +52897,7 @@
       "dateAdded": "2018-09-10",
       "popularity": 306,
       "trending": 166,
-      "defaultSort": 321,
+      "defaultSort": 320,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -53196,8 +53196,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 34920,
       "subsets": [
@@ -54256,7 +54256,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1113,
       "trending": 1915,
-      "defaultSort": 1108,
+      "defaultSort": 1107,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -55209,7 +55209,7 @@
       "dateAdded": "2023-05-23",
       "popularity": 1696,
       "trending": 1629,
-      "defaultSort": 1280,
+      "defaultSort": 1279,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -55361,7 +55361,7 @@
       "dateAdded": "2023-07-10",
       "popularity": 1620,
       "trending": 1914,
-      "defaultSort": 1202,
+      "defaultSort": 1205,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -56882,7 +56882,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1645,
       "trending": 43,
-      "defaultSort": 603,
+      "defaultSort": 602,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -57710,7 +57710,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1212,
       "trending": 167,
-      "defaultSort": 1203,
+      "defaultSort": 1201,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -57809,7 +57809,7 @@
       "dateAdded": "2022-09-05",
       "popularity": 729,
       "trending": 871,
-      "defaultSort": 747,
+      "defaultSort": 746,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -58309,9 +58309,9 @@
       ],
       "lastModified": "2023-10-25",
       "dateAdded": "2020-11-19",
-      "popularity": 1756,
+      "popularity": 1755,
       "trending": 834,
-      "defaultSort": 1605,
+      "defaultSort": 1606,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -59278,7 +59278,7 @@
       "dateAdded": "2023-05-08",
       "popularity": 1658,
       "trending": 1393,
-      "defaultSort": 1340,
+      "defaultSort": 1342,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -59316,7 +59316,7 @@
       "dateAdded": "2023-05-08",
       "popularity": 1624,
       "trending": 1538,
-      "defaultSort": 1345,
+      "defaultSort": 1347,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -61138,7 +61138,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 1300,
       "trending": 1377,
-      "defaultSort": 1286,
+      "defaultSort": 1285,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -61324,7 +61324,7 @@
       "dateAdded": "2023-07-10",
       "popularity": 1731,
       "trending": 1406,
-      "defaultSort": 1191,
+      "defaultSort": 1194,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -61771,7 +61771,7 @@
       "dateAdded": "2020-11-19",
       "popularity": 315,
       "trending": 500,
-      "defaultSort": 332,
+      "defaultSort": 331,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -61872,7 +61872,7 @@
       "dateAdded": "2022-09-11",
       "popularity": 1528,
       "trending": 30,
-      "defaultSort": 322,
+      "defaultSort": 321,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -62538,9 +62538,9 @@
       ],
       "lastModified": "2022-09-27",
       "dateAdded": "2020-11-19",
-      "popularity": 1755,
+      "popularity": 1756,
       "trending": 1078,
-      "defaultSort": 1606,
+      "defaultSort": 1605,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -64232,7 +64232,7 @@
       "dateAdded": "2023-07-10",
       "popularity": 1694,
       "trending": 608,
-      "defaultSort": 1196,
+      "defaultSort": 1197,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -64909,7 +64909,7 @@
       "dateAdded": "2023-06-21",
       "popularity": 1587,
       "trending": 1504,
-      "defaultSort": 1249,
+      "defaultSort": 1252,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [],
@@ -65928,7 +65928,7 @@
       "dateAdded": "2024-02-14",
       "popularity": 1674,
       "trending": 1921,
-      "defaultSort": 302,
+      "defaultSort": 307,
       "androidFragment": null,
       "isNoto": true,
       "colorCapabilities": [
@@ -65968,7 +65968,7 @@
       "dateAdded": "2011-03-23",
       "popularity": 1185,
       "trending": 1839,
-      "defaultSort": 1175,
+      "defaultSort": 1174,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -67234,7 +67234,7 @@
       "dateAdded": "2021-11-26",
       "popularity": 722,
       "trending": 1562,
-      "defaultSort": 740,
+      "defaultSort": 739,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -67398,7 +67398,7 @@
       "dateAdded": "2012-08-20",
       "popularity": 568,
       "trending": 1299,
-      "defaultSort": 591,
+      "defaultSort": 590,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -67437,7 +67437,7 @@
       "dateAdded": "2023-06-05",
       "popularity": 1548,
       "trending": 145,
-      "defaultSort": 1290,
+      "defaultSort": 1293,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -67527,8 +67527,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 83660,
       "subsets": [
@@ -67861,8 +67861,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 47508,
       "subsets": [
@@ -68219,7 +68219,7 @@
       "dateAdded": "2016-12-02",
       "popularity": 563,
       "trending": 1792,
-      "defaultSort": 585,
+      "defaultSort": 584,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -68466,7 +68466,7 @@
       "dateAdded": "2012-02-29",
       "popularity": 299,
       "trending": 154,
-      "defaultSort": 315,
+      "defaultSort": 314,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -69096,7 +69096,7 @@
       "dateAdded": "2012-10-26",
       "popularity": 1139,
       "trending": 915,
-      "defaultSort": 1134,
+      "defaultSort": 1133,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -69135,7 +69135,7 @@
       "dateAdded": "2012-01-25",
       "popularity": 332,
       "trending": 1204,
-      "defaultSort": 349,
+      "defaultSort": 348,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -69240,8 +69240,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 149128,
       "subsets": [
@@ -69829,8 +69829,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 143236,
       "subsets": [
@@ -69870,8 +69870,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 175068,
       "subsets": [
@@ -70183,7 +70183,7 @@
       "dateAdded": "2023-01-30",
       "popularity": 1356,
       "trending": 1045,
-      "defaultSort": 1346,
+      "defaultSort": 1345,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -70397,8 +70397,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 146484,
       "subsets": [
@@ -70528,7 +70528,7 @@
       "dateAdded": "2023-09-26",
       "popularity": 1056,
       "trending": 1918,
-      "defaultSort": 1023,
+      "defaultSort": 1027,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -70567,7 +70567,7 @@
       "dateAdded": "2011-12-13",
       "popularity": 1357,
       "trending": 1726,
-      "defaultSort": 1347,
+      "defaultSort": 1346,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -70742,8 +70742,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 190720,
       "subsets": [
@@ -71178,7 +71178,7 @@
         "Veronika Burian",
         "José Scaglione"
       ],
-      "lastModified": "2024-05-02",
+      "lastModified": "2024-05-06",
       "dateAdded": "2023-09-06",
       "popularity": 1312,
       "trending": 377,
@@ -71459,7 +71459,7 @@
       "dateAdded": "2012-02-29",
       "popularity": 289,
       "trending": 1431,
-      "defaultSort": 304,
+      "defaultSort": 303,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -71497,7 +71497,7 @@
       "dateAdded": "2011-09-28",
       "popularity": 627,
       "trending": 734,
-      "defaultSort": 649,
+      "defaultSort": 648,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -72091,8 +72091,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 694316,
       "subsets": [
@@ -72325,8 +72325,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 272628,
       "subsets": [
@@ -72994,8 +72994,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 167944,
       "subsets": [
@@ -73245,7 +73245,7 @@
       "dateAdded": "2011-12-19",
       "popularity": 347,
       "trending": 922,
-      "defaultSort": 364,
+      "defaultSort": 363,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -73507,8 +73507,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 87336,
       "subsets": [
@@ -73548,8 +73548,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 193576,
       "subsets": [
@@ -73580,7 +73580,7 @@
       "dateAdded": "2021-11-26",
       "popularity": 1016,
       "trending": 1349,
-      "defaultSort": 1024,
+      "defaultSort": 1023,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -74338,7 +74338,7 @@
       "dateAdded": "2014-12-10",
       "popularity": 343,
       "trending": 533,
-      "defaultSort": 361,
+      "defaultSort": 360,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -74510,7 +74510,7 @@
       "dateAdded": "2021-06-08",
       "popularity": 917,
       "trending": 1633,
-      "defaultSort": 930,
+      "defaultSort": 929,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -74564,8 +74564,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 44832,
       "subsets": [
@@ -74588,7 +74588,7 @@
       "dateAdded": "2011-10-12",
       "popularity": 579,
       "trending": 1456,
-      "defaultSort": 604,
+      "defaultSort": 603,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -74603,8 +74603,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 123208,
       "subsets": [
@@ -75337,7 +75337,7 @@
       "dateAdded": "2019-04-09",
       "popularity": 316,
       "trending": 842,
-      "defaultSort": 333,
+      "defaultSort": 332,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -75423,8 +75423,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 15920,
       "subsets": [
@@ -75829,8 +75829,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 79220,
       "subsets": [
@@ -76043,8 +76043,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 147036,
       "subsets": [
@@ -76206,7 +76206,7 @@
       "dateAdded": "2023-12-04",
       "popularity": 1248,
       "trending": 140,
-      "defaultSort": 737,
+      "defaultSort": 741,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -77329,8 +77329,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 37144,
       "subsets": [
@@ -77407,8 +77407,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 124372,
       "subsets": [
@@ -77431,7 +77431,7 @@
       "dateAdded": "2011-01-06",
       "popularity": 345,
       "trending": 432,
-      "defaultSort": 362,
+      "defaultSort": 361,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -77655,7 +77655,7 @@
       "dateAdded": "2012-08-13",
       "popularity": 1263,
       "trending": 109,
-      "defaultSort": 1250,
+      "defaultSort": 1249,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -77857,8 +77857,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 46752,
       "subsets": [
@@ -78234,7 +78234,7 @@
       "dateAdded": "2023-12-13",
       "popularity": 1686,
       "trending": 1239,
-      "defaultSort": 587,
+      "defaultSort": 592,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -78451,7 +78451,7 @@
       "dateAdded": "2023-12-13",
       "popularity": 1025,
       "trending": 1423,
-      "defaultSort": 645,
+      "defaultSort": 649,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -78496,7 +78496,7 @@
       "dateAdded": "2023-12-13",
       "popularity": 1562,
       "trending": 1126,
-      "defaultSort": 600,
+      "defaultSort": 605,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -78715,7 +78715,7 @@
       "dateAdded": "2023-12-13",
       "popularity": 1711,
       "trending": 1196,
-      "defaultSort": 584,
+      "defaultSort": 588,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -78760,7 +78760,7 @@
       "dateAdded": "2023-12-13",
       "popularity": 1639,
       "trending": 1046,
-      "defaultSort": 592,
+      "defaultSort": 597,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -79015,7 +79015,7 @@
       "dateAdded": "2023-03-31",
       "popularity": 1607,
       "trending": 1511,
-      "defaultSort": 1379,
+      "defaultSort": 1380,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -79103,7 +79103,7 @@
       "dateAdded": "2023-12-13",
       "popularity": 944,
       "trending": 183,
-      "defaultSort": 653,
+      "defaultSort": 657,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -79414,8 +79414,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 329956,
       "subsets": [
@@ -79617,8 +79617,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 71856,
       "subsets": [
@@ -79699,7 +79699,7 @@
       "dateAdded": "2023-08-07",
       "popularity": 1556,
       "trending": 1751,
-      "defaultSort": 1133,
+      "defaultSort": 1135,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -79846,8 +79846,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 79696,
       "subsets": [
@@ -79953,7 +79953,7 @@
       "dateAdded": "2011-12-19",
       "popularity": 1018,
       "trending": 1869,
-      "defaultSort": 1026,
+      "defaultSort": 1025,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -80282,7 +80282,7 @@
       "dateAdded": "2017-07-31",
       "popularity": 330,
       "trending": 66,
-      "defaultSort": 347,
+      "defaultSort": 346,
       "androidFragment": "name\u003dSaira\u0026width\u003d62.5",
       "isNoto": false,
       "colorCapabilities": [],
@@ -80492,7 +80492,7 @@
       "dateAdded": "2012-10-31",
       "popularity": 298,
       "trending": 1684,
-      "defaultSort": 314,
+      "defaultSort": 313,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -80885,8 +80885,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 96104,
       "subsets": [
@@ -80980,7 +80980,7 @@
       "dateAdded": "2014-09-03",
       "popularity": 920,
       "trending": 1479,
-      "defaultSort": 933,
+      "defaultSort": 932,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -80995,8 +80995,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 162820,
       "subsets": [
@@ -81036,8 +81036,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 47928,
       "subsets": [
@@ -81195,7 +81195,7 @@
       "dateAdded": "2012-07-30",
       "popularity": 626,
       "trending": 1603,
-      "defaultSort": 648,
+      "defaultSort": 647,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -81452,8 +81452,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 117072,
       "subsets": [
@@ -81655,8 +81655,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 140148,
       "subsets": [
@@ -81765,8 +81765,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 127692,
       "subsets": [
@@ -81806,8 +81806,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 162872,
       "subsets": [
@@ -81886,8 +81886,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 54304,
       "subsets": [
@@ -81925,8 +81925,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 39396,
       "subsets": [
@@ -81965,8 +81965,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 220724,
       "subsets": [
@@ -83027,8 +83027,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 816524,
       "subsets": [
@@ -83308,7 +83308,7 @@
       "dateAdded": "2014-05-30",
       "popularity": 921,
       "trending": 1375,
-      "defaultSort": 934,
+      "defaultSort": 933,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -83398,8 +83398,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 171736,
       "subsets": [
@@ -83462,7 +83462,7 @@
       "dateAdded": "2011-08-03",
       "popularity": 1294,
       "trending": 1484,
-      "defaultSort": 1279,
+      "defaultSort": 1278,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -83477,8 +83477,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 364436,
       "subsets": [
@@ -83598,7 +83598,7 @@
       "dateAdded": "2021-12-17",
       "popularity": 1295,
       "trending": 1449,
-      "defaultSort": 1281,
+      "defaultSort": 1280,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -83832,7 +83832,7 @@
       "dateAdded": "2011-12-19",
       "popularity": 319,
       "trending": 1223,
-      "defaultSort": 336,
+      "defaultSort": 335,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -84357,7 +84357,7 @@
       "dateAdded": "2022-11-16",
       "popularity": 578,
       "trending": 1778,
-      "defaultSort": 602,
+      "defaultSort": 601,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -84634,7 +84634,7 @@
       "dateAdded": "2018-08-06",
       "popularity": 918,
       "trending": 1655,
-      "defaultSort": 931,
+      "defaultSort": 930,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -84722,7 +84722,7 @@
       "dateAdded": "2023-10-17",
       "popularity": 1399,
       "trending": 1327,
-      "defaultSort": 929,
+      "defaultSort": 934,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -85917,7 +85917,7 @@
       "dateAdded": "2011-09-28",
       "popularity": 569,
       "trending": 259,
-      "defaultSort": 593,
+      "defaultSort": 591,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -85970,8 +85970,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 1473200,
       "subsets": [
@@ -86219,8 +86219,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 130916,
       "subsets": [
@@ -86297,8 +86297,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 319896,
       "subsets": [
@@ -86324,7 +86324,7 @@
       "dateAdded": "2015-07-01",
       "popularity": 309,
       "trending": 804,
-      "defaultSort": 325,
+      "defaultSort": 324,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -86426,8 +86426,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 75356,
       "subsets": [
@@ -86783,7 +86783,7 @@
       "dateAdded": "2012-08-03",
       "popularity": 1193,
       "trending": 1470,
-      "defaultSort": 1184,
+      "defaultSort": 1183,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -86837,8 +86837,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 603164,
       "subsets": [
@@ -86917,8 +86917,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 60728,
       "subsets": [
@@ -87941,7 +87941,7 @@
       "dateAdded": "2013-02-27",
       "popularity": 1017,
       "trending": 1575,
-      "defaultSort": 1025,
+      "defaultSort": 1024,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -88494,7 +88494,7 @@
       "dateAdded": "2012-10-31",
       "popularity": 1194,
       "trending": 812,
-      "defaultSort": 1185,
+      "defaultSort": 1184,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -88724,8 +88724,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 53364,
       "subsets": [
@@ -88763,8 +88763,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 158298,
       "subsets": [
@@ -89211,7 +89211,7 @@
       "dateAdded": "2022-05-25",
       "popularity": 1181,
       "trending": 1865,
-      "defaultSort": 1172,
+      "defaultSort": 1171,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -90625,7 +90625,7 @@
       "dateAdded": "2011-08-03",
       "popularity": 1277,
       "trending": 1218,
-      "defaultSort": 1264,
+      "defaultSort": 1263,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -90709,8 +90709,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 310488,
       "subsets": [
@@ -91233,7 +91233,7 @@
       "dateAdded": "2011-05-09",
       "popularity": 331,
       "trending": 477,
-      "defaultSort": 348,
+      "defaultSort": 347,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -91456,8 +91456,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 42688,
       "subsets": [
@@ -91495,8 +91495,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 88508,
       "subsets": [
@@ -91534,8 +91534,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 191692,
       "subsets": [
@@ -91603,7 +91603,7 @@
       "dateAdded": "2011-11-30",
       "popularity": 1307,
       "trending": 1879,
-      "defaultSort": 1296,
+      "defaultSort": 1295,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -91675,8 +91675,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 120868,
       "subsets": [
@@ -92546,7 +92546,7 @@
       "dateAdded": "2011-08-17",
       "popularity": 317,
       "trending": 1246,
-      "defaultSort": 334,
+      "defaultSort": 333,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -92942,8 +92942,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 333472,
       "subsets": [
@@ -92983,8 +92983,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 59240,
       "subsets": [
@@ -93060,8 +93060,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 153836,
       "subsets": [
@@ -93099,8 +93099,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 70272,
       "subsets": [
@@ -93139,8 +93139,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 332028,
       "subsets": [
@@ -93180,8 +93180,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 521348,
       "subsets": [
@@ -93221,8 +93221,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 95348,
       "subsets": [
@@ -93410,8 +93410,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 134852,
       "subsets": [
@@ -93451,8 +93451,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 271924,
       "subsets": [
@@ -94185,8 +94185,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 89304,
       "subsets": [
@@ -94226,8 +94226,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 146960,
       "subsets": [
@@ -94267,8 +94267,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 192612,
       "subsets": [
@@ -94308,8 +94308,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Symbols",
-        "Display"
+        "Display",
+        "Symbols"
       ],
       "size": 303268,
       "subsets": [
@@ -94389,8 +94389,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 62216,
       "subsets": [
@@ -94509,8 +94509,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 64856,
       "subsets": [
@@ -94533,7 +94533,7 @@
       "dateAdded": "2011-12-19",
       "popularity": 580,
       "trending": 904,
-      "defaultSort": 605,
+      "defaultSort": 604,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -94612,7 +94612,7 @@
       "dateAdded": "2023-09-26",
       "popularity": 732,
       "trending": 172,
-      "defaultSort": 750,
+      "defaultSort": 749,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -95065,7 +95065,7 @@
       "dateAdded": "2023-06-21",
       "popularity": 1358,
       "trending": 348,
-      "defaultSort": 1205,
+      "defaultSort": 1207,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -95351,7 +95351,7 @@
       "dateAdded": "2023-06-21",
       "popularity": 1389,
       "trending": 256,
-      "defaultSort": 1201,
+      "defaultSort": 1203,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -95984,7 +95984,7 @@
       "dateAdded": "2021-08-31",
       "popularity": 735,
       "trending": 731,
-      "defaultSort": 754,
+      "defaultSort": 753,
       "androidFragment": null,
       "isNoto": false,
       "colorCapabilities": [],
@@ -95999,8 +95999,8 @@
       "category": "Display",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 44240,
       "subsets": [
@@ -96214,8 +96214,8 @@
       "category": "Handwriting",
       "stroke": null,
       "classifications": [
-        "Handwriting",
-        "Display"
+        "Display",
+        "Handwriting"
       ],
       "size": 63064,
       "subsets": [
