@@ -40,13 +40,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: "Set gcc version output"
+        id: gcc-version
+        run: |
+          echo "::set-output name=version::${GCC_VERSION}"
+
       - name: "Cache GCC build"
-        id: cache-gcc
+        id: gcc-cache
         uses: actions/cache@v4
         with:
           path: |
-            "**/external/gcc/gcc-${GCC_VERSION}"
-          key: ${{ runner.os }}-gcc-${{ hashFiles('**/external/gcc/gcc-${GCC_VERSION}/*') }}
+            "**/external/gcc"
+          key: ${{ runner.os }}-gcc-${{steps.gcc-version.outputs.version}}
           restore-keys: |
             ${{ runner.os }}-gcc-
 
