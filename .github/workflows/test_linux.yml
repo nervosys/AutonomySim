@@ -40,25 +40,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Set gcc version output"
+      - name: "Set GCC version output"
         id: gcc-version
         run: |
-          echo "::set-output name=version::${GCC_VERSION}"
+          echo "::set-output version=version::${GCC_VERSION}"
 
       - name: "Cache GCC build"
         id: gcc-cache
         uses: actions/cache@v4
         with:
-          path: |
-            "**/external/gcc"
+          path: "external/gcc/gcc-${{steps.gcc-version.outputs.version}}"
           key: ${{ runner.os }}-gcc-${{steps.gcc-version.outputs.version}}
-          restore-keys: |
-            ${{ runner.os }}-gcc-
 
-      #- name: "Build GCC from source"
-      #  if: steps.cache-gcc.outputs.cache-hit != 'true'
-      #  shell: bash
-      #  run: bash ./scripts/build_gcc.sh --version "$GCC_VERSION"
+      - name: "Build GCC from source"
+        if: steps.gcc-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: bash ./scripts/build_gcc.sh --version "$GCC_VERSION"
 
       - name: "Install AutonomySim Dependencies"
         shell: bash
