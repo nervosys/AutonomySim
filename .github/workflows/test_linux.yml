@@ -40,20 +40,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "Set GCC version output"
-        id: gcc-version
-        run: |
-          echo "::set-output version=version::${GCC_VERSION}"
-
       - name: "Cache GCC build"
         id: gcc-cache
         uses: actions/cache@v4
         with:
-          path: "external/gcc/gcc-${{steps.gcc-version.outputs.version}}"
-          key: ${{ runner.os }}-gcc-${{steps.gcc-version.outputs.version}}
+          path: "./external/gcc/gcc-${GCC_VERSION}"
+          key: "${{runner.os}}-gcc-${GCC_VERSION}"
 
       - name: "Build GCC from source"
-        if: steps.gcc-cache.outputs.cache-hit != 'true'
+        if: ${{steps.gcc-cache.outputs.cache-hit}} != 'true'
         shell: bash
         run: bash ./scripts/build_gcc.sh --version "$GCC_VERSION"
 
