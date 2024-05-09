@@ -3,7 +3,7 @@
     <img src="./media/images/autonomysim_simple_bw_1000w.png" width="600vw" alt="AutonomySim logo">
 </p>
 
-<h1 align="center">The simulation engine for autonomous systems</h1>
+<h1 align="center">The simulation engine for robotic general intelligence</h1>
 
 <p align="center" width="100%">
   <a alt="Windows Build"
