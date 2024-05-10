@@ -79,7 +79,7 @@ macro(CommonSetup)
         elseif("${BUILD_TYPE}" STREQUAL "release")
           set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MD /O2 /Oi /GL /Gm- /Gy /TP ")
         else()
-          message(FATAL_ERROR "Please specify '-D CMAKE_BUILD_TYPE=Debug' or 'Release' on the cmake command line")
+          message(FATAL_ERROR "Please specify '-D CMAKE_BUILD_TYPE=Debug||Release' on the cmake command line")
         endif()
     endif()
     
