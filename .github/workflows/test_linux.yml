@@ -46,7 +46,6 @@ jobs:
         with:
           path: "./external/gcc/gcc-${{env.GCC_VERSION}}"
           key: ${{ runner.os }}-gcc-${{ hashFiles('**/bin/gcc') }}
-          #key: "${{runner.os}}-gcc-${{env.GCC_VERSION}}"
 
       - name: "Build GCC from source"
         if: ${{steps.gcc-cache.outputs.cache-hit}} != 'true'
