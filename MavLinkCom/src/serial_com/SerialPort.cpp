@@ -5,7 +5,7 @@
 
 #ifdef _WIN32
 #include "Windows.h"
-#include "common/utils/Utils.hpp"
+#include "../../common/utils/Utils.hpp"
 #include <Wbemidl.h>
 #include <comdef.h>
 #include <string>

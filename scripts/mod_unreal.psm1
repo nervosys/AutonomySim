@@ -30,7 +30,7 @@ Import-Module "${SCRIPT_DIR}\mod_unreal_env.psm1"
 ### Variables
 ###
 
-[Version]$UNREAL_VERSION = '5.3'
+[Version]$UNREAL_VERSION = '5.4'
 
 [Version]$UNREAL_ASSET_VERSION = '1.2.0'
 [String]$UNREAL_ASSET_VERSION_STRING = Get-VersionMajorMinorBuild -Version $UNREAL_ASSET_VERSION

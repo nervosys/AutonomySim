@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 #include "Semaphore.hpp"
-#include "common/utils/Utils.hpp"
+#include "../common/utils/Utils.hpp"
 
 using namespace mavlink_utils;
 

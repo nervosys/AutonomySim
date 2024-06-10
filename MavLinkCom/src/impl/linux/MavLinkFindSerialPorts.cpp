@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 #include "MavLinkConnection.hpp"
-#include "common/utils/Utils.hpp"
+#include "../../../common/utils/Utils.hpp"
 
 #include <codecvt>
 #include <cstdio>

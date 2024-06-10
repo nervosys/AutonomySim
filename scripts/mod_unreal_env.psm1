@@ -31,7 +31,7 @@ Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 ### Variables
 ###
 
-[Version]$UNREAL_VERSION = '5.3'
+[Version]$UNREAL_VERSION = '5.4'
 
 ###
 ### Functions

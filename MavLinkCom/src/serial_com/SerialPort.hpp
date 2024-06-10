@@ -5,7 +5,7 @@
 #define SERIAL_COM_SERIALPORT_HPP
 
 #include "Port.h"
-#include "common/utils/Utils.hpp"
+#include "../../common/utils/Utils.hpp"
 #include <memory>
 #include <string>
 

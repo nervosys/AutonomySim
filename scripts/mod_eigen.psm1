@@ -27,7 +27,7 @@ Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 ### Variables
 ###
 
-[String]$EIGEN_VERSION = '3.3.7'
+[String]$EIGEN_VERSION = '3.4.0'
 [String]$EIGEN_DIR = '.\AutonomyLib\deps\eigen3'
 [String]$EIGEN_URL = "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_VERSION}/eigen-${EIGEN_VERSION}.zip"
 

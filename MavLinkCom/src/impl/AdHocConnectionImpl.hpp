@@ -14,7 +14,7 @@
 // #include "MavLinkMessageBase.hpp"
 #include "../serial_com/TcpClientPort.hpp"
 #include "Semaphore.hpp"
-#include "common/utils/StrictMode.hpp"
+#include "../../common/utils/StrictMode.hpp"
 #define MAVLINK_PACKED
 
 STRICT_MODE_OFF

@@ -4,8 +4,8 @@
 #include "MavLinkNodeImpl.hpp"
 #include "MavLinkMessages.hpp"
 #include "Semaphore.hpp"
-#include "common/utils/ThreadUtils.hpp"
-#include "common/utils/Utils.hpp"
+#include "../../common/utils/ThreadUtils.hpp"
+#include "../../common/utils/Utils.hpp"
 
 using namespace mavlink_utils;
 using namespace mavlinkcom_impl;

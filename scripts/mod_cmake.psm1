@@ -27,7 +27,7 @@ Import-Module "${SCRIPT_DIR}\mod_utils.psm1"
 ### Variables
 ###
 
-[Version]$CMAKE_VERSION = '3.29.2'
+[Version]$CMAKE_VERSION = '3.29.5'
 [Version]$CMAKE_VERSION_MINIMUM = '3.14'
 
 ###

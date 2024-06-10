@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-#include "common/utils/StrictMode.hpp"
+#include "../common/utils/StrictMode.hpp"
 
 STRICT_MODE_OFF
 #define MAVLINK_PACKED
@@ -12,7 +12,7 @@ STRICT_MODE_ON
 
 #include "MavLinkConnection.hpp"
 #include "MavLinkMessageBase.hpp"
-#include "common/utils/Utils.hpp"
+#include "../common/utils/Utils.hpp"
 #include <cmath>
 #include <sstream>
 

@@ -5,7 +5,7 @@
 #include "../serial_com/SerialPort.hpp"
 #include "../serial_com/UdpClientPort.hpp"
 #include "MavLinkConnection.hpp"
-#include "common/utils/Utils.hpp"
+#include "../../common/utils/Utils.hpp"
 #include <cstring>
 #include <exception>
 

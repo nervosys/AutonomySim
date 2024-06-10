@@ -3,7 +3,7 @@
 
 #include "MavLinkVideoStreamImpl.hpp"
 #include "MavLinkMessages.hpp"
-#include "common/utils/Utils.hpp"
+#include "../../common/utils/Utils.hpp"
 #include <chrono>
 
 #define PACKET_PAYLOAD 253 // hard coded in MavLink code - do not change

@@ -9,7 +9,7 @@
 #include "MavLinkMessages.hpp"
 #include "MavLinkNodeImpl.hpp"
 #include "VehicleState.hpp"
-#include "common/utils/Utils.hpp"
+#include "../../common/utils/Utils.hpp"
 
 #include "../serial_com/Port.h"
 #include "AsyncResult.hpp"
