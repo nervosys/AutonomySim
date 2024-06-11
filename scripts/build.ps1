@@ -8,6 +8,7 @@ AUTHOR:
 DATE:
   2024-02-27
 PARAMETERS:
+  - ProjectDir:     $PWD
   - BuildMode:      [ Debug | Release | RelWithDebInfo ]
   - CmakeGenerator: [ Visual Studio 17 2022 | Visual Studio 16 2019 ]
   - BuildDocs:      Enable to build and serve AutonomySim documentation.
