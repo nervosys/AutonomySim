@@ -1,0 +1,46 @@
+WEAPONS & MUNITIONS 3D MODELS
+═══════════════════════════════════════════════════════════════
+
+LOITERING MUNITIONS:
+
+1. SWITCHBLADE (US)
+   • https://sketchfab.com/3d-models/switchblade-300
+   • https://www.cgtrader.com/3d-models/aircraft/military/switchblade-uav
+   
+2. HERO SERIES (Israel)
+   • https://sketchfab.com/3d-models/hero-loitering-munition
+   
+3. PHOENIX GHOST (US, Supplied to Ukraine)
+   • Limited models, use Switchblade as reference
+
+MISSILES & ROCKETS:
+
+4. JAVELIN (Anti-Tank)
+   • GrabCAD: https://grabcad.com/library/javelin-missile
+   • Free3D: https://free3d.com/3d-model/javelin-missile
+   
+5. HIMARS ROCKETS (M31 GMLRS)
+   • GrabCAD: https://grabcad.com/library/m31-gmlrs
+   • CGTrader: https://www.cgtrader.com/3d-models/military/weapon/himars-rocket
+   
+6. NLAW (Next-generation Light Anti-tank Weapon)
+   • Sketchfab: https://sketchfab.com/3d-models/nlaw
+   • GrabCAD: https://grabcad.com/library/nlaw
+
+ARTILLERY MUNITIONS:
+
+7. 155mm ARTILLERY SHELLS
+   • GrabCAD: https://grabcad.com/library/155mm-artillery-shell
+   • Various types: standard, guided, rocket-assisted
+   
+8. DRONE-DROPPED MUNITIONS
+   • Modified grenades, mortar shells
+   • Generic models: https://sketchfab.com/3d-models/military-munitions
+
+GENERIC WEAPON SYSTEMS:
+
+9. MILITARY WEAPONS PACK
+   • Sketchfab: https://sketchfab.com/3d-models/military-weapons-collection
+   • CGTrader: https://www.cgtrader.com/3d-model-collections/military-weapons
+   • TurboSquid: https://www.turbosquid.com/Search/Index.cfm?keyword=military+weapons
+

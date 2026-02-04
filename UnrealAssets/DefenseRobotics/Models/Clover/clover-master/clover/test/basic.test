@@ -1,0 +1,55 @@
+<launch>
+    <!-- Verify all the required nodes basically work -->
+
+    <node pkg="mavros" type="mavros_node" name="mavros" required="true" output="screen">
+        <param name="fcu_url" value="udp://@127.0.1:14557"/>
+        <rosparam command="load" file="$(find clover)/launch/mavros_config.yaml"/>
+    </node>
+
+    <node name="visualization" pkg="mavros_extras" type="visualization" required="true">
+        <remap to="mavros/local_position/pose" from="local_position"/>
+        <remap to="mavros/setpoint_position/local" from="local_setpoint"/>
+        <param name="fixed_frame_id" value="map"/>
+        <param name="child_frame_id" value="base_link"/>
+        <param name="marker_scale" value="1"/>
+        <param name="max_track_size" value="20"/>
+        <param name="num_rotors" value="4"/>
+    </node>
+
+    <node name="web_video_server" pkg="web_video_server" type="web_video_server" required="true" output="screen">
+        <param name="default_stream_type" value="ros_compressed"/>
+        <param name="publish_rate" value="1.0"/>
+    </node>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="map_flipped_frame" args="0 0 0 3.1415926 3.1415926 0 map map_flipped" required="true"/>
+
+    <node name="simple_offboard" pkg="clover" type="simple_offboard" required="true" output="screen"/>
+
+    <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" required="true"/>
+
+    <node name="rc" pkg="clover" type="rc" required="true" output="screen"/>
+
+    <node name="shell" pkg="clover" type="shell" required="true" output="screen"/>
+
+    <node pkg="clover" name="led_effect" type="led" ns="led" clear_params="true" output="screen" required="true">
+        <rosparam param="notify">startup: { r: 255, g: 255, b: 255 }</rosparam>
+    </node>
+
+    <node name="clover_blocks" pkg="clover_blocks" type="clover_blocks" output="screen" required="true"/>
+
+    <node pkg="topic_tools" name="main_camera_throttle" type="throttle" ns="main_camera"
+        args="messages image_raw 5.0 image_raw_throttled" required="true"/>
+
+    <node pkg="nodelet" type="nodelet" name="main_camera_nodelet_manager" args="manager" output="screen" required="true">
+        <param name="num_worker_threads" value="2"/>
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="rectify" args="load image_proc/rectify main_camera_nodelet_manager" required="true">
+        <remap from="image_mono" to="main_camera/image_raw"/>
+        <remap from="camera_info" to="main_camera/camera_info"/>
+        <remap from="image_rect" to="main_camera/image_rect"/>
+    </node>
+
+    <param name="test_module" value="$(find clover)/test/basic.py"/>
+    <test test-name="basic_test" pkg="ros_pytest" type="ros_pytest_runner"/>
+</launch>

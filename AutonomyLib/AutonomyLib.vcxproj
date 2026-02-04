@@ -158,7 +158,9 @@
         <ClInclude Include="include\physics\PhysicsBody.hpp" />
         <ClInclude Include="include\physics\PhysicsBodyVertex.hpp" />
         <ClInclude Include="include\physics\PhysicsEngineBase.hpp" />
+        <ClInclude Include="include\physics\PropulsionModel.hpp" />
         <ClInclude Include="include\physics\World.hpp" />
+        <ClInclude Include="include\control\FormationControl.hpp" />
         <ClInclude Include="include\sensors\barometer\BarometerBase.hpp" />
         <ClInclude Include="include\sensors\barometer\BarometerSimple.hpp" />
         <ClInclude Include="include\sensors\barometer\BarometerSimpleParams.hpp" />
@@ -180,6 +182,11 @@
         <ClInclude Include="include\vehicles\multirotor\MultirotorParamsFactory.hpp" />
         <ClInclude Include="include\vehicles\multirotor\RotorActuator.hpp" />
         <ClInclude Include="include\vehicles\multirotor\RotorParams.hpp" />
+        <!-- Experimental communication modules - temporarily disabled
+        <ClInclude Include="modules\communication\RTXRFPropagation.hpp" />
+        <ClInclude Include="modules\communication\RFGaussianSplat.hpp" />
+        <ClInclude Include="modules\communication\InstantRMBridge.hpp" />
+        -->
     </ItemGroup>
     <ItemGroup>
         <ClCompile Include="src\api\RpcLibClientBase.cpp" />
@@ -192,6 +199,13 @@
         <ClCompile Include="src\vehicles\car\api\CarRpcLibServer.cpp" />
         <ClCompile Include="src\vehicles\multirotor\api\MultirotorRpcLibClient.cpp" />
         <ClCompile Include="src\vehicles\multirotor\api\MultirotorRpcLibServer.cpp" />
+        <ClCompile Include="src\physics\PropulsionModel.cpp" />
+        <ClCompile Include="src\control\FormationControl.cpp" />
+        <!-- Experimental communication modules - temporarily disabled
+        <ClCompile Include="modules\communication\RTXRFPropagation.cpp" />
+        <ClCompile Include="modules\communication\RFGaussianSplat.cpp" />
+        <ClCompile Include="modules\communication\InstantRMBridge.cpp" />
+        -->
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\MavLinkCom\MavLinkCom.vcxproj">
@@ -353,7 +367,7 @@
             <AdditionalIncludeDirectories>include;deps\eigen3;deps\rpclib\include;$(ProjectDir)..\MavLinkCom\include</AdditionalIncludeDirectories>
             <TreatWarningAsError>true</TreatWarningAsError>
             <AdditionalOptions>/w34263 /w34266 %(AdditionalOptions)</AdditionalOptions>
-            <DisableSpecificWarnings>4100;4505;4820;4464;4514;4710;4571;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+            <DisableSpecificWarnings>4100;4505;4820;4464;4514;4710;4571;4127;%(DisableSpecificWarnings)</DisableSpecificWarnings>
             <LanguageStandard>stdcpp17</LanguageStandard>
         </ClCompile>
         <Link>
@@ -437,6 +451,7 @@
             <AdditionalIncludeDirectories>include;deps\eigen3;deps\rpclib\include;$(ProjectDir)..\MavLinkCom\include</AdditionalIncludeDirectories>
             <TreatWarningAsError>true</TreatWarningAsError>
             <AdditionalOptions>/w34263 /w34266 %(AdditionalOptions)</AdditionalOptions>
+            <DisableSpecificWarnings>4100;4505;4820;4464;4514;4710;4571;4127;%(DisableSpecificWarnings)</DisableSpecificWarnings>
             <LanguageStandard>stdcpp17</LanguageStandard>
         </ClCompile>
         <Link>

@@ -1,0 +1,206 @@
+AUTONOMYSIM + UNREAL ENGINE 5 - QUICK START GUIDE
+═══════════════════════════════════════════════════════════════
+
+COMPLETE SETUP IN 30 MINUTES
+───────────────────────────────────────────────────────────────
+
+PREREQUISITES
+──────────────────────────────────────────────────────────────
+✓ Unreal Engine 5.3 or 5.4 installed
+✓ AutonomySim built and ready
+✓ Epic Games account (free)
+✓ 50+ GB free disk space
+✓ GPU: RTX 3060 or better recommended
+
+PHASE 1: ENVIRONMENT SETUP (10 minutes)
+═══════════════════════════════════════════════════════════════
+
+1. Install Cesium Plugin
+   - UE5 → Edit → Plugins → Search "Cesium" → Install → Restart
+
+2. Get Cesium Token
+   - Sign up: https://cesium.com/ion/signup
+   - Copy token from: https://cesium.com/ion/tokens
+
+3. Add World Terrain
+   - Cesium panel → "Cesium World Terrain + Bing Maps"
+   - Paste token when prompted
+   - Terrain loads automatically
+
+4. Navigate to Ukraine
+   - Cesium panel → "Place Georeference Origin"
+   - Enter: Lat 48.0, Lon 37.8 (Donbas region)
+   - Press Play → You're over Ukraine!
+
+PHASE 2: ADD FREE ENVIRONMENT (10 minutes)
+═══════════════════════════════════════════════════════════════
+
+Option A: Use Quixel Megascans (Easiest)
+──────────────────────────────────────────────────────────────
+1. Install Quixel Bridge plugin (if not already installed)
+2. Open Bridge window in UE5
+3. Login with Epic account
+4. Search: "military" or "industrial" or "destroyed"
+5. Drag assets into scene
+6. Automatic Nanite conversion
+
+Option B: Download Free Marketplace Environment
+──────────────────────────────────────────────────────────────
+1. Epic Games Launcher → Unreal Engine → Marketplace
+2. Search: "City of Brass" (free)
+3. Add to library → Download
+4. In UE5: Add to project
+5. Open demo map
+
+PHASE 3: ADD VEHICLE MODELS (10 minutes)
+═══════════════════════════════════════════════════════════════
+
+Quick Test with PX4 Models (Already Downloaded):
+──────────────────────────────────────────────────────────────
+1. Navigate to: .\UnrealAssets\DefenseRobotics\Models\PX4\
+2. Find: iris model (.dae file)
+3. UE5 Content Browser → Import → Select iris.dae
+4. Import with default settings
+5. Model appears in Content Browser
+
+Add High-Quality Drone from Sketchfab:
+──────────────────────────────────────────────────────────────
+1. Visit: https://sketchfab.com/3d-models/dji-mavic-3
+2. Click "Download 3D Model" (requires login)
+3. Select FBX format
+4. Download and unzip
+5. Import to UE5 (Content Browser → Import)
+
+PHASE 4: CONFIGURE AUTONOMYSIM
+═══════════════════════════════════════════════════════════════
+
+1. Edit settings.json
+   Location: ~/Documents/AutonomySim/settings.json
+
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "ClockSpeed": 1.0,
+  "Vehicles": {
+    "Drone1": {
+      "VehicleType": "SimpleFlight",
+      "X": 0, "Y": 0, "Z": -2,
+      "Cameras": {
+        "front_center": {
+          "CaptureSettings": [
+            {"ImageType": 0, "Width": 1920, "Height": 1080},
+            {"ImageType": 1, "Width": 1920, "Height": 1080}
+          ]
+        }
+      }
+    }
+  }
+}
+
+2. Create Vehicle Blueprint
+   - Duplicate: BP_MultiRotorPawnSimple
+   - Rename: BP_Mavic3Drone
+   - Replace mesh with imported Mavic model
+   - Adjust collision
+
+3. Add to Level
+   - Drag BP_Mavic3Drone into scene
+   - Or spawn via Python API
+
+PHASE 5: TEST FLIGHT
+═══════════════════════════════════════════════════════════════
+
+Python Test Script:
+
+import autonomysim as asim
+
+# Connect
+client = asim.MultirotorClient()
+client.confirmConnection()
+print("✓ Connected to AutonomySim")
+
+# Arm and takeoff
+client.enableApiControl(True)
+client.armDisarm(True)
+print("✓ Armed")
+
+client.takeoffAsync().join()
+print("✓ Airborne")
+
+# Fly square pattern
+altitude = -50  # 50m
+speed = 20
+
+client.moveToPositionAsync(100, 0, altitude, speed).join()
+client.moveToPositionAsync(100, 100, altitude, speed).join()
+client.moveToPositionAsync(0, 100, altitude, speed).join()
+client.moveToPositionAsync(0, 0, altitude, speed).join()
+
+print("✓ Mission complete")
+
+# Land
+client.landAsync().join()
+client.armDisarm(False)
+client.enableApiControl(False)
+
+═══════════════════════════════════════════════════════════════
+NEXT STEPS
+═══════════════════════════════════════════════════════════════
+
+1. Add more drones (swarm formation)
+2. Integrate MCP/A2A/NANDA swarm AI
+3. Download premium environment assets
+4. Add sensors (lidar, cameras)
+5. Create mission scenarios
+6. Record flight data for analysis
+
+═══════════════════════════════════════════════════════════════
+PERFORMANCE OPTIMIZATION FOR UE5
+═══════════════════════════════════════════════════════════════
+
+ENABLE NANITE (for static meshes):
+- Select mesh → Details → Enable Nanite
+
+ENABLE LUMEN (better lighting):
+- Project Settings → Rendering → Enable Lumen
+
+DISABLE IF SLOW:
+- Disable Lumen (use baked lighting)
+- Reduce Cesium tile detail
+- Lower screen resolution
+- Reduce shadow quality
+
+HARDWARE RECOMMENDATIONS:
+Minimum: RTX 3060, 16GB RAM, SSD
+Recommended: RTX 4070, 32GB RAM, NVMe SSD
+Optimal: RTX 4090, 64GB RAM, NVMe RAID
+
+═══════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+CESIUM TERRAIN NOT LOADING:
+→ Check internet connection
+→ Verify token is valid
+→ Check Cesium Ion usage limits
+
+DRONE WON'T FLY:
+→ Verify settings.json is correct
+→ Check API connection in Python
+→ Ensure vehicle blueprint is correct type
+
+LOW FPS:
+→ Disable Lumen
+→ Reduce Cesium LOD
+→ Lower resolution
+→ Check GPU utilization
+
+TEXTURES MISSING:
+→ Reimport model with textures
+→ Check texture paths
+→ Manually assign materials
+
+═══════════════════════════════════════════════════════════════
+
+For more help, see documentation files in: C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\UnrealAssets\UE5
+

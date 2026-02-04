@@ -17,6 +17,28 @@ namespace autonomylib {
 
 class EarthCelestial {
 
+  public:
+    // Types - defined first so they can be used in private methods
+    struct CelestialGlobalCoord {
+        double declination;
+        double rightAscension;
+        double distance = Utils::nan<double>();
+        double parallacticAngle = Utils::nan<double>();
+    };
+
+    struct CelestialLocalCoord {
+        double azimuth;
+        double altitude;
+        double distance = Utils::nan<double>();
+        double parallacticAngle = Utils::nan<double>();
+    };
+
+    struct CelestialPhase {
+        double fraction;
+        double phase;
+        double angle;
+    };
+
   private:
     static double toDays(uint64_t date) {
         static constexpr double kJulianDaysOnY2000 = 2451545;
@@ -98,26 +120,6 @@ class EarthCelestial {
     }
 
   public:
-    struct CelestialGlobalCoord {
-        double declination;
-        double rightAscension;
-        double distance = Utils::nan<double>();
-        double parallacticAngle = Utils::nan<double>();
-    };
-
-    struct CelestialLocalCoord {
-        double azimuth;
-        double altitude;
-        double distance = Utils::nan<double>();
-        double parallacticAngle = Utils::nan<double>();
-    };
-
-    struct CelestialPhase {
-        double fraction;
-        double phase;
-        double angle;
-    };
-
     static CelestialLocalCoord getSunCoordinates(uint64_t date, double lat, double lng) {
         double lw = Utils::degreesToRadians(-lng);
         double phi = Utils::degreesToRadians(lat);

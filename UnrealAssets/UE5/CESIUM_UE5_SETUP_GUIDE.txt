@@ -1,0 +1,173 @@
+CESIUM FOR UNREAL ENGINE 5 - REAL-WORLD 3D TERRAIN
+═══════════════════════════════════════════════════════════════
+
+★★★★★ RECOMMENDED FOR AUTONOMYSIM - BEST SOLUTION FOR REALISTIC ENVIRONMENTS
+
+WHAT IS CESIUM?
+───────────────────────────────────────────────────────────────
+Cesium streams real-world 3D terrain directly into Unreal Engine 5.
+You can fly drones over ANY location on Earth with photorealistic accuracy.
+
+FEATURES:
+✓ Real-world terrain elevation data
+✓ Google Photorealistic 3D Tiles (buildings, trees, roads)
+✓ Bing Maps imagery
+✓ Supports Lumen and Nanite (UE5 features)
+✓ Worldwide coverage
+✓ FREE for non-commercial use
+
+INSTALLATION (5 MINUTES)
+═══════════════════════════════════════════════════════════════
+
+STEP 1: Install Cesium Plugin
+──────────────────────────────────────────────────────────────
+
+1. Open Unreal Engine 5 project
+2. Edit → Plugins
+3. Search: "Cesium for Unreal"
+4. Click "Install" (official Epic Games plugin)
+5. Restart Unreal Engine
+
+Alternative: Download from Marketplace
+URL: https://www.unrealengine.com/marketplace/en-US/product/cesium-for-unreal
+
+STEP 2: Get FREE Cesium Ion Token
+──────────────────────────────────────────────────────────────
+
+1. Create account: https://cesium.com/ion/signup
+2. Go to: https://cesium.com/ion/tokens
+3. Create new token → Copy token value
+4. In Unreal: Cesium panel → Paste token → Connect
+
+STEP 3: Add World Terrain
+──────────────────────────────────────────────────────────────
+
+1. Cesium panel → "Add Blank" → "Cesium World Terrain + Bing Maps"
+2. Actor automatically added to scene
+3. Play → You're flying over Earth!
+
+STEP 4: Navigate to Location
+──────────────────────────────────────────────────────────────
+
+In Cesium panel, click "Place Georeference Origin Here"
+Or enter coordinates manually:
+
+UKRAINE CONFLICT ZONES (Copy these coordinates):
+
+Crimean Peninsula:
+  Latitude: 45.0°N
+  Longitude: 34.0°E
+  Description: Crimea, Black Sea coast
+
+Donbas Region (Donetsk):
+  Latitude: 48.0°N
+  Longitude: 37.8°E
+  Description: Eastern Ukraine, urban warfare zones
+
+Mariupol:
+  Latitude: 47.0971°N
+  Longitude: 37.5431°E
+  Description: Coastal city, major battle site
+
+Crimean Bridge (Kerch Strait):
+  Latitude: 45.3°N
+  Longitude: 36.5°E
+  Description: Strategic bridge target
+
+Sevastopol Naval Base:
+  Latitude: 44.6169°N
+  Longitude: 33.5254°E
+  Description: Russian Black Sea Fleet HQ
+
+Kyiv:
+  Latitude: 50.4501°N
+  Longitude: 30.5234°E
+  Description: Capital city
+
+Kharkiv:
+  Latitude: 49.9935°N
+  Longitude: 36.2304°E
+  Description: Second largest city, near Russian border
+
+ADVANCED: GOOGLE PHOTOREALISTIC 3D TILES
+═══════════════════════════════════════════════════════════════
+
+For ultra-realistic 3D buildings and trees:
+
+1. Get Google Maps API Key:
+   https://developers.google.com/maps/documentation/tile/3d-tiles
+   
+2. In Cesium Ion, add Google Photorealistic 3D Tiles asset
+   
+3. In Unreal, add "Cesium 3D Tileset" actor
+   
+4. Configure with Google tile URL
+
+Covers major cities worldwide with photogrammetry-quality 3D.
+
+AUTONOMYSIM INTEGRATION
+═══════════════════════════════════════════════════════════════
+
+Cesium terrain works perfectly with AutonomySim drones!
+
+EXAMPLE PYTHON CODE:
+
+import autonomysim as asim
+
+# Connect to simulator
+client = asim.MultirotorClient()
+client.confirmConnection()
+client.enableApiControl(True)
+
+# Arm and takeoff
+client.armDisam(True)
+client.takeoffAsync().join()
+
+# Fly reconnaissance pattern over Mariupol
+# (Coordinates relative to Georeference origin)
+waypoints = [
+    asim.Vector3r(0, 0, -50),        # 50m altitude
+    asim.Vector3r(1000, 0, -50),     # 1km east
+    asim.Vector3r(1000, 1000, -50),  # 1km north-east
+    asim.Vector3r(0, 1000, -50),     # 1km north
+    asim.Vector3r(0, 0, -50)         # Return to start
+]
+
+for wp in waypoints:
+    client.moveToPositionAsync(wp.x_val, wp.y_val, wp.z_val, 20).join()
+    
+    # Capture reconnaissance imagery
+    responses = client.simGetImages([
+        asim.ImageRequest("front_center", asim.ImageType.Scene, False, False)
+    ])
+    
+    # Save image
+    asim.write_file('recon_image.png', responses[0].image_data_uint8)
+
+PERFORMANCE TIPS
+═══════════════════════════════════════════════════════════════
+
+• Start with lower LOD (Level of Detail) for testing
+• Use "Maximum Screen Space Error" setting to control quality
+• Enable "Preload Ancestors" for smoother streaming
+• Adjust "Maximum Cached Bytes" based on RAM (default 512MB)
+• For large swarms, reduce tile resolution
+
+ALTERNATIVE: OPENSTREETMAP DATA
+═══════════════════════════════════════════════════════════════
+
+For city layouts without streaming:
+
+1. Export OSM data: https://www.openstreetmap.org/export
+2. Use OSM to Unreal plugin: https://github.com/ue4plugins/StreetMap
+3. Generate static 3D buildings
+4. Better performance for large swarms
+
+COST
+═══════════════════════════════════════════════════════════════
+
+Cesium Ion Free Tier:
+• 5 million tile requests/month
+• Enough for ~50 hours of simulation
+• Commercial tier available for production use
+

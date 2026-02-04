@@ -1,0 +1,90 @@
+<launch>
+    <arg name="fcu_conn" default="usb"/> <!-- options: usb, uart, tcp, udp, sitl, hitl -->
+    <arg name="fcu_ip" default="127.0.0.1"/>
+    <arg name="fcu_sys_id" default="1"/>
+    <arg name="gcs_bridge" default="tcp"/>
+    <arg name="viz" default="true"/>
+    <arg name="respawn" default="true"/>
+    <arg name="distance_sensor_remap" default="rangefinder/range"/>
+    <arg name="usb_device" default="/dev/px4fmu"/>
+    <arg name="prefix" default="" unless="$(eval fcu_conn == 'usb')"/>
+    <arg name="prefix" default="rosrun clover waitfile $(arg usb_device)" if="$(eval fcu_conn == 'usb')"/>
+
+    <node pkg="mavros" type="mavros_node" name="mavros" launch-prefix="$(arg prefix)" required="false" clear_params="true" respawn="$(arg respawn)" unless="$(eval fcu_conn == 'none')" respawn_delay="1" output="screen">
+        <!-- UART connection -->
+        <param name="fcu_url" value="/dev/ttyAMA0:921600" if="$(eval fcu_conn is None or fcu_conn == 'uart')"/>
+
+        <!-- USB connection -->
+        <param name="fcu_url" value="$(arg usb_device)" if="$(eval fcu_conn == 'usb')"/>
+
+        <!-- sitl before PX4 1.9.0 -->
+        <param name="fcu_url" value="udp://@$(arg fcu_ip):14557" if="$(eval fcu_conn == 'udp')"/>
+
+        <!-- sitl since PX4 1.9.0 -->
+        <param name="fcu_url" value="udp://@$(arg fcu_ip):14580" if="$(eval fcu_conn == 'sitl')"/>
+
+        <!-- hitl connection (to gazebo_mavlink_interface plugin) -->
+        <param name="fcu_url" value="udp://$(arg fcu_ip):14540@" if="$(eval fcu_conn == 'hitl')"/>
+
+        <!-- set target_system_id -->
+        <param name="target_system_id" value="$(arg fcu_sys_id)" />
+
+        <!-- gcs bridge -->
+        <param name="gcs_url" value="tcp-l://0.0.0.0:5760" if="$(eval gcs_bridge == 'tcp')"/>
+        <param name="gcs_url" value="udp://0.0.0.0:14550@14550" if="$(eval gcs_bridge == 'udp')"/>
+        <param name="gcs_url" value="udp-b://$(env ROS_HOSTNAME):14550@14550" if="$(eval gcs_bridge == 'udp-b')"/>
+        <param name="gcs_url" value="udp-pb://$(env ROS_HOSTNAME):14550@14550" if="$(eval gcs_bridge == 'udp-pb')"/>
+        <param name="gcs_url" value="" if="$(eval not gcs_bridge)"/>
+        <param name="gcs_quiet_mode" value="true"/>
+        <param name="conn/timeout" value="8"/>
+
+        <!-- basic params -->
+        <rosparam command="load" file="$(find clover)/launch/mavros_config.yaml"/>
+
+        <!-- remap rangefinder -->
+        <remap from="mavros/distance_sensor/rangefinder_sub" to="$(arg distance_sensor_remap)" if="$(eval bool(distance_sensor_remap))"/>
+
+        <rosparam param="plugin_whitelist">
+            - altitude
+            - command
+            - distance_sensor
+            - ftp
+            - global_position
+            - imu
+            - local_position
+            - manual_control
+            # - mocap_pose_estimate
+            - param
+            - px4flow
+            - rc_io
+            - setpoint_attitude
+            - setpoint_position
+            - setpoint_raw
+            - setpoint_velocity
+            - sys_status
+            - sys_time
+            - vision_pose_estimate
+            # - vision_speed_estimate
+            # - waypoint
+        </rosparam>
+    </node>
+
+    <!-- remapped distance_sensor config -->
+    <rosparam param="$(arg distance_sensor_remap)" if="$(eval bool(distance_sensor_remap))">
+        subscriber: true
+        id: 1
+        orientation: PITCH_270
+        covariance: 1  # cm
+    </rosparam>
+
+    <!-- Copter visualization -->
+    <node name="visualization" pkg="mavros_extras" type="visualization" if="$(arg viz)">
+        <remap to="mavros/local_position/pose" from="local_position"/>
+        <remap to="mavros/setpoint_position/local" from="local_setpoint"/>
+        <param name="fixed_frame_id" value="map"/>
+        <param name="child_frame_id" value="base_link"/>
+        <param name="marker_scale" value="1"/>
+        <param name="max_track_size" value="20"/>
+        <param name="num_rotors" value="4"/>
+    </node>
+</launch>

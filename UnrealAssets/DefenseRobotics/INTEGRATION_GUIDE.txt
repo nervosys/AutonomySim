@@ -1,0 +1,180 @@
+AUTONOMYSIM ASSET INTEGRATION GUIDE
+═══════════════════════════════════════════════════════════════
+
+STEP 1: PREPARE UNREAL PROJECT
+──────────────────────────────────────────
+
+1. Open AutonomySim Unreal Project
+   • Launch Unreal Engine 5
+   • Open: Unreal\Environments\Blocks\Blocks.uproject
+
+2. Enable Required Plugins
+   • Cesium for Unreal
+   • Quixel Bridge
+   • Edit → Plugins → Search and Enable
+
+STEP 2: IMPORT 3D MODELS
+──────────────────────────────────────────
+
+1. FBX/OBJ Import
+   • Content Browser → Import
+   • Select downloaded .fbx/.obj files
+   • Configure import settings:
+     - Enable "Import Skeletal Mesh" for articulated models
+     - Set up materials and textures
+     - Generate collision
+
+2. Configure Physics
+   • Set mass (UAV: 2-5kg, UGV: 50-500kg)
+   • Add collision meshes
+   • Configure physics materials
+
+3. Set Up Vehicle Pawn
+   • Create Blueprint from imported mesh
+   • Add AutonomySim components:
+     - MultiRotorPawnSimple (UAV)
+     - CarPawn (UGV)
+     - Custom vehicle type
+
+STEP 3: CONFIGURE AUTONOMYSIM SETTINGS
+──────────────────────────────────────────
+
+1. Edit settings.json
+   Location: ~/Documents/AutonomySim/settings.json
+
+2. Add Vehicle Configuration:
+
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "Vehicles": {
+    "Bayraktar_TB2": {
+      "VehicleType": "SimpleFlight",
+      "X": 0, "Y": 0, "Z": -2,
+      "Yaw": 0,
+      "Cameras": {
+        "front_center": {
+          "CaptureSettings": [
+            {"ImageType": 0, "Width": 1920, "Height": 1080}
+          ]
+        }
+      }
+    },
+    "DJI_Mavic": {
+      "VehicleType": "SimpleFlight",
+      "X": 10, "Y": 0, "Z": -2
+    },
+    "Ground_Robot": {
+      "VehicleType": "PhysXCar",
+      "X": 0, "Y": 10, "Z": -1
+    }
+  }
+}
+
+STEP 4: ADD SENSORS
+──────────────────────────────────────────
+
+1. Camera Sensors
+   • RGB Camera
+   • Infrared/Thermal
+   • Night vision
+
+2. Lidar Configuration
+   • Velodyne VLP-16
+   • Ouster OS1-64
+
+3. Additional Sensors
+   • GPS/IMU
+   • Magnetometer
+   • Barometer
+
+STEP 5: TEST VEHICLES
+──────────────────────────────────────────
+
+1. Python API Test:
+
+import autonomysim as asim
+
+client = asim.MultirotorClient()
+client.confirmConnection()
+client.enableApiControl(True)
+client.armDisarm(True)
+client.takeoffAsync().join()
+
+# Hover
+client.moveToPositionAsync(0, 0, -10, 5).join()
+
+2. Formation Flight Test (Multiple UAVs):
+
+from autonomysim.modules.ai import AgenticSwarmController
+
+swarm = AgenticSwarmController()
+swarm.addAgent("Bayraktar_TB2")
+swarm.addAgent("DJI_Mavic_1")
+swarm.addAgent("DJI_Mavic_2")
+swarm.setFormation(FormationType.Wedge)
+
+STEP 6: MISSION SCENARIOS
+──────────────────────────────────────────
+
+1. Reconnaissance Mission
+   • Scout UAVs survey area
+   • Transmit imagery
+   • Coordinate with ground forces
+
+2. Strike Mission
+   • Loitering munition patrol
+   • Target identification
+   • Precision strike
+
+3. Logistics
+   • UGV supply transport
+   • Autonomous navigation
+   • Obstacle avoidance
+
+4. Multi-Domain Operation
+   • UAV air support
+   • UGV ground advance
+   • USV coastal patrol
+   • Coordinated swarm attack
+
+RECOMMENDED MODEL CONVERSIONS:
+──────────────────────────────────────────
+
+1. Sketchfab → Unreal
+   • Download as FBX
+   • Import to Blender
+   • Clean geometry
+   • Re-export with correct scale
+
+2. CAD (STEP/IGES) → Unreal
+   • Use Datasmith plugin
+   • Or convert via Blender
+
+3. Optimization
+   • Reduce polygon count (LODs)
+   • Optimize textures (2K max for real-time)
+   • Bake lighting
+
+UKRAINE SCENARIO EXAMPLE:
+──────────────────────────────────────────
+
+Mission: Reconnaissance of Russian Position
+
+Vehicles:
+• 3x DJI Mavic (recon)
+• 1x Bayraktar TB2 (overwatch)
+• 2x FPV drones (close inspection)
+• 1x Ground robot (forward observation)
+
+Environment:
+• Eastern Ukraine terrain (Cesium)
+• Destroyed urban area (Quixel)
+• Fortified positions
+
+Task:
+• Coordinate swarm search pattern
+• Identify targets
+• Transmit real-time video
+• Coordinate artillery strike
+

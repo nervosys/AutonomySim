@@ -1,0 +1,17 @@
+[package]
+name = "autonomysim-tactical"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+autonomysim-core = { path = "../autonomysim-core" }
+autonomysim-rf-core = { path = "../autonomysim-rf-core" }
+autonomysim-gaussian-splat = { path = "../autonomysim-gaussian-splat" }
+nalgebra = "0.32"
+serde = { version = "1.0", features = ["derive"] }
+rand = "0.8"
+rand_distr = "0.4"
+
+[dev-dependencies]
+approx = "0.5"
+criterion = "0.5"

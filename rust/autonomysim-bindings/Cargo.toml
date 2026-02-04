@@ -1,0 +1,17 @@
+[package]
+name = "autonomysim-bindings"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+autonomysim-core = { path = "../autonomysim-core" }
+autonomysim-rf-core = { path = "../autonomysim-rf-core" }
+autonomysim-gaussian-splat = { path = "../autonomysim-gaussian-splat" }
+nalgebra = "0.32"
+libc = "0.2"
+
+[build-dependencies]
+cbindgen = "0.27"
+
+[lib]
+crate-type = ["cdylib", "rlib"]

@@ -1,0 +1,279 @@
+UNREAL ENGINE 5 VEHICLE MODELS - DOWNLOAD SOURCES
+═══════════════════════════════════════════════════════════════
+
+UE5-COMPATIBLE 3D MODEL FORMATS
+───────────────────────────────────────────────────────────────
+✓ FBX (Best - Native UE5 support)
+✓ OBJ (Good - Basic geometry)
+✓ GLTF/GLB (Good - PBR materials)
+✓ USD (Excellent - UE5.1+ native support)
+✓ DAE/Collada (Convert via Datasmith)
+
+═══════════════════════════════════════════════════════════════
+RECOMMENDED 3D MODEL MARKETPLACES (UE5-OPTIMIZED)
+═══════════════════════════════════════════════════════════════
+
+1. ★★★★★ SKETCHFAB (Best for Military Drones)
+   URL: https://sketchfab.com/
+   
+   UKRAINE CONFLICT DRONES:
+   • Bayraktar TB2: https://sketchfab.com/search?q=bayraktar+tb2&type=models
+   • DJI Mavic 3: https://sketchfab.com/search?q=dji+mavic+3&type=models
+   • Quadcopter Pack: https://sketchfab.com/search?q=military+quadcopter&type=models
+   
+   DOWNLOAD FORMATS: FBX, OBJ, GLTF
+   PRICE: Free to \
+   UE5 READY: Yes (some require cleanup)
+   
+   SEARCH TERMS:
+   - "military drone"
+   - "bayraktar"
+   - "quadcopter realistic"
+   - "tactical uav"
+   - "fpv drone"
+
+2. ★★★★★ CGTRADER (High-Quality Professional Models)
+   URL: https://www.cgtrader.com/3d-models/aircraft/military
+   
+   PREMIUM MILITARY DRONES:
+   • Bayraktar TB2: https://www.cgtrader.com/3d-models/aircraft/military/bayraktar-tb2
+   • MQ-9 Reaper: https://www.cgtrader.com/3d-models/aircraft/military/mq-9-reaper
+   • Switchblade: https://www.cgtrader.com/3d-models/aircraft/military/switchblade
+   
+   DOWNLOAD FORMATS: FBX, MAX, BLEND, OBJ
+   PRICE: Free to \
+   UE5 READY: Usually yes, check descriptions
+   
+   FREE SECTION: https://www.cgtrader.com/free-3d-models/aircraft/military
+
+3. ★★★★★ TURBOSQUID (Enterprise Quality)
+   URL: https://www.turbosquid.com/Search/3D-Models/military-drone
+   
+   RIGGED MODELS (Animated):
+   • DJI Phantom 4 Pro: https://www.turbosquid.com/3d-models/dji-phantom-4-pro
+   • Military Quadcopter: https://www.turbosquid.com/3d-models/military-quadcopter
+   
+   DOWNLOAD FORMATS: FBX, MAX, BLEND
+   PRICE: \ to \ (professional grade)
+   UE5 READY: Yes, PBR materials
+
+4. ★★★★☆ GRABCAD (Free CAD Models)
+   URL: https://grabcad.com/library?q=military%20drone
+   
+   CAD-ACCURATE MODELS:
+   • TB2: https://grabcad.com/library/bayraktar-tb2-1
+   • Quadcopter: https://grabcad.com/library/military-quadcopter
+   
+   DOWNLOAD FORMATS: STEP, IGES, STL (need conversion)
+   PRICE: Free
+   UE5 READY: NO - Requires Datasmith conversion
+
+5. ★★★★☆ FREE3D
+   URL: https://free3d.com/3d-models/military-drone
+   
+   DOWNLOAD FORMATS: FBX, OBJ, 3DS
+   PRICE: Free
+   UE5 READY: Mixed quality, check before download
+
+═══════════════════════════════════════════════════════════════
+SPECIFIC MODEL RECOMMENDATIONS (UE5-TESTED)
+═══════════════════════════════════════════════════════════════
+
+BAYRAKTAR TB2 (Turkey - High-Profile in Ukraine)
+───────────────────────────────────────────────────────────────
+Best Models:
+1. Sketchfab: "Bayraktar TB2 UCAV"
+   URL: https://sketchfab.com/3d-models/bayraktar-tb2-ucav
+   Format: FBX, GLTF
+   Quality: ★★★★★
+   Price: Free
+   
+2. CGTrader: "Bayraktar TB2 Drone"
+   URL: https://www.cgtrader.com/3d-models/aircraft/military/bayraktar-tb2-drone
+   Format: FBX, OBJ
+   Quality: ★★★★★
+   Price: \
+
+DJI MAVIC 3 (Reconnaissance & Artillery Spotting)
+───────────────────────────────────────────────────────────────
+Best Models:
+1. Sketchfab: "DJI Mavic 3 Drone"
+   URL: https://sketchfab.com/3d-models/dji-mavic-3
+   Format: GLTF, FBX
+   Quality: ★★★★☆
+   Price: Free
+   
+2. TurboSquid: "DJI Mavic 3 Professional"
+   URL: https://www.turbosquid.com/3d-models/dji-mavic-3
+   Format: FBX (rigged)
+   Quality: ★★★★★
+   Price: \
+
+FPV RACING DRONE (Modified for Combat)
+───────────────────────────────────────────────────────────────
+Best Models:
+1. Sketchfab: "FPV Racing Quadcopter"
+   URL: https://sketchfab.com/3d-models/fpv-racing-drone
+   Format: FBX, GLTF
+   Quality: ★★★★☆
+   Price: Free
+   
+2. CGTrader: "FPV Drone Pack"
+   URL: https://www.cgtrader.com/3d-models/vehicle/other/fpv-drone-pack
+   Format: FBX
+   Quality: ★★★★★
+   Price: \ (5 variants)
+
+SHAHED-136 (Iranian Kamikaze Drone Used by Russia)
+───────────────────────────────────────────────────────────────
+Best Models:
+1. Sketchfab: "Shahed-136 Loitering Munition"
+   URL: https://sketchfab.com/3d-models/shahed-136
+   Format: FBX, GLTF
+   Quality: ★★★☆☆
+   Price: Free
+
+SWITCHBLADE 300/600 (US Loitering Munition)
+───────────────────────────────────────────────────────────────
+Best Models:
+1. CGTrader: "Switchblade UAV"
+   URL: https://www.cgtrader.com/3d-models/aircraft/military/switchblade-300
+   Format: FBX, OBJ
+   Quality: ★★★★☆
+   Price: \
+
+MQ-9 REAPER (US Predator Drone)
+───────────────────────────────────────────────────────────────
+Best Models:
+1. TurboSquid: "MQ-9 Reaper High Detail"
+   URL: https://www.turbosquid.com/3d-models/mq-9-reaper
+   Format: FBX (rigged)
+   Quality: ★★★★★
+   Price: \
+   
+2. Free3D: "MQ-9 Reaper"
+   URL: https://free3d.com/3d-model/mq-9-reaper
+   Format: OBJ, FBX
+   Quality: ★★★☆☆
+   Price: Free
+
+UGV - BOSTON DYNAMICS SPOT
+───────────────────────────────────────────────────────────────
+Best Models:
+1. Sketchfab: "Boston Dynamics Spot Robot"
+   URL: https://sketchfab.com/3d-models/boston-dynamics-spot
+   Format: GLTF, FBX
+   Quality: ★★★★★
+   Price: Free (fan-made)
+   
+2. CGTrader: "Spot Robot Rigged"
+   URL: https://www.cgtrader.com/3d-models/vehicle/other/spot-robot
+   Format: FBX (rigged with skeleton)
+   Quality: ★★★★★
+   Price: \
+
+USV - SEA BABY / MARITIME DRONE
+───────────────────────────────────────────────────────────────
+Best Models:
+1. Use Jet-Ski base model and modify:
+   Sketchfab: "Jet Ski"
+   URL: https://sketchfab.com/3d-models/jet-ski
+   Format: FBX
+   Quality: ★★★★☆
+   Price: Free
+
+═══════════════════════════════════════════════════════════════
+IMPORTING TO UNREAL ENGINE 5
+═══════════════════════════════════════════════════════════════
+
+STEP-BY-STEP IMPORT:
+
+1. DOWNLOAD MODEL
+   - Prefer FBX format (best compatibility)
+   - Check for textures included
+   - Note scale (some models wrong size)
+
+2. OPEN UNREAL ENGINE 5
+   - Content Browser → Import
+   - Select FBX file
+
+3. IMPORT SETTINGS
+   ☑ Import Meshes
+   ☑ Import Materials
+   ☑ Import Textures
+   ☑ Skeletal Mesh (if rigged)
+   ☐ Import Animations (usually none)
+   
+   Transform:
+   - Import Uniform Scale: 1.0 (adjust if wrong size)
+   - Import Rotation: (0, 0, 0)
+   - Convert Scene: Yes
+
+4. CHECK SCALE
+   Real sizes for reference:
+   • DJI Mavic 3: ~0.35m wingspan
+   • Bayraktar TB2: ~12m wingspan
+   • Spot Robot: ~1m long
+   
+   If wrong, reimport with different scale
+
+5. FIX MATERIALS (if needed)
+   - Check Material assignments
+   - Enable Nanite for high-poly meshes
+   - Set up PBR materials (Base Color, Normal, Roughness)
+
+6. ADD COLLISION
+   - Right-click mesh → Collision → Auto Convex Collision
+   - Or create custom collision mesh
+
+7. CREATE BLUEPRINT
+   - Duplicate AutonomySim vehicle BP
+   - Replace mesh component
+   - Adjust physics (mass, drag)
+
+═══════════════════════════════════════════════════════════════
+BATCH DOWNLOAD SCRIPT (PowerShell)
+═══════════════════════════════════════════════════════════════
+
+Save as: download_models.ps1
+
+# Free Sketchfab models (requires manual login)
+\ = @(
+    "https://sketchfab.com/3d-models/bayraktar-tb2",
+    "https://sketchfab.com/3d-models/dji-mavic-3",
+    "https://sketchfab.com/3d-models/fpv-drone"
+)
+
+Write-Host "Opening Sketchfab download pages..."
+foreach (\ in \) {
+    Start-Process \
+    Start-Sleep -Seconds 2
+}
+
+Write-Host "Login and click 'Download 3D Model' on each page"
+Write-Host "Select FBX format for Unreal Engine"
+
+═══════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+MODEL TOO SMALL/LARGE:
+→ Reimport with Scale = 100 or 0.01
+
+MISSING TEXTURES:
+→ Check zip file for texture folder
+→ Manually assign in Material Editor
+
+BLACK/WHITE MATERIALS:
+→ Textures not found
+→ Reassign texture paths in Material
+
+WRONG ORIENTATION:
+→ Reimport with Rotation offset
+→ Or rotate in Blueprint
+
+MODEL DOESN'T FLY IN AUTONOMYSIM:
+→ Check mass in Physics settings
+→ Verify collision mesh exists
+→ Check settings.json configuration
+

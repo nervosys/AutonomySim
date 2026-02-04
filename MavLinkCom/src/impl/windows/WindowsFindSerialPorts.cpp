@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 #ifndef ONECORE
+#include <Windows.h>
 #include "MavLinkConnection.hpp"
 #include <Cfgmgr32.h>
 #include <ObjIdl.h>
 #include <SetupAPI.h>
-#include <Windows.h>
 #include <propkey.h>
 #include <string>
 

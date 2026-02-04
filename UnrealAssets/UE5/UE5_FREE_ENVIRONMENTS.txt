@@ -1,0 +1,200 @@
+UNREAL ENGINE 5 FREE ENVIRONMENTS (Epic Games Account Required)
+═══════════════════════════════════════════════════════════════
+
+HOW TO ACCESS:
+1. Create/Login to Epic Games account: https://www.epicgames.com/
+2. Open Epic Games Launcher
+3. Go to: Unreal Engine → Marketplace → Free
+4. Add to library, then download to your UE5 project
+
+═══════════════════════════════════════════════════════════════
+TOP FREE UE5 ENVIRONMENTS FOR MILITARY SIMULATION
+═══════════════════════════════════════════════════════════════
+
+URBAN WARFARE & DESTROYED CITIES
+─────────────────────────────────────────────────────────────
+
+1. ★★★★★ City of Brass (FREE)
+   URL: https://www.unrealengine.com/marketplace/en-US/product/city-of-brass
+   Size: ~8 GB
+   UE5 Compatible: YES
+   Description: Middle Eastern city environment, perfect for urban drone ops
+   Features: Destructible buildings, realistic architecture, optimization
+   
+2. ★★★★★ Modular Neighborhood Pack (FREE)
+   URL: https://www.unrealengine.com/marketplace/en-US/product/modular-neighborhood-pack
+   Size: ~3 GB
+   UE5 Compatible: YES (UE5.1+)
+   Description: Suburban/urban environment with customizable buildings
+   Features: Modular system, LODs, Nanite support
+   
+3. ★★★★★ Abandoned Factory (FREE - Monthly Free Asset)
+   URL: https://www.unrealengine.com/marketplace/en-US/product/abandoned-factory
+   Size: ~5 GB
+   UE5 Compatible: YES
+   Description: Industrial complex, perfect for UGV operations
+   Features: Lumen lighting, detailed interiors
+   
+4. ★★★★★ Soviet Apartment Buildings
+   URL: https://www.unrealengine.com/marketplace/en-US/product/soviet-buildings
+   Size: ~4 GB
+   UE5 Compatible: YES
+   Description: Eastern European/Soviet-era architecture (Ukraine-style)
+   Features: Realistic damage models, weathering
+
+MILITARY INSTALLATIONS
+─────────────────────────────────────────────────────────────
+
+5. ★★★★★ Military Base Environment
+   URL: https://www.unrealengine.com/marketplace/en-US/product/military-base-environment
+   Size: ~6 GB
+   UE5 Compatible: YES (UE5.0+)
+   Description: Complete military airbase with runways, hangars, control tower
+   Features: Modular buildings, vehicle props, realistic scale
+   
+6. ★★★★★ Bunker Asset Pack
+   URL: https://www.unrealengine.com/marketplace/en-US/product/bunker-asset-pack
+   Size: ~2 GB
+   UE5 Compatible: YES
+   Description: Underground/fortified military bunkers
+   Features: Modular system, realistic materials
+
+NATURAL TERRAIN & FORESTS
+─────────────────────────────────────────────────────────────
+
+7. ★★★★★ Realistic Forest Pack
+   URL: https://www.unrealengine.com/marketplace/en-US/product/realistic-forest-pack
+   Size: ~7 GB
+   UE5 Compatible: YES (Nanite trees)
+   Description: Dense forest for reconnaissance drone missions
+   Features: Nanite trees, procedural foliage, wind simulation
+   
+8. ★★★★★ Mountain Landscape
+   URL: https://www.unrealengine.com/marketplace/en-US/product/mountain-landscape
+   Size: ~5 GB
+   UE5 Compatible: YES
+   Description: Mountainous terrain with valleys
+   Features: High-res heightmaps, landscape materials
+
+COASTAL & MARITIME
+─────────────────────────────────────────────────────────────
+
+9. ★★★★★ Coastal Cliffs Environment
+   URL: https://www.unrealengine.com/marketplace/en-US/product/coastal-cliffs
+   Size: ~4 GB
+   UE5 Compatible: YES
+   Description: Coastal terrain for USV/maritime operations
+   Features: Ocean shader, beach materials, cliffs
+   
+10. ★★★★★ Naval Port Facility
+    URL: https://www.unrealengine.com/marketplace/en-US/product/naval-port
+    Size: ~5 GB
+    UE5 Compatible: YES
+    Description: Port with docks, cranes, ships
+    Features: Modular dock system, warehouse interiors
+
+DESERT & ARID ENVIRONMENTS
+─────────────────────────────────────────────────────────────
+
+11. ★★★★★ Desert Military Compound
+    URL: https://www.unrealengine.com/marketplace/en-US/product/desert-compound
+    Size: ~4 GB
+    UE5 Compatible: YES
+    Description: Middle East military installation
+    Features: Sand materials, compound walls, guard towers
+    
+12. ★★★★★ Arid Landscape Collection
+    URL: https://www.unrealengine.com/marketplace/en-US/product/arid-landscape
+    Size: ~6 GB
+    UE5 Compatible: YES
+    Description: Desert terrain with rocks, dunes
+    Features: Landscape layers, procedural placement
+
+MODULAR BUILDING KITS (Build Custom Environments)
+─────────────────────────────────────────────────────────────
+
+13. ★★★★★ Modular Sci-Fi Military
+    URL: https://www.unrealengine.com/marketplace/en-US/product/modular-scifi-military
+    Size: ~3 GB
+    UE5 Compatible: YES
+    Description: Modern military facility kit
+    Features: 200+ modular pieces, snap-together system
+    
+14. ★★★★★ Industrial Props Pack
+    URL: https://www.unrealengine.com/marketplace/en-US/product/industrial-props
+    Size: ~2 GB
+    UE5 Compatible: YES
+    Description: Props for military/industrial environments
+    Features: High-quality PBR materials, collision meshes
+
+WAR-TORN ENVIRONMENTS (Ukraine-Style)
+─────────────────────────────────────────────────────────────
+
+15. ★★★★★ Destroyed City Pack
+    URL: https://www.unrealengine.com/marketplace/en-US/product/destroyed-city
+    Size: ~7 GB
+    UE5 Compatible: YES
+    Description: War-damaged buildings, rubble, craters
+    Features: Multiple damage states, particle effects
+    
+16. ★★★★★ Battlefield Props Collection
+    URL: https://www.unrealengine.com/marketplace/en-US/product/battlefield-props
+    Size: ~3 GB
+    UE5 Compatible: YES
+    Description: Trenches, sandbags, fortifications
+    Features: Modular trench system, military props
+
+═══════════════════════════════════════════════════════════════
+UE5-SPECIFIC FEATURES TO LOOK FOR
+═══════════════════════════════════════════════════════════════
+
+✓ NANITE Support - Billions of polygons without performance hit
+✓ LUMEN Lighting - Real-time global illumination (realistic lighting)
+✓ Virtual Shadow Maps - High-quality shadows
+✓ World Partition - Massive open-world streaming
+✓ Enhanced Input System - Better controls
+✓ Chaos Physics - Realistic destruction
+
+═══════════════════════════════════════════════════════════════
+MONTHLY FREE ASSETS
+═══════════════════════════════════════════════════════════════
+
+Epic Games offers FREE assets each month (check monthly):
+URL: https://www.unrealengine.com/marketplace/en-US/assets?count=20&sortBy=effectiveDate&sortDir=DESC&start=0&tag=4910
+
+Recent FREE releases relevant to military sim:
+• Abandoned City Environment
+• Post-Apocalyptic Bunker
+• Military Vehicles Pack
+• Realistic Weapon Collection
+
+Check every month - assets valued at -200 become permanently free!
+
+═══════════════════════════════════════════════════════════════
+QUIXEL MEGASCANS (FREE WITH EPIC ACCOUNT)
+═══════════════════════════════════════════════════════════════
+
+URL: https://quixel.com/megascans/home
+UE5 Integration: Built-in via Quixel Bridge plugin
+
+FREE PHOTOGRAMMETRY ASSETS:
+• 15,000+ photoscanned 3D models
+• Realistic surfaces, rocks, vegetation
+• Military props and structures
+• Damaged building elements
+• Natural terrain scans
+
+HOW TO USE:
+1. Install Quixel Bridge plugin in UE5
+2. Browse library (all free for UE projects)
+3. Drag & drop into your scene
+4. Automatic Nanite conversion
+
+RECOMMENDED COLLECTIONS:
+• Military Structures
+• Concrete Barriers
+• Metal Props (vehicles, containers)
+• Natural Ground (terrain textures)
+• Destroyed Architecture
+• Eastern European Buildings
+

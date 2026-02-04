@@ -1,0 +1,44 @@
+UNREAL MARKETPLACE ENVIRONMENTS (Require Epic Games Account)
+═══════════════════════════════════════════════════════════════
+
+HIGH-QUALITY REAL-WORLD ENVIRONMENTS:
+
+1. MILITARY BASES
+   • Military Base Pack - https://www.unrealengine.com/marketplace/military-base
+   • Tactical Operations Base - https://www.unrealengine.com/marketplace/tob
+   • Forward Operating Base - https://www.unrealengine.com/marketplace/fob
+   
+2. URBAN ENVIRONMENTS
+   • War-Torn City Pack - https://www.unrealengine.com/marketplace/war-city
+   • Eastern European Town - https://www.unrealengine.com/marketplace/ee-town
+   • Post-Soviet Industrial - https://www.unrealengine.com/marketplace/soviet-industrial
+   
+3. NATURAL TERRAIN
+   • Realistic Landscapes Vol. 1-3 - https://www.unrealengine.com/marketplace/landscapes
+   • Forest Terrain Pack - https://www.unrealengine.com/marketplace/forest-terrain
+   • Desert Military Zone - https://www.unrealengine.com/marketplace/desert-zone
+   
+4. COASTAL/MARITIME
+   • Naval Port Facility - https://www.unrealengine.com/marketplace/naval-port
+   • Coastal Defense System - https://www.unrealengine.com/marketplace/coastal-defense
+   • Ocean/Underwater Pack - https://www.unrealengine.com/marketplace/ocean-underwater
+
+ALTERNATIVE FREE RESOURCES:
+
+1. Quixel Megascans (Free with Epic account)
+   https://quixel.com/megascans
+   - Photogrammetry environments
+   - Military structures and props
+   - Natural terrain scans
+   
+2. Cesium for Unreal (Real-world terrain)
+   https://cesium.com/platform/cesium-for-unreal/
+   - Real-world 3D terrain from Google/Bing
+   - Photorealistic satellite imagery
+   - Elevation data
+   
+3. OpenStreetMap to Unreal
+   https://github.com/ue4plugins/StreetMap
+   - Convert OSM data to 3D cities
+   - Real locations worldwide
+

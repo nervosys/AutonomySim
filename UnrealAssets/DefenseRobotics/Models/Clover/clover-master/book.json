@@ -1,0 +1,63 @@
+{
+    "title": "Clover",
+    "description": "Конструктор квадрокоптера «Клевер»",
+    "author": "Copter Express",
+    "language": "en",
+    "root": "docs/",
+    "gitbook": "^3.2.2",
+    "plugins": [
+        "richquotes@https://github.com/okalachev/gitbook-plugin-richquotes.git",
+        "yametrika",
+        "anchors",
+        "collapsible-menu",
+        "validate-links@https://github.com/okalachev/gitbook-plugin-validate-links.git",
+        "bulk-redirect@https://github.com/okalachev/gitbook-plugin-bulk-redirect.git",
+        "sitemap@https://github.com/okalachev/plugin-sitemap.git",
+        "toolbar@https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
+        "addcssjs",
+        "localized-footer@https://github.com/okalachev/gitbook-plugin-localized-footer.git",
+        "image-zoom@https://github.com/okalachev/gitbook-plugin-image-zoom.git",
+        "language-picker@https://github.com/okalachev/gitbook-plugin-language-picker.git"
+    ],
+    "pluginsConfig": {
+        "yametrika": {
+            "id": 49359238
+        },
+        "bulk-redirect": {
+            "basepath": "",
+            "redirectsFile": "redirects.json",
+            "blank": true
+        },
+        "sitemap": {
+            "hostname": "https://clover.coex.tech"
+        },
+        "toolbar": {
+            "buttons":
+            [
+                {
+                    "label": "Edit page on github",
+                    "icon": "fa fa-pencil-square-o",
+                    "position" : "left",
+                    "url": "https://github.com/CopterExpress/clover/edit/master/docs/{{filepath_lang}}"
+                },
+                {
+                    "label": "GitHub",
+                    "icon": "fa fa-github",
+                    "position" : "left",
+                    "url": "https://github.com/CopterExpress/clover"
+                }
+            ]
+        },
+        "addcssjs": {
+            "css": ["../clover.css"],
+            "js": ["../clover.js"]
+        },
+        "language-picker": {
+            "languages": [["ru", "Russian"], ["en", "English"]]
+        },
+        "localized-footer": {
+            "hline": false,
+            "filename": "./FOOTER.md"
+        }
+    }
+}

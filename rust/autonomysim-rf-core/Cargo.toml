@@ -1,0 +1,20 @@
+[package]
+name = "autonomysim-rf-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+autonomysim-core = { path = "../autonomysim-core" }
+nalgebra = { workspace = true, features = ["serde-serialize"] }
+ndarray.workspace = true
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio = { workspace = true, features = ["sync"] }
+rayon.workspace = true
+num-complex = "0.4"
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["full", "test-util"] }
+criterion = "0.5"

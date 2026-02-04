@@ -1,0 +1,52 @@
+UGV 3D MODELS - MILITARY GROUND ROBOTS
+═══════════════════════════════════════════════════════════════
+
+COMBAT & RECONNAISSANCE:
+
+1. BOSTON DYNAMICS SPOT (Modified for Military)
+   • Free: https://github.com/boston-dynamics/spot-sdk/tree/master/docs/concepts/robot_electrical
+   • Sketchfab: https://sketchfab.com/3d-models/boston-dynamics-spot
+   • GrabCAD: https://grabcad.com/library/boston-dynamics-spot
+   
+2. TALON ROBOT (EOD/IED Disposal)
+   • GrabCAD: https://grabcad.com/library/foster-miller-talon
+   • Free3D: https://free3d.com/3d-model/talon-robot
+   
+3. PACKBOT (US Military EOD)
+   • GrabCAD: https://grabcad.com/library/irobot-packbot
+   • Sketchfab: https://sketchfab.com/3d-models/packbot
+   
+4. MILREM THEMIS (Estonian Armed UGV)
+   • Official: https://milrem.com/themis/
+   • CGTrader: https://www.cgtrader.com/3d-models/vehicle/military/themis-ugv
+   
+5. RIPSAW M5 (Fast Attack UGV)
+   • GrabCAD: https://grabcad.com/library/ripsaw-m5
+   • Sketchfab: https://sketchfab.com/3d-models/ripsaw-ugv
+
+UKRAINE CONFLICT UGVs:
+
+6. GROUND DRONE (THeMIS Variations)
+   • Multiple variants used for supply/attack
+   • CGTrader: https://www.cgtrader.com/3d-models/vehicle/military/ground-combat-drone
+   
+7. TELETANK T-18 (Remote-Controlled Tank Chassis)
+   • Historical/Modern variants
+   • GrabCAD: https://grabcad.com/library/remote-tank
+
+LOGISTICS & SUPPORT:
+
+8. CLEARPATH HUSKY (Research Platform)
+   • Official: https://clearpathrobotics.com/husky-unmanned-ground-vehicle-robot/
+   • GrabCAD: https://grabcad.com/library/clearpath-husky
+   
+9. AUTONOMOUS MULE (Supply Transport)
+   • Sketchfab: https://sketchfab.com/3d-models/military-mule-ugv
+   • TurboSquid: https://www.turbosquid.com/3d-models/military-robot-mule
+
+DOWNLOAD LOCATIONS:
+
+• GrabCAD UGV Collection: https://grabcad.com/library?q=ugv
+• Military Robots Pack: https://www.cgtrader.com/3d-model-collections/military-robots
+• ROS Robot Models: https://github.com/osrf/gazebo_models
+

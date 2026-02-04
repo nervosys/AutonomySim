@@ -1,0 +1,51 @@
+USV/UUV 3D MODELS - MARITIME DRONES
+═══════════════════════════════════════════════════════════════
+
+UKRAINE MARITIME DRONES (Used Against Russian Fleet):
+
+1. SEA BABY (Ukrainian Attack USV)
+   • Recent design, limited 3D models available
+   • Reference images for modeling
+   
+2. MAGURA V5 (Ukrainian Naval Drone)
+   • Jet-ski based explosive drone
+   • Similar models: https://sketchfab.com/3d-models/jet-ski
+
+US/NATO USVs:
+
+3. SEA HUNTER (DARPA Anti-Submarine USV)
+   • GrabCAD: https://grabcad.com/library/sea-hunter-usv
+   • Sketchfab: https://sketchfab.com/3d-models/usv-sea-hunter
+   
+4. MANTAS T-12 (Patrol USV)
+   • CGTrader: https://www.cgtrader.com/3d-models/watercraft/other/mantas-usv
+   
+5. WAVE GLIDER (Ocean Research)
+   • Free3D: https://free3d.com/3d-model/wave-glider
+
+UNDERWATER VEHICLES (UUV):
+
+6. BLUEFIN-21 (Submarine AUV)
+   • GrabCAD: https://grabcad.com/library/bluefin-21-auv
+   • Sketchfab: https://sketchfab.com/3d-models/bluefin-auv
+   
+7. REMUS 100/600 (Mine Countermeasures)
+   • GrabCAD: https://grabcad.com/library/remus-100
+   • Naval assets: https://www.cgtrader.com/3d-models/watercraft/military/remus-auv
+   
+8. TORPEDO SHAPE AUVs
+   • Generic: https://sketchfab.com/3d-models/autonomous-underwater-vehicle
+   • Research: https://grabcad.com/library/auv-autonomous-underwater-vehicle
+
+GENERIC MARITIME DRONES:
+
+9. PATROL BOAT USV
+   • Sketchfab: https://sketchfab.com/3d-models/usv-patrol-boat
+   • TurboSquid: https://www.turbosquid.com/3d-models/unmanned-surface-vehicle
+
+DOWNLOAD SITES:
+
+• Maritime Drones: https://www.cgtrader.com/3d-models/watercraft/military
+• Naval Models: https://grabcad.com/library?q=usv
+• Underwater: https://sketchfab.com/search?q=auv&type=models
+

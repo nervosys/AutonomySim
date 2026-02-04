@@ -7,6 +7,7 @@
 #include "SimpleFlightCommon.hpp"
 #include "common/Common.hpp"
 #include "firmware/interfaces/CommonStructs.hpp"
+#include "firmware/interfaces/IStateEstimator.hpp"
 #include "physics/Environment.hpp"
 #include "physics/Kinematics.hpp"
 

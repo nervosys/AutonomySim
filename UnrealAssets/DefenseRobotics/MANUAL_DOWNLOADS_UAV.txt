@@ -1,0 +1,75 @@
+UAV 3D MODELS - UKRAINE WAR & MODERN MILITARY DRONES
+═══════════════════════════════════════════════════════════════
+
+WIDELY USED IN UKRAINE:
+
+1. DJI MAVIC 3 (Reconnaissance & Artillery Spotting)
+   • Sketchfab: https://sketchfab.com/3d-models/dji-mavic-3
+   • TurboSquid: https://www.turbosquid.com/3d-models/dji-mavic-3
+   • CGTrader: https://www.cgtrader.com/3d-models/vehicle/other/dji-mavic-3
+   
+2. DJI PHANTOM 4 PRO (Modified for Munitions Drop)
+   • Free3D: https://free3d.com/3d-model/dji-phantom-4-pro
+   • GrabCAD: https://grabcad.com/library/dji-phantom-4-pro
+   • Sketchfab: https://sketchfab.com/3d-models/phantom-4-pro
+   
+3. AUTEL EVO II (Reconnaissance)
+   • CGTrader: https://www.cgtrader.com/3d-models/vehicle/other/autel-evo-ii
+   • TurboSquid: https://www.turbosquid.com/3d-models/autel-evo-ii
+   
+4. TB2 BAYRAKTAR (Turkish Attack Drone - High-Profile in Ukraine)
+   • GrabCAD: https://grabcad.com/library/bayraktar-tb2
+   • Sketchfab: https://sketchfab.com/3d-models/bayraktar-tb2
+   • Free Download: https://www.cgtrader.com/free-3d-models/aircraft/other/bayraktar-tb2
+   
+5. SWITCHBLADE 300/600 (Loitering Munition)
+   • Sketchfab: https://sketchfab.com/3d-models/switchblade-300
+   • CGTrader: https://www.cgtrader.com/3d-models/aircraft/military/switchblade-uav
+   
+6. RECONNAISSANCE QUADCOPTERS (Modified Commercial)
+   • Generic Quadcopter Pack: https://sketchfab.com/3d-models/quadcopter-drone
+   • Military Drone Pack: https://www.cgtrader.com/3d-models/aircraft/military/military-drones-pack
+
+WESTERN/NATO DRONES:
+
+7. MQ-9 REAPER (US Predator)
+   • Free3D: https://free3d.com/3d-model/mq-9-reaper
+   • GrabCAD: https://grabcad.com/library/mq-9-reaper
+   • Sketchfab: https://sketchfab.com/3d-models/mq-9-reaper
+   
+8. RQ-4 GLOBAL HAWK
+   • GrabCAD: https://grabcad.com/library/rq-4-global-hawk
+   • Free3D: https://free3d.com/3d-model/global-hawk
+   
+9. BLACK HORNET NANO (Infantry Recon)
+   • Sketchfab: https://sketchfab.com/3d-models/black-hornet-nano
+   • CGTrader: https://www.cgtrader.com/3d-models/aircraft/military/black-hornet
+
+RUSSIAN DRONES:
+
+10. ORLAN-10 (Russian Recon - Frequently Shot Down)
+    • GrabCAD: https://grabcad.com/library/orlan-10
+    • Sketchfab: https://sketchfab.com/3d-models/orlan-10
+    
+11. LANCET (Russian Loitering Munition)
+    • CGTrader: https://www.cgtrader.com/3d-models/aircraft/military/lancet-uav
+    
+12. SHAHED-136 (Iranian Kamikaze Drone Used by Russia)
+    • Sketchfab: https://sketchfab.com/3d-models/shahed-136
+    • Free Models: https://www.cgtrader.com/free-3d-models/aircraft/military/shahed-136
+
+FPV RACING DRONES (Modified for Military Use):
+
+13. FPV RACING DRONE PACK
+    • Sketchfab: https://sketchfab.com/3d-models/fpv-racing-drone
+    • TurboSquid: https://www.turbosquid.com/3d-models/fpv-drone
+    • CGTrader: https://www.cgtrader.com/3d-models/vehicle/other/fpv-racing-drone
+
+DOWNLOAD SITES:
+
+• Sketchfab (Many free): https://sketchfab.com/search?q=military+drone&type=models
+• GrabCAD (CAD models): https://grabcad.com/library?q=military%20drone
+• Free3D: https://free3d.com/3d-models/military-drone
+• CGTrader: https://www.cgtrader.com/3d-models/aircraft/military
+• NASA 3D Resources: https://nasa3d.arc.nasa.gov/models
+

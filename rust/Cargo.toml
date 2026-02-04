@@ -1,0 +1,72 @@
+[package]
+name = "autonomysim-rf"
+version = "0.1.0"
+edition = "2021"
+authors = ["AutonomySim Team"]
+description = "Modular RF propagation simulation with multiple backend support"
+license = "MIT"
+
+[workspace]
+members = [
+    "autonomysim-core",
+    "autonomysim-backends",
+    "autonomysim-rf-core",
+    "autonomysim-gaussian-splat",
+    "autonomysim-instant-rm",
+    "autonomysim-bindings",
+    "autonomysim-tactical",
+    "autonomysim-summoner",
+]
+
+[workspace.dependencies]
+nalgebra = "0.32"
+ndarray = "0.15"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+rayon = "1.8"
+parking_lot = "0.12"
+num-complex = "0.4"
+uuid = { version = "1.6", features = ["v4"] }
+
+[dependencies]
+autonomysim-core = { path = "autonomysim-core" }
+autonomysim-backends = { path = "autonomysim-backends" }
+autonomysim-rf-core = { path = "autonomysim-rf-core" }
+autonomysim-gaussian-splat = { path = "autonomysim-gaussian-splat" }
+autonomysim-instant-rm = { path = "autonomysim-instant-rm" }
+autonomysim-tactical = { path = "autonomysim-tactical" }
+autonomysim-summoner = { path = "autonomysim-summoner" }
+
+nalgebra.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[dev-dependencies]
+criterion = "0.5"
+approx = "0.5"
+
+[features]
+default = []
+# Backend features
+unreal = ["autonomysim-backends/unreal"]
+isaac = ["autonomysim-backends/isaac"]
+mujoco = ["autonomysim-backends/mujoco"]
+warp = ["autonomysim-backends/warp"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.bench]
+opt-level = 3
+lto = true

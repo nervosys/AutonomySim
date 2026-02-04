@@ -20,6 +20,17 @@ namespace autonomylib {
 // output
 class RotorActuator : public PhysicsBodyVertex {
 
+  public:
+    // Output struct must be declared before use in private members
+    struct Output {
+        real_T thrust;
+        real_T torque_scaler;
+        real_T speed;
+        RotorTurningDirection turning_direction;
+        real_T control_signal_filtered;
+        real_T control_signal_input;
+    };
+
   private:
     uint id_; // only used for debug messages
     RotorTurningDirection turning_direction_;
@@ -55,15 +66,6 @@ class RotorActuator : public PhysicsBodyVertex {
     }
 
   public:
-    struct Output {
-        real_T thrust;
-        real_T torque_scaler;
-        real_T speed;
-        RotorTurningDirection turning_direction;
-        real_T control_signal_filtered;
-        real_T control_signal_input;
-    };
-
     // methods
     RotorActuator() {
         // allow default constructor with later call for initialize

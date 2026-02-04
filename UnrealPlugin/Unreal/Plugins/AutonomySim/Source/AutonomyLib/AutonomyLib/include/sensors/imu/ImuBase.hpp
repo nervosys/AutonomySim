@@ -1,0 +1,45 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+#ifndef autonomylib_sensors_ImuBase_hpp
+#define autonomylib_sensors_ImuBase_hpp
+
+#include "sensors/SensorBase.hpp"
+
+namespace nervosys {
+namespace autonomylib {
+
+class ImuBase : public SensorBase {
+
+  public:
+    ImuBase(const std::string &sensor_name = "") : SensorBase(sensor_name) {}
+
+    struct Output { // structure is same as ROS IMU message
+        EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+        TTimePoint time_stamp;
+        Quaternionr orientation;
+        Vector3r angular_velocity;
+        Vector3r linear_acceleration;
+    };
+
+    virtual void reportState(StateReporter &reporter) override {
+        // call base
+        UpdatableObject::reportState(reporter);
+
+        reporter.writeValue("IMU-Ang", output_.angular_velocity);
+        reporter.writeValue("IMU-Lin", output_.linear_acceleration);
+    }
+
+    const Output &getOutput() const { return output_; }
+
+  protected:
+    void setOutput(const Output &output) { output_ = output; }
+
+  private:
+    Output output_;
+};
+
+} // namespace autonomylib
+} // namespace nervosys
+
+#endif

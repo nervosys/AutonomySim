@@ -90,12 +90,14 @@ $CMAKE_GENERATOR = "$CmakeGenerator"
 $DEBUG_MODE = if ( $SystemDebug.IsPresent ) { $true } else { $false }
 $UNREAL_ENV_DIR = if ($PSBoundParameters.ContainsKey('UnrealEnvDir')) {
   "$UnrealEnvDir"
-} else {
+}
+else {
   "${PROJECT_DIR}\UnrealPlugin\Unreal\Environments"
 }
 $UNREAL_ASSET = if ( $UnrealAsset.IsPresent ) { $true } else { $false }
 $BUILD_DOCS = if ( $BuildDocs.IsPresent ) { $true } else { $false }
-$AUTOMATE_MODE = if ( $Automate.IsPresent ) { $true } else { $false }
+# Default to auto-selection (true) unless explicitly disabled
+$AUTOMATE_MODE = $true
 
 # Dynamic variables
 $SYSTEM_INFO = Get-ComputerInfo  # WARNING: Windows only
@@ -105,7 +107,11 @@ $SYSTEM_PLATFORM = Get-Architecture -Info $SYSTEM_INFO
 $SYSTEM_CPU_MAX = Set-ProcessorCount -Info $SYSTEM_INFO
 $SYSTEM_OS_VERSION = Get-WindowsVersion -Info $SYSTEM_INFO
 $VS_INSTANCE = Set-VsInstance -Automate $AUTOMATE_MODE
+if ($null -eq $VS_INSTANCE) {
+  Invoke-Fail -ErrorMessage "Error: Failed to locate a Visual Studio instance."
+}
 $VS_VERSION = Get-VsInstanceVersion -Config $VS_INSTANCE
+$MSBUILD_PATH = Get-MsBuildPath -Config $VS_INSTANCE
 $CMAKE_VERSION = Get-ProgramVersion -Program 'cmake'
 
 ###
@@ -129,17 +135,21 @@ function Build-AutonomySim {
     [UInt16]
     $SystemCpuMax = $SYSTEM_CPU_MAX,
     [Parameter()]
+    [String]
+    $MsBuildPath = "$MSBUILD_PATH",
+    [Parameter()]
     [String[]]
     $IgnoreErrors = @()
   )
   [String]$IgnoreErrorCodes = if ( $IgnoreErrors.Count -gt 0 ) { '-noerr:' + ($IgnoreErrors -Join ';') } else { '' }
   if ( "$BuildMode" -eq 'Release' ) {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
+    Start-Process -FilePath "$MsBuildPath" -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
     "/p:Platform=${SystemPlatform}", '/p:Configuration=Debug', "${ProjectDir}\AutonomySim.sln" -Wait -NoNewWindow -ErrorAction Stop
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
+    Start-Process -FilePath "$MsBuildPath" -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
     "/p:Platform=${SystemPlatform}", '/p:Configuration=Release', "${ProjectDir}\AutonomySim.sln" -Wait -NoNewWindow -ErrorAction Stop
-  } else {
-    Start-Process -FilePath 'msbuild.exe' -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
+  }
+  else {
+    Start-Process -FilePath "$MsBuildPath" -ArgumentList "-maxcpucount:${SystemCpuMax}", "${IgnoreErrorCodes}",
     "/p:Platform=${SystemPlatform}", "/p:Configuration=${BuildMode}", "${ProjectDir}\AutonomySim.sln" -Wait -NoNewWindow -ErrorAction Stop
   }
   if ( ! $? ) { exit $LastExitCode }  # exit on error

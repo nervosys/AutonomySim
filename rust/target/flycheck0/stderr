@@ -1,0 +1,401 @@
+warning: profiles for the non root package will be ignored, specify profiles at the workspace root:
+package:   C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-summoner\Cargo.toml
+workspace: C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\Cargo.toml
+   0.708975400s  INFO prepare_target{force=false package_id=autonomysim-instant-rm v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-instant-rm) target="autonomysim_instant_rm"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-instant-rm v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-instant-rm)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("autonomysim_instant_rm", ["lib"], "C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\autonomysim-instant-rm\\src\\lib.rs", Edition2021) }
+   0.710069700s  INFO prepare_target{force=false package_id=autonomysim-instant-rm v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-instant-rm) target="autonomysim_instant_rm"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-instant-rm-48b2636b58a373ef\lib-autonomysim_instant_rm`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   0.723780400s  INFO prepare_target{force=false package_id=autonomysim-instant-rm v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-instant-rm) target="autonomysim_instant_rm"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-instant-rm v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-instant-rm)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("autonomysim_instant_rm", ["lib"], "C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\autonomysim-instant-rm\\src\\lib.rs", Edition2021) }
+   0.723809000s  INFO prepare_target{force=false package_id=autonomysim-instant-rm v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-instant-rm) target="autonomysim_instant_rm"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-instant-rm-832bc0163c05fccb\test-lib-autonomysim_instant_rm`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   0.807489000s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="basic_rf_sim"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "basic_rf_sim", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\basic_rf_sim.rs", Edition2021) }
+   0.807538300s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="basic_rf_sim"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-92970eb84c4d9a46\example-basic_rf_sim`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.416188100s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="contested_comms"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "contested_comms", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\contested_comms.rs", Edition2021) }
+   1.416227500s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="contested_comms"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-cab8e9104e000e31\example-contested_comms`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.417669600s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="gaussian_splat_rf"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "gaussian_splat_rf", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\gaussian_splat_rf.rs", Edition2021) }
+   1.417695300s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="gaussian_splat_rf"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-5832bb84df51563b\example-gaussian_splat_rf`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.418520000s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="isaac_multi_env"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "isaac_multi_env", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\isaac_multi_env.rs", Edition2021) }
+   1.418537200s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="isaac_multi_env"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-4aff97e27d994d86\example-isaac_multi_env`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.419254400s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="mujoco_contact"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "mujoco_contact", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\mujoco_contact.rs", Edition2021) }
+   1.419270000s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="mujoco_contact"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-93b020790c9bd733\example-mujoco_contact`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.420138700s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="robotic_swarm_demo"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "robotic_swarm_demo", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\robotic_swarm_demo.rs", Edition2021) }
+   1.420161300s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="robotic_swarm_demo"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-7820f4132306fa37\example-robotic_swarm_demo`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.421267600s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="summoner_benchmark"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "summoner_benchmark", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\summoner_benchmark.rs", Edition2021) }
+   1.421281900s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="summoner_benchmark"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-e79a1dda094250fc\example-summoner_benchmark`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.421983100s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="summoner_massive_swarm"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "summoner_massive_swarm", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\summoner_massive_swarm.rs", Edition2021) }
+   1.421996200s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="summoner_massive_swarm"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-5463672ffa4276dd\example-summoner_massive_swarm`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.422644600s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="unreal_robotic_swarm"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "unreal_robotic_swarm", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\unreal_robotic_swarm.rs", Edition2021) }
+   1.422658400s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="unreal_robotic_swarm"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-9754ab8d49367462\example-unreal_robotic_swarm`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.423255600s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="vehicle_swarm"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "vehicle_swarm", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\vehicle_swarm.rs", Edition2021) }
+   1.423268900s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="vehicle_swarm"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-3449e58c35bfb81b\example-vehicle_swarm`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.423990100s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="warp_massive_parallel"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)/Check { test: false }/TargetInner { kind: "example", name: "warp_massive_parallel", tested: false, benched: false, ..: with_path("C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\examples\\warp_massive_parallel.rs", Edition2021) }
+   1.424005100s  INFO prepare_target{force=false package_id=autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust) target="warp_massive_parallel"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-rf-dc940fdefb7e8bcc\example-warp_massive_parallel`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.432779100s  INFO prepare_target{force=false package_id=autonomysim-summoner v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-summoner) target="autonomysim_summoner"}: cargo::core::compiler::fingerprint: fingerprint error for autonomysim-summoner v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-summoner)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("autonomysim_summoner", ["lib"], "C:\\Users\\adamm\\dev\\nervosys\\modeling\\simulation\\AutonomySim\\rust\\autonomysim-summoner\\src\\lib.rs", Edition2021) }
+   1.432821400s  INFO prepare_target{force=false package_id=autonomysim-summoner v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-summoner) target="autonomysim_summoner"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\target\debug\.fingerprint\autonomysim-summoner-3d88dcf11a24ff36\test-lib-autonomysim_summoner`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+    Checking autonomysim-instant-rm v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-instant-rm)
+    Checking autonomysim-summoner v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust\autonomysim-summoner)
+    Checking autonomysim-rf v0.1.0 (C:\Users\adamm\dev\nervosys\modeling\simulation\AutonomySim\rust)
+error: could not compile `autonomysim-rf` (example "warp_massive_parallel") due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `autonomysim-summoner` (lib test) due to 7 previous errors; 1 warning emitted

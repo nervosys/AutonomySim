@@ -1,0 +1,11 @@
+[package]
+name = "autonomysim-gaussian-splat"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+autonomysim-core = { path = "../autonomysim-core" }
+nalgebra.workspace = true
+ndarray.workspace = true
+serde = { workspace = true, features = ["derive"] }
+rayon.workspace = true

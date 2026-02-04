@@ -1,0 +1,200 @@
+UNREAL ENGINE IMPORT GUIDE - DEFENSE ROBOTICS ASSETS
+═══════════════════════════════════════════════════════════════
+
+EXTRACTED MODEL LOCATIONS
+══════════════════════════════════════════════════════════════
+
+PX4 Models: .\UnrealAssets\DefenseRobotics\Models\PX4\
+  - Quadcopters: iris, typhoon_h480, solo, matrice_100
+  - Fixed-wing: plane, standard_vtol, tailsitter
+  - VTOL: tiltrotor, quad_tailsitter
+  - Ground: rover, ackermann, differential
+
+Gazebo Models: .\UnrealAssets\DefenseRobotics\Models\Gazebo\
+  - Various robots and vehicles
+  - Props and environment objects
+  - Sensor models
+
+RotorS Models: .\UnrealAssets\DefenseRobotics\Models\RotorS\
+  - Research-grade MAVs
+  - High-fidelity aerodynamics
+  - Multiple quadcopter variants
+
+Clover Models: .\UnrealAssets\DefenseRobotics\Models\Clover\
+  - Educational quadcopter
+  - Complete system including sensors
+  - ROS-compatible
+
+═══════════════════════════════════════════════════════════════
+IMPORT WORKFLOW FOR EACH MODEL TYPE
+═══════════════════════════════════════════════════════════════
+
+COLLADA (.dae) FILES - MOST COMMON
+──────────────────────────────────────────
+
+1. Open Unreal Engine 5
+2. Content Browser → Import
+3. Navigate to .dae file
+4. Import Settings:
+   ☑ Import Meshes
+   ☑ Import Materials
+   ☑ Import Textures
+   ☐ Import Animations (if any)
+   Scale: 100.0 (or adjust based on model size)
+   
+5. After import:
+   - Check mesh scale (should match real vehicle size)
+   - Fix materials if needed
+   - Add collision meshes
+
+STL FILES - CAD MODELS
+──────────────────────────────────────────
+
+1. Convert to FBX first (use Blender):
+   - Open Blender
+   - File → Import → STL
+   - File → Export → FBX
+   
+2. Import FBX to Unreal (see FBX section)
+
+SDF/URDF/XACRO FILES - ROBOT DESCRIPTION
+──────────────────────────────────────────
+
+These are robot definition files (XML format):
+- Contain links to mesh files
+- Define joint hierarchies
+- Specify physics properties
+
+To use:
+1. Parse SDF/URDF to find mesh references
+2. Import referenced meshes individually
+3. Recreate hierarchy in Unreal Blueprint
+4. Set up physics constraints
+
+Or use automation tool:
+- urdf2gltf: https://github.com/ami-iit/urdf2gltf
+- Converts URDF to GLTF, then import to Unreal
+
+═══════════════════════════════════════════════════════════════
+RECOMMENDED MODELS FOR UKRAINE SCENARIO
+═══════════════════════════════════════════════════════════════
+
+QUADCOPTER RECONNAISSANCE (DJI Mavic equivalent)
+• Use: PX4 "iris" or "typhoon_h480"
+• Scale: 0.5-0.8 (to match commercial drone size)
+• Sensors: RGB camera, optional thermal
+
+LARGE ATTACK DRONE (Bayraktar TB2 equivalent)
+• Use: PX4 "plane" or "standard_vtol"
+• Scale: 3.0-4.0 (TB2 is 12m wingspan)
+• Sensors: Gimbal camera, laser designator
+• Note: Will need custom 3D model for accuracy
+
+SMALL FPV DRONE (Racing drone for combat)
+• Use: PX4 "solo" (scale down to 0.3-0.4)
+• Sensors: FPV camera (first-person view)
+• High speed, low altitude
+
+GROUND ROBOT
+• Use: PX4 "rover" or Gazebo ground vehicles
+• Scale: 1.0-2.0 depending on robot type
+• Sensors: Lidar, cameras
+
+═══════════════════════════════════════════════════════════════
+CONFIGURING FOR AUTONOMYSIM
+═══════════════════════════════════════════════════════════════
+
+After importing to Unreal:
+
+1. CREATE VEHICLE BLUEPRINT
+   - Duplicate existing AutonomySim vehicle BP
+   - Replace mesh with imported model
+   - Adjust collision and physics
+
+2. CONFIGURE SETTINGS.JSON
+   
+   Example for quadcopter:
+   {
+     "Vehicles": {
+       "ReconDrone1": {
+         "VehicleType": "SimpleFlight",
+         "DefaultVehicleState": "Armed",
+         "X": 0, "Y": 0, "Z": -2,
+         "Roll": 0, "Pitch": 0, "Yaw": 0,
+         "Cameras": {
+           "front_center": {
+             "CaptureSettings": [
+               {"ImageType": 0, "Width": 1920, "Height": 1080}
+             ],
+             "X": 0.25, "Y": 0, "Z": 0,
+             "Pitch": 0, "Roll": 0, "Yaw": 0
+           }
+         }
+       }
+     }
+   }
+
+3. ADD TO UNREAL LEVEL
+   - Drag vehicle BP into level
+   - Or spawn via AutonomySim API
+
+4. TEST WITH PYTHON
+   
+   import autonomysim as asim
+   
+   client = asim.MultirotorClient()
+   client.confirmConnection()
+   client.enableApiControl(True, "ReconDrone1")
+   client.armDisarm(True, "ReconDrone1")
+   client.takeoffAsync(vehicle_name="ReconDrone1").join()
+
+═══════════════════════════════════════════════════════════════
+NEXT STEPS
+═══════════════════════════════════════════════════════════════
+
+1. ✓ Models extracted and cataloged
+2. ⏳ Import selected models to Unreal
+3. ⏳ Create vehicle blueprints
+4. ⏳ Configure AutonomySim settings
+5. ⏳ Test with Python API
+6. ⏳ Create mission scenarios
+7. ⏳ Add real-world terrain (Cesium)
+
+For high-fidelity Ukraine scenario:
+• Download TB2, Mavic models from Sketchfab/CGTrader
+• Set up Cesium terrain of conflict zones
+• Use formation control from AutonomySim modules
+• Integrate with swarm AI (MCP, A2A, NANDA)
+
+═══════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+MODEL TOO SMALL/LARGE:
+→ Adjust import scale or scale in Blueprint
+
+MISSING TEXTURES:
+→ Check texture paths in .dae file
+→ Manually assign materials in Unreal
+
+COLLISION ISSUES:
+→ Generate collision in Unreal
+→ Or create custom collision mesh in Blender
+
+PHYSICS PROBLEMS:
+→ Check mass and center of mass
+→ Adjust inertia tensor
+→ Use AutonomySim physics presets
+
+MODEL DOESN'T FLY CORRECTLY:
+→ Verify vehicle type in settings.json
+→ Check control surface configuration
+→ Tune PID parameters
+
+═══════════════════════════════════════════════════════════════
+
+For more help, see:
+• INTEGRATION_GUIDE.txt in parent directory
+• AutonomySim documentation: https://microsoft.github.io/AutonomySim
+• Unreal Engine docs: https://docs.unrealengine.com
+

@@ -1,0 +1,92 @@
+<launch>
+    <arg name="fcu_conn" default="usb"/>
+    <arg name="fcu_ip" default="127.0.0.1"/>
+    <arg name="fcu_sys_id" default="1"/>
+    <arg name="gcs_bridge" default="tcp"/>
+    <arg name="web_video_server" default="true"/>
+    <arg name="rosbridge" default="true"/>
+    <arg name="main_camera" default="true"/>
+    <arg name="optical_flow" default="true"/>
+    <arg name="aruco" default="false"/>
+    <arg name="rangefinder_vl53l1x" default="true"/>
+    <arg name="led" default="true"/>
+    <arg name="blocks" default="false"/>
+    <arg name="rc" default="false"/>
+    <arg name="force_init" default="true"/> <!-- force estimator to init by publishing zero pose -->
+
+    <arg name="simulator" default="false"/> <!-- flag that we are operating on a simulated drone -->
+
+    <!-- log formatting -->
+    <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${logger}: ${message}"/>
+
+    <!-- mavros -->
+    <include file="$(find clover)/launch/mavros.launch">
+        <arg name="fcu_conn" value="$(arg fcu_conn)"/>
+        <arg name="fcu_ip" value="$(arg fcu_ip)"/>
+        <arg name="fcu_sys_id" value="$(arg fcu_sys_id)"/>
+        <arg name="gcs_bridge" value="$(arg gcs_bridge)"/>
+    </include>
+
+    <!-- web video server -->
+    <node name="web_video_server" pkg="web_video_server" type="web_video_server" if="$(arg web_video_server)" required="false" respawn="true" respawn_delay="5">
+        <param name="default_stream_type" value="ros_compressed"/>
+        <param name="publish_rate" value="1.0"/>
+    </node>
+
+    <!-- aruco markers -->
+    <include file="$(find clover)/launch/aruco.launch" if="$(eval aruco or force_init)">
+        <arg name="force_init" value="$(arg force_init)"/>
+        <arg name="disable" value="$(eval not aruco)"/>
+    </include>
+
+    <!-- optical flow -->
+    <node pkg="nodelet" type="nodelet" name="optical_flow" args="load clover/optical_flow main_camera_nodelet_manager" if="$(arg optical_flow)" clear_params="true" output="screen" respawn="true">
+        <remap from="image_raw" to="main_camera/image_raw"/>
+        <remap from="camera_info" to="main_camera/camera_info"/>
+        <param name="calc_flow_gyro" value="true"/>
+        <param name="roi_rad" value="0.8"/>
+        <param name="disable_on_vpe" value="true"/>
+    </node>
+
+    <!-- simplified offboard control -->
+    <node name="simple_offboard" pkg="clover" type="simple_offboard" output="screen" clear_params="true">
+        <param name="reference_frames/main_camera_optical" value="map"/>
+        <param name="terrain_frame_mode" value="range"/>
+    </node>
+
+    <!-- main camera -->
+    <include file="$(find clover)/launch/main_camera.launch" if="$(arg main_camera)">
+        <arg name="simulator" value="$(arg simulator)"/>
+    </include>
+
+    <!-- rosbridge -->
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" if="$(eval rosbridge or rc)"/>
+
+    <!-- tf2 republisher for web visualization -->
+    <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" output="screen" if="$(arg rosbridge)"/>
+
+    <!-- vl53l1x ToF rangefinder -->
+    <node name="rangefinder" pkg="vl53l1x" type="vl53l1x_node" output="screen" if="$(eval rangefinder_vl53l1x and not simulator)">
+        <param name="frame_id" value="rangefinder"/>
+        <param name="min_signal" value="0.4"/>
+        <param name="pass_statuses" type="yaml" value="[0, 6, 7, 11]"/>
+    </node>
+
+    <!-- rangefinder's frame -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="rangefinder_frame" args="0 0 -0.05 0 1.5707963268 0 base_link rangefinder" if="$(arg rangefinder_vl53l1x)"/>
+
+    <!-- led strip -->
+    <include file="$(find clover)/launch/led.launch" if="$(arg led)">
+        <arg name="simulator" value="$(arg simulator)"/>
+    </include>
+
+    <!-- Clover Blocks -->
+    <node name="clover_blocks" pkg="clover_blocks" type="clover_blocks" output="screen" if="$(arg blocks)"/>
+
+    <!-- rc backend -->
+    <node name="rc" pkg="clover" type="rc" output="screen" if="$(arg rc)" clear_params="true">
+        <!-- Send fake GCS heartbeats. Set to "true" for upstream PX4 -->
+        <param name="use_fake_gcs" value="false"/>
+    </node>
+
+</launch>

@@ -2,6 +2,7 @@
 #define autonomylib_vehicles_simpleflight_firmware_StdPidIntegrator_hpp
 
 #include "interfaces/CommonStructs.hpp"
+#include "interfaces/IPidIntegrator.hpp"
 
 namespace simple_flight {
 

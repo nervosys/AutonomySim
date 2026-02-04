@@ -13,6 +13,12 @@
 #ifndef autonomylib_vehicles_simpleflight_firmware_AdaptiveController_hpp
 #define autonomylib_vehicles_simpleflight_firmware_AdaptiveController_hpp
 
+#include "interfaces/CommonStructs.hpp"
+#include "interfaces/IBoardClock.hpp"
+#include "interfaces/IController.hpp"
+#include "interfaces/IGoal.hpp"
+#include "interfaces/IStateEstimator.hpp"
+
 namespace simple_flight {
 
 class AdaptiveController : public IController {

@@ -4,6 +4,7 @@
 #include "common/utils/Utils.hpp"
 
 #include <exception>
+#include <iostream>
 #include <string>
 
 namespace nervosys {
@@ -19,7 +20,10 @@ class TestBase {
 
     void testAssert(bool condition, const std::string &message) {
         if (!condition) {
+            std::cerr << "TEST FAILED: " << message << std::endl;
+#ifdef _DEBUG
             common_utils::Utils::DebugBreak();
+#endif
             throw std::runtime_error(message.c_str());
         }
     }

@@ -1,0 +1,21 @@
+[package]
+name = "autonomysim-backends"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+autonomysim-core = { path = "../autonomysim-core" }
+nalgebra.workspace = true
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+async-trait.workspace = true
+tokio = { workspace = true, features = ["net", "io-util", "sync"] }
+uuid = { workspace = true, features = ["v4"] }
+tracing.workspace = true
+
+[features]
+default = []
+unreal = []
+isaac = []
+mujoco = []
+warp = []

@@ -55,6 +55,17 @@ function Set-VsInstance {
     )
     [String]$SetupArgs = "-all -sort"
     $Configs = Get-VsInstance -VsWhereArgs $SetupArgs
+    
+    # Check if any VS instances were found
+    if ($null -eq $Configs -or $Configs.Count -eq 0) {
+        Invoke-Fail -ErrorMessage "Error: No Visual Studio installations found. Please install Visual Studio 2019 or later."
+    }
+    
+    # Convert single object to array if needed
+    if ($Configs -isnot [array]) {
+        $Configs = @($Configs)
+    }
+    
     # Sort by version: highest to lowest
     $Configs = $Configs | Sort-Object installationVersion -Descending
     # Add ID number to each installation
@@ -71,14 +82,23 @@ function Set-VsInstance {
     # If automation is enabled: select the latest version
     if ( $Automate -eq $true ) {
         $Selected = '0'
-    } elseif ( $Automate -eq $false ) {
+        Write-Output "Auto-selecting Visual Studio installation: $($Configs[0].displayName) (version $($Configs[0].installationVersion))"
+    }
+    elseif ( $Automate -eq $false ) {
         $Selected = Read-Host "Enter the '#' of the Visual Studio installation to use. Press <Enter> to quit: "
         if ( $Selected -eq '' ) { Invoke-Fail -ErrorMessage 'Error: Visual Studio instance not selected.' }
-    } else {
+    }
+    else {
         Write-Output 'No Visual Studio installation selected. Exiting program.'
         Invoke-Fail -ErrorMessage 'Error: Failed to select Visual Studio installation.'
     }
     $Config = ( $Configs | Where-Object { $_."#" -eq $Selected } )
+    
+    # Validate that a config was selected
+    if ($null -eq $Config) {
+        Invoke-Fail -ErrorMessage "Error: Invalid Visual Studio installation selection."
+    }
+    
     return $Config
 }
 
@@ -114,10 +134,39 @@ function Test-VsInstanceVersion {
         Write-Output 'Here are few easy steps to perform the upgrade:'
         Write-Output '  https://github.com/nervosys/AutonomySim/blob/master/docs/unreal_upgrade.md'
         Invoke-Fail -ErrorMessage "Error: Visual Studio version does not meet minimum requirement."
-    } else {
+    }
+    else {
         Write-Output "Success: Visual Studio version test passed."
     }
     return $null
+}
+
+function Get-MsBuildPath {
+    [OutputType([String])]
+    param(
+        [Parameter(Mandatory)]
+        [System.Object]
+        $Config  # object output by Get-VsInstance or Set-VsInstance
+    )
+    # MSBuild is located in the VS installation path
+    $VsInstallPath = $Config.installationPath
+    if ([string]::IsNullOrEmpty($VsInstallPath)) {
+        Invoke-Fail -ErrorMessage "Error: Could not determine Visual Studio installation path."
+    }
+    
+    # MSBuild path for VS 2019+
+    $MsBuildPath = Join-Path $VsInstallPath "MSBuild\Current\Bin\MSBuild.exe"
+    
+    if (-not (Test-Path $MsBuildPath)) {
+        # Try alternative path for older VS versions
+        $MsBuildPath = Join-Path $VsInstallPath "MSBuild\15.0\Bin\MSBuild.exe"
+    }
+    
+    if (-not (Test-Path $MsBuildPath)) {
+        Invoke-Fail -ErrorMessage "Error: Could not locate MSBuild.exe in Visual Studio installation at: $VsInstallPath"
+    }
+    
+    return $MsBuildPath
 }
 
 ###
@@ -125,4 +174,4 @@ function Test-VsInstanceVersion {
 ###
 
 Export-ModuleMember -Variable VS_VERSION_MINIMUM
-Export-ModuleMember -Function Get-VsInstance, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion
+Export-ModuleMember -Function Get-VsInstance, Set-VsInstance, Get-VsInstanceVersion, Test-VsInstanceVersion, Get-MsBuildPath

@@ -68,7 +68,8 @@ class SimpleFlightTest : public TestBase {
 
         clock->sleep_for(2.0f);
 
-        while (true) {
+        // Run for a limited time to test functionality (removed infinite loop)
+        for (int i = 0; i < 10; ++i) {
             clock->sleep_for(0.1f);
             api->getStatusMessages(messages_);
             for (const auto &status_message : messages_) {
@@ -76,6 +77,8 @@ class SimpleFlightTest : public TestBase {
             }
             messages_.clear();
         }
+
+        // Test passed if we got here without crashing
     }
 };
 
