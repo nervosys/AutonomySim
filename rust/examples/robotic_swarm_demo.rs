@@ -21,6 +21,7 @@ use tracing::info;
 
 /// Robotic vehicle configuration
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 struct RobotConfig {
     vehicle_id: VehicleId,
     vehicle_type: VehicleType,
@@ -38,6 +39,7 @@ enum RobotRole {
     Coordinator, // Command and control
 }
 
+#[allow(dead_code)]
 struct RoboticSwarmDemo {
     // Simulation backends
     native_backend: Arc<NativeBackend>,
@@ -139,8 +141,6 @@ impl RoboticSwarmDemo {
         let num_relay = (num_robots as f32 * 0.08) as usize;
         let num_coordinators = num_robots - num_scouts - num_transport - num_combat - num_relay;
 
-        let mut id_counter = 0;
-
         // Generate scouts (UAVs)
         for i in 0..num_scouts {
             let angle = (i as f64 / num_scouts as f64) * 2.0 * std::f64::consts::PI;
@@ -156,7 +156,6 @@ impl RoboticSwarmDemo {
                 target: Point3::new(0.0, 0.0, 60.0),
                 role: RobotRole::Scout,
             });
-            id_counter += 1;
         }
 
         // Generate transport (ground vehicles)
@@ -170,7 +169,6 @@ impl RoboticSwarmDemo {
                 target: Point3::new(x + 100.0, y + 100.0, 0.0),
                 role: RobotRole::Transport,
             });
-            id_counter += 1;
         }
 
         // Generate combat units (armed UAVs)
@@ -184,7 +182,6 @@ impl RoboticSwarmDemo {
                 target: Point3::new(0.0, 0.0, 80.0),
                 role: RobotRole::Combat,
             });
-            id_counter += 1;
         }
 
         // Generate relay nodes
@@ -198,7 +195,6 @@ impl RoboticSwarmDemo {
                 target: Point3::new(x, y, 100.0),
                 role: RobotRole::Relay,
             });
-            id_counter += 1;
         }
 
         // Generate coordinators
@@ -224,9 +220,11 @@ impl RoboticSwarmDemo {
 
         // Simulate RF link degradation under jamming
         if self.jamming_active {
-            self.active_links = (self.robots.len() * (self.robots.len() - 1) / 2) / 3; // 33% links survive
+            self.active_links = (self.robots.len() * (self.robots.len() - 1) / 2) / 3;
+        // 33% links survive
         } else {
-            self.active_links = self.robots.len() * (self.robots.len() - 1) / 2; // All links active
+            self.active_links = self.robots.len() * (self.robots.len() - 1) / 2;
+            // All links active
         }
 
         self.step_count += 1;

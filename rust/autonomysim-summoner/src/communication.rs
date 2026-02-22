@@ -31,7 +31,7 @@ pub enum NodeMessage {
 
 /// Message bus for inter-node communication
 pub struct MessageBus {
-    num_nodes: usize,
+    _num_nodes: usize,
     channels: Arc<RwLock<Vec<mpsc::UnboundedSender<NodeMessage>>>>,
 }
 
@@ -39,7 +39,7 @@ impl MessageBus {
     /// Create new message bus
     pub fn new(num_nodes: usize) -> Self {
         Self {
-            num_nodes,
+            _num_nodes: num_nodes,
             channels: Arc::new(RwLock::new(Vec::new())),
         }
     }

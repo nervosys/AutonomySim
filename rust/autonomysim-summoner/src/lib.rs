@@ -64,7 +64,7 @@
 //! # Example Usage
 //!
 //! ```rust,no_run
-//! use autonomysim_SUMMONER::{SUMMONER, SummonerConfig, DistributionStrategy};
+//! use autonomysim_summoner::{Summoner, SummonerConfig, DistributionStrategy};
 //! use nalgebra::Vector3;
 //!
 //! #[tokio::main]
@@ -81,14 +81,14 @@
 //!         ..Default::default()
 //!     };
 //!
-//!     let mut SUMMONER = SUMMONER::new(config).await?;
+//!     let mut summoner = Summoner::new(config).await?;
 //!
 //!     // Run simulation
 //!     for step in 0..1000 {
-//!         SUMMONER.step(0.01).await?;  // 10ms timestep
+//!         summoner.step(0.01).await?;  // 10ms timestep
 //!         
 //!         if step % 100 == 0 {
-//!             let metrics = SUMMONER.metrics();
+//!             let metrics = summoner.metrics();
 //!             println!("Step {}: {} agents, {:.2}ms latency",
 //!                      step, metrics.active_agents, metrics.avg_step_time_ms);
 //!         }
@@ -222,7 +222,7 @@ pub struct Summoner {
     config: SummonerConfig,
     coordinator: Arc<RwLock<Coordinator>>,
     workers: Vec<Arc<RwLock<Worker>>>,
-    message_bus: Arc<MessageBus>,
+    _message_bus: Arc<MessageBus>,
     monitor: Option<PerformanceMonitor>,
     current_step: u64,
 }
@@ -266,7 +266,7 @@ impl Summoner {
             config,
             coordinator,
             workers,
-            message_bus,
+            _message_bus: message_bus,
             monitor,
             current_step: 0,
         })
@@ -373,7 +373,7 @@ impl Summoner {
 
         // 3. Synchronize boundary data
         {
-            let mut coord = self.coordinator.write().await;
+            let coord = self.coordinator.write().await;
             coord.synchronize_boundaries().await?;
         }
 
@@ -433,7 +433,7 @@ mod tests {
     use super::*;
 
     #[tokio::test]
-    async fn test_SUMMONER_creation() {
+    async fn test_summoner_creation() {
         let config = SummonerConfig {
             num_agents: 100,
             distribution: DistributionStrategy::SingleNode,
@@ -441,23 +441,23 @@ mod tests {
             ..Default::default()
         };
 
-        let SUMMONER = SUMMONER::new(config).await;
-        assert!(SUMMONER.is_ok());
+        let summoner = Summoner::new(config).await;
+        assert!(summoner.is_ok());
     }
 
     #[tokio::test]
-    async fn test_SUMMONER_step() {
+    async fn test_summoner_step() {
         let config = SummonerConfig {
             num_agents: 10,
             enable_monitoring: false,
             ..Default::default()
         };
 
-        let mut SUMMONER = SUMMONER::new(config).await.unwrap();
+        let mut summoner = Summoner::new(config).await.unwrap();
 
-        let result = SUMMONER.step(0.01).await;
+        let result = summoner.step(0.01).await;
         assert!(result.is_ok());
-        assert_eq!(SUMMONER.current_step(), 1);
+        assert_eq!(summoner.current_step(), 1);
     }
 
     #[test]
@@ -467,9 +467,9 @@ mod tests {
             ..Default::default()
         };
 
-        assert!(SUMMONER::validate_config(&bad_config).is_err());
+        assert!(Summoner::validate_config(&bad_config).is_err());
 
         let good_config = SummonerConfig::default();
-        assert!(SUMMONER::validate_config(&good_config).is_ok());
+        assert!(Summoner::validate_config(&good_config).is_ok());
     }
 }

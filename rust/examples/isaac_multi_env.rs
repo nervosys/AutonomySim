@@ -5,11 +5,13 @@
 //! Run with: cargo run --example isaac_multi_env --features isaac
 
 use anyhow::Result;
+#[cfg(feature = "isaac")]
 use autonomysim_core::{
     backend::{BackendConfig, SimulationBackend},
     vehicle::{SensorSpec, SensorType, VehicleControl, VehicleSpec, VehicleType},
     Transform,
 };
+#[cfg(feature = "isaac")]
 use nalgebra::{Point3, UnitQuaternion};
 
 #[cfg(feature = "isaac")]
@@ -166,6 +168,4 @@ async fn main() -> Result<()> {
         println!("  • Multi-vehicle coordination");
         println!("  • Sensor integration (IMU, GPS)");
     }
-
-    Ok(())
 }

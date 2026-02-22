@@ -9,8 +9,8 @@ use crate::{MessageBus, SummonerConfig};
 /// Worker node that simulates a subset of agents
 pub struct Worker {
     worker_id: usize,
-    config: SummonerConfig,
-    message_bus: Arc<MessageBus>,
+    _config: SummonerConfig,
+    _message_bus: Arc<MessageBus>,
     agent_ids: Vec<usize>,
     current_step: u64,
 }
@@ -31,8 +31,8 @@ impl Worker {
 
         Ok(Self {
             worker_id,
-            config,
-            message_bus,
+            _config: config,
+            _message_bus: message_bus,
             agent_ids,
             current_step: 0,
         })

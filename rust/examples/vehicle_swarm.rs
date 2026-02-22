@@ -22,7 +22,7 @@ async fn main() -> anyhow::Result<()> {
     println!("✓ Backend initialized\n");
 
     // Load scene
-    let scene = backend.load_scene("city").await?;
+    let _scene = backend.load_scene("city").await?;
     println!("✓ Scene loaded\n");
 
     // Spawn multiple drones

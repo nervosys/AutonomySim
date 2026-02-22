@@ -10,8 +10,8 @@ use crate::{MessageBus, NodeMessage, SummonerConfig};
 
 /// Coordinator state
 pub struct Coordinator {
-    config: SummonerConfig,
-    message_bus: Arc<MessageBus>,
+    _config: SummonerConfig,
+    _message_bus: Arc<MessageBus>,
     worker_states: Arc<RwLock<HashMap<usize, WorkerState>>>,
     current_step: u64,
 }
@@ -31,8 +31,8 @@ impl Coordinator {
         info!("Initializing coordinator for {} nodes", config.num_nodes);
 
         Ok(Self {
-            config,
-            message_bus,
+            _config: config,
+            _message_bus: message_bus,
             worker_states: Arc::new(RwLock::new(HashMap::new())),
             current_step: 0,
         })
@@ -60,7 +60,7 @@ impl Coordinator {
         debug!("Broadcasting step {} to all workers", step);
 
         let message = NodeMessage::StepCommand { step, dt };
-        self.message_bus.broadcast(message).await?;
+        self._message_bus.broadcast(message).await?;
 
         Ok(())
     }
@@ -82,7 +82,7 @@ impl Coordinator {
 
         // Send boundary sync command
         let message = NodeMessage::SyncBoundaries;
-        self.message_bus.broadcast(message).await?;
+        self._message_bus.broadcast(message).await?;
 
         Ok(())
     }

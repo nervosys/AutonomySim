@@ -130,7 +130,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .collect();
 
     let start = Instant::now();
-    let results = field.query_batch(&batch_positions);
+    let _results = field.query_batch(&batch_positions);
     let batch_time = start.elapsed();
 
     println!("Batch Query ({} positions):", batch_size);

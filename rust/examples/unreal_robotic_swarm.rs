@@ -8,11 +8,10 @@
 //! - Multi-role coordination in realistic urban environment
 
 use autonomysim_core::prelude::*;
-use autonomysim_core::vehicle::VehicleParameters;
 use autonomysim_rf_core::prelude::*;
 use autonomysim_summoner::{DistributionStrategy, Summoner, SummonerConfig};
 use autonomysim_tactical::{JammingConfig, JammingType};
-use nalgebra::{Point3, UnitQuaternion, Vector3};
+use nalgebra::{Point3, Vector3};
 use std::sync::Arc;
 use tokio;
 use tracing::{info, warn};
@@ -44,6 +43,7 @@ impl RobotRole {
         }
     }
 
+    #[allow(dead_code)]
     fn to_blueprint(&self) -> &'static str {
         match self {
             RobotRole::Scout => "BP_ScoutDrone",
@@ -54,6 +54,7 @@ impl RobotRole {
         }
     }
 
+    #[allow(dead_code)]
     fn altitude(&self) -> f64 {
         match self {
             RobotRole::Scout => 50.0,
@@ -77,6 +78,7 @@ impl RobotRole {
 }
 
 #[derive(Clone, Debug)]
+#[allow(dead_code)]
 struct RobotConfig {
     vehicle_id: VehicleId,
     vehicle_type: VehicleType,
@@ -92,6 +94,7 @@ struct RobotConfig {
 }
 
 /// Main demonstration struct
+#[allow(dead_code)]
 struct UnrealRoboticSwarm {
     // Unreal Engine 5 backend
     #[cfg(feature = "unreal")]

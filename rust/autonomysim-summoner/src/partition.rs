@@ -38,14 +38,17 @@ impl Partition {
 /// Spatial partitioner for dividing simulation space
 pub struct SpatialPartitioner {
     partitions: Vec<Partition>,
-    bounds: Vector3<f64>,
+    _bounds: Vector3<f64>,
 }
 
 impl SpatialPartitioner {
     /// Create new spatial partitioner with grid-based partitions
     pub fn new(bounds: Vector3<f64>, num_partitions: usize) -> Self {
         let partitions = Self::create_grid_partitions(bounds, num_partitions);
-        Self { partitions, bounds }
+        Self {
+            partitions,
+            _bounds: bounds,
+        }
     }
 
     /// Create grid-based partitions (e.g., 2x2x1 for 4 partitions)

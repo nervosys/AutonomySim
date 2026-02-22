@@ -33,7 +33,7 @@ pub enum Task {
 /// Work-stealing scheduler for dynamic load balancing
 pub struct Scheduler {
     task_queue: VecDeque<Task>,
-    num_workers: usize,
+    _num_workers: usize,
 }
 
 impl Scheduler {
@@ -41,7 +41,7 @@ impl Scheduler {
     pub fn new(num_workers: usize) -> Self {
         Self {
             task_queue: VecDeque::new(),
-            num_workers,
+            _num_workers: num_workers,
         }
     }
 

@@ -55,12 +55,11 @@ use autonomysim_gaussian_splat::{
     GaussianRFField, RFMeasurement, TrainingConfig as GaussianTrainingConfig,
 };
 use autonomysim_rf_core::{
-    antenna::{Antenna, AntennaPattern},
+    antenna::Antenna,
     utils::{dbm_to_watts, friis_path_loss, link_budget, watts_to_dbm, wavelength},
 };
 use nalgebra::Vector3;
-use std::ffi::{c_char, CStr};
-use std::ptr;
+use std::ffi::c_char;
 use std::slice;
 
 // ============================================================================
@@ -626,6 +625,8 @@ pub extern "C" fn autonomysim_version() -> *const c_char {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::ffi::CStr;
+    use std::ptr;
 
     #[test]
     fn test_vec3_conversion() {

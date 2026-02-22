@@ -36,7 +36,7 @@ pub struct PerformanceMonitor {
     metrics: Arc<RwLock<SummonerMetrics>>,
     step_times: Arc<RwLock<Vec<Duration>>>,
     start_time: Instant,
-    metrics_port: Option<u16>,
+    _metrics_port: Option<u16>,
 }
 
 impl PerformanceMonitor {
@@ -48,7 +48,7 @@ impl PerformanceMonitor {
             metrics: Arc::new(RwLock::new(SummonerMetrics::default())),
             step_times: Arc::new(RwLock::new(Vec::new())),
             start_time: Instant::now(),
-            metrics_port,
+            _metrics_port: metrics_port,
         })
     }
 

@@ -5,11 +5,13 @@
 //! Run with: cargo run --example mujoco_contact --features mujoco
 
 use anyhow::Result;
+#[cfg(feature = "mujoco")]
 use autonomysim_core::{
     backend::{BackendConfig, SimulationBackend},
     vehicle::{SensorSpec, SensorType, VehicleControl, VehicleSpec, VehicleType},
     Transform,
 };
+#[cfg(feature = "mujoco")]
 use nalgebra::{Point3, UnitQuaternion};
 
 #[cfg(feature = "mujoco")]
@@ -221,6 +223,4 @@ async fn main() -> Result<()> {
         println!("  • Vehicle types: Car, Quadrotor");
         println!("  • Sensors: IMU (contact forces), GPS");
     }
-
-    Ok(())
 }

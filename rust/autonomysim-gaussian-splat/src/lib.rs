@@ -60,7 +60,6 @@
 //! ```
 
 use nalgebra::{Matrix3, Vector3};
-use ndarray::{Array1, Array2};
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::f64::consts::PI;
@@ -375,7 +374,7 @@ impl GaussianRFField {
         self.gaussians = centers
             .into_iter()
             .enumerate()
-            .map(|(idx, center)| {
+            .map(|(_idx, center)| {
                 // Estimate amplitude from nearby measurements
                 let nearby: Vec<_> = measurements
                     .iter()

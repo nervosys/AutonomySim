@@ -7,7 +7,6 @@
 //! - Link budget analysis
 
 use serde::{Deserialize, Serialize};
-use std::f64::consts::PI;
 
 /// Signal power metrics
 #[derive(Debug, Clone, Copy, Serialize, Deserialize)]
