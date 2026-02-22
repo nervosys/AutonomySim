@@ -14,9 +14,7 @@ use std::collections::HashMap;
 use std::sync::Arc;
 
 use crate::sensor::{GpsData, ImuData, SensorData};
-use crate::vehicle::{
-    CollisionInfo, VehicleControl, VehicleId, VehicleSpec, VehicleState, VehicleType,
-};
+use crate::vehicle::{VehicleControl, VehicleId, VehicleSpec, VehicleState};
 
 /// Native Rust backend implementation
 pub struct NativeBackend {
@@ -28,7 +26,7 @@ pub struct NativeBackend {
 
 /// Vehicle representation in native backend
 struct NativeVehicle {
-    spec: VehicleSpec,
+    _spec: VehicleSpec,
     state: VehicleState,
     control: VehicleControl,
 }
@@ -174,7 +172,7 @@ impl SimulationBackend for NativeBackend {
         };
 
         let vehicle = NativeVehicle {
-            spec,
+            _spec: spec,
             state,
             control: VehicleControl::default(),
         };
@@ -248,7 +246,7 @@ impl SimulationBackend for NativeBackend {
 
 /// Native scene representation
 struct NativeScene {
-    path: String,
+    _path: String,
     objects: HashMap<String, SceneObject>,
     bounds_min: Position,
     bounds_max: Position,
@@ -257,7 +255,7 @@ struct NativeScene {
 impl NativeScene {
     fn new(path: String) -> Self {
         Self {
-            path,
+            _path: path,
             objects: HashMap::new(),
             bounds_min: Point3::new(f64::INFINITY, f64::INFINITY, f64::INFINITY),
             bounds_max: Point3::new(f64::NEG_INFINITY, f64::NEG_INFINITY, f64::NEG_INFINITY),

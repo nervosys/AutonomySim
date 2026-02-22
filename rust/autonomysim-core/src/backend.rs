@@ -1,7 +1,7 @@
 // Core trait definitions for simulation backends
 
 use async_trait::async_trait;
-use nalgebra::{Point3, Quaternion, Vector3};
+use nalgebra::{Point3, Vector3};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 

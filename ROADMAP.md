@@ -1,7 +1,7 @@
 # AutonomySim UE5.7 Integration Roadmap
 
-> **Last Updated**: January 26, 2026  
-> **Goal**: Run 1,000-robot swarm simulation with real-time 3D visualization in Unreal Engine 5.7
+> **Last Updated**: February 19, 2026  
+> **Goal**: Run 1,000-robot swarm simulation with real-time 3D visualization in Unreal Engine 5.7, with FPV drone racing capabilities
 
 ---
 
@@ -32,6 +32,10 @@ Integrating the Rust-based AutonomySim robotic swarm simulation backend with Unr
 │  │  │ Tactical/EW   │  │          │  ┌─────────────────────┐   │   │
 │  │  └───────────────┘  │          │  │ Debug Visualization │   │   │
 │  │                     │          │  │ (links, RF, paths)  │   │   │
+│  │  ┌───────────────┐  │          │  └─────────────────────┘   │   │
+│  │  │ FPV Racing    │  │          │                            │   │
+│  │  │ (physics+cam) │  │          │  ┌─────────────────────┐   │   │
+│  │  └───────────────┘  │          │  │ FPV Camera / OSD    │   │   │
 │  └─────────────────────┘          │  └─────────────────────┘   │   │
 │                                    │                            │   │
 │                                    └─────────────────────────────┘   │
@@ -157,7 +161,72 @@ OnSimulationStateChanged(bool bIsPaused)
 
 ---
 
-## Phase 5: UE5 Configuration 🔄 IN PROGRESS
+## Phase 5: FPV Drone Racing Module ✅ COMPLETE
+
+- [x] Create `fpv.rs` core module in `autonomysim-core` (~1000 lines)
+- [x] Implement Betaflight-style rate profiles (expo curves, super-rate)
+- [x] Implement three flight modes: Acro, Angle (self-leveling), Horizon (blend)
+- [x] Implement rigid-body physics with body-frame rotation
+- [x] Calibrate hover throttle with inverse throttle curve
+- [x] Battery simulation (voltage sag, capacity tracking)
+- [x] Ground collision detection
+- [x] FPV camera configuration (tilt, FOV, latency, lens distortion)
+- [x] On-screen display (OSD) telemetry overlay
+- [x] Four drone presets: 5" Race, 5" Freestyle, 3" Micro, 7" Long Range
+- [x] Three rate presets: Race, Freestyle, Cinematic
+- [x] Three camera presets: Racing, Freestyle, Cinematic
+- [x] Add FPV RPC protocol messages (6 new message types)
+- [x] Add FPV connection methods
+- [x] Create `fpv_drone_racing.rs` example with autopilot gate navigation
+- [x] 8 unit tests passing
+
+### FPV Flight Modes
+
+| Mode    | Behavior                                    | Use Case              |
+| ------- | ------------------------------------------- | --------------------- |
+| Acro    | Direct rate control, no self-leveling       | Expert racing         |
+| Angle   | Self-leveling with max angle limit (55°)    | Autopilot, beginners  |
+| Horizon | Blends Angle (center) and Acro (full stick) | Freestyle transitions |
+
+### Drone Presets
+
+| Preset        | T/W Ratio | Battery | Props | Hover Throttle |
+| ------------- | --------- | ------- | ----- | -------------- |
+| 5" Race       | 7.4:1     | 6S 1300 | 5"    | 10.6% stick    |
+| 5" Freestyle  | 6.5:1     | 6S 1500 | 5"    | 12.1% stick    |
+| 3" Micro      | 8.0:1     | 4S 650  | 3"    | 9.8% stick     |
+| 7" Long Range | 7.1:1     | 6S 2200 | 7"    | 11.1% stick    |
+
+### Physics Implementation
+
+- **Coordinate system**: X=forward, Y=left, Z=up (right-hand NWU)
+- **Rotation**: Body-frame intrinsic (`q_new = q_old * delta_q`)
+- **Pitch convention**: Stick -1.0 = forward/nose down; physics positive pitch = nose down
+- **Thrust model**: Quadratic throttle curve with configurable expo
+- **Drag model**: Linear and quadratic aerodynamic drag
+- **Angular rate PID**: Betaflight defaults (P=45, I=80, D=18)
+
+### FPV Racing Demo Results
+
+| Configuration | Laps | Best Lap | Battery    | Gates/Lap |
+| ------------- | ---- | -------- | ---------- | --------- |
+| 5" Race Quad  | 2/3  | 50.21s   | 84% remain | 8/8       |
+| 3" Micro Quad | 1/2  | 76.64s   | 69% remain | 8/8       |
+
+### New RPC Protocol Methods (FPV)
+
+| Method             | Description               | Direction  |
+| ------------------ | ------------------------- | ---------- |
+| `set_fpv_camera`   | Configure FPV camera      | Rust → UE5 |
+| `set_fpv_control`  | Send stick inputs         | Rust → UE5 |
+| `arm_drone`        | Arm/disarm motors         | Rust → UE5 |
+| `update_fpv_state` | Push physics state to UE5 | Rust → UE5 |
+| `spawn_fpv_drone`  | Spawn FPV drone actor     | Rust → UE5 |
+| `set_osd_visible`  | Toggle OSD overlay        | Rust → UE5 |
+
+---
+
+## Phase 6: UE5 Configuration 🔄 IN PROGRESS
 
 - [ ] Open UE5 project in editor
 - [ ] Add `AutonomySimRPCServer` actor to level
@@ -177,7 +246,7 @@ OnSimulationStateChanged(bool bIsPaused)
 
 ---
 
-## Phase 6: Integration Testing ⏳ PENDING
+## Phase 7: Integration Testing ⏳ PENDING
 
 - [ ] Press Play in UE5 Editor
 - [ ] Run Rust backend: `cargo run --example unreal_robotic_swarm --features unreal --release`
@@ -187,7 +256,7 @@ OnSimulationStateChanged(bool bIsPaused)
 
 ---
 
-## Phase 7: Performance Optimization ⏳ PENDING
+## Phase 8: Performance Optimization ⏳ PENDING
 
 - [ ] Profile RPC communication overhead
 - [ ] Implement Niagara particle system for 10K+ robots
@@ -213,6 +282,11 @@ cargo run --example robotic_swarm_demo --release
 ### Run UE5 Visualization Demo
 ```powershell
 cargo run --example unreal_robotic_swarm --features unreal --release
+```
+
+### Run FPV Drone Racing Demo
+```powershell
+cargo run --example fpv_drone_racing --release
 ```
 
 ### Open UE5 Project
@@ -250,6 +324,10 @@ cargo run --example unreal_robotic_swarm --features unreal --release
 - `rust/autonomysim-backends/src/unreal/connection.rs` - TCP connection
 - `rust/autonomysim-backends/src/unreal/mod.rs` - Backend interface
 
+### FPV Module
+- `rust/autonomysim-core/src/fpv.rs` - FPV physics, flight modes, rates, camera, OSD, drone configs
+- `rust/examples/fpv_drone_racing.rs` - FPV racing demo with autopilot
+
 ### UE5 Actor
 - `UnrealPlugin/Unreal/Plugins/AutonomySim/Source/RPC/AutonomySimRPCServer.h`
 - `UnrealPlugin/Unreal/Plugins/AutonomySim/Source/RPC/AutonomySimRPCServer.cpp`
@@ -257,6 +335,19 @@ cargo run --example unreal_robotic_swarm --features unreal --release
 ---
 
 ## Change Log
+
+### 2026-02-19
+- Added FPV drone racing module (`fpv.rs`, ~1000 lines)
+- Implemented Betaflight-style rate profiles with expo curves
+- Implemented three flight modes: Acro, Angle (self-leveling), Horizon
+- Rigid-body physics with body-frame rotation (4 critical bugs found and fixed)
+- Battery simulation, ground collision, aerodynamic drag
+- FPV camera config, OSD telemetry overlay
+- Four drone presets (3"/5"/7"), three rate presets, three camera presets
+- Added 6 new FPV RPC message types to protocol and connection
+- Created `fpv_drone_racing.rs` example with autopilot gate navigation
+- Autopilot successfully navigates 8-gate oval track (best lap 50.21s)
+- 8 unit tests passing
 
 ### 2026-01-26 (Session 2)
 - Enhanced RPC protocol with comprehensive message types

@@ -8,6 +8,7 @@
 //! - Debug visualization (paths, connections, status indicators)
 //! - Camera/sensor capture
 
+use autonomysim_core::fpv::{FpvFlightMode, FpvOsd};
 use autonomysim_core::Transform;
 use serde::{Deserialize, Serialize};
 
@@ -193,6 +194,64 @@ pub enum UnrealMessage {
         show_paths: bool,
         show_labels: bool,
     },
+
+    // === FPV Mode ===
+    /// Enable FPV camera on a drone (attaches camera to vehicle)
+    SetFpvCamera {
+        vehicle_id: String,
+        tilt_angle_deg: f64,
+        fov_h_deg: f64,
+        resolution_width: u32,
+        resolution_height: u32,
+        lens_distortion: bool,
+        latency_ms: f64,
+    },
+
+    /// Send FPV stick input (rate-mode control)
+    SetFpvControl {
+        vehicle_id: String,
+        throttle: f64,
+        roll: f64,
+        pitch: f64,
+        yaw: f64,
+        flight_mode: String, // "acro", "angle", "horizon"
+    },
+
+    /// Arm or disarm an FPV drone
+    ArmDrone { vehicle_id: String, armed: bool },
+
+    /// Update FPV drone state (position, orientation, motors, OSD)
+    UpdateFpvState {
+        vehicle_id: String,
+        x: f64,
+        y: f64,
+        z: f64,
+        qw: f64,
+        qx: f64,
+        qy: f64,
+        qz: f64,
+        speed_mps: f64,
+        altitude_m: f64,
+        motor_outputs: Vec<f64>,
+        battery_voltage: f64,
+        battery_remaining: f64,
+        flight_mode: String,
+        armed: bool,
+        osd: FpvOsdData,
+    },
+
+    /// Spawn an FPV racing drone with full config
+    SpawnFpvDrone {
+        vehicle_id: String,
+        drone_preset: String, // "5inch_race", "5inch_freestyle", "3inch_micro", "7inch_lr"
+        x: f64,
+        y: f64,
+        z: f64,
+        yaw: f64,
+    },
+
+    /// Set FPV OSD visibility
+    SetOsdVisible { vehicle_id: String, visible: bool },
 }
 
 /// Responses from Unreal Engine 5
@@ -213,6 +272,44 @@ pub enum UnrealResponse {
     },
 }
 
+/// OSD telemetry data for FPV view (sent to UE5 for rendering)
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct FpvOsdData {
+    pub battery_voltage: f64,
+    pub current_amps: f64,
+    pub mah_consumed: f64,
+    pub rssi: u8,
+    pub flight_mode: String,
+    pub altitude_m: f64,
+    pub ground_speed_mps: f64,
+    pub flight_time_s: f64,
+    pub gps_sats: u8,
+    pub throttle_pct: u8,
+    pub craft_name: String,
+    pub warnings: Vec<String>,
+    pub show_crosshair: bool,
+}
+
+impl From<FpvOsd> for FpvOsdData {
+    fn from(osd: FpvOsd) -> Self {
+        Self {
+            battery_voltage: osd.battery_voltage,
+            current_amps: osd.current_amps,
+            mah_consumed: osd.mah_consumed,
+            rssi: osd.rssi,
+            flight_mode: osd.flight_mode,
+            altitude_m: osd.altitude_m,
+            ground_speed_mps: osd.ground_speed_mps,
+            flight_time_s: osd.flight_time_s,
+            gps_sats: osd.gps_sats,
+            throttle_pct: osd.throttle_pct,
+            craft_name: osd.craft_name,
+            warnings: osd.warnings,
+            show_crosshair: osd.show_crosshair,
+        }
+    }
+}
+
 /// RPC method names for JSON-RPC protocol
 pub mod methods {
     pub const SPAWN_ROBOTS: &str = "spawn_robots";
@@ -229,4 +326,12 @@ pub mod methods {
     pub const PAUSE: &str = "pause";
     pub const RESUME: &str = "resume";
     pub const RESET: &str = "reset";
+
+    // FPV methods
+    pub const SET_FPV_CAMERA: &str = "set_fpv_camera";
+    pub const SET_FPV_CONTROL: &str = "set_fpv_control";
+    pub const ARM_DRONE: &str = "arm_drone";
+    pub const UPDATE_FPV_STATE: &str = "update_fpv_state";
+    pub const SPAWN_FPV_DRONE: &str = "spawn_fpv_drone";
+    pub const SET_OSD_VISIBLE: &str = "set_osd_visible";
 }

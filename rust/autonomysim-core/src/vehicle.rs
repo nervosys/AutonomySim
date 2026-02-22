@@ -1,6 +1,6 @@
 //! Vehicle types and control interface
 
-use crate::backend::{Position, Rotation, Transform, Vec3};
+use crate::backend::{Position, Transform, Vec3};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -92,7 +92,7 @@ impl VehicleControl {
             ..Default::default()
         }
     }
-    
+
     /// Create control for forward flight
     pub fn forward(speed: f64) -> Self {
         Self {
@@ -199,16 +199,14 @@ mod tests {
                 UnitQuaternion::identity(),
             ),
             parameters: VehicleParameters::default(),
-            sensors: vec![
-                SensorSpec {
-                    sensor_id: "camera1".to_string(),
-                    sensor_type: SensorType::Camera,
-                    update_rate_hz: 30.0,
-                    enabled: true,
-                }
-            ],
+            sensors: vec![SensorSpec {
+                sensor_id: "camera1".to_string(),
+                sensor_type: SensorType::Camera,
+                update_rate_hz: 30.0,
+                enabled: true,
+            }],
         };
-        
+
         assert_eq!(spec.vehicle_type, VehicleType::Multirotor);
         assert_eq!(spec.sensors.len(), 1);
     }

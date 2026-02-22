@@ -165,6 +165,94 @@ impl UnrealConnection {
             UnrealMessage::Resume => (methods::RESUME, serde_json::json!({})),
             UnrealMessage::Reset => (methods::RESET, serde_json::json!({})),
             UnrealMessage::GetAllStates => (methods::GET_ALL_STATES, serde_json::json!({})),
+            UnrealMessage::SetFpvCamera {
+                vehicle_id,
+                tilt_angle_deg,
+                fov_h_deg,
+                resolution_width,
+                resolution_height,
+                lens_distortion,
+                latency_ms,
+            } => (
+                methods::SET_FPV_CAMERA,
+                serde_json::json!({
+                    "vehicle_id": vehicle_id,
+                    "tilt_angle_deg": tilt_angle_deg,
+                    "fov_h_deg": fov_h_deg,
+                    "resolution_width": resolution_width,
+                    "resolution_height": resolution_height,
+                    "lens_distortion": lens_distortion,
+                    "latency_ms": latency_ms
+                }),
+            ),
+            UnrealMessage::SetFpvControl {
+                vehicle_id,
+                throttle,
+                roll,
+                pitch,
+                yaw,
+                flight_mode,
+            } => (
+                methods::SET_FPV_CONTROL,
+                serde_json::json!({
+                    "vehicle_id": vehicle_id,
+                    "throttle": throttle,
+                    "roll": roll,
+                    "pitch": pitch,
+                    "yaw": yaw,
+                    "flight_mode": flight_mode
+                }),
+            ),
+            UnrealMessage::ArmDrone { vehicle_id, armed } => (
+                methods::ARM_DRONE,
+                serde_json::json!({
+                    "vehicle_id": vehicle_id,
+                    "armed": armed
+                }),
+            ),
+            UnrealMessage::SpawnFpvDrone {
+                vehicle_id,
+                drone_preset,
+                x,
+                y,
+                z,
+                yaw,
+            } => (
+                methods::SPAWN_FPV_DRONE,
+                serde_json::json!({
+                    "vehicle_id": vehicle_id,
+                    "drone_preset": drone_preset,
+                    "x": x, "y": y, "z": z, "yaw": yaw
+                }),
+            ),
+            UnrealMessage::UpdateFpvState {
+                vehicle_id,
+                x,
+                y,
+                z,
+                qw,
+                qx,
+                qy,
+                qz,
+                ..
+            } => (
+                methods::UPDATE_FPV_STATE,
+                serde_json::json!({
+                    "vehicle_id": vehicle_id,
+                    "x": x, "y": y, "z": z,
+                    "qw": qw, "qx": qx, "qy": qy, "qz": qz
+                }),
+            ),
+            UnrealMessage::SetOsdVisible {
+                vehicle_id,
+                visible,
+            } => (
+                methods::SET_OSD_VISIBLE,
+                serde_json::json!({
+                    "vehicle_id": vehicle_id,
+                    "visible": visible
+                }),
+            ),
             _ => ("ping", serde_json::json!({})),
         };
 
@@ -295,5 +383,141 @@ impl UnrealConnection {
     pub async fn disconnect(&mut self) -> io::Result<()> {
         info!("Disconnecting from Unreal Engine...");
         self.stream.lock().await.shutdown().await
+    }
+
+    // ─── FPV Methods ─────────────────────────────────────────────────────────
+
+    /// Spawn an FPV racing drone
+    pub async fn spawn_fpv_drone(
+        &self,
+        vehicle_id: &str,
+        drone_preset: &str,
+        x: f64,
+        y: f64,
+        z: f64,
+        yaw: f64,
+    ) -> io::Result<UnrealResponse> {
+        self.send_rpc(
+            methods::SPAWN_FPV_DRONE,
+            serde_json::json!({
+                "vehicle_id": vehicle_id,
+                "drone_preset": drone_preset,
+                "x": x * 100.0,
+                "y": y * 100.0,
+                "z": z * 100.0,
+                "yaw": yaw
+            }),
+        )
+        .await
+    }
+
+    /// Configure FPV camera on a drone
+    pub async fn set_fpv_camera(
+        &self,
+        vehicle_id: &str,
+        tilt_angle_deg: f64,
+        fov_h_deg: f64,
+        resolution_width: u32,
+        resolution_height: u32,
+        lens_distortion: bool,
+        latency_ms: f64,
+    ) -> io::Result<UnrealResponse> {
+        self.send_rpc(
+            methods::SET_FPV_CAMERA,
+            serde_json::json!({
+                "vehicle_id": vehicle_id,
+                "tilt_angle_deg": tilt_angle_deg,
+                "fov_h_deg": fov_h_deg,
+                "resolution_width": resolution_width,
+                "resolution_height": resolution_height,
+                "lens_distortion": lens_distortion,
+                "latency_ms": latency_ms
+            }),
+        )
+        .await
+    }
+
+    /// Send FPV stick input
+    pub async fn set_fpv_control(
+        &self,
+        vehicle_id: &str,
+        throttle: f64,
+        roll: f64,
+        pitch: f64,
+        yaw: f64,
+        flight_mode: &str,
+    ) -> io::Result<UnrealResponse> {
+        self.send_rpc(
+            methods::SET_FPV_CONTROL,
+            serde_json::json!({
+                "vehicle_id": vehicle_id,
+                "throttle": throttle,
+                "roll": roll,
+                "pitch": pitch,
+                "yaw": yaw,
+                "flight_mode": flight_mode
+            }),
+        )
+        .await
+    }
+
+    /// Arm or disarm an FPV drone
+    pub async fn arm_drone(&self, vehicle_id: &str, armed: bool) -> io::Result<UnrealResponse> {
+        self.send_rpc(
+            methods::ARM_DRONE,
+            serde_json::json!({
+                "vehicle_id": vehicle_id,
+                "armed": armed
+            }),
+        )
+        .await
+    }
+
+    /// Send FPV drone state update to UE5 (position, orientation, OSD)
+    pub async fn update_fpv_state(
+        &self,
+        state: &autonomysim_core::fpv::FpvState,
+    ) -> io::Result<UnrealResponse> {
+        use crate::unreal::protocol::FpvOsdData;
+
+        let osd_data: FpvOsdData = state.osd.clone().into();
+        self.send_rpc(
+            methods::UPDATE_FPV_STATE,
+            serde_json::json!({
+                "vehicle_id": state.vehicle_id,
+                "x": state.position.x * 100.0,
+                "y": state.position.y * 100.0,
+                "z": state.position.z * 100.0,
+                "qw": state.orientation.quaternion().w,
+                "qx": state.orientation.quaternion().i,
+                "qy": state.orientation.quaternion().j,
+                "qz": state.orientation.quaternion().k,
+                "speed_mps": state.speed_mps,
+                "altitude_m": state.altitude_m,
+                "motor_outputs": state.motor_outputs,
+                "battery_voltage": state.battery_voltage,
+                "battery_remaining": state.battery_remaining,
+                "flight_mode": format!("{:?}", state.flight_mode).to_lowercase(),
+                "armed": state.armed,
+                "osd": osd_data
+            }),
+        )
+        .await
+    }
+
+    /// Set OSD visibility
+    pub async fn set_osd_visible(
+        &self,
+        vehicle_id: &str,
+        visible: bool,
+    ) -> io::Result<UnrealResponse> {
+        self.send_rpc(
+            methods::SET_OSD_VISIBLE,
+            serde_json::json!({
+                "vehicle_id": vehicle_id,
+                "visible": visible
+            }),
+        )
+        .await
     }
 }

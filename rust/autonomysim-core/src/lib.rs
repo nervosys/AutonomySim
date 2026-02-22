@@ -52,6 +52,7 @@
 //! ```
 
 pub mod backend;
+pub mod fpv;
 pub mod native;
 pub mod sensor;
 pub mod vehicle;
@@ -63,6 +64,10 @@ pub use backend::{
 };
 pub use sensor::{CameraData, GpsData, ImuData, LidarData, SensorData};
 pub use vehicle::{VehicleControl, VehicleId, VehicleSpec, VehicleState, VehicleType};
+pub use fpv::{
+    FpvCameraConfig, FpvDroneConfig, FpvFlightMode, FpvOsd, FpvPhysics, FpvState,
+    FpvStickInput, PidGains, RatesProfile,
+};
 
 /// Prelude module for common imports
 pub mod prelude {
@@ -73,6 +78,10 @@ pub mod prelude {
     };
     pub use crate::sensor::{CameraData, GpsData, ImuData, LidarData, SensorData};
     pub use crate::vehicle::{VehicleControl, VehicleId, VehicleSpec, VehicleState, VehicleType};
+    pub use crate::fpv::{
+        FpvCameraConfig, FpvDroneConfig, FpvFlightMode, FpvOsd, FpvPhysics, FpvState,
+        FpvStickInput, PidGains, RatesProfile,
+    };
     pub use nalgebra::{Point3, Quaternion, UnitQuaternion, Vector3};
 }
 

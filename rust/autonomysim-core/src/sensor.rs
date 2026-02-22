@@ -1,7 +1,6 @@
 //! Sensor data types and processing
 
 use crate::backend::{Position, Rotation, Vec3};
-use nalgebra::Matrix3;
 use serde::{Deserialize, Serialize};
 
 /// IMU (Inertial Measurement Unit) data
@@ -57,7 +56,7 @@ pub struct BarometerData {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DistanceSensorData {
     pub timestamp: f64,
-    pub distance: f64,  // Meters
+    pub distance: f64, // Meters
     pub min_range: f64,
     pub max_range: f64,
 }
@@ -162,7 +161,7 @@ mod tests {
             angular_velocity: Vector3::zeros(),
             orientation: UnitQuaternion::identity(),
         };
-        
+
         assert_eq!(imu.timestamp, 1.0);
         assert_eq!(imu.linear_acceleration.z, 9.81);
     }
@@ -179,7 +178,7 @@ mod tests {
             epv: 2.0,
             fix_type: GpsFixType::Fix3D,
         };
-        
+
         assert_eq!(gps.fix_type, GpsFixType::Fix3D);
     }
 
@@ -191,7 +190,7 @@ mod tests {
             angular_velocity: Vector3::zeros(),
             orientation: UnitQuaternion::identity(),
         };
-        
+
         let sensor_data = SensorData::Imu(imu);
         assert_eq!(sensor_data.timestamp(), 5.5);
     }
