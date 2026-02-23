@@ -226,23 +226,40 @@ OnSimulationStateChanged(bool bIsPaused)
 
 ---
 
-## Phase 6: UE5 Configuration 🔄 IN PROGRESS
+## Phase 6: UE5 RPC Server & Configuration 🔄 IN PROGRESS
 
+- [x] Comprehensive protocol audit (20 Rust methods vs UE5 handlers)
+- [x] Complete server rewrite: `AAutonomySimRPCServer` (283-line header, 766-line implementation)
+- [x] All 20 RPC handlers implemented (9 swarm, 4 debug, 6 FPV, 1 utility)
+- [x] Built-in ISM visualization (per-type instanced meshes with dynamic colored materials)
+- [x] Debug drawing via `DrawDebugHelpers` (lines, spheres, conditional rendering)
+- [x] Method name backward-compat (`update_positions` + legacy `update_robots`)
+- [x] Unit conversion: Rust meters → UE5 centimeters (×100) in all position/radius handlers
+- [x] Removed redundant `RobotVisualizer` actor (caused UHT cross-module errors)
+- [x] Zero warnings, zero errors — UE5 build passes cleanly (UBT 5.49s)
 - [ ] Open UE5 project in editor
 - [ ] Add `AutonomySimRPCServer` actor to level
-- [ ] Assign drone and ground vehicle meshes
-- [ ] Create material instances with robot type colors
+- [ ] Assign drone and ground vehicle meshes (defaults: Engine Sphere/Cube)
 - [ ] Test connection with Rust backend
+
+### RPC Handler Coverage (20/20)
+
+| Category | Methods | Status |
+| -------- | ------- | ------ |
+| Swarm    | `spawn_robots`, `update_positions`, `update_telemetry`, `simulation_step`, `clear_all_robots`, `pause`, `resume`, `reset`, `get_all_states` | ✅ All 9 |
+| Debug    | `draw_debug_lines`, `draw_debug_spheres`, `clear_debug`, `set_visualization_mode` | ✅ All 4 |
+| FPV      | `set_fpv_camera`, `set_fpv_control`, `arm_drone`, `update_fpv_state`, `spawn_fpv_drone`, `set_osd_visible` | ✅ All 6 |
+| Utility  | `ping` | ✅ 1 |
 
 ### Quick Setup Steps
 
 1. Open UE5 project
 2. Place `AutonomySimRPCServer` actor in level
 3. Configure meshes:
-   - `DroneMesh`: Use built-in Sphere or import custom drone mesh
-   - `GroundVehicleMesh`: Use built-in Cube or import custom UGV mesh
-4. Set colors in Details panel
-5. Press Play
+   - `DroneMesh`: defaults to Engine Sphere (or import custom drone mesh)
+   - `GroundVehicleMesh`: defaults to Engine Cube (or import custom UGV mesh)
+4. Set colors in Details panel (ScoutColor, TransportColor, etc.)
+5. Press Play — server auto-starts on port 41451
 
 ---
 
