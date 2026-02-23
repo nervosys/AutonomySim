@@ -53,4 +53,3 @@ mpi-support = ["mpi"]
 gpu-acceleration = ["wgpu", "bytemuck"]
 # Profiling
 profiling = []
-
