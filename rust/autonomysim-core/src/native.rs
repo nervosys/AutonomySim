@@ -42,6 +42,12 @@ impl NativeBackend {
     }
 }
 
+impl Default for NativeBackend {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[async_trait]
 impl SimulationBackend for NativeBackend {
     fn name(&self) -> &str {

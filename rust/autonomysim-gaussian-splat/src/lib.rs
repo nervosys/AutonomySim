@@ -373,8 +373,7 @@ impl GaussianRFField {
         // Create Gaussians from cluster centers
         self.gaussians = centers
             .into_iter()
-            .enumerate()
-            .map(|(_idx, center)| {
+            .map(|center| {
                 // Estimate amplitude from nearby measurements
                 let nearby: Vec<_> = measurements
                     .iter()
@@ -421,11 +420,11 @@ impl GaussianRFField {
             // Apply gradient updates with clamping
             for (gaussian, gradient) in self.gaussians.iter_mut().zip(gradients.iter()) {
                 // Clamp gradient to prevent numerical instability
-                let clamped_gradient = gradient.max(-100.0).min(100.0);
+                let clamped_gradient = gradient.clamp(-100.0, 100.0);
                 gaussian.amplitude -= config.learning_rate * clamped_gradient;
 
                 // Clamp amplitude to reasonable RF range (-150 to +50 dBm)
-                gaussian.amplitude = gaussian.amplitude.max(-150.0).min(50.0);
+                gaussian.amplitude = gaussian.amplitude.clamp(-150.0, 50.0);
             }
 
             // Recompute cached values
@@ -496,7 +495,7 @@ impl GaussianRFField {
             .sum();
 
         // Clamp to reasonable range
-        sum.max(-150.0).min(50.0)
+        sum.clamp(-150.0, 50.0)
     }
 
     /// Query signal strength at multiple positions (parallel)

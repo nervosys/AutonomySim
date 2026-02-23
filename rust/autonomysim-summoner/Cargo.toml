@@ -54,13 +54,3 @@ gpu-acceleration = ["wgpu", "bytemuck"]
 # Profiling
 profiling = []
 
-[profile.release]
-opt-level = 3
-lto = "fat"
-codegen-units = 1
-strip = true
-panic = "abort"
-
-[profile.bench]
-opt-level = 3
-lto = true

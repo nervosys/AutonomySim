@@ -140,7 +140,7 @@ impl SpatialPartitioner {
 
     /// Convert grid coordinates to partition ID
     fn grid_to_id(ix: usize, iy: usize, iz: usize, _nx: usize, ny: usize) -> usize {
-        ix * ny * 1 + iy * 1 + iz // Assumes nz=1 for simplicity
+        ix * ny + iy + iz // Assumes nz=1 for simplicity
     }
 
     /// Find which partition contains a point

@@ -351,7 +351,7 @@ impl FpvRacingSim {
             self.check_gate_passage();
 
             // Periodic logging
-            if step % print_interval as u64 == 0 && step > 0 {
+            if step.is_multiple_of(print_interval as u64) && step > 0 {
                 let state = self.physics.state(vehicle_id);
                 info!(
                     "  t={:.1}s | pos=({:.1}, {:.1}, {:.1}) | spd={:.1}m/s | alt={:.1}m | bat={:.0}% ({:.1}V) | mode={} | gate={}/{}  |  lap={}/{}",

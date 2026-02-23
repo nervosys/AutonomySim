@@ -166,8 +166,7 @@ fn main() {
     let mut operational_links = 0;
 
     // Compute jamming effectiveness for each drone
-    for drone_id in 0..num_drones {
-        let drone_pos = drone_positions[drone_id];
+    for &drone_pos in drone_positions.iter() {
 
         // Sum jamming power from all jammers
         let mut total_jamming_power_w = 0.0;

@@ -67,13 +67,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("=== Step 3: Evaluate Accuracy ===\n");
     println!("Comparing Gaussian field predictions with ground truth...");
 
-    let test_positions = vec![
-        Vector3::new(10.0, 0.0, 0.0),
+    let test_positions = [Vector3::new(10.0, 0.0, 0.0),
         Vector3::new(0.0, 20.0, 0.0),
         Vector3::new(30.0, 30.0, 0.0),
         Vector3::new(-15.0, 25.0, 5.0),
-        Vector3::new(40.0, -20.0, 0.0),
-    ];
+        Vector3::new(40.0, -20.0, 0.0)];
 
     let mut total_error = 0.0;
     for (idx, pos) in test_positions.iter().enumerate() {

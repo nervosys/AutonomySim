@@ -13,7 +13,6 @@ use autonomysim_summoner::{DistributionStrategy, Summoner, SummonerConfig};
 use autonomysim_tactical::{JammingConfig, JammingType};
 use nalgebra::{Point3, Vector3};
 use std::sync::Arc;
-use tokio;
 use tracing::{info, warn};
 
 #[cfg(feature = "unreal")]
@@ -33,7 +32,7 @@ enum RobotRole {
 }
 
 impl RobotRole {
-    fn to_vehicle_type(&self) -> VehicleType {
+    fn to_vehicle_type(self) -> VehicleType {
         match self {
             RobotRole::Scout => VehicleType::Multirotor,
             RobotRole::Transport => VehicleType::Car,
@@ -44,7 +43,7 @@ impl RobotRole {
     }
 
     #[allow(dead_code)]
-    fn to_blueprint(&self) -> &'static str {
+    fn to_blueprint(self) -> &'static str {
         match self {
             RobotRole::Scout => "BP_ScoutDrone",
             RobotRole::Transport => "BP_TransportUGV",
@@ -330,7 +329,7 @@ impl UnrealRoboticSwarm {
         self.active_links = (num_robots * (num_robots - 1)) / 2;
 
         // Toggle jamming periodically
-        if self.step_count % 600 == 0 {
+        if self.step_count.is_multiple_of(600) {
             self.jamming_active = !self.jamming_active;
             if self.jamming_active {
                 self.active_links = (self.active_links as f64 * 0.333) as usize;

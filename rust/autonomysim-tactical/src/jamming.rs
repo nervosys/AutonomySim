@@ -205,7 +205,7 @@ impl JammingModel {
                 // Duty cycle depends on sweep rate and target bandwidth
                 let duty_cycle = (self.config.bandwidth_hz * sweep_period)
                     / (self.config.center_frequency_hz * 0.1); // Assume 10% frequency range
-                let duty_cycle_clamped = duty_cycle.min(1.0).max(0.01);
+                let duty_cycle_clamped = duty_cycle.clamp(0.01, 1.0);
 
                 // Convert duty cycle to dB
                 10.0 * duty_cycle_clamped.log10()
@@ -218,7 +218,7 @@ impl JammingModel {
             } => {
                 // Pulse jammer: high peak power, low duty cycle
                 let duty_cycle = prf * pulse_width;
-                let duty_cycle_clamped = duty_cycle.min(1.0).max(0.001);
+                let duty_cycle_clamped = duty_cycle.clamp(0.001, 1.0);
 
                 // Average power = peak power * duty cycle
                 let avg_power_adjustment = 10.0 * duty_cycle_clamped.log10();
@@ -293,7 +293,7 @@ impl JammingModel {
 
         // Throughput reduction
         let throughput_ratio = capacity_with_jam / capacity_no_jam;
-        throughput_ratio.max(0.0).min(1.0)
+        throughput_ratio.clamp(0.0, 1.0)
     }
 
     /// Compute packet error rate (PER) under jamming
@@ -329,7 +329,7 @@ impl JammingModel {
 
         // PER from BER
         let per = 1.0 - (1.0 - ber).powi(packet_length_bits as i32);
-        per.max(0.0).min(1.0)
+        per.clamp(0.0, 1.0)
     }
 
     /// Get current configuration

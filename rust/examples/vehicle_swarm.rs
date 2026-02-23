@@ -28,12 +28,10 @@ async fn main() -> anyhow::Result<()> {
     // Spawn multiple drones
     println!("Spawning vehicles...");
 
-    let drone_positions = vec![
-        Point3::new(0.0, 0.0, 10.0),
+    let drone_positions = [Point3::new(0.0, 0.0, 10.0),
         Point3::new(50.0, 0.0, 10.0),
         Point3::new(0.0, 50.0, 10.0),
-        Point3::new(50.0, 50.0, 10.0),
-    ];
+        Point3::new(50.0, 50.0, 10.0)];
 
     let mut vehicle_ids = Vec::new();
 
@@ -100,30 +98,20 @@ async fn main() -> anyhow::Result<()> {
                 );
 
                 // Get sensor data
-                if let Ok(sensor_data) = backend.get_sensor_data(vehicle_id, "imu") {
-                    match sensor_data {
-                        SensorData::Imu(imu) => {
-                            println!(
-                                "    IMU: accel=({:.2}, {:.2}, {:.2})",
-                                imu.linear_acceleration.x,
-                                imu.linear_acceleration.y,
-                                imu.linear_acceleration.z
-                            );
-                        }
-                        _ => {}
-                    }
+                if let Ok(SensorData::Imu(imu)) = backend.get_sensor_data(vehicle_id, "imu") {
+                    println!(
+                        "    IMU: accel=({:.2}, {:.2}, {:.2})",
+                        imu.linear_acceleration.x,
+                        imu.linear_acceleration.y,
+                        imu.linear_acceleration.z
+                    );
                 }
 
-                if let Ok(sensor_data) = backend.get_sensor_data(vehicle_id, "gps") {
-                    match sensor_data {
-                        SensorData::Gps(gps) => {
-                            println!(
-                                "    GPS: lat={:.6}, lon={:.6}, alt={:.2}",
-                                gps.latitude, gps.longitude, gps.altitude
-                            );
-                        }
-                        _ => {}
-                    }
+                if let Ok(SensorData::Gps(gps)) = backend.get_sensor_data(vehicle_id, "gps") {
+                    println!(
+                        "    GPS: lat={:.6}, lon={:.6}, alt={:.2}",
+                        gps.latitude, gps.longitude, gps.altitude
+                    );
                 }
             }
         }

@@ -45,13 +45,13 @@ impl LinkQuality {
     /// Higher score = better link quality
     pub fn compute_score(&self) -> f64 {
         // Normalize SNR (assume 0-30 dB range)
-        let snr_norm = (self.snr_db / 30.0).max(0.0).min(1.0);
+        let snr_norm = (self.snr_db / 30.0).clamp(0.0, 1.0);
 
         // Normalize packet loss (invert since lower is better)
-        let loss_norm = 1.0 - self.packet_loss_rate.max(0.0).min(1.0);
+        let loss_norm = 1.0 - self.packet_loss_rate.clamp(0.0, 1.0);
 
         // Normalize latency (assume 0-1s range, inverted)
-        let latency_norm = 1.0 - (self.latency_s / 1.0).max(0.0).min(1.0);
+        let latency_norm = 1.0 - (self.latency_s / 1.0).clamp(0.0, 1.0);
 
         // Weighted combination
         0.5 * snr_norm + 0.3 * loss_norm + 0.2 * latency_norm

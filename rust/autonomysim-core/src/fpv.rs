@@ -14,11 +14,12 @@ use serde::{Deserialize, Serialize};
 // ─── Flight Mode ─────────────────────────────────────────────────────────────
 
 /// FPV flight mode (selectable in-flight like real FC firmware)
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub enum FpvFlightMode {
     /// Direct angular rate control — no self-leveling.
     /// Stick input maps directly to roll/pitch/yaw rates (deg/s).
     /// This is the default mode for racing and freestyle.
+    #[default]
     Acro,
 
     /// Self-leveling — stick input maps to target angle.
@@ -28,12 +29,6 @@ pub enum FpvFlightMode {
     /// Hybrid — behaves like Angle near center, Acro at extremes.
     /// Good for learning FPV.
     Horizon,
-}
-
-impl Default for FpvFlightMode {
-    fn default() -> Self {
-        FpvFlightMode::Acro
-    }
 }
 
 // ─── Rates Profile ───────────────────────────────────────────────────────────
@@ -468,18 +463,18 @@ impl FpvDroneConfig {
 
     /// Thrust-to-weight ratio
     pub fn thrust_to_weight(&self) -> f64 {
-        let total_thrust = self.max_thrust_per_motor_grams as f64 * self.motor_count as f64;
-        total_thrust / self.weight_grams as f64
+        let total_thrust = self.max_thrust_per_motor_grams * self.motor_count as f64;
+        total_thrust / self.weight_grams
     }
 
     /// Mass in kg
     pub fn mass_kg(&self) -> f64 {
-        self.weight_grams as f64 / 1000.0
+        self.weight_grams / 1000.0
     }
 
     /// Max total thrust in Newtons
     pub fn max_thrust_n(&self) -> f64 {
-        let total_grams = self.max_thrust_per_motor_grams as f64 * self.motor_count as f64;
+        let total_grams = self.max_thrust_per_motor_grams * self.motor_count as f64;
         total_grams / 1000.0 * 9.81
     }
 
@@ -860,7 +855,7 @@ impl FpvPhysics {
             let delta_rot = Rotation::from_axis_angle(&axis, angle);
             // Body-frame rotation: angular velocity is in body frame,
             // so apply delta on the right (intrinsic rotation)
-            self.orientation = self.orientation * delta_rot;
+            self.orientation *= delta_rot;
         }
 
         // ── Thrust ──

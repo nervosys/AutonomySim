@@ -46,11 +46,7 @@ impl Channel {
 
     /// Compute frequency separation (Hz)
     pub fn frequency_separation(&self, other: &Channel) -> u64 {
-        if self.frequency_hz > other.frequency_hz {
-            self.frequency_hz - other.frequency_hz
-        } else {
-            other.frequency_hz - self.frequency_hz
-        }
+        self.frequency_hz.abs_diff(other.frequency_hz)
     }
 }
 
@@ -154,7 +150,7 @@ impl SpectrumManager {
         self.allocations.insert(agent_id, allocation);
         self.channel_usage
             .entry(channel_id)
-            .or_insert_with(HashSet::new)
+            .or_default()
             .insert(agent_id);
 
         true
