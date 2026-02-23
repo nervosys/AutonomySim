@@ -8,6 +8,9 @@
 
 use serde::{Deserialize, Serialize};
 
+// Re-export RF unit conversion functions from the canonical source
+pub use autonomysim_rf_core::utils::{db_to_linear, dbm_to_watts, linear_to_db, watts_to_dbm};
+
 /// Signal power metrics
 #[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub struct SignalMetrics {
@@ -272,26 +275,6 @@ impl LinkBudget {
     }
 }
 
-/// Utility functions
-#[inline]
-pub fn dbm_to_watts(dbm: f64) -> f64 {
-    10.0_f64.powf(dbm / 10.0) / 1000.0
-}
-
-#[inline]
-pub fn watts_to_dbm(watts: f64) -> f64 {
-    10.0 * (watts * 1000.0).log10()
-}
-
-#[inline]
-pub fn db_to_linear(db: f64) -> f64 {
-    10.0_f64.powf(db / 10.0)
-}
-
-#[inline]
-pub fn linear_to_db(linear: f64) -> f64 {
-    10.0 * linear.log10()
-}
 
 #[cfg(test)]
 mod tests {

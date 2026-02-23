@@ -12,7 +12,6 @@ members = [
     "autonomysim-backends",
     "autonomysim-rf-core",
     "autonomysim-gaussian-splat",
-    "autonomysim-instant-rm",
     "autonomysim-bindings",
     "autonomysim-tactical",
     "autonomysim-summoner",
@@ -39,7 +38,6 @@ autonomysim-core = { path = "autonomysim-core" }
 autonomysim-backends = { path = "autonomysim-backends" }
 autonomysim-rf-core = { path = "autonomysim-rf-core" }
 autonomysim-gaussian-splat = { path = "autonomysim-gaussian-splat" }
-autonomysim-instant-rm = { path = "autonomysim-instant-rm" }
 autonomysim-tactical = { path = "autonomysim-tactical" }
 autonomysim-summoner = { path = "autonomysim-summoner" }
 

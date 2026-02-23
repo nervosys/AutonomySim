@@ -24,11 +24,12 @@
 //!
 //! ```rust,no_run
 //! use autonomysim_core::prelude::*;
+//! use autonomysim_core::native::NativeBackend;
 //!
 //! #[tokio::main]
 //! async fn main() -> SimResult<()> {
 //!     // Create a backend
-//!     let mut backend = BackendFactory::create(BackendType::Native)?;
+//!     let mut backend: Box<dyn SimulationBackend> = Box::new(NativeBackend::new());
 //!     
 //!     // Initialize with config
 //!     let config = BackendConfig::default();
@@ -59,29 +60,28 @@ pub mod vehicle;
 
 // Re-exports for convenience
 pub use backend::{
-    BackendConfig, BackendFactory, BackendType, Geometry, Material, Position, Ray, RayHit,
-    Rotation, SceneHandle, SceneObject, SimError, SimResult, SimulationBackend, Transform, Vec3,
+    BackendConfig, BackendType, Geometry, Material, Position, Ray, RayHit, Rotation, SceneHandle,
+    SceneObject, SimError, SimResult, SimulationBackend, Transform, Vec3,
+};
+pub use fpv::{
+    FpvCameraConfig, FpvDroneConfig, FpvFlightMode, FpvOsd, FpvPhysics, FpvState, FpvStickInput,
+    PidGains, RatesProfile,
 };
 pub use sensor::{CameraData, GpsData, ImuData, LidarData, SensorData};
 pub use vehicle::{VehicleControl, VehicleId, VehicleSpec, VehicleState, VehicleType};
-pub use fpv::{
-    FpvCameraConfig, FpvDroneConfig, FpvFlightMode, FpvOsd, FpvPhysics, FpvState,
-    FpvStickInput, PidGains, RatesProfile,
-};
 
 /// Prelude module for common imports
 pub mod prelude {
     pub use crate::backend::{
-        BackendConfig, BackendFactory, BackendType, Geometry, Material, Position, Ray, RayHit,
-        Rotation, SceneHandle, SceneObject, SimError, SimResult, SimulationBackend, Transform,
-        Vec3,
+        BackendConfig, BackendType, Geometry, Material, Position, Ray, RayHit, Rotation,
+        SceneHandle, SceneObject, SimError, SimResult, SimulationBackend, Transform, Vec3,
     };
-    pub use crate::sensor::{CameraData, GpsData, ImuData, LidarData, SensorData};
-    pub use crate::vehicle::{VehicleControl, VehicleId, VehicleSpec, VehicleState, VehicleType};
     pub use crate::fpv::{
         FpvCameraConfig, FpvDroneConfig, FpvFlightMode, FpvOsd, FpvPhysics, FpvState,
         FpvStickInput, PidGains, RatesProfile,
     };
+    pub use crate::sensor::{CameraData, GpsData, ImuData, LidarData, SensorData};
+    pub use crate::vehicle::{VehicleControl, VehicleId, VehicleSpec, VehicleState, VehicleType};
     pub use nalgebra::{Point3, Quaternion, UnitQuaternion, Vector3};
 }
 

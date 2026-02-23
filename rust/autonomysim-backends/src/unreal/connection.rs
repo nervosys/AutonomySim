@@ -234,13 +234,28 @@ impl UnrealConnection {
                 qx,
                 qy,
                 qz,
-                ..
+                speed_mps,
+                altitude_m,
+                motor_outputs,
+                battery_voltage,
+                battery_remaining,
+                flight_mode,
+                armed,
+                osd,
             } => (
                 methods::UPDATE_FPV_STATE,
                 serde_json::json!({
                     "vehicle_id": vehicle_id,
-                    "x": x, "y": y, "z": z,
-                    "qw": qw, "qx": qx, "qy": qy, "qz": qz
+                    "position": [x * 100.0, y * 100.0, z * 100.0],
+                    "orientation": [qx, qy, qz, qw],
+                    "speed_mps": speed_mps,
+                    "altitude_m": altitude_m,
+                    "motor_outputs": motor_outputs,
+                    "battery_voltage": battery_voltage,
+                    "battery_remaining": battery_remaining,
+                    "flight_mode": flight_mode,
+                    "armed": armed,
+                    "osd": osd
                 }),
             ),
             UnrealMessage::SetOsdVisible {
@@ -253,7 +268,42 @@ impl UnrealConnection {
                     "visible": visible
                 }),
             ),
-            _ => ("ping", serde_json::json!({})),
+            // Remaining variants that don't have dedicated UE5 handlers yet.
+            // These are explicitly listed (not `_ =>`) so adding a new variant
+            // to UnrealMessage produces a compile error, forcing the developer
+            // to add the handler here.
+            UnrealMessage::RemoveVehicle { vehicle_id } => {
+                warn!(
+                    "RemoveVehicle not implemented in UE5 server (vehicle: {})",
+                    vehicle_id
+                );
+                ("ping", serde_json::json!({}))
+            }
+            UnrealMessage::SetControl { vehicle_id, .. } => {
+                warn!(
+                    "SetControl not implemented in UE5 server (vehicle: {})",
+                    vehicle_id
+                );
+                ("ping", serde_json::json!({}))
+            }
+            UnrealMessage::GetState { vehicle_id } => {
+                warn!(
+                    "GetState not implemented in UE5 server (vehicle: {})",
+                    vehicle_id
+                );
+                ("ping", serde_json::json!({}))
+            }
+            UnrealMessage::CastRay { .. } => {
+                warn!("CastRay not implemented in UE5 server");
+                ("ping", serde_json::json!({}))
+            }
+            UnrealMessage::CaptureImage { vehicle_id, .. } => {
+                warn!(
+                    "CaptureImage not implemented in UE5 server (vehicle: {})",
+                    vehicle_id
+                );
+                ("ping", serde_json::json!({}))
+            }
         };
 
         self.send_rpc(method, params).await

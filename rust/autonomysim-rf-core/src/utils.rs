@@ -28,6 +28,18 @@ pub fn friis_path_loss(distance_m: f64, frequency_hz: f64) -> f64 {
     20.0 * (4.0 * std::f64::consts::PI * distance_m / wavelength).log10()
 }
 
+/// Convert dB (ratio) to linear scale
+#[inline]
+pub fn db_to_linear(db: f64) -> f64 {
+    10.0_f64.powf(db / 10.0)
+}
+
+/// Convert linear scale to dB (ratio)
+#[inline]
+pub fn linear_to_db(linear: f64) -> f64 {
+    10.0 * linear.log10()
+}
+
 /// Calculate wavelength from frequency
 pub fn wavelength(frequency_hz: f64) -> f64 {
     SPEED_OF_LIGHT / frequency_hz

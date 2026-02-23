@@ -82,27 +82,27 @@ impl SpatialPartitioner {
 
                     // +X neighbor
                     if ix + 1 < nx {
-                        neighbors.push(Self::grid_to_id(ix + 1, iy, iz, nx, ny));
+                        neighbors.push(Self::grid_to_id(ix + 1, iy, iz, ny, nz));
                     }
                     // -X neighbor
                     if ix > 0 {
-                        neighbors.push(Self::grid_to_id(ix - 1, iy, iz, nx, ny));
+                        neighbors.push(Self::grid_to_id(ix - 1, iy, iz, ny, nz));
                     }
                     // +Y neighbor
                     if iy + 1 < ny {
-                        neighbors.push(Self::grid_to_id(ix, iy + 1, iz, nx, ny));
+                        neighbors.push(Self::grid_to_id(ix, iy + 1, iz, ny, nz));
                     }
                     // -Y neighbor
                     if iy > 0 {
-                        neighbors.push(Self::grid_to_id(ix, iy - 1, iz, nx, ny));
+                        neighbors.push(Self::grid_to_id(ix, iy - 1, iz, ny, nz));
                     }
                     // +Z neighbor
                     if iz + 1 < nz {
-                        neighbors.push(Self::grid_to_id(ix, iy, iz + 1, nx, ny));
+                        neighbors.push(Self::grid_to_id(ix, iy, iz + 1, ny, nz));
                     }
                     // -Z neighbor
                     if iz > 0 {
-                        neighbors.push(Self::grid_to_id(ix, iy, iz - 1, nx, ny));
+                        neighbors.push(Self::grid_to_id(ix, iy, iz - 1, ny, nz));
                     }
 
                     partitions.push(Partition {
@@ -139,8 +139,8 @@ impl SpatialPartitioner {
     }
 
     /// Convert grid coordinates to partition ID
-    fn grid_to_id(ix: usize, iy: usize, iz: usize, _nx: usize, ny: usize) -> usize {
-        ix * ny + iy + iz // Assumes nz=1 for simplicity
+    fn grid_to_id(ix: usize, iy: usize, iz: usize, ny: usize, nz: usize) -> usize {
+        ix * (ny * nz) + iy * nz + iz
     }
 
     /// Find which partition contains a point

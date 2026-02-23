@@ -18,7 +18,7 @@ async fn main() -> anyhow::Result<()> {
 
     // Create and initialize backend
     println!("Creating native backend...");
-    let mut backend = BackendFactory::create(BackendType::Native)?;
+    let mut backend: Box<dyn SimulationBackend> = Box::new(NativeBackend::new());
     backend.initialize(BackendConfig::default()).await?;
     println!("✓ Backend initialized\n");
 

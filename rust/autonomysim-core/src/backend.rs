@@ -308,26 +308,3 @@ impl SceneHandle {
         Self { id, backend_type }
     }
 }
-
-/// Factory for creating simulation backends
-pub struct BackendFactory;
-
-impl BackendFactory {
-    pub fn create(backend_type: BackendType) -> SimResult<Box<dyn SimulationBackend>> {
-        match backend_type {
-            BackendType::Native => Ok(Box::new(crate::native::NativeBackend::new())),
-            BackendType::UnrealEngine5 => Err(SimError::InvalidConfig(
-                "Unreal Engine 5 backend not yet implemented".to_string(),
-            )),
-            BackendType::IsaacLab => Err(SimError::InvalidConfig(
-                "Isaac Lab backend not yet implemented".to_string(),
-            )),
-            BackendType::MuJoCo => Err(SimError::InvalidConfig(
-                "MuJoCo backend not yet implemented".to_string(),
-            )),
-            BackendType::Warp => Err(SimError::InvalidConfig(
-                "Warp backend not yet implemented".to_string(),
-            )),
-        }
-    }
-}
